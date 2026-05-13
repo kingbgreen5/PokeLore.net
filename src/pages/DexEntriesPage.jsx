@@ -50,7 +50,7 @@ const backgroundimg = {
   return (
   <div > 
     <div style={{ padding: "2rem" }} >
-
+<h5></h5>
       <div >
 
 
@@ -60,14 +60,14 @@ const backgroundimg = {
 
       <input
         type="text"
-        placeholder="Search all Pokédex entries..."
+        placeholder=" Search entries... Ex: 'forest', 'cave', 'sea'..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         style={{
           width: "90%",
           padding: "1rem",
           marginBottom: "2rem",
-          fontSize: "1rem"
+          fontSize: ".75 rem"
         }}
       />
         </div>
@@ -102,12 +102,18 @@ const backgroundimg = {
             // borderBottom: "1px solid #eee"
           }}
         >
-          <strong>{capitalize(
+
+          <p><>{entry.text}</> </p>
+
+          <div style={{
+            fontSize: ".875rem",
+            color: "#5a5a5a",
+          }}
+          >{capitalize(
             entry.versions
              .map(capitalize)
-              .join(" / "))}</strong>
-
-          <p>{entry.text}</p>
+              .join(" / "))}</div>
+  
         </div>
       ))}
     </div>

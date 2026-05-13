@@ -9,14 +9,15 @@ style={{ padding: "2rem" }} >
 
   <div>
     <img
-      src="/src/assets/Dragonite.png"
-      alt="Dragonite"
-      style={{ width: "50px", height: "50px" }}
+      src="/src/assets/Banner.png"
+      alt="Banner"
+      style={{ width: "80%", height: "80%" }}
     />
   </div>
 
-             <h1 >PokéLore.com</h1>
+  
              <h3>Searchable Pokédex Entry Archive</h3>
+             <h5>Search every entry from every generation.</h5>
 {/* 
                <div>
     <img

@@ -1,8 +1,6 @@
 import { useState } from "react";
 import typeColors from "../constants/typeColors";
 
-
-
 function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
@@ -72,9 +70,9 @@ const sortedMoves = condensedMoves.sort(
   return (
     <div
       style={{
-        border: "2px solid #ccc",
+        border: "2px solid #706363",
         borderRadius: "12px",
-        padding: "1rem",
+        padding: ".3rem",
         marginBottom: "1rem"
       }}
     >
@@ -163,7 +161,7 @@ const sortedMoves = condensedMoves.sort(
   style={{
     display: "grid",
     gridTemplateColumns:
-      "10px 115px 65px 60px 25px 1fr",
+      "10px 115px 75px 60px 25px 1fr",
     gap: ".25rem",
     alignItems: "start",
     padding: "0.25rem 0",
@@ -190,15 +188,9 @@ const sortedMoves = condensedMoves.sort(
 
 <button
 onClick={() => {
-  console.log(
-    "Clicked move:",
-    move.move
-  );
 
-  console.log(
-    "setSelectedMove:",
-    setSelectedMove
-  );
+
+
 
   setSelectedMove(move.move);
 }}
@@ -216,9 +208,9 @@ onClick={() => {
     backgroundColor:
       typeColors[moveDetails?.type],
     color: "white",
-    padding: "0.2rem 0.8rem",
+    padding: "0.2rem 0.9rem",
     borderRadius: "99px",
-    fontSize: "0.65rem",
+    fontSize: "0.60rem",
   
     textTransform: "uppercase"
   }}

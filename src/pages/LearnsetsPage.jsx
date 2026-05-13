@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MoveDetailPage from "./MoveDetailPage";
 import LearnsetCard from "../components/LearnsetCard";
-
+import { useMemo } from "react";
 
 
 
@@ -43,12 +43,43 @@ function LearnsetsPage() {
     loadData();
   }, []);
 
-  const filteredPokemon =
-    learnsets.filter(pokemon =>
+  //----------------------------------------shows all pokemon intitially
+  // const filteredPokemon =
+  //   learnsets.filter(pokemon =>
+  //     pokemon.pokemon
+  //       .toLowerCase()
+  //       .includes(search.toLowerCase())
+  //   );
+
+
+// const filteredPokemon =
+//   search.trim() === ""
+//     ? []
+//     : learnsets.filter(pokemon =>
+//         pokemon.pokemon
+//           .toLowerCase()
+//           .includes(search.toLowerCase())
+//       );
+
+
+const filteredPokemon = useMemo(() => {
+  if (search.trim() === "") {
+    return [];
+  }
+
+  return learnsets
+    .filter(pokemon =>
       pokemon.pokemon
         .toLowerCase()
         .includes(search.toLowerCase())
-    );
+    )
+    .slice(0, 20);
+
+}, [search, learnsets]);
+
+
+
+
 
 
 if (selectedMove) {

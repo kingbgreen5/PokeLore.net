@@ -2,8 +2,8 @@ import { useState } from 'react'
 import DexEntriesPage from "./pages/DexEntriesPage";
 import Banner from "./components/Banner";
 import Navbar from "./components/Navbar";
-import MovesPage from "./pages/LearnsetsPage";
 import './App.css'
+import LearnsetsPage from './pages/LearnsetsPage';
 
 
 // visit http://localhost:5173/ to see the app in action
@@ -23,7 +23,7 @@ const [selectedMove, setSelectedMove] =
 
       {page === "dex" && <DexEntriesPage />}
 
-      {page === "moves" && <MovesPage />}
+      {page === "learnsets" && <LearnsetsPage    setSelectedMove={setSelectedMove}/>}
  
 {selectedMove ? (
   <MoveDetailPage
@@ -31,9 +31,8 @@ const [selectedMove, setSelectedMove] =
     setSelectedMove={setSelectedMove}
   />
 ) : (
-  <MovesPage
-    setSelectedMove={setSelectedMove}
-  />
+
+  <div></div>
 )}
 
 
