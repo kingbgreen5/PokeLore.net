@@ -49,9 +49,9 @@ const backgroundimg = {
 //-----------------------------------------------RETURN STATEMENT--------------------------------------------------
   return (
   <div > 
-    <div style={{ padding: "2rem" }} >
-<h5></h5>
-      <div >
+    <div style={{ padding: "1rem" }} >
+
+
 
 
 {/* 
@@ -67,10 +67,10 @@ const backgroundimg = {
           width: "90%",
           padding: "1rem",
           marginBottom: "2rem",
-          fontSize: ".75 rem"
+          fontSize: "1rem"
         }}
       />
-        </div>
+    
 
       <p>
         Showing {filteredEntries.length} results

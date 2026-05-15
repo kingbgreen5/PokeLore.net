@@ -1,251 +1,434 @@
+
+
+
 import { useState } from "react";
 import typeColors from "../constants/typeColors";
 
 function capitalize(text) {
-  return text.charAt(0).toUpperCase() + text.slice(1);
+  return text
+    .split("-")
+    .map(
+      word =>
+        word.charAt(0).toUpperCase() +
+        word.slice(1)
+    )
+    .join(" ");
 }
 
-function LearnsetCard({ pokemonData, movesData, setSelectedMove }) {
-  const [expanded, setExpanded] = useState(false);
+function LearnsetCard({
+  pokemonData,
+  movesData,
+  setSelectedMove
+}) {
+  const [expanded, setExpanded] =
+    useState(false);
 
-  const [activeTab, setActiveTab] = useState("level-up");
+  //-----------------------------------------
+  // Version Groups
+  //-----------------------------------------
 
+  // const versionGroups = [
+  //   ...new Set(
+  //     pokemonData.moves.map(
+  //       move => move.versionGroup
+  //     )
+  //   )
+  // ];
 
+const versionGroups = [
+  "all",
+  ...new Set(
+    pokemonData.moves.map(
+      move => move.versionGroup
+    )
+  )
+];
 
+  //-----------------------------------------
+  //  Default Selected Version
+  //-----------------------------------------
 
-  
-  const groupedMoves = pokemonData.moves.reduce((acc, move) => {
-    if (!acc[move.method]) {
-      acc[move.method] = [];
-    }
-
-    acc[move.method].push(move);
-
-    return acc;
-  }, {});
-
-//   const currentMoves = groupedMoves[activeTab] || [];
-
-//   const sortedMoves = [...currentMoves].sort(
-//     (a, b) => a.level - b.level
-//   );
-
-const currentMoves =
-  groupedMoves[activeTab] || [];
-
-
-const condensedMovesMap = {};
-
-for (const move of currentMoves) {
-  const key = `${move.move}-${move.method}-${move.level}`;
-
-  if (!condensedMovesMap[key]) {
-    condensedMovesMap[key] = {
-      ...move,
-      versionGroups: []
-    };
-  }
-
-  condensedMovesMap[key].versionGroups.push(
-    move.versionGroup
-  );
-}
-
-const condensedMoves =
-  Object.values(condensedMovesMap);
-
-const sortedMoves = condensedMoves.sort(
-  (a, b) => a.level - b.level
-);
+  const [selectedVersion, setSelectedVersion] =
+    useState(versionGroups[0]);
 
 
+  //-----------------------------------------
+  // Filter By Selected Version
+  //-----------------------------------------
 
+  // const filteredMoves =
+  //   pokemonData.moves.filter(
+  //     move =>
+  //       move.versionGroup ===
+  //       selectedVersion
+  //   );
 
-
-
+const filteredMoves =
+  selectedVersion === "all"
+    ? pokemonData.moves
+    : pokemonData.moves.filter(
+        move =>
+          move.versionGroup ===
+          selectedVersion
+      );
 
 
 
+
+  //-----------------------------------------
+  // Group By Learn Method
+  //-----------------------------------------
+
+  const groupedMoves =
+    filteredMoves.reduce((acc, move) => {
+      if (!acc[move.method]) {
+        acc[move.method] = [];
+      }
+
+      acc[move.method].push(move);
+
+      return acc;
+    }, {});
+
+  //-----------------------------------------
+  // Method Display Order
+  //-----------------------------------------
+
+  const methodOrder = [
+    "level-up",
+    "machine",
+    "tutor",
+    "egg"
+  ];
+
+  //-----------------------------------------
+  // Render
+  //-----------------------------------------
 
   return (
     <div
       style={{
         border: "2px solid #706363",
         borderRadius: "12px",
-        padding: ".3rem",
+        padding: ".35rem",
         marginBottom: "1rem"
       }}
     >
+      {/* Header */}
+
       <div
-        onClick={() => setExpanded(!expanded)}
+        onClick={() =>
+          setExpanded(!expanded)
+        }
         style={{
           cursor: "pointer",
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent:
+            "space-between",
           alignItems: "center"
         }}
       >
-        <h2>{capitalize(pokemonData.pokemon)}</h2>
+        <h2>
+          {capitalize(
+            pokemonData.pokemon
+          )}
+        </h2>
 
         <p>
-          {pokemonData.moves.length} moves
+          {
+            filteredMoves.length
+          }{" "}
+          moves
         </p>
       </div>
 
+      {/* Expanded Content */}
+
       {expanded && (
         <div>
-          {/* Tabs */}
+          {/* Version Selector */}
+
           <div
             style={{
-              display: "flex",
-              gap: "0.5rem",
-              marginBottom: "1rem",
-              flexWrap: "wrap"
+              marginBottom: "1rem"
             }}
           >
-            {Object.keys(groupedMoves).map(method => (
-              <button
-                key={method}
-                onClick={() => setActiveTab(method)}
-                style={{
-                  padding: "0.5rem 1rem",
-                  background:
-                    activeTab === method
-                      ? "#c2bcbc"
-                      : "#747272",
-                  border: "none",
-                  borderRadius: "8px",
-                  cursor: "pointer"
-                }}
-              >
-                {capitalize(method)}
-              </button>
-            ))}
+            <select
+              value={
+                selectedVersion
+              }
+              onChange={e =>
+                setSelectedVersion(
+                  e.target.value
+                )
+              }
+              style={{
+                padding:
+                  "0.5rem",
+                borderRadius:
+                  "8px",
+                border:
+                  "1px solid #666"
+              }}
+            >
+              {versionGroups.map(
+                version => (
+                  <option
+                    key={version}
+                    value={version}
+                  >
+                 {version === "all"
+                   ? "All Generations"
+                           : capitalize(version)}
+                  </option>
+                )
+              )}
+            </select>
           </div>
 
-          {/* Moves */}
-          <div>
+          {/* Learn Method Sections */}
 
-<div
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "1rem",
+              alignItems: "start"
+            }}
+          >
+            {methodOrder.map(
+              method => {
+                const moves =
+                  groupedMoves[
+                    method
+                  ];
 
+                if (!moves)
+                  return null;
 
-// ---------------------------------------Column Headers---------------------------------------
-  style={{
-    display: "grid",
-    gridTemplateColumns:
-      "10px 115px 65px 50px 30px 1fr",
-    gap: ".25rem",
-    fontWeight: "bold",
-    borderBottom: "2px solid #aaa",
-    paddingBottom: "0.5rem",
-    marginBottom: "0.5rem"
-  }}
->
-   <div>Lv.</div>
-  <div>Move</div>
-  <div>Type</div>
-  <div>Pwr</div>
-  <div>Acc</div>
-</div>
+                //-----------------------------------------
+                // Condense Duplicate Moves
+                //-----------------------------------------
 
+                const condensedMap =
+                  {};
 
-            {sortedMoves.map((move, index) => {
-              const moveDetails =
-                movesData[move.move];
+                for (const move of moves) {
+                  const key = `${move.move}-${move.level}`;
 
-              return (
-//----------------------------------------Move Row---------------------------------------
+                  if (
+                    !condensedMap[
+                      key
+                    ]
+                  ) {
+                    condensedMap[
+                      key
+                    ] = move;
+                  }
+                }
 
-  <div
-  key={index}
-  style={{
-    display: "grid",
-    gridTemplateColumns:
-      "10px 115px 75px 60px 25px 1fr",
-    gap: ".25rem",
-    alignItems: "start",
-    padding: "0.25rem 0",
-    // borderBottom: "1px solid #ddd",
-    fontSize: "0.70rem"
-  }}
->
-  {/* Level */}
-  <div>
-    {move.level > 0
-      ? ` ${move.level}`
-      : "-"}
-  </div>
+                const condensedMoves =
+                  Object.values(
+                    condensedMap
+                  );
 
+                //-----------------------------------------
+                // Sort
+                //-----------------------------------------
 
-  {/* Move Name
-  <div>
-    <strong>
-      {capitalize(move.move)}
-    </strong>
-  </div>
- */}
+                const sortedMoves =
+                  condensedMoves.sort(
+                    (
+                      a,
+                      b
+                    ) =>
+                      a.level -
+                      b.level
+                  );
 
+                return (
+                  <div
+                    key={method}
+                    style={{
+                      border:
+                        "1px solid #666",
+                      borderRadius:
+                        "10px",
+                      padding:
+                        "0.75rem"
+                    }}
+                  >
+                    {/* Section Title */}
 
-<button
-onClick={() => {
+                    <h3
+                      style={{
+                        marginTop: 0,
+                        marginBottom:
+                          "1rem"
+                      }}
+                    >
+                      {capitalize(
+                        method
+                      )}
+                    </h3>
 
+                    {/* Column Headers */}
 
+                    <div
+                      style={{
+                        display:
+                          "grid",
+                        gridTemplateColumns:
+                          "30px 1fr 70px 50px 50px",
+                        gap:
+                          ".35rem",
+                        fontWeight:
+                          "bold",
+                        borderBottom:
+                          "2px solid #888",
+                        paddingBottom:
+                          ".5rem",
+                        marginBottom:
+                          ".5rem",
+                        fontSize:
+                          ".75rem"
+                      }}
+                    >
+                      <div>
+                        Lv
+                      </div>
+                      <div>
+                        Move
+                      </div>
+                      <div>
+                        Type
+                      </div>
+                      <div>
+                        Pwr
+                      </div>
+                      <div>
+                        Acc
+                      </div>
+                    </div>
 
+                    {/* Move Rows */}
 
-  setSelectedMove(move.move);
-}}
->
-    <strong>
-      {capitalize(move.move)}
-    </strong>
-</button>
+                    {sortedMoves.map(
+                      (
+                        move,
+                        index
+                      ) => {
+                        const moveDetails =
+                          movesData[
+                            move
+                              .move
+                          ];
 
+                        return (
+                          <div
+                            key={
+                              index
+                            }
+                            style={{
+                              display:
+                                "grid",
+                              gridTemplateColumns:
+                                "30px 1fr 70px 50px 50px",
+                              gap:
+                                ".35rem",
+                              alignItems:
+                                "center",
+                              padding:
+                                ".3rem 0",
+                              fontSize:
+                                ".72rem"
+                            }}
+                          >
+                            {/* Level */}
 
-  
+                            <div>
+                              {move.level >
+                              0
+                                ? move.level
+                                : "-"}
+                            </div>
 
-<span
-  style={{
-    backgroundColor:
-      typeColors[moveDetails?.type],
-    color: "white",
-    padding: "0.2rem 0.9rem",
-    borderRadius: "99px",
-    fontSize: "0.60rem",
-  
-    textTransform: "uppercase"
-  }}
->
-  {moveDetails?.type}
-</span>
+                            {/* Move Button */}
 
+                            <button
+                              onClick={() =>
+                                setSelectedMove(
+                                  move.move
+                                )
+                              }
+                              style={{
+                                background:
+                                  "none",
+                                border:
+                                  "none",
+                                cursor:
+                                  "pointer",
+                                textAlign:
+                                  "left",
+                                padding:
+                                  0,
+                                fontWeight:
+                                  "bold"
+                              }}
+                            >
+                              {capitalize(
+                                move.move
+                              )}
+                            </button>
 
-  <div>
-    {(
-      moveDetails?.power || "---"
-    )}
-  </div>
+                            {/* Type */}
 
-  <div>
-    {(
-      moveDetails?.accuracy || "---"
-    )}
-  </div>
+                            <span
+                              style={{
+                                backgroundColor:
+                                  typeColors[
+                                    moveDetails?.type
+                                  ],
+                                color:
+                                  "white",
+                                padding:
+                                  "0.2rem 0.5rem",
+                                borderRadius:
+                                  "999px",
+                                textAlign:
+                                  "center",
+                                fontSize:
+                                  ".6rem",
+                                textTransform:
+                                  "uppercase"
+                              }}
+                            >
+                              {moveDetails?.type ||
+                                "---"}
+                            </span>
 
+                            {/* Power */}
 
+                            <div>
+                              {moveDetails?.power ||
+                                "---"}
+                            </div>
 
+                            {/* Accuracy */}
 
-  {/* Versions */}
-  {/* <div>
-    {move.versionGroups.join(" / ")}
-  </div> */}
-
-  {/* Description */}
-  {/* <div>
-    {moveDetails?.description}
-  </div> */}
-</div>
-              );
-            })}
+                            <div>
+                              {moveDetails?.accuracy ||
+                                "---"}
+                            </div>
+                          </div>
+                        );
+                      }
+                    )}
+                  </div>
+                );
+              }
+            )}
           </div>
         </div>
       )}

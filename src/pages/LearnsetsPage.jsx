@@ -97,8 +97,7 @@ if (selectedMove) {
 
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h5>Consolidated Learnsets from every generation</h5>
+    <div style={{ padding: "1rem" }}>
 
       <input
         type="text"
