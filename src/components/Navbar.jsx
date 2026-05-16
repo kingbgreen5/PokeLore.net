@@ -1,26 +1,52 @@
-function Navbar({ setPage }) {
+// function Navbar({ setPage }) {
+//   return (
+//     <nav
+//       style={{
+//         display: "flex",
+//         gap: "1rem",
+//         padding: "1rem",
+//         borderBottom: "1px solid #ccc"
+        
+//       }}
+//     >
+//       <button onClick={() => setPage("dex")}>
+//         Pokédex Entries
+//       </button>
+
+//       <button onClick={() => setPage("learnsets")}>
+//         Pokémon Learnsets
+//       </button>
+
+//       <button onClick={() => setPage("moves")}>
+//         Moves
+//       </button>
+
+//     </nav>
+//   );
+// }
+
+// export default Navbar;
+
+
+
+import { Link } from "react-router-dom";
+
+function Navbar() {
   return (
     <nav
       style={{
         display: "flex",
         gap: "1rem",
-        padding: "1rem",
-        borderBottom: "1px solid #ccc"
-        
+        padding: "1rem"
       }}
     >
-      <button onClick={() => setPage("dex")}>
-        Pokédex Entries
-      </button>
+      <Link to="/">
+        Dex Entries
+      </Link>
 
-      <button onClick={() => setPage("learnsets")}>
-        Pokémon Learnsets
-      </button>
-
-      <button onClick={() => setPage("moves")}>
-        Moves
-      </button>
-
+      <Link to="/learnsets">
+        Learnsets
+      </Link>
     </nav>
   );
 }

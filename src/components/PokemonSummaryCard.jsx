@@ -1,4 +1,7 @@
 import typeColors from "../constants/typeColors";
+import { useNavigate }
+from "react-router-dom";
+const navigate = useNavigate();
 
 function capitalize(text) {
   return text
@@ -17,9 +20,17 @@ function PokemonSummaryCard({
 }) {
   return (
     <div
-      onClick={() =>
-        onClick?.(pokemon)
-      }
+
+      // onClick={() =>
+      //   onClick?.(pokemon)
+      // }
+
+onClick={() =>
+  navigate(`/pokemon/${pokemon.id}`)
+}
+
+
+
       style={{
         border: "2px solid #555",
         borderRadius: "18px",

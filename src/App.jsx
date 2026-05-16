@@ -1,45 +1,75 @@
-import { useState } from 'react'
-import DexEntriesPage from "./pages/DexEntriesPage";
+
+import { useState } from "react";
+
+import {
+  Routes,
+  Route
+} from "react-router-dom";
+
 import Banner from "./components/Banner";
 import Navbar from "./components/Navbar";
-import './App.css'
-import LearnsetsPage from './pages/LearnsetsPage';
 
+import DexEntriesPage from "./pages/DexEntriesPage";
+import LearnsetsPage from "./pages/LearnsetsPage";
 
-// visit http://localhost:5173/ to see the app in action
+import MoveDetailPage from "./pages/MoveDetailPage";
+import PokemonDetailPage from "./pages/PokemonDetailPage";
+import "./App.css";
 
 function App() {
-   const [page, setPage] = useState("dex");
-
-const [selectedMove, setSelectedMove] =
-  useState(null);
+  const [
+    selectedMove,
+    setSelectedMove
+  ] = useState(null);
 
   return (
     <>
+      <Banner />
 
-          <Banner />
+      <Navbar />
 
- <Navbar setPage={setPage} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <DexEntriesPage />
+          }
+        />
 
-      {page === "dex" && <DexEntriesPage />}
+        <Route
+          path="/learnsets"
+          element={
+            <LearnsetsPage
+              setSelectedMove={
+                setSelectedMove
+              }
+            />
+          }
+        />
 
-      {page === "learnsets" && <LearnsetsPage    setSelectedMove={setSelectedMove}/>}
- 
-{selectedMove ? (
-  <MoveDetailPage
-    moveName={selectedMove}
-    setSelectedMove={setSelectedMove}
-  />
-) : (
-
-  <div></div>
-)}
+        <Route
+        path="/pokemon/:id"
+        element={<PokemonDetailPage />}
+          />
 
 
 
+      </Routes>
 
+      {selectedMove ? (
+        <MoveDetailPage
+          moveName={
+            selectedMove
+          }
+          setSelectedMove={
+            setSelectedMove
+          }
+        />
+      ) : (
+        <div></div>
+      )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
