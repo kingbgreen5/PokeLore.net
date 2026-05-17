@@ -1,7 +1,7 @@
 import typeColors from "../constants/typeColors";
 import { useNavigate }
 from "react-router-dom";
-const navigate = useNavigate();
+
 
 function capitalize(text) {
   return text
@@ -18,6 +18,9 @@ function PokemonSummaryCard({
   pokemon,
   onClick
 }) {
+  
+   const navigate = useNavigate();
+  
   return (
     <div
 

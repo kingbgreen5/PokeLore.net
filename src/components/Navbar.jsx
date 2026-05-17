@@ -40,7 +40,13 @@ function Navbar() {
         padding: "1rem"
       }}
     >
+
       <Link to="/">
+      Home
+      </Link>
+
+
+      <Link to="/DexEntries">
         Dex Entries
       </Link>
 

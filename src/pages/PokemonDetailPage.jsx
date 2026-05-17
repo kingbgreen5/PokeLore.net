@@ -8,6 +8,12 @@ import {
 } from "react";
 
 import typeColors from "../constants/typeColors";
+import MoveDetailPage from "./MoveDetailPage";
+import LearnsetCard from "../components/LearnsetCard";
+
+
+
+
 
 function capitalize(text) {
   return text
@@ -26,6 +32,9 @@ function PokemonDetailPage() {
   const [pokemon, setPokemon] =
     useState(null);
 
+    const [learnsetData, setLearnsetData] =
+  useState(null);
+
   // useEffect(() => {
   //   import(
   //     `../public/data/pokemonData${id}.json`
@@ -34,12 +43,44 @@ function PokemonDetailPage() {
   //   });
   // }, [id]);
 
+  const [movesData, setMovesData] =
+    useState({});
+    const [selectedMove, setSelectedMove] =
+  useState(null);
 
 
+
+// useEffect(() => {
+//   async function loadPokemon() {
+//     try {
+//       const response =
+//         await fetch(
+//           `/data/pokemonData/${id}.json`
+//         );
+
+//       const data =
+//         await response.json();
+
+//       setPokemon(data);
+//     } catch (error) {
+//       console.error(
+//         "Failed to load Pokémon:",
+//         error
+//       );
+//     }
+//   }
+
+//   loadPokemon();
+// }, [id]);
 
 useEffect(() => {
   async function loadPokemon() {
     try {
+
+      //-----------------------------------------
+      // Load Pokémon Metadata
+      //-----------------------------------------
+
       const response =
         await fetch(
           `/data/pokemonData/${id}.json`
@@ -49,6 +90,44 @@ useEffect(() => {
         await response.json();
 
       setPokemon(data);
+
+      //-----------------------------------------
+      // Load Learnsets
+      //-----------------------------------------
+
+      const learnsetResponse =
+        await fetch(
+          "/data/learnsets.json"
+        );
+
+      const learnsets =
+        await learnsetResponse.json();
+
+      const matchedLearnset =
+        learnsets.find(
+          entry =>
+            entry.pokemon === data.name
+        );
+
+      setLearnsetData(
+        matchedLearnset
+      );
+
+
+      const movesResponse =
+        await fetch(
+          "/data/moves.json"
+        );
+
+      const movesJson =
+        await movesResponse.json();
+
+
+      setMovesData(movesJson);
+
+
+
+
     } catch (error) {
       console.error(
         "Failed to load Pokémon:",
@@ -59,8 +138,6 @@ useEffect(() => {
 
   loadPokemon();
 }, [id]);
-
-
 
 
 
@@ -139,11 +216,8 @@ useEffect(() => {
 
       {/* Catch Rate */}
 
-      <h2>Catch Rate</h2>
+  
 
-      <p>
-        {pokemon.catchRate}
-      </p>
 
       {/* Stats */}
 
@@ -157,6 +231,31 @@ useEffect(() => {
           {value}
         </div>
       ))}
+
+
+    <h2>Catch Rate</h2>
+      <p>
+        {pokemon.catchRate}
+      </p>
+
+
+
+
+
+{learnsetData && (
+  <>
+    <h2>Learnset</h2>
+
+    <LearnsetCard
+      pokemonData={learnsetData}
+      movesData={movesData}
+      setSelectedMove={
+        setSelectedMove
+      }
+    />
+  </>
+)}
+
     </div>
   );
 }

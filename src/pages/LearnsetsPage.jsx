@@ -43,24 +43,6 @@ function LearnsetsPage() {
     loadData();
   }, []);
 
-  //----------------------------------------shows all pokemon intitially
-  // const filteredPokemon =
-  //   learnsets.filter(pokemon =>
-  //     pokemon.pokemon
-  //       .toLowerCase()
-  //       .includes(search.toLowerCase())
-  //   );
-
-
-// const filteredPokemon =
-//   search.trim() === ""
-//     ? []
-//     : learnsets.filter(pokemon =>
-//         pokemon.pokemon
-//           .toLowerCase()
-//           .includes(search.toLowerCase())
-//       );
-
 
 const filteredPokemon = useMemo(() => {
   if (search.trim() === "") {

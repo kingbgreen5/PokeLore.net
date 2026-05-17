@@ -11,7 +11,7 @@ import Navbar from "./components/Navbar";
 
 import DexEntriesPage from "./pages/DexEntriesPage";
 import LearnsetsPage from "./pages/LearnsetsPage";
-
+import HomePage from "./pages/HomePage";
 import MoveDetailPage from "./pages/MoveDetailPage";
 import PokemonDetailPage from "./pages/PokemonDetailPage";
 import "./App.css";
@@ -28,9 +28,23 @@ function App() {
 
       <Navbar />
 
+
+
+
+
+
       <Routes>
+
+
+<Route
+  path="/"
+  element={<HomePage />}
+/>
+
+
+
         <Route
-          path="/"
+          path="/DexEntries"
           element={
             <DexEntriesPage />
           }
