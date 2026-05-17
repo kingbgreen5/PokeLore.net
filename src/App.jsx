@@ -14,6 +14,7 @@ import LearnsetsPage from "./pages/LearnsetsPage";
 import HomePage from "./pages/HomePage";
 import MoveDetailPage from "./pages/MoveDetailPage";
 import PokemonDetailPage from "./pages/PokemonDetailPage";
+import ScrollToTop from "./components/ScrollToTop";
 import "./App.css";
 
 function App() {
@@ -30,10 +31,10 @@ function App() {
 
 
 
-
-
+  <ScrollToTop />
 
       <Routes>
+
 
 
 <Route

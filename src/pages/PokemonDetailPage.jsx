@@ -35,6 +35,15 @@ function PokemonDetailPage() {
     const [learnsetData, setLearnsetData] =
   useState(null);
 
+    const [loading, setLoading] =
+    useState(true);
+
+
+
+
+
+
+
   // useEffect(() => {
   //   import(
   //     `../public/data/pokemonData${id}.json`
@@ -45,36 +54,19 @@ function PokemonDetailPage() {
 
   const [movesData, setMovesData] =
     useState({});
+    
     const [selectedMove, setSelectedMove] =
-  useState(null);
+               useState(null);
 
-
-
-// useEffect(() => {
-//   async function loadPokemon() {
-//     try {
-//       const response =
-//         await fetch(
-//           `/data/pokemonData/${id}.json`
-//         );
-
-//       const data =
-//         await response.json();
-
-//       setPokemon(data);
-//     } catch (error) {
-//       console.error(
-//         "Failed to load Pokémon:",
-//         error
-//       );
-//     }
-//   }
-
-//   loadPokemon();
-// }, [id]);
 
 useEffect(() => {
   async function loadPokemon() {
+
+
+    setPokemon(null);
+    setLearnsetData(null);
+    setLoading(true);
+
     try {
 
       //-----------------------------------------
@@ -113,6 +105,9 @@ useEffect(() => {
         matchedLearnset
       );
 
+      //-----------------------------------------
+      // Load Moves
+      //-----------------------------------------
 
       const movesResponse =
         await fetch(
@@ -122,17 +117,20 @@ useEffect(() => {
       const movesJson =
         await movesResponse.json();
 
-
       setMovesData(movesJson);
-
-
-
 
     } catch (error) {
       console.error(
         "Failed to load Pokémon:",
         error
       );
+    } finally {
+
+      //-----------------------------------------
+      // VERY IMPORTANT
+      //-----------------------------------------
+
+      setLoading(false);
     }
   }
 
@@ -140,11 +138,11 @@ useEffect(() => {
 }, [id]);
 
 
+if (loading) {
+  return <p>Loading...</p>;
+}
 
-
-  if (!pokemon) {
-    return <p>Loading...</p>;
-  }
+//----------------------------------------RETURN STATEMENT-----------------------------------------
 
   return (
     <div
