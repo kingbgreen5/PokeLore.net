@@ -7,6 +7,9 @@ import {
   useState
 } from "react";
 
+import { useNavigate }
+from "react-router-dom";
+
 import typeColors from "../constants/typeColors";
 import MoveDetailPage from "./MoveDetailPage";
 import LearnsetCard from "../components/LearnsetCard";
@@ -27,8 +30,13 @@ function capitalize(text) {
 }
 
 function PokemonDetailPage() {
-  const { id } = useParams();
+const { id } = useParams();
 
+const pokemonId =
+  isNaN(id)
+    ? id.toLowerCase()
+    : Number(id);
+    
   const [pokemon, setPokemon] =
     useState(null);
 
@@ -37,7 +45,7 @@ function PokemonDetailPage() {
 
     const [loading, setLoading] =
     useState(true);
-
+const navigate = useNavigate();
 
 
 
@@ -60,79 +68,118 @@ function PokemonDetailPage() {
 
 
 useEffect(() => {
-  async function loadPokemon() {
+ async function loadPokemon() {
 
+  try {
 
-    setPokemon(null);
-    setLearnsetData(null);
     setLoading(true);
 
-    try {
+    //-----------------------------------------
+    // Load Pokémon Index
+    //-----------------------------------------
 
-      //-----------------------------------------
-      // Load Pokémon Metadata
-      //-----------------------------------------
-
-      const response =
-        await fetch(
-          `/data/pokemonData/${id}.json`
-        );
-
-      const data =
-        await response.json();
-
-      setPokemon(data);
-
-      //-----------------------------------------
-      // Load Learnsets
-      //-----------------------------------------
-
-      const learnsetResponse =
-        await fetch(
-          "/data/learnsets.json"
-        );
-
-      const learnsets =
-        await learnsetResponse.json();
-
-      const matchedLearnset =
-        learnsets.find(
-          entry =>
-            entry.pokemon === data.name
-        );
-
-      setLearnsetData(
-        matchedLearnset
+    const indexResponse =
+      await fetch(
+        "/data/pokemonIndex.json"
       );
 
-      //-----------------------------------------
-      // Load Moves
-      //-----------------------------------------
+    const pokemonIndex =
+      await indexResponse.json();
 
-      const movesResponse =
-        await fetch(
-          "/data/moves.json"
-        );
+    //-----------------------------------------
+    // Find Matching Pokémon
+    //-----------------------------------------
 
-      const movesJson =
-        await movesResponse.json();
+    const matchedPokemon =
+      pokemonIndex.find(
+        pokemon =>
 
-      setMovesData(movesJson);
+          pokemon.name ===
+            id.toLowerCase()
 
-    } catch (error) {
+          ||
+
+          pokemon.id.toString() === id
+      );
+
+    //-----------------------------------------
+    // Safety Check
+    //-----------------------------------------
+
+    if (!matchedPokemon) {
+
       console.error(
-        "Failed to load Pokémon:",
-        error
+        "Pokémon not found"
       );
-    } finally {
-
-      //-----------------------------------------
-      // VERY IMPORTANT
-      //-----------------------------------------
 
       setLoading(false);
+
+      return;
     }
+
+    //-----------------------------------------
+    // Fetch Actual Pokémon Data
+    //-----------------------------------------
+
+    const response =
+      await fetch(
+        `/data/pokemonData/${matchedPokemon.id}.json`
+      );
+
+    const data =
+      await response.json();
+
+    setPokemon(data);
+
+    //-----------------------------------------
+    // Load Learnsets
+    //-----------------------------------------
+
+    const learnsetResponse =
+      await fetch(
+        "/data/learnsets.json"
+      );
+
+    const learnsets =
+      await learnsetResponse.json();
+
+    const matchedLearnset =
+      learnsets.find(
+        entry =>
+          entry.pokemon === data.name
+      );
+
+    setLearnsetData(
+      matchedLearnset
+    );
+
+    //-----------------------------------------
+    // Load Moves
+    //-----------------------------------------
+
+    const movesResponse =
+      await fetch(
+        "/data/moves.json"
+      );
+
+    const movesJson =
+      await movesResponse.json();
+
+    setMovesData(movesJson);
+
+  } catch (error) {
+
+    console.error(
+      "Failed to load Pokémon:",
+      error
+    );
+
+  } finally {
+
+    setLoading(false);
+
   }
+}
 
   loadPokemon();
 }, [id]);
@@ -196,21 +243,50 @@ if (loading) {
         )}
       </div>
 
-      {/* Abilities */}
+{/* Abilities */}
 
-      <h2>Abilities</h2>
+<h2>Abilities</h2>
 
-      <ul>
-        {pokemon.abilities.map(
-          ability => (
-            <li key={ability}>
-              {capitalize(
-                ability
-              )}
-            </li>
+<div
+  style={{
+    display: "flex",
+    gap: ".5rem",
+    flexWrap: "wrap",
+    marginBottom: "1rem"
+  }}
+>
+  {pokemon.abilities.map(
+    ability => (
+
+      <button
+        key={ability}
+
+        onClick={() =>
+          navigate(
+            `/ability/${ability}`
           )
+        }
+
+        style={{
+          padding:
+            ".4rem .8rem",
+
+          borderRadius:
+            "999px",
+
+          border: "none",
+
+          cursor: "pointer"
+        }}
+      >
+        {capitalize(
+          ability
         )}
-      </ul>
+      </button>
+
+    )
+  )}
+</div>
 
       {/* Catch Rate */}
 
@@ -242,7 +318,7 @@ if (loading) {
 
 {learnsetData && (
   <>
-    <h2>Learnset</h2>
+  
 
     <LearnsetCard
       pokemonData={learnsetData}

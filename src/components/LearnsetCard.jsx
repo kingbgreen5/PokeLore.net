@@ -3,6 +3,8 @@
 
 import { useState } from "react";
 import typeColors from "../constants/typeColors";
+import { useNavigate }
+from "react-router-dom";
 
 function capitalize(text) {
   return text
@@ -22,7 +24,7 @@ function LearnsetCard({
 }) {
   const [expanded, setExpanded] =
     useState(false);
-
+  const navigate = useNavigate();
   //-----------------------------------------
   // Version Groups
   //-----------------------------------------
@@ -129,9 +131,11 @@ const filteredMoves =
         }}
       >
         <h2>
-          {capitalize(
-            pokemonData.pokemon
-          )}
+          {/* {capitalize(
+            pokemonData.pokemon 
+            
+          )}  */}
+          Learnsets
         </h2>
 
         <p>
@@ -357,11 +361,20 @@ const filteredMoves =
                             {/* Move Button */}
 
                             <button
-                              onClick={() =>
-                                setSelectedMove(
-                                  move.move
-                                )
-                              }
+                              // onClick={() =>
+                              //   setSelectedMove(
+                              //     move.move
+                              //   )
+                              // }
+
+onClick={() =>
+  navigate(
+    `/move/${move.move}`
+  )
+}
+
+
+
                               style={{
                                 background:
                                   "none",

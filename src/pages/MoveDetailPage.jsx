@@ -1,18 +1,100 @@
 import typeColors from "../constants/typeColors";
+import {
+  useParams
+} from "react-router-dom";
+
+import {
+  useEffect,
+  useState
+} from "react";
+
+
 
 function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 function MoveDetailPage({
-  moveName,
-  movesData,
-  learnsets,
+  // moveName,
+  // movesData,
+  // learnsets,
   setSelectedMove
 }) {
-  const move = movesData[moveName];
+  const { moveName } = useParams();
+  // const move = movesData[moveName];
+  const [moveData, setMoveData] =
+  useState(null);
 
-  if (!move) {
+const [learnsets, setLearnsets] =
+  useState([]);
+
+
+useEffect(() => {
+
+  async function loadMove() {
+
+    try {
+
+      //-----------------------------------------
+      // Load Moves
+      //-----------------------------------------
+
+      const movesResponse =
+        await fetch(
+          "/data/moves.json"
+        );
+
+      const moves =
+        await movesResponse.json();
+
+      setMoveData(
+        moves[moveName]
+      );
+
+      //-----------------------------------------
+      // Load Learnsets
+      //-----------------------------------------
+
+      const learnsetsResponse =
+        await fetch(
+          "/data/learnsets.json"
+        );
+
+      const learnsetsData =
+        await learnsetsResponse.json();
+
+      setLearnsets(
+        learnsetsData
+      );
+
+    } catch (error) {
+
+      console.error(
+        "Failed to load move:",
+        error
+      );
+
+    }
+
+  }
+
+  loadMove();
+
+}, [moveName]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+  if (!moveData) {
     return (
       <div style={{ padding: "2rem" }}>
         <button
@@ -76,7 +158,7 @@ function MoveDetailPage({
         <span
           style={{
             backgroundColor:
-              typeColors[move.type],
+              typeColors[moveData.type],
             color: "white",
             padding: "0.4rem 0.8rem",
             borderRadius: "999px",
@@ -84,7 +166,7 @@ function MoveDetailPage({
             textTransform: "uppercase"
           }}
         >
-          {move.type}
+          {moveData.type}
         </span>
       </div>
 
@@ -99,17 +181,17 @@ function MoveDetailPage({
       >
         <div>
           <strong>Power</strong>
-          <p>{move.power ?? "-"}</p>
+          <p>{moveData.power ?? "-"}</p>
         </div>
 
         <div>
           <strong>Accuracy</strong>
-          <p>{move.accuracy ?? "-"}</p>
+          <p>{moveData.accuracy ?? "-"}</p>
         </div>
 
         <div>
           <strong>PP</strong>
-          <p>{move.pp ?? "-"}</p>
+          <p>{moveData.pp ?? "-"}</p>
         </div>
       </div>
 
@@ -126,7 +208,7 @@ function MoveDetailPage({
             lineHeight: "1.6"
           }}
         >
-          {move.description}
+          {moveData.description}
         </p>
       </div>
 
