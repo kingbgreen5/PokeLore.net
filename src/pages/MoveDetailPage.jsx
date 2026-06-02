@@ -8,7 +8,9 @@ import {
   useState
 } from "react";
 
-
+import {
+  useNavigate
+} from "react-router-dom";
 
 function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
@@ -24,6 +26,8 @@ function MoveDetailPage({
   // const move = movesData[moveName];
   const [moveData, setMoveData] =
   useState(null);
+
+  const navigate = useNavigate();
 
 const [learnsets, setLearnsets] =
   useState([]);
@@ -98,7 +102,7 @@ useEffect(() => {
     return (
       <div style={{ padding: "2rem" }}>
         <button
-          onClick={() => setSelectedMove(null)}
+     onClick={() => navigate("/moves")}
         >
           ← Back
         </button>

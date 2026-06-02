@@ -12,9 +12,14 @@ import Navbar from "./components/Navbar";
 import DexEntriesPage from "./pages/DexEntriesPage";
 import LearnsetsPage from "./pages/LearnsetsPage";
 import HomePage from "./pages/HomePage";
+import MovesPage from "./pages/MovesPage";
 import MoveDetailPage from "./pages/MoveDetailPage";
 import PokemonDetailPage from "./pages/PokemonDetailPage";
+import AbilitiesPage from "./pages/AbilitiesPage";
 import AbilityDetailPage from "./pages/AbilityDetailPage";
+
+
+
 import ScrollToTop from "./components/ScrollToTop";
 import "./App.css";
 
@@ -47,6 +52,17 @@ function App() {
 <Route
   path="/ability/:abilityName"
   element={<AbilityDetailPage />}
+/>
+
+
+<Route
+  path="/abilities"
+  element={<AbilitiesPage />}
+/>
+
+<Route
+  path="/moves"
+  element={<MovesPage />}
 />
 
         <Route

@@ -38,6 +38,7 @@ async function main() {
 
       moves[data.name] = {
         type: data.type?.name || null,
+         category: data.damage_class.name,
         power: data.power,
         accuracy: data.accuracy,
         pp: data.pp,

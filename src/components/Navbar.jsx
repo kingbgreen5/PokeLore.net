@@ -1,32 +1,3 @@
-// function Navbar({ setPage }) {
-//   return (
-//     <nav
-//       style={{
-//         display: "flex",
-//         gap: "1rem",
-//         padding: "1rem",
-//         borderBottom: "1px solid #ccc"
-        
-//       }}
-//     >
-//       <button onClick={() => setPage("dex")}>
-//         Pokédex Entries
-//       </button>
-
-//       <button onClick={() => setPage("learnsets")}>
-//         Pokémon Learnsets
-//       </button>
-
-//       <button onClick={() => setPage("moves")}>
-//         Moves
-//       </button>
-
-//     </nav>
-//   );
-// }
-
-// export default Navbar;
-
 
 
 import { Link } from "react-router-dom";
@@ -42,7 +13,7 @@ function Navbar() {
     >
 
       <Link to="/">
-      Home
+     Pokémon
       </Link>
 
 
@@ -50,9 +21,18 @@ function Navbar() {
         Dex Entries
       </Link>
 
+      <Link to="/Moves">
+        Moves
+      </Link>
       <Link to="/learnsets">
         Learnsets
       </Link>
+
+<Link to="/abilities">
+  Abilities
+</Link>
+
+
     </nav>
   );
 }
