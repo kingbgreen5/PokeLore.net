@@ -51,7 +51,11 @@ const backgroundimg = {
   <div > 
     <div style={{ padding: "1rem" }} >
 
-
+ 
+      <h4>
+        Search every entry from
+        every generation.
+      </h4>
 
 
 {/* 
@@ -73,7 +77,7 @@ const backgroundimg = {
     
 
       <p>
-        Showing {filteredEntries.length} results
+       {filteredEntries.length} results
       </p>
 
 

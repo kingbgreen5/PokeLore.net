@@ -17,21 +17,22 @@ function Navbar() {
       </Link>
 
 
-      <Link to="/DexEntries">
-        Dex Entries
-      </Link>
 
       <Link to="/Moves">
         Moves
       </Link>
-      <Link to="/learnsets">
+
+      {/* <Link to="/learnsets">
         Learnsets
-      </Link>
+      </Link> */}
 
 <Link to="/abilities">
   Abilities
 </Link>
 
+      <Link to="/DexEntries">
+        Entries
+      </Link>
 
     </nav>
   );

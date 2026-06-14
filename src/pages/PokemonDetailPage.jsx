@@ -40,6 +40,7 @@ const pokemonId =
   const [pokemon, setPokemon] =
     useState(null);
 
+
     const [learnsetData, setLearnsetData] =
   useState(null);
 
@@ -189,6 +190,15 @@ if (loading) {
   return <p>Loading...</p>;
 }
 
+const baseStatTotal =
+  Object.values(
+    pokemon.stats
+  ).reduce(
+    (sum, stat) => sum + stat,
+    0
+  );
+
+
 //----------------------------------------RETURN STATEMENT-----------------------------------------
 
   return (
@@ -297,6 +307,15 @@ if (loading) {
 
       <h2>Base Stats</h2>
 
+<div
+  style={{
+    marginTop: "1rem",
+    fontWeight: "bold",
+    fontSize: "1.1rem"
+  }}
+>
+  Total: {baseStatTotal}
+</div>
       {Object.entries(
         pokemon.stats
       ).map(([stat, value]) => (
@@ -305,6 +324,7 @@ if (loading) {
           {value}
         </div>
       ))}
+
 
 
     <h2>Catch Rate</h2>

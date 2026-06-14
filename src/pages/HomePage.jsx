@@ -180,14 +180,14 @@ function HomePage() {
           textAlign: "center"
         }}
       >
-        <h1
+        {/* <h3
           style={{
-            fontSize: "2.5rem",
-            marginBottom: ".5rem"
+            // fontSize: "2.5rem",
+            // marginBottom: ".5rem"
           }}
         >
           Pokédex
-        </h1>
+        </h3> */}
 
         <p
           style={{
