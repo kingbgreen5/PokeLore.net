@@ -123,17 +123,6 @@ const backgroundimg = {
     </div>
   )
 )}
-
-
-
-
-
-
-
-
-
-
-
     </div>
     </div>
   );

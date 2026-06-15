@@ -13,6 +13,7 @@ from "react-router-dom";
 import typeColors from "../constants/typeColors";
 import MoveDetailPage from "./MoveDetailPage";
 import LearnsetCard from "../components/LearnsetCard";
+import DexEntryCard from "../components/DexEntryCard.jsx";
 
 
 
@@ -49,7 +50,11 @@ const pokemonId =
 const navigate = useNavigate();
 
 
+const [dexEntries, setDexEntries] =
+  useState([]);
 
+  const [evolutionData, setEvolutionData] =
+  useState(null);
 
 
 
@@ -155,6 +160,45 @@ useEffect(() => {
     );
 
     //-----------------------------------------
+    // Load Evolutions
+    //-----------------------------------------
+
+const evolutionResponse =
+  await fetch(
+    "/data/evolutions.json"
+  );
+
+const evolutions =
+  await evolutionResponse.json();
+
+setEvolutionData(
+  evolutions[id]
+);
+
+
+//-----------------------------------------
+// Load Dex Entries
+//-----------------------------------------
+
+const dexResponse =
+  await fetch(
+    "/data/condensedEntries.json"
+  );
+
+const dexData =
+  await dexResponse.json();
+
+const pokemonEntries =
+  dexData.filter(
+    entry =>
+      entry.pokemon === data.name
+  );
+
+setDexEntries(
+  pokemonEntries
+);
+
+    //-----------------------------------------
     // Load Moves
     //-----------------------------------------
 
@@ -182,6 +226,14 @@ useEffect(() => {
   }
 }
 
+
+
+
+
+
+
+
+
   loadPokemon();
 }, [id]);
 
@@ -208,7 +260,7 @@ const baseStatTotal =
       }}
     >
       <h1>
-        #{pokemon.id}{" "}
+       
         {capitalize(
           pokemon.name
         )}
@@ -221,6 +273,7 @@ const baseStatTotal =
           width: "250px"
         }}
       />
+<h5> No. {pokemon.id}.</h5>
 
       {/* Types */}
 
@@ -229,8 +282,10 @@ const baseStatTotal =
           display: "flex",
           gap: ".5rem",
           marginBottom: "1rem"
+          
         }}
       >
+        
         {pokemon.types.map(
           type => (
             <span
@@ -287,6 +342,7 @@ const baseStatTotal =
           border: "none",
 
           cursor: "pointer"
+          
         }}
       >
         {capitalize(
@@ -298,7 +354,6 @@ const baseStatTotal =
   )}
 </div>
 
-      {/* Catch Rate */}
 
   
 
@@ -326,14 +381,40 @@ const baseStatTotal =
       ))}
 
 
+            {/* Evolution Line */}
 
-    <h2>Catch Rate</h2>
-      <p>
-        {pokemon.catchRate}
-      </p>
+<h2>Evolution Line</h2>
+{evolutionData?.chain?.map(
+  (evolution, index) => (
+    <div key={index}>
 
 
+      {evolution.level && (
+        <div>
+          ↓ Lv.
+          {evolution.level}
+        </div>
+      )}
 
+
+      <button
+        onClick={() =>
+          navigate(
+            `/pokemon/${evolution.id}`
+          )
+        }
+      >
+        
+        {capitalize(
+          evolution.name
+        )}
+      </button>
+
+      
+
+    </div>
+  )
+)}
 
 
 {learnsetData && (
@@ -349,6 +430,21 @@ const baseStatTotal =
     />
   </>
 )}
+
+<DexEntryCard
+  entries={dexEntries}
+/>
+
+
+    <h2>Catch Rate</h2>
+      <p>
+        {pokemon.catchRate}
+      </p>
+
+
+
+
+
 
     </div>
   );
