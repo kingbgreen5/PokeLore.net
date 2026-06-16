@@ -1,7 +1,12 @@
 {
   "id": 848,
   "name": "toxel",
+  "species": "toxel",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/848.png",
+  "genus": "Baby Pokémon",
+  "height": 4,
+  "weight": 110,
+  "baseExperience": 48,
   "types": [
     "electric",
     "poison"
@@ -11,7 +16,6 @@
     "static",
     "klutz"
   ],
-  "catchRate": 75,
   "stats": {
     "hp": 40,
     "attack": 38,
@@ -19,5 +23,36 @@
     "specialAttack": 54,
     "specialDefense": 35,
     "speed": 40
-  }
+  },
+  "catchRate": 75,
+  "generation": "generation-viii",
+  "color": "purple",
+  "shape": "upright",
+  "genderRate": 4,
+  "hatchCounter": 25,
+  "isBaby": true,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 446,
+  "varieties": [
+    {
+      "id": 848,
+      "name": "toxel",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "sword"
+      ],
+      "text": "It stores poison in an internal poison sac and secretes that poison through its skin. If you touch this Pokémon, a tingling sensation follows."
+    },
+    {
+      "versions": [
+        "shield"
+      ],
+      "text": "It manipulates the chemical makeup of its poison to produce electricity. The voltage is weak, but it can cause a tingling paralysis."
+    }
+  ]
 }

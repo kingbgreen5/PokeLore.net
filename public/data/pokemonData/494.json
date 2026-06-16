@@ -1,7 +1,12 @@
 {
   "id": 494,
   "name": "victini",
+  "species": "victini",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/494.png",
+  "genus": "Victory Pokémon",
+  "height": 4,
+  "weight": 40,
+  "baseExperience": 270,
   "types": [
     "psychic",
     "fire"
@@ -9,7 +14,6 @@
   "abilities": [
     "victory-star"
   ],
-  "catchRate": 3,
   "stats": {
     "hp": 100,
     "attack": 100,
@@ -17,5 +21,47 @@
     "specialAttack": 100,
     "specialDefense": 100,
     "speed": 100
-  }
+  },
+  "catchRate": 3,
+  "generation": "generation-v",
+  "color": "yellow",
+  "shape": "humanoid",
+  "genderRate": -1,
+  "hatchCounter": 120,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": true,
+  "evolutionChainId": 255,
+  "varieties": [
+    {
+      "id": 494,
+      "name": "victini",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "This Pokémon brings victory. It is said that Trainers with Victini always win, regardless of the type of encounter."
+    },
+    {
+      "versions": [
+        "white"
+      ],
+      "text": "It creates an unlimited supply of energy inside its body, which it shares with those who touch it."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "When it shares the infinite energy it creates, that being’s entire body will be overflowing with power."
+    }
+  ]
 }

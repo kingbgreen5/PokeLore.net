@@ -1,7 +1,12 @@
 {
   "id": 593,
   "name": "jellicent-male",
+  "species": "jellicent",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/593.png",
+  "genus": "Floating Pokémon",
+  "height": 22,
+  "weight": 1350,
+  "baseExperience": 168,
   "types": [
     "water",
     "ghost"
@@ -11,7 +16,6 @@
     "cursed-body",
     "damp"
   ],
-  "catchRate": 60,
   "stats": {
     "hp": 100,
     "attack": 60,
@@ -19,5 +23,71 @@
     "specialAttack": 85,
     "specialDefense": 105,
     "speed": 60
-  }
+  },
+  "catchRate": 60,
+  "generation": "generation-v",
+  "color": "white",
+  "shape": "tentacles",
+  "genderRate": 4,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 301,
+  "varieties": [
+    {
+      "id": 593,
+      "name": "jellicent-male",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "The fate of the ships and crew that wander into Jellicent’s habitat: all sunken, all lost, all vanished."
+    },
+    {
+      "versions": [
+        "white"
+      ],
+      "text": "They propel themselves by expelling absorbed seawater from their bodies. Their favorite food is life energy."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "Its body is mostly seawater. It’s said there’s a castle of ships Jellicent have sunk on the seafloor."
+    },
+    {
+      "versions": [
+        "ultra-sun"
+      ],
+      "text": "Jellicent is always hanging around fancy cruise ships and tankers, hoping to drag away its prey."
+    },
+    {
+      "versions": [
+        "ultra-moon"
+      ],
+      "text": "Fishermen are terrified of Jellicent. It’s rumored to drag them into the sea and steal their lives away."
+    },
+    {
+      "versions": [
+        "sword"
+      ],
+      "text": "Most of this Pokémon’s body composition is identical to sea water. It makes sunken ships its lair."
+    },
+    {
+      "versions": [
+        "shield"
+      ],
+      "text": "Whenever a full moon hangs in the night sky, schools of Jellicent gather near the surface of the sea, waiting for their prey to appear."
+    }
+  ]
 }

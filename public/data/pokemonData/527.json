@@ -1,7 +1,12 @@
 {
   "id": 527,
   "name": "woobat",
+  "species": "woobat",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/527.png",
+  "genus": "Bat Pokémon",
+  "height": 4,
+  "weight": 21,
+  "baseExperience": 65,
   "types": [
     "psychic",
     "flying"
@@ -11,7 +16,6 @@
     "klutz",
     "simple"
   ],
-  "catchRate": 190,
   "stats": {
     "hp": 65,
     "attack": 45,
@@ -19,5 +23,59 @@
     "specialAttack": 55,
     "specialDefense": 43,
     "speed": 72
-  }
+  },
+  "catchRate": 190,
+  "generation": "generation-v",
+  "color": "blue",
+  "shape": "wings",
+  "genderRate": 4,
+  "hatchCounter": 15,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 269,
+  "varieties": [
+    {
+      "id": 527,
+      "name": "woobat",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "Its habitat is dark forests and caves. It emits ultrasonic waves from its nose to learn about its surroundings."
+    },
+    {
+      "versions": [
+        "white"
+      ],
+      "text": "Suction from its nostrils enables it to stick to cave walls during sleep. It leaves a heart-shaped mark behind."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "The heart-shaped mark left on a body after a Woobat has been attached to it is said to bring good fortune."
+    },
+    {
+      "versions": [
+        "sword"
+      ],
+      "text": "While inside a cave, if you look up and see lots of heart-shaped marks lining the walls, it’s evidence that Woobat live there."
+    },
+    {
+      "versions": [
+        "shield"
+      ],
+      "text": "It emits ultrasonic waves as it flutters about, searching for its prey—bug Pokémon."
+    }
+  ]
 }

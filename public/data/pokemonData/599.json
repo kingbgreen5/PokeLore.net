@@ -1,7 +1,12 @@
 {
   "id": 599,
   "name": "klink",
+  "species": "klink",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/599.png",
+  "genus": "Gear Pokémon",
+  "height": 3,
+  "weight": 210,
+  "baseExperience": 60,
   "types": [
     "steel"
   ],
@@ -10,7 +15,6 @@
     "minus",
     "clear-body"
   ],
-  "catchRate": 130,
   "stats": {
     "hp": 40,
     "attack": 55,
@@ -18,5 +22,59 @@
     "specialAttack": 45,
     "specialDefense": 60,
     "speed": 30
-  }
+  },
+  "catchRate": 130,
+  "generation": "generation-v",
+  "color": "gray",
+  "shape": "heads",
+  "genderRate": -1,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 305,
+  "varieties": [
+    {
+      "id": 599,
+      "name": "klink",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "The two minigears that mesh together are predetermined. Each will rebound from other minigears without meshing."
+    },
+    {
+      "versions": [
+        "white",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "Interlocking two bodies and spinning around generates the energy they need to live."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2"
+      ],
+      "text": "Two bodies comprise a fixed pair. They spin around each other to generate energy."
+    },
+    {
+      "versions": [
+        "sword"
+      ],
+      "text": "The two minigears that compose this Pokémon are closer than twins. They mesh well only with each other."
+    },
+    {
+      "versions": [
+        "shield"
+      ],
+      "text": "It’s suspected that Klink were the inspiration behind ancient people’s invention of the first gears."
+    }
+  ]
 }

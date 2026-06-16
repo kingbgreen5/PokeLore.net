@@ -14,7 +14,8 @@ import typeColors from "../constants/typeColors";
 import MoveDetailPage from "./MoveDetailPage";
 import LearnsetCard from "../components/LearnsetCard";
 import DexEntryCard from "../components/DexEntryCard.jsx";
-
+import EvolutionNode
+from "../components/EvolutionNode";
 
 
 
@@ -50,8 +51,6 @@ const pokemonId =
 const navigate = useNavigate();
 
 
-const [dexEntries, setDexEntries] =
-  useState([]);
 
   const [evolutionData, setEvolutionData] =
   useState(null);
@@ -73,169 +72,132 @@ const [dexEntries, setDexEntries] =
                useState(null);
 
 
+
+
 useEffect(() => {
- async function loadPokemon() {
 
-  try {
+  async function loadPokemon() {
 
-    setLoading(true);
+    try {
 
-    //-----------------------------------------
-    // Load Pokémon Index
-    //-----------------------------------------
+      setLoading(true);
 
-    const indexResponse =
-      await fetch(
-        "/data/pokemonIndex.json"
+      //-------------------------------------
+      // Pokemon
+      //-------------------------------------
+
+      const pokemonResponse =
+        await fetch(
+          `/data/pokemonData/${id}.json`
+        );
+
+      const pokemonData =
+        await pokemonResponse.json();
+
+      setPokemon(
+        pokemonData
       );
 
-    const pokemonIndex =
-      await indexResponse.json();
+      //-------------------------------------
+      // Learnsets + Moves
+      //-------------------------------------
 
-    //-----------------------------------------
-    // Find Matching Pokémon
-    //-----------------------------------------
+      const [
+        learnsetResponse,
+        movesResponse
+      ] = await Promise.all([
 
-    const matchedPokemon =
-      pokemonIndex.find(
-        pokemon =>
+        fetch(
+          `/data/pokemonLearnsets/${id}.json`
+        ),
 
-          pokemon.name ===
-            id.toLowerCase()
+        fetch(
+          "/data/moves.json"
+        )
 
-          ||
+      ]);
 
-          pokemon.id.toString() === id
+      const [
+        learnsetJson,
+        movesJson
+      ] = await Promise.all([
+
+        learnsetResponse.json(),
+
+        movesResponse.json()
+
+      ]);
+
+      setLearnsetData(
+        learnsetJson
       );
 
-    //-----------------------------------------
-    // Safety Check
-    //-----------------------------------------
-
-    if (!matchedPokemon) {
-
-      console.error(
-        "Pokémon not found"
+      setMovesData(
+        movesJson
       );
 
-      setLoading(false);
+      //-------------------------------------
+      //  Evolution Data
+      //-------------------------------------
 
-      return;
-    }
 
-    //-----------------------------------------
-    // Fetch Actual Pokémon Data
-    //-----------------------------------------
 
-    const response =
-      await fetch(
-        `/data/pokemonData/${matchedPokemon.id}.json`
-      );
+// const evolutionResponse =
+//   await fetch(
+//     "/data/evolutions.json"
+//   );
 
-    const data =
-      await response.json();
+// const evolutions =
+//   await evolutionResponse.json();
 
-    setPokemon(data);
+// setEvolutionData(
+//   evolutions[id]
+// );
 
-    //-----------------------------------------
-    // Load Learnsets
-    //-----------------------------------------
 
-    const learnsetResponse =
-      await fetch(
-        "/data/learnsets.json"
-      );
-
-    const learnsets =
-      await learnsetResponse.json();
-
-    const matchedLearnset =
-      learnsets.find(
-        entry =>
-          entry.pokemon === data.name
-      );
-
-    setLearnsetData(
-      matchedLearnset
-    );
-
-    //-----------------------------------------
-    // Load Evolutions
-    //-----------------------------------------
+// console.log(
+//   "Evolution Data:",
+//   evolutions[id]
+// );
 
 const evolutionResponse =
   await fetch(
-    "/data/evolutions.json"
+    `/data/evolutionChains/${pokemonData.evolutionChainId}.json`
   );
 
-const evolutions =
+const evolutionJson =
   await evolutionResponse.json();
 
 setEvolutionData(
-  evolutions[id]
+  evolutionJson
 );
 
 
-//-----------------------------------------
-// Load Dex Entries
-//-----------------------------------------
 
-const dexResponse =
-  await fetch(
-    "/data/condensedEntries.json"
-  );
 
-const dexData =
-  await dexResponse.json();
 
-const pokemonEntries =
-  dexData.filter(
-    entry =>
-      entry.pokemon === data.name
-  );
 
-setDexEntries(
-  pokemonEntries
-);
 
-    //-----------------------------------------
-    // Load Moves
-    //-----------------------------------------
+    } catch (error) {
 
-    const movesResponse =
-      await fetch(
-        "/data/moves.json"
+      console.error(
+        "Failed to load Pokémon:",
+        error
       );
 
-    const movesJson =
-      await movesResponse.json();
+    } finally {
 
-    setMovesData(movesJson);
+      setLoading(false);
 
-  } catch (error) {
-
-    console.error(
-      "Failed to load Pokémon:",
-      error
-    );
-
-  } finally {
-
-    setLoading(false);
-
+    }
   }
-}
-
-
-
-
-
-
-
-
 
   loadPokemon();
+
 }, [id]);
+
+
+
 
 
 if (loading) {
@@ -274,6 +236,40 @@ const baseStatTotal =
         }}
       />
 <h5> No. {pokemon.id}.</h5>
+
+{/* 
+//-----------------------------------------Forms----------------------------------------- */}
+
+<h2>Forms</h2>
+
+<div
+  style={{
+    display: "flex",
+    gap: ".5rem",
+    flexWrap: "wrap",
+    marginBottom: "1rem"
+  }}
+>
+  {pokemon.varieties?.map(
+    form => (
+      <button
+        key={form.id}
+        onClick={() =>
+          navigate(
+            `/pokemon/${form.id}`
+          )
+        }
+      >
+        {capitalize(
+          form.name
+        )}
+      </button>
+    )
+  )}
+</div>
+
+
+
 
       {/* Types */}
 
@@ -383,7 +379,7 @@ const baseStatTotal =
 
             {/* Evolution Line */}
 
-<h2>Evolution Line</h2>
+{/* <h2>Evolution Line</h2>
 {evolutionData?.chain?.map(
   (evolution, index) => (
     <div key={index}>
@@ -415,24 +411,40 @@ const baseStatTotal =
     </div>
   )
 )}
+ */}
+<div></div>
 
+<h2>Evolution</h2>
 
-{learnsetData && (
-  <>
-  
+{evolutionData?.root && (
 
-    <LearnsetCard
-      pokemonData={learnsetData}
-      movesData={movesData}
-      setSelectedMove={
-        setSelectedMove
-      }
-    />
-  </>
+  <EvolutionNode
+    node={
+      evolutionData.root
+    }
+  />
+
 )}
 
+
+
+{learnsetData ? (
+  <LearnsetCard
+    pokemonData={learnsetData}
+    movesData={movesData}
+    setSelectedMove={setSelectedMove}
+  />
+) : (
+  <p>No learnset data loaded.</p>
+)}
+
+
+
+
+
 <DexEntryCard
-  entries={dexEntries}
+  // entries={dexEntries}
+    entries={pokemon.dexEntries}
 />
 
 

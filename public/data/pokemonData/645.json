@@ -1,7 +1,12 @@
 {
   "id": 645,
   "name": "landorus-incarnate",
+  "species": "landorus",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/645.png",
+  "genus": "Abundance Pokémon",
+  "height": 15,
+  "weight": 680,
+  "baseExperience": 270,
   "types": [
     "ground",
     "flying"
@@ -10,7 +15,6 @@
     "sand-force",
     "sheer-force"
   ],
-  "catchRate": 3,
   "stats": {
     "hp": 89,
     "attack": 125,
@@ -18,5 +22,58 @@
     "specialAttack": 115,
     "specialDefense": 80,
     "speed": 101
-  }
+  },
+  "catchRate": 3,
+  "generation": "generation-v",
+  "color": "brown",
+  "shape": "arms",
+  "genderRate": 0,
+  "hatchCounter": 120,
+  "isBaby": false,
+  "isLegendary": true,
+  "isMythical": false,
+  "evolutionChainId": 332,
+  "varieties": [
+    {
+      "id": 645,
+      "name": "landorus-incarnate",
+      "isDefault": true
+    },
+    {
+      "id": 10021,
+      "name": "landorus-therian",
+      "isDefault": false
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "Lands visited by Landorus grant such bountiful crops that it has been hailed as “The Guardian of the Fields.”"
+    },
+    {
+      "versions": [
+        "white"
+      ],
+      "text": "The energy that comes pouring from its tail increases the nutrition in the soil, making crops grow to great size."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "From the forces of lightning and wind, it creates energy to give nutrients to the soil and make the land abundant."
+    },
+    {
+      "versions": [
+        "legends-arceus"
+      ],
+      "text": "When the incarnations of wind and of lightning clash, Landorus arrives to quell the conflict. After the tempests and thunderbolts abate, the land is sure to be blessed with bountiful harvests."
+    }
+  ]
 }

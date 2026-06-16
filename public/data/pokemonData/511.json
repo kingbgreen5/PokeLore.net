@@ -1,7 +1,12 @@
 {
   "id": 511,
   "name": "pansage",
+  "species": "pansage",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/511.png",
+  "genus": "Grass Monkey Pokémon",
+  "height": 6,
+  "weight": 105,
+  "baseExperience": 63,
   "types": [
     "grass"
   ],
@@ -9,7 +14,6 @@
     "gluttony",
     "overgrow"
   ],
-  "catchRate": 190,
   "stats": {
     "hp": 50,
     "attack": 53,
@@ -17,5 +21,47 @@
     "specialAttack": 53,
     "specialDefense": 48,
     "speed": 64
-  }
+  },
+  "catchRate": 190,
+  "generation": "generation-v",
+  "color": "green",
+  "shape": "upright",
+  "genderRate": 1,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 262,
+  "varieties": [
+    {
+      "id": 511,
+      "name": "pansage",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black"
+      ],
+      "text": "This Pokémon dwells deep in the forest. Eating a leaf from its head whisks weariness away as if by magic."
+    },
+    {
+      "versions": [
+        "white",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "It shares the leaf on its head with weary-looking Pokémon. These leaves are known to relieve stress."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "It’s good at finding berries and gathers them from all over. It’s kind enough to share them with friends."
+    }
+  ]
 }

@@ -1,7 +1,12 @@
 {
   "id": 655,
   "name": "delphox",
+  "species": "delphox",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/655.png",
+  "genus": "Fox Pokémon",
+  "height": 15,
+  "weight": 390,
+  "baseExperience": 240,
   "types": [
     "fire",
     "psychic"
@@ -10,7 +15,6 @@
     "blaze",
     "magician"
   ],
-  "catchRate": 45,
   "stats": {
     "hp": 75,
     "attack": 69,
@@ -18,5 +22,43 @@
     "specialAttack": 114,
     "specialDefense": 100,
     "speed": 104
-  }
+  },
+  "catchRate": 45,
+  "generation": "generation-vi",
+  "color": "red",
+  "shape": "upright",
+  "genderRate": 1,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 338,
+  "varieties": [
+    {
+      "id": 655,
+      "name": "delphox",
+      "isDefault": true
+    },
+    {
+      "id": 10293,
+      "name": "delphox-mega",
+      "isDefault": false
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "x",
+        "omega-ruby"
+      ],
+      "text": "It gazes into the flame at the tip of its branch to achieve a focused state, which allows it to see into the future."
+    },
+    {
+      "versions": [
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "Using psychic power, it generates a fiery vortex of 5,400 degrees Fahrenheit, incinerating foes swept into this whirl of flame."
+    }
+  ]
 }

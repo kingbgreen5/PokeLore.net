@@ -1,7 +1,12 @@
 {
   "id": 849,
   "name": "toxtricity-amped",
+  "species": "toxtricity",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/849.png",
+  "genus": "Punk Pokémon",
+  "height": 16,
+  "weight": 400,
+  "baseExperience": 176,
   "types": [
     "electric",
     "poison"
@@ -11,7 +16,6 @@
     "plus",
     "technician"
   ],
-  "catchRate": 45,
   "stats": {
     "hp": 75,
     "attack": 98,
@@ -19,5 +23,51 @@
     "specialAttack": 114,
     "specialDefense": 70,
     "speed": 75
-  }
+  },
+  "catchRate": 45,
+  "generation": "generation-viii",
+  "color": "purple",
+  "shape": "upright",
+  "genderRate": 4,
+  "hatchCounter": 25,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 446,
+  "varieties": [
+    {
+      "id": 849,
+      "name": "toxtricity-amped",
+      "isDefault": true
+    },
+    {
+      "id": 10184,
+      "name": "toxtricity-low-key",
+      "isDefault": false
+    },
+    {
+      "id": 10219,
+      "name": "toxtricity-amped-gmax",
+      "isDefault": false
+    },
+    {
+      "id": 10228,
+      "name": "toxtricity-low-key-gmax",
+      "isDefault": false
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "sword"
+      ],
+      "text": "When this Pokémon sounds as if it’s strumming a guitar, it’s actually clawing at the protrusions on its chest to generate electricity."
+    },
+    {
+      "versions": [
+        "shield"
+      ],
+      "text": "This short-tempered and aggressive Pokémon chugs stagnant water to absorb any toxins it might contain."
+    }
+  ]
 }

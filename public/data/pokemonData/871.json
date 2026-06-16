@@ -1,7 +1,12 @@
 {
   "id": 871,
   "name": "pincurchin",
+  "species": "pincurchin",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/871.png",
+  "genus": "Sea Urchin Pokémon",
+  "height": 3,
+  "weight": 10,
+  "baseExperience": 152,
   "types": [
     "electric"
   ],
@@ -9,7 +14,6 @@
     "lightning-rod",
     "electric-surge"
   ],
-  "catchRate": 75,
   "stats": {
     "hp": 48,
     "attack": 101,
@@ -17,5 +21,36 @@
     "specialAttack": 91,
     "specialDefense": 85,
     "speed": 15
-  }
+  },
+  "catchRate": 75,
+  "generation": "generation-viii",
+  "color": "purple",
+  "shape": "tentacles",
+  "genderRate": 4,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 454,
+  "varieties": [
+    {
+      "id": 871,
+      "name": "pincurchin",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "sword"
+      ],
+      "text": "It feeds on seaweed, using its teeth to scrape it off rocks. Electric current flows from the tips of its spines."
+    },
+    {
+      "versions": [
+        "shield"
+      ],
+      "text": "It stores electricity in each spine. Even if one gets broken off, it still continues to emit electricity for at least three hours."
+    }
+  ]
 }

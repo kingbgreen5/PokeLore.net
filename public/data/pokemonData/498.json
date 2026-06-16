@@ -1,7 +1,12 @@
 {
   "id": 498,
   "name": "tepig",
+  "species": "tepig",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/498.png",
+  "genus": "Fire Pig Pokémon",
+  "height": 5,
+  "weight": 99,
+  "baseExperience": 62,
   "types": [
     "fire"
   ],
@@ -9,7 +14,6 @@
     "blaze",
     "thick-fat"
   ],
-  "catchRate": 45,
   "stats": {
     "hp": 65,
     "attack": 63,
@@ -17,5 +21,47 @@
     "specialAttack": 45,
     "specialDefense": 45,
     "speed": 45
-  }
+  },
+  "catchRate": 45,
+  "generation": "generation-v",
+  "color": "red",
+  "shape": "quadruped",
+  "genderRate": 1,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 257,
+  "varieties": [
+    {
+      "id": 498,
+      "name": "tepig",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "It can deftly dodge its foe’s attacks while shooting fireballs from its nose. It roasts berries before it eats them."
+    },
+    {
+      "versions": [
+        "white"
+      ],
+      "text": "It blows fire through its nose. When it catches a cold, the fire becomes pitch-black smoke instead."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "It loves to eat roasted berries, but sometimes it gets too excited and burns them to a crisp."
+    }
+  ]
 }

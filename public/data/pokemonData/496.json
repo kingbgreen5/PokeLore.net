@@ -1,7 +1,12 @@
 {
   "id": 496,
   "name": "servine",
+  "species": "servine",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/496.png",
+  "genus": "Grass Snake Pokémon",
+  "height": 8,
+  "weight": 160,
+  "baseExperience": 145,
   "types": [
     "grass"
   ],
@@ -9,7 +14,6 @@
     "overgrow",
     "contrary"
   ],
-  "catchRate": 45,
   "stats": {
     "hp": 60,
     "attack": 60,
@@ -17,5 +21,47 @@
     "specialAttack": 60,
     "specialDefense": 75,
     "speed": 83
-  }
+  },
+  "catchRate": 45,
+  "generation": "generation-v",
+  "color": "green",
+  "shape": "upright",
+  "genderRate": 1,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 256,
+  "varieties": [
+    {
+      "id": 496,
+      "name": "servine",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "It moves along the ground as if sliding. Its swift movements befuddle its foes, and it then attacks with a vine whip."
+    },
+    {
+      "versions": [
+        "white"
+      ],
+      "text": "They avoid attacks by sinking into the shadows of thick foliage. They retaliate with masterful whipping techniques."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "When it gets dirty, its leaves can’t be used in photosynthesis, so it always keeps itself clean."
+    }
+  ]
 }

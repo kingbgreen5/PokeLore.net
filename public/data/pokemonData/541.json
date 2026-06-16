@@ -1,7 +1,12 @@
 {
   "id": 541,
   "name": "swadloon",
+  "species": "swadloon",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/541.png",
+  "genus": "Leaf-Wrapped Pokémon",
+  "height": 5,
+  "weight": 73,
+  "baseExperience": 133,
   "types": [
     "bug",
     "grass"
@@ -11,7 +16,6 @@
     "chlorophyll",
     "overcoat"
   ],
-  "catchRate": 120,
   "stats": {
     "hp": 55,
     "attack": 63,
@@ -19,5 +23,47 @@
     "specialAttack": 50,
     "specialDefense": 80,
     "speed": 42
-  }
+  },
+  "catchRate": 120,
+  "generation": "generation-v",
+  "color": "green",
+  "shape": "arms",
+  "genderRate": 4,
+  "hatchCounter": 15,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 276,
+  "varieties": [
+    {
+      "id": 541,
+      "name": "swadloon",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "Forests where Swadloon live have superb foliage because the nutrients they make from fallen leaves nourish the plant life."
+    },
+    {
+      "versions": [
+        "white",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "It protects itself from the cold by wrapping up in leaves. It stays on the move, eating leaves in forests."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2"
+      ],
+      "text": "Preferring dark, damp places, it spends the entire day eating fallen leaves that lie around it."
+    }
+  ]
 }

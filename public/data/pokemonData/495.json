@@ -1,7 +1,12 @@
 {
   "id": 495,
   "name": "snivy",
+  "species": "snivy",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/495.png",
+  "genus": "Grass Snake Pokémon",
+  "height": 6,
+  "weight": 81,
+  "baseExperience": 62,
   "types": [
     "grass"
   ],
@@ -9,7 +14,6 @@
     "overgrow",
     "contrary"
   ],
-  "catchRate": 45,
   "stats": {
     "hp": 45,
     "attack": 45,
@@ -17,5 +21,47 @@
     "specialAttack": 45,
     "specialDefense": 55,
     "speed": 63
-  }
+  },
+  "catchRate": 45,
+  "generation": "generation-v",
+  "color": "green",
+  "shape": "upright",
+  "genderRate": 1,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 256,
+  "varieties": [
+    {
+      "id": 495,
+      "name": "snivy",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black"
+      ],
+      "text": "It is very intelligent and calm. Being exposed to lots of sunlight makes its movements swifter."
+    },
+    {
+      "versions": [
+        "white",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "They photosynthesize by bathing their tails in sunlight. When they are not feeling well, their tails droop."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "Being exposed to sunlight makes its movements swifter. It uses vines more adeptly than its hands."
+    }
+  ]
 }

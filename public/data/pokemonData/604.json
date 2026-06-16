@@ -1,14 +1,18 @@
 {
   "id": 604,
   "name": "eelektross",
+  "species": "eelektross",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/604.png",
+  "genus": "EleFish Pokémon",
+  "height": 21,
+  "weight": 805,
+  "baseExperience": 232,
   "types": [
     "electric"
   ],
   "abilities": [
     "levitate"
   ],
-  "catchRate": 30,
   "stats": {
     "hp": 85,
     "attack": 115,
@@ -16,5 +20,52 @@
     "specialAttack": 105,
     "specialDefense": 80,
     "speed": 50
-  }
+  },
+  "catchRate": 30,
+  "generation": "generation-v",
+  "color": "blue",
+  "shape": "fish",
+  "genderRate": 4,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 306,
+  "varieties": [
+    {
+      "id": 604,
+      "name": "eelektross",
+      "isDefault": true
+    },
+    {
+      "id": 10290,
+      "name": "eelektross-mega",
+      "isDefault": false
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "They crawl out of the ocean using their arms. They will attack prey on shore and immediately drag it into the ocean."
+    },
+    {
+      "versions": [
+        "white",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "With their sucker mouths, they suck in prey. Then they use their fangs to shock the prey with electricity."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2"
+      ],
+      "text": "It latches on to prey with its sucker mouth, sinking in its fangs and shocking the prey with powerful electricity."
+    }
+  ]
 }

@@ -1,7 +1,12 @@
 {
   "id": 500,
   "name": "emboar",
+  "species": "emboar",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/500.png",
+  "genus": "Mega Fire Pig Pokémon",
+  "height": 16,
+  "weight": 1500,
+  "baseExperience": 238,
   "types": [
     "fire",
     "fighting"
@@ -10,7 +15,6 @@
     "blaze",
     "reckless"
   ],
-  "catchRate": 45,
   "stats": {
     "hp": 110,
     "attack": 123,
@@ -18,5 +22,52 @@
     "specialAttack": 100,
     "specialDefense": 65,
     "speed": 65
-  }
+  },
+  "catchRate": 45,
+  "generation": "generation-v",
+  "color": "red",
+  "shape": "upright",
+  "genderRate": 1,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 257,
+  "varieties": [
+    {
+      "id": 500,
+      "name": "emboar",
+      "isDefault": true
+    },
+    {
+      "id": 10286,
+      "name": "emboar-mega",
+      "isDefault": false
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "It can throw a fire punch by setting its fists on fire with its fiery chin. It cares deeply about its friends."
+    },
+    {
+      "versions": [
+        "white",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "It has mastered fast and powerful fighting moves. It grows a beard of fire."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2"
+      ],
+      "text": "A flaring beard of fire is proof that it is fired up. It is adept at using many different moves."
+    }
+  ]
 }

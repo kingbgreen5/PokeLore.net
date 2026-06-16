@@ -1,7 +1,12 @@
 {
   "id": 652,
   "name": "chesnaught",
+  "species": "chesnaught",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/652.png",
+  "genus": "Spiny Armor Pokémon",
+  "height": 16,
+  "weight": 900,
+  "baseExperience": 239,
   "types": [
     "grass",
     "fighting"
@@ -10,7 +15,6 @@
     "overgrow",
     "bulletproof"
   ],
-  "catchRate": 45,
   "stats": {
     "hp": 88,
     "attack": 107,
@@ -18,5 +22,43 @@
     "specialAttack": 74,
     "specialDefense": 75,
     "speed": 64
-  }
+  },
+  "catchRate": 45,
+  "generation": "generation-vi",
+  "color": "green",
+  "shape": "upright",
+  "genderRate": 1,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 337,
+  "varieties": [
+    {
+      "id": 652,
+      "name": "chesnaught",
+      "isDefault": true
+    },
+    {
+      "id": 10292,
+      "name": "chesnaught-mega",
+      "isDefault": false
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "x",
+        "omega-ruby"
+      ],
+      "text": "Its Tackle is forceful enough to flip a 50-ton tank. It shields its allies from danger with its own body."
+    },
+    {
+      "versions": [
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "When it takes a defensive posture with its fists guarding its face, it could withstand a bomb blast."
+    }
+  ]
 }

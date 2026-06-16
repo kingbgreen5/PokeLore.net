@@ -1,7 +1,12 @@
 {
   "id": 839,
   "name": "coalossal",
+  "species": "coalossal",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/839.png",
+  "genus": "Coal Pokémon",
+  "height": 28,
+  "weight": 3105,
+  "baseExperience": 255,
   "types": [
     "rock",
     "fire"
@@ -11,7 +16,6 @@
     "flame-body",
     "flash-fire"
   ],
-  "catchRate": 45,
   "stats": {
     "hp": 110,
     "attack": 80,
@@ -19,5 +23,41 @@
     "specialAttack": 80,
     "specialDefense": 90,
     "speed": 30
-  }
+  },
+  "catchRate": 45,
+  "generation": "generation-viii",
+  "color": "black",
+  "shape": "humanoid",
+  "genderRate": 4,
+  "hatchCounter": 15,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 441,
+  "varieties": [
+    {
+      "id": 839,
+      "name": "coalossal",
+      "isDefault": true
+    },
+    {
+      "id": 10215,
+      "name": "coalossal-gmax",
+      "isDefault": false
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "sword"
+      ],
+      "text": "It’s usually peaceful, but the vandalism of mines enrages it. Offenders will be incinerated with flames that reach 2,700 degrees Fahrenheit."
+    },
+    {
+      "versions": [
+        "shield"
+      ],
+      "text": "While it’s engaged in battle, its mountain of coal will burn bright red, sending off sparks that scorch the surrounding area."
+    }
+  ]
 }

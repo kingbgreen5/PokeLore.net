@@ -1,7 +1,12 @@
 {
   "id": 614,
   "name": "beartic",
+  "species": "beartic",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/614.png",
+  "genus": "Freezing Pokémon",
+  "height": 26,
+  "weight": 2600,
+  "baseExperience": 177,
   "types": [
     "ice"
   ],
@@ -10,7 +15,6 @@
     "slush-rush",
     "swift-swim"
   ],
-  "catchRate": 60,
   "stats": {
     "hp": 95,
     "attack": 130,
@@ -18,5 +22,59 @@
     "specialAttack": 70,
     "specialDefense": 80,
     "speed": 50
-  }
+  },
+  "catchRate": 60,
+  "generation": "generation-v",
+  "color": "white",
+  "shape": "quadruped",
+  "genderRate": 4,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 310,
+  "varieties": [
+    {
+      "id": 614,
+      "name": "beartic",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black"
+      ],
+      "text": "It can make its breath freeze at will. Very able in the water, it swims around in northern seas and catches prey."
+    },
+    {
+      "versions": [
+        "white",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "It freezes its breath to create fangs and claws of ice to fight with. Cold northern areas are its habitat."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "They love the cold seas of the north. They create pathways across the ocean waters by freezing their own breath."
+    },
+    {
+      "versions": [
+        "sword"
+      ],
+      "text": "It swims through frigid seas, searching for prey. From its frozen breath, it forms icy fangs that are harder than steel."
+    },
+    {
+      "versions": [
+        "shield"
+      ],
+      "text": "It swims energetically through frigid seas. When it gets tired, it freezes the seawater with its breath so it can rest on the ice."
+    }
+  ]
 }

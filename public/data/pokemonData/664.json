@@ -1,7 +1,12 @@
 {
   "id": 664,
   "name": "scatterbug",
+  "species": "scatterbug",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/664.png",
+  "genus": "Scatterdust Pokémon",
+  "height": 3,
+  "weight": 25,
+  "baseExperience": 40,
   "types": [
     "bug"
   ],
@@ -10,7 +15,6 @@
     "compound-eyes",
     "friend-guard"
   ],
-  "catchRate": 255,
   "stats": {
     "hp": 38,
     "attack": 35,
@@ -18,5 +22,38 @@
     "specialAttack": 27,
     "specialDefense": 25,
     "speed": 35
-  }
+  },
+  "catchRate": 255,
+  "generation": "generation-vi",
+  "color": "black",
+  "shape": "armor",
+  "genderRate": 4,
+  "hatchCounter": 15,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 342,
+  "varieties": [
+    {
+      "id": 664,
+      "name": "scatterbug",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "x",
+        "omega-ruby"
+      ],
+      "text": "When under attack from bird Pokémon, it spews a poisonous black powder that causes paralysis on contact."
+    },
+    {
+      "versions": [
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "The powder that covers its body regulates its temperature, so it can live in any region or climate."
+    }
+  ]
 }

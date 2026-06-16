@@ -1,7 +1,12 @@
 {
   "id": 522,
   "name": "blitzle",
+  "species": "blitzle",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/522.png",
+  "genus": "Electrified Pokémon",
+  "height": 8,
+  "weight": 298,
+  "baseExperience": 59,
   "types": [
     "electric"
   ],
@@ -10,7 +15,6 @@
     "motor-drive",
     "sap-sipper"
   ],
-  "catchRate": 190,
   "stats": {
     "hp": 45,
     "attack": 60,
@@ -18,5 +22,47 @@
     "specialAttack": 50,
     "specialDefense": 32,
     "speed": 76
-  }
+  },
+  "catchRate": 190,
+  "generation": "generation-v",
+  "color": "black",
+  "shape": "quadruped",
+  "genderRate": 4,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 267,
+  "varieties": [
+    {
+      "id": 522,
+      "name": "blitzle",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "x",
+        "white",
+        "omega-ruby"
+      ],
+      "text": "When thunderclouds cover the sky, it will appear. It can catch lightning with its mane and store the electricity."
+    },
+    {
+      "versions": [
+        "black"
+      ],
+      "text": "Its mane shines when it discharges electricity. They use their flashing manes to communicate with one another."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "Its mane shines when it discharges electricity. They use the frequency and rhythm of these flashes to communicate."
+    }
+  ]
 }

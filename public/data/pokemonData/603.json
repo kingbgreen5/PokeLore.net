@@ -1,14 +1,18 @@
 {
   "id": 603,
   "name": "eelektrik",
+  "species": "eelektrik",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/603.png",
+  "genus": "EleFish Pokémon",
+  "height": 12,
+  "weight": 220,
+  "baseExperience": 142,
   "types": [
     "electric"
   ],
   "abilities": [
     "levitate"
   ],
-  "catchRate": 60,
   "stats": {
     "hp": 65,
     "attack": 85,
@@ -16,5 +20,47 @@
     "specialAttack": 75,
     "specialDefense": 70,
     "speed": 40
-  }
+  },
+  "catchRate": 60,
+  "generation": "generation-v",
+  "color": "blue",
+  "shape": "fish",
+  "genderRate": 4,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 306,
+  "varieties": [
+    {
+      "id": 603,
+      "name": "eelektrik",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black"
+      ],
+      "text": "They coil around foes and shock them with electricity-generating organs that seem simply to be circular patterns."
+    },
+    {
+      "versions": [
+        "white",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "These Pokémon have a big appetite. When they spot their prey, they attack it and paralyze it with electricity."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "It wraps itself around its prey and paralyzes it with electricity from the round spots on its sides. Then it chomps."
+    }
+  ]
 }

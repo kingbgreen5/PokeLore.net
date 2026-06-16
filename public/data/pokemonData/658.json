@@ -1,7 +1,12 @@
 {
   "id": 658,
   "name": "greninja",
+  "species": "greninja",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/658.png",
+  "genus": "Ninja Pokémon",
+  "height": 15,
+  "weight": 400,
+  "baseExperience": 239,
   "types": [
     "water",
     "dark"
@@ -10,7 +15,6 @@
     "torrent",
     "protean"
   ],
-  "catchRate": 45,
   "stats": {
     "hp": 72,
     "attack": 95,
@@ -18,5 +22,53 @@
     "specialAttack": 103,
     "specialDefense": 71,
     "speed": 122
-  }
+  },
+  "catchRate": 45,
+  "generation": "generation-vi",
+  "color": "blue",
+  "shape": "humanoid",
+  "genderRate": 1,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 339,
+  "varieties": [
+    {
+      "id": 658,
+      "name": "greninja",
+      "isDefault": true
+    },
+    {
+      "id": 10116,
+      "name": "greninja-battle-bond",
+      "isDefault": false
+    },
+    {
+      "id": 10117,
+      "name": "greninja-ash",
+      "isDefault": false
+    },
+    {
+      "id": 10294,
+      "name": "greninja-mega",
+      "isDefault": false
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "x",
+        "omega-ruby"
+      ],
+      "text": "It creates throwing stars out of compressed water. When it spins them and throws them at high speed, these stars can split metal in two."
+    },
+    {
+      "versions": [
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "It appears and vanishes with a ninja’s grace. It toys with its enemies using swift movements, while slicing them with throwing stars of sharpest water."
+    }
+  ]
 }

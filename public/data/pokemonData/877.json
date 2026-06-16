@@ -1,7 +1,12 @@
 {
   "id": 877,
   "name": "morpeko-full-belly",
+  "species": "morpeko",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/877.png",
+  "genus": "Two-Sided Pokémon",
+  "height": 3,
+  "weight": 30,
+  "baseExperience": 153,
   "types": [
     "electric",
     "dark"
@@ -9,7 +14,6 @@
   "abilities": [
     "hunger-switch"
   ],
-  "catchRate": 180,
   "stats": {
     "hp": 58,
     "attack": 95,
@@ -17,5 +21,41 @@
     "specialAttack": 70,
     "specialDefense": 58,
     "speed": 97
-  }
+  },
+  "catchRate": 180,
+  "generation": "generation-viii",
+  "color": "yellow",
+  "shape": "humanoid",
+  "genderRate": 4,
+  "hatchCounter": 10,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 459,
+  "varieties": [
+    {
+      "id": 877,
+      "name": "morpeko-full-belly",
+      "isDefault": true
+    },
+    {
+      "id": 10187,
+      "name": "morpeko-hangry",
+      "isDefault": false
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "sword"
+      ],
+      "text": "As it eats the seeds stored up in its pocket-like pouches, this Pokémon is not just satisfying its constant hunger. It’s also generating electricity."
+    },
+    {
+      "versions": [
+        "shield"
+      ],
+      "text": "It carries electrically roasted seeds with it as if they’re precious treasures. No matter how much it eats, it always gets hungry again in short order."
+    }
+  ]
 }

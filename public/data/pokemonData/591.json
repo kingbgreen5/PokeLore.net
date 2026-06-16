@@ -1,7 +1,12 @@
 {
   "id": 591,
   "name": "amoonguss",
+  "species": "amoonguss",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/591.png",
+  "genus": "Mushroom Pokémon",
+  "height": 6,
+  "weight": 105,
+  "baseExperience": 162,
   "types": [
     "grass",
     "poison"
@@ -10,7 +15,6 @@
     "effect-spore",
     "regenerator"
   ],
-  "catchRate": 75,
   "stats": {
     "hp": 114,
     "attack": 85,
@@ -18,5 +22,59 @@
     "specialAttack": 85,
     "specialDefense": 80,
     "speed": 30
-  }
+  },
+  "catchRate": 75,
+  "generation": "generation-v",
+  "color": "white",
+  "shape": "arms",
+  "genderRate": 4,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 300,
+  "varieties": [
+    {
+      "id": 591,
+      "name": "amoonguss",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "It lures prey close by dancing and waving its arm caps, which resemble Poké Balls, in a swaying motion."
+    },
+    {
+      "versions": [
+        "white",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "They show off their Poké Ball caps to lure prey, but very few Pokémon are fooled by this."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2"
+      ],
+      "text": "It moves the caps on both arms and does a dance to lure prey. It prefers damp places."
+    },
+    {
+      "versions": [
+        "sword"
+      ],
+      "text": "This Pokémon puffs poisonous spores at its foes. If the spores aren’t washed off quickly, they’ll grow into mushrooms wherever they land."
+    },
+    {
+      "versions": [
+        "shield"
+      ],
+      "text": "Amoonguss generally doesn’t move much. It tends to stand still near Poké Balls that have been dropped on the ground."
+    }
+  ]
 }

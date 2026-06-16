@@ -1,7 +1,12 @@
 {
   "id": 499,
   "name": "pignite",
+  "species": "pignite",
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/499.png",
+  "genus": "Fire Pig Pokémon",
+  "height": 10,
+  "weight": 555,
+  "baseExperience": 146,
   "types": [
     "fire",
     "fighting"
@@ -10,7 +15,6 @@
     "blaze",
     "thick-fat"
   ],
-  "catchRate": 45,
   "stats": {
     "hp": 90,
     "attack": 93,
@@ -18,5 +22,47 @@
     "specialAttack": 70,
     "specialDefense": 55,
     "speed": 55
-  }
+  },
+  "catchRate": 45,
+  "generation": "generation-v",
+  "color": "red",
+  "shape": "upright",
+  "genderRate": 1,
+  "hatchCounter": 20,
+  "isBaby": false,
+  "isLegendary": false,
+  "isMythical": false,
+  "evolutionChainId": 257,
+  "varieties": [
+    {
+      "id": 499,
+      "name": "pignite",
+      "isDefault": true
+    }
+  ],
+  "dexEntries": [
+    {
+      "versions": [
+        "black",
+        "y",
+        "alpha-sapphire"
+      ],
+      "text": "When its internal fire flares up, its movements grow sharper and faster. When in trouble, it emits smoke."
+    },
+    {
+      "versions": [
+        "white"
+      ],
+      "text": "Whatever it eats becomes fuel for the flame in its stomach. When it is angered, the intensity of the flame increases."
+    },
+    {
+      "versions": [
+        "black-2",
+        "white-2",
+        "x",
+        "omega-ruby"
+      ],
+      "text": "The more it eats, the more fuel it has to make the fire in its stomach stronger. This fills it with even more power."
+    }
+  ]
 }
