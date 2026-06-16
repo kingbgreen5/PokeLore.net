@@ -1,6 +1,10 @@
 import { useNavigate }
 from "react-router-dom";
 
+
+import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import typeColors from "../constants/typeColors";
+
 function capitalize(text) {
 
   return text
@@ -14,8 +18,121 @@ function capitalize(text) {
 
 }
 
+
+function getEvolutionDescription(node) {
+
+  const parts = [];
+
+  if (node.trigger === "level-up") {
+    parts.push("Lvl. up");
+  }
+
+  if (node.trigger === "trade") {
+    parts.push("Trade");
+  }
+
+  if (node.trigger === "use-item") {
+    parts.push("");
+  }
+
+  if (node.item) {
+    parts.push(
+      capitalize(node.item)
+    );
+  }
+
+  if (node.heldItem) {
+    parts.push(
+      `holding ${capitalize(node.heldItem)}`
+    );
+  }
+
+  if (node.minLevel) {
+    parts.push(
+      `at level ${node.minLevel}`
+    );
+  }
+
+  if (node.minHappiness) {
+    parts.push(
+      " high friendship"
+    );
+  }
+
+  if (node.minBeauty) {
+    parts.push(
+      "with high beauty"
+    );
+  }
+
+  if (node.minAffection) {
+    parts.push(
+      "with high affection"
+    );
+  }
+
+  if (node.timeOfDay) {
+    parts.push(
+      `during the ${node.timeOfDay}`
+    );
+  }
+
+  if (node.knownMove) {
+    parts.push(
+      `knowing ${capitalize(
+        node.knownMove
+      )}`
+    );
+  }
+
+  if (node.knownMoveType) {
+    parts.push(
+      `knowing a ${capitalize(
+        node.knownMoveType
+      )}-type move`
+    );
+  }
+
+  if (node.location) {
+    parts.push(
+      `at ${capitalize(
+        node.location
+      )}`
+    );
+  }
+
+  if (node.partySpecies) {
+    parts.push(
+      `with ${capitalize(
+        node.partySpecies
+      )} in party`
+    );
+  }
+
+  if (node.partyType) {
+    parts.push(
+      `with a ${capitalize(
+        node.partyType
+      )}-type Pokémon in party`
+    );
+  }
+
+  if (node.turnUpsideDown) {
+    parts.push(
+      "while holding the console upside down"
+    );
+  }
+
+  return parts.join(" ");
+}
+
+
+
+
+
+
 function EvolutionNode({
-  node
+  node,rootRef,isRoot
 }) {
 
   const navigate =
@@ -33,11 +150,13 @@ function EvolutionNode({
     <div
       style={{
         display: "flex",
+        width: "100%",
         flexDirection: "column",
       marginBottom: "2rem",
-      marginTop: "2rem",
+      marginTop: "auto",
         alignItems: "center",
-        gap: ".5rem",
+
+        // gap: ".1rem",
         // border: "1px solid",
       }}
     >
@@ -47,39 +166,33 @@ function EvolutionNode({
 
 
 
-
         
 
 {/* //------------------------------- trigger and conditions --------------------------------- */}
 
-      {/* {node.trigger && (
-        
 
-        <div
-          style={{
-            fontSize: ".8rem"
-          }}
-        >
+{node.trigger && (
+  <div
+    style={{
+      fontSize: ".8rem",
+      textAlign: "center",
+      width: "80px",
+     lineHeight: 1.1,
+     marginBottom: "1rem",
+     marginTop: "1rem",
 
-
-          {node.minLevel &&
-            `Lv. ${node.minLevel}`}
-
-          {node.item &&
-            ` ${node.item}`}
-
-          {node.heldItem &&
-            ` Hold ${node.heldItem}`}
-           
-           
-        </div>
-      )} */}
-
-
-
-
+    }}
+  >
+    {getEvolutionDescription(
+      node
+    )}
+     <div> ↓</div>
+  </div>
+ 
+)}
+ 
 {/* -------------------- Evolution Conditions -------------------- */}
-
+{/* 
 {node.trigger && (
 <div>
 I
@@ -233,7 +346,7 @@ I
 
 
 )}
-
+ */}
 
 
 
@@ -245,28 +358,13 @@ I
 {/* //--------------------------------- pokemon name button --------------------------------- */}
 
 
-      <button
-      style={{
-        fontSize: "1.2rem",
-        fontWeight: "bold",
-        borderradius: "8px",
-      }}
-        onClick={() =>
-          navigate(
-            `/pokemon/${node.pokemon.id}`
-          )
-        }
-      >
-        {capitalize(
-          node.pokemon.name
-        )}
-      </button>
 
-
-
-
-
-
+<div ref={isRoot ? rootRef : null}>
+  <PokemonSummaryCard
+    pokemon={node.pokemon}
+    compact={true}
+  />
+</div>
 
 
       {node.evolvesTo.length >
@@ -275,7 +373,7 @@ I
         <div
           style={{
             display: "flex",
-            gap: "2rem"
+            gap: "1rem"
           }}
         >
 

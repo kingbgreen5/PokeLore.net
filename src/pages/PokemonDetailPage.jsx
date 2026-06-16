@@ -4,11 +4,14 @@ import {
 
 import {
   useEffect,
-  useState
+  useState,
+  useRef
 } from "react";
 
 import { useNavigate }
 from "react-router-dom";
+
+
 
 import typeColors from "../constants/typeColors";
 import MoveDetailPage from "./MoveDetailPage";
@@ -16,6 +19,8 @@ import LearnsetCard from "../components/LearnsetCard";
 import DexEntryCard from "../components/DexEntryCard.jsx";
 import EvolutionNode
 from "../components/EvolutionNode";
+import PokemonSummaryCard from "../components/PokemonSummaryCard";
+
 
 
 
@@ -32,52 +37,27 @@ function capitalize(text) {
 }
 
 function PokemonDetailPage() {
+  const evolutionScrollRef = useRef(null);
+const rootNodeRef = useRef(null);
 const { id } = useParams();
 
 const pokemonId =
   isNaN(id)
     ? id.toLowerCase()
     : Number(id);
-    
-  const [pokemon, setPokemon] =
-    useState(null);
 
-
-    const [learnsetData, setLearnsetData] =
-  useState(null);
-
-    const [loading, setLoading] =
-    useState(true);
 const navigate = useNavigate();
 
-
-
-  const [evolutionData, setEvolutionData] =
-  useState(null);
-
-
-
-  // useEffect(() => {
-  //   import(
-  //     `../public/data/pokemonData${id}.json`
-  //   ).then(data => {
-  //     setPokemon(data.default);
-  //   });
-  // }, [id]);
-
-  const [movesData, setMovesData] =
-    useState({});
-    
-    const [selectedMove, setSelectedMove] =
-               useState(null);
-
-
-
-
+const [pokemon, setPokemon] = useState(null);
+const [learnsetData, setLearnsetData] = useState(null);
+const [loading, setLoading] = useState(true);
+const [evolutionData, setEvolutionData] = useState(null);
+const [movesData, setMovesData] = useState({});
+const [selectedMove, setSelectedMove] = useState(null);
+//---------------------------------------------------------------------LOAD POKEMON USE EFFECT---------------------------------------------------------------------
 useEffect(() => {
 
   async function loadPokemon() {
-
     try {
 
       setLoading(true);
@@ -198,12 +178,45 @@ setEvolutionData(
 
 
 
+// 2. center scroll AFTER render
+useEffect(() => {
+  if (!evolutionData) return;
 
+  const container =
+    evolutionScrollRef.current;
+
+  const root =
+    rootNodeRef.current;
+
+  if (!container || !root) return;
+
+  const treeIsScrollable =
+    container.scrollWidth >
+    container.clientWidth;
+
+  // If the tree is narrow, let CSS center it.
+  if (!treeIsScrollable) {
+    container.scrollLeft = 0;
+    return;
+  }
+
+  const containerRect =
+    container.getBoundingClientRect();
+
+  const rootRect =
+    root.getBoundingClientRect();
+
+  const scrollOffset =
+    (rootRect.left + rootRect.width / 2) -
+    (containerRect.left + containerRect.width / 2);
+
+  container.scrollLeft += scrollOffset;
+
+}, [evolutionData]);
 
 if (loading) {
   return <p>Loading...</p>;
 }
-
 const baseStatTotal =
   Object.values(
     pokemon.stats
@@ -216,11 +229,15 @@ const baseStatTotal =
 //----------------------------------------RETURN STATEMENT-----------------------------------------
 
   return (
+
+
     <div
       style={{
         padding: "2rem"
       }}
     >
+
+      {/* // ---------------------------------------RETURN STATEMENT-----------------------------------------*/}
       <h1>
        
         {capitalize(
@@ -239,7 +256,7 @@ const baseStatTotal =
 
 {/* 
 //-----------------------------------------Forms----------------------------------------- */}
-
+{/* 
 <h2>Forms</h2>
 
 <div
@@ -266,22 +283,25 @@ const baseStatTotal =
       </button>
     )
   )}
-</div>
+</div> */}
 
 
 
 
       {/* Types */}
-
+    
       <div
         style={{
           display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           gap: ".5rem",
           marginBottom: "1rem"
+
           
         }}
       >
-        
+ 
         {pokemon.types.map(
           type => (
             <span
@@ -295,7 +315,8 @@ const baseStatTotal =
                 padding:
                   ".4rem .9rem",
                 borderRadius:
-                  "999px"
+                  "999px",
+                  textTransform: "uppercase"
               }}
             >
               {type}
@@ -311,6 +332,7 @@ const baseStatTotal =
 <div
   style={{
     display: "flex",
+       justifyContent: "center",
     gap: ".5rem",
     flexWrap: "wrap",
     marginBottom: "1rem"
@@ -354,13 +376,38 @@ const baseStatTotal =
   
 
 
-      {/* Stats */}
+      {/*---------------------------------------------------------- Stats */}
 
+<div 
+
+   style={{
+//           display: "flex",
+//  justifyContent: "center",
+//           gap: "3rem",
+//           marginBottom: "1rem",
+//           marginTop: "2rem",
+
+          
+        }}
+   
+   
+   
+   
+   >
+
+    <div
+    
+    style={{
+ marginTop: "2rem",
+    }}
+    
+    
+    >
       <h2>Base Stats</h2>
 
 <div
   style={{
-    marginTop: "1rem",
+  
     fontWeight: "bold",
     fontSize: "1.1rem"
   }}
@@ -376,56 +423,49 @@ const baseStatTotal =
         </div>
       ))}
 
-
-            {/* Evolution Line */}
-
-{/* <h2>Evolution Line</h2>
-{evolutionData?.chain?.map(
-  (evolution, index) => (
-    <div key={index}>
+</div>
+            {/* ---------------------------------------------------------Evolution Line */}
 
 
-      {evolution.level && (
-        <div>
-          ↓ Lv.
-          {evolution.level}
-        </div>
-      )}
 
 
-      <button
-        onClick={() =>
-          navigate(
-            `/pokemon/${evolution.id}`
-          )
-        }
-      >
-        
-        {capitalize(
-          evolution.name
-        )}
-      </button>
 
-      
+<div
 
-    </div>
-  )
-)}
- */}
-<div></div>
+    style={{
+ marginTop: "2rem",
+    }}
 
-<h2>Evolution</h2>
+>
 
-{evolutionData?.root && (
+<h2>Evolution Chain</h2>
+<div
+  ref={evolutionScrollRef}
+  style={{
+    overflowX: "auto",
+    width: "100%"
+  }}
+>
+  <div
+    style={{
+      width: "max-content",
+      margin:'0 auto',
+    }}
+  >
+    {evolutionData?.root && (
+<EvolutionNode
+  node={evolutionData.root}
+   isRoot={true}
+  rootRef={rootNodeRef}
+ 
+/>
+    )}
+  </div>
+</div>
 
-  <EvolutionNode
-    node={
-      evolutionData.root
-    }
-  />
+</div>
 
-)}
-
+</div>
 
 
 {learnsetData ? (

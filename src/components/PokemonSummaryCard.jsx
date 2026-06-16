@@ -16,8 +16,8 @@ function capitalize(text) {
 
 function PokemonSummaryCard({
   pokemon,
-  onClick
-}) {
+  onClick,
+  compact = false}) {
   
    const navigate = useNavigate();
   
@@ -32,7 +32,7 @@ onClick={() =>
   navigate(`/pokemon/${pokemon.id}`)
 }
 
-
+// ------------------------------------------------container
 
       style={{
         border: "2px solid #555",
@@ -46,7 +46,15 @@ onClick={() =>
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        minHeight: "320px"
+    minHeight: compact
+  ? "150px"
+  : "320px",
+      maxWidth: compact
+  ? "200px"
+  : "320px",
+padding: compact
+  ? ".2rem"
+  : "1rem",
       }}
       onMouseEnter={e => {
         e.currentTarget.style.transform =
@@ -57,7 +65,7 @@ onClick={() =>
           "translateY(0px)";
       }}
     >
-      {/* Dex Number */}
+      {/*-------------------------------------------------------- Dex Number */}
 
       <div
         style={{
@@ -74,28 +82,41 @@ onClick={() =>
           .padStart(4, "0")}
       </div>
 
-      {/* Sprite */}
+      {/*--------------------------------------------------------------- Sprite */}
 
       <img
         src={pokemon.sprite}
         alt={pokemon.name}
         loading="lazy"
         style={{
-          width: "170px",
-          height: "170px",
+ width: compact
+  ? "60px"
+  : "170px",
+
+height: compact
+  ? "60px"
+  : "170px",
           objectFit: "contain",
           marginBottom: ".5rem"
+
+
+
+
         }}
       />
 
-      {/* Name */}
+      {/*-------------------------------------------------------- Name */}
 
       <h2
         style={{
           margin:
             "0 0 .75rem 0",
           textAlign: "center",
-          fontSize: "1.2rem"
+fontSize: compact
+  ? ".8rem"
+  : "1.2rem",
+
+
         }}
       >
         {capitalize(
@@ -124,12 +145,14 @@ onClick={() =>
                     type
                   ],
                 color: "white",
-                padding:
-                  ".35rem .85rem",
+            padding: compact
+  ? ".1rem .4rem"
+  : ".35rem .85rem",
                 borderRadius:
                   "999px",
-                fontSize:
-                  ".72rem",
+       fontSize: compact
+  ? ".4rem"
+  : ".72rem",
                 fontWeight:
                   "bold",
                 textTransform:

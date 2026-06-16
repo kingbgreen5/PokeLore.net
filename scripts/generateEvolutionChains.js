@@ -8,6 +8,23 @@ const BASE_URL =
 const OUTPUT_DIR =
   "./public/data/evolutionChains";
 
+const pokemonIndex =
+  JSON.parse(
+    fs.readFileSync(
+      "./public/data/pokemonIndex.json",
+      "utf8"
+    )
+  );
+
+
+function getPokemonInfo(id) {
+
+  return pokemonIndex.find(
+    pokemon => pokemon.id === id
+  );
+
+}
+
 if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(
     OUTPUT_DIR,
@@ -38,18 +55,41 @@ function buildNode(chainNode) {
     chainNode.evolution_details?.[0] ||
     {};
 
+
+const pokemonId =
+  getIdFromUrl(
+    chainNode.species.url
+  );
+
+const pokemonInfo =
+  getPokemonInfo(
+    pokemonId
+  );
+
+
+
+
+
+
   return {
 
-    pokemon: {
 
-      id: getIdFromUrl(
-        chainNode.species.url
-      ),
+pokemon: {
 
-      name:
-        chainNode.species.name
+  id: pokemonId,
 
-    },
+  name:
+    chainNode.species.name,
+
+  sprite:
+    pokemonInfo?.sprite ||
+
+    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`,
+
+  types:
+    pokemonInfo?.types || []
+
+},
 
     trigger:
       details.trigger?.name ||
