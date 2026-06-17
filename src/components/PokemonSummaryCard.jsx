@@ -145,14 +145,14 @@ fontSize: compact
                     type
                   ],
                 color: "white",
-            padding: compact
-  ? ".1rem .4rem"
-  : ".35rem .85rem",
+                padding: compact
+                  ? ".1rem .4rem"
+                  : ".35rem .85rem",
                 borderRadius:
                   "999px",
-       fontSize: compact
-  ? ".4rem"
-  : ".72rem",
+                fontSize: compact
+                  ? ".4rem"
+                  : ".72rem",
                 fontWeight:
                   "bold",
                 textTransform:
@@ -165,6 +165,9 @@ fontSize: compact
             </span>
           )
         )}
+
+        
+        
       </div>
     </div>
   );

@@ -4,11 +4,7 @@ import {
   useState
 } from "react";
 
-import {
-  useNavigate
-} from "react-router-dom";
-
-import typeColors from "../constants/typeColors";
+import MoveSummaryCard from "../components/MoveSummaryCard";
 
 function capitalize(text) {
   return text
@@ -22,8 +18,6 @@ function capitalize(text) {
 }
 
 function MovesPage() {
-
-  const navigate = useNavigate();
 
   const [moves, setMoves] =
     useState({});
@@ -223,80 +217,11 @@ const [sortMode, setSortMode] =
         {filteredMoves.map(
           ([name, move]) => (
 
-            <div
+            <MoveSummaryCard
               key={name}
-
-              onClick={() =>
-                navigate(
-                  `/move/${name}`
-                )
-              }
-
-              style={{
-                border:
-                  "1px solid #666",
-
-                borderRadius:
-                  "12px",
-
-                padding: ".1rem",
-
-                cursor: "pointer"
-              }}
-            >
-
-              <h3>
-                {capitalize(
-                  name
-                )}
-              </h3>
-
-              <span
-                style={{
-                  backgroundColor:
-                    typeColors[
-                      move.type
-                    ],
-
-                  color: "white",
-
-                  padding:
-                    ".25rem .75rem",
-
-                  borderRadius:
-                    "999px"
-                }}
-              >
-                {move.type}
-              </span>
-
-              <div
-                style={{
-                  marginTop:
-                    "1rem"
-                }}
-              >
-                Power:
-                {" "}
-                {move.power ??
-                  "-"}
-              </div>
-
-              <div>
-                Accuracy:
-                {" "}
-                {move.accuracy ??
-                  "-"}
-              </div>
-
-              <div>
-                PP:
-                {" "}
-                {move.pp ??
-                  "-"}
-              </div>
-
-            </div>
+              name={name}
+              move={move}
+            />
 
           )
         )}

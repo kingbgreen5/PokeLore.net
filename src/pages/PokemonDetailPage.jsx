@@ -17,6 +17,7 @@ import typeColors from "../constants/typeColors";
 import MoveDetailPage from "./MoveDetailPage";
 import LearnsetCard from "../components/LearnsetCard";
 import DexEntryCard from "../components/DexEntryCard.jsx";
+import TypeEffectivenessCard from "../components/TypeEffectivenessCard";
 import EvolutionNode
 from "../components/EvolutionNode";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
@@ -304,14 +305,21 @@ const baseStatTotal =
  
         {pokemon.types.map(
           type => (
-            <span
+            <button
               key={type}
+              onClick={() =>
+                navigate(
+                  `/type/${type}`
+                )
+              }
               style={{
                 backgroundColor:
                   typeColors[
                     type
                   ],
+                border: "none",
                 color: "white",
+                cursor: "pointer",
                 padding:
                   ".4rem .9rem",
                 borderRadius:
@@ -320,7 +328,7 @@ const baseStatTotal =
               }}
             >
               {type}
-            </span>
+            </button>
           )
         )}
       </div>
@@ -372,6 +380,10 @@ const baseStatTotal =
   )}
 </div>
 
+
+<TypeEffectivenessCard
+  types={pokemon.types}
+/>
 
   
 
@@ -435,6 +447,7 @@ const baseStatTotal =
     style={{
  marginTop: "2rem",
     }}
+    
 
 >
 
