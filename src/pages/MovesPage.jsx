@@ -34,9 +34,6 @@ function MovesPage() {
 const [selectedCategory, setSelectedCategory] =
   useState("all");
 
-const [sortMode, setSortMode] =
-  useState("name");
-
 
 
   useEffect(() => {

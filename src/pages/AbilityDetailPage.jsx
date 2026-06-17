@@ -4,12 +4,11 @@ import {
 
 import {
   useEffect,
+  useMemo,
   useState
 } from "react";
 
-import {
-  useNavigate
-} from "react-router-dom";
+import PokemonSummaryCard from "../components/PokemonSummaryCard";
 
 function capitalize(text) {
   return text
@@ -24,13 +23,14 @@ function capitalize(text) {
 
 function AbilityDetailPage() {
 
-  const navigate = useNavigate();
-
   const { abilityName } =
     useParams();
 
   const [ability, setAbility] =
     useState(null);
+
+  const [pokemonIndex, setPokemonIndex] =
+    useState([]);
 
   const [loading, setLoading] =
     useState(true);
@@ -43,16 +43,34 @@ function AbilityDetailPage() {
 
         setLoading(true);
 
-        const response =
-          await fetch(
+        const [
+          abilitiesResponse,
+          pokemonIndexResponse
+        ] = await Promise.all([
+          fetch(
             "/data/abilities.json"
-          );
+          ),
+          fetch(
+            "/data/pokemonIndex.json"
+          )
+        ]);
 
-        const data =
-          await response.json();
+        const [
+          abilitiesData,
+          pokemonIndexData
+        ] = await Promise.all([
+          abilitiesResponse.json(),
+          pokemonIndexResponse.json()
+        ]);
 
         setAbility(
-          data[abilityName]
+          abilitiesData[
+            abilityName
+          ]
+        );
+
+        setPokemonIndex(
+          pokemonIndexData
         );
 
       } catch (error) {
@@ -73,6 +91,31 @@ function AbilityDetailPage() {
     loadAbility();
 
   }, [abilityName]);
+
+  const pokemonByName = useMemo(
+    () =>
+      new Map(
+        pokemonIndex.map(
+          pokemon => [
+            pokemon.name,
+            pokemon
+          ]
+        )
+      ),
+    [pokemonIndex]
+  );
+
+  const pokemonWithAbility = useMemo(
+    () =>
+      ability?.pokemon
+        .map(pokemon =>
+          pokemonByName.get(
+            pokemon
+          )
+        )
+        .filter(Boolean) ?? [],
+    [ability, pokemonByName]
+  );
 
   //-----------------------------------------
   // Loading
@@ -174,41 +217,20 @@ function AbilityDetailPage() {
 
 <div
   style={{
-    display: "flex",
-    flexWrap: "wrap",
-    gap: ".5rem"
+    display: "grid",
+    gap: "1rem",
+    gridTemplateColumns:
+      "repeat(auto-fit, minmax(150px, 1fr))",
+    marginTop: "1rem"
   }}
 >
-  {ability.pokemon.map(
+  {pokemonWithAbility.map(
     pokemon => (
-
-      <button
-        key={pokemon}
-
-        onClick={() =>
-          navigate(
-            `/pokemon/${pokemon}`
-          )
-        }
-
-        style={{
-          padding:
-            ".35rem .75rem",
-
-          border:
-            "1px solid #888",
-
-          borderRadius:
-            "999px",
-
-          cursor: "pointer"
-        }}
-      >
-        {capitalize(
-          pokemon
-        )}
-      </button>
-
+      <PokemonSummaryCard
+        key={pokemon.id}
+        pokemon={pokemon}
+        compact={true}
+      />
     )
   )}
 </div>

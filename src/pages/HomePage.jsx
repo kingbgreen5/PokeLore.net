@@ -1,12 +1,9 @@
 
 import { useMemo, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import typeColors from "../constants/typeColors";
 
 function HomePage() {
-  const navigate = useNavigate();
-
   //-----------------------------------------
   // State
   //-----------------------------------------

@@ -16,7 +16,6 @@ function capitalize(text) {
 
 function PokemonSummaryCard({
   pokemon,
-  onClick,
   compact = false}) {
   
    const navigate = useNavigate();
@@ -37,7 +36,6 @@ onClick={() =>
       style={{
         border: "2px solid #555",
         borderRadius: "18px",
-        padding: "1rem",
         backgroundColor:
           "#2c2c2c",
         cursor: "pointer",
@@ -46,12 +44,20 @@ onClick={() =>
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        boxSizing: "border-box",
+        width: compact
+          ? "150px"
+          : undefined,
     minHeight: compact
   ? "150px"
+  : "320px",
+      maxHeight: compact
+  ? "200px"
   : "320px",
       maxWidth: compact
   ? "200px"
   : "320px",
+
 padding: compact
   ? ".2rem"
   : "1rem",
@@ -73,7 +79,9 @@ padding: compact
           textAlign: "left",
           opacity: 0.6,
           fontSize: ".85rem",
-          marginBottom: ".5rem"
+          marginBottom: compact
+  ? "-.7rem"
+  : "-0rem",
         }}
       >
         #
@@ -90,16 +98,12 @@ padding: compact
         loading="lazy"
         style={{
  width: compact
-  ? "60px"
+  ? "90px"
   : "170px",
-
 height: compact
-  ? "60px"
+  ? "90px"
   : "170px",
           objectFit: "contain",
-          marginBottom: ".5rem"
-
-
 
 
         }}
@@ -110,7 +114,7 @@ height: compact
       <h2
         style={{
           margin:
-            "0 0 .75rem 0",
+            "0 0 .5rem 0",
           textAlign: "center",
 fontSize: compact
   ? ".8rem"
@@ -135,6 +139,8 @@ fontSize: compact
             "center"
         }}
       >
+  {/*-------------------------------------------------------- Type */}
+
         {pokemon.types.map(
           type => (
             <span
@@ -158,7 +164,8 @@ fontSize: compact
                 textTransform:
                   "uppercase",
                 letterSpacing:
-                  ".03rem"
+                  ".03rem",
+        
               }}
             >
               {type}

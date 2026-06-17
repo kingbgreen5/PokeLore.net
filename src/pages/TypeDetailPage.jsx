@@ -289,9 +289,16 @@ function TypeDetailPage() {
         padding: "2rem"
       }}
     >
-      <h1>
+
+
+
+      {/* <h1
+      style={{
+        color: typeColors[type],
+      }}
+      >
         {capitalize(type)} Type
-      </h1>
+      </h1> */}
 
       <div
         style={{
@@ -309,7 +316,7 @@ function TypeDetailPage() {
         {type}
       </div>
 
-      <p
+      {/* <p
         style={{
           margin: "0 auto 2rem",
           maxWidth: "760px"
@@ -318,10 +325,10 @@ function TypeDetailPage() {
         {capitalize(type)} matchups
         show how {type} attacks
         perform against defending
-        types, and how pure {type}
-        Pokémon handle incoming
+        types, and how pure {type} 
+         Pokémon handle incoming
         attacks.
-      </p>
+      </p> */}
 
       <div
         style={{
@@ -340,7 +347,7 @@ function TypeDetailPage() {
           matchups={defensiveMatchups}
         />
       </div>
-
+{/*                                                                                                                         POKEMON OF THE TYPE */}
       <h2>
         {capitalize(type)} Pokémon
       </h2>
@@ -350,7 +357,7 @@ function TypeDetailPage() {
           display: "grid",
           gap: "1rem",
           gridTemplateColumns:
-            "repeat(auto-fit, minmax(220px, 1fr))",
+            "repeat(auto-fit, minmax(150px, 1fr))",
           marginBottom: "3rem"
         }}
       >
@@ -359,6 +366,7 @@ function TypeDetailPage() {
             <PokemonSummaryCard
               key={pokemon.id}
               pokemon={pokemon}
+              compact={true}
             />
           )
         )}

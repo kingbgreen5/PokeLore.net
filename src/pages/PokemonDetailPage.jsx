@@ -14,13 +14,11 @@ from "react-router-dom";
 
 
 import typeColors from "../constants/typeColors";
-import MoveDetailPage from "./MoveDetailPage";
 import LearnsetCard from "../components/LearnsetCard";
 import DexEntryCard from "../components/DexEntryCard.jsx";
 import TypeEffectivenessCard from "../components/TypeEffectivenessCard";
-import EvolutionNode
-from "../components/EvolutionNode";
-import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import EvolutionNode from "../components/EvolutionNode";
+import BaseStatsChart from "../components/BaseStatsChart";
 
 
 
@@ -42,11 +40,6 @@ function PokemonDetailPage() {
 const rootNodeRef = useRef(null);
 const { id } = useParams();
 
-const pokemonId =
-  isNaN(id)
-    ? id.toLowerCase()
-    : Number(id);
-
 const navigate = useNavigate();
 
 const [pokemon, setPokemon] = useState(null);
@@ -54,7 +47,6 @@ const [learnsetData, setLearnsetData] = useState(null);
 const [loading, setLoading] = useState(true);
 const [evolutionData, setEvolutionData] = useState(null);
 const [movesData, setMovesData] = useState({});
-const [selectedMove, setSelectedMove] = useState(null);
 //---------------------------------------------------------------------LOAD POKEMON USE EFFECT---------------------------------------------------------------------
 useEffect(() => {
 
@@ -218,13 +210,6 @@ useEffect(() => {
 if (loading) {
   return <p>Loading...</p>;
 }
-const baseStatTotal =
-  Object.values(
-    pokemon.stats
-  ).reduce(
-    (sum, stat) => sum + stat,
-    0
-  );
 
 
 //----------------------------------------RETURN STATEMENT-----------------------------------------
@@ -380,6 +365,20 @@ const baseStatTotal =
   )}
 </div>
 
+<div 
+
+//    style={{
+//           display: "flex",
+//  justifyContent: "center",
+//           gap: "rem",
+//           marginBottom: "1rem",
+//           marginTop: "2rem",
+//         }}
+
+   >
+<BaseStatsChart
+  stats={pokemon.stats}
+/>
 
 <TypeEffectivenessCard
   types={pokemon.types}
@@ -390,52 +389,14 @@ const baseStatTotal =
 
       {/*---------------------------------------------------------- Stats */}
 
-<div 
 
-   style={{
-//           display: "flex",
-//  justifyContent: "center",
-//           gap: "3rem",
-//           marginBottom: "1rem",
-//           marginTop: "2rem",
 
-          
-        }}
-   
-   
-   
-   
-   >
 
-    <div
-    
-    style={{
- marginTop: "2rem",
-    }}
-    
-    
-    >
-      <h2>Base Stats</h2>
 
-<div
-  style={{
-  
-    fontWeight: "bold",
-    fontSize: "1.1rem"
-  }}
->
-  Total: {baseStatTotal}
-</div>
-      {Object.entries(
-        pokemon.stats
-      ).map(([stat, value]) => (
-        <div key={stat}>
-          {capitalize(stat)}:{" "}
-          {value}
-        </div>
-      ))}
 
 </div>
+
+
             {/* ---------------------------------------------------------Evolution Line */}
 
 
@@ -478,14 +439,13 @@ const baseStatTotal =
 
 </div>
 
-</div>
+
 
 
 {learnsetData ? (
   <LearnsetCard
     pokemonData={learnsetData}
     movesData={movesData}
-    setSelectedMove={setSelectedMove}
   />
 ) : (
   <p>No learnset data loaded.</p>

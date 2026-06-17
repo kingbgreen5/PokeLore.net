@@ -5,12 +5,14 @@ import {
 
 import {
   useEffect,
+  useMemo,
   useState
 } from "react";
 
 import {
   useNavigate
 } from "react-router-dom";
+import PokemonSummaryCard from "../components/PokemonSummaryCard";
 
 function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
@@ -30,6 +32,9 @@ function MoveDetailPage({
   const navigate = useNavigate();
 
 const [learnsets, setLearnsets] =
+  useState([]);
+
+const [pokemonIndex, setPokemonIndex] =
   useState([]);
 
 
@@ -59,16 +64,32 @@ useEffect(() => {
       // Load Learnsets
       //-----------------------------------------
 
-      const learnsetsResponse =
-        await fetch(
+      const [
+        learnsetsResponse,
+        pokemonIndexResponse
+      ] = await Promise.all([
+        fetch(
           "/data/learnsets.json"
-        );
+        ),
+        fetch(
+          "/data/pokemonIndex.json"
+        )
+      ]);
 
-      const learnsetsData =
-        await learnsetsResponse.json();
+      const [
+        learnsetsData,
+        pokemonIndexData
+      ] = await Promise.all([
+        learnsetsResponse.json(),
+        pokemonIndexResponse.json()
+      ]);
 
       setLearnsets(
         learnsetsData
+      );
+
+      setPokemonIndex(
+        pokemonIndexData
       );
 
     } catch (error) {
@@ -86,7 +107,34 @@ useEffect(() => {
 
 }, [moveName]);
 
+  const pokemonByName = useMemo(
+    () =>
+      new Map(
+        pokemonIndex.map(
+          pokemon => [
+            pokemon.name,
+            pokemon
+          ]
+        )
+      ),
+    [pokemonIndex]
+  );
 
+  // Find all Pokémon that learn this move.
+  const pokemonThatLearnMove =
+    learnsets
+      .filter(pokemon =>
+        pokemon.moves.some(
+          moveEntry =>
+            moveEntry.move === moveName
+        )
+      )
+      .map(pokemon =>
+        pokemonByName.get(
+          pokemon.pokemon
+        )
+      )
+      .filter(Boolean);
 
 
 
@@ -112,15 +160,6 @@ useEffect(() => {
     );
   }
 
-  // Find all Pokémon that learn this move
-  const pokemonThatLearnMove =
-    learnsets.filter(pokemon =>
-      pokemon.moves.some(
-        moveEntry =>
-          moveEntry.move === moveName
-      )
-    );
-
   return (
     <div
       style={{
@@ -131,14 +170,18 @@ useEffect(() => {
     >
       {/* Back Button */}
       <button
-        onClick={() => setSelectedMove(null)}
+        onClick={() =>
+          setSelectedMove
+            ? setSelectedMove(null)
+            : navigate("/moves")
+        }
         style={{
           marginBottom: "2rem",
           padding: "0.5rem 1rem",
           cursor: "pointer"
         }}
       >
-        ← Back To Learnsets
+        ← Back To Moves
       </button>
 
       {/* Move Header */}
@@ -159,10 +202,17 @@ useEffect(() => {
           {capitalize(moveName)}
         </h1>
 
-        <span
+        <button
+          onClick={() =>
+            navigate(
+              `/type/${moveData.type}`
+            )
+          }
           style={{
             backgroundColor:
               typeColors[moveData.type],
+            border: "none",
+            cursor: "pointer",
             color: "white",
             padding: "0.4rem 0.8rem",
             borderRadius: "999px",
@@ -171,7 +221,7 @@ useEffect(() => {
           }}
         >
           {moveData.type}
-        </span>
+        </button>
       </div>
 
       {/* Stats */}
@@ -224,30 +274,20 @@ useEffect(() => {
 
         <div
           style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "0.5rem",
+            display: "grid",
+            gap: "1rem",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(150px, 1fr))",
             marginTop: "1rem"
           }}
         >
           {pokemonThatLearnMove.map(
             pokemon => (
-              <div
-                key={pokemon.pokemon}
-                style={{
-                  border:
-                    "1px solid #ccc",
-                  padding:
-                    "0.5rem 1rem",
-                  borderRadius:
-                    "999px",
-                  fontSize: "0.9rem"
-                }}
-              >
-                {capitalize(
-                  pokemon.pokemon
-                )}
-              </div>
+              <PokemonSummaryCard
+                key={pokemon.id}
+                pokemon={pokemon}
+                compact={true}
+              />
             )
           )}
         </div>

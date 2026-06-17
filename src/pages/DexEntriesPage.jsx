@@ -36,16 +36,6 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
 }, {});
 
 
-const backgroundimg = {
-       backgroundImage: 'url("/images/background.png")',
-            height: "60vh",
-            marginTop: "50px",
-            // backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-        };
-
-
-
 //-----------------------------------------------RETURN STATEMENT--------------------------------------------------
   return (
   <div > 

@@ -612,10 +612,9 @@ async function main() {
 
           sprite:
 
-            pokemon.sprites
-              .other
-              ["official-artwork"]
-              .front_default,
+            pokemon.sprites.other[
+              "official-artwork"
+            ].front_default,
 
           genus,
 

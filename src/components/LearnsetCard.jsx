@@ -19,8 +19,7 @@ function capitalize(text) {
 
 function LearnsetCard({
   pokemonData,
-  movesData,
-  setSelectedMove
+  movesData
 }) {
   const [expanded, setExpanded] =
     useState(false);

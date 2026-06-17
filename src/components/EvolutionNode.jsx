@@ -1,9 +1,4 @@
-import { useNavigate }
-from "react-router-dom";
-
-
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
-import typeColors from "../constants/typeColors";
 
 function capitalize(text) {
 
@@ -134,10 +129,6 @@ function getEvolutionDescription(node) {
 function EvolutionNode({
   node,rootRef,isRoot
 }) {
-
-  const navigate =
-    useNavigate();
-
   return (
 
 

@@ -150,24 +150,27 @@ function TypeEffectivenessCard({
   return (
     <div
       style={{
-        border: "2px solid #706363",
+        // border: "2px solid #555555",
         borderRadius: "12px",
         margin: "2rem auto",
         maxWidth: "900px",
-        padding: "1rem"
+        padding: "1rem",
+        paddingTop:"0rem",
+            //  backgroundColor: "#2c2c2c",
       }}
     >
-      <h2>
+      {/* <h2>
         Type Effectiveness
-      </h2>
+      </h2> */}
 
       <div
         style={{
           display: "grid",
-          gap: "1rem",
+          gap: ".1rem",
           gridTemplateColumns:
             "repeat(auto-fit, minmax(220px, 1fr))",
-          marginTop: "1rem"
+       
+      
         }}
       >
         <MatchupGroup
