@@ -1,0 +1,126 @@
+{
+  "id": 29,
+  "name": "max-revive",
+  "displayName": "Max Revive",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/max-revive.png",
+  "category": {
+    "id": 29,
+    "name": "revival",
+    "displayName": "Revival",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable",
+    "underground"
+  ],
+  "effect": "Used on a party Pokémon : Revives the Pokémon and restores its HP to full.",
+  "shortEffect": "Revives with full HP.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Revives a fainted POKéMON with all its HP."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A medicine that revives a fainted POKéMON, restoring HP fully."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A medicine that revives a fainted Pokémon. It fully restores the Pokémon’s HP."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon"
+      ],
+      "text": "A medicine that can revive fainted Pokémon. It also fully restores a fainted Pokémon’s maximum HP."
+    },
+    {
+      "versionGroups": [
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A medicine that can be used to revive a single Pokémon that has fainted. It also fully restores the Pokémon’s max HP."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [
+    {
+      "pokemon": "linoone",
+      "pokemonId": 264,
+      "versionDetails": [
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    }
+  ],
+  "gameIndices": [
+    {
+      "gameIndex": 25,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 29,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 29,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 29,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 29,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 29,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

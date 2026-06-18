@@ -1,0 +1,86 @@
+{
+  "id": 192,
+  "name": "macho-brace",
+  "displayName": "Macho Brace",
+  "cost": 3000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/macho-brace.png",
+  "category": {
+    "id": 14,
+    "name": "effort-training",
+    "displayName": "Effort training",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held : When the holder would gain effort due to battle, it gains double that effort instead. Held in battle : Holder has half its Speed.",
+  "shortEffect": "Held: Holder gains double effort values from battles, but has halved Speed in battle.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A hold item that promotes growth, but reduces SPEED."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "An item to be held by a POKéMON. It promotes strong growth but lowers SPEED while it is held."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item to be held by a Pokémon. It is a stiff and heavy brace that promotes strong growth but lowers Speed."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. This stiff, heavy brace helps Pokémon grow strong but cuts Speed in battle."
+    }
+  ],
+  "fling": {
+    "power": 60,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 181,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 215,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 215,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 215,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 215,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 215,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

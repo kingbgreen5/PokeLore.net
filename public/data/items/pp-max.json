@@ -1,0 +1,99 @@
+{
+  "id": 53,
+  "name": "pp-max",
+  "displayName": "PP Max",
+  "cost": 10000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pp-max.png",
+  "category": {
+    "id": 26,
+    "name": "vitamins",
+    "displayName": "Vitamins",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon : Increases a selected move’s max PP to 1.6× its original max PP. Increases happiness by 5/3/2.",
+  "shortEffect": "Raises a move’s max PP by 60%.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Raises the PP of a move to its maximum points."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "Raises the PP of a selected move to its maximum level for one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "It maximally raises the top PP of a selected move that has been learned by the target Pokémon."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon"
+      ],
+      "text": "A medicine that can optimally raise the maximum PP of a single move that has been learned by the target Pokémon."
+    },
+    {
+      "versionGroups": [
+        "lets-go-pikachu-lets-go-eevee"
+      ],
+      "text": "A medicine that optimally raises the maximum PP of a single selected move that has been learned by a Pokémon."
+    },
+    {
+      "versionGroups": [
+        "sword-shield"
+      ],
+      "text": "A medicine that optimally raises the max PP of a single selected move that has been learned by a Pokémon."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 71,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 53,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 53,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 53,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 53,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 53,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

@@ -1,0 +1,93 @@
+{
+  "id": 63,
+  "name": "poke-doll",
+  "displayName": "Poké Doll",
+  "cost": 300,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-doll.png",
+  "category": {
+    "id": 11,
+    "name": "spelunking",
+    "displayName": "Spelunking",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used in battle : Ends a wild battle. Cannot be used in trainer battles.",
+  "shortEffect": "Ends a wild battle.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Use to flee from any battle with a wild POKéMON."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "An attractive doll. Use it to flee from any battle with a wild POKéMON."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A doll that attracts Pokémon. Use it to flee from any battle with a wild Pokémon."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "sword-shield"
+      ],
+      "text": "A doll that attracts the attention of a Pokémon. It guarantees escape from any battle with wild Pokémon."
+    },
+    {
+      "versionGroups": [
+        "lets-go-pikachu-lets-go-eevee"
+      ],
+      "text": "- - -"
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 80,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 63,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 63,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 63,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 63,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 63,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

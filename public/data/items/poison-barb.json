@@ -1,0 +1,1177 @@
+{
+  "id": 222,
+  "name": "poison-barb",
+  "displayName": "Poison Barb",
+  "cost": 1000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poison-barb.png",
+  "category": {
+    "id": 19,
+    "name": "type-enhancement",
+    "displayName": "Type enhancement",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held: Increases the power of the holder’s Poison moves by 20%.",
+  "shortEffect": "Held: Poison-Type moves from holder do 20% more damage.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A hold item that raises the power of POISON-type moves."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "An item to be held by a POKéMON. A small, poisonous barb that boosts the power of POISON-type moves."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item to be held by a Pokémon. It is a small, poisonous barb that ups the power of Poison-type moves."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. This small, poisonous barb boosts the power of Poison-type moves."
+    }
+  ],
+  "fling": {
+    "power": 70,
+    "effect": "poison"
+  },
+  "heldByPokemon": [
+    {
+      "pokemon": "beedrill",
+      "pokemonId": 15,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 5
+        },
+        {
+          "version": "sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "emerald",
+          "rarity": 5
+        },
+        {
+          "version": "firered",
+          "rarity": 5
+        },
+        {
+          "version": "leafgreen",
+          "rarity": 5
+        },
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        },
+        {
+          "version": "xd",
+          "rarity": 100
+        }
+      ]
+    },
+    {
+      "pokemon": "arbok",
+      "pokemonId": 24,
+      "versionDetails": [
+        {
+          "version": "firered",
+          "rarity": 5
+        },
+        {
+          "version": "leafgreen",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "tentacool",
+      "pokemonId": 72,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "tentacruel",
+      "pokemonId": 73,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "qwilfish",
+      "pokemonId": 211,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        },
+        {
+          "version": "colosseum",
+          "rarity": 100
+        }
+      ]
+    },
+    {
+      "pokemon": "roselia",
+      "pokemonId": 315,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 5
+        },
+        {
+          "version": "sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "emerald",
+          "rarity": 5
+        },
+        {
+          "version": "firered",
+          "rarity": 5
+        },
+        {
+          "version": "leafgreen",
+          "rarity": 5
+        },
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "cacnea",
+      "pokemonId": 331,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 5
+        },
+        {
+          "version": "sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "emerald",
+          "rarity": 5
+        },
+        {
+          "version": "firered",
+          "rarity": 5
+        },
+        {
+          "version": "leafgreen",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "cacturne",
+      "pokemonId": 332,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 5
+        },
+        {
+          "version": "sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "emerald",
+          "rarity": 5
+        },
+        {
+          "version": "firered",
+          "rarity": 5
+        },
+        {
+          "version": "leafgreen",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "budew",
+      "pokemonId": 406,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "roserade",
+      "pokemonId": 407,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "vespiquen",
+      "pokemonId": 416,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "skorupi",
+      "pokemonId": 451,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "drapion",
+      "pokemonId": 452,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "venipede",
+      "pokemonId": 543,
+      "versionDetails": [
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "whirlipede",
+      "pokemonId": 544,
+      "versionDetails": [
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "scolipede",
+      "pokemonId": 545,
+      "versionDetails": [
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "mareanie",
+      "pokemonId": 747,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "toxapex",
+      "pokemonId": 748,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "beedrill-mega",
+      "pokemonId": 10090,
+      "versionDetails": [
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    }
+  ],
+  "gameIndices": [
+    {
+      "gameIndex": 211,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 245,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 245,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 245,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 245,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 245,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

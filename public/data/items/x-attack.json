@@ -1,0 +1,93 @@
+{
+  "id": 57,
+  "name": "x-attack",
+  "displayName": "X Attack",
+  "cost": 1000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/x-attack.png",
+  "category": {
+    "id": 1,
+    "name": "stat-boosts",
+    "displayName": "Stat boosts",
+    "pocket": "battle"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon in battle : Raises the target’s Attack by one stage. Increases happiness by 1/1/0.",
+  "shortEffect": "Raises Attack by one stage in battle. Raises happiness.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Raises the stat ATTACK during one battle."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "Raises the ATTACK stat of POKéMON in battle. Wears off if the POKéMON is withdrawn."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item that raises the Attack stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn."
+    },
+    {
+      "versionGroups": [
+        "x-y"
+      ],
+      "text": "An item that boosts the Attack stat of a Pokémon during a battle. It wears off once the Pokémon is withdrawn."
+    },
+    {
+      "versionGroups": [
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item that sharply boosts the Attack stat of a Pokémon during a battle. It wears off once the Pokémon is withdrawn."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 75,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 57,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 57,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 57,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 57,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 57,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

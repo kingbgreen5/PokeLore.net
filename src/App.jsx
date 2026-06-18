@@ -18,6 +18,8 @@ import PokemonDetailPage from "./pages/PokemonDetailPage";
 import AbilitiesPage from "./pages/AbilitiesPage";
 import AbilityDetailPage from "./pages/AbilityDetailPage";
 import TypeDetailPage from "./pages/TypeDetailPage";
+import ItemsPage from "./pages/ItemsPage";
+import ItemDetailPage from "./pages/ItemDetailPage";
 
 
 
@@ -64,6 +66,16 @@ function App() {
 <Route
   path="/moves"
   element={<MovesPage />}
+/>
+
+<Route
+  path="/items"
+  element={<ItemsPage />}
+/>
+
+<Route
+  path="/item/:itemName"
+  element={<ItemDetailPage />}
 />
 
 <Route

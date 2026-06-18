@@ -1,0 +1,91 @@
+{
+  "id": 232,
+  "name": "lax-incense",
+  "displayName": "Lax Incense",
+  "cost": 5000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lax-incense.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held: Increases the holder’s Evasion by 5%.",
+  "shortEffect": "Held: Holder’s evasion is increased by 5%. Breeding: Wobbuffet begets a Wynaut Egg.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A hold item that slightly lowers the foe’s accuracy."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "An item to be held by a POKéMON. Its tricky aroma slightly reduces the foe’s accuracy."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver"
+      ],
+      "text": "An item to be held by a Pokémon. The tricky aroma of this incense lowers the foe’s accuracy."
+    },
+    {
+      "versionGroups": [
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item to be held by a Pokémon. The tricky aroma of this incense may make attacks miss the holder."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. The beguiling aroma of this incense may cause attacks to miss its holder."
+    }
+  ],
+  "fling": {
+    "power": 10,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 221,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 255,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 255,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 255,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 255,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 255,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

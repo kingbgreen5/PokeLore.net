@@ -1,0 +1,74 @@
+{
+  "id": 257,
+  "name": "destiny-knot",
+  "displayName": "Destiny Knot",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/destiny-knot.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held: When the holder becomes Attracted, the Pokémon it is Attracted to becomes Attracted back.",
+  "shortEffect": "Held: Infatuates opposing Pokémon when holder is inflicted with infatuation.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver"
+      ],
+      "text": "A long, thin, bright red string to be held by a Pokémon. If the holder becomes infatuated, the foe does too."
+    },
+    {
+      "versionGroups": [
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, the foe does too."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. If the holder becomes infatuated, the opposing Pokémon will be, too."
+    }
+  ],
+  "fling": {
+    "power": 10,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 280,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 280,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 280,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 280,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 280,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

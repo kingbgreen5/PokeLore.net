@@ -1,0 +1,88 @@
+{
+  "id": 2,
+  "name": "ultra-ball",
+  "displayName": "Ultra Ball",
+  "cost": 800,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ultra-ball.png",
+  "category": {
+    "id": 34,
+    "name": "standard-balls",
+    "displayName": "Standard balls",
+    "pocket": "pokeballs"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used in battle : Attempts to catch a wild Pokémon, using a catch rate of 2×. If used in a trainer battle, nothing happens and the ball is lost.",
+  "shortEffect": "Tries to catch a wild Pokémon. Success rate is 2×.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A better BALL with a higher catch rate than a GREAT BALL."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A very high-grade BALL that offers a higher POKéMON catch rate than a GREAT BALL."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An ultra-performance Ball that provides a higher Pokémon catch rate than a Great Ball."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An ultra-high-performance Poké Ball that provides a higher success rate for catching Pokémon than a Great Ball."
+    }
+  ],
+  "fling": {
+    "power": null,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 2,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 2,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 2,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 2,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 2,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 2,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

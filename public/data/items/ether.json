@@ -1,0 +1,94 @@
+{
+  "id": 38,
+  "name": "ether",
+  "displayName": "Ether",
+  "cost": 1200,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ether.png",
+  "category": {
+    "id": 28,
+    "name": "pp-recovery",
+    "displayName": "PP recovery",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon : Restores 10 PP for a selected move.",
+  "shortEffect": "Restores 10 PP for one move.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Restores the PP of a selected move by 10."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "Restores a selected move’s PP by 10 points for one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "It restores the PP of a Pokémon’s selected move by a maximum of 10 points."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon"
+      ],
+      "text": "This medicine can restore 10 PP to a single selected move that has been learned by a Pokémon."
+    },
+    {
+      "versionGroups": [
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "This medicine can be used to restore 10 PP to a single selected move that has been learned by a Pokémon."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 34,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 38,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 38,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 38,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 38,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 38,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

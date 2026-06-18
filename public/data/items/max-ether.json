@@ -1,0 +1,94 @@
+{
+  "id": 39,
+  "name": "max-ether",
+  "displayName": "Max Ether",
+  "cost": 2000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/max-ether.png",
+  "category": {
+    "id": 28,
+    "name": "pp-recovery",
+    "displayName": "PP recovery",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon : Restores PP to full for a selected move.",
+  "shortEffect": "Restores PP to full for one move.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Fully restores the PP of a selected move."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "Fully restores a selected move’s PP for one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "It fully restores the PP of a single selected move that has been learned by the target Pokémon."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon"
+      ],
+      "text": "This medicine can fully restore the PP of a single selected move that has been learned by a Pokémon."
+    },
+    {
+      "versionGroups": [
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "This medicine can be used to fully restore the PP of a single selected move that has been learned by a Pokémon."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 35,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 39,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 39,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 39,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 39,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 39,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

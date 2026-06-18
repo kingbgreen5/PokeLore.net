@@ -1,0 +1,435 @@
+{
+  "id": 134,
+  "name": "lum-berry",
+  "displayName": "Lum Berry",
+  "cost": 80,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lum-berry.png",
+  "category": {
+    "id": 3,
+    "name": "medicine",
+    "displayName": "Medicine",
+    "pocket": "berries"
+  },
+  "attributes": [
+    "holdable-active"
+  ],
+  "effect": "Held in battle : When the holder is afflicted with a major status ailment, it consumes this item to cure the ailment. Used on a party Pokémon : Cures any major status ailment.",
+  "shortEffect": "Held: Consumed to cure any status condition or confusion.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire"
+      ],
+      "text": "A hold item that heals status in battle."
+    },
+    {
+      "versionGroups": [
+        "emerald"
+      ],
+      "text": "A hold item that heals any status problem in battle."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "When held by a POKéMON, it will be used in battle to heal any problem."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum"
+      ],
+      "text": "A Poffin ingredient. It may be used or held by a Pokémon to recover from any status problem."
+    },
+    {
+      "versionGroups": [
+        "heartgold-soulsilver"
+      ],
+      "text": "It may be used or held by a Pokémon to recover from any status problem."
+    },
+    {
+      "versionGroups": [
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "If held by a Pokémon, it recovers from any status problem."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from any status condition during battle."
+    }
+  ],
+  "fling": {
+    "power": 10,
+    "effect": "berry-effect"
+  },
+  "heldByPokemon": [
+    {
+      "pokemon": "mew",
+      "pokemonId": 151,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 100
+        },
+        {
+          "version": "sapphire",
+          "rarity": 100
+        },
+        {
+          "version": "emerald",
+          "rarity": 100
+        },
+        {
+          "version": "diamond",
+          "rarity": 100
+        },
+        {
+          "version": "pearl",
+          "rarity": 100
+        },
+        {
+          "version": "platinum",
+          "rarity": 100
+        },
+        {
+          "version": "heartgold",
+          "rarity": 100
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 100
+        },
+        {
+          "version": "black",
+          "rarity": 100
+        },
+        {
+          "version": "white",
+          "rarity": 100
+        },
+        {
+          "version": "black-2",
+          "rarity": 100
+        },
+        {
+          "version": "white-2",
+          "rarity": 100
+        },
+        {
+          "version": "x",
+          "rarity": 100
+        },
+        {
+          "version": "y",
+          "rarity": 100
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 100
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 100
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "chikorita",
+      "pokemonId": 152,
+      "versionDetails": [
+        {
+          "version": "firered",
+          "rarity": 100
+        },
+        {
+          "version": "leafgreen",
+          "rarity": 100
+        }
+      ]
+    },
+    {
+      "pokemon": "celebi",
+      "pokemonId": 251,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 100
+        },
+        {
+          "version": "sapphire",
+          "rarity": 100
+        },
+        {
+          "version": "emerald",
+          "rarity": 100
+        },
+        {
+          "version": "firered",
+          "rarity": 100
+        },
+        {
+          "version": "leafgreen",
+          "rarity": 100
+        },
+        {
+          "version": "diamond",
+          "rarity": 100
+        },
+        {
+          "version": "pearl",
+          "rarity": 100
+        },
+        {
+          "version": "platinum",
+          "rarity": 100
+        },
+        {
+          "version": "heartgold",
+          "rarity": 100
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 100
+        },
+        {
+          "version": "black",
+          "rarity": 100
+        },
+        {
+          "version": "white",
+          "rarity": 100
+        },
+        {
+          "version": "black-2",
+          "rarity": 100
+        },
+        {
+          "version": "white-2",
+          "rarity": 100
+        },
+        {
+          "version": "x",
+          "rarity": 100
+        },
+        {
+          "version": "y",
+          "rarity": 100
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 100
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 100
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "shaymin-land",
+      "pokemonId": 492,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 100
+        },
+        {
+          "version": "pearl",
+          "rarity": 100
+        },
+        {
+          "version": "platinum",
+          "rarity": 100
+        },
+        {
+          "version": "heartgold",
+          "rarity": 100
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 100
+        },
+        {
+          "version": "black",
+          "rarity": 100
+        },
+        {
+          "version": "white",
+          "rarity": 100
+        },
+        {
+          "version": "black-2",
+          "rarity": 100
+        },
+        {
+          "version": "white-2",
+          "rarity": 100
+        },
+        {
+          "version": "x",
+          "rarity": 100
+        },
+        {
+          "version": "y",
+          "rarity": 100
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 100
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 100
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "shaymin-sky",
+      "pokemonId": 10006,
+      "versionDetails": [
+        {
+          "version": "platinum",
+          "rarity": 100
+        },
+        {
+          "version": "heartgold",
+          "rarity": 100
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 100
+        },
+        {
+          "version": "black",
+          "rarity": 100
+        },
+        {
+          "version": "white",
+          "rarity": 100
+        },
+        {
+          "version": "black-2",
+          "rarity": 100
+        },
+        {
+          "version": "white-2",
+          "rarity": 100
+        },
+        {
+          "version": "x",
+          "rarity": 100
+        },
+        {
+          "version": "y",
+          "rarity": 100
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 100
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 100
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    }
+  ],
+  "gameIndices": [
+    {
+      "gameIndex": 141,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 157,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 157,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 157,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 157,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 157,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

@@ -1,0 +1,64 @@
+{
+  "id": 587,
+  "name": "binding-band",
+  "displayName": "Binding Band",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/binding-band.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [],
+  "effect": "Held : Moves used by the holder that trap and damage a target for multiple turns (e.g. Bind, Fire Spin) inflict twice their usual per-turn damage.",
+  "shortEffect": "Held: Doubles the per-turn damage of multi-turn trapping moves.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A band that increases the power of binding moves when held."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee"
+      ],
+      "text": "An item to be held by a Pokémon. A band that increases the power of binding moves used by the holder."
+    },
+    {
+      "versionGroups": [
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. It’s a band that increases the power of binding moves used by the holder."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 544,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 544,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 544,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 544,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

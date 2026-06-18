@@ -1,0 +1,69 @@
+{
+  "id": 293,
+  "name": "full-incense",
+  "displayName": "Full Incense",
+  "cost": 5000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/full-incense.png",
+  "category": {
+    "id": 15,
+    "name": "bad-held-items",
+    "displayName": "Bad held items",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held: The holder will go last within its move’s priority bracket, regardless of Speed. If multiple Pokémon within the same priority bracket are subject to this effect, the slower Pokémon will go first. The holder will move after Pokémon with Stall. If the holder has Stall, Stall is ignored. This item ignores Trick Room.",
+  "shortEffect": "Held: Holder moves last in its priority bracket. Breeding: Snorlax begets a Munchlax Egg.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item to be held by a Pokémon. It is an exotic-smelling incense that makes the holder bloated and slow moving."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. This exotic-smelling incense makes the holder bloated and slow moving."
+    }
+  ],
+  "fling": {
+    "power": 10,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 316,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 316,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 316,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 316,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 316,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

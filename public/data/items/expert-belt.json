@@ -1,0 +1,114 @@
+{
+  "id": 245,
+  "name": "expert-belt",
+  "displayName": "Expert Belt",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/expert-belt.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held: When the holder hits with a super-effective move, its power is raised by 20%.",
+  "shortEffect": "Held: Holder’s Super Effective moves do 20% extra damage.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item to be held by a Pokémon. It is a well-worn belt that slightly boosts the power of supereffective moves."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. It’s a well-worn belt that slightly boosts the power of supereffective moves."
+    }
+  ],
+  "fling": {
+    "power": 10,
+    "effect": null
+  },
+  "heldByPokemon": [
+    {
+      "pokemon": "throh",
+      "pokemonId": 538,
+      "versionDetails": [
+        {
+          "version": "black",
+          "rarity": 1
+        },
+        {
+          "version": "white",
+          "rarity": 1
+        },
+        {
+          "version": "black-2",
+          "rarity": 1
+        },
+        {
+          "version": "white-2",
+          "rarity": 1
+        }
+      ]
+    },
+    {
+      "pokemon": "sawk",
+      "pokemonId": 539,
+      "versionDetails": [
+        {
+          "version": "black",
+          "rarity": 1
+        },
+        {
+          "version": "white",
+          "rarity": 1
+        },
+        {
+          "version": "black-2",
+          "rarity": 1
+        },
+        {
+          "version": "white-2",
+          "rarity": 1
+        }
+      ]
+    }
+  ],
+  "gameIndices": [
+    {
+      "gameIndex": 268,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 268,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 268,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 268,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 268,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

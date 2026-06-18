@@ -1,0 +1,637 @@
+{
+  "id": 194,
+  "name": "quick-claw",
+  "displayName": "Quick Claw",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/quick-claw.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held in battle : Whenever the holder attempts to use a move, it has a 3/16 chance to act first among moves with the same priority. If multiple Pokémon have this effect at the same time, Speed is the tie-breaker as normal, but the effect of Trick Room is ignored.",
+  "shortEffect": "Held: Holder has a 3/16 (18.75%) chance to move first.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A hold item that occasionally allows the first strike."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "An item to be held by a POKéMON. A light and sharp claw. The holder may be able to strike first."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item to be held by a Pokémon. A light, sharp claw that lets the bearer move first occasionally."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. This light, sharp claw lets the bearer move first occasionally."
+    }
+  ],
+  "fling": {
+    "power": 80,
+    "effect": null
+  },
+  "heldByPokemon": [
+    {
+      "pokemon": "sandshrew",
+      "pokemonId": 27,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 5
+        },
+        {
+          "version": "sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "emerald",
+          "rarity": 5
+        },
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "sandslash",
+      "pokemonId": 28,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 5
+        },
+        {
+          "version": "sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "emerald",
+          "rarity": 5
+        },
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "meowth",
+      "pokemonId": 52,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "persian",
+      "pokemonId": 53,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "sneasel",
+      "pokemonId": 215,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 5
+        },
+        {
+          "version": "sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "emerald",
+          "rarity": 5
+        },
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "zangoose",
+      "pokemonId": 335,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "weavile",
+      "pokemonId": 461,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        },
+        {
+          "version": "x",
+          "rarity": 5
+        },
+        {
+          "version": "y",
+          "rarity": 5
+        },
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "meowth-alola",
+      "pokemonId": 10107,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "persian-alola",
+      "pokemonId": 10108,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    }
+  ],
+  "gameIndices": [
+    {
+      "gameIndex": 183,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 217,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 217,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 217,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 217,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 217,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

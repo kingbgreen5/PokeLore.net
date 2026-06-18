@@ -1,0 +1,99 @@
+{
+  "id": 35,
+  "name": "energy-root",
+  "displayName": "Energy Root",
+  "cost": 1200,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/energy-root.png",
+  "category": {
+    "id": 27,
+    "name": "healing",
+    "displayName": "Healing",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon : Restores 200 HP. Decreases happiness by 10/10/15.",
+  "shortEffect": "Restores 200 HP, but lowers happiness.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A bitter root that restores HP by 200 points."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A very bitter root. It restores the HP of one POKéMON by 200 points."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A very bitter root. It restores the HP of one Pokémon by 200 points."
+    },
+    {
+      "versionGroups": [
+        "x-y"
+      ],
+      "text": "An extremely bitter medicinal root. When consumed, it restores 200 HP to an injured Pokémon."
+    },
+    {
+      "versionGroups": [
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee"
+      ],
+      "text": "An extremely bitter medicinal root. When consumed, it restores up to 120 HP to an injured Pokémon."
+    },
+    {
+      "versionGroups": [
+        "sword-shield"
+      ],
+      "text": "An extremely bitter medicinal root. It can be used to restore 120 HP to a single Pokémon."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 31,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 35,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 35,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 35,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 35,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 35,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

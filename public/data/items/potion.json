@@ -1,0 +1,155 @@
+{
+  "id": 17,
+  "name": "potion",
+  "displayName": "Potion",
+  "cost": 200,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/potion.png",
+  "category": {
+    "id": 27,
+    "name": "healing",
+    "displayName": "Healing",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a friendly Pokémon : Restores 20 HP.",
+  "shortEffect": "Restores 20 HP.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Restores the HP of a POKéMON by 20 points."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A spray-type wound medicine. It restores the HP of one POKéMON by 20 points."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A spray-type medicine for wounds. It restores the HP of one Pokémon by just 20 points."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon"
+      ],
+      "text": "A spray-type medicine for treating wounds. It can be used to restore 20 HP to an injured Pokémon."
+    },
+    {
+      "versionGroups": [
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A spray-type medicine for treating wounds. It can be used to restore 20 HP to a single Pokémon."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [
+    {
+      "pokemon": "zigzagoon",
+      "pokemonId": 263,
+      "versionDetails": [
+        {
+          "version": "omega-ruby",
+          "rarity": 50
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 50
+        },
+        {
+          "version": "sun",
+          "rarity": 50
+        },
+        {
+          "version": "moon",
+          "rarity": 50
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 50
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "linoone",
+      "pokemonId": 264,
+      "versionDetails": [
+        {
+          "version": "omega-ruby",
+          "rarity": 50
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 50
+        },
+        {
+          "version": "sun",
+          "rarity": 50
+        },
+        {
+          "version": "moon",
+          "rarity": 50
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 50
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 50
+        }
+      ]
+    }
+  ],
+  "gameIndices": [
+    {
+      "gameIndex": 13,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 17,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 17,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 17,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 17,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 17,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

@@ -1,0 +1,88 @@
+{
+  "id": 4,
+  "name": "poke-ball",
+  "displayName": "Poké Ball",
+  "cost": 200,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png",
+  "category": {
+    "id": 34,
+    "name": "standard-balls",
+    "displayName": "Standard balls",
+    "pocket": "pokeballs"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used in battle : Attempts to catch a wild Pokémon, using a catch rate of 1×. If used in a trainer battle, nothing happens and the ball is lost.",
+  "shortEffect": "Tries to catch a wild Pokémon.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A tool used for catching wild POKéMON."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A BALL thrown to catch a wild POKéMON. It is designed in a capsule style."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A device for catching wild Pokémon. It is thrown like a ball at the target. It is designed as a capsule system."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A device for catching wild Pokémon. It’s thrown like a ball at a Pokémon, comfortably encapsulating its target."
+    }
+  ],
+  "fling": {
+    "power": null,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 4,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 4,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 4,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 4,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 4,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 4,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

@@ -1,0 +1,71 @@
+{
+  "id": 15,
+  "name": "quick-ball",
+  "displayName": "Quick Ball",
+  "cost": 1000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/quick-ball.png",
+  "category": {
+    "id": 33,
+    "name": "special-balls",
+    "displayName": "Special balls",
+    "pocket": "pokeballs"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used in battle : Attempts to catch a wild Pokémon, using a catch rate of 4× on the first turn of a battle, but 1× any other time. If used in a trainer battle, nothing happens and the ball is lost.",
+  "shortEffect": "Tries to catch a wild Pokémon. Success rate is 4× (Gen V: 5×), but only on the first turn.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A somewhat different Poké Ball that provides a better catch rate if it is used at the start of a wild encounter."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A somewhat different Poké Ball that has a more successful catch rate if used at the start of a wild encounter."
+    }
+  ],
+  "fling": {
+    "power": null,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 15,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 15,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 15,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 15,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 15,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

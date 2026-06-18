@@ -1,0 +1,70 @@
+{
+  "id": 284,
+  "name": "mind-plate",
+  "displayName": "Mind Plate",
+  "cost": 1000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mind-plate.png",
+  "category": {
+    "id": 17,
+    "name": "plates",
+    "displayName": "Plates",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active",
+    "underground"
+  ],
+  "effect": "Held: Increases the power of the holder’s Psychic moves by 20%. Held by a Multitype Pokémon: Holder’s type becomes Psychic.",
+  "shortEffect": "Held: Psychic-Type moves from holder do 20% more damage. Changes Arceus’s and Judgment’s type to Psychic.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item to be held by a Pokémon. It is a stone tablet that boosts the power of Psychic-type moves."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. It’s a stone tablet that boosts the power of Psychic-type moves."
+    }
+  ],
+  "fling": {
+    "power": 90,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 307,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 307,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 307,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 307,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 307,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

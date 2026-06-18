@@ -30,6 +30,10 @@ function Navbar() {
   Abilities
 </Link>
 
+      <Link to="/items">
+        Items
+      </Link>
+
       <Link to="/DexEntries">
         Entries
       </Link>

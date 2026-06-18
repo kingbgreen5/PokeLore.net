@@ -1,0 +1,53 @@
+{
+  "id": 883,
+  "name": "adrenaline-orb",
+  "displayName": "Adrenaline Orb",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/adrenaline-orb.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [],
+  "effect": "Makes wild Pokémon more likely to summon allies. Held: increases the holder’s Speed by one stage when affected by Intimidate.",
+  "shortEffect": "Makes wild Pokémon more likely to summon allies. Held: increases the holder’s Speed by one stage when affected by Intimidate.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "sun-moon"
+      ],
+      "text": "Using it makes wild Pokémon more likely to call for help. If held by a Pokémon, it boosts Speed when intimidated. It can be used only once."
+    },
+    {
+      "versionGroups": [
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee"
+      ],
+      "text": "Using it makes wild Pokémon call for help a number of times. If held by a Pokémon, it boosts Speed when intimidated. It can be used only once."
+    },
+    {
+      "versionGroups": [
+        "sword-shield"
+      ],
+      "text": "If held by a Pokémon, it boosts Speed when intimidated."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 846,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 846,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

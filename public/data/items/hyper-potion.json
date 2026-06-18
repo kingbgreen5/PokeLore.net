@@ -1,0 +1,99 @@
+{
+  "id": 25,
+  "name": "hyper-potion",
+  "displayName": "Hyper Potion",
+  "cost": 1500,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hyper-potion.png",
+  "category": {
+    "id": 27,
+    "name": "healing",
+    "displayName": "Healing",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon : Restores 200 HP.",
+  "shortEffect": "Restores 200 HP.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Restores the HP of a POKéMON by 200 points."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A spray-type wound medicine. It restores the HP of one POKéMON by 200 points."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A spray-type medicine for wounds. It restores the HP of one Pokémon by 200 points."
+    },
+    {
+      "versionGroups": [
+        "x-y"
+      ],
+      "text": "A spray-type medicine for treating wounds. It can be used to restore 200 HP to an injured Pokémon."
+    },
+    {
+      "versionGroups": [
+        "sun-moon",
+        "ultra-sun-ultra-moon"
+      ],
+      "text": "A spray-type medicine for treating wounds. It can be used to restore 120 HP to an injured Pokémon."
+    },
+    {
+      "versionGroups": [
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A spray-type medicine for treating wounds. It can be used to restore 120 HP to a single Pokémon."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 21,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 25,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 25,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 25,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 25,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 25,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

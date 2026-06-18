@@ -1,0 +1,98 @@
+{
+  "id": 247,
+  "name": "life-orb",
+  "displayName": "Life Orb",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/life-orb.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held: Damage from the holder’s moves is increased by 30%. On each turn the holder uses a damage-inflicting move, it takes 10% its max HP in damage.",
+  "shortEffect": "Held: Holder’s moves inflict 30% extra damage, but cost 10% max HP.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2",
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon"
+      ],
+      "text": "An item to be held by a Pokémon. It boosts the power of moves, but at the cost of some HP on each hit."
+    },
+    {
+      "versionGroups": [
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. It boosts the power of moves but at the cost of some HP on each hit."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [
+    {
+      "pokemon": "absol",
+      "pokemonId": 359,
+      "versionDetails": [
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "absol-mega",
+      "pokemonId": 10057,
+      "versionDetails": [
+        {
+          "version": "omega-ruby",
+          "rarity": 5
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 5
+        }
+      ]
+    }
+  ],
+  "gameIndices": [
+    {
+      "gameIndex": 270,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 270,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 270,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 270,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 270,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

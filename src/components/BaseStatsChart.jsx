@@ -21,7 +21,7 @@ function getStatColor(value) {
 }
 
 function BaseStatsChart({ stats }) {
-  const maxStat = 200;
+  const maxStat = 255;
 
   const baseStatTotal =
     Object.values(stats).reduce(

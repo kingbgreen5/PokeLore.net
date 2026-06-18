@@ -1,0 +1,606 @@
+{
+  "id": 128,
+  "name": "pecha-berry",
+  "displayName": "Pecha Berry",
+  "cost": 80,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pecha-berry.png",
+  "category": {
+    "id": 3,
+    "name": "medicine",
+    "displayName": "Medicine",
+    "pocket": "berries"
+  },
+  "attributes": [
+    "holdable-active"
+  ],
+  "effect": "Held in battle : When the holder is poisoned, it consumes this item to cure the poison. Used on a party Pokémon : Cures poison.",
+  "shortEffect": "Held: Consumed when poisoned to cure poison.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A hold item that heals poisoning in battle."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "When held by a POKéMON, it will be used in battle to cure poison."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum"
+      ],
+      "text": "A Poffin ingredient. It may be used or held by a Pokémon to recover from poison."
+    },
+    {
+      "versionGroups": [
+        "heartgold-soulsilver"
+      ],
+      "text": "It may be used or held by a Pokémon to recover from poison."
+    },
+    {
+      "versionGroups": [
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "If held by a Pokémon, it recovers from poison."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from poisoning on its own in battle."
+    }
+  ],
+  "fling": {
+    "power": 10,
+    "effect": "berry-effect"
+  },
+  "heldByPokemon": [
+    {
+      "pokemon": "poochyena",
+      "pokemonId": 261,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 5
+        },
+        {
+          "version": "sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "emerald",
+          "rarity": 5
+        },
+        {
+          "version": "firered",
+          "rarity": 5
+        },
+        {
+          "version": "leafgreen",
+          "rarity": 5
+        },
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "mightyena",
+      "pokemonId": 262,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 5
+        },
+        {
+          "version": "sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "emerald",
+          "rarity": 5
+        },
+        {
+          "version": "firered",
+          "rarity": 5
+        },
+        {
+          "version": "leafgreen",
+          "rarity": 5
+        },
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "wurmple",
+      "pokemonId": 265,
+      "versionDetails": [
+        {
+          "version": "omega-ruby",
+          "rarity": 50
+        },
+        {
+          "version": "alpha-sapphire",
+          "rarity": 50
+        },
+        {
+          "version": "sun",
+          "rarity": 50
+        },
+        {
+          "version": "moon",
+          "rarity": 50
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 50
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "skitty",
+      "pokemonId": 300,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "delcatty",
+      "pokemonId": 301,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "buneary",
+      "pokemonId": 427,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "lopunny",
+      "pokemonId": 428,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "stunky",
+      "pokemonId": 434,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "skuntank",
+      "pokemonId": 435,
+      "versionDetails": [
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "tympole",
+      "pokemonId": 535,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "palpitoad",
+      "pokemonId": 536,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "seismitoad",
+      "pokemonId": 537,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "venipede",
+      "pokemonId": 543,
+      "versionDetails": [
+        {
+          "version": "black",
+          "rarity": 50
+        },
+        {
+          "version": "white",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "whirlipede",
+      "pokemonId": 544,
+      "versionDetails": [
+        {
+          "version": "black",
+          "rarity": 50
+        },
+        {
+          "version": "white",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "scolipede",
+      "pokemonId": 545,
+      "versionDetails": [
+        {
+          "version": "black",
+          "rarity": 50
+        },
+        {
+          "version": "white",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "yungoos",
+      "pokemonId": 734,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "gumshoos",
+      "pokemonId": 735,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "rattata-alola",
+      "pokemonId": 10091,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "raticate-alola",
+      "pokemonId": 10092,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "raticate-totem-alola",
+      "pokemonId": 10093,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "gumshoos-totem",
+      "pokemonId": 10121,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    }
+  ],
+  "gameIndices": [
+    {
+      "gameIndex": 135,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 151,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 151,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 151,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 151,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 151,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

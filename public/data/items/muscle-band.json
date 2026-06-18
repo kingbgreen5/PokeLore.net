@@ -1,0 +1,69 @@
+{
+  "id": 243,
+  "name": "muscle-band",
+  "displayName": "Muscle Band",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/muscle-band.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held: Increases the power of the holder’s physical moves by 10%.",
+  "shortEffect": "Held: Boosts the damage of physical moves used by the holder by 10%.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item to be held by a Pokémon. It is a headband that slightly boosts the power of physical moves."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. This headband exudes strength, slightly boosting the power of physical moves."
+    }
+  ],
+  "fling": {
+    "power": 10,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 266,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 266,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 266,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 266,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 266,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

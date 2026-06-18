@@ -1,0 +1,89 @@
+{
+  "id": 23,
+  "name": "full-restore",
+  "displayName": "Full Restore",
+  "cost": 3000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/full-restore.png",
+  "category": {
+    "id": 27,
+    "name": "healing",
+    "displayName": "Healing",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon : Restores HP to full and cures any status ailment and confusion.",
+  "shortEffect": "Restores HP to full and cures any status ailment and confusion.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Fully restores the HP and status of a POKéMON."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A medicine that fully restores the HP and heals any status problems of one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A medicine that fully restores the HP and heals any status problems of a single Pokémon."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A medicine that can be used to fully restore the HP of a single Pokémon and heal any status conditions it has."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 19,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 23,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 23,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 23,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 23,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 23,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

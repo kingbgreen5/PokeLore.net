@@ -1,0 +1,88 @@
+{
+  "id": 55,
+  "name": "guard-spec",
+  "displayName": "Guard Spec.",
+  "cost": 1500,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/guard-spec.png",
+  "category": {
+    "id": 1,
+    "name": "stat-boosts",
+    "displayName": "Stat boosts",
+    "pocket": "battle"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon in battle : Protects the target’s stats from being lowered for the next five turns. Increases happiness by 1/1/0.",
+  "shortEffect": "Prevents stat changes in battle for five turns in battle. Raises happiness.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Prevents stat reduction when used in battle."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "An item that prevents stat reduction among party POKéMON for five turns after use."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item that prevents stat reduction among the Trainer’s party Pokémon for five turns after use."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item that prevents stat reduction among the Trainer’s party Pokémon for five turns after it is used in battle."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 73,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 55,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 55,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 55,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 55,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 55,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

@@ -1,0 +1,71 @@
+{
+  "id": 14,
+  "name": "heal-ball",
+  "displayName": "Heal Ball",
+  "cost": 300,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heal-ball.png",
+  "category": {
+    "id": 33,
+    "name": "special-balls",
+    "displayName": "Special balls",
+    "pocket": "pokeballs"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used in battle : Attempts to catch a wild Pokémon, using a catch rate of 1×. The caught Pokémon’s HP is immediately restored, PP for all its moves is restored, and any status ailment is cured. If used in a trainer battle, nothing happens and the ball is lost.",
+  "shortEffect": "Tries to catch a wild Pokémon. Caught Pokémon are immediately healed.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A remedial Poké Ball that restores the caught Pokémon’s HP and eliminates any status problem."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A remedial Poké Ball that restores the HP of a Pokémon caught with it and eliminates any status conditions."
+    }
+  ],
+  "fling": {
+    "power": null,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 14,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 14,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 14,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 14,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 14,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

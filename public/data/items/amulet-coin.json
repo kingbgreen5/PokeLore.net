@@ -1,0 +1,86 @@
+{
+  "id": 200,
+  "name": "amulet-coin",
+  "displayName": "Amulet Coin",
+  "cost": 10000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/amulet-coin.png",
+  "category": {
+    "id": 16,
+    "name": "training",
+    "displayName": "Training",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held : If the holder participated in a trainer battle, the trainer earns twice the usual prize money. This effect applies even if the holder fainted. This effect does not stack with any other similar effect.",
+  "shortEffect": "Held: Doubles the money earned from a battle. Does not stack with Luck Incense.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Doubles money in battle if the holder takes part."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "An item to be held by a POKéMON. It doubles the battle money if the holding POKéMON takes part."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item to be held by a Pokémon. It doubles a battle’s prize money if the holding Pokémon joins in."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. It doubles any prize money received if the holding Pokémon joins a battle."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 189,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 223,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 223,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 223,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 223,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 223,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

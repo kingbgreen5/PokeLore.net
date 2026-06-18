@@ -1,0 +1,64 @@
+{
+  "id": 618,
+  "name": "poke-toy",
+  "displayName": "Poké Toy",
+  "cost": 100,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-toy.png",
+  "category": {
+    "id": 11,
+    "name": "spelunking",
+    "displayName": "Spelunking",
+    "pocket": "misc"
+  },
+  "attributes": [],
+  "effect": "Used in battle : Ends a wild battle. Cannot be used in trainer battles.",
+  "shortEffect": "Ends a wild battle.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item that attracts Pokémon. Use it to flee from any battle with a wild Pokémon."
+    },
+    {
+      "versionGroups": [
+        "x-y"
+      ],
+      "text": "A toy that attracts the attention of a Pokémon. It guarantees escape from any battle with a wild Pokémon."
+    },
+    {
+      "versionGroups": [
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A toy that attracts the attention of a Pokémon. It guarantees escape from any battle with wild Pokémon."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 577,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 577,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 577,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 577,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

@@ -1,0 +1,94 @@
+{
+  "id": 37,
+  "name": "revival-herb",
+  "displayName": "Revival Herb",
+  "cost": 2800,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/revival-herb.png",
+  "category": {
+    "id": 29,
+    "name": "revival",
+    "displayName": "Revival",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon : Revives a fainted Pokémon and restores its HP to full. Decreases happiness by 10/10/15.",
+  "shortEffect": "Revives with full HP, but lowers happiness.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A very bitter herb that revives a fainted POKéMON."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A very bitter medicinal herb. It revives a fainted POKéMON, restoring HP fully."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A very bitter medicinal herb. It revives a fainted Pokémon, fully restoring its HP."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee"
+      ],
+      "text": "A terribly bitter medicinal herb. It revives a fainted Pokémon and fully restores its maximum HP."
+    },
+    {
+      "versionGroups": [
+        "sword-shield"
+      ],
+      "text": "A terribly bitter medicinal herb. It revives a fainted Pokémon and fully restores its max HP."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 33,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 37,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 37,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 37,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 37,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 37,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

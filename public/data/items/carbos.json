@@ -1,0 +1,99 @@
+{
+  "id": 48,
+  "name": "carbos",
+  "displayName": "Carbos",
+  "cost": 10000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/carbos.png",
+  "category": {
+    "id": 26,
+    "name": "vitamins",
+    "displayName": "Vitamins",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon : Increases Speed effort by 10, but won’t increase it beyond 100. Increases happiness by 5/3/2.",
+  "shortEffect": "Raises Speed effort and happiness.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire"
+      ],
+      "text": "Raises the stat SPEED of one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "emerald"
+      ],
+      "text": "Raises the base SPEED stat of one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A nutritious drink for POKéMON. It raises the base SPEED stat of one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A nutritious drink for Pokémon. It raises the base Speed stat of a single Pokémon."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee"
+      ],
+      "text": "A nutritious drink for Pokémon. When consumed, it raises the base Speed stat of a single Pokémon."
+    },
+    {
+      "versionGroups": [
+        "sword-shield"
+      ],
+      "text": "A nutritious drink for Pokémon. When consumed, it raises the Speed base points of a single Pokémon."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 66,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 48,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 48,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 48,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 48,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 48,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

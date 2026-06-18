@@ -1,0 +1,93 @@
+{
+  "id": 7,
+  "name": "dive-ball",
+  "displayName": "Dive Ball",
+  "cost": 1000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dive-ball.png",
+  "category": {
+    "id": 33,
+    "name": "special-balls",
+    "displayName": "Special balls",
+    "pocket": "pokeballs"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used in battle : Attempts to catch a wild Pokémon. If the wild Pokémon was encountered by surfing or fishing, this ball has a catch rate of 3.5×. Otherwise, it has a catch rate of 1×. If used in a trainer battle, nothing happens and the ball is lost.",
+  "shortEffect": "Tries to catch a wild Pokémon. Success rate is 3.5× when underwater, fishing, or surfing.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A BALL that works better on POKéMON on the ocean floor."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A somewhat different BALL that works especially well on POKéMON deep in the sea."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver"
+      ],
+      "text": "A somewhat different Poké Ball that works especially well on Pokémon that live in the sea."
+    },
+    {
+      "versionGroups": [
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A somewhat different Poké Ball that works especially well on Pokémon that live underwater."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A somewhat different Poké Ball that works especially well when catching Pokémon that live underwater."
+    }
+  ],
+  "fling": {
+    "power": null,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 7,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 7,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 7,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 7,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 7,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 7,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

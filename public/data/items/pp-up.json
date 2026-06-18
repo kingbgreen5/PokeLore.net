@@ -1,0 +1,99 @@
+{
+  "id": 51,
+  "name": "pp-up",
+  "displayName": "PP Up",
+  "cost": 10000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pp-up.png",
+  "category": {
+    "id": 26,
+    "name": "vitamins",
+    "displayName": "Vitamins",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon : Increases a selected move’s max PP by 20% its original max PP, to a maximum of 1.6×. Increases happiness by 5/3/2.",
+  "shortEffect": "Raises a move’s max PP by 20%.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Raises the maximum PP of a selected move."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "Slightly raises the maximum PP of a selected move for one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "It slightly raises the maximum PP of a selected move that has been learned by the target Pokémon."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon"
+      ],
+      "text": "A medicine that can slightly raise the maximum PP of a single move that has been learned by the target Pokémon."
+    },
+    {
+      "versionGroups": [
+        "lets-go-pikachu-lets-go-eevee"
+      ],
+      "text": "A medicine that slightly raises the maximum PP of a single selected move that has been learned by a Pokémon."
+    },
+    {
+      "versionGroups": [
+        "sword-shield"
+      ],
+      "text": "A medicine that slightly raises the max PP of a single selected move that has been learned by a Pokémon."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 69,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 51,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 51,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 51,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 51,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 51,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

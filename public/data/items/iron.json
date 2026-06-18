@@ -1,0 +1,99 @@
+{
+  "id": 47,
+  "name": "iron",
+  "displayName": "Iron",
+  "cost": 10000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/iron.png",
+  "category": {
+    "id": 26,
+    "name": "vitamins",
+    "displayName": "Vitamins",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon : Increases Defense effort by 10, but won’t increase it beyond 100. Increases happiness by 5/3/2.",
+  "shortEffect": "Raises Defense effort and happiness.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire"
+      ],
+      "text": "Raises the stat DEFENSE of one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "emerald"
+      ],
+      "text": "Raises the base DEFENSE stat of one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A nutritious drink for POKéMON. It raises the base DEFENSE stat of one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A nutritious drink for Pokémon. It raises the base Defense stat of a single Pokémon."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee"
+      ],
+      "text": "A nutritious drink for Pokémon. When consumed, it raises the base Defense stat of a single Pokémon."
+    },
+    {
+      "versionGroups": [
+        "sword-shield"
+      ],
+      "text": "A nutritious drink for Pokémon. When consumed, it raises the Defense base points of a single Pokémon."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 65,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 47,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 47,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 47,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 47,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 47,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

@@ -1,0 +1,94 @@
+{
+  "id": 27,
+  "name": "full-heal",
+  "displayName": "Full Heal",
+  "cost": 400,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/full-heal.png",
+  "category": {
+    "id": 30,
+    "name": "status-cures",
+    "displayName": "Status cures",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon : Cures any status ailment and confusion.",
+  "shortEffect": "Cures any status ailment and confusion.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "Heals all the status problems of one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A spray-type medicine. It heals all the status problems of one POKéMON."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A spray-type medicine. It heals all the status problems of a single Pokémon."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon"
+      ],
+      "text": "A spray-type medicine that is broadly effective. It can be used once to heal all the status conditions of a Pokémon."
+    },
+    {
+      "versionGroups": [
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A spray-type medicine that is broadly effective. It can be used to heal all the status conditions of a single Pokémon."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 23,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 27,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 27,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 27,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 27,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 27,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 
 function capitalize(text) {
@@ -121,6 +122,91 @@ function getEvolutionDescription(node) {
   return parts.join(" ");
 }
 
+function EvolutionDescription({
+  node
+}) {
+  const navigate = useNavigate();
+
+  function itemLink(itemName) {
+    return (
+      <button
+        onClick={() =>
+          navigate(
+            `/item/${itemName}`
+          )
+        }
+        style={{
+          background: "none",
+          border: "none",
+          color: "inherit",
+          cursor: "pointer",
+          font: "inherit",
+          fontWeight: "bold",
+          padding: 0,
+          textDecoration:
+            "underline"
+        }}
+      >
+        {capitalize(itemName)}
+      </button>
+    );
+  }
+
+  const parts = [];
+
+  if (node.trigger === "level-up") {
+    parts.push("Lvl. up");
+  }
+
+  if (node.trigger === "trade") {
+    parts.push("Trade");
+  }
+
+  if (node.item) {
+    parts.push(
+      itemLink(node.item)
+    );
+  }
+
+  if (node.heldItem) {
+    parts.push(
+      <>
+        holding{" "}
+        {itemLink(node.heldItem)}
+      </>
+    );
+  }
+
+  const remainingDescription =
+    getEvolutionDescription({
+      ...node,
+      item: null,
+      heldItem: null,
+      trigger: node.trigger === "use-item"
+        ? null
+        : undefined
+    });
+
+  if (remainingDescription) {
+    parts.push(
+      remainingDescription
+    );
+  }
+
+  return (
+    <>
+      {parts.map((part, index) => (
+        <span key={index}>
+          {part}
+          {index < parts.length - 1
+            ? " "
+            : ""}
+        </span>
+      ))}
+    </>
+  );
+}
+
 
 
 
@@ -174,174 +260,14 @@ function EvolutionNode({
 
     }}
   >
-    {getEvolutionDescription(
-      node
-    )}
+    <EvolutionDescription
+      node={node}
+    />
      <div> ↓</div>
   </div>
  
 )}
  
-{/* -------------------- Evolution Conditions -------------------- */}
-{/* 
-{node.trigger && (
-<div>
-I
-
-
-
-
-  <div
-    style={{
-      fontSize: "1rem",
-      display: "flex",
-      flexDirection: "column",
-    marginBottom: "1rem",
-    marginTop: "1rem",
-    padding: ".2rem",
-      textAlign: "center",
-      border: "1px solid",
-      borderRadius: "8px",
-    }}
-  >
-
-    <strong>
-     {capitalize(node.trigger)}
-    </strong>
-
-    {node.minLevel && (
-      <div>
-        Lv. {node.minLevel}
-      </div>
-    )}
-
-    {node.item && (
-      <div>
-       {capitalize(node.item)}
-      </div>
-    )}
-
-    {node.heldItem && (
-      <div>
-        Hold {capitalize(node.heldItem)}
-      </div>
-    )}
-
-    {node.knownMove && (
-      <div>
-        Knows {capitalize(node.knownMove)}
-      </div>
-    )}
-
-    {node.knownMoveType && (
-      <div>
-        Knows {capitalize(node.knownMoveType)}
-        -type move
-      </div>
-    )}
-
-    {node.minHappiness && (
-      <div>
-        Happiness ≥ {node.minHappiness}
-      </div>
-    )}
-
-    {node.minBeauty && (
-      <div>
-        Beauty ≥ {node.minBeauty}
-      </div>
-    )}
-
-    {node.minAffection && (
-      <div>
-        Affection ≥ {node.minAffection}
-      </div>
-    )}
-
-    {node.gender !== null && (
-      <div>
-        {node.gender === 1
-          ? "Female"
-          : "Male"}
-      </div>
-    )}
-
-    {node.location && (
-      <div>
-        At {capitalize(node.location)}
-      </div>
-    )}
-
-    {node.timeOfDay && (
-      <div>
-        Time: {capitalize(node.timeOfDay)}
-      </div>
-    )}
-
-    {node.tradeSpecies && (
-      <div>
-        Trade for{" "}
-        {capitalize(
-          node.tradeSpecies
-        )}
-      </div>
-    )}
-
-    {node.partySpecies && (
-      <div>
-        Party:{" "}
-        {capitalize(
-          node.partySpecies
-        )}
-      </div>
-    )}
-
-    {node.partyType && (
-      <div>
-        Party Type:{" "}
-        {capitalize(
-          node.partyType
-        )}
-      </div>
-    )}
-
-    {node.turnUpsideDown && (
-      <div>
-        Hold console upside down
-      </div>
-    )}
-
-    {node.relativePhysicalStats !== null && (
-      <div>
-        {node.relativePhysicalStats === 1 &&
-          "Attack > Defense"}
-
-        {node.relativePhysicalStats === 0 &&
-          "Attack = Defense"}
-
-        {node.relativePhysicalStats === -1 &&
-          "Attack < Defense"}
-      </div>
-    )}
-
-    {node.needsOverworldRain && (
-      <div>
-        While raining
-      </div>
-    )}
-
-  </div>
-
-
-</div>
-
-
-)}
- */}
-
-
-
-
 
 
 

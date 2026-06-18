@@ -1,0 +1,90 @@
+{
+  "id": 183,
+  "name": "lansat-berry",
+  "displayName": "Lansat Berry",
+  "cost": 80,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lansat-berry.png",
+  "category": {
+    "id": 5,
+    "name": "in-a-pinch",
+    "displayName": "In a pinch",
+    "pocket": "berries"
+  },
+  "attributes": [
+    "holdable-active"
+  ],
+  "effect": "Held in battle : When the holder has 1/4 its max HP remaining or less, it consumes this item to raise its critical hit chance by one stage.",
+  "shortEffect": "Held: Consumed at 1/4 max HP to boost critical hit ratio by two stages.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A hold item that ups the critical- hit rate in a pinch."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "When held by a POKéMON, it raises the critical-hit ratio in a pinch."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum"
+      ],
+      "text": "A Poffin ingredient. If held by a Pokémon, it raises its critical-hit ratio in a pinch."
+    },
+    {
+      "versionGroups": [
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "If held by a Pokémon, it raises its critical-hit ratio in a pinch."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, its critical-hit ratio will increase when it’s in a pinch."
+    }
+  ],
+  "fling": {
+    "power": 10,
+    "effect": "berry-effect"
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 173,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 206,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 206,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 206,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 206,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 206,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

@@ -1,0 +1,71 @@
+{
+  "id": 13,
+  "name": "dusk-ball",
+  "displayName": "Dusk Ball",
+  "cost": 1000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-ball.png",
+  "category": {
+    "id": 33,
+    "name": "special-balls",
+    "displayName": "Special balls",
+    "pocket": "pokeballs"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used in battle : Attempts to catch a wild Pokémon. If it’s currently nighttime or the wild Pokémon was encountered while walking in a cave, this ball has a catch rate of 3.5×. Otherwise, it has a catch rate of 1×. If used in a trainer battle, nothing happens and the ball is lost.",
+  "shortEffect": "Tries to catch a wild Pokémon. Success rate is 3.5× at night and in caves.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2",
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon"
+      ],
+      "text": "A somewhat different Poké Ball that makes it easier to catch wild Pokémon at night or in dark places like caves."
+    },
+    {
+      "versionGroups": [
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A somewhat different Poké Ball that makes it easier to catch wild Pokémon at night or in dark places such as caves."
+    }
+  ],
+  "fling": {
+    "power": null,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 13,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 13,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 13,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 13,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 13,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

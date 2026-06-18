@@ -1,0 +1,64 @@
+{
+  "id": 450,
+  "name": "level-ball",
+  "displayName": "Level Ball",
+  "cost": 0,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/level-ball.png",
+  "category": {
+    "id": 39,
+    "name": "apricorn-balls",
+    "displayName": "Apricorn balls",
+    "pocket": "pokeballs"
+  },
+  "attributes": [],
+  "effect": "Used by trainer in battle : Attempts to catch a wild Pokémon. If used in a trainer battle, nothing happens and the ball is lost. If the trainer’s Pokémon’s level is higher than: * four times the wild Pokémon’s, the wild Pokémon’s catch rate is 8× normal. * than twice the wild Pokémon’s, the wild Pokémon’s catch rate is 4× normal. * the wild Pokémon’s, the wild Pokémon’s catch rate is 2× normal.",
+  "shortEffect": "Success rate based off of fraction target Pokémon is of user’s Pokémon. Made from Red Apricorn.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A Poké Ball for catching Pokémon that are a lower level than your own."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A Poké Ball that makes it easier to catch Pokémon that are at a lower level than your own Pokémon."
+    }
+  ],
+  "fling": {
+    "power": null,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 493,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 493,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 493,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 493,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 493,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

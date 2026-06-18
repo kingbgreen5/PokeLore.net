@@ -1,0 +1,66 @@
+{
+  "id": 899,
+  "name": "psychic-seed",
+  "displayName": "Psychic Seed",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/psychic-seed.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [],
+  "effect": "Held: If the holder enters battle during Psychic Terrain, or if Psychic Terrain is activated while the holder is in battle, this item is consumed and the holder’s Special Defense raises by one stage.",
+  "shortEffect": "Held: Consumed on Psychic Terrain and raises the holder’s Special Defense by one stage.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. It boosts Sp. Def on Psychic Terrain. It can only be used once."
+    }
+  ],
+  "fling": {
+    "power": 10,
+    "effect": null
+  },
+  "heldByPokemon": [
+    {
+      "pokemon": "exeggcute",
+      "pokemonId": 102,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    }
+  ],
+  "gameIndices": [
+    {
+      "gameIndex": 882,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 882,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

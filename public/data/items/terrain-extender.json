@@ -1,0 +1,43 @@
+{
+  "id": 896,
+  "name": "terrain-extender",
+  "displayName": "Terrain Extender",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/terrain-extender.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [],
+  "effect": "Held: When the holder changes the Terrain (whether by move or ability), it will last 8 turns instead of 5.",
+  "shortEffect": "Held: Extends the holder’s Terrain effects to 8 turns.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. It extends the duration of the terrain caused by the holder’s move or Ability."
+    }
+  ],
+  "fling": {
+    "power": 60,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 879,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 879,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

@@ -1,0 +1,48 @@
+{
+  "id": 887,
+  "name": "beast-ball",
+  "displayName": "Beast Ball",
+  "cost": 0,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/beast-ball.png",
+  "category": {
+    "id": 33,
+    "name": "special-balls",
+    "displayName": "Special balls",
+    "pocket": "pokeballs"
+  },
+  "attributes": [],
+  "effect": "Used in battle : Attempts to catch a wild Pokémon. If the wild Pokémon is an Ultra Beast, this ball has a catch rate of 5×. Otherwise, it has a catch rate of 0.1×. If used in a trainer battle, nothing happens and the ball is lost.",
+  "shortEffect": "Tries to catch a wild Pokémon. Success rate is 5× for Ultra Beasts and 0.1× for all other Pokémon.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee"
+      ],
+      "text": "A special Poké Ball designed to catch Ultra Beasts. It has a low success rate for catching others."
+    },
+    {
+      "versionGroups": [
+        "sword-shield"
+      ],
+      "text": "A somewhat different Poké Ball that has a low success rate for catching a Pokémon."
+    }
+  ],
+  "fling": {
+    "power": null,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 851,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 851,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

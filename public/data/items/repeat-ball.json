@@ -1,0 +1,88 @@
+{
+  "id": 9,
+  "name": "repeat-ball",
+  "displayName": "Repeat Ball",
+  "cost": 1000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/repeat-ball.png",
+  "category": {
+    "id": 33,
+    "name": "special-balls",
+    "displayName": "Special balls",
+    "pocket": "pokeballs"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used in battle : Attempts to catch a wild Pokémon. If the wild Pokémon’s species is marked as caught in the trainer’s Pokédex, this ball has a catch rate of 3×. Otherwise, it has a catch rate of 1×. If used in a trainer battle, nothing happens and the ball is lost.",
+  "shortEffect": "Tries to catch a wild Pokémon. Success rate is 3× for previously-caught Pokémon.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A BALL that works better on POKéMON caught before."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A somewhat different BALL that works especially well on POKéMON caught before."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A somewhat different Poké Ball that works especially well on Pokémon species that were previously caught."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A somewhat different Poké Ball that works especially well on a Pokémon species that has been caught before."
+    }
+  ],
+  "fling": {
+    "power": null,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 9,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 9,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 9,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 9,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 9,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 9,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

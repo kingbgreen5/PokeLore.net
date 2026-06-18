@@ -1,0 +1,75 @@
+{
+  "id": 261,
+  "name": "heat-rock",
+  "displayName": "Heat Rock",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heat-rock.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active",
+    "underground"
+  ],
+  "effect": "Held: The holder’s Sunny Day will create sunshine lasting for eight turns rather than five. As this item affects the move rather than the weather itself, the effect is not lost if the holder leaves battle or drops this item.",
+  "shortEffect": "Held: Sunny Day by the holder lasts 8 rounds instead of 5.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum"
+      ],
+      "text": "A Pokémon hold item that extends the duration of the move Sunny Day used by the holder."
+    },
+    {
+      "versionGroups": [
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A Pokémon held item that extends the duration of the move Sunny Day used by the holder."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. It extends the duration of the move Sunny Day when used by the holder."
+    }
+  ],
+  "fling": {
+    "power": 60,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 284,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 284,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 284,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 284,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 284,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

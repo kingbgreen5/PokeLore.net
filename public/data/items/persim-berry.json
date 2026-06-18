@@ -1,0 +1,410 @@
+{
+  "id": 133,
+  "name": "persim-berry",
+  "displayName": "Persim Berry",
+  "cost": 80,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/persim-berry.png",
+  "category": {
+    "id": 3,
+    "name": "medicine",
+    "displayName": "Medicine",
+    "pocket": "berries"
+  },
+  "attributes": [
+    "holdable-active"
+  ],
+  "effect": "Held in battle : When the holder is confused, it consumes this item to cure the confusion. Used on a party Pokémon : Cures confusion.",
+  "shortEffect": "Held: Consumed when confused to cure confusion.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A hold item that heals confusion in battle."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "When held by a POKéMON, it will be used in battle to lift confusion."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum"
+      ],
+      "text": "A Poffin ingredient. It may be used or held by a Pokémon to recover from confusion."
+    },
+    {
+      "versionGroups": [
+        "heartgold-soulsilver"
+      ],
+      "text": "It may be used or held by a Pokémon to recover from confusion."
+    },
+    {
+      "versionGroups": [
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "If held by a Pokémon, it recovers from confusion."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from confusion on its own in battle."
+    }
+  ],
+  "fling": {
+    "power": 10,
+    "effect": "berry-effect"
+  },
+  "heldByPokemon": [
+    {
+      "pokemon": "girafarig",
+      "pokemonId": 203,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 5
+        },
+        {
+          "version": "sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "emerald",
+          "rarity": 5
+        },
+        {
+          "version": "firered",
+          "rarity": 5
+        },
+        {
+          "version": "leafgreen",
+          "rarity": 5
+        },
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "spoink",
+      "pokemonId": 325,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "grumpig",
+      "pokemonId": 326,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "seviper",
+      "pokemonId": 336,
+      "versionDetails": [
+        {
+          "version": "x",
+          "rarity": 100
+        },
+        {
+          "version": "y",
+          "rarity": 100
+        }
+      ]
+    },
+    {
+      "pokemon": "kecleon",
+      "pokemonId": 352,
+      "versionDetails": [
+        {
+          "version": "ruby",
+          "rarity": 5
+        },
+        {
+          "version": "sapphire",
+          "rarity": 5
+        },
+        {
+          "version": "emerald",
+          "rarity": 5
+        },
+        {
+          "version": "firered",
+          "rarity": 5
+        },
+        {
+          "version": "leafgreen",
+          "rarity": 5
+        },
+        {
+          "version": "diamond",
+          "rarity": 5
+        },
+        {
+          "version": "pearl",
+          "rarity": 5
+        },
+        {
+          "version": "platinum",
+          "rarity": 5
+        },
+        {
+          "version": "heartgold",
+          "rarity": 5
+        },
+        {
+          "version": "soulsilver",
+          "rarity": 5
+        },
+        {
+          "version": "black",
+          "rarity": 5
+        },
+        {
+          "version": "white",
+          "rarity": 5
+        },
+        {
+          "version": "black-2",
+          "rarity": 5
+        },
+        {
+          "version": "white-2",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "tympole",
+      "pokemonId": 535,
+      "versionDetails": [
+        {
+          "version": "black",
+          "rarity": 50
+        },
+        {
+          "version": "white",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "palpitoad",
+      "pokemonId": 536,
+      "versionDetails": [
+        {
+          "version": "black",
+          "rarity": 50
+        },
+        {
+          "version": "white",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "seismitoad",
+      "pokemonId": 537,
+      "versionDetails": [
+        {
+          "version": "black",
+          "rarity": 50
+        },
+        {
+          "version": "white",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "gothita",
+      "pokemonId": 574,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "gothorita",
+      "pokemonId": 575,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "gothitelle",
+      "pokemonId": 576,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "solosis",
+      "pokemonId": 577,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "duosion",
+      "pokemonId": 578,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "reuniclus",
+      "pokemonId": 579,
+      "versionDetails": [
+        {
+          "version": "black-2",
+          "rarity": 50
+        },
+        {
+          "version": "white-2",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "drampa",
+      "pokemonId": 780,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    }
+  ],
+  "gameIndices": [
+    {
+      "gameIndex": 140,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 156,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 156,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 156,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 156,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 156,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

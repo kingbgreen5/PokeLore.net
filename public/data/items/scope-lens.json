@@ -1,0 +1,91 @@
+{
+  "id": 209,
+  "name": "scope-lens",
+  "displayName": "Scope Lens",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/scope-lens.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held: Raises the holder’s critical hit counter by 1.",
+  "shortEffect": "Held: Raises the holder’s critical hit ratio by one stage.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire"
+      ],
+      "text": "A hold item that raises the critical- hit rate."
+    },
+    {
+      "versionGroups": [
+        "emerald"
+      ],
+      "text": "A hold item that improves the critical-hit rate."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "An item to be held by a POKéMON. A lens that boosts the critical-hit ratio of the holding POKéMON."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item to be held by a Pokémon. It is a lens that boosts the holder’s critical-hit ratio."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. It’s a lens for scoping out weak points. It boosts the holder’s critical-hit ratio."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 198,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 232,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 232,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 232,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 232,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 232,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

@@ -1,0 +1,88 @@
+{
+  "id": 11,
+  "name": "luxury-ball",
+  "displayName": "Luxury Ball",
+  "cost": 3000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/luxury-ball.png",
+  "category": {
+    "id": 33,
+    "name": "special-balls",
+    "displayName": "Special balls",
+    "pocket": "pokeballs"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used in battle : Attempts to catch a wild Pokémon, using a catch rate of 1×. Whenever the caught Pokémon’s happiness increases, it increases by one extra point. If used in a trainer battle, nothing happens and the ball is lost.",
+  "shortEffect": "Tries to catch a wild Pokémon. Caught Pokémon start with 200 happiness.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A cozy BALL that makes POKéMON more friendly."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "A comfortable BALL that makes a captured wild POKéMON quickly grow friendly."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "A comfortable Poké Ball that makes a caught wild Pokémon quickly grow friendly."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "A particularly comfortable Poké Ball that makes a wild Pokémon quickly grow friendlier after being caught."
+    }
+  ],
+  "fling": {
+    "power": null,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 11,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 11,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 11,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 11,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 11,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 11,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

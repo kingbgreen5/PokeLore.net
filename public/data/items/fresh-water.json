@@ -1,0 +1,99 @@
+{
+  "id": 30,
+  "name": "fresh-water",
+  "displayName": "Fresh Water",
+  "cost": 200,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fresh-water.png",
+  "category": {
+    "id": 27,
+    "name": "healing",
+    "displayName": "Healing",
+    "pocket": "medicine"
+  },
+  "attributes": [
+    "countable",
+    "consumable",
+    "usable-overworld",
+    "usable-in-battle",
+    "holdable"
+  ],
+  "effect": "Used on a party Pokémon : Restores 50 HP.",
+  "shortEffect": "Restores 50 HP.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A mineral water that restores HP by 50 points."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "Water with a high mineral content. It restores the HP of one POKéMON by 50 points."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "Water with a high mineral content. It restores the HP of one Pokémon by 50 points."
+    },
+    {
+      "versionGroups": [
+        "x-y"
+      ],
+      "text": "Water with a high mineral content. When consumed, it restores 50 HP to an injured Pokémon."
+    },
+    {
+      "versionGroups": [
+        "sun-moon",
+        "ultra-sun-ultra-moon"
+      ],
+      "text": "Water with a high mineral content. When consumed, it restores up to 30 HP to an injured Pokémon."
+    },
+    {
+      "versionGroups": [
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "Water with high mineral content. It can be used to restore 30 HP to a single Pokémon."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 26,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 30,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 30,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 30,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 30,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 30,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

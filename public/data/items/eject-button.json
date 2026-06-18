@@ -1,0 +1,59 @@
+{
+  "id": 590,
+  "name": "eject-button",
+  "displayName": "Eject Button",
+  "cost": 4000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/eject-button.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [],
+  "effect": "Held : When the holder takes damage directly from a move and does not faint, it switches out for another non-fainted Pokémon in its party, as chosen by the Trainer. This effect does not activate if another effect prevents the holder from switching out.",
+  "shortEffect": "Held: When the holder takes damage from a move, it switches out for a party Pokémon of the Trainer’s choice.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "If the holder is hit by an attack, it will switch with another Pokémon in your party."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. If the holder is hit by an attack, it will be switched out of battle."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [],
+  "gameIndices": [
+    {
+      "gameIndex": 547,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 547,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 547,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 547,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

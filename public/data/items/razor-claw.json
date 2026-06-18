@@ -1,0 +1,158 @@
+{
+  "id": 303,
+  "name": "razor-claw",
+  "displayName": "Razor Claw",
+  "cost": 5000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-claw.png",
+  "category": {
+    "id": 12,
+    "name": "held-items",
+    "displayName": "Held items",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held: Raises the holder’s critical hit counter by 1. Held by Sneasel: Evolves the holder into Weavile when it levels up during the night.",
+  "shortEffect": "Held: Raises the holder’s critical hit ratio by one stage. Held by a Sneasel while levelling up at night: Holder evolves into Weavile.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2"
+      ],
+      "text": "An item to be held by a Pokémon. It is a sharply hooked claw that ups the holder’s critical-hit ratio."
+    },
+    {
+      "versionGroups": [
+        "x-y",
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. This sharply hooked claw increases the holder’s critical-hit ratio."
+    }
+  ],
+  "fling": {
+    "power": 80,
+    "effect": null
+  },
+  "heldByPokemon": [
+    {
+      "pokemon": "jangmo-o",
+      "pokemonId": 782,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "hakamo-o",
+      "pokemonId": 783,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "kommo-o",
+      "pokemonId": 784,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 50
+        },
+        {
+          "version": "moon",
+          "rarity": 50
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 50
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 50
+        }
+      ]
+    },
+    {
+      "pokemon": "kommo-o-totem",
+      "pokemonId": 10146,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 50
+        },
+        {
+          "version": "moon",
+          "rarity": 50
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 50
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 50
+        }
+      ]
+    }
+  ],
+  "gameIndices": [
+    {
+      "gameIndex": 326,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 326,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 326,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 326,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 326,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}

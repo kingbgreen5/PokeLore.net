@@ -1,0 +1,155 @@
+{
+  "id": 219,
+  "name": "magnet",
+  "displayName": "Magnet",
+  "cost": 1000,
+  "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/magnet.png",
+  "category": {
+    "id": 19,
+    "name": "type-enhancement",
+    "displayName": "Type enhancement",
+    "pocket": "misc"
+  },
+  "attributes": [
+    "holdable",
+    "holdable-active"
+  ],
+  "effect": "Held: Increases the power of the holder’s Electric moves by 20%.",
+  "shortEffect": "Held: Electric-Type moves from holder do 20% more damage.",
+  "flavorTextEntries": [
+    {
+      "versionGroups": [
+        "ruby-sapphire",
+        "emerald"
+      ],
+      "text": "A hold item that boosts ELECTRIC- type moves."
+    },
+    {
+      "versionGroups": [
+        "firered-leafgreen"
+      ],
+      "text": "An item to be held by a POKéMON. A powerful magnet that boosts the power of ELECTRIC-type moves."
+    },
+    {
+      "versionGroups": [
+        "diamond-pearl",
+        "platinum",
+        "heartgold-soulsilver",
+        "black-white",
+        "black-2-white-2",
+        "x-y"
+      ],
+      "text": "An item to be held by a Pokémon. It is a powerful magnet that boosts the power of Electric-type moves."
+    },
+    {
+      "versionGroups": [
+        "sun-moon",
+        "ultra-sun-ultra-moon",
+        "lets-go-pikachu-lets-go-eevee",
+        "sword-shield"
+      ],
+      "text": "An item to be held by a Pokémon. It’s a powerful magnet that boosts the power of Electric-type moves."
+    }
+  ],
+  "fling": {
+    "power": 30,
+    "effect": null
+  },
+  "heldByPokemon": [
+    {
+      "pokemon": "magneton",
+      "pokemonId": 82,
+      "versionDetails": [
+        {
+          "version": "firered",
+          "rarity": 5
+        },
+        {
+          "version": "leafgreen",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "voltorb",
+      "pokemonId": 100,
+      "versionDetails": [
+        {
+          "version": "xd",
+          "rarity": 100
+        }
+      ]
+    },
+    {
+      "pokemon": "nosepass",
+      "pokemonId": 299,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    },
+    {
+      "pokemon": "probopass",
+      "pokemonId": 476,
+      "versionDetails": [
+        {
+          "version": "sun",
+          "rarity": 5
+        },
+        {
+          "version": "moon",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-sun",
+          "rarity": 5
+        },
+        {
+          "version": "ultra-moon",
+          "rarity": 5
+        }
+      ]
+    }
+  ],
+  "gameIndices": [
+    {
+      "gameIndex": 208,
+      "generation": "generation-iii"
+    },
+    {
+      "gameIndex": 242,
+      "generation": "generation-iv"
+    },
+    {
+      "gameIndex": 242,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 242,
+      "generation": "generation-vi"
+    },
+    {
+      "gameIndex": 242,
+      "generation": "generation-vii"
+    },
+    {
+      "gameIndex": 242,
+      "generation": "generation-viii"
+    }
+  ],
+  "machines": []
+}
