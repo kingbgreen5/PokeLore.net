@@ -1,0 +1,59 @@
+{
+  "id": 1055,
+  "name": "mossdeep-space-center",
+  "displayName": "Mossdeep Space Center",
+  "region": {
+    "name": "hoenn",
+    "displayName": "Hoenn"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1181,
+      "name": "mossdeep-space-center-area",
+      "displayName": "Mossdeep Space Center",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 352,
+            "name": "kecleon",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/352.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "devon-scope",
+                  "minLevel": 45,
+                  "maxLevel": 45,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "devon-scope",
+                  "minLevel": 45,
+                  "maxLevel": 45,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

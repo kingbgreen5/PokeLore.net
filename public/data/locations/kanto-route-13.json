@@ -1,0 +1,4805 @@
+{
+  "id": 92,
+  "name": "kanto-route-13",
+  "displayName": "Route 13",
+  "region": {
+    "name": "kanto",
+    "displayName": "Kanto"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 161,
+      "generation": "generation-iv"
+    }
+  ],
+  "areas": [
+    {
+      "id": 306,
+      "name": "kanto-route-13-area",
+      "displayName": "Road 13",
+      "gameIndex": 123,
+      "encounterMethodRates": [
+        {
+          "method": "good-rod",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 20
+            },
+            {
+              "version": "heartgold",
+              "rate": 50
+            },
+            {
+              "version": "leafgreen",
+              "rate": 20
+            },
+            {
+              "version": "soulsilver",
+              "rate": 50
+            }
+          ]
+        },
+        {
+          "method": "old-rod",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 20
+            },
+            {
+              "version": "heartgold",
+              "rate": 25
+            },
+            {
+              "version": "leafgreen",
+              "rate": 20
+            },
+            {
+              "version": "soulsilver",
+              "rate": 25
+            }
+          ]
+        },
+        {
+          "method": "super-rod",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 20
+            },
+            {
+              "version": "heartgold",
+              "rate": 75
+            },
+            {
+              "version": "leafgreen",
+              "rate": 20
+            },
+            {
+              "version": "soulsilver",
+              "rate": 75
+            }
+          ]
+        },
+        {
+          "method": "surf",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 2
+            },
+            {
+              "version": "heartgold",
+              "rate": 15
+            },
+            {
+              "version": "leafgreen",
+              "rate": 2
+            },
+            {
+              "version": "soulsilver",
+              "rate": 15
+            }
+          ]
+        },
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 21
+            },
+            {
+              "version": "heartgold",
+              "rate": 20
+            },
+            {
+              "version": "leafgreen",
+              "rate": 21
+            },
+            {
+              "version": "soulsilver",
+              "rate": 20
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 6,
+            "name": "charizard",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
+            "types": [
+              "fire",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-flying-special",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-flying-special",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 16,
+            "name": "pidgey",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/16.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "overworld-flying",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "overworld-flying",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 17,
+            "name": "pidgeotto",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/17.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day",
+                    "radio-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning",
+                    "radio-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "overworld-flying",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "overworld-flying",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day",
+                    "radio-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning",
+                    "radio-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 18,
+            "name": "pidgeot",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/18.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-flying",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-flying",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 30,
+            "name": "nidorina",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/30.png",
+            "types": [
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 90,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-no"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 90,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-no"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 33,
+            "name": "nidorino",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/33.png",
+            "types": [
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 90,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-no"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 90,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-no"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 43,
+            "name": "oddish",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/43.png",
+            "types": [
+              "grass",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 44,
+            "name": "gloom",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/44.png",
+            "types": [
+              "grass",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 48,
+            "name": "venonat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/48.png",
+            "types": [
+              "bug",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "crystal",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 49,
+            "name": "venomoth",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/49.png",
+            "types": [
+              "bug",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 54,
+            "name": "psyduck",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/54.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 60,
+            "name": "poliwag",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/60.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 50,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 50,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 50,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 50,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 50,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 69,
+            "name": "bellsprout",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/69.png",
+            "types": [
+              "grass",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 70,
+            "name": "weepinbell",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/70.png",
+            "types": [
+              "grass",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 72,
+            "name": "tentacool",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/72.png",
+            "types": [
+              "water",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "crystal",
+              "maxChance": 210,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 29,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 10,
+                  "maxLevel": 20,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 30,
+                  "maxLevel": 35,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 35,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 210,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 29,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 205,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 10,
+                  "maxLevel": 20,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 30,
+                  "maxLevel": 35,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 35,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-water",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-water",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 210,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 29,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 205,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 73,
+            "name": "tentacruel",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/73.png",
+            "types": [
+              "water",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-water",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-water",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 79,
+            "name": "slowpoke",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/79.png",
+            "types": [
+              "water",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "leafgreen",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 95,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 80,
+            "name": "slowbro",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/80.png",
+            "types": [
+              "water",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "yellow",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 83,
+            "name": "farfetchd",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/83.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 98,
+            "name": "krabby",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/98.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 17,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 8,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 17,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 8,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 144,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 25,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 17,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 8,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 17,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 8,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 99,
+            "name": "kingler",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/99.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 113,
+            "name": "chansey",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/113.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 3,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 3,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 41,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-yes"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-special",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-special",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 3,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 41,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-yes"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 114,
+            "name": "tangela",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/114.png",
+            "types": [
+              "grass"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 24,
+                  "maxLevel": 25,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 24,
+                  "maxLevel": 25,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 116,
+            "name": "horsea",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/116.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 144,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 25,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-water",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-water",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 117,
+            "name": "seadra",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/117.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-water",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-water",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 118,
+            "name": "goldeen",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/118.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 75,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 17,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 8,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 75,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 17,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 8,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 75,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 17,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 8,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 75,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 17,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 8,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 50,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 129,
+            "name": "magikarp",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/129.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 125,
+              "encounters": [
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "crystal",
+              "maxChance": 140,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 70,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 120,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 70,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 140,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 70,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 125,
+              "encounters": [
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 145,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 120,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 70,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-water",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-water",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 125,
+              "encounters": [
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 125,
+              "encounters": [
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 140,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 70,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 145,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 130,
+            "name": "gyarados",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png",
+            "types": [
+              "water",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 25,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 15,
+                  "maxLevel": 25,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 132,
+            "name": "ditto",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 144,
+            "name": "articuno",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/144.png",
+            "types": [
+              "ice",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-flying-special",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": [
+                    "other-caught-articuno"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-flying-special",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": [
+                    "other-caught-articuno"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 145,
+            "name": "zapdos",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/145.png",
+            "types": [
+              "electric",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-flying-special",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": [
+                    "other-caught-zapdos"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-flying-special",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": [
+                    "other-caught-zapdos"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 146,
+            "name": "moltres",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/146.png",
+            "types": [
+              "fire",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-flying-special",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": [
+                    "other-caught-moltres"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-flying-special",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": [
+                    "other-caught-moltres"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 149,
+            "name": "dragonite",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png",
+            "types": [
+              "dragon",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-flying-special",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-flying-special",
+                  "minLevel": 3,
+                  "maxLevel": 56,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 163,
+            "name": "hoothoot",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/163.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 115,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 22,
+                  "maxLevel": 23,
+                  "chance": 50,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 24,
+                  "maxLevel": 25,
+                  "chance": 50,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 24,
+                  "maxLevel": 25,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 115,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 22,
+                  "maxLevel": 23,
+                  "chance": 50,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 24,
+                  "maxLevel": 25,
+                  "chance": 50,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 24,
+                  "maxLevel": 25,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 164,
+            "name": "noctowl",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/164.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night",
+                    "radio-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night",
+                    "radio-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 165,
+            "name": "ledyba",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/165.png",
+            "types": [
+              "bug",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "soulsilver",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 22,
+                  "maxLevel": 23,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 167,
+            "name": "spinarak",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/167.png",
+            "types": [
+              "bug",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 22,
+                  "maxLevel": 23,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 187,
+            "name": "hoppip",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/187.png",
+            "types": [
+              "grass",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 38,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 34,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 38,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 34,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 38,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 195,
+            "name": "quagsire",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/195.png",
+            "types": [
+              "water",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 69,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 29,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 53,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 29,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 4,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 49,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 53,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 29,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 4,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 49,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 211,
+            "name": "qwilfish",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/211.png",
+            "types": [
+              "water",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 264,
+            "name": "linoone",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/264.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 265,
+            "name": "wurmple",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/265.png",
+            "types": [
+              "bug"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 22,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 22,
+                  "maxLevel": 23,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 24,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 24,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 22,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 22,
+                  "maxLevel": 23,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 24,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 24,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 293,
+            "name": "whismur",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/293.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 399,
+            "name": "bidoof",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/399.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 418,
+            "name": "buizel",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/418.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

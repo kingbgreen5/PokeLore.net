@@ -1,0 +1,575 @@
+{
+  "id": 611,
+  "name": "cyllage-city",
+  "displayName": "Cyllage City",
+  "region": {
+    "name": "kalos",
+    "displayName": "Kalos"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 40,
+      "generation": "generation-vi"
+    }
+  ],
+  "areas": [
+    {
+      "id": 710,
+      "name": "cyllage-city-area",
+      "displayName": "Cyllage City",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 72,
+            "name": "tentacool",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/72.png",
+            "types": [
+              "water",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 69,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 69,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 95,
+            "name": "onix",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/95.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 116,
+            "name": "horsea",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/116.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 117,
+            "name": "seadra",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/117.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 320,
+            "name": "wailmer",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/320.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 31,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 31,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 369,
+            "name": "relicanth",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/369.png",
+            "types": [
+              "water",
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 370,
+            "name": "luvdisc",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/370.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "old-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "old-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 557,
+            "name": "dwebble",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/557.png",
+            "types": [
+              "bug",
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 65,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 66,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 688,
+            "name": "binacle",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/688.png",
+            "types": [
+              "rock",
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "y",
+              "maxChance": 34,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 690,
+            "name": "skrelp",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/690.png",
+            "types": [
+              "poison",
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "y",
+              "maxChance": 65,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 691,
+            "name": "dragalge",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/691.png",
+            "types": [
+              "poison",
+              "dragon"
+            ]
+          },
+          "versions": [
+            {
+              "version": "y",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 692,
+            "name": "clauncher",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/692.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 65,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 693,
+            "name": "clawitzer",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/693.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1433 @@
+{
+  "id": 20,
+  "name": "wayward-cave",
+  "displayName": "Wayward Cave",
+  "region": {
+    "name": "sinnoh",
+    "displayName": "Sinnoh"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 65,
+      "generation": "generation-iv"
+    }
+  ],
+  "areas": [
+    {
+      "id": 113,
+      "name": "wayward-cave-1f",
+      "displayName": "Wayward Cave (1F)",
+      "gameIndex": 113,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "diamond",
+              "rate": 10
+            },
+            {
+              "version": "pearl",
+              "rate": 10
+            },
+            {
+              "version": "platinum",
+              "rate": 10
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 27,
+            "name": "sandshrew",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/27.png",
+            "types": [
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 41,
+            "name": "zubat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png",
+            "types": [
+              "poison",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 61,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 61,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 74,
+            "name": "geodude",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 31,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 31,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 57,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 95,
+            "name": "onix",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/95.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 31,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 436,
+            "name": "bronzor",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/436.png",
+            "types": [
+              "steel",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "name": "wayward-cave-b1f",
+      "displayName": "Wayward Cave (B1F)",
+      "gameIndex": 114,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "diamond",
+              "rate": 10
+            },
+            {
+              "version": "pearl",
+              "rate": 10
+            },
+            {
+              "version": "platinum",
+              "rate": 10
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 27,
+            "name": "sandshrew",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/27.png",
+            "types": [
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 41,
+            "name": "zubat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png",
+            "types": [
+              "poison",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 51,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 51,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 74,
+            "name": "geodude",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 95,
+            "name": "onix",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/95.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 31,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 436,
+            "name": "bronzor",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/436.png",
+            "types": [
+              "steel",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 443,
+            "name": "gible",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/443.png",
+            "types": [
+              "dragon",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 31,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 31,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 36,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

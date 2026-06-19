@@ -1,0 +1,51 @@
+{
+  "id": 170,
+  "name": "veilstone-city",
+  "displayName": "Veilstone City",
+  "region": {
+    "name": "sinnoh",
+    "displayName": "Sinnoh"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 12,
+      "generation": "generation-iv"
+    }
+  ],
+  "areas": [
+    {
+      "id": 772,
+      "name": "veilstone-city-area",
+      "displayName": "Veilstone City",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 137,
+            "name": "porygon",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/137.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+{
+  "id": 1043,
+  "name": "verdant-cavern",
+  "displayName": "Verdant Cavern",
+  "region": {
+    "name": "alola",
+    "displayName": "Alola"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1155,
+      "name": "verdant-cavern-totems-den",
+      "displayName": "Verdant Cavern Totems Den",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": []
+    },
+    {
+      "id": 1154,
+      "name": "verdant-cavern-trial-site",
+      "displayName": "Verdant Cavern Trial Site",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 41,
+            "name": "zubat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png",
+            "types": [
+              "poison",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 8,
+                  "maxLevel": 11,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 8,
+                  "maxLevel": 11,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 8,
+                  "maxLevel": 11,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 8,
+                  "maxLevel": 11,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 714,
+            "name": "noibat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/714.png",
+            "types": [
+              "flying",
+              "dragon"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 8,
+                  "maxLevel": 11,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 8,
+                  "maxLevel": 11,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 734,
+            "name": "yungoos",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/734.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 795,
+            "name": "pheromosa",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/795.png",
+            "types": [
+              "bug",
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 10091,
+            "name": "rattata-alola",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10091.png",
+            "types": [
+              "dark",
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 10105,
+            "name": "diglett-alola",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10105.png",
+            "types": [
+              "ground",
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 8,
+                  "maxLevel": 11,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 8,
+                  "maxLevel": 11,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 8,
+                  "maxLevel": 11,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 8,
+                  "maxLevel": 11,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

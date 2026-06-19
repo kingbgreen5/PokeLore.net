@@ -1,0 +1,91 @@
+{
+  "pokemon": {
+    "id": 785,
+    "name": "tapu-koko"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 722,
+        "name": "ruins-of-conflict",
+        "displayName": "Ruins of Conflict",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1126,
+          "name": "ruins-of-conflict-area",
+          "displayName": "Ruins Of Conflict Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 115,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 115,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

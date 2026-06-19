@@ -1,0 +1,2605 @@
+{
+  "id": 500,
+  "name": "mt-ember",
+  "displayName": "Mt. Ember",
+  "region": {
+    "name": "kanto",
+    "displayName": "Kanto"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 488,
+      "name": "mt-ember-area",
+      "displayName": "Mount Ember",
+      "gameIndex": 40,
+      "encounterMethodRates": [
+        {
+          "method": "rock-smash",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 50
+            },
+            {
+              "version": "leafgreen",
+              "rate": 50
+            }
+          ]
+        },
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 21
+            },
+            {
+              "version": "leafgreen",
+              "rate": 21
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 21,
+            "name": "spearow",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/21.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 22,
+            "name": "fearow",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/22.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 66,
+            "name": "machop",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/66.png",
+            "types": [
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 74,
+            "name": "geodude",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 105,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 5,
+                  "maxLevel": 20,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 10,
+                  "maxLevel": 20,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 15,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 105,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 5,
+                  "maxLevel": 20,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 10,
+                  "maxLevel": 20,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 15,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 75,
+            "name": "graveler",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/75.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 77,
+            "name": "ponyta",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/77.png",
+            "types": [
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 78,
+            "name": "rapidash",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/78.png",
+            "types": [
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 126,
+            "name": "magmar",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/126.png",
+            "types": [
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "leafgreen",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 491,
+      "name": "mt-ember-1f-cave-behind-team-rocket",
+      "displayName": "Mount Ember (1F, cave behind team rocket)",
+      "gameIndex": 44,
+      "encounterMethodRates": [
+        {
+          "method": "rock-smash",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 50
+            },
+            {
+              "version": "leafgreen",
+              "rate": 50
+            }
+          ]
+        },
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 7
+            },
+            {
+              "version": "leafgreen",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 66,
+            "name": "machop",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/66.png",
+            "types": [
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 67,
+            "name": "machoke",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/67.png",
+            "types": [
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 74,
+            "name": "geodude",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 115,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 115,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 75,
+            "name": "graveler",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/75.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 45,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 35,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 45,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 35,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 492,
+      "name": "mt-ember-b1f",
+      "displayName": "Mount Ember (B1F)",
+      "gameIndex": 45,
+      "encounterMethodRates": [
+        {
+          "method": "rock-smash",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 50
+            },
+            {
+              "version": "leafgreen",
+              "rate": 50
+            }
+          ]
+        },
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 7
+            },
+            {
+              "version": "leafgreen",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 74,
+            "name": "geodude",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 135,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 135,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 75,
+            "name": "graveler",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/75.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 45,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 35,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 45,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 35,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 218,
+            "name": "slugma",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/218.png",
+            "types": [
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 493,
+      "name": "mt-ember-b2f",
+      "displayName": "Mount Ember (B2F)",
+      "gameIndex": 46,
+      "encounterMethodRates": [
+        {
+          "method": "rock-smash",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 50
+            },
+            {
+              "version": "leafgreen",
+              "rate": 50
+            }
+          ]
+        },
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 7
+            },
+            {
+              "version": "leafgreen",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 74,
+            "name": "geodude",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 105,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 44,
+                  "maxLevel": 44,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 44,
+                  "maxLevel": 44,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 44,
+                  "maxLevel": 44,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 105,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 44,
+                  "maxLevel": 44,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 44,
+                  "maxLevel": 44,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 44,
+                  "maxLevel": 44,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 75,
+            "name": "graveler",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/75.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 45,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 35,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 45,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 35,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 218,
+            "name": "slugma",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/218.png",
+            "types": [
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 494,
+      "name": "mt-ember-b3f",
+      "displayName": "Mount Ember (B3F)",
+      "gameIndex": 47,
+      "encounterMethodRates": [
+        {
+          "method": "rock-smash",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 50
+            },
+            {
+              "version": "leafgreen",
+              "rate": 50
+            }
+          ]
+        },
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 7
+            },
+            {
+              "version": "leafgreen",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 218,
+            "name": "slugma",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/218.png",
+            "types": [
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 190,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 15,
+                  "maxLevel": 25,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 190,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 15,
+                  "maxLevel": 25,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 219,
+            "name": "magcargo",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/219.png",
+            "types": [
+              "fire",
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 40,
+                  "maxLevel": 45,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 35,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 40,
+                  "maxLevel": 45,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 489,
+      "name": "mt-ember-cave",
+      "displayName": "Mount Ember (cave)",
+      "gameIndex": 41,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 7
+            },
+            {
+              "version": "leafgreen",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 66,
+            "name": "machop",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/66.png",
+            "types": [
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 74,
+            "name": "geodude",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 490,
+      "name": "mt-ember-inside",
+      "displayName": "Mount Ember (inside)",
+      "gameIndex": 42,
+      "encounterMethodRates": [
+        {
+          "method": "rock-smash",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 50
+            },
+            {
+              "version": "leafgreen",
+              "rate": 50
+            }
+          ]
+        },
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 7
+            },
+            {
+              "version": "leafgreen",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 66,
+            "name": "machop",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/66.png",
+            "types": [
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 67,
+            "name": "machoke",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/67.png",
+            "types": [
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 74,
+            "name": "geodude",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 135,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 5,
+                  "maxLevel": 20,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 10,
+                  "maxLevel": 20,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 15,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 135,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 5,
+                  "maxLevel": 20,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 10,
+                  "maxLevel": 20,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 15,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 75,
+            "name": "graveler",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/75.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 825,
+      "name": "mt-ember-summit",
+      "displayName": "Mount Ember Summit",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 74,
+            "name": "geodude",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 95,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 5,
+                  "maxLevel": 20,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 10,
+                  "maxLevel": 20,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 15,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 95,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 5,
+                  "maxLevel": 20,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 10,
+                  "maxLevel": 20,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 15,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 75,
+            "name": "graveler",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/75.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "rock-smash",
+                  "minLevel": 25,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "rock-smash",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 146,
+            "name": "moltres",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/146.png",
+            "types": [
+              "fire",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

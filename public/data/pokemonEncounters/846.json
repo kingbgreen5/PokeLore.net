@@ -1,0 +1,127 @@
+{
+  "pokemon": {
+    "id": 846,
+    "name": "arrokuda"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 909,
+        "name": "hulbury",
+        "displayName": "Hulbury",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 896,
+          "name": "hulbury-area",
+          "displayName": "Hulbury",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 20,
+                  "maxLevel": 24,
+                  "chance": 50,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 20,
+                  "maxLevel": 24,
+                  "chance": 50,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 869,
+        "name": "galar-route-2",
+        "displayName": "Route 2",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 844,
+          "name": "galar-route-2-main",
+          "displayName": "Route 2",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 4,
+                  "maxLevel": 6,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 4,
+                  "maxLevel": 6,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1365,
+          "name": "galar-route-2-lake",
+          "displayName": "Route 2 (Lake)",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "overworld-water",
+                  "minLevel": 38,
+                  "maxLevel": 40,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "overworld-water",
+                  "minLevel": 38,
+                  "maxLevel": 40,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "pokemon": {
+    "id": 798,
+    "name": "kartana"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 769,
+        "name": "malie-garden",
+        "displayName": "Malie Garden",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1101,
+          "name": "malie-garden-area",
+          "displayName": "Malie Garden Area",
+          "versions": [
+            {
+              "version": "sun",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 762,
+        "name": "alola-route-17",
+        "displayName": "Route 17",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1164,
+          "name": "alola-route-17-all-areas",
+          "displayName": "Alola Route 17 All Areas",
+          "versions": [
+            {
+              "version": "sun",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 797,
+        "name": "ultra-space",
+        "displayName": "Ultra Space",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1143,
+          "name": "ultra-space-ultra-forest",
+          "displayName": "Ultra Space Ultra Forest",
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 115,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

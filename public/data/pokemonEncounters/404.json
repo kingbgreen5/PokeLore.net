@@ -1,0 +1,182 @@
+{
+  "pokemon": {
+    "id": 404,
+    "name": "luxio"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 735,
+        "name": "alola-route-8",
+        "displayName": "Route 8",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1051,
+          "name": "alola-route-8-main",
+          "displayName": "Alola Route 8 Main",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1329,
+          "name": "friend-safari-electric",
+          "displayName": "Friend Safari (Electric)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 9,
+        "name": "fuego-ironworks",
+        "displayName": "Fuego Ironworks",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 10,
+          "name": "fuego-ironworks-area",
+          "displayName": "Fuego Ironworks",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 52,
+        "name": "sinnoh-route-222",
+        "displayName": "Route 222",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 171,
+          "name": "sinnoh-route-222-area",
+          "displayName": "Road 222",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

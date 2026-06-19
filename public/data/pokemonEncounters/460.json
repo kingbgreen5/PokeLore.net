@@ -1,0 +1,232 @@
+{
+  "pokemon": {
+    "id": 460,
+    "name": "abomasnow"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 1051,
+        "name": "ultra-space-wilds",
+        "displayName": "Ultra Space Wilds",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1147,
+          "name": "ultra-space-wilds-cave",
+          "displayName": "Ultra Space Wilds Cave",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 641,
+        "name": "kalos-route-17",
+        "displayName": "Route 17",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 728,
+          "name": "kalos-route-17-area",
+          "displayName": "Road 17",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "rough-terrain",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "rough-terrain",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 10,
+        "name": "mt-coronet",
+        "displayName": "Mt. Coronet",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 15,
+          "name": "mt-coronet-exterior-blizzard",
+          "displayName": "Mount Coronet (exterior blizzard)",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "name": "mt-coronet-exterior-snowfall",
+          "displayName": "Mount Coronet (exterior snowfall)",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

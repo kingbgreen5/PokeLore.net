@@ -1,0 +1,1581 @@
+{
+  "id": 377,
+  "name": "relic-castle",
+  "displayName": "Relic Castle",
+  "region": {
+    "name": "unova",
+    "displayName": "Unova"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 35,
+      "generation": "generation-v"
+    }
+  ],
+  "areas": [
+    {
+      "id": 585,
+      "name": "relic-castle-a",
+      "displayName": "Relic Castle (A)",
+      "gameIndex": 9,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "black",
+              "rate": 3
+            },
+            {
+              "version": "black-2",
+              "rate": 7
+            },
+            {
+              "version": "white",
+              "rate": 3
+            },
+            {
+              "version": "white-2",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 27,
+            "name": "sandshrew",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/27.png",
+            "types": [
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 551,
+            "name": "sandile",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/551.png",
+            "types": [
+              "ground",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 562,
+            "name": "yamask",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/562.png",
+            "types": [
+              "ghost"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 586,
+      "name": "relic-castle-b",
+      "displayName": "Relic Castle (B)",
+      "gameIndex": 11,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "black",
+              "rate": 3
+            },
+            {
+              "version": "white",
+              "rate": 3
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 552,
+            "name": "krokorok",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/552.png",
+            "types": [
+              "ground",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 563,
+            "name": "cofagrigus",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/563.png",
+            "types": [
+              "ghost"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 587,
+      "name": "relic-castle-c",
+      "displayName": "Relic Castle (C)",
+      "gameIndex": 15,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "black",
+              "rate": 3
+            },
+            {
+              "version": "black-2",
+              "rate": 7
+            },
+            {
+              "version": "white",
+              "rate": 3
+            },
+            {
+              "version": "white-2",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 28,
+            "name": "sandslash",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/28.png",
+            "types": [
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 47,
+                  "maxLevel": 47,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 47,
+                  "maxLevel": 47,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 95,
+            "name": "onix",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/95.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 551,
+            "name": "sandile",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/551.png",
+            "types": [
+              "ground",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 552,
+            "name": "krokorok",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/552.png",
+            "types": [
+              "ground",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 47,
+                  "maxLevel": 47,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 47,
+                  "maxLevel": 47,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 562,
+            "name": "yamask",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/562.png",
+            "types": [
+              "ghost"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 563,
+            "name": "cofagrigus",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/563.png",
+            "types": [
+              "ghost"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 588,
+      "name": "relic-castle-d",
+      "displayName": "Relic Castle (D)",
+      "gameIndex": 30,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "black",
+              "rate": 3
+            },
+            {
+              "version": "black-2",
+              "rate": 7
+            },
+            {
+              "version": "white",
+              "rate": 3
+            },
+            {
+              "version": "white-2",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 343,
+            "name": "baltoy",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/343.png",
+            "types": [
+              "ground",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 344,
+            "name": "claydol",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/344.png",
+            "types": [
+              "ground",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 47,
+                  "maxLevel": 47,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 47,
+                  "maxLevel": 47,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 637,
+            "name": "volcarona",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/637.png",
+            "types": [
+              "bug",
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-quake-badge"
+                  ]
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 100,
+                  "conditions": [
+                    "special-encounter-couldnt-capture-before"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-quake-badge"
+                  ]
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 100,
+                  "conditions": [
+                    "special-encounter-couldnt-capture-before"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

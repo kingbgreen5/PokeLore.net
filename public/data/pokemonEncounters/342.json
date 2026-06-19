@@ -1,0 +1,453 @@
+{
+  "pokemon": {
+    "id": 342,
+    "name": "crawdaunt"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 789,
+        "name": "vast-poni-canyon",
+        "displayName": "Vast Poni Canyon",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1152,
+          "name": "vast-poni-canyon-northwest",
+          "displayName": "Vast Poni Canyon Northwest",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 10,
+                  "maxLevel": 46,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 10,
+                  "maxLevel": 51,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 10,
+                  "maxLevel": 46,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 10,
+                  "maxLevel": 51,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 945,
+        "name": "turffield",
+        "displayName": "Turffield",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 939,
+          "name": "turffield-area",
+          "displayName": "Turffield",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1337,
+          "name": "friend-safari-dark",
+          "displayName": "Friend Safari (Dark)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 608,
+        "name": "parfum-palace",
+        "displayName": "Parfum Palace",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 735,
+          "name": "parfum-palace-area",
+          "displayName": "Parfum Palace",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 594,
+        "name": "kalos-route-3",
+        "displayName": "Route 3",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 714,
+          "name": "kalos-route-3-area",
+          "displayName": "Road 3",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 59,
+        "name": "celestic-town",
+        "displayName": "Celestic Town",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 178,
+          "name": "celestic-town-area",
+          "displayName": "Celestic Town",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 55,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 55,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 55,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 55,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 55,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 358,
+        "name": "unova-route-3",
+        "displayName": "Route 3",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 625,
+          "name": "unova-route-3-area",
+          "displayName": "Road 3",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 348,
+        "name": "striaton-city",
+        "displayName": "Striaton City",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 576,
+          "name": "striaton-city-area",
+          "displayName": "Striaton City",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

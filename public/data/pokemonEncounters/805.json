@@ -1,0 +1,45 @@
+{
+  "pokemon": {
+    "id": 805,
+    "name": "stakataka"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 784,
+        "name": "poni-grove",
+        "displayName": "Poni Grove",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1116,
+          "name": "poni-grove-area",
+          "displayName": "Poni Grove Area",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 130,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

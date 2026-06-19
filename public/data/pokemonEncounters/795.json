@@ -1,0 +1,105 @@
+{
+  "pokemon": {
+    "id": 795,
+    "name": "pheromosa"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 797,
+        "name": "ultra-space",
+        "displayName": "Ultra Space",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1142,
+          "name": "ultra-space-ultra-desert",
+          "displayName": "Ultra Space Ultra Desert",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 115,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1043,
+        "name": "verdant-cavern",
+        "displayName": "Verdant Cavern",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1154,
+          "name": "verdant-cavern-trial-site",
+          "displayName": "Verdant Cavern Trial Site",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 729,
+        "name": "verdant-cavern--trial-site",
+        "displayName": "Verdant Cavern",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1193,
+          "name": "verdant-cavern--trial-site-area",
+          "displayName": "Verdant Cavern Trial Site Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 400,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

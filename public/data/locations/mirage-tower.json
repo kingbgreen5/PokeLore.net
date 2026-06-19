@@ -1,0 +1,137 @@
+{
+  "id": 487,
+  "name": "mirage-tower",
+  "displayName": "Mirage Tower",
+  "region": {
+    "name": "hoenn",
+    "displayName": "Hoenn"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 438,
+      "name": "mirage-tower-area",
+      "displayName": "Mirage Tower",
+      "gameIndex": 107,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "emerald",
+              "rate": 10
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 27,
+            "name": "sandshrew",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/27.png",
+            "types": [
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 328,
+            "name": "trapinch",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/328.png",
+            "types": [
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

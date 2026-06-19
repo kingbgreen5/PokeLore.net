@@ -1,0 +1,155 @@
+{
+  "pokemon": {
+    "id": 718,
+    "name": "zygarde-50"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 793,
+        "name": "resolution-cave",
+        "displayName": "Resolution Cave",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1123,
+          "name": "resolution-cave-area",
+          "displayName": "Resolution Cave Area",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 761,
+        "name": "alola-route-16",
+        "displayName": "Route 16",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1062,
+          "name": "alola-route-16-main",
+          "displayName": "Alola Route 16 Main",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "gift",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "gift",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 676,
+        "name": "terminus-cave",
+        "displayName": "Terminus Cave",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 758,
+          "name": "terminus-cave-zygardes-chamber",
+          "displayName": "Terminus Cave (unknown area 348)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-hall-of-fame"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-hall-of-fame"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

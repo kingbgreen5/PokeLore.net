@@ -1,0 +1,106 @@
+{
+  "id": 349,
+  "name": "nacrene-city",
+  "displayName": "Nacrene City",
+  "region": {
+    "name": "unova",
+    "displayName": "Unova"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 7,
+      "generation": "generation-v"
+    }
+  ],
+  "areas": [
+    {
+      "id": 792,
+      "name": "nacrene-city-west-gate",
+      "displayName": "Nacrene City (west gate)",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 440,
+            "name": "happiny",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/440.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift-egg",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift-egg",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 480,
+            "name": "uxie",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/480.png",
+            "types": [
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-juniper-cave-of-being"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-juniper-cave-of-being"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

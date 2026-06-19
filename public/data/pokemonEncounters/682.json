@@ -1,0 +1,136 @@
+{
+  "pokemon": {
+    "id": 682,
+    "name": "spritzee"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 872,
+        "name": "galar-route-5",
+        "displayName": "Route 5",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 848,
+          "name": "galar-route-5-area",
+          "displayName": "Route 5",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 44,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 19,
+                  "maxLevel": 21,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 18,
+                  "chance": 14,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1339,
+          "name": "friend-safari-fairy",
+          "displayName": "Friend Safari (Fairy)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 609,
+        "name": "kalos-route-7",
+        "displayName": "Route 7",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 718,
+          "name": "kalos-route-7-area",
+          "displayName": "Road 7",
+          "versions": [
+            {
+              "version": "y",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

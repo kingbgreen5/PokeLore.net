@@ -1,0 +1,72 @@
+{
+  "id": 1092,
+  "name": "sinnoh-pokemart",
+  "displayName": "Sinnoh Pokemart",
+  "region": {
+    "name": "sinnoh",
+    "displayName": "Sinnoh"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1213,
+      "name": "sinnoh-pokemart-area",
+      "displayName": "Sinnoh Pokemart Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 490,
+            "name": "manaphy",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/490.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "pokemon-ranger",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "pokemon-ranger",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "pokemon-ranger",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

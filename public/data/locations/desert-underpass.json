@@ -1,0 +1,169 @@
+{
+  "id": 488,
+  "name": "desert-underpass",
+  "displayName": "Desert Underpass",
+  "region": {
+    "name": "hoenn",
+    "displayName": "Hoenn"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 439,
+      "name": "desert-underpass-area",
+      "displayName": "Desert Underpass",
+      "gameIndex": 111,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "emerald",
+              "rate": 10
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 132,
+            "name": "ditto",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 41,
+                  "maxLevel": 41,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 42,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 45,
+                  "maxLevel": 45,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 293,
+            "name": "whismur",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/293.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 34,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 294,
+            "name": "loudred",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/294.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 16,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 44,
+                  "maxLevel": 44,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

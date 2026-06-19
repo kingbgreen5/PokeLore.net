@@ -1,0 +1,80 @@
+{
+  "id": 1106,
+  "name": "pokemon-hq-lab",
+  "displayName": "Pokemon Hq Lab",
+  "region": {
+    "name": "orre",
+    "displayName": "Orre"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1263,
+      "name": "pokemon-hq-lab-area",
+      "displayName": "Pokemon HQ Lab",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 133,
+            "name": "eevee",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "xd",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1264,
+      "name": "pokemon-hq-lab-outside",
+      "displayName": "Pokemon HQ Lab (Outside)",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 216,
+            "name": "teddiursa",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/216.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "xd",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

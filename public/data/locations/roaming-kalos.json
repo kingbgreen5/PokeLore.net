@@ -1,0 +1,150 @@
+{
+  "id": 1056,
+  "name": "roaming-kalos",
+  "displayName": "Kalos (Roaming)",
+  "region": {
+    "name": "kalos",
+    "displayName": "Kalos"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1182,
+      "name": "roaming-kalos-area",
+      "displayName": "Roaming Kalos",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 144,
+            "name": "articuno",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/144.png",
+            "types": [
+              "ice",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": [
+                    "starter-chespin"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": [
+                    "starter-chespin"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 145,
+            "name": "zapdos",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/145.png",
+            "types": [
+              "electric",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": [
+                    "starter-fennekin"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": [
+                    "starter-fennekin"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 146,
+            "name": "moltres",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/146.png",
+            "types": [
+              "fire",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": [
+                    "starter-froakie"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": [
+                    "starter-froakie"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

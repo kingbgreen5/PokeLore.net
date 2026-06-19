@@ -1,0 +1,154 @@
+{
+  "id": 247,
+  "name": "sinjoh-ruins",
+  "displayName": "Sinjoh Ruins",
+  "region": {
+    "name": "johto",
+    "displayName": "Johto"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 231,
+      "generation": "generation-iv"
+    }
+  ],
+  "areas": [
+    {
+      "id": 842,
+      "name": "sinjoh-ruins-area",
+      "displayName": "Sinjoy Ruins",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 482,
+            "name": "azelf",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/482.png",
+            "types": [
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": [
+                    "other-event-arceus-in-party"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": [
+                    "other-event-arceus-in-party"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 483,
+            "name": "dialga",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/483.png",
+            "types": [
+              "steel",
+              "dragon"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": [
+                    "other-event-arceus-in-party"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": [
+                    "other-event-arceus-in-party"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 487,
+            "name": "giratina-altered",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/487.png",
+            "types": [
+              "ghost",
+              "dragon"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": [
+                    "other-event-arceus-in-party"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": [
+                    "other-event-arceus-in-party"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

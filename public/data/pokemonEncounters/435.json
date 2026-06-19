@@ -1,0 +1,88 @@
+{
+  "pokemon": {
+    "id": 435,
+    "name": "skuntank"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 51,
+        "name": "sinnoh-route-221",
+        "displayName": "Route 221",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 170,
+          "name": "sinnoh-route-221-area",
+          "displayName": "Road 221",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 54,
+        "name": "sinnoh-route-225",
+        "displayName": "Route 225",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 173,
+          "name": "sinnoh-route-225-area",
+          "displayName": "Road 225",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 51,
+                  "maxLevel": 51,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

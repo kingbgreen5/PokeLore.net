@@ -1,0 +1,81 @@
+{
+  "pokemon": {
+    "id": 103,
+    "name": "exeggutor"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 157,
+        "name": "kanto-route-23",
+        "displayName": "Route 23",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 329,
+          "name": "kanto-route-23-area",
+          "displayName": "Road 23",
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 41,
+                  "maxLevel": 46,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 41,
+                  "maxLevel": 46,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1112,
+        "name": "citadark-isle",
+        "displayName": "Citadark Isle",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1292,
+          "name": "citadark-isle-dome-2f",
+          "displayName": "Citadark Isle Dome 2F",
+          "versions": [
+            {
+              "version": "xd",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 46,
+                  "maxLevel": 46,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "pokemon": {
+    "id": 284,
+    "name": "masquerain"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 769,
+        "name": "malie-garden",
+        "displayName": "Malie Garden",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1101,
+          "name": "malie-garden-area",
+          "displayName": "Malie Garden Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 27,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 27,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 28,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 28,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1334,
+          "name": "friend-safari-bug",
+          "displayName": "Friend Safari (Bug)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 594,
+        "name": "kalos-route-3",
+        "displayName": "Route 3",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 714,
+          "name": "kalos-route-3-area",
+          "displayName": "Road 3",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 66,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 66,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 57,
+        "name": "sinnoh-route-229",
+        "displayName": "Route 229",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 176,
+          "name": "sinnoh-route-229-area",
+          "displayName": "Road 229",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 35,
+                  "maxLevel": 55,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 35,
+                  "maxLevel": 55,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": 233,
+  "name": "indigo-plateau",
+  "displayName": "Indigo Plateau",
+  "region": {
+    "name": "kanto",
+    "displayName": "Kanto"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 147,
+      "generation": "generation-iv"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1202,
+      "name": "indigo-plateau-area",
+      "displayName": "Indigo Plateau Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 10114,
+            "name": "exeggutor-alola",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10114.png",
+            "types": [
+              "grass",
+              "dragon"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 46,
+                  "maxLevel": 46,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 46,
+                  "maxLevel": 46,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

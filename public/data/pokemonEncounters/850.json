@@ -1,0 +1,94 @@
+{
+  "pokemon": {
+    "id": 850,
+    "name": "sizzlipede"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 918,
+        "name": "motostoke",
+        "displayName": "Motostoke",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 1367,
+          "name": "motostoke-gym",
+          "displayName": "Motostoke (Gym)",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-special",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-special",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 870,
+        "name": "galar-route-3",
+        "displayName": "Route 3",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 845,
+          "name": "galar-route-3-east",
+          "displayName": "Route 3 (East)",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 8,
+                  "maxLevel": 13,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 8,
+                  "maxLevel": 13,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

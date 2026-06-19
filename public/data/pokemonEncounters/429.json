@@ -1,0 +1,81 @@
+{
+  "pokemon": {
+    "id": 429,
+    "name": "mismagius"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 1052,
+        "name": "poke-pelago",
+        "displayName": "Poké Pelago",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1160,
+          "name": "poke-pelago-elite-four-defeated",
+          "displayName": "Poke Pelago Elite Four Defeated",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 2,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 49,
+                  "maxLevel": 55,
+                  "chance": 2,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 2,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 49,
+                  "maxLevel": 55,
+                  "chance": 2,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 412,
+        "name": "abundant-shrine",
+        "displayName": "Abundant Shrine",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 649,
+          "name": "abundant-shrine-area",
+          "displayName": "Abundant Shrine",
+          "versions": [
+            {
+              "version": "white",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

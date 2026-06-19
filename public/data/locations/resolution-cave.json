@@ -1,0 +1,404 @@
+{
+  "id": 793,
+  "name": "resolution-cave",
+  "displayName": "Resolution Cave",
+  "region": {
+    "name": "alola",
+    "displayName": "Alola"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 182,
+      "generation": "generation-vii"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1123,
+      "name": "resolution-cave-area",
+      "displayName": "Resolution Cave Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 42,
+            "name": "golbat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/42.png",
+            "types": [
+              "poison",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 55,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 55,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 169,
+            "name": "crobat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/169.png",
+            "types": [
+              "poison",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 621,
+            "name": "druddigon",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/621.png",
+            "types": [
+              "dragon"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 715,
+            "name": "noivern",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/715.png",
+            "types": [
+              "flying",
+              "dragon"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 718,
+            "name": "zygarde-50",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/718.png",
+            "types": [
+              "dragon",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 799,
+            "name": "guzzlord",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/799.png",
+            "types": [
+              "dark",
+              "dragon"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 10106,
+            "name": "dugtrio-alola",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10106.png",
+            "types": [
+              "ground",
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

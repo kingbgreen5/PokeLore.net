@@ -1,0 +1,158 @@
+{
+  "pokemon": {
+    "id": 518,
+    "name": "musharna"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 374,
+        "name": "dreamyard",
+        "displayName": "Dreamyard",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 579,
+          "name": "dreamyard-area",
+          "displayName": "Dreamyard",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 105,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "weekday-friday",
+                    "defeated-ghetsis"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 105,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "weekday-friday",
+                    "defeated-ghetsis"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 580,
+          "name": "dreamyard-b1f",
+          "displayName": "Dreamyard (B1F)",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

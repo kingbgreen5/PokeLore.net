@@ -1,0 +1,137 @@
+{
+  "pokemon": {
+    "id": 570,
+    "name": "zorua"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 711,
+        "name": "alola-route-1",
+        "displayName": "Route 1",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1038,
+          "name": "alola-route-1-trainers-school",
+          "displayName": "Alola Route 1 Trainers School",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 350,
+        "name": "castelia-city",
+        "displayName": "Castelia City",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 775,
+          "name": "castelia-city-game-freak-hq-1f",
+          "displayName": "Game Freak HQ 1F (Castelia City)",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 352,
+        "name": "driftveil-city",
+        "displayName": "Driftveil City",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 577,
+          "name": "driftveil-city-area",
+          "displayName": "Driftveil City",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

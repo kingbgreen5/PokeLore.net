@@ -1,0 +1,226 @@
+{
+  "pokemon": {
+    "id": 486,
+    "name": "regigigas"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 797,
+        "name": "ultra-space",
+        "displayName": "Ultra Space",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1198,
+          "name": "ultra-space-ultra-space-wilds-cave",
+          "displayName": "Ultra Space Wilds Cave World",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1051,
+        "name": "ultra-space-wilds",
+        "displayName": "Ultra Space Wilds",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1147,
+          "name": "ultra-space-wilds-cave",
+          "displayName": "Ultra Space Wilds Cave",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 581,
+        "name": "island-cave",
+        "displayName": "Island Cave",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 811,
+          "name": "island-cave-area",
+          "displayName": "Island Cave",
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-national-dex",
+                    "other-nicknamed-cold-item-regice-regirock-registeel3"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-national-dex",
+                    "other-nicknamed-cold-item-regice-regirock-registeel3"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 19,
+        "name": "snowpoint-temple",
+        "displayName": "Snowpoint Temple",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 112,
+          "name": "snowpoint-temple-b5f",
+          "displayName": "Snowpoint Temple (B5F)",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": [
+                    "other-regirock-regice-registeel-in-party"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": [
+                    "other-regirock-regice-registeel-in-party"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": [
+                    "other-regirock-regice-registeel-in-party"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 380,
+        "name": "twist-mountain",
+        "displayName": "Twist Mountain",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 1173,
+          "name": "twist-mountain-b4f",
+          "displayName": "Twist Mountain B4f",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 68,
+                  "maxLevel": 68,
+                  "chance": 100,
+                  "conditions": [
+                    "other-regirock-regice-registeel-in-party"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 68,
+                  "maxLevel": 68,
+                  "chance": 100,
+                  "conditions": [
+                    "other-regirock-regice-registeel-in-party"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

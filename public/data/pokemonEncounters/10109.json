@@ -1,0 +1,137 @@
+{
+  "pokemon": {
+    "id": 10109,
+    "name": "geodude-alola"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 771,
+        "name": "blush-mountain",
+        "displayName": "Blush Mountain",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1073,
+          "name": "blush-mountain-area",
+          "displayName": "Blush Mountain Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 29,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 29,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 763,
+        "name": "alola-route-12",
+        "displayName": "Route 12",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1057,
+          "name": "alola-route-12-area",
+          "displayName": "Alola Route 12 Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 29,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 29,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 151,
+        "name": "vermilion-city",
+        "displayName": "Vermilion City",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 282,
+          "name": "vermilion-city-area",
+          "displayName": "Vermilion City",
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

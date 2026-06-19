@@ -1,0 +1,52 @@
+{
+  "id": 729,
+  "name": "verdant-cavern--trial-site",
+  "displayName": "Verdant Cavern",
+  "region": {
+    "name": "alola",
+    "displayName": "Alola"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 46,
+      "generation": "generation-vii"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1193,
+      "name": "verdant-cavern--trial-site-area",
+      "displayName": "Verdant Cavern Trial Site Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 795,
+            "name": "pheromosa",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/795.png",
+            "types": [
+              "bug",
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 400,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

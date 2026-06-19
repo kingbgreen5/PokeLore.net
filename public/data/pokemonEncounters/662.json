@@ -1,0 +1,204 @@
+{
+  "pokemon": {
+    "id": 662,
+    "name": "fletchinder"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 735,
+        "name": "alola-route-8",
+        "displayName": "Route 8",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1051,
+          "name": "alola-route-8-main",
+          "displayName": "Alola Route 8 Main",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 20,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 20,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 17,
+                  "maxLevel": 20,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 17,
+                  "maxLevel": 20,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 746,
+        "name": "wela-volcano-park",
+        "displayName": "Wela Volcano Park",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1156,
+          "name": "wela-volcano-park-area",
+          "displayName": "Wela Volcano Park Area",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 16,
+                  "maxLevel": 19,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 16,
+                  "maxLevel": 19,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1323,
+          "name": "friend-safari-fire",
+          "displayName": "Friend Safari (Fire)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1326,
+          "name": "friend-safari-flying",
+          "displayName": "Friend Safari (Flying)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

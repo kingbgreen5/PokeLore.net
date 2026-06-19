@@ -1,0 +1,2425 @@
+{
+  "id": 45,
+  "name": "sinnoh-route-214",
+  "displayName": "Route 214",
+  "region": {
+    "name": "sinnoh",
+    "displayName": "Sinnoh"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 29,
+      "generation": "generation-iv"
+    }
+  ],
+  "areas": [
+    {
+      "id": 164,
+      "name": "sinnoh-route-214-area",
+      "displayName": "Road 214",
+      "gameIndex": 164,
+      "encounterMethodRates": [
+        {
+          "method": "good-rod",
+          "versionDetails": [
+            {
+              "version": "diamond",
+              "rate": 50
+            },
+            {
+              "version": "pearl",
+              "rate": 50
+            },
+            {
+              "version": "platinum",
+              "rate": 50
+            }
+          ]
+        },
+        {
+          "method": "old-rod",
+          "versionDetails": [
+            {
+              "version": "diamond",
+              "rate": 25
+            },
+            {
+              "version": "pearl",
+              "rate": 25
+            },
+            {
+              "version": "platinum",
+              "rate": 25
+            }
+          ]
+        },
+        {
+          "method": "super-rod",
+          "versionDetails": [
+            {
+              "version": "diamond",
+              "rate": 75
+            },
+            {
+              "version": "pearl",
+              "rate": 75
+            },
+            {
+              "version": "platinum",
+              "rate": 75
+            }
+          ]
+        },
+        {
+          "method": "surf",
+          "versionDetails": [
+            {
+              "version": "diamond",
+              "rate": 10
+            },
+            {
+              "version": "pearl",
+              "rate": 10
+            },
+            {
+              "version": "platinum",
+              "rate": 10
+            }
+          ]
+        },
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "diamond",
+              "rate": 30
+            },
+            {
+              "version": "pearl",
+              "rate": 30
+            },
+            {
+              "version": "platinum",
+              "rate": 30
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 37,
+            "name": "vulpix",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/37.png",
+            "types": [
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 41,
+            "name": "zubat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png",
+            "types": [
+              "poison",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 54,
+            "name": "psyduck",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/54.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 90,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 30,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 40,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 90,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 30,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 40,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 90,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 30,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 30,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 55,
+            "name": "golduck",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/55.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 20,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 74,
+            "name": "geodude",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/74.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-no"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-no"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-no"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 75,
+            "name": "graveler",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/75.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 37,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 37,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-no"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 77,
+            "name": "ponyta",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/77.png",
+            "types": [
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-no"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-no"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 111,
+            "name": "rhyhorn",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/111.png",
+            "types": [
+              "ground",
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 56,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 118,
+            "name": "goldeen",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/118.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 25,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 15,
+                  "maxLevel": 20,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 25,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 15,
+                  "maxLevel": 20,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 25,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 25,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 15,
+                  "maxLevel": 20,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 119,
+            "name": "seaking",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/119.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 20,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 20,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 20,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 20,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 55,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 55,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 129,
+            "name": "magikarp",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/129.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 155,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 25,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 15,
+                  "maxLevel": 20,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 3,
+                  "maxLevel": 7,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 4,
+                  "maxLevel": 6,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 155,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 25,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 15,
+                  "maxLevel": 20,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 3,
+                  "maxLevel": 7,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 4,
+                  "maxLevel": 6,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 155,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 25,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 15,
+                  "maxLevel": 20,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 3,
+                  "maxLevel": 7,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 4,
+                  "maxLevel": 6,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 130,
+            "name": "gyarados",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png",
+            "types": [
+              "water",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 55,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 55,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 55,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 55,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 55,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 55,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 185,
+            "name": "sudowoodo",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/185.png",
+            "types": [
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "pearl",
+              "maxChance": 27,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 190,
+            "name": "aipom",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/190.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 203,
+            "name": "girafarig",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/203.png",
+            "types": [
+              "normal",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 207,
+            "name": "gligar",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/207.png",
+            "types": [
+              "ground",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 214,
+            "name": "heracross",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/214.png",
+            "types": [
+              "bug",
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 228,
+            "name": "houndour",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/228.png",
+            "types": [
+              "dark",
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 41,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 229,
+            "name": "houndoom",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/229.png",
+            "types": [
+              "dark",
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "pearl",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 261,
+            "name": "poochyena",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/261.png",
+            "types": [
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 262,
+            "name": "mightyena",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/262.png",
+            "types": [
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 265,
+            "name": "wurmple",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/265.png",
+            "types": [
+              "bug"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 40,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 40,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 266,
+            "name": "silcoon",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/266.png",
+            "types": [
+              "bug"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 268,
+            "name": "cascoon",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/268.png",
+            "types": [
+              "bug"
+            ]
+          },
+          "versions": [
+            {
+              "version": "pearl",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 325,
+            "name": "spoink",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/325.png",
+            "types": [
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-yes"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-yes"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-yes"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-yes"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-yes"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-yes"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 402,
+            "name": "kricketune",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/402.png",
+            "types": [
+              "bug"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 412,
+            "name": "burmy",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/412.png",
+            "types": [
+              "bug"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 40,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 415,
+            "name": "combee",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/415.png",
+            "types": [
+              "bug",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 40,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 40,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 40,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 420,
+            "name": "cherubi",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/420.png",
+            "types": [
+              "grass"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": [
+                    "honey-tree-group-b"
+                  ]
+                },
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": [
+                    "honey-tree-group-a"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 434,
+            "name": "stunky",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/434.png",
+            "types": [
+              "poison",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 27,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-ruby"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-sapphire"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 446,
+            "name": "munchlax",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/446.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 100,
+                  "conditions": [
+                    "honey-tree-group-c"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 100,
+                  "conditions": [
+                    "honey-tree-group-c"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "honey-tree",
+                  "minLevel": 5,
+                  "maxLevel": 15,
+                  "chance": 100,
+                  "conditions": [
+                    "honey-tree-group-c"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

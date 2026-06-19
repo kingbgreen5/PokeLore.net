@@ -1,0 +1,170 @@
+{
+  "id": 578,
+  "name": "southern-island",
+  "displayName": "Southern Island",
+  "region": {
+    "name": "hoenn",
+    "displayName": "Hoenn"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 320,
+      "generation": "generation-vi"
+    }
+  ],
+  "areas": [
+    {
+      "id": 785,
+      "name": "southern-island-area",
+      "displayName": "Southern Island",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 380,
+            "name": "latias",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/380.png",
+            "types": [
+              "dragon",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "emerald",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 381,
+            "name": "latios",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/381.png",
+            "types": [
+              "dragon",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "emerald",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

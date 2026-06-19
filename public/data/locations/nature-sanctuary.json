@@ -1,0 +1,1249 @@
+{
+  "id": 560,
+  "name": "nature-sanctuary",
+  "displayName": "Nature Sanctuary",
+  "region": {
+    "name": "unova",
+    "displayName": "Unova"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 147,
+      "generation": "generation-v"
+    }
+  ],
+  "areas": [
+    {
+      "id": 702,
+      "name": "nature-sanctuary-area",
+      "displayName": "Nature Sanctuary",
+      "gameIndex": 95,
+      "encounterMethodRates": [
+        {
+          "method": "dark-grass",
+          "versionDetails": [
+            {
+              "version": "black-2",
+              "rate": 3
+            },
+            {
+              "version": "white-2",
+              "rate": 3
+            }
+          ]
+        },
+        {
+          "method": "super-rod",
+          "versionDetails": [
+            {
+              "version": "black-2",
+              "rate": 50
+            },
+            {
+              "version": "white-2",
+              "rate": 50
+            }
+          ]
+        },
+        {
+          "method": "surf",
+          "versionDetails": [
+            {
+              "version": "black-2",
+              "rate": 10
+            },
+            {
+              "version": "white-2",
+              "rate": 10
+            }
+          ]
+        },
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "black-2",
+              "rate": 1
+            },
+            {
+              "version": "white-2",
+              "rate": 1
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 55,
+            "name": "golduck",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/55.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 129,
+            "name": "magikarp",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/129.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 1,
+                  "maxLevel": 100,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 1,
+                  "maxLevel": 100,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 130,
+            "name": "gyarados",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png",
+            "types": [
+              "water",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 1,
+                  "maxLevel": 100,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 1,
+                  "maxLevel": 100,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 164,
+            "name": "noctowl",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/164.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 66,
+                  "maxLevel": 66,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 58,
+                  "maxLevel": 58,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 66,
+                  "maxLevel": 66,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 58,
+                  "maxLevel": 58,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 203,
+            "name": "girafarig",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/203.png",
+            "types": [
+              "normal",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 66,
+                  "maxLevel": 66,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 67,
+                  "maxLevel": 67,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 58,
+                  "maxLevel": 58,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 66,
+                  "maxLevel": 66,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 67,
+                  "maxLevel": 67,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 58,
+                  "maxLevel": 58,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 206,
+            "name": "dunsparce",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/206.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 274,
+            "name": "nuzleaf",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/274.png",
+            "types": [
+              "grass",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 64,
+                  "maxLevel": 64,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 56,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 64,
+                  "maxLevel": 64,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 56,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 275,
+            "name": "shiftry",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/275.png",
+            "types": [
+              "grass",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 334,
+            "name": "altaria",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/334.png",
+            "types": [
+              "dragon",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 64,
+                  "maxLevel": 64,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 56,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 64,
+                  "maxLevel": 64,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 56,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 352,
+            "name": "kecleon",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/352.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 67,
+                  "maxLevel": 67,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 67,
+                  "maxLevel": 67,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 418,
+            "name": "buizel",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/418.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 90,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 45,
+                  "maxLevel": 60,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 45,
+                  "maxLevel": 60,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 90,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 45,
+                  "maxLevel": 60,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 45,
+                  "maxLevel": 60,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 419,
+            "name": "floatzel",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/419.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 531,
+            "name": "audino",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/531.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 85,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 56,
+                  "maxLevel": 56,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 58,
+                  "maxLevel": 58,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 85,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 56,
+                  "maxLevel": 56,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 58,
+                  "maxLevel": 58,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 550,
+            "name": "basculin-red-striped",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/550.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 110,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 45,
+                  "maxLevel": 60,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 75,
+              "encounters": [
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 45,
+                  "maxLevel": 60,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 611,
+            "name": "fraxure",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/611.png",
+            "types": [
+              "dragon"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 67,
+                  "maxLevel": 67,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 67,
+                  "maxLevel": 67,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 67,
+                  "maxLevel": 67,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 67,
+                  "maxLevel": 67,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 612,
+            "name": "haxorus",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/612.png",
+            "types": [
+              "dragon"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 10016,
+            "name": "basculin-blue-striped",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10016.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 75,
+              "encounters": [
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 45,
+                  "maxLevel": 60,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 110,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 45,
+                  "maxLevel": 60,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 50,
+                  "maxLevel": 60,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

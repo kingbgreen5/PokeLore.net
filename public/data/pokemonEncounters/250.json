@@ -1,0 +1,271 @@
+{
+  "pokemon": {
+    "id": 250,
+    "name": "ho-oh"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 797,
+        "name": "ultra-space",
+        "displayName": "Ultra Space",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1195,
+          "name": "ultra-space-ultra-space-wilds-cliff",
+          "displayName": "Ultra Space Wilds Cliff World",
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1051,
+        "name": "ultra-space-wilds",
+        "displayName": "Ultra Space Wilds",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1148,
+          "name": "ultra-space-wilds-cliff",
+          "displayName": "Ultra Space Wilds Cliff",
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 693,
+        "name": "sea-mauville",
+        "displayName": "Sea Mauville",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 1180,
+          "name": "sea-mauville-inside",
+          "displayName": "Sea Mauville (Inside)",
+          "versions": [
+            {
+              "version": "omega-ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "item-clear-bell"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 139,
+        "name": "bell-tower",
+        "displayName": "Bell Tower",
+        "region": "johto"
+      },
+      "areas": [
+        {
+          "id": 793,
+          "name": "bell-tower-roof",
+          "displayName": "Bell Tower (roof)",
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 45,
+                  "maxLevel": 45,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 811,
+        "name": "navel-rock",
+        "displayName": "Navel Rock",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 807,
+          "name": "navel-rock-area",
+          "displayName": "Navel Rock",
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1105,
+        "name": "mt-battle",
+        "displayName": "Mt. Battle",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1261,
+          "name": "mt-battle-100f",
+          "displayName": "Mt. Battle 100F",
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": [
+                    "other-complete-mt-battle",
+                    "story-progress-catch-all-shadow-pokemon"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

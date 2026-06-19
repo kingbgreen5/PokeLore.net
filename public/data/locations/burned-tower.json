@@ -1,0 +1,1787 @@
+{
+  "id": 66,
+  "name": "burned-tower",
+  "displayName": "Burned Tower",
+  "region": {
+    "name": "johto",
+    "displayName": "Johto"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 206,
+      "generation": "generation-iv"
+    }
+  ],
+  "areas": [
+    {
+      "id": 212,
+      "name": "burned-tower-1f",
+      "displayName": "Burned Tower (1F)",
+      "gameIndex": 29,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "heartgold",
+              "rate": 10
+            },
+            {
+              "version": "soulsilver",
+              "rate": 10
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 19,
+            "name": "rattata",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/19.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 55,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 20,
+            "name": "raticate",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/20.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 41,
+            "name": "zubat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png",
+            "types": [
+              "poison",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 109,
+            "name": "koffing",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/109.png",
+            "types": [
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 263,
+            "name": "zigzagoon",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/263.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 307,
+            "name": "meditite",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/307.png",
+            "types": [
+              "fighting",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 327,
+            "name": "spinda",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/327.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 441,
+            "name": "chatot",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/441.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 213,
+      "name": "burned-tower-b1f",
+      "displayName": "Burned Tower (B1F)",
+      "gameIndex": 30,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "heartgold",
+              "rate": 10
+            },
+            {
+              "version": "soulsilver",
+              "rate": 10
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 19,
+            "name": "rattata",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/19.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 110,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 55,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 5,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 5,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 110,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 55,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 5,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 5,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 41,
+            "name": "zubat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png",
+            "types": [
+              "poison",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 109,
+            "name": "koffing",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/109.png",
+            "types": [
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 59,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 150,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 20,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 20,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 20,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 150,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 30,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 20,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 20,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 20,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 110,
+            "name": "weezing",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/110.png",
+            "types": [
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 126,
+            "name": "magmar",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/126.png",
+            "types": [
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "gold",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 5,
+                  "conditions": [
+                    "time-day"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 5,
+                  "conditions": [
+                    "time-day"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 263,
+            "name": "zigzagoon",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/263.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 307,
+            "name": "meditite",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/307.png",
+            "types": [
+              "fighting",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 327,
+            "name": "spinda",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/327.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-hoenn"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 441,
+            "name": "chatot",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/441.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-sinnoh"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

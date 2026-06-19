@@ -1,0 +1,65 @@
+{
+  "id": 404,
+  "name": "liberty-garden",
+  "displayName": "Liberty Garden",
+  "region": {
+    "name": "unova",
+    "displayName": "Unova"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 62,
+      "generation": "generation-v"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1167,
+      "name": "liberty-garden-lighthouse-basement",
+      "displayName": "Lighthouse Basement",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 494,
+            "name": "victini",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/494.png",
+            "types": [
+              "psychic",
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

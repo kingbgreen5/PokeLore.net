@@ -1,0 +1,157 @@
+{
+  "pokemon": {
+    "id": 760,
+    "name": "bewear"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 1042,
+        "name": "hauoli-city",
+        "displayName": "Hau'oli City",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1084,
+          "name": "hauoli-city-main",
+          "displayName": "Hauoli City Main",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 15,
+                  "conditions": [
+                    "story-progress-beat-olivias-trial"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 15,
+                  "conditions": [
+                    "story-progress-beat-olivias-trial"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1085,
+          "name": "hauoli-city-shopping-district",
+          "displayName": "Hauoli City Shopping District",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 787,
+        "name": "poni-gauntlet",
+        "displayName": "Poni Gauntlet",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1115,
+          "name": "poni-gauntlet-area",
+          "displayName": "Poni Gauntlet Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 59,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 58,
+                  "maxLevel": 61,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 58,
+                  "maxLevel": 61,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

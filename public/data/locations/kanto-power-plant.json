@@ -1,0 +1,1401 @@
+{
+  "id": 158,
+  "name": "kanto-power-plant",
+  "displayName": "Kanto Power Plant",
+  "region": {
+    "name": "kanto",
+    "displayName": "Kanto"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 201,
+      "generation": "generation-iv"
+    }
+  ],
+  "areas": [
+    {
+      "id": 330,
+      "name": "kanto-power-plant-area",
+      "displayName": "Power Plant",
+      "gameIndex": 0,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "firered",
+              "rate": 7
+            },
+            {
+              "version": "leafgreen",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 25,
+            "name": "pikachu",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 26,
+            "name": "raichu",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 81,
+            "name": "magnemite",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/81.png",
+            "types": [
+              "electric",
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 82,
+            "name": "magneton",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/82.png",
+            "types": [
+              "electric",
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "crystal",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 16,
+                  "maxLevel": 100,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-dugtrio"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 88,
+            "name": "grimer",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/88.png",
+            "types": [
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 89,
+            "name": "muk",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/89.png",
+            "types": [
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 100,
+            "name": "voltorb",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/100.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 630,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 630,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 630,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 630,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 620,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 101,
+            "name": "electrode",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/101.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 109,
+            "name": "koffing",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/109.png",
+            "types": [
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 110,
+            "name": "weezing",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/110.png",
+            "types": [
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 113,
+            "name": "chansey",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/113.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-special",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-special",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 125,
+            "name": "electabuzz",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/125.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 145,
+            "name": "zapdos",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/145.png",
+            "types": [
+              "electric",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "green-japan",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

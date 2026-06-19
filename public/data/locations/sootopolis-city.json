@@ -1,0 +1,454 @@
+{
+  "id": 433,
+  "name": "sootopolis-city",
+  "displayName": "Sootopolis City",
+  "region": {
+    "name": "hoenn",
+    "displayName": "Hoenn"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 198,
+      "generation": "generation-vi"
+    }
+  ],
+  "areas": [
+    {
+      "id": 354,
+      "name": "sootopolis-city-area",
+      "displayName": "Sootopolis City",
+      "gameIndex": 4,
+      "encounterMethodRates": [
+        {
+          "method": "good-rod",
+          "versionDetails": [
+            {
+              "version": "emerald",
+              "rate": 10
+            },
+            {
+              "version": "ruby",
+              "rate": 10
+            },
+            {
+              "version": "sapphire",
+              "rate": 10
+            }
+          ]
+        },
+        {
+          "method": "old-rod",
+          "versionDetails": [
+            {
+              "version": "emerald",
+              "rate": 10
+            },
+            {
+              "version": "ruby",
+              "rate": 10
+            },
+            {
+              "version": "sapphire",
+              "rate": 10
+            }
+          ]
+        },
+        {
+          "method": "super-rod",
+          "versionDetails": [
+            {
+              "version": "emerald",
+              "rate": 10
+            },
+            {
+              "version": "ruby",
+              "rate": 10
+            },
+            {
+              "version": "sapphire",
+              "rate": 10
+            }
+          ]
+        },
+        {
+          "method": "surf",
+          "versionDetails": [
+            {
+              "version": "emerald",
+              "rate": 1
+            },
+            {
+              "version": "ruby",
+              "rate": 1
+            },
+            {
+              "version": "sapphire",
+              "rate": 1
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 72,
+            "name": "tentacool",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/72.png",
+            "types": [
+              "water",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sapphire",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 129,
+            "name": "magikarp",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/129.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 350,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 30,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 70,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 30,
+                  "maxLevel": 35,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 5,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 10,
+                  "maxLevel": 30,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ruby",
+              "maxChance": 380,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 30,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 70,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 10,
+                  "maxLevel": 15,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 30,
+                  "maxLevel": 35,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 5,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 10,
+                  "maxLevel": 30,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sapphire",
+              "maxChance": 350,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 30,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 10,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 5,
+                  "maxLevel": 10,
+                  "chance": 70,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 30,
+                  "maxLevel": 35,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 5,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 10,
+                  "maxLevel": 30,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 130,
+            "name": "gyarados",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png",
+            "types": [
+              "water",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 5,
+                  "maxLevel": 45,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 40,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ruby",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 5,
+                  "maxLevel": 45,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 40,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sapphire",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 5,
+                  "maxLevel": 45,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 40,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

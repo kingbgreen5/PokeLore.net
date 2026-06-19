@@ -1,0 +1,59 @@
+{
+  "id": 1049,
+  "name": "ulaula-beach",
+  "displayName": "Ula'ula Beach",
+  "region": {
+    "name": "alola",
+    "displayName": "Alola"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1138,
+      "name": "ulaula-beach-area",
+      "displayName": "Ulaula Beach Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 739,
+            "name": "crabrawler",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/739.png",
+            "types": [
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "berry-trees",
+                  "minLevel": 29,
+                  "maxLevel": 32,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "berry-trees",
+                  "minLevel": 29,
+                  "maxLevel": 32,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

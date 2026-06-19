@@ -1,0 +1,98 @@
+{
+  "id": 1048,
+  "name": "sandy-cave",
+  "displayName": "Sandy Cave",
+  "region": {
+    "name": "alola",
+    "displayName": "Alola"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1129,
+      "name": "sandy-cave-area",
+      "displayName": "Sandy Cave Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 41,
+            "name": "zubat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png",
+            "types": [
+              "poison",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 54,
+            "name": "psyduck",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/54.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

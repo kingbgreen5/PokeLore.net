@@ -1,0 +1,98 @@
+{
+  "id": 1046,
+  "name": "dividing-peak-tunnel",
+  "displayName": "Dividing Peak Tunnel",
+  "region": {
+    "name": "alola",
+    "displayName": "Alola"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1079,
+      "name": "dividing-peak-tunnel-area",
+      "displayName": "Dividing Peak Tunnel Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 352,
+            "name": "kecleon",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/352.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 17,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 17,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 767,
+            "name": "wimpod",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/767.png",
+            "types": [
+              "bug",
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 17,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 17,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

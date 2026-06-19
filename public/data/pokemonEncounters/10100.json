@@ -1,0 +1,51 @@
+{
+  "pokemon": {
+    "id": 10100,
+    "name": "raichu-alola"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 234,
+        "name": "saffron-city",
+        "displayName": "Saffron City",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 1203,
+          "name": "saffron-city-area",
+          "displayName": "Saffron City Area",
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

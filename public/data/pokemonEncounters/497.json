@@ -1,0 +1,51 @@
+{
+  "pokemon": {
+    "id": 497,
+    "name": "serperior"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 794,
+        "name": "exeggutor-island",
+        "displayName": "Exeggutor Island",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1080,
+          "name": "exeggutor-island-area",
+          "displayName": "Exeggutor Island Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,436 @@
+{
+  "pokemon": {
+    "id": 294,
+    "name": "loudred"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 488,
+        "name": "desert-underpass",
+        "displayName": "Desert Underpass",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 439,
+          "name": "desert-underpass-area",
+          "displayName": "Desert Underpass",
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 16,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 44,
+                  "maxLevel": 44,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 444,
+        "name": "hoenn-victory-road",
+        "displayName": "Victory Road",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 382,
+          "name": "hoenn-victory-road-1f",
+          "displayName": "Victory Road (1F)",
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "horde",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "emerald",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "horde",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ruby",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sapphire",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 383,
+          "name": "hoenn-victory-road-b1f",
+          "displayName": "Victory Road (B1F)",
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "horde",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "horde",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1322,
+          "name": "friend-safari-normal",
+          "displayName": "Friend Safari (Normal)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 10,
+        "name": "mt-coronet",
+        "displayName": "Mt. Coronet",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 15,
+          "name": "mt-coronet-exterior-blizzard",
+          "displayName": "Mount Coronet (exterior blizzard)",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "name": "mt-coronet-exterior-snowfall",
+          "displayName": "Mount Coronet (exterior snowfall)",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

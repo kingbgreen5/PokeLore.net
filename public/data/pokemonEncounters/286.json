@@ -1,0 +1,98 @@
+{
+  "pokemon": {
+    "id": 286,
+    "name": "breloom"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1324,
+          "name": "friend-safari-fighting",
+          "displayName": "Friend Safari (Fighting)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 375,
+        "name": "pinwheel-forest",
+        "displayName": "Pinwheel Forest",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 1359,
+          "name": "pinwheel-forest-hidden-grotto-inner-area",
+          "displayName": "Pinwheel Forest (Hidden Grotto – Inner area)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 19,
+              "encounters": [
+                {
+                  "method": "hidden-grotto",
+                  "minLevel": 55,
+                  "maxLevel": 59,
+                  "chance": 19,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 19,
+              "encounters": [
+                {
+                  "method": "hidden-grotto",
+                  "minLevel": 55,
+                  "maxLevel": 59,
+                  "chance": 19,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,684 @@
+{
+  "pokemon": {
+    "id": 125,
+    "name": "electabuzz"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 771,
+        "name": "blush-mountain",
+        "displayName": "Blush Mountain",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1073,
+          "name": "blush-mountain-area",
+          "displayName": "Blush Mountain Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 26,
+                  "maxLevel": 29,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 26,
+                  "maxLevel": 29,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 29,
+                  "maxLevel": 32,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 29,
+                  "maxLevel": 32,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 770,
+        "name": "mount-hokulani",
+        "displayName": "Mount Hokulani",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1107,
+          "name": "mount-hokulani-west",
+          "displayName": "Mount Hokulani West",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 27,
+                  "maxLevel": 30,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 27,
+                  "maxLevel": 30,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 763,
+        "name": "alola-route-12",
+        "displayName": "Route 12",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1057,
+          "name": "alola-route-12-area",
+          "displayName": "Alola Route 12 Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 26,
+                  "maxLevel": 29,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 26,
+                  "maxLevel": 29,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1329,
+          "name": "friend-safari-electric",
+          "displayName": "Friend Safari (Electric)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 158,
+        "name": "kanto-power-plant",
+        "displayName": "Kanto Power Plant",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 330,
+          "name": "kanto-power-plant-area",
+          "displayName": "Power Plant",
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 37,
+                  "maxLevel": 42,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 89,
+        "name": "kanto-route-10",
+        "displayName": "Route 10",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 304,
+          "name": "kanto-route-10-area",
+          "displayName": "Road 10",
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 1,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 1,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 1,
+                  "conditions": [
+                    "time-day"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1112,
+        "name": "citadark-isle",
+        "displayName": "Citadark Isle",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1289,
+          "name": "citadark-isle-dome-exterior",
+          "displayName": "Citadark Isle Dome Exterior",
+          "versions": [
+            {
+              "version": "xd",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 52,
+        "name": "sinnoh-route-222",
+        "displayName": "Route 222",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 171,
+          "name": "sinnoh-route-222-area",
+          "displayName": "Road 222",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-no"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 41,
+                  "maxLevel": 41,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 41,
+                  "maxLevel": 41,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

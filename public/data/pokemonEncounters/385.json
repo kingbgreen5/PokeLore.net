@@ -1,0 +1,65 @@
+{
+  "pokemon": {
+    "id": 385,
+    "name": "jirachi"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 1089,
+        "name": "hoenn-pokecenter",
+        "displayName": "Hoenn Pokecenter",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 1210,
+          "name": "hoenn-pokecenter-area",
+          "displayName": "Hoenn Pokecenter Area",
+          "versions": [
+            {
+              "version": "ruby",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "colosseum-bonus-disc-us",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "pokemon-channel-pal",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sapphire",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "colosseum-bonus-disc-us",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "pokemon-channel-pal",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

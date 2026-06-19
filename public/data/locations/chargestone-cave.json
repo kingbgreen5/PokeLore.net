@@ -1,0 +1,2268 @@
+{
+  "id": 379,
+  "name": "chargestone-cave",
+  "displayName": "Chargestone Cave",
+  "region": {
+    "name": "unova",
+    "displayName": "Unova"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 37,
+      "generation": "generation-v"
+    },
+    {
+      "gameIndex": 85,
+      "generation": "generation-v"
+    }
+  ],
+  "areas": [
+    {
+      "id": 590,
+      "name": "chargestone-cave-1f",
+      "displayName": "Chargestone Cave (1F)",
+      "gameIndex": 41,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "black",
+              "rate": 3
+            },
+            {
+              "version": "black-2",
+              "rate": 7
+            },
+            {
+              "version": "white",
+              "rate": 3
+            },
+            {
+              "version": "white-2",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 299,
+            "name": "nosepass",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/299.png",
+            "types": [
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 525,
+            "name": "boldore",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/525.png",
+            "types": [
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 529,
+            "name": "drilbur",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/529.png",
+            "types": [
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "cave-spots",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "cave-spots",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "cave-spots",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "cave-spots",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 595,
+            "name": "joltik",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/595.png",
+            "types": [
+              "bug",
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 39,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 39,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 39,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 39,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 597,
+            "name": "ferroseed",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/597.png",
+            "types": [
+              "grass",
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 599,
+            "name": "klink",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/599.png",
+            "types": [
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 29,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 24,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 29,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 24,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 602,
+            "name": "tynamo",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/602.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 2,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 2,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 2,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 2,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 591,
+      "name": "chargestone-cave-b1f",
+      "displayName": "Chargestone Cave (B1F)",
+      "gameIndex": 42,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "black",
+              "rate": 3
+            },
+            {
+              "version": "black-2",
+              "rate": 7
+            },
+            {
+              "version": "white",
+              "rate": 3
+            },
+            {
+              "version": "white-2",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 299,
+            "name": "nosepass",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/299.png",
+            "types": [
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 525,
+            "name": "boldore",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/525.png",
+            "types": [
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 529,
+            "name": "drilbur",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/529.png",
+            "types": [
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "cave-spots",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "cave-spots",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "cave-spots",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "cave-spots",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 595,
+            "name": "joltik",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/595.png",
+            "types": [
+              "bug",
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 39,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 39,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 39,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 39,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 597,
+            "name": "ferroseed",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/597.png",
+            "types": [
+              "grass",
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 599,
+            "name": "klink",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/599.png",
+            "types": [
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 29,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 24,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 29,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 24,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 602,
+            "name": "tynamo",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/602.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 2,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 2,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 2,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 2,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 592,
+      "name": "chargestone-cave-b2f",
+      "displayName": "Chargestone Cave (B2F)",
+      "gameIndex": 43,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "black",
+              "rate": 3
+            },
+            {
+              "version": "black-2",
+              "rate": 7
+            },
+            {
+              "version": "white",
+              "rate": 3
+            },
+            {
+              "version": "white-2",
+              "rate": 7
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 299,
+            "name": "nosepass",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/299.png",
+            "types": [
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 525,
+            "name": "boldore",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/525.png",
+            "types": [
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 529,
+            "name": "drilbur",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/529.png",
+            "types": [
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "cave-spots",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "cave-spots",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "cave-spots",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "cave-spots",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "cave-spots",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 595,
+            "name": "joltik",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/595.png",
+            "types": [
+              "bug",
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 36,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 36,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 36,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 36,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 597,
+            "name": "ferroseed",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/597.png",
+            "types": [
+              "grass",
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 599,
+            "name": "klink",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/599.png",
+            "types": [
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 26,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 21,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 26,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 21,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 602,
+            "name": "tynamo",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/602.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

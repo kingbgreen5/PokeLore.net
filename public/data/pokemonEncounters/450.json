@@ -1,0 +1,165 @@
+{
+  "pokemon": {
+    "id": 450,
+    "name": "hippowdon"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 1051,
+        "name": "ultra-space-wilds",
+        "displayName": "Ultra Space Wilds",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1147,
+          "name": "ultra-space-wilds-cave",
+          "displayName": "Ultra Space Wilds Cave",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 56,
+        "name": "sinnoh-route-228",
+        "displayName": "Route 228",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 175,
+          "name": "sinnoh-route-228-area",
+          "displayName": "Road 228",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 52,
+                  "maxLevel": 52,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 52,
+                  "maxLevel": 52,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 54,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 52,
+                  "maxLevel": 52,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 52,
+                  "maxLevel": 52,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 54,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": [
+                    "time-day"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 51,
+                  "maxLevel": 51,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

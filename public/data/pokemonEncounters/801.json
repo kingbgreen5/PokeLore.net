@@ -1,0 +1,57 @@
+{
+  "pokemon": {
+    "id": 801,
+    "name": "magearna"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 1042,
+        "name": "hauoli-city",
+        "displayName": "Hau'oli City",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1084,
+          "name": "hauoli-city-main",
+          "displayName": "Hauoli City Main",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 15,
+                  "conditions": [
+                    "story-progress-hall-of-fame",
+                    "other-scan-qr-code"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 15,
+                  "conditions": [
+                    "story-progress-hall-of-fame",
+                    "other-scan-qr-code"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "pokemon": {
+    "id": 386,
+    "name": "deoxys-normal"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 448,
+        "name": "sky-pillar",
+        "displayName": "Sky Pillar",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 804,
+          "name": "sky-pillar-apex",
+          "displayName": "Sky Pillar Apex",
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 80,
+                  "maxLevel": 80,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 80,
+                  "maxLevel": 80,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 810,
+        "name": "birth-island",
+        "displayName": "Birth Island",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 806,
+          "name": "birth-island-area",
+          "displayName": "Birth Island",
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "firered",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

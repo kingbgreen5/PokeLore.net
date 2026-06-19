@@ -1,0 +1,107 @@
+{
+  "id": 1100,
+  "name": "pyrite-bldg",
+  "displayName": "Pyrite Bldg",
+  "region": {
+    "name": "orre",
+    "displayName": "Orre"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1241,
+      "name": "pyrite-bldg-1f",
+      "displayName": "Pyrite Bldg 1F",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 193,
+            "name": "yanma",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/193.png",
+            "types": [
+              "bug",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1243,
+      "name": "pyrite-bldg-4f",
+      "displayName": "Pyrite Bldg 4F",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 223,
+            "name": "remoraid",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/223.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 226,
+            "name": "mantine",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/226.png",
+            "types": [
+              "water",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "pokemon": {
+    "id": 365,
+    "name": "walrein"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 413,
+        "name": "undella-bay",
+        "displayName": "Undella Bay",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 619,
+          "name": "undella-bay-area",
+          "displayName": "Undella Bay",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 70,
+                  "chance": 4,
+                  "conditions": [
+                    "season-winter"
+                  ]
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 70,
+                  "chance": 1,
+                  "conditions": [
+                    "season-winter"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": [
+                    "season-winter"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 70,
+                  "chance": 4,
+                  "conditions": [
+                    "season-winter"
+                  ]
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 70,
+                  "chance": 1,
+                  "conditions": [
+                    "season-winter"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 30,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": [
+                    "season-winter"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

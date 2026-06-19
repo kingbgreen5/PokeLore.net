@@ -1,0 +1,212 @@
+{
+  "pokemon": {
+    "id": 38,
+    "name": "ninetales"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1323,
+          "name": "friend-safari-fire",
+          "displayName": "Friend Safari (Fire)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 132,
+        "name": "kanto-route-7",
+        "displayName": "Route 7",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 301,
+          "name": "kanto-route-7-area",
+          "displayName": "Road 7",
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 22,
+                  "maxLevel": 27,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 133,
+        "name": "kanto-route-8",
+        "displayName": "Route 8",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 302,
+          "name": "kanto-route-8-area",
+          "displayName": "Road 8",
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 22,
+                  "maxLevel": 27,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 412,
+        "name": "abundant-shrine",
+        "displayName": "Abundant Shrine",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 649,
+          "name": "abundant-shrine-area",
+          "displayName": "Abundant Shrine",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

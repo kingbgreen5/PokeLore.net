@@ -1,0 +1,410 @@
+{
+  "pokemon": {
+    "id": 326,
+    "name": "grumpig"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 1051,
+        "name": "ultra-space-wilds",
+        "displayName": "Ultra Space Wilds",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1149,
+          "name": "ultra-space-wilds-crag",
+          "displayName": "Ultra Space Wilds Crag",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1331,
+          "name": "friend-safari-psychic",
+          "displayName": "Friend Safari (Psychic)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-1"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-1"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 546,
+        "name": "reversal-mountain",
+        "displayName": "Reversal Mountain",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 677,
+          "name": "reversal-mountain-unknown-area-48",
+          "displayName": "Reversal Mountain (unknown area 48)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 678,
+          "name": "reversal-mountain-unknown-area-49",
+          "displayName": "Reversal Mountain (unknown area 49)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 679,
+          "name": "reversal-mountain-unknown-area-50",
+          "displayName": "Reversal Mountain (unknown area 50)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 680,
+          "name": "reversal-mountain-unknown-area-51",
+          "displayName": "Reversal Mountain (unknown area 51)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 681,
+          "name": "reversal-mountain-unknown-area-52",
+          "displayName": "Reversal Mountain (unknown area 52)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 682,
+          "name": "reversal-mountain-unknown-area-53",
+          "displayName": "Reversal Mountain (unknown area 53)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 683,
+          "name": "reversal-mountain-unknown-area-54",
+          "displayName": "Reversal Mountain (unknown area 54)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 684,
+          "name": "reversal-mountain-unknown-area-55",
+          "displayName": "Reversal Mountain (unknown area 55)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 685,
+          "name": "reversal-mountain-unknown-area-56",
+          "displayName": "Reversal Mountain (unknown area 56)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 686,
+          "name": "reversal-mountain-unknown-area-57",
+          "displayName": "Reversal Mountain (unknown area 57)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 687,
+          "name": "reversal-mountain-unknown-area-58",
+          "displayName": "Reversal Mountain (unknown area 58)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 688,
+          "name": "reversal-mountain-unknown-area-59",
+          "displayName": "Reversal Mountain (unknown area 59)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 689,
+          "name": "reversal-mountain-unknown-area-60",
+          "displayName": "Reversal Mountain (unknown area 60)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

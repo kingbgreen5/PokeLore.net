@@ -1,0 +1,155 @@
+{
+  "id": 693,
+  "name": "sea-mauville",
+  "displayName": "Sea Mauville",
+  "region": {
+    "name": "hoenn",
+    "displayName": "Hoenn"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 304,
+      "generation": "generation-vi"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1180,
+      "name": "sea-mauville-inside",
+      "displayName": "Sea Mauville (Inside)",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 249,
+            "name": "lugia",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/249.png",
+            "types": [
+              "psychic",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "item-tidal-bell"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 250,
+            "name": "ho-oh",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/250.png",
+            "types": [
+              "fire",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "omega-ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "item-clear-bell"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 442,
+            "name": "spiritomb",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/442.png",
+            "types": [
+              "ghost",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-defeated-groudon-or-kyogre"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-defeated-groudon-or-kyogre"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1179,
+      "name": "sea-mauville-outside",
+      "displayName": "Sea Mauville (Outside)",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": []
+    },
+    {
+      "id": 1178,
+      "name": "sea-mauville-area",
+      "displayName": "Sea Mauville Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": []
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "pokemon": {
+    "id": 424,
+    "name": "ambipom"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 785,
+        "name": "poni-plains",
+        "displayName": "Poni Plains",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1121,
+          "name": "poni-plains-west",
+          "displayName": "Poni Plains West",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 347,
+        "name": "accumula-town",
+        "displayName": "Accumula Town",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 1364,
+          "name": "accumula-town-area",
+          "displayName": "Accumula Town",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-excadrill"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-excadrill"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

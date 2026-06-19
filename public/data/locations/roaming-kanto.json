@@ -1,0 +1,153 @@
+{
+  "id": 799,
+  "name": "roaming-kanto",
+  "displayName": "Roaming Kanto",
+  "region": {
+    "name": "kanto",
+    "displayName": "Kanto"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 794,
+      "name": "roaming-kanto-area",
+      "displayName": "Roaming Kanto",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 243,
+            "name": "raikou",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/243.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 25,
+                  "conditions": [
+                    "story-progress-beat-elite-four-round-two",
+                    "starter-squirtle"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 25,
+                  "conditions": [
+                    "story-progress-beat-elite-four-round-two",
+                    "starter-squirtle"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 244,
+            "name": "entei",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/244.png",
+            "types": [
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 25,
+                  "conditions": [
+                    "story-progress-beat-elite-four-round-two",
+                    "starter-bulbasaur"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 25,
+                  "conditions": [
+                    "story-progress-beat-elite-four-round-two",
+                    "starter-bulbasaur"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 245,
+            "name": "suicune",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/245.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 25,
+                  "conditions": [
+                    "story-progress-beat-elite-four-round-two",
+                    "starter-charmander"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 25,
+                  "conditions": [
+                    "story-progress-beat-elite-four-round-two",
+                    "starter-charmander"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

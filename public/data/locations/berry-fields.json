@@ -1,0 +1,90 @@
+{
+  "id": 728,
+  "name": "berry-fields",
+  "displayName": "Berry Fields",
+  "region": {
+    "name": "alola",
+    "displayName": "Alola"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 44,
+      "generation": "generation-vii"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1072,
+      "name": "berry-fields-area",
+      "displayName": "Berry Fields Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 739,
+            "name": "crabrawler",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/739.png",
+            "types": [
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "berry-trees",
+                  "minLevel": 7,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "berry-trees",
+                  "minLevel": 7,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "berry-trees",
+                  "minLevel": 7,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "berry-trees",
+                  "minLevel": 7,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

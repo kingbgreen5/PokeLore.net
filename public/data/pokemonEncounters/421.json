@@ -1,0 +1,108 @@
+{
+  "pokemon": {
+    "id": 421,
+    "name": "cherrim"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 697,
+        "name": "mirage-spot-forest",
+        "displayName": "Mirage Forest",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 1224,
+          "name": "mirage-spot-forest-north-of-lilycove",
+          "displayName": "Mirage Forest (North of Lilycove)",
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 38,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 38,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 367,
+        "name": "unova-route-12",
+        "displayName": "Route 12",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 646,
+          "name": "unova-route-12-area",
+          "displayName": "Road 12",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 58,
+                  "maxLevel": 58,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 58,
+                  "maxLevel": 58,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

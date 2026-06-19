@@ -1,0 +1,110 @@
+{
+  "id": 347,
+  "name": "accumula-town",
+  "displayName": "Accumula Town",
+  "region": {
+    "name": "unova",
+    "displayName": "Unova"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 5,
+      "generation": "generation-v"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1364,
+      "name": "accumula-town-area",
+      "displayName": "Accumula Town",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 65,
+            "name": "alakazam",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/65.png",
+            "types": [
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-hippowdon"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-hippowdon"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 424,
+            "name": "ambipom",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/424.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-excadrill"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-excadrill"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

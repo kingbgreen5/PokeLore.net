@@ -1,0 +1,440 @@
+{
+  "pokemon": {
+    "id": 239,
+    "name": "elekid"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 771,
+        "name": "blush-mountain",
+        "displayName": "Blush Mountain",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1073,
+          "name": "blush-mountain-area",
+          "displayName": "Blush Mountain Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 770,
+        "name": "mount-hokulani",
+        "displayName": "Mount Hokulani",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1107,
+          "name": "mount-hokulani-west",
+          "displayName": "Mount Hokulani West",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 30,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 763,
+        "name": "alola-route-12",
+        "displayName": "Route 12",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1057,
+          "name": "alola-route-12-area",
+          "displayName": "Alola Route 12 Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 699,
+        "name": "mirage-spot-mountain",
+        "displayName": "Mirage Mountain",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 1318,
+          "name": "mirage-spot-mountain-south-of-route-129",
+          "displayName": "Mirage Mountain (South of Route 129)",
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 38,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 38,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 114,
+        "name": "johto-route-34",
+        "displayName": "Route 34",
+        "region": "johto"
+      },
+      "areas": [
+        {
+          "id": 205,
+          "name": "johto-route-34-area",
+          "displayName": "Road 34",
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift-egg",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1095,
+        "name": "outskirt-stand",
+        "displayName": "Outskirt Stand",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1297,
+          "name": "outskirt-stand-inside",
+          "displayName": "Outskirt Stand (Inside)",
+          "versions": [
+            {
+              "version": "xd",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-togepi-or-togetic"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 35,
+        "name": "sinnoh-route-205",
+        "displayName": "Route 205",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 146,
+          "name": "sinnoh-route-205-south-towards-floaroma-town",
+          "displayName": "Road 205 (south, towards Floaroma Town)",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 7,
+        "name": "valley-windworks",
+        "displayName": "Valley Windworks",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 8,
+          "name": "valley-windworks-area",
+          "displayName": "Valley Windworks",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 9,
+                  "maxLevel": 9,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 9,
+                  "maxLevel": 9,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 545,
+        "name": "virbank-complex",
+        "displayName": "Virbank Complex",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 676,
+          "name": "virbank-complex-inner",
+          "displayName": "Virbank Complex (inner)",
+          "versions": [
+            {
+              "version": "white-2",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 13,
+                  "maxLevel": 13,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 675,
+          "name": "virbank-complex-outer",
+          "displayName": "Virbank Complex (outer)",
+          "versions": [
+            {
+              "version": "white-2",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

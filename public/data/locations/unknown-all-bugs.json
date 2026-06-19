@@ -1,0 +1,184 @@
+{
+  "id": 150,
+  "name": "unknown-all-bugs",
+  "displayName": "Unknown; all bugs",
+  "region": {
+    "name": "johto",
+    "displayName": "Johto"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 208,
+      "name": "unknown-all-bugs-area",
+      "displayName": "Unknown Area; all bugs",
+      "gameIndex": 25,
+      "encounterMethodRates": [
+        {
+          "method": "walk",
+          "versionDetails": [
+            {
+              "version": "heartgold",
+              "rate": 25
+            },
+            {
+              "version": "soulsilver",
+              "rate": 25
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 10,
+            "name": "caterpie",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10.png",
+            "types": [
+              "bug"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 13,
+            "name": "weedle",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/13.png",
+            "types": [
+              "bug",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "soulsilver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

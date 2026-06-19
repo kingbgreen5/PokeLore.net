@@ -1,0 +1,116 @@
+{
+  "id": 742,
+  "name": "konikoni-city",
+  "displayName": "Konikoni City",
+  "region": {
+    "name": "alola",
+    "displayName": "Alola"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 72,
+      "generation": "generation-vii"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1091,
+      "name": "konikoni-city-area",
+      "displayName": "Konikoni City Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 61,
+            "name": "poliwhirl",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/61.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 132,
+            "name": "ditto",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 160,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 160,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

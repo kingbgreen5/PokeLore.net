@@ -1,0 +1,620 @@
+{
+  "id": 533,
+  "name": "humilau-city",
+  "displayName": "Humilau City",
+  "region": {
+    "name": "unova",
+    "displayName": "Unova"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 119,
+      "generation": "generation-v"
+    }
+  ],
+  "areas": [
+    {
+      "id": 659,
+      "name": "humilau-city-area",
+      "displayName": "Humilau City",
+      "gameIndex": 5,
+      "encounterMethodRates": [
+        {
+          "method": "super-rod",
+          "versionDetails": [
+            {
+              "version": "black-2",
+              "rate": 50
+            },
+            {
+              "version": "white-2",
+              "rate": 50
+            }
+          ]
+        },
+        {
+          "method": "surf",
+          "versionDetails": [
+            {
+              "version": "black-2",
+              "rate": 10
+            },
+            {
+              "version": "white-2",
+              "rate": 10
+            }
+          ]
+        }
+      ],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 90,
+            "name": "shellder",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/90.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 95,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 95,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 91,
+            "name": "cloyster",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/91.png",
+            "types": [
+              "water",
+              "ice"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 120,
+            "name": "staryu",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/120.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 30,
+                  "maxLevel": 45,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 30,
+                  "maxLevel": 45,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 121,
+            "name": "starmie",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/121.png",
+            "types": [
+              "water",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 222,
+            "name": "corsola",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/222.png",
+            "types": [
+              "water",
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 370,
+            "name": "luvdisc",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/370.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 70,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod-spots",
+                  "minLevel": 40,
+                  "maxLevel": 60,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 465,
+            "name": "tangrowth",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/465.png",
+            "types": [
+              "grass"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 45,
+                  "maxLevel": 45,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-mantine"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 45,
+                  "maxLevel": 45,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-mantine"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 550,
+            "name": "basculin-red-striped",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/550.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 592,
+            "name": "frillish-male",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/592.png",
+            "types": [
+              "water",
+              "ghost"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 65,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 30,
+                  "maxLevel": 45,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 65,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 30,
+                  "maxLevel": 45,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 593,
+            "name": "jellicent-male",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/593.png",
+            "types": [
+              "water",
+              "ghost"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 10016,
+            "name": "basculin-blue-striped",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10016.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 35,
+                  "maxLevel": 45,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

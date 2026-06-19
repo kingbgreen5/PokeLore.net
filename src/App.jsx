@@ -21,6 +21,8 @@ import TypeDetailPage from "./pages/TypeDetailPage";
 import TypesPage from "./pages/TypesPage";
 import ItemsPage from "./pages/ItemsPage";
 import ItemDetailPage from "./pages/ItemDetailPage";
+import LocationsPage from "./pages/LocationsPage";
+import LocationDetailPage from "./pages/LocationDetailPage";
 
 
 
@@ -77,6 +79,16 @@ function App() {
 <Route
   path="/item/:itemName"
   element={<ItemDetailPage />}
+/>
+
+<Route
+  path="/locations"
+  element={<LocationsPage />}
+/>
+
+<Route
+  path="/location/:locationName"
+  element={<LocationDetailPage />}
 />
 
 <Route

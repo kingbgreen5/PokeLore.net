@@ -1,0 +1,94 @@
+{
+  "pokemon": {
+    "id": 761,
+    "name": "bounsweet"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 750,
+        "name": "lush-jungle",
+        "displayName": "Lush Jungle",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1097,
+          "name": "lush-jungle-west",
+          "displayName": "Lush Jungle West",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 21,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 21,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 732,
+        "name": "alola-route-5",
+        "displayName": "Route 5",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1047,
+          "name": "alola-route-5-area",
+          "displayName": "Alola Route 5 Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,728 @@
+{
+  "pokemon": {
+    "id": 356,
+    "name": "dusclops"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 448,
+        "name": "sky-pillar",
+        "displayName": "Sky Pillar",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 390,
+          "name": "sky-pillar-1f",
+          "displayName": "Sky Pillar (1F)",
+          "versions": [
+            {
+              "version": "ruby",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 391,
+          "name": "sky-pillar-3f",
+          "displayName": "Sky Pillar (3F)",
+          "versions": [
+            {
+              "version": "ruby",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 51,
+                  "maxLevel": 51,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 53,
+                  "maxLevel": 53,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 392,
+          "name": "sky-pillar-5f",
+          "displayName": "Sky Pillar (5F)",
+          "versions": [
+            {
+              "version": "ruby",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 54,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 56,
+                  "maxLevel": 56,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1336,
+          "name": "friend-safari-ghost",
+          "displayName": "Friend Safari (Ghost)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 53,
+        "name": "sinnoh-route-224",
+        "displayName": "Route 224",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 172,
+          "name": "sinnoh-route-224-area",
+          "displayName": "Road 224",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 52,
+                  "maxLevel": 52,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 54,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 52,
+                  "maxLevel": 52,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 54,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 178,
+        "name": "sendoff-spring",
+        "displayName": "Sendoff Spring",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 60,
+          "name": "sendoff-spring-area",
+          "displayName": "Sendoff Spring",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 27,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 39,
+                  "maxLevel": 39,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 18,
+        "name": "turnback-cave",
+        "displayName": "Turnback Cave",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 82,
+          "name": "turnback-cave-after-pillar-3",
+          "displayName": "Turnback Cave (after pillar 3)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 27,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 46,
+                  "maxLevel": 46,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 47,
+                  "maxLevel": 47,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 47,
+                  "maxLevel": 47,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 47,
+                  "maxLevel": 47,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 47,
+                  "maxLevel": 47,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 64,
+          "name": "turnback-cave-before-pillar-1",
+          "displayName": "Turnback Cave (before pillar 1)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 23,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 70,
+          "name": "turnback-cave-between-pillars-1-and-2",
+          "displayName": "Turnback Cave (between pillars 1 and 2)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 23,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 76,
+          "name": "turnback-cave-between-pillars-2-and-3",
+          "displayName": "Turnback Cave (between pillars 2 and 3)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 27,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 61,
+          "name": "turnback-cave-pillar-1",
+          "displayName": "Turnback Cave (pillar 1)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 23,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 62,
+          "name": "turnback-cave-pillar-2",
+          "displayName": "Turnback Cave (pillar 2)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 27,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 63,
+          "name": "turnback-cave-pillar-3",
+          "displayName": "Turnback Cave (pillar 3)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 27,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-firered"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-leafgreen"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-none"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 37,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

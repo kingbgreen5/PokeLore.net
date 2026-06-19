@@ -1,0 +1,194 @@
+{
+  "pokemon": {
+    "id": 487,
+    "name": "giratina-altered"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 797,
+        "name": "ultra-space",
+        "displayName": "Ultra Space",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1198,
+          "name": "ultra-space-ultra-space-wilds-cave",
+          "displayName": "Ultra Space Wilds Cave World",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": [
+                    "other-dialga-palkia-in-party"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": [
+                    "other-dialga-palkia-in-party"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1051,
+        "name": "ultra-space-wilds",
+        "displayName": "Ultra Space Wilds",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1147,
+          "name": "ultra-space-wilds-cave",
+          "displayName": "Ultra Space Wilds Cave",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 707,
+        "name": "soaring-in-the-sky",
+        "displayName": "Soaring in the sky",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 1184,
+          "name": "soaring-in-the-sky-area",
+          "displayName": "Soaring in the Sky",
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "other-dialga-or-palkia-in-party",
+                    "weekday-sunday"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "other-dialga-or-palkia-in-party",
+                    "weekday-sunday"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 247,
+        "name": "sinjoh-ruins",
+        "displayName": "Sinjoh Ruins",
+        "region": "johto"
+      },
+      "areas": [
+        {
+          "id": 842,
+          "name": "sinjoh-ruins-area",
+          "displayName": "Sinjoy Ruins",
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": [
+                    "other-event-arceus-in-party"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 1,
+                  "maxLevel": 1,
+                  "chance": 100,
+                  "conditions": [
+                    "other-event-arceus-in-party"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

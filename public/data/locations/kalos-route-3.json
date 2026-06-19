@@ -1,0 +1,781 @@
+{
+  "id": 594,
+  "name": "kalos-route-3",
+  "displayName": "Route 3",
+  "region": {
+    "name": "kalos",
+    "displayName": "Kalos"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 16,
+      "generation": "generation-vi"
+    }
+  ],
+  "areas": [
+    {
+      "id": 714,
+      "name": "kalos-route-3-area",
+      "displayName": "Road 3",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 16,
+            "name": "pidgey",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/16.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 4,
+                  "maxLevel": 4,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 4,
+                  "maxLevel": 4,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 25,
+            "name": "pikachu",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 4,
+                  "maxLevel": 4,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 4,
+                  "maxLevel": 4,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 118,
+            "name": "goldeen",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/118.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 65,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 65,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 119,
+            "name": "seaking",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/119.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 129,
+            "name": "magikarp",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/129.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "old-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "old-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 130,
+            "name": "gyarados",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png",
+            "types": [
+              "water",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 183,
+            "name": "marill",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/183.png",
+            "types": [
+              "water",
+              "fairy"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 34,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 34,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 206,
+            "name": "dunsparce",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/206.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 284,
+            "name": "masquerain",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/284.png",
+            "types": [
+              "bug",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 66,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 66,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 298,
+            "name": "azurill",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/298.png",
+            "types": [
+              "normal",
+              "fairy"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 341,
+            "name": "corphish",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/341.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 342,
+            "name": "crawdaunt",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/342.png",
+            "types": [
+              "water",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 399,
+            "name": "bidoof",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/399.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 3,
+                  "maxLevel": 3,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 4,
+                  "maxLevel": 4,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 3,
+                  "maxLevel": 3,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 4,
+                  "maxLevel": 4,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 412,
+            "name": "burmy",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/412.png",
+            "types": [
+              "bug"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 659,
+            "name": "bunnelby",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/659.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 3,
+                  "maxLevel": 3,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 4,
+                  "maxLevel": 4,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 3,
+                  "maxLevel": 3,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 4,
+                  "maxLevel": 4,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 661,
+            "name": "fletchling",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/661.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 3,
+                  "maxLevel": 3,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 3,
+                  "maxLevel": 3,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

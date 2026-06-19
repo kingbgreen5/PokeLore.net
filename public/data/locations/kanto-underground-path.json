@@ -1,0 +1,90 @@
+{
+  "id": 1113,
+  "name": "kanto-underground-path",
+  "displayName": "Kanto Underground Path",
+  "region": {
+    "name": "kanto",
+    "displayName": "Kanto"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1302,
+      "name": "kanto-underground-path-area",
+      "displayName": "Kanto Underground Path",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 29,
+            "name": "nidoran-f",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/29.png",
+            "types": [
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "blue",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 2,
+                  "maxLevel": 100,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-nidoran-m"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 2,
+                  "maxLevel": 100,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-nidoran-m"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 67,
+            "name": "machoke",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/67.png",
+            "types": [
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "yellow",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 16,
+                  "maxLevel": 100,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-cubone"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

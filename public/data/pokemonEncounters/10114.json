@@ -1,0 +1,134 @@
+{
+  "pokemon": {
+    "id": 10114,
+    "name": "exeggutor-alola"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 794,
+        "name": "exeggutor-island",
+        "displayName": "Exeggutor Island",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1080,
+          "name": "exeggutor-island-area",
+          "displayName": "Exeggutor Island Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 120,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 43,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 120,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 43,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 45,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 45,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 233,
+        "name": "indigo-plateau",
+        "displayName": "Indigo Plateau",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 1202,
+          "name": "indigo-plateau-area",
+          "displayName": "Indigo Plateau Area",
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 46,
+                  "maxLevel": 46,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 46,
+                  "maxLevel": 46,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

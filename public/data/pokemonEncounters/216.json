@@ -1,0 +1,747 @@
+{
+  "pokemon": {
+    "id": 216,
+    "name": "teddiursa"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 483,
+        "name": "hoenn-safari-zone",
+        "displayName": "Safari Zone",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 436,
+          "name": "hoenn-safari-zone-expansion-north",
+          "displayName": "Safari Zone (expansion north)",
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 34,
+                  "maxLevel": 34,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 72,
+        "name": "dark-cave",
+        "displayName": "Dark Cave",
+        "region": "johto"
+      },
+      "areas": [
+        {
+          "id": 254,
+          "name": "dark-cave-blackthorn-city-entrance",
+          "displayName": "Dark Cave (Blackthorn City entrance)",
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 253,
+          "name": "dark-cave-violet-city-entrance",
+          "displayName": "Dark Cave (Violet City entrance)",
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 2,
+                  "maxLevel": 2,
+                  "chance": 5,
+                  "conditions": [
+                    "swarm-no",
+                    "time-morning"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 82,
+        "name": "mt-silver",
+        "displayName": "Mt. Silver",
+        "region": "johto"
+      },
+      "areas": [
+        {
+          "id": 264,
+          "name": "mt-silver-1f-top",
+          "displayName": "Mount Silver (1F top)",
+          "versions": [
+            {
+              "version": "soulsilver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 46,
+                  "maxLevel": 46,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 270,
+          "name": "mt-silver-1f",
+          "displayName": "Mount Silver (1F)",
+          "versions": [
+            {
+              "version": "soulsilver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 272,
+          "name": "mt-silver-3f",
+          "displayName": "Mount Silver (3F)",
+          "versions": [
+            {
+              "version": "soulsilver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 46,
+                  "maxLevel": 46,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 271,
+          "name": "mt-silver-mountainside",
+          "displayName": "Mount Silver (mountainside)",
+          "versions": [
+            {
+              "version": "soulsilver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": [
+                    "radio-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 126,
+        "name": "johto-route-45",
+        "displayName": "Route 45",
+        "region": "johto"
+      },
+      "areas": [
+        {
+          "id": 251,
+          "name": "johto-route-45-area",
+          "displayName": "Road 45",
+          "versions": [
+            {
+              "version": "gold",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1322,
+          "name": "friend-safari-normal",
+          "displayName": "Friend Safari (Normal)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-1"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-1"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 529,
+        "name": "kanto-altering-cave",
+        "displayName": "Altering Cave",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 568,
+          "name": "kanto-altering-cave-e",
+          "displayName": "Altering Cave (E)",
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1106,
+        "name": "pokemon-hq-lab",
+        "displayName": "Pokemon Hq Lab",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1264,
+          "name": "pokemon-hq-lab-outside",
+          "displayName": "Pokemon HQ Lab (Outside)",
+          "versions": [
+            {
+              "version": "xd",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 30,
+        "name": "acuity-lakefront",
+        "displayName": "Acuity Lakefront",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 140,
+          "name": "acuity-lakefront-area",
+          "displayName": "Acuity Lakefront",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 28,
+        "name": "lake-acuity",
+        "displayName": "Lake Acuity",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 138,
+          "name": "lake-acuity-area",
+          "displayName": "Lake Acuity",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 41,
+                  "maxLevel": 41,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 42,
+        "name": "sinnoh-route-211",
+        "displayName": "Route 211",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 160,
+          "name": "sinnoh-route-211-east-towards-celestic-town",
+          "displayName": "Road 211 (east, towards Celestic Town)",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 159,
+          "name": "sinnoh-route-211-west-towards-eterna-city",
+          "displayName": "Road 211 (west, towards Eterna City)",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 14,
+                  "maxLevel": 14,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 8,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 16,
+                  "chance": 4,
+                  "conditions": [
+                    "slot2-emerald"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

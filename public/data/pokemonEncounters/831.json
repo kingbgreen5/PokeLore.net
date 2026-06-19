@@ -1,0 +1,94 @@
+{
+  "pokemon": {
+    "id": 831,
+    "name": "wooloo"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 868,
+        "name": "galar-route-1",
+        "displayName": "Route 1",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 843,
+          "name": "galar-route-1-area",
+          "displayName": "Route 1",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 3,
+                  "maxLevel": 6,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 3,
+                  "maxLevel": 6,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 871,
+        "name": "galar-route-4",
+        "displayName": "Route 4",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 847,
+          "name": "galar-route-4-area",
+          "displayName": "Route 4",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 15,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 15,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

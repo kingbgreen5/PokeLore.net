@@ -1,0 +1,133 @@
+{
+  "id": 248,
+  "name": "embedded-tower",
+  "displayName": "Embedded Tower",
+  "region": {
+    "name": "johto",
+    "displayName": "Johto"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 232,
+      "generation": "generation-iv"
+    }
+  ],
+  "areas": [
+    {
+      "id": 827,
+      "name": "embedded-tower-groundon-room",
+      "displayName": "Embedded Tower (Groudon’s room)",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 383,
+            "name": "groudon",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/383.png",
+            "types": [
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "soulsilver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 826,
+      "name": "embedded-tower-kyogre-room",
+      "displayName": "Embedded Tower (Kyogre’s room)",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 382,
+            "name": "kyogre",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/382.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 828,
+      "name": "embedded-tower-rayquaza-room",
+      "displayName": "Embedded Tower (Rayquaza’s room)",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 384,
+            "name": "rayquaza",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/384.png",
+            "types": [
+              "dragon",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

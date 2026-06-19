@@ -1,0 +1,141 @@
+{
+  "pokemon": {
+    "id": 824,
+    "name": "blipbug"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 868,
+        "name": "galar-route-1",
+        "displayName": "Route 1",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 843,
+          "name": "galar-route-1-area",
+          "displayName": "Route 1",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 2,
+                  "maxLevel": 5,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 2,
+                  "maxLevel": 5,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 869,
+        "name": "galar-route-2",
+        "displayName": "Route 2",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 844,
+          "name": "galar-route-2-main",
+          "displayName": "Route 2",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 4,
+                  "maxLevel": 6,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 4,
+                  "maxLevel": 6,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1366,
+          "name": "galar-route-2-lakeside",
+          "displayName": "Route 2 (Lakeside)",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 40,
+                  "maxLevel": 43,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 40,
+                  "maxLevel": 43,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 37,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

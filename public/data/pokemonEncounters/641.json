@@ -1,0 +1,130 @@
+{
+  "pokemon": {
+    "id": 641,
+    "name": "tornadus-incarnate"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 797,
+        "name": "ultra-space",
+        "displayName": "Ultra Space",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1195,
+          "name": "ultra-space-ultra-space-wilds-cliff",
+          "displayName": "Ultra Space Wilds Cliff World",
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1051,
+        "name": "ultra-space-wilds",
+        "displayName": "Ultra Space Wilds",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1148,
+          "name": "ultra-space-wilds-cliff",
+          "displayName": "Ultra Space Wilds Cliff",
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 707,
+        "name": "soaring-in-the-sky",
+        "displayName": "Soaring in the sky",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 1184,
+          "name": "soaring-in-the-sky-area",
+          "displayName": "Soaring in the Sky",
+          "versions": [
+            {
+              "version": "omega-ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "other-castform-in-party"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 675,
+        "name": "team-flare-secret-hq",
+        "displayName": "Team Flare Secret HQ",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1176,
+          "name": "team-flare-secret-hq-area",
+          "displayName": "Team Flare Secret Hq Area",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

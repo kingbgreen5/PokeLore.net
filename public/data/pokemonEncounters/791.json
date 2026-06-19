@@ -1,0 +1,75 @@
+{
+  "pokemon": {
+    "id": 791,
+    "name": "solgaleo"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 790,
+        "name": "altar-of-the-sunne",
+        "displayName": "Altar of the Sunne",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1070,
+          "name": "altar-of-the-sunne-area",
+          "displayName": "Altar Of The Sunne Area",
+          "versions": [
+            {
+              "version": "sun",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 55,
+                  "maxLevel": 55,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 720,
+        "name": "mahalo-trail",
+        "displayName": "Mahalo Trail",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1098,
+          "name": "mahalo-trail-area",
+          "displayName": "Mahalo Trail Area",
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 115,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

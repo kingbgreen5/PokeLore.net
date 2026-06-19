@@ -1,0 +1,69 @@
+{
+  "id": 704,
+  "name": "gnarled-den",
+  "displayName": "Gnarled Den",
+  "region": {
+    "name": "hoenn",
+    "displayName": "Hoenn"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 342,
+      "generation": "generation-vi"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1192,
+      "name": "gnarled-den-area",
+      "displayName": "Gnarled Den",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 646,
+            "name": "kyurem",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/646.png",
+            "types": [
+              "dragon",
+              "ice"
+            ]
+          },
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "other-reshiram-zekrom-in-party"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "other-reshiram-zekrom-in-party"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

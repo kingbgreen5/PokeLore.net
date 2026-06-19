@@ -1,0 +1,162 @@
+{
+  "pokemon": {
+    "id": 479,
+    "name": "rotom"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 787,
+        "name": "poni-gauntlet",
+        "displayName": "Poni Gauntlet",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1115,
+          "name": "poni-gauntlet-area",
+          "displayName": "Poni Gauntlet Area",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 61,
+                  "maxLevel": 61,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 61,
+                  "maxLevel": 61,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 25,
+        "name": "old-chateau",
+        "displayName": "Old Chateau",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 131,
+          "name": "old-chateau-2f-left-room",
+          "displayName": "Old Chateau (2F left room)",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-national-dex",
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-national-dex",
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 370,
+        "name": "unova-route-15",
+        "displayName": "Route 15",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 650,
+          "name": "unova-route-15-area",
+          "displayName": "Road 15",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-ditto"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-ditto"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

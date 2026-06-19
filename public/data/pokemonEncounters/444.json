@@ -1,0 +1,324 @@
+{
+  "pokemon": {
+    "id": 444,
+    "name": "gabite"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 764,
+        "name": "haina-desert",
+        "displayName": "Haina Desert",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1081,
+          "name": "haina-desert-area",
+          "displayName": "Haina Desert Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1335,
+          "name": "friend-safari-dragon",
+          "displayName": "Friend Safari (Dragon)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-1"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-1"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 13,
+        "name": "sinnoh-victory-road",
+        "displayName": "Victory Road",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 48,
+          "name": "sinnoh-victory-road-1f",
+          "displayName": "Victory Road (1F)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 41,
+                  "maxLevel": 41,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 41,
+                  "maxLevel": 41,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "name": "sinnoh-victory-road-2f",
+          "displayName": "Victory Road (2F)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "name": "sinnoh-victory-road-b1f",
+          "displayName": "Victory Road (B1F)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 51,
+          "name": "sinnoh-victory-road-inside-b1f",
+          "displayName": "Victory Road (inside B1F)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "name": "sinnoh-victory-road-inside-exit",
+          "displayName": "Victory Road (inside exit)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "name": "sinnoh-victory-road-inside",
+          "displayName": "Victory Road (inside)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,315 @@
+{
+  "id": 753,
+  "name": "digletts-tunnel",
+  "displayName": "Diglett’s Tunnel",
+  "region": {
+    "name": "alola",
+    "displayName": "Alola"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 100,
+      "generation": "generation-vii"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1078,
+      "name": "digletts-tunnel-area",
+      "displayName": "Digletts Tunnel Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 41,
+            "name": "zubat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png",
+            "types": [
+              "poison",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 22,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 22,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 23,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 23,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 42,
+            "name": "golbat",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/42.png",
+            "types": [
+              "poison",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 20,
+                  "maxLevel": 23,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 20,
+                  "maxLevel": 23,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 246,
+            "name": "larvitar",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/246.png",
+            "types": [
+              "rock",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 793,
+            "name": "nihilego",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/793.png",
+            "types": [
+              "rock",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 55,
+                  "maxLevel": 55,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 55,
+                  "maxLevel": 55,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 55,
+                  "maxLevel": 55,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 55,
+                  "maxLevel": 55,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 10105,
+            "name": "diglett-alola",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10105.png",
+            "types": [
+              "ground",
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 130,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 19,
+                  "maxLevel": 22,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 22,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 130,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 19,
+                  "maxLevel": 22,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 22,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 130,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 20,
+                  "maxLevel": 23,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 130,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 20,
+                  "maxLevel": 23,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 23,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

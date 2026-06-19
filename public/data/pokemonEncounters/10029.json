@@ -1,0 +1,94 @@
+{
+  "pokemon": {
+    "id": 10029,
+    "name": "pumpkaboo-super"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 871,
+        "name": "galar-route-4",
+        "displayName": "Route 4",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 847,
+          "name": "galar-route-4-area",
+          "displayName": "Route 4",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 14,
+                  "maxLevel": 16,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 14,
+                  "maxLevel": 16,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 638,
+        "name": "kalos-route-16",
+        "displayName": "Route 16",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 727,
+          "name": "kalos-route-16-area",
+          "displayName": "Road 16",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "rough-terrain",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "rough-terrain",
+                  "minLevel": 36,
+                  "maxLevel": 36,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

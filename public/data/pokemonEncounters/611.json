@@ -1,0 +1,211 @@
+{
+  "pokemon": {
+    "id": 611,
+    "name": "fraxure"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1335,
+          "name": "friend-safari-dragon",
+          "displayName": "Friend Safari (Dragon)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-1"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-1"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 560,
+        "name": "nature-sanctuary",
+        "displayName": "Nature Sanctuary",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 702,
+          "name": "nature-sanctuary-area",
+          "displayName": "Nature Sanctuary",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 67,
+                  "maxLevel": 67,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 67,
+                  "maxLevel": 67,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 67,
+                  "maxLevel": 67,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 67,
+                  "maxLevel": 67,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 382,
+        "name": "unova-victory-road",
+        "displayName": "Victory Road",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 598,
+          "name": "unova-victory-road-outside",
+          "displayName": "Victory Road (outside)",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

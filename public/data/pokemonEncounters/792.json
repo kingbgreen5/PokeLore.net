@@ -1,0 +1,75 @@
+{
+  "pokemon": {
+    "id": 792,
+    "name": "lunala"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 791,
+        "name": "altar-of-the-moone",
+        "displayName": "Altar of the Moone",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1069,
+          "name": "altar-of-the-moone-area",
+          "displayName": "Altar Of The Moone Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 55,
+                  "maxLevel": 55,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 720,
+        "name": "mahalo-trail",
+        "displayName": "Mahalo Trail",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1098,
+          "name": "mahalo-trail-area",
+          "displayName": "Mahalo Trail Area",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 115,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

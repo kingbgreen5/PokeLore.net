@@ -1,0 +1,893 @@
+{
+  "id": 652,
+  "name": "pokemon-village",
+  "displayName": "Pokémon Village",
+  "region": {
+    "name": "kalos",
+    "displayName": "Kalos"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 98,
+      "generation": "generation-vi"
+    }
+  ],
+  "areas": [
+    {
+      "id": 747,
+      "name": "pokemon-village-area",
+      "displayName": "Pokemon Village",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 39,
+            "name": "jigglypuff",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png",
+            "types": [
+              "normal",
+              "fairy"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 60,
+            "name": "poliwag",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/60.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 135,
+              "encounters": [
+                {
+                  "method": "horde",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 135,
+              "encounters": [
+                {
+                  "method": "horde",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "old-rod",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 61,
+            "name": "poliwhirl",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/61.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 134,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 134,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 132,
+            "name": "ditto",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 164,
+            "name": "noctowl",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/164.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 271,
+            "name": "lombre",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/271.png",
+            "types": [
+              "water",
+              "grass"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 71,
+              "encounters": [
+                {
+                  "method": "horde",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 71,
+              "encounters": [
+                {
+                  "method": "horde",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 50,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 550,
+            "name": "basculin-red-striped",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/550.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 65,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 571,
+            "name": "zoroark",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/571.png",
+            "types": [
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 575,
+            "name": "gothorita",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/575.png",
+            "types": [
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 590,
+            "name": "foongus",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/590.png",
+            "types": [
+              "grass",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "horde",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "horde",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 591,
+            "name": "amoonguss",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/591.png",
+            "types": [
+              "grass",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 49,
+                  "maxLevel": 49,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "yellow-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 10016,
+            "name": "basculin-blue-striped",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10016.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 65,
+              "encounters": [
+                {
+                  "method": "good-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 60,
+                  "conditions": []
+                },
+                {
+                  "method": "good-rod",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "super-rod",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 35,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

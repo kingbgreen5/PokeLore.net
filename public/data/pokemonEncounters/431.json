@@ -1,0 +1,131 @@
+{
+  "pokemon": {
+    "id": 431,
+    "name": "glameow"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 697,
+        "name": "mirage-spot-forest",
+        "displayName": "Mirage Forest",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 1226,
+          "name": "mirage-spot-forest-east-of-mossdeep",
+          "displayName": "Mirage Forest (East of Mossdeep)",
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 38,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 36,
+                  "maxLevel": 38,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 49,
+        "name": "sinnoh-route-218",
+        "displayName": "Route 218",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 168,
+          "name": "sinnoh-route-218-area",
+          "displayName": "Road 218",
+          "versions": [
+            {
+              "version": "pearl",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-off"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 52,
+        "name": "sinnoh-route-222",
+        "displayName": "Route 222",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 171,
+          "name": "sinnoh-route-222-area",
+          "displayName": "Road 222",
+          "versions": [
+            {
+              "version": "pearl",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-no"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

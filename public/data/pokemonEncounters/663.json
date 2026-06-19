@@ -1,0 +1,51 @@
+{
+  "pokemon": {
+    "id": 663,
+    "name": "talonflame"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 787,
+        "name": "poni-gauntlet",
+        "displayName": "Poni Gauntlet",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1115,
+          "name": "poni-gauntlet-area",
+          "displayName": "Poni Gauntlet Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

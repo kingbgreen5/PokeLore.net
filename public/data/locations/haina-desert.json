@@ -1,0 +1,629 @@
+{
+  "id": 764,
+  "name": "haina-desert",
+  "displayName": "Haina Desert",
+  "region": {
+    "name": "alola",
+    "displayName": "Alola"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 124,
+      "generation": "generation-vii"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1081,
+      "name": "haina-desert-area",
+      "displayName": "Haina Desert Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 328,
+            "name": "trapinch",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/328.png",
+            "types": [
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 343,
+            "name": "baltoy",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/343.png",
+            "types": [
+              "ground",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 75,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 351,
+            "name": "castform",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/351.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 24,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 11,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 11,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 24,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 11,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 11,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 444,
+            "name": "gabite",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/444.png",
+            "types": [
+              "dragon",
+              "ground"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 551,
+            "name": "sandile",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/551.png",
+            "types": [
+              "ground",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 140,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 70,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 140,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 70,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 552,
+            "name": "krokorok",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/552.png",
+            "types": [
+              "ground",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 140,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 70,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 140,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 70,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 70,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 622,
+            "name": "golett",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/622.png",
+            "types": [
+              "ground",
+              "ghost"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 75,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 797,
+            "name": "celesteela",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/797.png",
+            "types": [
+              "steel",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 10106,
+            "name": "dugtrio-alola",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10106.png",
+            "types": [
+              "ground",
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 50,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 35,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -20,6 +20,10 @@ const navItems = [
     label: "Items"
   },
   {
+    to: "/locations",
+    label: "Locations"
+  },
+  {
     to: "/types",
     label: "Types"
   },

@@ -1,0 +1,51 @@
+{
+  "pokemon": {
+    "id": 10180,
+    "name": "stunfisk-galar"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 899,
+        "name": "galar-mine-no-2",
+        "displayName": "Galar Mine No. 2",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 883,
+          "name": "galar-mine-no-2-area",
+          "displayName": "Galar Mine No. 2",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-special",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld-special",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

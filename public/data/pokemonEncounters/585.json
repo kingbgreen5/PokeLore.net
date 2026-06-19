@@ -1,0 +1,481 @@
+{
+  "pokemon": {
+    "id": 585,
+    "name": "deerling"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 381,
+        "name": "dragonspiral-tower",
+        "displayName": "Dragonspiral Tower",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 594,
+          "name": "dragonspiral-tower-entrance",
+          "displayName": "Dragonspiral Tower (entrance)",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 90,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": [
+                    "season-winter"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 20,
+                  "conditions": [
+                    "season-autumn"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 20,
+                  "conditions": [
+                    "season-spring"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 20,
+                  "conditions": [
+                    "season-summer"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 90,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": [
+                    "season-winter"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 20,
+                  "conditions": [
+                    "season-autumn"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 20,
+                  "conditions": [
+                    "season-spring"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 31,
+                  "maxLevel": 31,
+                  "chance": 20,
+                  "conditions": [
+                    "season-summer"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 595,
+          "name": "dragonspiral-tower-outside",
+          "displayName": "Dragonspiral Tower (outside)",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 32,
+                  "maxLevel": 32,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 361,
+        "name": "unova-route-6",
+        "displayName": "Route 6",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 629,
+          "name": "unova-route-6-area",
+          "displayName": "Road 6",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 70,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 776,
+          "name": "unova-route-6-weather-institute",
+          "displayName": "Weather Institute (Road 6)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 362,
+        "name": "unova-route-7",
+        "displayName": "Route 7",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 632,
+          "name": "unova-route-7-area",
+          "displayName": "Road 7",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 26,
+                  "maxLevel": 26,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 33,
+                  "maxLevel": 33,
+                  "chance": 20,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

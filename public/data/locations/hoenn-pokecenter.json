@@ -1,0 +1,177 @@
+{
+  "id": 1089,
+  "name": "hoenn-pokecenter",
+  "displayName": "Hoenn Pokecenter",
+  "region": {
+    "name": "hoenn",
+    "displayName": "Hoenn"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1210,
+      "name": "hoenn-pokecenter-area",
+      "displayName": "Hoenn Pokecenter Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 25,
+            "name": "pikachu",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "colosseum-bonus-disc-jpn",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "colosseum-bonus-disc-jpn",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "colosseum-bonus-disc-jpn",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 251,
+            "name": "celebi",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/251.png",
+            "types": [
+              "psychic",
+              "grass"
+            ]
+          },
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "colosseum-bonus-disc-jpn",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "colosseum-bonus-disc-jpn",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "colosseum-bonus-disc-jpn",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 385,
+            "name": "jirachi",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/385.png",
+            "types": [
+              "steel",
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ruby",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "colosseum-bonus-disc-us",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "pokemon-channel-pal",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sapphire",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "colosseum-bonus-disc-us",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "pokemon-channel-pal",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "pokemon": {
+    "id": 248,
+    "name": "tyranitar"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 1102,
+        "name": "realgam-tower",
+        "displayName": "Realgam Tower",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1259,
+          "name": "realgam-tower-colosseum",
+          "displayName": "Realgam Tower Colosseum",
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 55,
+                  "maxLevel": 55,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 370,
+        "name": "unova-route-15",
+        "displayName": "Route 15",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 650,
+          "name": "unova-route-15-area",
+          "displayName": "Road 15",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,801 @@
+{
+  "pokemon": {
+    "id": 123,
+    "name": "scyther"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 1052,
+        "name": "poke-pelago",
+        "displayName": "Poké Pelago",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1160,
+          "name": "poke-pelago-elite-four-defeated",
+          "displayName": "Poke Pelago Elite Four Defeated",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 7,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 49,
+                  "maxLevel": 55,
+                  "chance": 7,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 7,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 49,
+                  "maxLevel": 55,
+                  "chance": 7,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 785,
+        "name": "poni-plains",
+        "displayName": "Poni Plains",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1118,
+          "name": "poni-plains-center",
+          "displayName": "Poni Plains Center",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 83,
+        "name": "national-park",
+        "displayName": "National Park",
+        "region": "johto"
+      },
+      "areas": [
+        {
+          "id": 207,
+          "name": "national-park-area",
+          "displayName": "National Park",
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 14,
+                  "chance": 5,
+                  "conditions": [
+                    "bug-catching-contest-yes",
+                    "story-progress-before-national-dex"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": [
+                    "bug-catching-contest-yes",
+                    "story-progress-national-dex",
+                    "weekday-saturday"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": [
+                    "bug-catching-contest-yes",
+                    "story-progress-national-dex",
+                    "weekday-thursday"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": [
+                    "bug-catching-contest-yes",
+                    "story-progress-national-dex",
+                    "weekday-tuesday"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 13,
+                  "maxLevel": 14,
+                  "chance": 5,
+                  "conditions": [
+                    "bug-catching-contest-yes",
+                    "story-progress-before-national-dex"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": [
+                    "bug-catching-contest-yes",
+                    "story-progress-national-dex",
+                    "weekday-saturday"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": [
+                    "bug-catching-contest-yes",
+                    "story-progress-national-dex",
+                    "weekday-thursday"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 28,
+                  "chance": 5,
+                  "conditions": [
+                    "bug-catching-contest-yes",
+                    "story-progress-national-dex",
+                    "weekday-tuesday"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 653,
+        "name": "kalos-route-21",
+        "displayName": "Route 21",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 732,
+          "name": "kalos-route-21-area",
+          "displayName": "Road 21",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "horde",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 51,
+                  "maxLevel": 51,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 52,
+                  "maxLevel": 52,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "red-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "red-flowers",
+                  "minLevel": 51,
+                  "maxLevel": 51,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "red-flowers",
+                  "minLevel": 52,
+                  "maxLevel": 52,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "horde",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 51,
+                  "maxLevel": 51,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "purple-flowers",
+                  "minLevel": 52,
+                  "maxLevel": 52,
+                  "chance": 1,
+                  "conditions": []
+                },
+                {
+                  "method": "red-flowers",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "red-flowers",
+                  "minLevel": 51,
+                  "maxLevel": 51,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "red-flowers",
+                  "minLevel": 52,
+                  "maxLevel": 52,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 67,
+        "name": "celadon-city",
+        "displayName": "Celadon City",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 1300,
+          "name": "celadon-city-prize-corner",
+          "displayName": "Celadon City Prize Corner",
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 100,
+                  "conditions": [
+                    "coins-5500"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 100,
+                  "conditions": [
+                    "coins-5500"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 100,
+                  "conditions": [
+                    "coins-5500"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": [
+                    "coins-6500"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 93,
+        "name": "kanto-route-14",
+        "displayName": "Route 14",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 307,
+          "name": "kanto-route-14-area",
+          "displayName": "Road 14",
+          "versions": [
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 94,
+        "name": "kanto-route-15",
+        "displayName": "Route 15",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 308,
+          "name": "kanto-route-15-area",
+          "displayName": "Road 15",
+          "versions": [
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 33,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 162,
+        "name": "kanto-safari-zone",
+        "displayName": "Safari Zone",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 346,
+          "name": "kanto-safari-zone-area-1-east",
+          "displayName": "Safari Zone (Area 1, east)",
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "yellow",
+              "maxChance": 1,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 15,
+                  "maxLevel": 15,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 347,
+          "name": "kanto-safari-zone-area-2-north",
+          "displayName": "Safari Zone (Area 2, north)",
+          "versions": [
+            {
+              "version": "yellow",
+              "maxChance": 4,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 25,
+                  "maxLevel": 25,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 345,
+          "name": "kanto-safari-zone-middle",
+          "displayName": "Safari Zone (middle)",
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 4,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red",
+              "maxChance": 4,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "red-japan",
+              "maxChance": 4,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 4,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1112,
+        "name": "citadark-isle",
+        "displayName": "Citadark Isle",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1288,
+          "name": "citadark-isle-6f",
+          "displayName": "Citadark Isle 6F",
+          "versions": [
+            {
+              "version": "xd",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 41,
+        "name": "sinnoh-route-210",
+        "displayName": "Route 210",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 157,
+          "name": "sinnoh-route-210-south-towards-solaceon-town",
+          "displayName": "Road 210 (south, towards Solaceon Town)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 19,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 21,
+                  "maxLevel": 21,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 158,
+          "name": "sinnoh-route-210-west-towards-celestic-town",
+          "displayName": "Road 210 (west, towards Celestic Town)",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 46,
+        "name": "sinnoh-route-215",
+        "displayName": "Route 215",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 165,
+          "name": "sinnoh-route-215-area",
+          "displayName": "Road 215",
+          "versions": [
+            {
+              "version": "platinum",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 10,
+                  "conditions": [
+                    "time-morning"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 57,
+        "name": "sinnoh-route-229",
+        "displayName": "Route 229",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 176,
+          "name": "sinnoh-route-229-area",
+          "displayName": "Road 229",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 52,
+                  "maxLevel": 52,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

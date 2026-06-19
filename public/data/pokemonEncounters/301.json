@@ -1,0 +1,75 @@
+{
+  "pokemon": {
+    "id": 301,
+    "name": "delcatty"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 1108,
+        "name": "cipher-lab",
+        "displayName": "Cipher Lab",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1269,
+          "name": "cipher-lab-bf1",
+          "displayName": "Cipher Lab B1F",
+          "versions": [
+            {
+              "version": "xd",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 350,
+        "name": "castelia-city",
+        "displayName": "Castelia City",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 656,
+          "name": "castelia-city-area",
+          "displayName": "Castelia City",
+          "versions": [
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 18,
+                  "maxLevel": 18,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

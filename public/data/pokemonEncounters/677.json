@@ -1,0 +1,155 @@
+{
+  "pokemon": {
+    "id": 677,
+    "name": "espurr"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 872,
+        "name": "galar-route-5",
+        "displayName": "Route 5",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 848,
+          "name": "galar-route-5-area",
+          "displayName": "Route 5",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 16,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1331,
+          "name": "friend-safari-psychic",
+          "displayName": "Friend Safari (Psychic)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 606,
+        "name": "kalos-route-6",
+        "displayName": "Route 6",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 717,
+          "name": "kalos-route-6-area",
+          "displayName": "Road 6",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "rough-terrain",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "rough-terrain",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "rough-terrain",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "rough-terrain",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

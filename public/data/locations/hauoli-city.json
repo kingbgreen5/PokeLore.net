@@ -1,0 +1,1722 @@
+{
+  "id": 1042,
+  "name": "hauoli-city",
+  "displayName": "Hau'oli City",
+  "region": {
+    "name": "alola",
+    "displayName": "Alola"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1086,
+      "name": "hauoli-city-beachfront",
+      "displayName": "Hauoli City Beachfront",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 72,
+            "name": "tentacool",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/72.png",
+            "types": [
+              "water",
+              "poison"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 18,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 18,
+                  "chance": 40,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 129,
+            "name": "magikarp",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/129.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 130,
+            "name": "gyarados",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png",
+            "types": [
+              "water",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 222,
+            "name": "corsola",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/222.png",
+            "types": [
+              "water",
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 35,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 223,
+            "name": "remoraid",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/223.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 15,
+                  "maxLevel": 18,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 45,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 15,
+                  "maxLevel": 18,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 224,
+            "name": "octillery",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/224.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 278,
+            "name": "wingull",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/278.png",
+            "types": [
+              "water",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 366,
+            "name": "clamperl",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/366.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 367,
+            "name": "huntail",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/367.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 368,
+            "name": "gorebyss",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/368.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 370,
+            "name": "luvdisc",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/370.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 456,
+            "name": "finneon",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/456.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 458,
+            "name": "mantyke",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/458.png",
+            "types": [
+              "water",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 15,
+                  "maxLevel": 18,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 746,
+            "name": "wishiwashi-solo",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/746.png",
+            "types": [
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "super-rod",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 747,
+            "name": "mareanie",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/747.png",
+            "types": [
+              "poison",
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 10,
+                  "maxLevel": 17,
+                  "chance": 15,
+                  "conditions": []
+                },
+                {
+                  "method": "sos-from-bubbling-spot",
+                  "minLevel": 10,
+                  "maxLevel": 22,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1084,
+      "name": "hauoli-city-main",
+      "displayName": "Hauoli City Main",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 97,
+            "name": "hypno",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/97.png",
+            "types": [
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 15,
+                  "conditions": [
+                    "story-progress-beat-olivias-trial"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 15,
+                  "conditions": [
+                    "story-progress-beat-olivias-trial"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 599,
+            "name": "klink",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/599.png",
+            "types": [
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 8,
+                  "maxLevel": 8,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 8,
+                  "maxLevel": 8,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 664,
+            "name": "scatterbug",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/664.png",
+            "types": [
+              "bug"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 9,
+                  "maxLevel": 9,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 9,
+                  "maxLevel": 9,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 760,
+            "name": "bewear",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/760.png",
+            "types": [
+              "normal",
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 15,
+                  "conditions": [
+                    "story-progress-beat-olivias-trial"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 15,
+                  "conditions": [
+                    "story-progress-beat-olivias-trial"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 801,
+            "name": "magearna",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/801.png",
+            "types": [
+              "steel",
+              "fairy"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 15,
+                  "conditions": [
+                    "story-progress-hall-of-fame",
+                    "other-scan-qr-code"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 15,
+                  "conditions": [
+                    "story-progress-hall-of-fame",
+                    "other-scan-qr-code"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1085,
+      "name": "hauoli-city-shopping-district",
+      "displayName": "Hauoli City Shopping District",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 25,
+            "name": "pikachu",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 63,
+            "name": "abra",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/63.png",
+            "types": [
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 81,
+            "name": "magnemite",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/81.png",
+            "types": [
+              "electric",
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 97,
+            "name": "hypno",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/97.png",
+            "types": [
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 29,
+                  "maxLevel": 29,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 122,
+            "name": "mr-mime",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/122.png",
+            "types": [
+              "psychic",
+              "fairy"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 172,
+            "name": "pichu",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/172.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 278,
+            "name": "wingull",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/278.png",
+            "types": [
+              "water",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 439,
+            "name": "mime-jr",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/439.png",
+            "types": [
+              "psychic",
+              "fairy"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 440,
+            "name": "happiny",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/440.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 676,
+            "name": "furfrou",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/676.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 25,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 734,
+            "name": "yungoos",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/734.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 760,
+            "name": "bewear",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/760.png",
+            "types": [
+              "normal",
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 28,
+                  "maxLevel": 28,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 10091,
+            "name": "rattata-alola",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10091.png",
+            "types": [
+              "dark",
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 10107,
+            "name": "meowth-alola",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10107.png",
+            "types": [
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 10112,
+            "name": "grimer-alola",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10112.png",
+            "types": [
+              "poison",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 8,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 9,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

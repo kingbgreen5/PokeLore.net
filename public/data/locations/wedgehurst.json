@@ -1,0 +1,59 @@
+{
+  "id": 948,
+  "name": "wedgehurst",
+  "displayName": "Wedgehurst",
+  "region": {
+    "name": "galar",
+    "displayName": "Galar"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 942,
+      "name": "wedgehurst-area",
+      "displayName": "Wegehurst",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 10164,
+            "name": "slowpoke-galar",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10164.png",
+            "types": [
+              "psychic"
+            ]
+          },
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

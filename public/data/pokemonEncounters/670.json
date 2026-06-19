@@ -1,0 +1,141 @@
+{
+  "pokemon": {
+    "id": 670,
+    "name": "floette"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 780,
+        "name": "poni-meadow",
+        "displayName": "Poni Meadow",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1117,
+          "name": "poni-meadow-area",
+          "displayName": "Poni Meadow Area",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 766,
+        "name": "ulaula-meadow",
+        "displayName": "Ula’ula Meadow",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1139,
+          "name": "ulaula-meadow-area",
+          "displayName": "Ulaula Meadow Area",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 36,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 33,
+                  "maxLevel": 36,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1339,
+          "name": "friend-safari-fairy",
+          "displayName": "Friend Safari (Fairy)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-3"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "pokemon": {
+    "id": 364,
+    "name": "sealeo"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 814,
+        "name": "johto-safari-zone",
+        "displayName": "Johto Safari Zone",
+        "region": "johto"
+      },
+      "areas": [
+        {
+          "id": 820,
+          "name": "johto-safari-zone-zone-mountain",
+          "displayName": "Safari Zone Mountain",
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 17,
+                  "maxLevel": 17,
+                  "chance": 10,
+                  "conditions": [
+                    "time-night"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 63,
+        "name": "sinnoh-sea-route-226",
+        "displayName": "Sea Route 226",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 182,
+          "name": "sinnoh-sea-route-226-area",
+          "displayName": "Road 226",
+          "versions": [
+            {
+              "version": "pearl",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 40,
+                  "maxLevel": 55,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 40,
+                  "maxLevel": 55,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 64,
+        "name": "sinnoh-sea-route-230",
+        "displayName": "Sea Route 230",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 183,
+          "name": "sinnoh-sea-route-230-area",
+          "displayName": "Road 230",
+          "versions": [
+            {
+              "version": "pearl",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 40,
+                  "maxLevel": 55,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "surf",
+                  "minLevel": 40,
+                  "maxLevel": 55,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 60,
+              "encounters": [
+                {
+                  "method": "surf",
+                  "minLevel": 35,
+                  "maxLevel": 55,
+                  "chance": 60,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 413,
+        "name": "undella-bay",
+        "displayName": "Undella Bay",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 619,
+          "name": "undella-bay-area",
+          "displayName": "Undella Bay",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 25,
+                  "maxLevel": 60,
+                  "chance": 30,
+                  "conditions": [
+                    "season-winter"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 25,
+                  "maxLevel": 40,
+                  "chance": 30,
+                  "conditions": [
+                    "season-winter"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 25,
+                  "maxLevel": 60,
+                  "chance": 30,
+                  "conditions": [
+                    "season-winter"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "surf-spots",
+                  "minLevel": 25,
+                  "maxLevel": 40,
+                  "chance": 30,
+                  "conditions": [
+                    "season-winter"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

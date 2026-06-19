@@ -1,0 +1,159 @@
+{
+  "pokemon": {
+    "id": 229,
+    "name": "houndoom"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 763,
+        "name": "alola-route-12",
+        "displayName": "Route 12",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1057,
+          "name": "alola-route-12-area",
+          "displayName": "Alola Route 12 Area",
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 29,
+                  "maxLevel": 32,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1102,
+        "name": "realgam-tower",
+        "displayName": "Realgam Tower",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1259,
+          "name": "realgam-tower-colosseum",
+          "displayName": "Realgam Tower Colosseum",
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 48,
+                  "maxLevel": 48,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 45,
+        "name": "sinnoh-route-214",
+        "displayName": "Route 214",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 164,
+          "name": "sinnoh-route-214-area",
+          "displayName": "Road 214",
+          "versions": [
+            {
+              "version": "pearl",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 46,
+        "name": "sinnoh-route-215",
+        "displayName": "Route 215",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 165,
+          "name": "sinnoh-route-215-area",
+          "displayName": "Road 215",
+          "versions": [
+            {
+              "version": "pearl",
+              "maxChance": 22,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 22,
+                  "maxLevel": 22,
+                  "chance": 1,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

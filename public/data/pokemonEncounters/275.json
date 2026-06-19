@@ -1,0 +1,65 @@
+{
+  "pokemon": {
+    "id": 275,
+    "name": "shiftry"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 560,
+        "name": "nature-sanctuary",
+        "displayName": "Nature Sanctuary",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 702,
+          "name": "nature-sanctuary-area",
+          "displayName": "Nature Sanctuary",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 59,
+                  "maxLevel": 59,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

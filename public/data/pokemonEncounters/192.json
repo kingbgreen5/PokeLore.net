@@ -1,0 +1,125 @@
+{
+  "pokemon": {
+    "id": 192,
+    "name": "sunflora"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 1102,
+        "name": "realgam-tower",
+        "displayName": "Realgam Tower",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1248,
+          "name": "realgam-tower-area",
+          "displayName": "Realgam Tower",
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 45,
+                  "maxLevel": 45,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1097,
+        "name": "snagem-hideout",
+        "displayName": "Snagem Hideout",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1234,
+          "name": "snagem-hideout-1f",
+          "displayName": "Snagem Hideout 1F",
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag-rematch",
+                  "minLevel": 45,
+                  "maxLevel": 45,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 367,
+        "name": "unova-route-12",
+        "displayName": "Route 12",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 646,
+          "name": "unova-route-12-area",
+          "displayName": "Road 12",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "grass-spots",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

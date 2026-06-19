@@ -1,0 +1,175 @@
+{
+  "pokemon": {
+    "id": 644,
+    "name": "zekrom"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 797,
+        "name": "ultra-space",
+        "displayName": "Ultra Space",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1197,
+          "name": "ultra-space-ultra-space-wilds-rocky",
+          "displayName": "Ultra Space Wilds Rocky World",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1051,
+        "name": "ultra-space-wilds",
+        "displayName": "Ultra Space Wilds",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1149,
+          "name": "ultra-space-wilds-crag",
+          "displayName": "Ultra Space Wilds Crag",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 703,
+        "name": "fabled-cave",
+        "displayName": "Fabled Cave",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 1191,
+          "name": "fabled-cave-area",
+          "displayName": "Fabled Cave",
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "other-level-100-pokemon-in-party"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 381,
+        "name": "dragonspiral-tower",
+        "displayName": "Dragonspiral Tower",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 1171,
+          "name": "dragonspiral-tower-7f",
+          "displayName": "Dragonspiral Tower 7f",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": [
+                    "item-dark-stone"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 387,
+        "name": "ns-castle",
+        "displayName": "N's Castle",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 1170,
+          "name": "ns-castle-throne-room",
+          "displayName": "Ns Castle Throne Room",
+          "versions": [
+            {
+              "version": "white",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

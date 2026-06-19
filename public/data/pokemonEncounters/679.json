@@ -1,0 +1,134 @@
+{
+  "pokemon": {
+    "id": 679,
+    "name": "honedge"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 752,
+        "name": "akala-outskirts",
+        "displayName": "Akala Outskirts",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1068,
+          "name": "akala-outskirts-area",
+          "displayName": "Akala Outskirts Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 23,
+                  "maxLevel": 23,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 24,
+                  "maxLevel": 24,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 606,
+        "name": "kalos-route-6",
+        "displayName": "Route 6",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 717,
+          "name": "kalos-route-6-area",
+          "displayName": "Road 6",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "rough-terrain",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "rough-terrain",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "rough-terrain",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 10,
+                  "conditions": []
+                },
+                {
+                  "method": "rough-terrain",
+                  "minLevel": 12,
+                  "maxLevel": 12,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

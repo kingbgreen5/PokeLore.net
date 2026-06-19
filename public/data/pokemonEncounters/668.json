@@ -1,0 +1,98 @@
+{
+  "pokemon": {
+    "id": 668,
+    "name": "pyroar-male"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 785,
+        "name": "poni-plains",
+        "displayName": "Poni Plains",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1118,
+          "name": "poni-plains-center",
+          "displayName": "Poni Plains Center",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 54,
+                  "maxLevel": 57,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 680,
+        "name": "friend-safari",
+        "displayName": "Friend Safari",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1323,
+          "name": "friend-safari-fire",
+          "displayName": "Friend Safari (Fire)",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 33,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 33,
+                  "conditions": [
+                    "friend-safari-slot-2"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": 945,
+  "name": "turffield",
+  "displayName": "Turffield",
+  "region": {
+    "name": "galar",
+    "displayName": "Galar"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 939,
+      "name": "turffield-area",
+      "displayName": "Turffield",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 342,
+            "name": "crawdaunt",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/342.png",
+            "types": [
+              "water",
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

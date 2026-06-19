@@ -1,0 +1,160 @@
+{
+  "pokemon": {
+    "id": 329,
+    "name": "vibrava"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 1098,
+        "name": "shadow-pokemon-lab",
+        "displayName": "Shadow Pokémon Lab",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1251,
+          "name": "shadow-pokemon-lab-bf1",
+          "displayName": "Shadow Pokémon Lab B1F",
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 56,
+        "name": "sinnoh-route-228",
+        "displayName": "Route 228",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 175,
+          "name": "sinnoh-route-228-area",
+          "displayName": "Road 228",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 53,
+                  "maxLevel": 53,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 54,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 53,
+                  "maxLevel": 53,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 54,
+                  "maxLevel": 54,
+                  "chance": 10,
+                  "conditions": [
+                    "radar-on"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 546,
+        "name": "reversal-mountain",
+        "displayName": "Reversal Mountain",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 677,
+          "name": "reversal-mountain-unknown-area-48",
+          "displayName": "Reversal Mountain (unknown area 48)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "dark-grass",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "dark-grass",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

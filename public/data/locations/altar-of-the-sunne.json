@@ -1,0 +1,52 @@
+{
+  "id": 790,
+  "name": "altar-of-the-sunne",
+  "displayName": "Altar of the Sunne",
+  "region": {
+    "name": "alola",
+    "displayName": "Alola"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 176,
+      "generation": "generation-vii"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1070,
+      "name": "altar-of-the-sunne-area",
+      "displayName": "Altar Of The Sunne Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 791,
+            "name": "solgaleo",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/791.png",
+            "types": [
+              "psychic",
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "sun",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 55,
+                  "maxLevel": 55,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

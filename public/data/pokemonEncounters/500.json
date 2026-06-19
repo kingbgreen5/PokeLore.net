@@ -1,0 +1,51 @@
+{
+  "pokemon": {
+    "id": 500,
+    "name": "emboar"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 782,
+        "name": "ancient-poni-path",
+        "displayName": "Ancient Poni Path",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1071,
+          "name": "ancient-poni-path-area",
+          "displayName": "Ancient Poni Path Area",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "island-scan",
+                  "minLevel": 43,
+                  "maxLevel": 43,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

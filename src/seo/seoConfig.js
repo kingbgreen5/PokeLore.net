@@ -121,6 +121,37 @@ export function itemSeo(item) {
   };
 }
 
+export function locationsSeo() {
+  return {
+    title: `Pokémon Locations & Wild Encounters | ${SITE_NAME}`,
+    description:
+      "Search Pokémon locations by region and explore wild encounters by area, game version, method, level range, and chance.",
+    canonical: pageUrl("/locations")
+  };
+}
+
+export function locationSeo(location) {
+  const slug =
+    typeof location === "string"
+      ? location
+      : location?.name;
+  const name =
+    typeof location === "string"
+      ? formatName(location)
+      : location?.displayName ??
+        formatName(location?.name);
+  const region =
+    typeof location === "string"
+      ? null
+      : location?.region?.displayName;
+
+  return {
+    title: `${name} Pokémon Encounters | ${SITE_NAME}`,
+    description: `View Pokémon encounters in ${name}${region ? ` in ${region}` : ""}, grouped by area, version, encounter method, level range, and chance.`,
+    canonical: pageUrl(`/location/${slug}`)
+  };
+}
+
 export function pokemonSeo(pokemon) {
   const name = formatName(pokemon?.name);
 

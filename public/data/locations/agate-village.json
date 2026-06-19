@@ -1,0 +1,46 @@
+{
+  "id": 1103,
+  "name": "agate-village",
+  "displayName": "Agate Village",
+  "region": {
+    "name": "orre",
+    "displayName": "Orre"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1252,
+      "name": "agate-village-relic-forest",
+      "displayName": "Agate Village (Relic Forest)",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 237,
+            "name": "hitmontop",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/237.png",
+            "types": [
+              "fighting"
+            ]
+          },
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

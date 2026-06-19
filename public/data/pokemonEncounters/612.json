@@ -1,0 +1,51 @@
+{
+  "pokemon": {
+    "id": 612,
+    "name": "haxorus"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 560,
+        "name": "nature-sanctuary",
+        "displayName": "Nature Sanctuary",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 702,
+          "name": "nature-sanctuary-area",
+          "displayName": "Nature Sanctuary",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

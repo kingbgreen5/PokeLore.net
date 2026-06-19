@@ -1,0 +1,346 @@
+{
+  "pokemon": {
+    "id": 244,
+    "name": "entei"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 797,
+        "name": "ultra-space",
+        "displayName": "Ultra Space",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1197,
+          "name": "ultra-space-ultra-space-wilds-rocky",
+          "displayName": "Ultra Space Wilds Rocky World",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1051,
+        "name": "ultra-space-wilds",
+        "displayName": "Ultra Space Wilds",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1149,
+          "name": "ultra-space-wilds-crag",
+          "displayName": "Ultra Space Wilds Crag",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 700,
+        "name": "trackless-forest",
+        "displayName": "Trackless Forest",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 1177,
+          "name": "trackless-forest-area",
+          "displayName": "Trackless Forest Area",
+          "versions": [
+            {
+              "version": "alpha-sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "time-minute-20-to-39"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "omega-ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": [
+                    "time-minute-20-to-39"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 800,
+        "name": "roaming-johto",
+        "displayName": "Roaming Johto",
+        "region": "johto"
+      },
+      "areas": [
+        {
+          "id": 795,
+          "name": "roaming-johto-area",
+          "displayName": "Wandert durch Johto",
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": [
+                    "story-progress-awakened-beasts"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "gold",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": [
+                    "story-progress-awakened-beasts"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "heartgold",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 25,
+                  "conditions": [
+                    "story-progress-awakened-beasts"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 10,
+                  "conditions": [
+                    "story-progress-awakened-beasts"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 25,
+                  "conditions": [
+                    "story-progress-awakened-beasts"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 799,
+        "name": "roaming-kanto",
+        "displayName": "Roaming Kanto",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 794,
+          "name": "roaming-kanto-area",
+          "displayName": "Roaming Kanto",
+          "versions": [
+            {
+              "version": "firered",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 25,
+                  "conditions": [
+                    "story-progress-beat-elite-four-round-two",
+                    "starter-bulbasaur"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "leafgreen",
+              "maxChance": 25,
+              "encounters": [
+                {
+                  "method": "roaming-grass",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 25,
+                  "conditions": [
+                    "story-progress-beat-elite-four-round-two",
+                    "starter-bulbasaur"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1105,
+        "name": "mt-battle",
+        "displayName": "Mt. Battle",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1254,
+          "name": "mt-battle-10f",
+          "displayName": "Mt. Battle 10F",
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1102,
+        "name": "realgam-tower",
+        "displayName": "Realgam Tower",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1248,
+          "name": "realgam-tower-area",
+          "displayName": "Realgam Tower",
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag-rematch",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1104,
+        "name": "the-under",
+        "displayName": "The Under",
+        "region": "orre"
+      },
+      "areas": [
+        {
+          "id": 1260,
+          "name": "the-under-deep-colosseum",
+          "displayName": "The Under (Deep Colosseum)",
+          "versions": [
+            {
+              "version": "colosseum",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag-rematch",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

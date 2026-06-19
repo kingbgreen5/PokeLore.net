@@ -1,0 +1,117 @@
+{
+  "id": 1107,
+  "name": "gateon-port",
+  "displayName": "Gateon Port",
+  "region": {
+    "name": "orre",
+    "displayName": "Orre"
+  },
+  "gameIndices": [],
+  "areas": [
+    {
+      "id": 1293,
+      "name": "gateon-port-area",
+      "displayName": "Gateon Port",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": []
+    },
+    {
+      "id": 1265,
+      "name": "gateon-port-across-bridge",
+      "displayName": "Gateon Port (Across Bridge)",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 165,
+            "name": "ledyba",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/165.png",
+            "types": [
+              "bug",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "xd",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1266,
+      "name": "gateon-port-lighthouse-top",
+      "displayName": "Gateon Port (Lighthouse Top)",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 149,
+            "name": "dragonite",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png",
+            "types": [
+              "dragon",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "xd",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 55,
+                  "maxLevel": 55,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-catch-all-shadow-pokemon"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 261,
+            "name": "poochyena",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/261.png",
+            "types": [
+              "dark"
+            ]
+          },
+          "versions": [
+            {
+              "version": "xd",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "snag",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

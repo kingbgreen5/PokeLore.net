@@ -1,0 +1,257 @@
+{
+  "pokemon": {
+    "id": 287,
+    "name": "slakoth"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 438,
+        "name": "petalburg-woods",
+        "displayName": "Petalburg Woods",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 365,
+          "name": "petalburg-woods-area",
+          "displayName": "Petalburg Woods",
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 6,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ruby",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 6,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sapphire",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 5,
+                  "maxLevel": 5,
+                  "chance": 4,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 6,
+                  "maxLevel": 6,
+                  "chance": 1,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 104,
+        "name": "kanto-route-25",
+        "displayName": "Route 25",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 315,
+          "name": "kanto-route-25-area",
+          "displayName": "Road 25",
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 10,
+                  "maxLevel": 14,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 10,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 10,
+                  "maxLevel": 14,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 15,
+                  "maxLevel": 18,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 10,
+                  "maxLevel": 14,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 10,
+                  "maxLevel": 14,
+                  "chance": 10,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 10,
+                  "maxLevel": 14,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 15,
+                  "maxLevel": 18,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 8,
+        "name": "eterna-forest",
+        "displayName": "Eterna Forest",
+        "region": "sinnoh"
+      },
+      "areas": [
+        {
+          "id": 9,
+          "name": "eterna-forest-area",
+          "displayName": "Eterna Forest",
+          "versions": [
+            {
+              "version": "diamond",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-yes"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "pearl",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-yes"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "platinum",
+              "maxChance": 40,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 10,
+                  "maxLevel": 10,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-yes"
+                  ]
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 11,
+                  "maxLevel": 11,
+                  "chance": 20,
+                  "conditions": [
+                    "swarm-yes"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "pokemon": {
+    "id": 765,
+    "name": "oranguru"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 750,
+        "name": "lush-jungle",
+        "displayName": "Lush Jungle",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1095,
+          "name": "lush-jungle-north",
+          "displayName": "Lush Jungle North",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 21,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1096,
+          "name": "lush-jungle-south",
+          "displayName": "Lush Jungle South",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 21,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 19,
+                  "maxLevel": 22,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1097,
+          "name": "lush-jungle-west",
+          "displayName": "Lush Jungle West",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 18,
+                  "maxLevel": 21,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "bubbling-spots",
+                  "minLevel": 19,
+                  "maxLevel": 22,
+                  "chance": 30,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 19,
+                  "maxLevel": 22,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

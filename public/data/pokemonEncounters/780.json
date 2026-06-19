@@ -1,0 +1,51 @@
+{
+  "pokemon": {
+    "id": 780,
+    "name": "drampa"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 775,
+        "name": "mount-lanakila",
+        "displayName": "Mount Lanakila",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1109,
+          "name": "mount-lanakila-cave",
+          "displayName": "Mount Lanakila Cave",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 45,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-moon",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 48,
+                  "maxLevel": 51,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

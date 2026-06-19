@@ -1,0 +1,55 @@
+{
+  "pokemon": {
+    "id": 526,
+    "name": "gigalith"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 362,
+        "name": "unova-route-7",
+        "displayName": "Route 7",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 632,
+          "name": "unova-route-7-area",
+          "displayName": "Road 7",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-emolga"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-emolga"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

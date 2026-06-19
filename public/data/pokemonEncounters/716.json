@@ -1,0 +1,111 @@
+{
+  "pokemon": {
+    "id": 716,
+    "name": "xerneas"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 797,
+        "name": "ultra-space",
+        "displayName": "Ultra Space",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1197,
+          "name": "ultra-space-ultra-space-wilds-rocky",
+          "displayName": "Ultra Space Wilds Rocky World",
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 1051,
+        "name": "ultra-space-wilds",
+        "displayName": "Ultra Space Wilds",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1149,
+          "name": "ultra-space-wilds-crag",
+          "displayName": "Ultra Space Wilds Crag",
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 675,
+        "name": "team-flare-secret-hq",
+        "displayName": "Team Flare Secret HQ",
+        "region": "kalos"
+      },
+      "areas": [
+        {
+          "id": 1176,
+          "name": "team-flare-secret-hq-area",
+          "displayName": "Team Flare Secret Hq Area",
+          "versions": [
+            {
+              "version": "x",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "y",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 50,
+                  "maxLevel": 50,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

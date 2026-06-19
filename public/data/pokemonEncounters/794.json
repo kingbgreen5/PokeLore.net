@@ -1,0 +1,82 @@
+{
+  "pokemon": {
+    "id": 794,
+    "name": "buzzwole"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 726,
+        "name": "melemele-meadow",
+        "displayName": "Melemele Meadow",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1102,
+          "name": "melemele-meadow-area",
+          "displayName": "Melemele Meadow Area",
+          "versions": [
+            {
+              "version": "sun",
+              "maxChance": 300,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "walk",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 797,
+        "name": "ultra-space",
+        "displayName": "Ultra Space",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1144,
+          "name": "ultra-space-ultra-jungle",
+          "displayName": "Ultra Space Ultra Jungle",
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 115,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 60,
+                  "maxLevel": 60,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

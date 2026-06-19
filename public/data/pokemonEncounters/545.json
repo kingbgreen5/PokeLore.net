@@ -1,0 +1,51 @@
+{
+  "pokemon": {
+    "id": 545,
+    "name": "scolipede"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 375,
+        "name": "pinwheel-forest",
+        "displayName": "Pinwheel Forest",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 582,
+          "name": "pinwheel-forest-inside",
+          "displayName": "Pinwheel Forest (inside)",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "grass-spots",
+                  "minLevel": 57,
+                  "maxLevel": 57,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "id": 574,
+  "name": "fortree-city",
+  "displayName": "Fortree City",
+  "region": {
+    "name": "hoenn",
+    "displayName": "Hoenn"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 192,
+      "generation": "generation-vi"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1321,
+      "name": "fortree-city-area",
+      "displayName": "Fortree City",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 300,
+            "name": "skitty",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/300.png",
+            "types": [
+              "normal"
+            ]
+          },
+          "versions": [
+            {
+              "version": "ruby",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 5,
+                  "maxLevel": 100,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-pikachu"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "sapphire",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 5,
+                  "maxLevel": 100,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-pikachu"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 311,
+            "name": "plusle",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/311.png",
+            "types": [
+              "electric"
+            ]
+          },
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 5,
+                  "maxLevel": 100,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-volbeat"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

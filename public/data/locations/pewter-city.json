@@ -1,0 +1,755 @@
+{
+  "id": 231,
+  "name": "pewter-city",
+  "displayName": "Pewter City",
+  "region": {
+    "name": "kanto",
+    "displayName": "Kanto"
+  },
+  "gameIndices": [
+    {
+      "gameIndex": 140,
+      "generation": "generation-iv"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1200,
+      "name": "pewter-city-area",
+      "displayName": "Pewter City Area",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 78,
+            "name": "rapidash",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/78.png",
+            "types": [
+              "fire"
+            ]
+          },
+          "versions": [
+            {
+              "version": "gold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 15,
+                  "maxLevel": 100,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-gloom"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "silver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 15,
+                  "maxLevel": 100,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-gloom"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 163,
+            "name": "hoothoot",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/163.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 130,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 3,
+                  "maxLevel": 5,
+                  "chance": 50,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 7,
+                  "maxLevel": 9,
+                  "chance": 50,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 7,
+                  "maxLevel": 9,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 130,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 3,
+                  "maxLevel": 5,
+                  "chance": 50,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 7,
+                  "maxLevel": 9,
+                  "chance": 50,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 7,
+                  "maxLevel": 9,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 178,
+            "name": "xatu",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/178.png",
+            "types": [
+              "psychic",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "crystal",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 15,
+                  "maxLevel": 100,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-haunter"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 204,
+            "name": "pineco",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/204.png",
+            "types": [
+              "bug"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 3,
+                  "maxLevel": 5,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 3,
+                  "maxLevel": 5,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 265,
+            "name": "wurmple",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/265.png",
+            "types": [
+              "bug"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 105,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 3,
+                  "maxLevel": 5,
+                  "chance": 10,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 3,
+                  "maxLevel": 5,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 5,
+                  "maxLevel": 9,
+                  "chance": 50,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 5,
+                  "maxLevel": 9,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 7,
+                  "maxLevel": 9,
+                  "chance": 10,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 7,
+                  "maxLevel": 9,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 105,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 3,
+                  "maxLevel": 5,
+                  "chance": 10,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 3,
+                  "maxLevel": 5,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-common"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 5,
+                  "maxLevel": 9,
+                  "chance": 50,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 5,
+                  "maxLevel": 9,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 7,
+                  "maxLevel": 9,
+                  "chance": 10,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 7,
+                  "maxLevel": 9,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-rare"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 396,
+            "name": "starly",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/396.png",
+            "types": [
+              "normal",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 5,
+                  "maxLevel": 9,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 5,
+                  "maxLevel": 9,
+                  "chance": 10,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 5,
+                  "maxLevel": 9,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 8,
+                  "maxLevel": 12,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 35,
+              "encounters": [
+                {
+                  "method": "headbutt",
+                  "minLevel": 5,
+                  "maxLevel": 9,
+                  "chance": 15,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 5,
+                  "maxLevel": 9,
+                  "chance": 10,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 5,
+                  "maxLevel": 9,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                },
+                {
+                  "method": "headbutt",
+                  "minLevel": 8,
+                  "maxLevel": 12,
+                  "chance": 5,
+                  "conditions": [
+                    "headbutt-tree-secret"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1361,
+      "name": "pewter-city-pewter-museum-of-science",
+      "displayName": "Pewter Museum of Science",
+      "gameIndex": 0,
+      "encounterMethodRates": [],
+      "pokemonEncounters": [
+        {
+          "pokemon": {
+            "id": 138,
+            "name": "omanyte",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/138.png",
+            "types": [
+              "rock",
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-helix-fossil"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-helix-fossil"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 140,
+            "name": "kabuto",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/140.png",
+            "types": [
+              "rock",
+              "water"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-dome-fossil"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-dome-fossil"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 142,
+            "name": "aerodactyl",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/142.png",
+            "types": [
+              "rock",
+              "flying"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-old-amber"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-old-amber"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 345,
+            "name": "lileep",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/345.png",
+            "types": [
+              "rock",
+              "grass"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-root-fossil"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-root-fossil"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 347,
+            "name": "anorith",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/347.png",
+            "types": [
+              "rock",
+              "bug"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-claw-fossil"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-claw-fossil"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 408,
+            "name": "cranidos",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/408.png",
+            "types": [
+              "rock"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-skull-fossil"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-skull-fossil"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pokemon": {
+            "id": 410,
+            "name": "shieldon",
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/410.png",
+            "types": [
+              "rock",
+              "steel"
+            ]
+          },
+          "versions": [
+            {
+              "version": "heartgold",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-armor-fossil"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "soulsilver",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "gift",
+                  "minLevel": 20,
+                  "maxLevel": 20,
+                  "chance": 100,
+                  "conditions": [
+                    "item-armor-fossil"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

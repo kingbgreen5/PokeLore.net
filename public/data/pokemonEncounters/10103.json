@@ -1,0 +1,187 @@
+{
+  "pokemon": {
+    "id": 10103,
+    "name": "vulpix-alola"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 775,
+        "name": "mount-lanakila",
+        "displayName": "Mount Lanakila",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1108,
+          "name": "mount-lanakila-base",
+          "displayName": "Mount Lanakila Base",
+          "versions": [
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 33,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1110,
+          "name": "mount-lanakila-outside",
+          "displayName": "Mount Lanakila Outside",
+          "versions": [
+            {
+              "version": "sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 42,
+                  "maxLevel": 45,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 30,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 47,
+                  "maxLevel": 50,
+                  "chance": 30,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 765,
+        "name": "alola-route-14",
+        "displayName": "Route 14",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1059,
+          "name": "alola-route-14-area",
+          "displayName": "Alola Route 14 Area",
+          "versions": [
+            {
+              "version": "sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 33,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 759,
+        "name": "tapu-village",
+        "displayName": "Tapu Village",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1134,
+          "name": "tapu-village-area",
+          "displayName": "Tapu Village Area",
+          "versions": [
+            {
+              "version": "sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 28,
+                  "maxLevel": 31,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 10,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 30,
+                  "maxLevel": 33,
+                  "chance": 10,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 67,
+        "name": "celadon-city",
+        "displayName": "Celadon City",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 283,
+          "name": "celadon-city-area",
+          "displayName": "Celadon City",
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 27,
+                  "maxLevel": 27,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

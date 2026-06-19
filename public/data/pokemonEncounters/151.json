@@ -1,0 +1,38 @@
+{
+  "pokemon": {
+    "id": 151,
+    "name": "mew"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 812,
+        "name": "faraway-island",
+        "displayName": "Faraway Island",
+        "region": "hoenn"
+      },
+      "areas": [
+        {
+          "id": 808,
+          "name": "faraway-island-area",
+          "displayName": "Faraway Island",
+          "versions": [
+            {
+              "version": "emerald",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 30,
+                  "maxLevel": 30,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

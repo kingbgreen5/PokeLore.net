@@ -1,0 +1,100 @@
+{
+  "pokemon": {
+    "id": 800,
+    "name": "necrozma"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 775,
+        "name": "mount-lanakila",
+        "displayName": "Mount Lanakila",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1199,
+          "name": "mount-lanakila-crater",
+          "displayName": "Mount Lanakila Crater",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 723,
+        "name": "ten-carat-hill",
+        "displayName": "Ten Carat Hill",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1135,
+          "name": "ten-carat-hill-farthest-hollow",
+          "displayName": "Ten Carat Hill Farthest Hollow",
+          "versions": [
+            {
+              "version": "moon",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 75,
+                  "maxLevel": 75,
+                  "chance": 100,
+                  "conditions": [
+                    "other-captured-all-ultra-beasts",
+                    "story-progress-finished-looker-sidequest"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "sun",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "walk",
+                  "minLevel": 75,
+                  "maxLevel": 75,
+                  "chance": 100,
+                  "conditions": [
+                    "other-captured-all-ultra-beasts",
+                    "story-progress-finished-looker-sidequest"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

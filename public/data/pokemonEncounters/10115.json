@@ -1,0 +1,51 @@
+{
+  "pokemon": {
+    "id": 10115,
+    "name": "marowak-alola"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 76,
+        "name": "fuchsia-city",
+        "displayName": "Fuchsia City",
+        "region": "kanto"
+      },
+      "areas": [
+        {
+          "id": 284,
+          "name": "fuchsia-city-area",
+          "displayName": "Fuchsia City",
+          "versions": [
+            {
+              "version": "lets-go-eevee",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "lets-go-pikachu",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 38,
+                  "maxLevel": 38,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

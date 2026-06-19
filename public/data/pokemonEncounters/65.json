@@ -1,0 +1,55 @@
+{
+  "pokemon": {
+    "id": 65,
+    "name": "alakazam"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 347,
+        "name": "accumula-town",
+        "displayName": "Accumula Town",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 1364,
+          "name": "accumula-town-area",
+          "displayName": "Accumula Town",
+          "versions": [
+            {
+              "version": "black-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-hippowdon"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "npc-trade",
+                  "minLevel": 40,
+                  "maxLevel": 40,
+                  "chance": 100,
+                  "conditions": [
+                    "trade-hippowdon"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

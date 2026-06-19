@@ -1,0 +1,142 @@
+{
+  "pokemon": {
+    "id": 637,
+    "name": "volcarona"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 750,
+        "name": "lush-jungle",
+        "displayName": "Lush Jungle",
+        "region": "alola"
+      },
+      "areas": [
+        {
+          "id": 1094,
+          "name": "lush-jungle-east-cave",
+          "displayName": "Lush Jungle East Cave",
+          "versions": [
+            {
+              "version": "ultra-moon",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 41,
+                  "maxLevel": 44,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "ultra-sun",
+              "maxChance": 15,
+              "encounters": [
+                {
+                  "method": "sos-encounter",
+                  "minLevel": 41,
+                  "maxLevel": 44,
+                  "chance": 15,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 377,
+        "name": "relic-castle",
+        "displayName": "Relic Castle",
+        "region": "unova"
+      },
+      "areas": [
+        {
+          "id": 588,
+          "name": "relic-castle-d",
+          "displayName": "Relic Castle (D)",
+          "versions": [
+            {
+              "version": "black",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "black-2",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-quake-badge"
+                  ]
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 100,
+                  "conditions": [
+                    "special-encounter-couldnt-capture-before"
+                  ]
+                }
+              ]
+            },
+            {
+              "version": "white",
+              "maxChance": 100,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 70,
+                  "maxLevel": 70,
+                  "chance": 100,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "white-2",
+              "maxChance": 200,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 35,
+                  "maxLevel": 35,
+                  "chance": 100,
+                  "conditions": [
+                    "story-progress-quake-badge"
+                  ]
+                },
+                {
+                  "method": "only-one",
+                  "minLevel": 65,
+                  "maxLevel": 65,
+                  "chance": 100,
+                  "conditions": [
+                    "special-encounter-couldnt-capture-before"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

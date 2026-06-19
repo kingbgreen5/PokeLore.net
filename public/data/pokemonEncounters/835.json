@@ -1,0 +1,141 @@
+{
+  "pokemon": {
+    "id": 835,
+    "name": "yamper"
+  },
+  "locations": [
+    {
+      "location": {
+        "id": 869,
+        "name": "galar-route-2",
+        "displayName": "Route 2",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 844,
+          "name": "galar-route-2-main",
+          "displayName": "Route 2",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 105,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 8,
+                  "maxLevel": 8,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "overworld",
+                  "minLevel": 5,
+                  "maxLevel": 7,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 105,
+              "encounters": [
+                {
+                  "method": "only-one",
+                  "minLevel": 8,
+                  "maxLevel": 8,
+                  "chance": 100,
+                  "conditions": []
+                },
+                {
+                  "method": "overworld",
+                  "minLevel": 5,
+                  "maxLevel": 7,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1366,
+          "name": "galar-route-2-lakeside",
+          "displayName": "Route 2 (Lakeside)",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 40,
+                  "maxLevel": 43,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 5,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 40,
+                  "maxLevel": 43,
+                  "chance": 5,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "location": {
+        "id": 871,
+        "name": "galar-route-4",
+        "displayName": "Route 4",
+        "region": "galar"
+      },
+      "areas": [
+        {
+          "id": 847,
+          "name": "galar-route-4-area",
+          "displayName": "Route 4",
+          "versions": [
+            {
+              "version": "shield",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 14,
+                  "maxLevel": 16,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "version": "sword",
+              "maxChance": 20,
+              "encounters": [
+                {
+                  "method": "overworld",
+                  "minLevel": 14,
+                  "maxLevel": 16,
+                  "chance": 20,
+                  "conditions": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
