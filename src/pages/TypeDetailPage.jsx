@@ -11,6 +11,8 @@ import MoveSummaryCard from "../components/MoveSummaryCard";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import typeChart from "../constants/Types";
 import typeColors from "../constants/typeColors";
+import Seo from "../seo/Seo";
+import { typeSeo } from "../seo/seoConfig";
 
 const allTypes = Object.keys(typeColors);
 
@@ -290,6 +292,7 @@ function TypeDetailPage() {
         padding: "2rem"
       }}
     >
+      <Seo {...typeSeo(type)} />
 
 
 

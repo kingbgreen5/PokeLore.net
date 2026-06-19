@@ -5,6 +5,8 @@ import {
 } from "react";
 
 import MoveSummaryCard from "../components/MoveSummaryCard";
+import Seo from "../seo/Seo";
+import { movesSeo } from "../seo/seoConfig";
 
 function capitalize(text) {
   return text
@@ -144,7 +146,12 @@ const [powerSortMode, setPowerSortMode] =
     ]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Seo {...movesSeo()} />
+        <p>Loading...</p>
+      </>
+    );
   }
 
   return (
@@ -153,6 +160,7 @@ const [powerSortMode, setPowerSortMode] =
         padding: "2rem"
       }}
     >
+      <Seo {...movesSeo()} />
 
       <h1>
         Move Database

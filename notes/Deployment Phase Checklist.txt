@@ -1,0 +1,297 @@
+Deployment Phase Checklist
+
+## Phase 1: Make Sure It Can Handle Traffic
+
+For a site like PokéLore, thousands of visitors is not a huge technical challenge.
+
+### Current Architecture (Good)
+
+You currently have:
+
+* React frontend
+* Static JSON data
+* Hosted on Render
+
+Every visitor is basically downloading files.
+
+That's much cheaper than:
+
+* databases
+* user accounts
+* APIs
+* server-side rendering
+
+A static site can often handle tens of thousands of visitors with minimal infrastructure.
+
+### Consider Moving to a CDN-Based Host
+
+If traffic grows, I'd look at:
+
+* [Cloudflare Pages](https://pages.cloudflare.com/?utm_source=chatgpt.com)
+* [Netlify](https://www.netlify.com/?utm_source=chatgpt.com)
+* [Vercel](https://vercel.com/?utm_source=chatgpt.com)
+
+These automatically distribute your files worldwide.
+
+A user in:
+
+* Wisconsin
+* Germany
+* Japan
+
+gets files from a nearby edge server.
+
+This dramatically improves speed and scalability.
+
+---
+
+## Phase 2: Add Analytics Immediately
+
+You should do this before trying to grow traffic.
+
+Otherwise you won't know:
+
+* where visitors came from
+* what pages they view
+* what features they use
+* why they leave
+
+### Simplest Option
+
+[Google Analytics 4](https://analytics.google.com/?utm_source=chatgpt.com)
+
+Tracks:
+
+* users
+* sessions
+* countries
+* devices
+* page views
+
+### Better for Indie Projects
+
+[Plausible Analytics](https://plausible.io/?utm_source=chatgpt.com)
+
+or
+
+[Umami](https://umami.is/?utm_source=chatgpt.com)
+
+Advantages:
+
+* simpler
+* privacy friendly
+* easier reports
+
+For PokéLore I'd probably choose Plausible if you're willing to spend a few dollars per month.
+
+---
+
+## Phase 3: Register With Search Engines
+
+This is the first thing many developers miss.
+
+### Google Search Console
+
+Set up:
+
+[Google Search Console](https://search.google.com/search-console/?utm_source=chatgpt.com)
+
+This lets you:
+
+* submit sitemaps
+* monitor indexing
+* see search keywords
+* identify crawl issues
+
+Without this, Google is largely guessing.
+
+### Bing Webmaster Tools
+
+Also submit to:
+
+[Bing Webmaster Tools](https://www.bing.com/webmasters/?utm_source=chatgpt.com)
+
+You'll get traffic from:
+
+* Bing
+* DuckDuckGo
+* ChatGPT browsing systems
+* Microsoft Copilot
+
+---
+
+## Phase 4: Improve SEO
+
+This is where Pokémon sites often fail.
+
+Right now many React sites show:
+
+```
+PokéLore
+```
+
+as the title for every page.
+
+Instead:
+
+### Pokémon Page
+
+```
+Pikachu Pokédex Entries, Learnset, Evolutions | PokéLore
+```
+
+### Move Page
+
+```
+Thunderbolt Move Guide | PokéLore
+```
+
+### Ability Page
+
+```
+Levitate Ability Guide | PokéLore
+```
+
+Search engines love this.
+
+Also add:
+
+* meta descriptions
+* sitemap.xml
+* robots.txt
+* canonical URLs
+
+---
+
+## Phase 5: Discover What People Actually Want
+
+One mistake is assuming people want the features you're most proud of.
+
+Analytics will tell you.
+
+You might discover:
+
+* 70% of traffic lands on move pages
+* 20% lands on Pokémon pages
+* almost nobody uses ability pages
+
+Or the opposite.
+
+That information drives future development.
+
+---
+
+## Phase 6: Build Backlinks
+
+This is the biggest factor for growth.
+
+Google wants other sites to mention yours.
+
+Examples:
+
+* Pokémon subreddits
+* Pokémon forums
+* Discord communities
+* fan wikis
+* YouTube creators
+
+The best backlinks happen when you provide something unique.
+
+And honestly...
+
+**Pokédex entry search is your unique feature.**
+
+Most Pokémon sites have:
+
+* stats
+* moves
+* evolutions
+
+Few let users search every Pokédex entry by text.
+
+Someone searching:
+
+> Pokémon mentioned in mountains
+
+or
+
+> Pokémon that live in forests
+
+could end up on PokéLore.
+
+That's a unique SEO angle.
+
+---
+
+## Phase 7: Monitor Uptime
+
+You don't want the site going down without knowing.
+
+Use:
+
+* [UptimeRobot](https://uptimerobot.com/?utm_source=chatgpt.com)
+* [Better Stack](https://betterstack.com/?utm_source=chatgpt.com)
+
+They will alert you if PokéLore becomes unavailable.
+
+---
+
+## Phase 8: Monitor Performance
+
+Google cares about speed.
+
+Run:
+
+[Google PageSpeed Insights](https://pagespeed.web.dev/?utm_source=chatgpt.com)
+
+Watch:
+
+* Largest Contentful Paint (LCP)
+* Cumulative Layout Shift (CLS)
+* Interaction to Next Paint (INP)
+
+A fast Pokémon site will outrank slower competitors.
+
+---
+
+## Phase 9: Create a Content Loop
+
+This is where traffic really starts growing.
+
+Examples:
+
+### Searchable Articles
+
+* "Every Pokémon Mentioned in Forest Pokédex Entries"
+* "Pokémon Found Near Mountains"
+* "All Pokémon Described as Rare"
+
+These can be generated from your existing data.
+
+### Shareable Tools
+
+* Dex Entry Search
+* Type Matchup Calculator
+* Evolution Explorer
+* Learnset Comparison Tool
+
+People link tools far more often than articles.
+
+---
+
+## Phase 10: What I'd Do Next If I Were Building PokéLore
+
+In order:
+
+1. Add analytics.
+2. Add Google Search Console.
+3. Generate sitemap.xml automatically.
+4. Add SEO titles/descriptions for every page.
+5. Move to Cloudflare Pages or keep Render until traffic becomes an issue.
+6. Add type matchup data to Pokémon pages.
+7. Build a "Dex Entry Explorer" landing page.
+8. Start sharing in Pokémon communities.
+9. Watch which pages get traffic.
+10. Double down on the features people actually use.
+
+The encouraging part is that PokéLore is already using a data model that scales extremely well. If 5,000 people suddenly visited tomorrow, I'd be more worried about whether Google can discover the pages than whether the server can survive the traffic. The SEO, analytics, and discoverability work is probably more important than infrastructure at your current stage.

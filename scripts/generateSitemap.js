@@ -1,0 +1,147 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const SITE_URL = "https://pokelore.net";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, "..");
+const dataDir = path.join(rootDir, "public", "data");
+const outputPath = path.join(rootDir, "public", "sitemap.xml");
+
+async function readJson(filePath) {
+  const text = await fs.readFile(filePath, "utf8");
+  return JSON.parse(text);
+}
+
+function escapeXml(value) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+}
+
+function route(pathname) {
+  return `${SITE_URL}${pathname === "/" ? "" : pathname}`;
+}
+
+function staticRoutes() {
+  return [
+    "/",
+    "/dex-entries",
+    "/learnsets",
+    "/moves",
+    "/abilities",
+    "/items",
+    "/types"
+  ].map(route);
+}
+
+function pokemonRoutes(pokemonIndex) {
+  return pokemonIndex.map(pokemon =>
+    route(`/pokemon/${pokemon.id}`)
+  );
+}
+
+function moveRoutes(moves) {
+  return Object.keys(moves).map(moveName =>
+    route(`/move/${moveName}`)
+  );
+}
+
+function abilityRoutes(abilities) {
+  return Object.keys(abilities).map(abilityName =>
+    route(`/ability/${abilityName}`)
+  );
+}
+
+function itemRoutes(itemsIndex) {
+  return itemsIndex.map(item =>
+    route(`/item/${item.name}`)
+  );
+}
+
+function typeRoutes(pokemonIndex) {
+  const types = new Set(
+    pokemonIndex.flatMap(
+      pokemon => pokemon.types ?? []
+    )
+  );
+
+  return [...types].map(typeName =>
+    route(`/type/${typeName}`)
+  );
+}
+
+async function buildRoutes() {
+  const [
+    pokemonIndex,
+    moves,
+    abilities,
+    itemsIndex
+  ] = await Promise.all([
+    readJson(
+      path.join(dataDir, "pokemonIndex.json")
+    ),
+    readJson(path.join(dataDir, "moves.json")),
+    readJson(
+      path.join(dataDir, "abilities.json")
+    ),
+    readJson(
+      path.join(dataDir, "itemsIndex.json")
+    )
+  ]);
+
+  return [
+    staticRoutes(),
+    pokemonRoutes(pokemonIndex),
+    moveRoutes(moves),
+    abilityRoutes(abilities),
+    itemRoutes(itemsIndex),
+    typeRoutes(pokemonIndex)
+  ].flat();
+}
+
+function renderSitemap(urls) {
+  const lastmod =
+    new Date().toISOString().slice(0, 10);
+
+  const entries = urls
+    .map(
+      url => `  <url>
+    <loc>${escapeXml(url)}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </url>`
+    )
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries}
+</urlset>
+`;
+}
+
+async function main() {
+  const urls = [...new Set(await buildRoutes())];
+
+  await fs.writeFile(
+    outputPath,
+    renderSitemap(urls),
+    "utf8"
+  );
+
+  console.log(
+    `Generated sitemap with ${urls.length} URLs at ${outputPath}`
+  );
+}
+
+main().catch(error => {
+  console.error(
+    "Failed to generate sitemap:",
+    error
+  );
+  throw error;
+});

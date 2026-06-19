@@ -9,6 +9,8 @@ import {
 } from "react";
 
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import Seo from "../seo/Seo";
+import { abilitySeo } from "../seo/seoConfig";
 
 function capitalize(text) {
   return text
@@ -149,6 +151,7 @@ function AbilityDetailPage() {
         margin: "0 auto"
       }}
     >
+      <Seo {...abilitySeo(ability.name)} />
 
       <h1>
         {capitalize(

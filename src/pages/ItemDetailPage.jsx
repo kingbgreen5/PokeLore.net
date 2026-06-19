@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import AcquisitionMethods from "../components/AcquisitionMethods";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import Seo from "../seo/Seo";
+import { itemSeo } from "../seo/seoConfig";
 
 function capitalize(text) {
   return text
@@ -154,16 +156,23 @@ function ItemDetailPage() {
   );
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Seo {...itemSeo(itemName)} />
+        <p>Loading...</p>
+      </>
+    );
   }
 
   if (!item) {
     return (
       <div
-        style={{
-          padding: "2rem"
-        }}
-      >
+      style={{
+        padding: "2rem"
+      }}
+    >
+        <Seo {...itemSeo(itemName)} />
+
         <button
           onClick={() =>
             navigate("/items")
@@ -185,6 +194,8 @@ function ItemDetailPage() {
         padding: "2rem"
       }}
     >
+      <Seo {...itemSeo(item)} />
+
       {/* <button
         onClick={() =>
           navigate("/items")

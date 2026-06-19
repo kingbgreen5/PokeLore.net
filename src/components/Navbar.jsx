@@ -20,7 +20,11 @@ const navItems = [
     label: "Items"
   },
   {
-    to: "/DexEntries",
+    to: "/types",
+    label: "Types"
+  },
+  {
+    to: "/dex-entries",
     label: "Entries"
   }
 ];

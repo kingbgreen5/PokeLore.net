@@ -2,6 +2,8 @@
 import { useMemo, useState, useEffect } from "react";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import typeColors from "../constants/typeColors";
+import Seo from "../seo/Seo";
+import { homeSeo } from "../seo/seoConfig";
 
 function HomePage() {
   //-----------------------------------------
@@ -151,6 +153,7 @@ function HomePage() {
           textAlign: "center"
         }}
       >
+        <Seo {...homeSeo()} />
         Booting up Pokédex...
       </div>
     );
@@ -169,6 +172,8 @@ function HomePage() {
         margin: "0 auto"
       }}
     >
+      <Seo {...homeSeo()} />
+
       {/* Hero Section */}
 
       <div

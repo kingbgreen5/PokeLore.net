@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { capitalize } from "../utils/capitalize";
+import Seo from "../seo/Seo";
+import { dexEntriesSeo } from "../seo/seoConfig";
 
 function DexEntriesPage() {
   const [entries, setEntries] = useState([]);
@@ -39,6 +41,8 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
 //-----------------------------------------------RETURN STATEMENT--------------------------------------------------
   return (
   <div > 
+    <Seo {...dexEntriesSeo()} />
+
     <div style={{ padding: "1rem" }} >
 
  

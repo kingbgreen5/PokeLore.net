@@ -7,6 +7,8 @@ import {
 import {
   useNavigate
 } from "react-router-dom";
+import Seo from "../seo/Seo";
+import { abilitiesSeo } from "../seo/seoConfig";
 
 function capitalize(text) {
   return text
@@ -85,7 +87,12 @@ function AbilitiesPage() {
     ]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Seo {...abilitiesSeo()} />
+        <p>Loading...</p>
+      </>
+    );
   }
 
   return (
@@ -94,6 +101,7 @@ function AbilitiesPage() {
         padding: "2rem"
       }}
     >
+      <Seo {...abilitiesSeo()} />
 
       <h1>
         Ability Database

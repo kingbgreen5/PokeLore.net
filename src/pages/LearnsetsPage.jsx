@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import MoveDetailPage from "./MoveDetailPage";
 import LearnsetCard from "../components/LearnsetCard";
 import { useMemo } from "react";
+import Seo from "../seo/Seo";
+import { learnsetsSeo } from "../seo/seoConfig";
 
 
 
@@ -80,6 +82,7 @@ if (selectedMove) {
 
   return (
     <div style={{ padding: "1rem" }}>
+      <Seo {...learnsetsSeo()} />
 
       <input
         type="text"

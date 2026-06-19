@@ -13,6 +13,8 @@ import {
   useNavigate
 } from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import Seo from "../seo/Seo";
+import { moveSeo } from "../seo/seoConfig";
 
 function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
@@ -168,6 +170,8 @@ useEffect(() => {
         margin: "0 auto"
       }}
     >
+      <Seo {...moveSeo(moveName)} />
+
       {/* Back Button */}
       <button
         onClick={() =>

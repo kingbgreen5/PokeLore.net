@@ -18,6 +18,7 @@ import PokemonDetailPage from "./pages/PokemonDetailPage";
 import AbilitiesPage from "./pages/AbilitiesPage";
 import AbilityDetailPage from "./pages/AbilityDetailPage";
 import TypeDetailPage from "./pages/TypeDetailPage";
+import TypesPage from "./pages/TypesPage";
 import ItemsPage from "./pages/ItemsPage";
 import ItemDetailPage from "./pages/ItemDetailPage";
 
@@ -83,8 +84,20 @@ function App() {
   element={<TypeDetailPage />}
 />
 
+<Route
+  path="/types"
+  element={<TypesPage />}
+/>
+
         <Route
           path="/DexEntries"
+          element={
+            <DexEntriesPage />
+          }
+        />
+
+        <Route
+          path="/dex-entries"
           element={
             <DexEntriesPage />
           }

@@ -4,6 +4,8 @@ import {
   useState
 } from "react";
 import { useNavigate } from "react-router-dom";
+import Seo from "../seo/Seo";
+import { itemsSeo } from "../seo/seoConfig";
 
 function capitalize(text) {
   return text
@@ -98,7 +100,12 @@ function ItemsPage() {
   ]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Seo {...itemsSeo()} />
+        <p>Loading...</p>
+      </>
+    );
   }
 
   return (
@@ -107,6 +114,8 @@ function ItemsPage() {
         padding: "2rem"
       }}
     >
+      <Seo {...itemsSeo()} />
+
       <h1>Item Database</h1>
 
       <div
