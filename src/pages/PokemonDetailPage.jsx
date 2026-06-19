@@ -19,6 +19,7 @@ import DexEntryCard from "../components/DexEntryCard.jsx";
 import TypeEffectivenessCard from "../components/TypeEffectivenessCard";
 import EvolutionNode from "../components/EvolutionNode";
 import BaseStatsChart from "../components/BaseStatsChart";
+import PokemonSummaryCard from "../components/PokemonSummaryCard.jsx";
 
 
 
@@ -75,39 +76,42 @@ useEffect(() => {
       // Learnsets + Moves
       //-------------------------------------
 
-      const [
-        learnsetResponse,
-        movesResponse
-      ] = await Promise.all([
-
-        fetch(
-          `/data/pokemonLearnsets/${id}.json`
-        ),
-
-        fetch(
+      const movesResponse =
+        await fetch(
           "/data/moves.json"
-        )
+        );
 
-      ]);
+      const movesJson =
+        await movesResponse.json();
 
-      const [
-        learnsetJson,
-        movesJson
-      ] = await Promise.all([
+      setMovesData(movesJson);
 
-        learnsetResponse.json(),
+      try {
+        const learnsetResponse =
+          await fetch(
+            `/data/pokemonLearnsets/${id}.json`
+          );
 
-        movesResponse.json()
+        if (!learnsetResponse.ok) {
+          throw new Error(
+            `Missing learnset for ${id}`
+          );
+        }
 
-      ]);
+        const learnsetJson =
+          await learnsetResponse.json();
 
-      setLearnsetData(
-        learnsetJson
-      );
+        setLearnsetData(
+          learnsetJson
+        );
+      } catch (error) {
+        console.warn(
+          "Failed to load learnset:",
+          error
+        );
 
-      setMovesData(
-        movesJson
-      );
+        setLearnsetData(null);
+      }
 
       //-------------------------------------
       //  Evolution Data
@@ -363,6 +367,88 @@ if (loading) {
 
     )
   )}
+</div>
+
+
+<div>
+
+  
+
+
+
+{pokemon.varieties?.length > 1 && (
+  <>
+    <h2>Forms</h2>
+
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "1rem",
+        flexWrap: "wrap"
+      }}
+    >
+      {pokemon.varieties.map(
+        form => (
+          <PokemonSummaryCard
+            key={form.id}
+            pokemon={form}
+            compact={true}
+          />
+        )
+      )}
+    </div>
+  </>
+)}
+
+
+
+
+
+
+
+
+
+
+
+
+{/* 
+  {pokemon.varieties.map(
+    variety => (
+
+      <button
+        key={variety}
+
+        onClick={() =>
+          navigate(
+            `/pokemon/${varieties.id}`
+          )
+        }
+
+        style={{
+          padding:
+            ".4rem .8rem",
+
+          borderRadius:
+            "999px",
+
+          border: "none",
+
+          cursor: "pointer"
+          
+        }}
+      >
+        
+          {variety}
+     
+      </button>
+
+    )
+  )} */}
+
+
+
+  
 </div>
 
 <div 

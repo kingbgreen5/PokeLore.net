@@ -1,207 +1,132 @@
-// This script generates individual learnset JSON files for each Pokémon based on the data in learnsets.json and pokemonIndex.json.
-
-
-// import fs from "fs";
-
-// const learnsets =
-//   JSON.parse(
-//     fs.readFileSync(
-//       "./public/data/learnsets.json",
-//       "utf8"
-//     )
-//   );
-
-// const pokemonIndex =
-//   JSON.parse(
-//     fs.readFileSync(
-//       "./public/data/pokemonIndex.json",
-//       "utf8"
-//     )
-//   );
-
-// const OUTPUT_DIR =
-//   "./public/data/pokemonLearnsets";
-
-// if (
-//   !fs.existsSync(
-//     OUTPUT_DIR
-//   )
-// ) {
-//   fs.mkdirSync(
-//     OUTPUT_DIR,
-//     { recursive: true }
-//   );
-// }
-
-// for (
-//   const pokemon
-//   of pokemonIndex
-// ) {
-
-//   const learnset =
-//     learnsets.find(
-//       entry =>
-//         entry.pokemon ===
-//         pokemon.name
-//     );
-
-//   if (!learnset)
-//     continue;
-
-//   fs.writeFileSync(
-
-//     `${OUTPUT_DIR}/${pokemon.id}.json`,
-
-//     JSON.stringify(
-//       learnset,
-//       null,
-//       2
-//     )
-
-//   );
-
-//   console.log(
-//     `Saved ${pokemon.name}`
-//   );
-// }
-
-// console.log(
-//   "Learnsets complete."
-// );
-
-
-// Run with:
+// Run after pokemonData has been generated:
 // node scripts/generatePokemonLearnsets.js
 
+import axios from "axios";
 import fs from "fs";
+import path from "path";
 
-const LEARNSETS_FILE =
-  "./public/data/learnsets.json";
+const BASE_URL =
+  "https://pokeapi.co/api/v2";
 
-const INDEX_FILE =
-  "./public/data/pokemonIndex.json";
+const POKEMON_DATA_DIR =
+  "./public/data/pokemonData";
 
 const OUTPUT_DIR =
   "./public/data/pokemonLearnsets";
 
+function sleep(ms) {
+  return new Promise(resolve =>
+    setTimeout(resolve, ms)
+  );
+}
+
+function buildMoves(pokemon) {
+  const moves = [];
+
+  for (const moveEntry of pokemon.moves) {
+    for (const detail of moveEntry
+      .version_group_details) {
+      moves.push({
+        move: moveEntry.move.name,
+        method:
+          detail.move_learn_method.name,
+        level:
+          detail.level_learned_at,
+        versionGroup:
+          detail.version_group.name
+      });
+    }
+  }
+
+  return moves;
+}
+
 async function main() {
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR, {
+      recursive: true
+    });
+  }
 
-  try {
-
-    //-------------------------------------
-    // Create Folder
-    //-------------------------------------
-
-    if (
-      !fs.existsSync(
-        OUTPUT_DIR
+  const pokemonFiles =
+    fs.readdirSync(POKEMON_DATA_DIR)
+      .filter(file =>
+        file.endsWith(".json")
       )
-    ) {
-
-      fs.mkdirSync(
-        OUTPUT_DIR,
-        {
-          recursive: true
-        }
-      );
-    }
-
-    //-------------------------------------
-    // Load Data
-    //-------------------------------------
-
-    const learnsets =
-
-      JSON.parse(
-        fs.readFileSync(
-          LEARNSETS_FILE,
-          "utf8"
-        )
+      .sort(
+        (a, b) =>
+          Number(
+            path.basename(a, ".json")
+          ) -
+          Number(
+            path.basename(b, ".json")
+          )
       );
 
-    const pokemonIndex =
+  console.log(
+    `Found ${pokemonFiles.length} pokemonData files.`
+  );
 
-      JSON.parse(
-        fs.readFileSync(
-          INDEX_FILE,
-          "utf8"
-        )
+  let savedCount = 0;
+
+  for (const file of pokemonFiles) {
+    const localPokemon = JSON.parse(
+      fs.readFileSync(
+        path.join(
+          POKEMON_DATA_DIR,
+          file
+        ),
+        "utf8"
+      )
+    );
+
+    try {
+      console.log(
+        `Fetching learnset for ${localPokemon.id} ${localPokemon.name}...`
       );
 
-    //-------------------------------------
-    // Create Name → ID Map
-    //-------------------------------------
-
-    const idMap = {};
-
-    for (
-      const pokemon
-      of pokemonIndex
-    ) {
-
-      idMap[
-        pokemon.name
-      ] = pokemon.id;
-
-    }
-
-    //-------------------------------------
-    // Write Individual Files
-    //-------------------------------------
-
-    let count = 0;
-
-    for (
-      const learnset
-      of learnsets
-    ) {
-
-      const id =
-
-        idMap[
-          learnset.pokemon
-        ];
-
-      if (!id) {
-
-        console.warn(
-          `No ID found for ${learnset.pokemon}`
+      const response =
+        await axios.get(
+          `${BASE_URL}/pokemon/${localPokemon.id}`
         );
 
-        continue;
-      }
+      const pokemon = response.data;
+
+      const learnset = {
+        id: pokemon.id,
+        pokemon: pokemon.name,
+        species:
+          localPokemon.species ??
+          pokemon.species.name,
+        moves: buildMoves(pokemon)
+      };
 
       fs.writeFileSync(
-
-        `${OUTPUT_DIR}/${id}.json`,
-
+        `${OUTPUT_DIR}/${pokemon.id}.json`,
         JSON.stringify(
           learnset,
           null,
           2
         )
-
       );
 
-      count++;
+      savedCount++;
 
       console.log(
-        `Saved ${id}.json (${learnset.pokemon})`
+        `Saved ${pokemon.id}.json (${pokemon.name})`
+      );
+
+      await sleep(80);
+    } catch (error) {
+      console.error(
+        `Failed learnset for ${localPokemon.id} ${localPokemon.name}: ${error.message}`
       );
     }
-
-    console.log(
-      `Finished. Created ${count} learnset files.`
-    );
-
-  } catch (error) {
-
-    console.error(
-      "Failed:"
-    );
-
-    console.error(error);
   }
+
+  console.log(
+    `Finished generating ${savedCount} learnset files.`
+  );
 }
 
 main();
