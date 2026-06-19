@@ -36,6 +36,29 @@ function capitalize(text) {
     .join(" ");
 }
 
+function getFormKey(pokemon) {
+  if (
+    !pokemon ||
+    !pokemon.species ||
+    pokemon.name === pokemon.species
+  ) {
+    return null;
+  }
+
+  const prefix =
+    `${pokemon.species}-`;
+
+  if (
+    pokemon.name.startsWith(prefix)
+  ) {
+    return pokemon.name.slice(
+      prefix.length
+    );
+  }
+
+  return null;
+}
+
 function PokemonDetailPage() {
   const evolutionScrollRef = useRef(null);
 const rootNodeRef = useRef(null);
@@ -215,6 +238,9 @@ if (loading) {
   return <p>Loading...</p>;
 }
 
+const activeFormKey =
+  getFormKey(pokemon);
+
 
 //----------------------------------------RETURN STATEMENT-----------------------------------------
 
@@ -245,7 +271,7 @@ if (loading) {
 <h5> No. {pokemon.id}.</h5>
 
 {/* 
-//-----------------------------------------Forms----------------------------------------- */}
+
 {/* 
 <h2>Forms</h2>
 
@@ -372,7 +398,7 @@ if (loading) {
 
 <div>
 
-  
+  {/*//-----------------------------------------Forms----------------------------------------- */}
 
 
 
@@ -382,10 +408,22 @@ if (loading) {
 
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        gap: "1rem",
-        flexWrap: "wrap"
+        // display: "flex",
+        // justifyContent: "center",
+        // gap: "1rem",
+        // flexWrap: "wrap",
+        //      gridTemplateColumns:
+        //     "repeat(auto-fit, minmax(120px, 1fr))",
+
+
+          display: "grid",
+          justifyItems: "center",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(140px, 1fr))",
+          gap: "1rem"
+
+
+
       }}
     >
       {pokemon.varieties.map(
@@ -408,58 +446,12 @@ if (loading) {
 
 
 
-
-
-
-
-{/* 
-  {pokemon.varieties.map(
-    variety => (
-
-      <button
-        key={variety}
-
-        onClick={() =>
-          navigate(
-            `/pokemon/${varieties.id}`
-          )
-        }
-
-        style={{
-          padding:
-            ".4rem .8rem",
-
-          borderRadius:
-            "999px",
-
-          border: "none",
-
-          cursor: "pointer"
-          
-        }}
-      >
-        
-          {variety}
-     
-      </button>
-
-    )
-  )} */}
-
-
-
   
 </div>
 
 <div 
 
-//    style={{
-//           display: "flex",
-//  justifyContent: "center",
-//           gap: "rem",
-//           marginBottom: "1rem",
-//           marginTop: "2rem",
-//         }}
+
 
    >
 <BaseStatsChart
@@ -517,6 +509,7 @@ if (loading) {
   node={evolutionData.root}
    isRoot={true}
   rootRef={rootNodeRef}
+  activeFormKey={activeFormKey}
  
 />
     )}

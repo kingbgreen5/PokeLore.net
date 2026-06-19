@@ -3,12 +3,41 @@
   "root": {
     "pokemon": {
       "id": 550,
-      "name": "basculin",
+      "name": "basculin-red-striped",
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/550.png",
       "types": [
         "water"
       ]
     },
+    "varieties": [
+      {
+        "id": 550,
+        "name": "basculin-red-striped",
+        "isDefault": true,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/550.png",
+        "types": [
+          "water"
+        ]
+      },
+      {
+        "id": 10016,
+        "name": "basculin-blue-striped",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10016.png",
+        "types": [
+          "water"
+        ]
+      },
+      {
+        "id": 10247,
+        "name": "basculin-white-striped",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10247.png",
+        "types": [
+          "water"
+        ]
+      }
+    ],
     "trigger": null,
     "item": null,
     "heldItem": null,
@@ -23,13 +52,35 @@
       {
         "pokemon": {
           "id": 902,
-          "name": "basculegion",
+          "name": "basculegion-male",
           "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/902.png",
           "types": [
             "water",
             "ghost"
           ]
         },
+        "varieties": [
+          {
+            "id": 902,
+            "name": "basculegion-male",
+            "isDefault": true,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/902.png",
+            "types": [
+              "water",
+              "ghost"
+            ]
+          },
+          {
+            "id": 10248,
+            "name": "basculegion-female",
+            "isDefault": false,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10248.png",
+            "types": [
+              "water",
+              "ghost"
+            ]
+          }
+        ],
         "trigger": "recoil-damage",
         "minLevel": null,
         "item": null,

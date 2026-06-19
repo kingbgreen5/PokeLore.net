@@ -3,13 +3,55 @@
   "root": {
     "pokemon": {
       "id": 778,
-      "name": "mimikyu",
+      "name": "mimikyu-disguised",
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/778.png",
       "types": [
         "ghost",
         "fairy"
       ]
     },
+    "varieties": [
+      {
+        "id": 778,
+        "name": "mimikyu-disguised",
+        "isDefault": true,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/778.png",
+        "types": [
+          "ghost",
+          "fairy"
+        ]
+      },
+      {
+        "id": 10143,
+        "name": "mimikyu-busted",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10143.png",
+        "types": [
+          "ghost",
+          "fairy"
+        ]
+      },
+      {
+        "id": 10144,
+        "name": "mimikyu-totem-disguised",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10144.png",
+        "types": [
+          "ghost",
+          "fairy"
+        ]
+      },
+      {
+        "id": 10145,
+        "name": "mimikyu-totem-busted",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/10145.png",
+        "types": [
+          "ghost",
+          "fairy"
+        ]
+      }
+    ],
     "trigger": null,
     "item": null,
     "heldItem": null,

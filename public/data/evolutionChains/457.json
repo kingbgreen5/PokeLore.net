@@ -3,12 +3,32 @@
   "root": {
     "pokemon": {
       "id": 875,
-      "name": "eiscue",
+      "name": "eiscue-ice",
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/875.png",
       "types": [
         "ice"
       ]
     },
+    "varieties": [
+      {
+        "id": 875,
+        "name": "eiscue-ice",
+        "isDefault": true,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/875.png",
+        "types": [
+          "ice"
+        ]
+      },
+      {
+        "id": 10185,
+        "name": "eiscue-noice",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10185.png",
+        "types": [
+          "ice"
+        ]
+      }
+    ],
     "trigger": null,
     "item": null,
     "heldItem": null,

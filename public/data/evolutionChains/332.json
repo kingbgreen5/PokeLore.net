@@ -3,13 +3,35 @@
   "root": {
     "pokemon": {
       "id": 645,
-      "name": "landorus",
+      "name": "landorus-incarnate",
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/645.png",
       "types": [
         "ground",
         "flying"
       ]
     },
+    "varieties": [
+      {
+        "id": 645,
+        "name": "landorus-incarnate",
+        "isDefault": true,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/645.png",
+        "types": [
+          "ground",
+          "flying"
+        ]
+      },
+      {
+        "id": 10021,
+        "name": "landorus-therian",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10021.png",
+        "types": [
+          "ground",
+          "flying"
+        ]
+      }
+    ],
     "trigger": null,
     "item": null,
     "heldItem": null,

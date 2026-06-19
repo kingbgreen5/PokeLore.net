@@ -207,14 +207,44 @@ function EvolutionDescription({
   );
 }
 
+function getDisplayedPokemon(
+  node,
+  activeFormKey
+) {
+  if (!activeFormKey) {
+    return node.pokemon;
+  }
+
+  const matchingVariety =
+    node.varieties?.find(
+      variety =>
+        variety.name.endsWith(
+          `-${activeFormKey}`
+        )
+    );
+
+  return (
+    matchingVariety ||
+    node.pokemon
+  );
+}
 
 
 
 
 
 function EvolutionNode({
-  node,rootRef,isRoot
+  node,
+  rootRef,
+  isRoot,
+  activeFormKey
 }) {
+  const displayedPokemon =
+    getDisplayedPokemon(
+      node,
+      activeFormKey
+    );
+
   return (
 
 
@@ -278,7 +308,7 @@ function EvolutionNode({
 
 <div ref={isRoot ? rootRef : null}>
   <PokemonSummaryCard
-    pokemon={node.pokemon}
+    pokemon={displayedPokemon}
     compact={true}
   />
 </div>
@@ -302,6 +332,9 @@ function EvolutionNode({
                   child.pokemon.id
                 }
                 node={child}
+                activeFormKey={
+                  activeFormKey
+                }
               />
 
             )

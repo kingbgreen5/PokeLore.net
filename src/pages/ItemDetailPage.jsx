@@ -7,6 +7,7 @@ import {
   useNavigate,
   useParams
 } from "react-router-dom";
+import AcquisitionMethods from "../components/AcquisitionMethods";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 
 function capitalize(text) {
@@ -263,6 +264,10 @@ function ItemDetailPage() {
           <p>{item.shortEffect}</p>
         </section>
       )}
+
+      <AcquisitionMethods
+        acquisition={item.acquisition}
+      />
 
       {wildPokemonHoldingItem.length >
         0 && (

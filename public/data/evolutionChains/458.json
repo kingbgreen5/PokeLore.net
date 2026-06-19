@@ -3,13 +3,35 @@
   "root": {
     "pokemon": {
       "id": 876,
-      "name": "indeedee",
+      "name": "indeedee-male",
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/876.png",
       "types": [
         "psychic",
         "normal"
       ]
     },
+    "varieties": [
+      {
+        "id": 876,
+        "name": "indeedee-male",
+        "isDefault": true,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/876.png",
+        "types": [
+          "psychic",
+          "normal"
+        ]
+      },
+      {
+        "id": 10186,
+        "name": "indeedee-female",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10186.png",
+        "types": [
+          "psychic",
+          "normal"
+        ]
+      }
+    ],
     "trigger": null,
     "item": null,
     "heldItem": null,

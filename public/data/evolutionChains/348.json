@@ -9,6 +9,17 @@
         "psychic"
       ]
     },
+    "varieties": [
+      {
+        "id": 677,
+        "name": "espurr",
+        "isDefault": true,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/677.png",
+        "types": [
+          "psychic"
+        ]
+      }
+    ],
     "trigger": null,
     "item": null,
     "heldItem": null,
@@ -23,12 +34,41 @@
       {
         "pokemon": {
           "id": 678,
-          "name": "meowstic",
+          "name": "meowstic-male",
           "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/678.png",
           "types": [
             "psychic"
           ]
         },
+        "varieties": [
+          {
+            "id": 678,
+            "name": "meowstic-male",
+            "isDefault": true,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/678.png",
+            "types": [
+              "psychic"
+            ]
+          },
+          {
+            "id": 10025,
+            "name": "meowstic-female",
+            "isDefault": false,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10025.png",
+            "types": [
+              "psychic"
+            ]
+          },
+          {
+            "id": 10314,
+            "name": "meowstic-mega",
+            "isDefault": false,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10314.png",
+            "types": [
+              "psychic"
+            ]
+          }
+        ],
         "trigger": "level-up",
         "minLevel": 25,
         "item": null,

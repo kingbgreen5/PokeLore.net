@@ -3,13 +3,35 @@
   "root": {
     "pokemon": {
       "id": 642,
-      "name": "thundurus",
+      "name": "thundurus-incarnate",
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/642.png",
       "types": [
         "electric",
         "flying"
       ]
     },
+    "varieties": [
+      {
+        "id": 642,
+        "name": "thundurus-incarnate",
+        "isDefault": true,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/642.png",
+        "types": [
+          "electric",
+          "flying"
+        ]
+      },
+      {
+        "id": 10020,
+        "name": "thundurus-therian",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10020.png",
+        "types": [
+          "electric",
+          "flying"
+        ]
+      }
+    ],
     "trigger": null,
     "item": null,
     "heldItem": null,

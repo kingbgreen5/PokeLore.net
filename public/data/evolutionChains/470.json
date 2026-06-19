@@ -9,6 +9,17 @@
         "fighting"
       ]
     },
+    "varieties": [
+      {
+        "id": 891,
+        "name": "kubfu",
+        "isDefault": true,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/891.png",
+        "types": [
+          "fighting"
+        ]
+      }
+    ],
     "trigger": null,
     "item": null,
     "heldItem": null,
@@ -23,13 +34,55 @@
       {
         "pokemon": {
           "id": 892,
-          "name": "urshifu",
+          "name": "urshifu-single-strike",
           "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/892.png",
           "types": [
             "fighting",
             "dark"
           ]
         },
+        "varieties": [
+          {
+            "id": 892,
+            "name": "urshifu-single-strike",
+            "isDefault": true,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/892.png",
+            "types": [
+              "fighting",
+              "dark"
+            ]
+          },
+          {
+            "id": 10191,
+            "name": "urshifu-rapid-strike",
+            "isDefault": false,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10191.png",
+            "types": [
+              "fighting",
+              "water"
+            ]
+          },
+          {
+            "id": 10226,
+            "name": "urshifu-single-strike-gmax",
+            "isDefault": false,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10226.png",
+            "types": [
+              "fighting",
+              "dark"
+            ]
+          },
+          {
+            "id": 10227,
+            "name": "urshifu-rapid-strike-gmax",
+            "isDefault": false,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10227.png",
+            "types": [
+              "fighting",
+              "water"
+            ]
+          }
+        ],
         "trigger": "tower-of-darkness",
         "minLevel": null,
         "item": null,

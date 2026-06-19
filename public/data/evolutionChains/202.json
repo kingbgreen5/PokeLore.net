@@ -3,12 +3,50 @@
   "root": {
     "pokemon": {
       "id": 386,
-      "name": "deoxys",
+      "name": "deoxys-normal",
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/386.png",
       "types": [
         "psychic"
       ]
     },
+    "varieties": [
+      {
+        "id": 386,
+        "name": "deoxys-normal",
+        "isDefault": true,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/386.png",
+        "types": [
+          "psychic"
+        ]
+      },
+      {
+        "id": 10001,
+        "name": "deoxys-attack",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10001.png",
+        "types": [
+          "psychic"
+        ]
+      },
+      {
+        "id": 10002,
+        "name": "deoxys-defense",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10002.png",
+        "types": [
+          "psychic"
+        ]
+      },
+      {
+        "id": 10003,
+        "name": "deoxys-speed",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10003.png",
+        "types": [
+          "psychic"
+        ]
+      }
+    ],
     "trigger": null,
     "item": null,
     "heldItem": null,

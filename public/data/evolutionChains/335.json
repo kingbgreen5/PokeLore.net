@@ -3,13 +3,35 @@
   "root": {
     "pokemon": {
       "id": 648,
-      "name": "meloetta",
+      "name": "meloetta-aria",
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/648.png",
       "types": [
         "normal",
         "psychic"
       ]
     },
+    "varieties": [
+      {
+        "id": 648,
+        "name": "meloetta-aria",
+        "isDefault": true,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/648.png",
+        "types": [
+          "normal",
+          "psychic"
+        ]
+      },
+      {
+        "id": 10018,
+        "name": "meloetta-pirouette",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10018.png",
+        "types": [
+          "normal",
+          "fighting"
+        ]
+      }
+    ],
     "trigger": null,
     "item": null,
     "heldItem": null,

@@ -9,6 +9,17 @@
         "normal"
       ]
     },
+    "varieties": [
+      {
+        "id": 915,
+        "name": "lechonk",
+        "isDefault": true,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/915.png",
+        "types": [
+          "normal"
+        ]
+      }
+    ],
     "trigger": null,
     "item": null,
     "heldItem": null,
@@ -23,12 +34,32 @@
       {
         "pokemon": {
           "id": 916,
-          "name": "oinkologne",
+          "name": "oinkologne-male",
           "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/916.png",
           "types": [
             "normal"
           ]
         },
+        "varieties": [
+          {
+            "id": 916,
+            "name": "oinkologne-male",
+            "isDefault": true,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/916.png",
+            "types": [
+              "normal"
+            ]
+          },
+          {
+            "id": 10254,
+            "name": "oinkologne-female",
+            "isDefault": false,
+            "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10254.png",
+            "types": [
+              "normal"
+            ]
+          }
+        ],
         "trigger": "level-up",
         "minLevel": 18,
         "item": null,

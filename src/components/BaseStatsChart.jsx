@@ -14,10 +14,28 @@ function capitalizeStat(stat) {
 }
 
 function getStatColor(value) {
-  if (value >= 120) return "#4caf50";
-  if (value >= 90) return "#8bc34a";
-  if (value >= 60) return "#ffc107";
-  return "#f4ab36";
+
+
+     if (value >= 130) return "#09ff00";
+  if (value >= 120) return "#3ce80d";
+   if (value >= 110) return "#68e80d";
+  if (value >= 100) return "#7be80d"
+ if (value >= 90) return "#a3e80d"
+  if (value >= 80) return "#bae718";
+  if (value >= 70) return "#ebce11";
+  if (value >= 60) return "#ffad08";
+  if (value >= 50) return "#ff5900";
+   if (value >= 40) return "#db3e1a";
+ if (value >= 30) return "#db201a";
+ if (value >= 20) return "#aa1818";
+
+ 
+
+
+
+
+
+  return "#974242";
 }
 
 function BaseStatsChart({ stats }) {
@@ -55,7 +73,7 @@ function BaseStatsChart({ stats }) {
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: ".65rem"
+          gap: ".25rem"
         }}
       >
         {Object.entries(stats).map(

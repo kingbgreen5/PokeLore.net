@@ -8,21 +8,96 @@ const BASE_URL =
 const OUTPUT_DIR =
   "./public/data/evolutionChains";
 
-const pokemonIndex =
-  JSON.parse(
-    fs.readFileSync(
-      "./public/data/pokemonIndex.json",
-      "utf8"
-    )
+const POKEMON_DATA_DIR =
+  "./public/data/pokemonData";
+
+const pokemonBySpecies =
+  loadPokemonBySpecies();
+
+function toSummary(pokemon) {
+  return {
+    id: pokemon.id,
+    name: pokemon.name,
+    isDefault:
+      pokemon.isDefaultForm,
+    sprite: pokemon.sprite,
+    types: pokemon.types || []
+  };
+}
+
+function loadPokemonBySpecies() {
+  const grouped = {};
+
+  const files =
+    fs.readdirSync(POKEMON_DATA_DIR)
+      .filter(file =>
+        file.endsWith(".json")
+      );
+
+  for (const file of files) {
+    const pokemon = JSON.parse(
+      fs.readFileSync(
+        path.join(
+          POKEMON_DATA_DIR,
+          file
+        ),
+        "utf8"
+      )
+    );
+
+    if (!pokemon.species) {
+      continue;
+    }
+
+    if (!grouped[pokemon.species]) {
+      grouped[pokemon.species] = [];
+    }
+
+    grouped[pokemon.species].push(
+      toSummary(pokemon)
+    );
+  }
+
+  for (const varieties of Object.values(
+    grouped
+  )) {
+    varieties.sort(
+      (a, b) =>
+        Number(b.isDefault) -
+          Number(a.isDefault) ||
+        a.id - b.id
+    );
+  }
+
+  return grouped;
+}
+
+function getSpeciesVarieties(speciesName) {
+  return pokemonBySpecies[
+    speciesName
+  ] || [];
+}
+
+function getDefaultPokemon(
+  speciesName,
+  fallbackId
+) {
+  const varieties =
+    getSpeciesVarieties(speciesName);
+
+  return (
+    varieties.find(
+      variety => variety.isDefault
+    ) ||
+    varieties[0] || {
+      id: fallbackId,
+      name: speciesName,
+      isDefault: true,
+      sprite:
+        `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${fallbackId}.png`,
+      types: []
+    }
   );
-
-
-function getPokemonInfo(id) {
-
-  return pokemonIndex.find(
-    pokemon => pokemon.id === id
-  );
-
 }
 
 if (!fs.existsSync(OUTPUT_DIR)) {
@@ -61,11 +136,16 @@ const pokemonId =
     chainNode.species.url
   );
 
-const pokemonInfo =
-  getPokemonInfo(
-    pokemonId
+const varieties =
+  getSpeciesVarieties(
+    chainNode.species.name
   );
 
+const defaultPokemon =
+  getDefaultPokemon(
+    chainNode.species.name,
+    pokemonId
+  );
 
 
 
@@ -76,20 +156,20 @@ const pokemonInfo =
 
 pokemon: {
 
-  id: pokemonId,
+  id: defaultPokemon.id,
 
   name:
-    chainNode.species.name,
+    defaultPokemon.name,
 
   sprite:
-    pokemonInfo?.sprite ||
-
-    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`,
+    defaultPokemon.sprite,
 
   types:
-    pokemonInfo?.types || []
+    defaultPokemon.types || []
 
 },
+
+    varieties,
 
     trigger:
       details.trigger?.name ||

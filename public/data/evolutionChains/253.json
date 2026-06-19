@@ -3,12 +3,33 @@
   "root": {
     "pokemon": {
       "id": 492,
-      "name": "shaymin",
+      "name": "shaymin-land",
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/492.png",
       "types": [
         "grass"
       ]
     },
+    "varieties": [
+      {
+        "id": 492,
+        "name": "shaymin-land",
+        "isDefault": true,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/492.png",
+        "types": [
+          "grass"
+        ]
+      },
+      {
+        "id": 10006,
+        "name": "shaymin-sky",
+        "isDefault": false,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10006.png",
+        "types": [
+          "grass",
+          "flying"
+        ]
+      }
+    ],
     "trigger": null,
     "item": null,
     "heldItem": null,
