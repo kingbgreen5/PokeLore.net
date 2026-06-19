@@ -58,10 +58,16 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         style={{
-          width: "90%",
-          padding: "1rem",
+          backgroundColor: "#2c2c2c",
+          border: "2px solid #555",
+          borderRadius: "12px",
+          boxSizing: "border-box",
+          color: "white",
           marginBottom: "2rem",
-          fontSize: "1rem"
+          maxWidth: "420px",
+          padding: ".8rem 1rem",
+          fontSize: "1rem",
+          width: "100%"
         }}
       />
     

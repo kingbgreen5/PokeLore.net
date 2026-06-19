@@ -128,9 +128,14 @@ function ItemsPage() {
             )
           }
           style={{
+            backgroundColor: "#2c2c2c",
+            border: "2px solid #555",
+            borderRadius: "12px",
+            boxSizing: "border-box",
+            color: "white",
             fontSize: "1rem",
             maxWidth: "420px",
-            padding: ".75rem",
+            padding: ".8rem 1rem",
             width: "100%"
           }}
         />

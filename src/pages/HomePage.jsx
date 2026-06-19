@@ -225,11 +225,15 @@ function HomePage() {
             )
           }
           style={{
+            backgroundColor: "#2c2c2c",
+            boxSizing: "border-box",
+            color: "white",
             padding: ".8rem 1rem",
             borderRadius: "12px",
             border:
               "2px solid #555",
-            minWidth: "320px",
+            maxWidth: "420px",
+            width: "100%",
             fontSize: "1rem"
           }}
         />

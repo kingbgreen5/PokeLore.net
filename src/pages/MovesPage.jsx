@@ -34,6 +34,9 @@ function MovesPage() {
 const [selectedCategory, setSelectedCategory] =
   useState("all");
 
+const [powerSortMode, setPowerSortMode] =
+  useState("all");
+
 
 
   useEffect(() => {
@@ -100,18 +103,44 @@ const [selectedCategory, setSelectedCategory] =
               move.type ===
                 selectedType;
 
+            const matchesCategory =
+              selectedCategory === "all"
+              ||
+              move.category ===
+                selectedCategory;
+
             return (
               matchesSearch &&
-              matchesType
+              matchesType &&
+              matchesCategory
             );
 
           }
-        );
+        )
+        .sort(([, a], [, b]) => {
+          if (powerSortMode === "high-low") {
+            return (
+              (b.power ?? -1) -
+              (a.power ?? -1)
+            );
+          }
+
+          if (powerSortMode === "low-high") {
+            return (
+              (a.power ?? Infinity) -
+              (b.power ?? Infinity)
+            );
+          }
+
+          return 0;
+        });
 
     }, [
       moves,
       searchTerm,
-      selectedType
+      selectedType,
+      selectedCategory,
+      powerSortMode
     ]);
 
   if (loading) {
@@ -139,75 +168,127 @@ const [selectedCategory, setSelectedCategory] =
           )
         }
         style={{
-          padding: ".5rem",
-          width: "100%",
-          maxWidth: "400px",
-          marginBottom: "1rem"
+          backgroundColor: "#2c2c2c",
+          border: "2px solid #555",
+          borderRadius: "12px",
+          boxSizing: "border-box",
+          color: "white",
+          fontSize: "1rem",
+          marginBottom: "1rem",
+          maxWidth: "420px",
+          padding: ".8rem 1rem",
+          width: "100%"
         }}
       />
 
-<select
-  value={selectedCategory}
-  onChange={e =>
-    setSelectedCategory(
-      e.target.value
-    )
-  }
-
+      <div
         style={{
-          padding: ".5rem",
-          marginBottom: "2rem"
-        }}
-     
-
->
-  <option value="all">
-    All Categories
-  </option>
-
-  <option value="physical">
-    Physical
-  </option>
-
-  <option value="special">
-    Special
-  </option>
-
-  <option value="status">
-    Status
-  </option>
-</select>
-
-
-
-
-      <select
-        value={selectedType}
-        onChange={e =>
-          setSelectedType(
-            e.target.value
-          )
-        }
-        style={{
-          padding: ".5rem",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "1rem",
+          justifyContent: "center",
           marginBottom: "2rem"
         }}
       >
-        {allTypes.map(type => (
-          <option
-            key={type}
-            value={type}
-          >
-            {capitalize(type)}
+        <select
+          value={selectedCategory}
+          onChange={e =>
+            setSelectedCategory(
+              e.target.value
+            )
+          }
+          style={{
+            backgroundColor: "#2c2c2c",
+            border: "2px solid #555",
+            borderRadius: "12px",
+            color: "white",
+            fontSize: "1rem",
+            padding: ".7rem 1rem"
+          }}
+        >
+          <option value="all">
+            All Categories
           </option>
-        ))}
-      </select>
+
+          <option value="physical">
+            Physical
+          </option>
+
+          <option value="special">
+            Special
+          </option>
+
+          <option value="status">
+            Status
+          </option>
+        </select>
+
+        <select
+          value={selectedType}
+          onChange={e =>
+            setSelectedType(
+              e.target.value
+            )
+          }
+          style={{
+            backgroundColor: "#2c2c2c",
+            border: "2px solid #555",
+            borderRadius: "12px",
+            color: "white",
+            fontSize: "1rem",
+            padding: ".7rem 1rem"
+          }}
+        >
+          {allTypes.map(type => (
+            <option
+              key={type}
+              value={type}
+            >
+              {capitalize(type)}
+            </option>
+          ))}
+        </select>
+
+        <select
+          value={powerSortMode}
+          onChange={e =>
+            setPowerSortMode(
+              e.target.value
+            )
+          }
+          style={{
+            backgroundColor: "#2c2c2c",
+            border: "2px solid #555",
+            borderRadius: "12px",
+            color: "white",
+            fontSize: "1rem",
+            padding: ".7rem 1rem"
+          }}
+        >
+          <option value="all">
+            Default Order
+          </option>
+
+                    <option value="low-high">
+            Power Descending
+          </option>
+
+          <option value="high-low">
+            Power Ascending
+          </option>
+
+
+
+
+        </select>
+      </div>
 
       <div
         style={{
           display: "grid",
+          justifyItems: "center",
           gridTemplateColumns:
-            "repeat(auto-fill,minmax(200px,.75fr))",
+            "repeat(auto-fit, minmax(140px, 1fr))",
           gap: "1rem"
         }}
       >

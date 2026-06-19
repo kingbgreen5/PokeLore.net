@@ -13,7 +13,7 @@ function Banner() {
     <div
       onClick={() => navigate("/")}
       style={{
-        padding: "2rem",
+        padding: ".5rem",
         cursor: "pointer",
         textAlign: "center"
 

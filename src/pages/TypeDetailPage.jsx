@@ -283,6 +283,7 @@ function TypeDetailPage() {
   const defensiveMatchups =
     getDefensiveMatchups(type);
 
+    // --------------------------------------------------------RETURN-------
   return (
     <div
       style={{
@@ -292,19 +293,21 @@ function TypeDetailPage() {
 
 
 
-      {/* <h1
+      <h1
       style={{
+    
         color: typeColors[type],
       }}
       >
         {capitalize(type)} Type
-      </h1> */}
+      </h1>
 
       <div
         style={{
           backgroundColor:
             typeColors[type],
           borderRadius: "999px",
+          fontFamily:"",
           color: "white",
           display: "inline-block",
           fontWeight: "bold",
@@ -357,7 +360,7 @@ function TypeDetailPage() {
           display: "grid",
           gap: "1rem",
           gridTemplateColumns:
-            "repeat(auto-fit, minmax(150px, 1fr))",
+            "repeat(auto-fit, minmax(140px, 1fr))",
           marginBottom: "3rem"
         }}
       >
@@ -380,8 +383,9 @@ function TypeDetailPage() {
         style={{
           display: "grid",
           gap: "1rem",
+          justifyItems: "center",
           gridTemplateColumns:
-            "repeat(auto-fill, minmax(200px, .75fr))"
+            "repeat(auto-fit, minmax(150px, 1fr))"
         }}
       >
         {movesOfType.map(

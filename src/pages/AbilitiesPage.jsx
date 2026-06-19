@@ -109,10 +109,16 @@ function AbilitiesPage() {
           )
         }
         style={{
-          padding: ".5rem",
-          width: "100%",
-          maxWidth: "400px",
-          marginBottom: "2rem"
+          backgroundColor: "#2c2c2c",
+          border: "2px solid #555",
+          borderRadius: "12px",
+          boxSizing: "border-box",
+          color: "white",
+          fontSize: "1rem",
+          marginBottom: "2rem",
+          maxWidth: "420px",
+          padding: ".8rem 1rem",
+          width: "100%"
         }}
       />
 

@@ -24,13 +24,44 @@ function MoveSummaryCard({
         navigate(`/move/${name}`)
       }
       style={{
-        border: "1px solid #666",
-        borderRadius: "12px",
+        alignItems: "center",
+        backgroundColor: "#2c2c2c",
+        border: "2px solid #555",
+        borderRadius: "18px",
+        boxSizing: "border-box",
         cursor: "pointer",
-        padding: ".1rem"
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        maxHeight: "200px",
+        maxWidth: "200px",
+        minHeight: "150px",
+        padding: ".35rem",
+        transition:
+          "transform 0.15s ease",
+        width: "150px"
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.transform =
+          "translateY(-4px)";
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.transform =
+          "translateY(0px)";
       }}
     >
-      <h3>
+      <h3
+        style={{
+          fontSize: ".82rem",
+          lineHeight: 1.15,
+          margin:
+            "0 0 .5rem 0",
+          maxWidth: "100%",
+          overflowWrap:
+            "anywhere",
+          textAlign: "center"
+        }}
+      >
         {capitalize(name)}
       </h3>
 
@@ -40,7 +71,10 @@ function MoveSummaryCard({
             typeColors[move.type],
           borderRadius: "999px",
           color: "white",
-          padding: ".25rem .75rem"
+          fontSize: ".55rem",
+          fontWeight: "bold",
+          padding: ".15rem .45rem",
+          textTransform: "uppercase"
         }}
       >
         {move.type}
@@ -48,19 +82,26 @@ function MoveSummaryCard({
 
       <div
         style={{
-          marginTop: "1rem"
+          display: "grid",
+          fontSize: ".72rem",
+          gap: ".15rem",
+          lineHeight: 1.2,
+          marginTop: ".55rem",
+          textAlign: "center"
         }}
       >
-        Power: {move.power ?? "-"}
-      </div>
+        <div>
+          Power: {move.power ?? "-"}
+        </div>
 
-      <div>
-        Accuracy:{" "}
-        {move.accuracy ?? "-"}
-      </div>
+        <div>
+          Accuracy:{" "}
+          {move.accuracy ?? "-"}
+        </div>
 
-      <div>
-        PP: {move.pp ?? "-"}
+        <div>
+          PP: {move.pp ?? "-"}
+        </div>
       </div>
     </div>
   );

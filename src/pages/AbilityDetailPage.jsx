@@ -199,10 +199,14 @@ function AbilityDetailPage() {
       >
         <h2>Generation</h2>
 
-        <p>
-          {capitalize(
-            ability.generation
-          )}
+        <p
+        style={{
+          textTransform:"uppercase"
+        }
+        }>
+        
+            {ability.generation}
+    
         </p>
       </div>
 
@@ -220,7 +224,7 @@ function AbilityDetailPage() {
     display: "grid",
     gap: "1rem",
     gridTemplateColumns:
-      "repeat(auto-fit, minmax(150px, 1fr))",
+      "repeat(auto-fit, minmax(140px, 1fr))",
     marginTop: "1rem"
   }}
 >
