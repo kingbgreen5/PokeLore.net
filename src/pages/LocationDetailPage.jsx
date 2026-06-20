@@ -60,6 +60,7 @@ function EncounterDetails({
       style={{
         display: "grid",
         gap: ".75rem"
+      
       }}
     >
       {versions.map(version => (
@@ -79,8 +80,8 @@ function EncounterDetails({
               opacity: 0.75
             }}
           >
-            {" "}
-            max {version.maxChance}%
+            {/* {" "}
+            max {version.maxChance}% */}
           </span>
 
           <div
@@ -208,7 +209,7 @@ function LocationDetailPage() {
     <div
       style={{
         margin: "0 auto",
-        maxWidth: "1100px",
+        maxWidth: "1300px",
         padding: "2rem"
       }}
     >
@@ -287,10 +288,9 @@ function LocationDetailPage() {
             <section
               key={area.name}
               style={{
-                border: "1px solid #666",
-                borderRadius: "12px",
+ 
                 marginBottom: "2rem",
-                padding: "1rem"
+                padding: ".1rem"
               }}
             >
               <h2>{area.displayName}</h2>
@@ -318,7 +318,8 @@ function LocationDetailPage() {
                           borderRadius:
                             "999px",
                           padding:
-                            ".35rem .75rem"
+                            ".35rem .35rem",
+                            fontSize:"small"
                         }}
                       >
                         {capitalize(rate.method)}
@@ -340,7 +341,7 @@ function LocationDetailPage() {
                   >
                     {visibleEncounters.map(
                       encounter => (
-                        <div
+                        <div classname="testing,"
                           key={
                             encounter.pokemon.id
                           }
@@ -348,6 +349,13 @@ function LocationDetailPage() {
                             alignItems: "start",
                             display: "grid",
                             gap: "1rem",
+                            border:"1px solid",
+                                     border:
+                            "1px solid #666",
+                          borderRadius:
+                            "12px",
+                            padding:".1rem",
+                            
                             gridTemplateColumns:
                               "repeat(auto-fit, minmax(90px, 1fr))"
                           }}
