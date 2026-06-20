@@ -36,13 +36,21 @@ function formatLevelRange(encounter) {
 function WhereToFind({
   pokemonId
 }) {
+  const [expanded, setExpanded] =
+    useState(false);
+
   const [encounterData, setEncounterData] =
     useState(null);
+
+  const [selectedVersion, setSelectedVersion] =
+    useState("all");
 
   useEffect(() => {
     async function loadEncounters() {
       try {
         setEncounterData(null);
+        setExpanded(false);
+        setSelectedVersion("all");
 
         const response = await fetch(
           `/data/pokemonEncounters/${pokemonId}.json`
@@ -68,160 +76,258 @@ function WhereToFind({
     loadEncounters();
   }, [pokemonId]);
 
-  const visibleLocations = useMemo(
-    () =>
-      encounterData?.locations?.slice(0, 20) ??
-      [],
+  const versionOptions = useMemo(
+    () => [
+      "all",
+      ...new Set(
+        encounterData?.locations?.flatMap(
+          location =>
+            location.areas.flatMap(area =>
+              area.versions.map(
+                version => version.version
+              )
+            )
+        ) ?? []
+      )
+    ].sort((a, b) => {
+      if (a === "all") return -1;
+      if (b === "all") return 1;
+      return a.localeCompare(b);
+    }),
     [encounterData]
   );
 
-  if (!visibleLocations.length) {
+  const visibleLocations = useMemo(
+    () =>
+      encounterData?.locations
+        ?.map(location => ({
+          ...location,
+          areas: location.areas
+            .map(area => ({
+              ...area,
+              versions:
+                selectedVersion === "all"
+                  ? area.versions
+                  : area.versions.filter(
+                      version =>
+                        version.version ===
+                        selectedVersion
+                    )
+            }))
+            .filter(
+              area =>
+                area.versions.length > 0
+            )
+        }))
+        .filter(
+          location =>
+            location.areas.length > 0
+        ) ?? [],
+    [
+      encounterData,
+      selectedVersion
+    ]
+  );
+
+  if (!encounterData?.locations?.length) {
     return null;
   }
 
   return (
-    <section
+    <div
       style={{
-        marginTop: "2rem"
+        border: "2px solid #706363",
+        borderRadius: "12px",
+        padding: ".35rem",
+        marginBottom: "1rem",
+        marginTop: "1rem"
       }}
     >
-      <h2>Where To Find</h2>
-
       <div
+        onClick={() =>
+          setExpanded(!expanded)
+        }
         style={{
-          display: "grid",
-          gap: "1rem"
+          cursor: "pointer",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center"
         }}
       >
-        {visibleLocations.map(location => (
-          <details
-            key={location.location.name}
-            style={{
-              border: "1px solid #666",
-              borderRadius: "12px",
-              padding: "1rem"
-            }}
-          >
-            <summary
-              style={{
-                cursor: "pointer",
-                fontWeight: "bold"
-              }}
-            >
-              <Link
-                to={`/location/${location.location.name}`}
-              >
-                {
-                  location.location
-                    .displayName
-                }
-              </Link>
-              {" · "}
-              {capitalize(
-                location.location.region
-              )}
-            </summary>
+        <h2>Where To Find</h2>
 
-            {location.areas.map(area => (
-              <div
-                key={area.name}
-                style={{
-                  marginTop: "1rem",
-                  textAlign: "left"
-                }}
-              >
-                <h3>{area.displayName}</h3>
-
-                {area.versions.map(version => (
-                  <div
-                    key={version.version}
-                    style={{
-                      borderTop:
-                        "1px solid #444",
-                      paddingTop: ".75rem"
-                    }}
-                  >
-                    <strong>
-                      {capitalize(
-                        version.version
-                      )}
-                    </strong>
-                    <span
-                      style={{
-                        opacity: 0.75
-                      }}
-                    >
-                      {" "}
-                      max {version.maxChance}%
-                    </span>
-
-                    <div
-                      style={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        gap: ".5rem",
-                        marginTop: ".5rem"
-                      }}
-                    >
-                      {version.encounters.map(
-                        (encounter, index) => (
-                          <span
-                            key={`${version.version}-${index}`}
-                            style={{
-                              border:
-                                "1px solid #666",
-                              borderRadius:
-                                "999px",
-                              fontSize:
-                                ".8rem",
-                              padding:
-                                ".3rem .6rem"
-                            }}
-                          >
-                            {capitalize(
-                              encounter.method
-                            )}
-                            {" · "}
-                            {formatLevelRange(
-                              encounter
-                            )}
-                            {" · "}
-                            {
-                              encounter.chance
-                            }
-                            %
-                            {encounter
-                              .conditions
-                              .length > 0 &&
-                              ` · ${encounter.conditions
-                                .map(capitalize)
-                                .join(", ")}`}
-                          </span>
-                        )
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </details>
-        ))}
+        <p>
+          {visibleLocations.length}
+          {selectedVersion === "all"
+            ? ""
+            : ` / ${encounterData.locations.length}`}{" "}
+          locations
+        </p>
       </div>
 
-      {encounterData.locations.length >
-        visibleLocations.length && (
-        <p
+      {expanded && (
+        <div
           style={{
-            opacity: 0.8
+            display: "grid",
+            gap: "1rem",
+            marginTop: "1rem"
           }}
         >
-          Showing first{" "}
-          {visibleLocations.length} of{" "}
-          {encounterData.locations.length}{" "}
-          locations.
-        </p>
+          <div
+            style={{
+              marginBottom: ".25rem",
+              textAlign: "left"
+            }}
+          >
+            <select
+              value={selectedVersion}
+              onChange={event =>
+                setSelectedVersion(
+                  event.target.value
+                )
+              }
+              style={{
+                padding: "0.5rem",
+                borderRadius: "8px",
+                border: "1px solid #666"
+              }}
+            >
+              {versionOptions.map(version => (
+                <option
+                  key={version}
+                  value={version}
+                >
+                  {version === "all"
+                    ? "All Versions"
+                    : capitalize(version)}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {visibleLocations.length === 0 && (
+            <p>
+              No encounter locations for this
+              version.
+            </p>
+          )}
+
+          {visibleLocations.map(location => (
+            <details
+              key={location.location.name}
+              style={{
+                border: "1px solid #666",
+                borderRadius: "12px",
+                padding: "1rem"
+              }}
+            >
+              <summary
+                style={{
+                  cursor: "pointer",
+                  fontWeight: "bold"
+                }}
+              >
+                <Link
+                  to={`/location/${location.location.name}`}
+                >
+                  {
+                    location.location
+                      .displayName
+                  }
+                </Link>
+                {" · "}
+                {capitalize(
+                  location.location.region
+                )}
+              </summary>
+
+              {location.areas.map(area => (
+                <div
+                  key={area.name}
+                  style={{
+                    marginTop: "1rem",
+                    textAlign: "left"
+                  }}
+                >
+                  <h3>{area.displayName}</h3>
+
+                  {area.versions.map(version => (
+                    <div
+                      key={version.version}
+                      style={{
+                        borderTop:
+                          "1px solid #444",
+                        paddingTop: ".75rem"
+                      }}
+                    >
+                      <strong>
+                        {capitalize(
+                          version.version
+                        )}
+                      </strong>
+                      <span
+                        style={{
+                          opacity: 0.75
+                        }}
+                      >
+                        {" "}
+                        max {version.maxChance}%
+                      </span>
+
+                      <div
+                        style={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          gap: ".5rem",
+                          marginTop: ".5rem"
+                        }}
+                      >
+                        {version.encounters.map(
+                          (encounter, index) => (
+                            <span
+                              key={`${version.version}-${index}`}
+                              style={{
+                                border:
+                                  "1px solid #666",
+                                borderRadius:
+                                  "999px",
+                                fontSize:
+                                  ".8rem",
+                                padding:
+                                  ".3rem .6rem"
+                              }}
+                            >
+                              {capitalize(
+                                encounter.method
+                              )}
+                              {" · "}
+                              {formatLevelRange(
+                                encounter
+                              )}
+                              {" · "}
+                              {
+                                encounter.chance
+                              }
+                              %
+                              {encounter
+                                .conditions
+                                .length > 0 &&
+                                ` · ${encounter.conditions
+                                  .map(capitalize)
+                                  .join(", ")}`}
+                            </span>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </details>
+          ))}
+        </div>
       )}
-    </section>
+    </div>
   );
 }
 

@@ -466,9 +466,7 @@ const activeFormKey =
   types={pokemon.types}
 />
 
-<WhereToFind
-  pokemonId={pokemon.id}
-/>
+
 
   
 
@@ -547,6 +545,9 @@ const activeFormKey =
     entries={pokemon.dexEntries}
 />
 
+<WhereToFind
+  pokemonId={pokemon.id}
+/>
 
     <h2>Catch Rate</h2>
       <p>
