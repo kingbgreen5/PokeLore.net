@@ -20,6 +20,7 @@ import TypeEffectivenessCard from "../components/TypeEffectivenessCard";
 import EvolutionNode from "../components/EvolutionNode";
 import BaseStatsChart from "../components/BaseStatsChart";
 import PokemonSummaryCard from "../components/PokemonSummaryCard.jsx";
+import PokemonSpriteCarousel from "../components/PokemonSpriteCarousel";
 import WhereToFind from "../components/WhereToFind";
 import Seo from "../seo/Seo";
 import { pokemonSeo } from "../seo/seoConfig";
@@ -252,30 +253,33 @@ const activeFormKey =
 
     <div
       style={{
-        padding: "2rem"
+        padding: "1rem"
       }}
     >
       <Seo {...pokemonSeo(pokemon)} />
 
       {/* // ---------------------------------------RETURN STATEMENT-----------------------------------------*/}
+    
+      {/* <img
+        src={pokemon.sprite}
+        alt={pokemon.name}
+        style={{
+          width: "250px"
+        }}
+      /> */}
+
+
+<PokemonSpriteCarousel
+  pokemon={pokemon}
+/>
       <h1>
        
         {capitalize(
           pokemon.name
         )}
       </h1>
-
-      <img
-        src={pokemon.sprite}
-        alt={pokemon.name}
-        style={{
-          width: "250px"
-        }}
-      />
-<h5> No. {pokemon.id}.</h5>
-
 {/* 
-
+<h5> No. {pokemon.id}.</h5>
 {/* 
 <h2>Forms</h2>
 
