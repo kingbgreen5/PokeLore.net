@@ -31,6 +31,22 @@ function getEvolutionDescription(node) {
     parts.push("");
   }
 
+  if (node.trigger === "use-move") {
+    if (
+      node.useMove ||
+      node.requiredMove
+    ) {
+      parts.push(
+        `use ${capitalize(
+          node.useMove ||
+            node.requiredMove
+        )}`
+      );
+    } else {
+      parts.push("use move");
+    }
+  }
+
   if (node.item) {
     parts.push(
       capitalize(node.item)
@@ -152,6 +168,31 @@ function EvolutionDescription({
     );
   }
 
+  function moveLink(moveName) {
+    return (
+      <button
+        onClick={() =>
+          navigate(
+            `/move/${moveName}`
+          )
+        }
+        style={{
+          background: "none",
+          border: "none",
+          color: "inherit",
+          cursor: "pointer",
+          font: "inherit",
+          fontWeight: "bold",
+          padding: 0,
+          textDecoration:
+            "underline"
+        }}
+      >
+        {capitalize(moveName)}
+      </button>
+    );
+  }
+
   const parts = [];
 
   if (node.trigger === "level-up") {
@@ -177,6 +218,34 @@ function EvolutionDescription({
     );
   }
 
+  if (node.trigger === "use-move") {
+    const moveName =
+      node.useMove ||
+      node.requiredMove ||
+      (node.pokemon?.name ===
+      "annihilape"
+        ? "rage-fist"
+        : null);
+
+    if (moveName) {
+      parts.push(
+        <>
+          use{" "}
+          {moveLink(moveName)}
+          {node.requiredMoveUses ||
+          node.moveUses
+            ? ` ${node.requiredMoveUses || node.moveUses} times`
+            : node.pokemon?.name ===
+                "annihilape"
+              ? " 20 times"
+              : ""}
+        </>
+      );
+    } else {
+      parts.push("Use move");
+    }
+  }
+
   const remainingDescription =
     getEvolutionDescription({
       ...node,
@@ -184,7 +253,9 @@ function EvolutionDescription({
       heldItem: null,
       trigger: node.trigger === "use-item"
         ? null
-        : undefined
+        : node.trigger === "use-move"
+          ? null
+          : undefined
     });
 
   if (remainingDescription) {

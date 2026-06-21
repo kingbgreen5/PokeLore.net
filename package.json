@@ -9,6 +9,7 @@
     "build": "vite build",
     "generate:locations": "node scripts/generateLocationsAndEncounters.js",
     "generate:sitemap": "node scripts/generateSitemap.js",
+    "enrich:moves-machines": "node scripts/enrichMovesWithMachineItems.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },

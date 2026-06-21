@@ -12,6 +12,7 @@ import {
 import {
   useNavigate
 } from "react-router-dom";
+import MoveMachineItems from "../components/MoveMachineItems";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import Seo from "../seo/Seo";
 import { moveSeo } from "../seo/seoConfig";
@@ -269,6 +270,12 @@ useEffect(() => {
           {moveData.description}
         </p>
       </div>
+
+      <MoveMachineItems
+        machineItems={
+          moveData.machineItems
+        }
+      />
 
       {/* Pokemon Learnset */}
       <div>

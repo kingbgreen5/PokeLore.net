@@ -190,6 +190,15 @@ pokemon: {
       details.known_move?.name ||
       null,
 
+    useMove:
+      details.move?.name ||
+      null,
+
+    requiredMoveUses:
+      details.required_move_uses ||
+      details.move_uses ||
+      null,
+
     knownMoveType:
       details.known_move_type?.name ||
       null,
