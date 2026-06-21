@@ -20,7 +20,6 @@ import TypeEffectivenessCard from "../components/TypeEffectivenessCard";
 import EvolutionNode from "../components/EvolutionNode";
 import BaseStatsChart from "../components/BaseStatsChart";
 import PokemonSummaryCard from "../components/PokemonSummaryCard.jsx";
-import PokemonSpriteCarousel from "../components/PokemonSpriteCarousel";
 import WhereToFind from "../components/WhereToFind";
 import Seo from "../seo/Seo";
 import { pokemonSeo } from "../seo/seoConfig";
@@ -260,18 +259,18 @@ const activeFormKey =
 
       {/* // ---------------------------------------RETURN STATEMENT-----------------------------------------*/}
     
-      {/* <img
+      <img
         src={pokemon.sprite}
         alt={pokemon.name}
         style={{
           width: "250px"
         }}
-      /> */}
+      />
 
 
-<PokemonSpriteCarousel
+{/* <PokemonSpriteCarousel
   pokemon={pokemon}
-/>
+/> */}
       <h1>
        
         {capitalize(
