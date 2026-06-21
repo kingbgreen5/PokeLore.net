@@ -56,7 +56,7 @@ function EncounterDetails({
   versions
 }) {
   return (
-    <div
+    <div className="encounter div"
       style={{
         display: "grid",
         gap: ".75rem"
@@ -67,22 +67,16 @@ function EncounterDetails({
         <div
           key={version.version}
           style={{
-            borderTop: "1px solid #444",
-            paddingTop: ".75rem",
-            textAlign: "left"
+               border: "1px solid #666",
+               borderRadius: "18px",
+            padding: ".4rem",
+            textAlign: "center"
           }}
         >
           <strong>
             {capitalize(version.version)}
           </strong>
-          <span
-            style={{
-              opacity: 0.75
-            }}
-          >
-            {/* {" "}
-            max {version.maxChance}% */}
-          </span>
+
 
           <div
             style={{
@@ -92,15 +86,16 @@ function EncounterDetails({
               marginTop: ".5rem"
             }}
           >
+
             {version.encounters.map(
               (encounter, index) => (
                 <span
                   key={`${version.version}-${index}`}
                   style={{
-                    border: "1px solid #666",
-                    borderRadius: "999px",
+                    // border: "1px solid #666",
+                    // borderRadius: "999px",
                     fontSize: ".8rem",
-                    padding: ".3rem .6rem"
+                    padding: ".3rem .3rem"
                   }}
                 >
                   {capitalize(encounter.method)}
@@ -333,7 +328,7 @@ function LocationDetailPage() {
                 <p>No Pokémon encounters for this filter.</p>
               ) : (
                 <>
-                  <div
+                  <div 
                     style={{
                       display: "grid",
                       gap: "1rem"
@@ -341,7 +336,7 @@ function LocationDetailPage() {
                   >
                     {visibleEncounters.map(
                       encounter => (
-                        <div classname="testing,"
+                        <div classname="SummaryCardAndEncountersDiv"
                           key={
                             encounter.pokemon.id
                           }
@@ -349,13 +344,11 @@ function LocationDetailPage() {
                             alignItems: "start",
                             display: "grid",
                             gap: "1rem",
-                            border:"1px solid",
-                                     border:
-                            "1px solid #666",
-                          borderRadius:
-                            "12px",
-                            padding:".1rem",
-                            
+                            border:
+                              "1px solid #666",
+                            borderRadius:
+                              "18px",
+                            padding: ".1rem",
                             gridTemplateColumns:
                               "repeat(auto-fit, minmax(90px, 1fr))"
                           }}

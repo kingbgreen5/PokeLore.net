@@ -366,7 +366,7 @@ const activeFormKey =
   }}
 >
   {pokemon.abilities.map(
-    ability => (
+    (ability, index) => (
 
       <button
         key={ability}
@@ -392,6 +392,19 @@ const activeFormKey =
       >
         {capitalize(
           ability
+        )}
+
+        {index === 2 && (
+          <span
+            style={{
+              display: "block",
+              fontSize: ".65rem",
+              marginTop: ".15rem",
+              opacity: 0.75
+            }}
+          >
+            Hidden Ability
+          </span>
         )}
       </button>
 
