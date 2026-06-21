@@ -243,6 +243,10 @@ function PokemonSpriteCarousel({
 
     suppressClickRef.current = false;
 
+    if (event.pointerType !== "mouse") {
+      return;
+    }
+
     dragStateRef.current = {
       isDragging: true,
       moved: false,
@@ -258,6 +262,10 @@ function PokemonSpriteCarousel({
   }
 
   function handlePointerMove(event) {
+    if (event.pointerType !== "mouse") {
+      return;
+    }
+
     const container = containerRef.current;
     const dragState = dragStateRef.current;
 
@@ -278,6 +286,10 @@ function PokemonSpriteCarousel({
   }
 
   function endDrag() {
+    if (!dragStateRef.current.isDragging) {
+      return;
+    }
+
     dragStateRef.current.isDragging = false;
     setIsDragging(false);
   }
@@ -336,10 +348,12 @@ function PokemonSpriteCarousel({
             "1rem calc(50% - 120px)",
           scrollSnapType: "x mandatory",
           scrollbarWidth: "thin",
-          touchAction: "pan-y",
+          touchAction: "pan-x",
+          overscrollBehaviorY: "contain",
           userSelect: isDragging
             ? "none"
             : "auto",
+          WebkitOverflowScrolling: "touch",
           WebkitMaskImage:
             "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
           maskImage:
@@ -397,6 +411,7 @@ function PokemonSpriteCarousel({
                 cursor: isDragging
                   ? "grabbing"
                   : "pointer",
+                touchAction: "pan-x",
                 
                 display: "flex",
                 flex: isCurrent
@@ -497,7 +512,7 @@ function PokemonSpriteCarousel({
             : "white",
           cursor: "pointer",
           fontSize: ".85rem",
-          marginTop: "-5rem",
+          marginTop: ".5rem",
           // marginBottom: ".5rem",
           padding: ".35rem .8rem",
           transition:
