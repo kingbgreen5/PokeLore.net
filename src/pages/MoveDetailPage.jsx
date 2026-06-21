@@ -281,7 +281,7 @@ useEffect(() => {
             display: "grid",
             gap: "1rem",
             gridTemplateColumns:
-              "repeat(auto-fit, minmax(150px, 1fr))",
+              "repeat(auto-fit, minmax(140px, 1fr))",
             marginTop: "1rem"
           }}
         >
