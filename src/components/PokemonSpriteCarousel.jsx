@@ -110,10 +110,6 @@ function PokemonSpriteCarousel({
   const [isDragging, setIsDragging] =
     useState(false);
   const [
-    hasInitialCentered,
-    setHasInitialCentered
-  ] = useState(false);
-  const [
     isCurrentCentered,
     setIsCurrentCentered
   ] = useState(false);
@@ -207,7 +203,7 @@ function PokemonSpriteCarousel({
     }, [isCurrentPokemonCentered]);
 
   const centerCurrentPokemon = useCallback(
-    (behavior = "smooth") => {
+    () => {
       if (!carouselPokemon) return;
 
       const item =
@@ -218,14 +214,14 @@ function PokemonSpriteCarousel({
       if (!item) return;
 
       item.scrollIntoView({
-        behavior,
+        behavior: "auto",
         block: "nearest",
         inline: "center"
       });
 
       window.setTimeout(
         updateCurrentCentered,
-        behavior === "smooth" ? 350 : 0
+        0
       );
     },
     [
@@ -235,11 +231,7 @@ function PokemonSpriteCarousel({
   );
 
   useLayoutEffect(() => {
-    centerCurrentPokemon("auto");
-
-    window.setTimeout(() => {
-      setHasInitialCentered(true);
-    }, 0);
+    centerCurrentPokemon();
   }, [centerCurrentPokemon]);
 
   //---------------------------DRAG TO SCROLL---------------------------
@@ -312,11 +304,10 @@ function PokemonSpriteCarousel({
   return (
     <section
       style={{
-        margin: "1rem auto 2rem",
+        margin: "1rem auto",
         maxWidth: "760px"
       }}
     >
-      {/* //---------------------------RECENTER BUTTON--------------------------- */}
 
 
 
@@ -343,10 +334,6 @@ function PokemonSpriteCarousel({
           overflowX: "auto",
           padding:
             "1rem calc(50% - 120px)",
-          scrollBehavior:
-            hasInitialCentered
-              ? "smooth"
-              : "auto",
           scrollSnapType: "x mandatory",
           scrollbarWidth: "thin",
           touchAction: "pan-y",
@@ -420,7 +407,10 @@ function PokemonSpriteCarousel({
                 minHeight: isCurrent
                   ? "285px"
                   : "142px",
-                padding: isCurrent
+                  paddingRight: isCurrent
+                  ? "2rem"
+                  : ".5rem",
+                paddingLeft: isCurrent
                   ? "2rem"
                   : ".5rem",
                 opacity: isCurrent
@@ -490,10 +480,10 @@ function PokemonSpriteCarousel({
         })}
       </div>
 
+      {/* //---------------------------RECENTER BUTTON--------------------------- */}
+
       <button
-        onClick={() =>
-          centerCurrentPokemon("smooth")
-        }
+        onClick={centerCurrentPokemon}
         style={{
           backgroundColor: isCurrentCentered
             ? "transparent"
@@ -503,11 +493,11 @@ function PokemonSpriteCarousel({
             : "1px solid #666",
           borderRadius: "999px",
           color: isCurrentCentered
-            ? "rgba(255, 255, 255, .35)"
+            ? "rgba(255, 255, 255, 0.07)"
             : "white",
           cursor: "pointer",
           fontSize: ".85rem",
-          marginTop: "-4rem",
+          marginTop: "-5rem",
           // marginBottom: ".5rem",
           padding: ".35rem .8rem",
           transition:
