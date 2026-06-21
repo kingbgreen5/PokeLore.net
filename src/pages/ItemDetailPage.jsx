@@ -8,6 +8,7 @@ import {
   useParams
 } from "react-router-dom";
 import AcquisitionMethods from "../components/AcquisitionMethods";
+import TmMoveDetails from "../components/items/TmMoveDetails";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import Seo from "../seo/Seo";
 import { itemSeo } from "../seo/seoConfig";
@@ -275,6 +276,8 @@ function ItemDetailPage() {
           <p>{item.shortEffect}</p>
         </section>
       )}
+
+      <TmMoveDetails item={item} />
 
       <AcquisitionMethods
         acquisition={item.acquisition}

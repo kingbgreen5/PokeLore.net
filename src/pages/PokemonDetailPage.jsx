@@ -416,58 +416,6 @@ const activeFormKey =
 </div>
 
 
-<div>
-
-  {/*//-----------------------------------------Forms----------------------------------------- */}
-
-
-
-{pokemon.varieties?.length > 1 && (
-  <>
-    <h2>Forms</h2>
-
-    <div
-      style={{
-        // display: "flex",
-        // justifyContent: "center",
-        // gap: "1rem",
-        // flexWrap: "wrap",
-        //      gridTemplateColumns:
-        //     "repeat(auto-fit, minmax(120px, 1fr))",
-
-
-          display: "grid",
-          justifyItems: "center",
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(140px, 1fr))",
-          gap: "1rem"
-
-
-
-      }}
-    >
-      {pokemon.varieties.map(
-        form => (
-          <PokemonSummaryCard
-            key={form.id}
-            pokemon={form}
-            compact={true}
-          />
-        )
-      )}
-    </div>
-  </>
-)}
-
-
-
-
-
-
-
-
-  
-</div>
 
 <div 
 
@@ -541,6 +489,50 @@ const activeFormKey =
 </div>
 
 
+
+
+
+<div>
+
+  {/*//-----------------------------------------Forms----------------------------------------- */}
+
+{pokemon.varieties?.length > 1 && (
+  <>
+    <h2>Forms</h2>
+
+    <div
+      style={{
+        // display: "flex",
+        // justifyContent: "center",
+        // gap: "1rem",
+        // flexWrap: "wrap",
+        //      gridTemplateColumns:
+        //     "repeat(auto-fit, minmax(120px, 1fr))",
+
+
+          display: "grid",
+          justifyItems: "center",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(140px, 1fr))",
+          gap: "1rem"
+
+
+
+      }}
+    >
+      {pokemon.varieties.map(
+        form => (
+          <PokemonSummaryCard
+            key={form.id}
+            pokemon={form}
+            compact={true}
+          />
+        )
+      )}
+    </div>
+  </>
+)}
+</div>
 
 
 {learnsetData ? (

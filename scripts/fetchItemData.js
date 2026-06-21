@@ -125,6 +125,24 @@ function getIdFromUrl(url) {
   );
 }
 
+const machineCache = new Map();
+
+async function fetchMachineData(url) {
+  if (machineCache.has(url)) {
+    return machineCache.get(url);
+  }
+
+  const response =
+    await axios.get(url);
+
+  machineCache.set(
+    url,
+    response.data
+  );
+
+  return response.data;
+}
+
 //-----------------------------------------
 // Main
 //-----------------------------------------
@@ -293,14 +311,68 @@ async function main() {
         //---------------------------------
 
         const machines =
-          item.machines.map(
-            machine => ({
-              machineUrl:
-                machine.machine.url,
+          await Promise.all(
+            item.machines.map(
+              async machine => {
+                const machineUrl =
+                  machine.machine.url;
 
-              versionGroup:
-                machine.version_group.name
-            })
+                const versionGroup =
+                  machine.version_group.name;
+
+                try {
+                  const machineData =
+                    await fetchMachineData(
+                      machineUrl
+                    );
+
+                  return {
+                    machineId:
+                      machineData.id,
+
+                    machineUrl,
+
+                    versionGroup,
+
+                    move:
+                      machineData.move
+                        ? {
+                            id:
+                              getIdFromUrl(
+                                machineData
+                                  .move
+                                  .url
+                              ),
+
+                            name:
+                              machineData
+                                .move
+                                .name
+                          }
+                        : null
+                  };
+                } catch (error) {
+                  console.error(
+                    `Failed machine ${machineUrl}:`,
+                    error.message
+                  );
+
+                  return {
+                    machineId:
+                      getIdFromUrl(
+                        machineUrl
+                      ),
+
+                    machineUrl,
+
+                    versionGroup,
+
+                    move:
+                      null
+                  };
+                }
+              }
+            )
           );
 
         //---------------------------------
