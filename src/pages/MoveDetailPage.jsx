@@ -40,12 +40,19 @@ const [learnsets, setLearnsets] =
 const [pokemonIndex, setPokemonIndex] =
   useState([]);
 
+const [
+  pokemonLearnersExpanded,
+  setPokemonLearnersExpanded
+] = useState(false);
+
 
 useEffect(() => {
 
   async function loadMove() {
 
     try {
+
+      setPokemonLearnersExpanded(false);
 
       //-----------------------------------------
       // Load Moves
@@ -272,36 +279,66 @@ useEffect(() => {
       </div>
 
       <MoveMachineItems
+        key={moveName}
         machineItems={
           moveData.machineItems
         }
       />
 
       {/* Pokemon Learnset */}
-      <div>
-        <h2>
-          Pokémon That Learn This Move
-        </h2>
-
+      <div
+        style={{
+          border: "2px solid #706363",
+          borderRadius: "12px",
+          padding: ".35rem",
+          marginBottom: "1rem"
+        }}
+      >
         <div
+          onClick={() =>
+            setPokemonLearnersExpanded(
+              !pokemonLearnersExpanded
+            )
+          }
           style={{
-            display: "grid",
-            gap: "1rem",
-            gridTemplateColumns:
-              "repeat(auto-fit, minmax(140px, 1fr))",
-            marginTop: "1rem"
+            cursor: "pointer",
+            display: "flex",
+            justifyContent:
+              "space-between",
+            alignItems: "center"
           }}
         >
-          {pokemonThatLearnMove.map(
-            pokemon => (
-              <PokemonSummaryCard
-                key={pokemon.id}
-                pokemon={pokemon}
-                compact={true}
-              />
-            )
-          )}
+          <h2>
+            Pokémon That Learn This Move
+          </h2>
+
+          <p>
+            {pokemonThatLearnMove.length}{" "}
+            Pokémon
+          </p>
         </div>
+
+        {pokemonLearnersExpanded && (
+          <div
+            style={{
+              display: "grid",
+              gap: "1rem",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(130px, 1fr))",
+              marginTop: "1rem"
+            }}
+          >
+            {pokemonThatLearnMove.map(
+              pokemon => (
+                <PokemonSummaryCard
+                  key={pokemon.id}
+                  pokemon={pokemon}
+                  compact={true}
+                />
+              )
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

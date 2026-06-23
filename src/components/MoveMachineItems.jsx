@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function capitalize(text) {
@@ -89,14 +90,20 @@ function generationRank(generation) {
 }
 
 function MoveMachineItems({
-  machineItems = []
+  machineItems
 }) {
-  if (!machineItems.length) {
+  const [expanded, setExpanded] =
+    useState(false);
+
+  const items =
+    machineItems ?? [];
+
+  if (!items.length) {
     return null;
   }
 
   const groupedMachineItems =
-    groupMachineItems(machineItems)
+    groupMachineItems(items)
       .sort(
         (a, b) =>
           generationRank(
@@ -108,168 +115,195 @@ function MoveMachineItems({
       );
 
   return (
-    <section
+    <div
       style={{
-        marginBottom: "3rem"
+        border: "2px solid #706363",
+        borderRadius: "12px",
+        padding: ".35rem",
+        marginBottom: "1rem"
       }}
     >
-      <h2>
-        TMs, HMs, and TRs
-      </h2>
-
       <div
+        onClick={() =>
+          setExpanded(!expanded)
+        }
         style={{
-          display: "grid",
-          gap: "1.25rem"
+          cursor: "pointer",
+          display: "flex",
+          justifyContent:
+            "space-between",
+          alignItems: "center"
         }}
       >
-        {groupedMachineItems.map(
-          ({ generation, items }) => (
-            <div key={generation}>
-              <h3
-                style={{
-                  marginBottom: ".75rem"
-                }}
-              >
-                {generation}
-              </h3>
+        <h2>
+          TMs, HMs, and TRs
+        </h2>
 
-              <div
-                style={{
-                  display: "grid",
-                  gap: "1rem",
-                  gridTemplateColumns:
-                    "repeat(auto-fit, minmax(150px, 1fr))"
-                }}
-              >
-                {items.map(
-                  ({
-                    item,
-                    versionGroups
-                  }) => (
-                    <Link
-                      key={`${generation}-${item.itemName}`}
-                      to={`/item/${item.itemName}`}
-                      style={{
-                        alignItems:
-                          "center",
-                        backgroundColor:
-                          "#2c2c2c",
-                        border:
-                          "2px solid #555",
-                        borderRadius:
-                          "18px",
-                        boxSizing:
-                          "border-box",
-                        color:
-                          "white",
-                        display:
-                          "flex",
-                        flexDirection:
-                          "column",
-                        justifyContent:
-                          "space-between",
-                        minHeight:
-                          "150px",
-                        padding:
-                          ".75rem",
-                        textAlign:
-                          "center",
-                        textDecoration:
-                          "none"
-                      }}
-                    >
-                      <div>
-                        {item.itemSprite && (
-                          <img
-                            src={
-                              item.itemSprite
-                            }
-                            alt={
-                              item.itemDisplayName
-                            }
-                            style={{
-                              height:
-                                "42px",
-                              imageRendering:
-                                "pixelated",
-                              width:
-                                "42px"
-                            }}
-                          />
-                        )}
+        <p>
+          {items.length} entries
+        </p>
+      </div>
 
-                        <h4
-                          style={{
-                            margin:
-                              ".35rem 0 .2rem"
-                          }}
-                        >
-                          {
-                            item.itemDisplayName
-                          }
-                        </h4>
+      {expanded && (
+        <div
+          style={{
+            display: "grid",
+            gap: "1.25rem",
+            marginTop: "1rem"
+          }}
+        >
+          {groupedMachineItems.map(
+            ({
+              generation,
+              items:
+                generationItems
+            }) => (
+              <div key={generation}>
+                <h3
+                  style={{
+                    marginBottom: ".75rem"
+                  }}
+                >
+                  {generation}
+                </h3>
 
-                        <span
-                          style={{
-                            color:
-                              "#ff8c42",
-                            fontSize:
-                              ".75rem",
-                            fontWeight:
-                              "bold"
-                          }}
-                        >
-                          {item.itemKind}
-                        </span>
-                      </div>
-
-                      <div
+                <div
+                  style={{
+                    display: "grid",
+                    gap: "1rem",
+                    gridTemplateColumns:
+                      "repeat(auto-fit, minmax(150px, 1fr))"
+                  }}
+                >
+                  {generationItems.map(
+                    ({
+                      item,
+                      versionGroups
+                    }) => (
+                      <Link
+                        key={`${generation}-${item.itemName}`}
+                        to={`/item/${item.itemName}`}
                         style={{
+                          alignItems:
+                            "center",
+                          backgroundColor:
+                            "#2c2c2c",
+                          border:
+                            "2px solid #555",
+                          borderRadius:
+                            "18px",
+                          boxSizing:
+                            "border-box",
+                          color:
+                            "white",
                           display:
                             "flex",
-                          flexWrap:
-                            "wrap",
-                          gap: ".25rem",
+                          flexDirection:
+                            "column",
                           justifyContent:
+                            "space-between",
+                          minHeight:
+                            "150px",
+                          padding:
+                            ".75rem",
+                          textAlign:
                             "center",
-                          marginTop:
-                            ".65rem"
+                          textDecoration:
+                            "none"
                         }}
                       >
-                        {versionGroups.map(
-                          versionGroup => (
-                            <span
-                              key={versionGroup}
+                        <div>
+                          {item.itemSprite && (
+                            <img
+                              src={
+                                item.itemSprite
+                              }
+                              alt={
+                                item.itemDisplayName
+                              }
                               style={{
-                                backgroundColor:
-                                  "#252525",
-                                border:
-                                  "1px solid #444",
-                                borderRadius:
-                                  "999px",
-                                fontSize:
-                                  ".68rem",
-                                padding:
-                                  ".2rem .45rem"
+                                height:
+                                  "42px",
+                                imageRendering:
+                                  "pixelated",
+                                width:
+                                  "42px"
                               }}
-                            >
-                              {capitalize(
-                                versionGroup
-                              )}
-                            </span>
-                          )
-                        )}
-                      </div>
-                    </Link>
-                  )
-                )}
+                            />
+                          )}
+
+                          <h4
+                            style={{
+                              margin:
+                                ".35rem 0 .2rem"
+                            }}
+                          >
+                            {
+                              item.itemDisplayName
+                            }
+                          </h4>
+
+                          <span
+                            style={{
+                              color:
+                                "#ff8c42",
+                              fontSize:
+                                ".75rem",
+                              fontWeight:
+                                "bold"
+                            }}
+                          >
+                            {item.itemKind}
+                          </span>
+                        </div>
+
+                        <div
+                          style={{
+                            display:
+                              "flex",
+                            flexWrap:
+                              "wrap",
+                            gap: ".25rem",
+                            justifyContent:
+                              "center",
+                            marginTop:
+                              ".65rem"
+                          }}
+                        >
+                          {versionGroups.map(
+                            versionGroup => (
+                              <span
+                                key={versionGroup}
+                                style={{
+                                  backgroundColor:
+                                    "#252525",
+                                  border:
+                                    "1px solid #444",
+                                  borderRadius:
+                                    "999px",
+                                  fontSize:
+                                    ".68rem",
+                                  padding:
+                                    ".2rem .45rem"
+                                }}
+                              >
+                                {capitalize(
+                                  versionGroup
+                                )}
+                              </span>
+                            )
+                          )}
+                        </div>
+                      </Link>
+                    )
+                  )}
+                </div>
               </div>
-            </div>
-          )
-        )}
-      </div>
-    </section>
+            )
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 

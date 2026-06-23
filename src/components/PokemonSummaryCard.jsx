@@ -2,6 +2,57 @@ import typeColors from "../constants/typeColors";
 import { useNavigate }
 from "react-router-dom";
 
+const CARD_SIZES = {
+  full: {
+    width: undefined,
+    minHeight: "320px",
+    maxHeight: "320px",
+    maxWidth: "320px",
+    padding: "1rem",
+    dexFontSize: ".85rem",
+    dexMarginBottom: "0",
+    spriteSize: "170px",
+    nameFontSize: "1.2rem",
+    nameMargin: "0 0 .5rem 0",
+    typeGap: ".5rem",
+    typePadding: ".35rem .85rem",
+    typeFontSize: ".72rem",
+    typeLetterSpacing: ".03rem"
+  },
+  compact: {
+    width: "135px",
+    minHeight: "135px",
+    maxHeight: "200px",
+    maxWidth: "200px",
+    padding: ".2rem",
+    dexFontSize: ".85rem",
+    dexMarginBottom: "-.7rem",
+    spriteSize: "90px",
+    nameFontSize: ".8rem",
+    nameMargin: "0 0 .5rem 0",
+    typeGap: ".5rem",
+    typePadding: ".1rem .4rem",
+    typeFontSize: ".4rem",
+    typeLetterSpacing: ".03rem"
+  },
+  subcompact: {
+    width: "75px",
+    minHeight: "75px",
+    maxHeight: "100px",
+    maxWidth: "100px",
+    padding: ".1rem",
+    dexFontSize: ".48rem",
+    dexMarginBottom: "-.35rem",
+    spriteSize: "45px",
+    nameFontSize: ".48rem",
+    nameMargin: "0 0 .2rem 0",
+    typeGap: ".15rem",
+    typePadding: ".05rem .2rem",
+    typeFontSize: ".25rem",
+    typeLetterSpacing: "0"
+  }
+};
+
 
 function capitalize(text) {
   return text
@@ -16,9 +67,24 @@ function capitalize(text) {
 
 function PokemonSummaryCard({
   pokemon,
-  compact = false}) {
+  compact = false,
+  subcompact = false,
+  variant
+}) {
   
    const navigate = useNavigate();
+
+  const sizeKey =
+    variant ||
+    (subcompact
+      ? "subcompact"
+      : compact
+        ? "compact"
+        : "full");
+
+  const size =
+    CARD_SIZES[sizeKey] ||
+    CARD_SIZES.full;
   
   return (
     <div
@@ -45,22 +111,11 @@ onClick={() =>
         flexDirection: "column",
         alignItems: "center",
         boxSizing: "border-box",
-        width: compact
-          ? "150px"
-          : undefined,
-    minHeight: compact
-  ? "150px"
-  : "320px",
-      maxHeight: compact
-  ? "200px"
-  : "320px",
-      maxWidth: compact
-  ? "200px"
-  : "320px",
-
-padding: compact
-  ? ".2rem"
-  : "1rem",
+        width: size.width,
+        minHeight: size.minHeight,
+        maxHeight: size.maxHeight,
+        maxWidth: size.maxWidth,
+        padding: size.padding
       }}
       onMouseEnter={e => {
         e.currentTarget.style.transform =
@@ -78,10 +133,9 @@ padding: compact
           width: "100%",
           textAlign: "left",
           opacity: 0.6,
-          fontSize: ".85rem",
-          marginBottom: compact
-  ? "-.7rem"
-  : "-0rem",
+          fontSize: size.dexFontSize,
+          marginBottom:
+            size.dexMarginBottom
         }}
       >
         #
@@ -97,12 +151,8 @@ padding: compact
         alt={pokemon.name}
         loading="lazy"
         style={{
- width: compact
-  ? "90px"
-  : "170px",
-height: compact
-  ? "90px"
-  : "170px",
+          width: size.spriteSize,
+          height: size.spriteSize,
           objectFit: "contain",
 
 
@@ -113,12 +163,13 @@ height: compact
 
       <h2
         style={{
-          margin:
-            "0 0 .5rem 0",
+          margin: size.nameMargin,
           textAlign: "center",
-fontSize: compact
-  ? ".8rem"
-  : "1.2rem",
+          fontSize:
+            size.nameFontSize,
+          lineHeight: 1.1,
+          overflowWrap:
+            "anywhere",
 
 
         }}
@@ -133,7 +184,7 @@ fontSize: compact
       <div
         style={{
           display: "flex",
-          gap: ".5rem",
+          gap: size.typeGap,
           flexWrap: "wrap",
           justifyContent:
             "center"
@@ -151,20 +202,18 @@ fontSize: compact
                     type
                   ],
                 color: "white",
-                padding: compact
-                  ? ".1rem .4rem"
-                  : ".35rem .85rem",
+                padding:
+                  size.typePadding,
                 borderRadius:
                   "999px",
-                fontSize: compact
-                  ? ".4rem"
-                  : ".72rem",
+                fontSize:
+                  size.typeFontSize,
                 fontWeight:
                   "bold",
                 textTransform:
                   "uppercase",
                 letterSpacing:
-                  ".03rem",
+                  size.typeLetterSpacing,
         
               }}
             >
