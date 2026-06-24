@@ -21,6 +21,7 @@ import EvolutionNode from "../components/EvolutionNode";
 import BaseStatsChart from "../components/BaseStatsChart";
 import PokemonSummaryCard from "../components/PokemonSummaryCard.jsx";
 import WhereToFind from "../components/WhereToFind";
+import SizeComparison from "../components/SizeComparison"
 import Seo from "../seo/Seo";
 import { pokemonSeo } from "../seo/seoConfig";
 import {
@@ -228,15 +229,31 @@ const activeFormKey =
 
 
   const correctionFactor = 10
-const pokemonHeight = (pokemon.height / correctionFactor) +" M.";
+const pokemonHeight = (pokemon.height / correctionFactor) +" m.";
  const meterToInches= 39.370079
  const pokemonHeightInches = (pokemon.height / correctionFactor)*meterToInches;
+ // eslint-disable-next-line no-unused-vars
  const pokemonHeightEnglish = (pokemonHeightInches / 12)
 
 
 
+// eslint-disable-next-line no-unused-vars
 const weightCorrection= 10;
-const pokemonWeight = (pokemon.weight / correctionFactor) +" Kg.";
+const pokemonWeight = (pokemon.weight / correctionFactor) +" kg.";
+
+
+
+function formatHeightEnglish(height) {
+  const totalInches = Math.round((height / 10) * 39.3701);
+  const feet = Math.floor(totalInches / 12);
+  const inches = totalInches % 12;
+
+  return `${feet}' ${inches}"`;
+}
+
+
+
+
 
 
 //----------------------------------------RETURN STATEMENT-----------------------------------------
@@ -272,36 +289,6 @@ const pokemonWeight = (pokemon.weight / correctionFactor) +" Kg.";
           pokemon
         )}
       </h1>
-{/* 
-<h5> No. {pokemon.id}.</h5>
-{/* 
-<h2>Forms</h2>
-
-<div
-  style={{
-    display: "flex",
-    gap: ".5rem",
-    flexWrap: "wrap",
-    marginBottom: "1rem"
-  }}
->
-  {pokemon.varieties?.map(
-    form => (
-      <button
-        key={form.id}
-        onClick={() =>
-          navigate(
-            `/pokemon/${form.id}`
-          )
-        }
-      >
-        {capitalize(
-          form.name
-        )}
-      </button>
-    )
-  )}
-</div> */}
 
 
 
@@ -489,14 +476,6 @@ const pokemonWeight = (pokemon.weight / correctionFactor) +" Kg.";
 
     <div
       style={{
-        // display: "flex",
-        // justifyContent: "center",
-        // gap: "1rem",
-        // flexWrap: "wrap",
-        //      gridTemplateColumns:
-        //     "repeat(auto-fit, minmax(120px, 1fr))",
-
-
           display: "grid",
           justifyItems: "center",
           gridTemplateColumns:
@@ -524,7 +503,7 @@ const pokemonWeight = (pokemon.weight / correctionFactor) +" Kg.";
 
 {learnsetData ? (
   <LearnsetCard
-    key={pokemon.id}
+    key={`learnset-${pokemon.id}`}
     pokemonData={learnsetData}
     movesData={movesData}
   />
@@ -542,7 +521,7 @@ const pokemonWeight = (pokemon.weight / correctionFactor) +" Kg.";
 />
 
 <WhereToFind
-  key={pokemon.id}
+  key={`where-to-find-${pokemon.id}`}
   pokemonId={pokemon.id}
 />
 
@@ -563,22 +542,63 @@ const pokemonWeight = (pokemon.weight / correctionFactor) +" Kg.";
       <p>
        Species: {pokemon.genus}
       </p>
+      
+       <p>Height: {formatHeightEnglish(pokemon.height)} ({pokemonHeight})</p>
       <p>
-       Height: {pokemonHeight} 
-       {/* {pokemonHeightInches} {pokemonHeightEnglish} */}
+     
+
+    
        
       </p>
       <p>
            Weight: {pokemonWeight}
       </p>
-            <p>
+           
+
+
+
+{pokemon.habitat != null ? (
+ <p 
+            style={{
+              textTransform:'capitalize'
+            }}
+            >
            Habitat: {pokemon.habitat}
       </p>
-              <p>
+) : (
+
+
+ <p 
+            style={{
+              textTransform:'capitalize'
+            }}
+            >
+           Habitat: Currently Unknown
+      </p>
+
+)}
+
+
+
+
+
+
+
+
+
+
+
+              <p
+                  style={{
+              textTransform:'capitalize'
+            }}>
            Color: {pokemon.color}
       </p>
 
-        <p>
+        <p
+            style={{
+              textTransform:'capitalize'
+            }}>
            Body Style: {pokemon.shape}
       </p>
       
@@ -595,8 +615,7 @@ const pokemonWeight = (pokemon.weight / correctionFactor) +" Kg.";
        Hatch Counter: {pokemon.hatchCounter}
       </p>
 
-
-
+{/* <SizeComparison pokemon={pokemon} /> */}
 
     </div>
   );
