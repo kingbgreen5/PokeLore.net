@@ -251,7 +251,10 @@ function formatHeightEnglish(height) {
   return `${feet}' ${inches}"`;
 }
 
-
+function formatWeightEnglish(weight) {
+  const pounds = (weight / 10) * 2.20462;
+  return `${pounds.toFixed(1)} lbs`;
+}
 
 
 
@@ -544,15 +547,11 @@ function formatHeightEnglish(height) {
       </p>
       
        <p>Height: {formatHeightEnglish(pokemon.height)} ({pokemonHeight})</p>
-      <p>
-     
 
-    
-       
-      </p>
-      <p>
-           Weight: {pokemonWeight}
-      </p>
+
+
+<p>Weight: {formatWeightEnglish(pokemon.weight)} ({pokemonWeight})</p>
+
            
 
 
