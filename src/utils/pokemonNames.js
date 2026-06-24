@@ -41,6 +41,42 @@ function isCosmeticCapForm(parts) {
   return parts.includes("cap");
 }
 
+function formatMegaName(
+  parts,
+  species
+) {
+  const megaIndex =
+    parts.indexOf("mega");
+
+  if (megaIndex === -1) {
+    return null;
+  }
+
+  const speciesParts =
+    String(species ?? "")
+      .split("-")
+      .filter(Boolean);
+  const baseParts =
+    speciesParts.length > 0 &&
+    partsMatchAt(
+      parts,
+      0,
+      speciesParts
+    )
+      ? speciesParts
+      : parts.slice(0, megaIndex);
+  const afterMega =
+    parts.slice(megaIndex + 1);
+
+  return [
+    "Mega",
+    titleCaseSlug(baseParts.join("-")),
+    titleCaseSlug(afterMega.join("-"))
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
 export function isRegionalFormKey(
   formKey
 ) {
@@ -106,6 +142,12 @@ export function formatPokemonDisplayName(
       .filter(Boolean);
   const regionalIndex =
     getRegionalIndex(parts);
+  const megaName =
+    formatMegaName(parts, species);
+
+  if (megaName) {
+    return megaName;
+  }
 
   if (
     regionalIndex === -1 ||
