@@ -5,6 +5,8 @@ import {
 } from "react";
 
 import MoveSummaryCard from "../components/MoveSummaryCard";
+import usePersistedScroll from "../hooks/usePersistedScroll";
+import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { movesSeo } from "../seo/seoConfig";
 
@@ -28,16 +30,33 @@ function MovesPage() {
     useState(true);
 
   const [searchTerm, setSearchTerm] =
-    useState("");
+    useQueryParamState(
+      "search",
+      ""
+    );
 
   const [selectedType, setSelectedType] =
-    useState("all");
+    useQueryParamState(
+      "type",
+      "all"
+    );
 
 const [selectedCategory, setSelectedCategory] =
-  useState("all");
+  useQueryParamState(
+    "category",
+    "all"
+  );
 
 const [powerSortMode, setPowerSortMode] =
-  useState("all");
+  useQueryParamState(
+    "power",
+    "all"
+  );
+
+  usePersistedScroll(
+    undefined,
+    !loading
+  );
 
 
 

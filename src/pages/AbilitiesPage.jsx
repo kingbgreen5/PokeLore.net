@@ -7,6 +7,8 @@ import {
 import {
   useNavigate
 } from "react-router-dom";
+import usePersistedScroll from "../hooks/usePersistedScroll";
+import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { abilitiesSeo } from "../seo/seoConfig";
 
@@ -32,7 +34,15 @@ function AbilitiesPage() {
     useState(true);
 
   const [searchTerm, setSearchTerm] =
-    useState("");
+    useQueryParamState(
+      "search",
+      ""
+    );
+
+  usePersistedScroll(
+    undefined,
+    !loading
+  );
 
   useEffect(() => {
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CollapsibleSection from "./CollapsibleSection";
 
 function capitalize(text) {
   return text
@@ -19,43 +20,20 @@ function DexEntryCard({ entries }) {
 
 
   return (
-    <div
+    <CollapsibleSection
+      title="Pokédex Entries"
+      summary={`${entries.length} entries`}
+      expanded={expanded}
+      onToggle={() =>
+        setExpanded(!expanded)
+      }
       style={{
-        border: "2px solid #706363",
-        borderRadius: "12px",
-        padding: ".4rem",
-        marginBottom: "1rem"
+        padding: ".4rem"
+      }}
+      contentStyle={{
+        marginTop: "1rem"
       }}
     >
-      {/* Header */}
-
-      <div
-        onClick={() =>
-          setExpanded(!expanded)
-        }
-        style={{
-          cursor: "pointer",
-          display: "flex",
-          justifyContent:
-            "space-between",
-          alignItems: "center"
-        }}
-      >
-        <h2>Pokédex Entries</h2>
-
-        <p>
-          {entries.length} entries
-        </p>
-      </div>
-
-      {/* Expanded Content */}
-
-      {expanded && (
-        <div
-          style={{
-            marginTop: "1rem"
-          }}
-        >
           {entries.map(
             (entry, index) => (
               <div
@@ -87,9 +65,7 @@ function DexEntryCard({ entries }) {
               </div>
             )
           )}
-        </div>
-      )}
-    </div>
+    </CollapsibleSection>
   );
 }
 

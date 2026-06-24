@@ -280,7 +280,9 @@ function ItemDetailPage() {
       <TmMoveDetails item={item} />
 
       <AcquisitionMethods
+        key={item.name}
         acquisition={item.acquisition}
+        storageKey={`item:${item.name}:acquisition-expanded`}
       />
 
       {wildPokemonHoldingItem.length >

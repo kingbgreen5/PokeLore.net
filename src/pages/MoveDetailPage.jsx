@@ -12,13 +12,58 @@ import {
 import {
   useNavigate
 } from "react-router-dom";
+import CollapsibleSection from "../components/CollapsibleSection";
 import MoveMachineItems from "../components/MoveMachineItems";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import useSessionState from "../hooks/useSessionState";
 import Seo from "../seo/Seo";
 import { moveSeo } from "../seo/seoConfig";
 
 function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+function MoveLearnersSection({
+  moveName,
+  pokemonThatLearnMove
+}) {
+  const [
+    pokemonLearnersExpanded,
+    setPokemonLearnersExpanded
+  ] = useSessionState(
+    `move:${moveName}:pokemon-learners-expanded`,
+    false
+  );
+
+  return (
+    <CollapsibleSection
+      title="Pokémon That Learn This Move"
+      summary={`${pokemonThatLearnMove.length} Pokémon`}
+      expanded={pokemonLearnersExpanded}
+      onToggle={() =>
+        setPokemonLearnersExpanded(
+          !pokemonLearnersExpanded
+        )
+      }
+      contentStyle={{
+        display: "grid",
+        gap: "1rem",
+        gridTemplateColumns:
+          "repeat(auto-fit, minmax(130px, 1fr))",
+        marginTop: "1rem"
+      }}
+    >
+          {pokemonThatLearnMove.map(
+            pokemon => (
+              <PokemonSummaryCard
+                key={pokemon.id}
+                pokemon={pokemon}
+                compact={true}
+              />
+            )
+          )}
+    </CollapsibleSection>
+  );
 }
 
 function MoveDetailPage({
@@ -40,19 +85,11 @@ const [learnsets, setLearnsets] =
 const [pokemonIndex, setPokemonIndex] =
   useState([]);
 
-const [
-  pokemonLearnersExpanded,
-  setPokemonLearnersExpanded
-] = useState(false);
-
-
 useEffect(() => {
 
   async function loadMove() {
 
     try {
-
-      setPokemonLearnersExpanded(false);
 
       //-----------------------------------------
       // Load Moves
@@ -280,66 +317,19 @@ useEffect(() => {
 
       <MoveMachineItems
         key={moveName}
+        storageKey={`move:${moveName}:machine-items-expanded`}
         machineItems={
           moveData.machineItems
         }
       />
 
-      {/* Pokemon Learnset */}
-      <div
-        style={{
-          border: "2px solid #706363",
-          borderRadius: "12px",
-          padding: ".35rem",
-          marginBottom: "1rem"
-        }}
-      >
-        <div
-          onClick={() =>
-            setPokemonLearnersExpanded(
-              !pokemonLearnersExpanded
-            )
-          }
-          style={{
-            cursor: "pointer",
-            display: "flex",
-            justifyContent:
-              "space-between",
-            alignItems: "center"
-          }}
-        >
-          <h2>
-            Pokémon That Learn This Move
-          </h2>
-
-          <p>
-            {pokemonThatLearnMove.length}{" "}
-            Pokémon
-          </p>
-        </div>
-
-        {pokemonLearnersExpanded && (
-          <div
-            style={{
-              display: "grid",
-              gap: "1rem",
-              gridTemplateColumns:
-                "repeat(auto-fit, minmax(130px, 1fr))",
-              marginTop: "1rem"
-            }}
-          >
-            {pokemonThatLearnMove.map(
-              pokemon => (
-                <PokemonSummaryCard
-                  key={pokemon.id}
-                  pokemon={pokemon}
-                  compact={true}
-                />
-              )
-            )}
-          </div>
-        )}
-      </div>
+      <MoveLearnersSection
+        key={moveName}
+        moveName={moveName}
+        pokemonThatLearnMove={
+          pokemonThatLearnMove
+        }
+      />
     </div>
   );
 }

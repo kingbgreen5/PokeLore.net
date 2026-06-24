@@ -33,13 +33,15 @@ function MoveSummaryCard({
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        maxHeight: "200px",
-        maxWidth: "200px",
-        minHeight: "150px",
+        // maxHeight: "200px",
+        // maxWidth: "200px",
+        // minHeight: "130px",
+        height:"120px",
+                width: "120px",
         padding: ".35rem",
         transition:
           "transform 0.15s ease",
-        width: "150px"
+
       }}
       onMouseEnter={e => {
         e.currentTarget.style.transform =

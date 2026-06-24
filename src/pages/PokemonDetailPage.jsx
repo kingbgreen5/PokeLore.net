@@ -417,11 +417,12 @@ const activeFormKey =
 
 
 
-<div 
+<div  >
+    
+      {/*---------------------------------------------------------- Stats */}
 
 
 
-   >
 <BaseStatsChart
   stats={pokemon.stats}
 />
@@ -435,10 +436,6 @@ const activeFormKey =
   
 
 
-      {/*---------------------------------------------------------- Stats */}
-
-
-
 
 
 
@@ -447,17 +444,12 @@ const activeFormKey =
 
             {/* ---------------------------------------------------------Evolution Line */}
 
-
-
-
-
 <div
 
     style={{
  marginTop: "2rem",
+//  marginBottom:"1rem"
     }}
-    
-
 >
 
 <h2>Evolution Chain</h2>
@@ -492,7 +484,7 @@ const activeFormKey =
 
 
 
-<div>
+<div className="formDiv">
 
   {/*//-----------------------------------------Forms----------------------------------------- */}
 
@@ -514,8 +506,8 @@ const activeFormKey =
           justifyItems: "center",
           gridTemplateColumns:
             "repeat(auto-fit, minmax(140px, 1fr))",
-          gap: "1rem"
-
+          gap: "1rem",
+          marginBottom:"1rem"
 
 
       }}
@@ -537,6 +529,7 @@ const activeFormKey =
 
 {learnsetData ? (
   <LearnsetCard
+    key={pokemon.id}
     pokemonData={learnsetData}
     movesData={movesData}
   />
@@ -554,6 +547,7 @@ const activeFormKey =
 />
 
 <WhereToFind
+  key={pokemon.id}
   pokemonId={pokemon.id}
 />
 

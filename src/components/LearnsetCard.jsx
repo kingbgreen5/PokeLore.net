@@ -5,6 +5,11 @@ import { useState } from "react";
 import typeColors from "../constants/typeColors";
 import { useNavigate }
 from "react-router-dom";
+import CollapsibleSection from "./CollapsibleSection";
+import useSessionState from "../hooks/useSessionState";
+import physicalBadge from "../assets/Physical Badge.png";
+import specialBadge from "../assets/Special Badge.png";
+import statusBadge from "../assets/Status Badge.png";
 
 function capitalize(text) {
   return text
@@ -17,12 +22,34 @@ function capitalize(text) {
     .join(" ");
 }
 
+function getCategoryBadge(category) {
+  const normalizedCategory =
+    category?.toLowerCase();
+
+  if (normalizedCategory === "physical") {
+    return physicalBadge;
+  }
+
+  if (normalizedCategory === "special") {
+    return specialBadge;
+  }
+
+  if (normalizedCategory === "status") {
+    return statusBadge;
+  }
+
+  return null;
+}
+
 function LearnsetCard({
   pokemonData,
   movesData
 }) {
   const [expanded, setExpanded] =
-    useState(false);
+    useSessionState(
+      `pokemon:${pokemonData.id ?? pokemonData.pokemon}:learnsets-expanded`,
+      false
+    );
   const navigate = useNavigate();
   //-----------------------------------------
   // Version Groups
@@ -107,47 +134,20 @@ const filteredMoves =
   //-----------------------------------------
 
   return (
-    <div
+    <CollapsibleSection
+      title="Learnsets"
+      summary={`${filteredMoves.length} moves`}
+      expanded={expanded}
+      onToggle={() =>
+        setExpanded(!expanded)
+      }
       style={{
-        border: "2px solid #706363",
-        borderRadius: "12px",
-        padding: ".35rem",
-        marginBottom: "1rem"
+        maxWidth: "95%"
+      }}
+      contentStyle={{
+        marginTop: "1rem"
       }}
     >
-      {/* Header */}
-
-      <div
-        onClick={() =>
-          setExpanded(!expanded)
-        }
-        style={{
-          cursor: "pointer",
-          display: "flex",
-          justifyContent:
-            "space-between",
-          alignItems: "center"
-        }}
-      >
-        <h2>
-          {/* {capitalize(
-            pokemonData.pokemon 
-            
-          )}  */}
-          Learnsets
-        </h2>
-
-        <p>
-          {
-            filteredMoves.length
-          }{" "}
-          moves
-        </p>
-      </div>
-
-      {/* Expanded Content */}
-
-      {expanded && (
         <div>
           {/* Version Selector */}
 
@@ -171,7 +171,7 @@ const filteredMoves =
                 borderRadius:
                   "8px",
                 border:
-                  "1px solid #666"
+                  "1px solid #606060"
               }}
             >
               {versionGroups.map(
@@ -251,15 +251,13 @@ const filteredMoves =
                   );
 
                 return (
-                  <div
+
+                  <div className="learnsetCard"
                     key={method}
                     style={{
-                      border:
-                        "1px solid #666",
-                      borderRadius:
-                        "10px",
+
                       padding:
-                        "0.75rem"
+                        "0.15rem"
                     }}
                   >
                     {/* Section Title */}
@@ -283,7 +281,8 @@ const filteredMoves =
                         display:
                           "grid",
                         gridTemplateColumns:
-                          "30px 1fr 70px 50px 50px",
+                          // "10px 1fr 70px 50px 50px 10px",
+                          "20px 1fr 70px 30px 20px 40px",
                         gap:
                           ".35rem",
                         fontWeight:
@@ -299,7 +298,7 @@ const filteredMoves =
                       }}
                     >
                       <div>
-                        Lv
+                        Lvl
                       </div>
                       <div>
                         Move
@@ -312,6 +311,9 @@ const filteredMoves =
                       </div>
                       <div>
                         Acc
+                      </div>
+                        <div>
+                        Cat.
                       </div>
                     </div>
 
@@ -327,6 +329,10 @@ const filteredMoves =
                             move
                               .move
                           ];
+                        const categoryBadge =
+                          getCategoryBadge(
+                            moveDetails?.category
+                          );
 
                         return (
                           <div
@@ -337,13 +343,14 @@ const filteredMoves =
                               display:
                                 "grid",
                               gridTemplateColumns:
-                                "30px 1fr 70px 50px 50px",
+                                // "30px 1fr 70px 50px 50px",
+                                   "20px 1fr 70px 25px 15px 50px",
                               gap:
                                 ".35rem",
                               alignItems:
                                 "center",
                               padding:
-                                ".3rem 0",
+                                ".2rem 0",
                               fontSize:
                                 ".72rem"
                             }}
@@ -396,12 +403,28 @@ onClick={() =>
 
                             {/* Type */}
 
-                            <span
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (
+                                  moveDetails?.type
+                                ) {
+                                  navigate(
+                                    `/type/${moveDetails.type}`
+                                  );
+                                }
+                              }}
                               style={{
                                 backgroundColor:
                                   typeColors[
                                     moveDetails?.type
                                   ],
+                                border:
+                                  "none",
+                                cursor:
+                                  moveDetails?.type
+                                    ? "pointer"
+                                    : "default",
                                 color:
                                   "white",
                                 padding:
@@ -418,7 +441,7 @@ onClick={() =>
                             >
                               {moveDetails?.type ||
                                 "---"}
-                            </span>
+                            </button>
 
                             {/* Power */}
 
@@ -427,12 +450,40 @@ onClick={() =>
                                 "---"}
                             </div>
 
-                            {/* Accuracy */}
+
 
                             <div>
                               {moveDetails?.accuracy ||
                                 "---"}
                             </div>
+
+                            {/* Category */}
+
+                            <div>
+                              {categoryBadge ? (
+                                <img
+                                  src={
+                                    categoryBadge
+                                  }
+                                  alt={`${moveDetails.category} move`}
+                                  style={{
+                                    display:
+                                      "block",
+                                    width:
+                                      "60px",
+                                    height:
+                                      "28px",
+                                    objectFit:
+                                      "contain"
+                                  }}
+                                />
+                              ) : (
+                                moveDetails?.category ||
+                                  "---"
+                              )}
+                            </div>
+
+
                           </div>
                         );
                       }
@@ -443,8 +494,7 @@ onClick={() =>
             )}
           </div>
         </div>
-      )}
-    </div>
+    </CollapsibleSection>
   );
 }
 

@@ -4,6 +4,8 @@ import {
   useState
 } from "react";
 import { useNavigate } from "react-router-dom";
+import usePersistedScroll from "../hooks/usePersistedScroll";
+import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { locationsSeo } from "../seo/seoConfig";
 
@@ -26,13 +28,27 @@ function LocationsPage() {
   const [loading, setLoading] =
     useState(true);
   const [searchTerm, setSearchTerm] =
-    useState("");
+    useQueryParamState(
+      "search",
+      ""
+    );
   const [selectedRegion, setSelectedRegion] =
-    useState("all");
+    useQueryParamState(
+      "region",
+      "all"
+    );
   const [
     onlyWithEncounters,
     setOnlyWithEncounters
-  ] = useState(false);
+  ] = useQueryParamState(
+    "encounters",
+    "false"
+  );
+
+  usePersistedScroll(
+    undefined,
+    !loading
+  );
 
   useEffect(() => {
     async function loadLocations() {
@@ -88,7 +104,7 @@ function LocationsPage() {
         location.region === selectedRegion;
 
       const matchesEncounterFilter =
-        !onlyWithEncounters ||
+        onlyWithEncounters !== "true" ||
         location.hasEncounters;
 
       return (
@@ -190,12 +206,17 @@ function LocationsPage() {
             gap: ".5rem"
           }}
         >
-          <input
-            type="checkbox"
-            checked={onlyWithEncounters}
+        <input
+          type="checkbox"
+            checked={
+              onlyWithEncounters ===
+              "true"
+            }
             onChange={event =>
               setOnlyWithEncounters(
                 event.target.checked
+                  ? "true"
+                  : "false"
               )
             }
           />

@@ -1,5 +1,6 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import CollapsibleSection from "./CollapsibleSection";
+import useSessionState from "../hooks/useSessionState";
 
 function capitalize(text) {
   return text
@@ -90,10 +91,14 @@ function generationRank(generation) {
 }
 
 function MoveMachineItems({
-  machineItems
+  machineItems,
+  storageKey = "move-machine-items-expanded"
 }) {
   const [expanded, setExpanded] =
-    useState(false);
+    useSessionState(
+      storageKey,
+      false
+    );
 
   const items =
     machineItems ?? [];
@@ -115,43 +120,19 @@ function MoveMachineItems({
       );
 
   return (
-    <div
-      style={{
-        border: "2px solid #706363",
-        borderRadius: "12px",
-        padding: ".35rem",
-        marginBottom: "1rem"
+    <CollapsibleSection
+      title="TMs, HMs, and TRs"
+      summary={`${items.length} entries`}
+      expanded={expanded}
+      onToggle={() =>
+        setExpanded(!expanded)
+      }
+      contentStyle={{
+        display: "grid",
+        gap: "1.25rem",
+        marginTop: "1rem"
       }}
     >
-      <div
-        onClick={() =>
-          setExpanded(!expanded)
-        }
-        style={{
-          cursor: "pointer",
-          display: "flex",
-          justifyContent:
-            "space-between",
-          alignItems: "center"
-        }}
-      >
-        <h2>
-          TMs, HMs, and TRs
-        </h2>
-
-        <p>
-          {items.length} entries
-        </p>
-      </div>
-
-      {expanded && (
-        <div
-          style={{
-            display: "grid",
-            gap: "1.25rem",
-            marginTop: "1rem"
-          }}
-        >
           {groupedMachineItems.map(
             ({
               generation,
@@ -301,9 +282,7 @@ function MoveMachineItems({
               </div>
             )
           )}
-        </div>
-      )}
-    </div>
+    </CollapsibleSection>
   );
 }
 

@@ -7,6 +7,7 @@ import {
   useNavigate,
   useParams
 } from "react-router-dom";
+import CollapsibleSection from "../components/CollapsibleSection";
 import MoveSummaryCard from "../components/MoveSummaryCard";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import typeChart from "../constants/Types";
@@ -104,12 +105,14 @@ function MatchupGroup({
       style={{
         border: "1px solid #666",
         borderRadius: "12px",
-        padding: "1rem"
+        padding: ".5rem",
+        paddingTop: ".1rem"
       }}
     >
       <h3
         style={{
-          marginTop: 0
+          marginTop: 0,
+          marginBottom: ".1rem"
         }}
       >
         {title}
@@ -119,7 +122,7 @@ function MatchupGroup({
         style={{
           display: "flex",
           flexWrap: "wrap",
-          gap: ".5rem",
+          gap: ".9rem",
           justifyContent: "center"
         }}
       >
@@ -208,6 +211,18 @@ function TypeDetailPage() {
 
   const [loading, setLoading] =
     useState(true);
+  const [
+    pokemonSectionExpanded,
+    setPokemonSectionExpanded
+  ] = useState(false);
+  const [
+    attacksSectionExpanded,
+    setAttacksSectionExpanded
+  ] = useState(false);
+  const [
+    powerSortMode,
+    setPowerSortMode
+  ] = useState("default");
 
   useEffect(() => {
     async function loadTypeData() {
@@ -261,6 +276,28 @@ function TypeDetailPage() {
           move.type === type
       ),
     [moves, type]
+  );
+
+  const sortedMovesOfType = useMemo(
+    () =>
+      [...movesOfType].sort(([, a], [, b]) => {
+        if (powerSortMode === "high-low") {
+          return (
+            (b.power ?? -1) -
+            (a.power ?? -1)
+          );
+        }
+
+        if (powerSortMode === "low-high") {
+          return (
+            (a.power ?? Infinity) -
+            (b.power ?? Infinity)
+          );
+        }
+
+        return 0;
+      }),
+    [movesOfType, powerSortMode]
   );
 
   if (!typeColors[type]) {
@@ -354,53 +391,110 @@ function TypeDetailPage() {
         />
       </div>
 {/*                                                                                                                         POKEMON OF THE TYPE */}
-      <h2>
-        {capitalize(type)} Pokémon
-      </h2>
-
-      <div
+      <CollapsibleSection
+        title={`${capitalize(type)} Pokémon`}
+        summary={`${pokemonOfType.length} Pokémon`}
+        expanded={pokemonSectionExpanded}
+        onToggle={() =>
+          setPokemonSectionExpanded(
+            !pokemonSectionExpanded
+          )
+        }
         style={{
-          display: "grid",
-          gap: "1rem",
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(140px, 1fr))",
           marginBottom: "3rem"
         }}
-      >
-        {pokemonOfType.map(
-          pokemon => (
-            <PokemonSummaryCard
-              key={pokemon.id}
-              pokemon={pokemon}
-              compact={true}
-            />
-          )
-        )}
-      </div>
-
-      <h2>
-        {capitalize(type)} Attacks
-      </h2>
-
-      <div
-        style={{
-          display: "grid",
-          gap: "1rem",
-          justifyItems: "center",
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(150px, 1fr))"
+        contentStyle={{
+          marginTop: "1rem"
         }}
       >
-        {movesOfType.map(
-          ([name, move]) => (
-            <MoveSummaryCard
-              key={name}
-              name={name}
-              move={move}
-            />
+        <div
+          style={{
+            display: "grid",
+            gap: "1rem",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(130px, 1fr))"
+          }}
+        >
+          {pokemonOfType.map(
+            pokemon => (
+              <PokemonSummaryCard
+                key={pokemon.id}
+                pokemon={pokemon}
+                compact={true}
+              />
+            )
+          )}
+        </div>
+      </CollapsibleSection>
+
+      <CollapsibleSection
+        title={`${capitalize(type)} Attacks`}
+        summary={`${movesOfType.length} moves`}
+        expanded={attacksSectionExpanded}
+        onToggle={() =>
+          setAttacksSectionExpanded(
+            !attacksSectionExpanded
           )
-        )}
-      </div>
+        }
+        contentStyle={{
+          marginTop: "1rem"
+        }}
+      >
+        <div
+          style={{
+            marginBottom: "1rem"
+          }}
+        >
+          <select
+            value={powerSortMode}
+            onChange={e =>
+              setPowerSortMode(
+                e.target.value
+              )
+            }
+            style={{
+              backgroundColor: "#2c2c2c",
+              border: "2px solid #555",
+              borderRadius: "12px",
+              color: "white",
+              fontSize: "1rem",
+              padding: ".7rem 1rem"
+            }}
+          >
+            <option value="default">
+              Default Order
+            </option>
+
+            <option value="high-low">
+              Power Descending
+            </option>
+
+            <option value="low-high">
+              Power Ascending
+            </option>
+          </select>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gap: "1rem",
+            justifyItems: "center",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(130px, 1fr))"
+          }}
+        >
+          {sortedMovesOfType.map(
+            ([name, move]) => (
+              <MoveSummaryCard
+                key={name}
+                name={name}
+                move={move}
+              />
+            )
+          )}
+        </div>
+      </CollapsibleSection>
     </div>
   );
 }

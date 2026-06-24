@@ -109,3 +109,22 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+.collapsible-content {
+  transition:
+    opacity 0.15s ease,
+    max-height 0.15s ease;
+}
+
+.collapsible-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.collapsible-content.open {
+  max-height: none;
+  opacity: 1;
+  overflow: visible;
+}

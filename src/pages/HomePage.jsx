@@ -2,6 +2,8 @@
 import { useMemo, useState, useEffect } from "react";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import typeColors from "../constants/typeColors";
+import usePersistedScroll from "../hooks/usePersistedScroll";
+import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { homeSeo } from "../seo/seoConfig";
 
@@ -17,13 +19,27 @@ function HomePage() {
     useState([]);
 
   const [searchTerm, setSearchTerm] =
-    useState("");
+    useQueryParamState(
+      "search",
+      ""
+    );
 
   const [selectedType, setSelectedType] =
-    useState("all");
+    useQueryParamState(
+      "type",
+      "all"
+    );
 
   const [sortMode, setSortMode] =
-    useState("dex-asc");
+    useQueryParamState(
+      "sort",
+      "dex-asc"
+    );
+
+  usePersistedScroll(
+    undefined,
+    !loading
+  );
 
   //-----------------------------------------
   // Load Pokémon Index

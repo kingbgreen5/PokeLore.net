@@ -4,6 +4,8 @@ import {
   useState
 } from "react";
 import { Link } from "react-router-dom";
+import CollapsibleSection from "./CollapsibleSection";
+import useSessionState from "../hooks/useSessionState";
 
 function capitalize(text) {
   return String(text)
@@ -37,7 +39,10 @@ function WhereToFind({
   pokemonId
 }) {
   const [expanded, setExpanded] =
-    useState(false);
+    useSessionState(
+      `pokemon:${pokemonId}:where-to-find-expanded`,
+      false
+    );
 
   const [encounterData, setEncounterData] =
     useState(null);
@@ -49,7 +54,6 @@ function WhereToFind({
     async function loadEncounters() {
       try {
         setEncounterData(null);
-        setExpanded(false);
         setSelectedVersion("all");
 
         const response = await fetch(
@@ -134,45 +138,26 @@ function WhereToFind({
   }
 
   return (
-    <div
+    <CollapsibleSection
+      title="Where To Find"
+      summary={`${visibleLocations.length}${
+        selectedVersion === "all"
+          ? ""
+          : ` / ${encounterData.locations.length}`
+      } locations`}
+      expanded={expanded}
+      onToggle={() =>
+        setExpanded(!expanded)
+      }
       style={{
-        border: "2px solid #706363",
-        borderRadius: "12px",
-        padding: ".35rem",
-        marginBottom: "1rem",
+        marginTop: "1rem"
+      }}
+      contentStyle={{
+        display: "grid",
+        gap: "1rem",
         marginTop: "1rem"
       }}
     >
-      <div
-        onClick={() =>
-          setExpanded(!expanded)
-        }
-        style={{
-          cursor: "pointer",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center"
-        }}
-      >
-        <h2>Where To Find</h2>
-
-        <p>
-          {visibleLocations.length}
-          {selectedVersion === "all"
-            ? ""
-            : ` / ${encounterData.locations.length}`}{" "}
-          locations
-        </p>
-      </div>
-
-      {expanded && (
-        <div
-          style={{
-            display: "grid",
-            gap: "1rem",
-            marginTop: "1rem"
-          }}
-        >
           <div
             style={{
               marginBottom: ".25rem",
@@ -325,9 +310,7 @@ function WhereToFind({
               ))}
             </details>
           ))}
-        </div>
-      )}
-    </div>
+    </CollapsibleSection>
   );
 }
 

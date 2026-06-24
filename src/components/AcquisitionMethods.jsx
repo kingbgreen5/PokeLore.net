@@ -2,6 +2,8 @@ import {
   useMemo,
   useState
 } from "react";
+import CollapsibleSection from "./CollapsibleSection";
+import useSessionState from "../hooks/useSessionState";
 
 function formatAcquisitionType(type) {
   if (!type) return "Unknown";
@@ -17,10 +19,14 @@ function formatAcquisitionType(type) {
 }
 
 function AcquisitionMethods({
-  acquisition
+  acquisition,
+  storageKey = "acquisition-expanded"
 }) {
   const [expanded, setExpanded] =
-    useState(false);
+    useSessionState(
+      storageKey,
+      false
+    );
 
   const [selectedGeneration, setSelectedGeneration] =
     useState("all");
@@ -66,52 +72,43 @@ function AcquisitionMethods({
     acquisitionList.length === 0
   ) {
     return (
-      <section
+      <CollapsibleSection
+        title="Acquisition"
+        summary={expanded ? "▲" : "▼"}
+        expanded={expanded}
+        onToggle={() =>
+          setExpanded(
+            isExpanded => !isExpanded
+          )
+        }
         style={{
           border: "1px solid #666",
-          borderRadius: "12px",
           marginBottom: "2rem",
           padding: "1rem"
         }}
       >
-        <button
-          type="button"
-          onClick={() =>
-            setExpanded(
-              isExpanded => !isExpanded
-            )
-          }
-          style={{
-            alignItems: "center",
-            background: "none",
-            border: "none",
-            color: "inherit",
-            cursor: "pointer",
-            display: "flex",
-            font: "inherit",
-            justifyContent:
-              "space-between",
-            padding: 0,
-            width: "100%"
-          }}
-        >
-          <h2>Acquisition</h2>
-          <span>
-            {expanded ? "▲" : "▼"}
-          </span>
-        </button>
-
-        {expanded && (
           <p>No location data yet.</p>
-        )}
-      </section>
+      </CollapsibleSection>
     );
   }
 
   return (
-    <section
+    <CollapsibleSection
+      title="Acquisition"
+      summary={expanded ? "▲" : "▼"}
+      expanded={expanded}
+      onToggle={() =>
+        setExpanded(
+          isExpanded => !isExpanded
+        )
+      }
       style={{
         marginBottom: "2rem"
+      }}
+      contentStyle={{
+        display: "grid",
+        gap: "1rem",
+        textAlign: "left"
       }}
     >
       <div
@@ -122,44 +119,9 @@ function AcquisitionMethods({
           gap: "1rem",
           justifyContent:
             "space-between",
-          marginBottom: expanded
-            ? "1rem"
-            : 0
+          marginBottom: "1rem"
         }}
       >
-        <button
-          type="button"
-          onClick={() =>
-            setExpanded(
-              isExpanded => !isExpanded
-            )
-          }
-          style={{
-            alignItems: "center",
-            background: "none",
-            border: "none",
-            color: "inherit",
-            cursor: "pointer",
-            display: "flex",
-            font: "inherit",
-            gap: ".75rem",
-            padding: 0
-          }}
-        >
-          <h2
-            style={{
-              margin: 0
-            }}
-          >
-            Acquisition
-          </h2>
-
-          <span>
-            {expanded ? "▲" : "▼"}
-          </span>
-        </button>
-
-        {expanded && (
           <select
             value={selectedGeneration}
             onChange={event =>
@@ -191,17 +153,8 @@ function AcquisitionMethods({
               )
             )}
           </select>
-        )}
       </div>
 
-      {expanded && (
-        <div
-          style={{
-            display: "grid",
-            gap: "1rem",
-            textAlign: "left"
-          }}
-        >
           {filteredAcquisition.map(
             (method, index) => (
               <article
@@ -339,9 +292,7 @@ function AcquisitionMethods({
               </article>
             )
           )}
-        </div>
-      )}
-    </section>
+    </CollapsibleSection>
   );
 }
 

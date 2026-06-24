@@ -4,6 +4,8 @@ import {
   useState
 } from "react";
 import { useNavigate } from "react-router-dom";
+import usePersistedScroll from "../hooks/usePersistedScroll";
+import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { itemsSeo } from "../seo/seoConfig";
 
@@ -28,10 +30,21 @@ function ItemsPage() {
     useState(true);
 
   const [searchTerm, setSearchTerm] =
-    useState("");
+    useQueryParamState(
+      "search",
+      ""
+    );
 
   const [selectedPocket, setSelectedPocket] =
-    useState("all");
+    useQueryParamState(
+      "pocket",
+      "all"
+    );
+
+  usePersistedScroll(
+    undefined,
+    !loading
+  );
 
   useEffect(() => {
     async function loadItems() {
