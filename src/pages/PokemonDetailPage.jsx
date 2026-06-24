@@ -572,14 +572,14 @@ const pokemonWeight = (pokemon.weight / correctionFactor) +" Kg.";
            Weight: {pokemonWeight}
       </p>
             <p>
-           Habitat: {capitalize(pokemon.habitat)}
+           Habitat: {pokemon.habitat}
       </p>
               <p>
-           Color: {capitalize(pokemon.color)}
+           Color: {pokemon.color}
       </p>
 
         <p>
-           Body Style: {capitalize(pokemon.shape)}
+           Body Style: {pokemon.shape}
       </p>
       
 
