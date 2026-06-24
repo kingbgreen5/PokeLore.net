@@ -226,6 +226,19 @@ const activeFormKey =
   getRegionalFormKey(pokemon);
 
 
+
+  const correctionFactor = 10
+const pokemonHeight = (pokemon.height / correctionFactor) +" M.";
+ const meterToInches= 39.370079
+ const pokemonHeightInches = (pokemon.height / correctionFactor)*meterToInches;
+ const pokemonHeightEnglish = (pokemonHeightInches / 12)
+
+
+
+const weightCorrection= 10;
+const pokemonWeight = (pokemon.weight / correctionFactor) +" Kg.";
+
+
 //----------------------------------------RETURN STATEMENT-----------------------------------------
 
   return (
@@ -238,8 +251,7 @@ const activeFormKey =
     >
       <Seo {...pokemonSeo(pokemon)} />
 
-      {/* // ---------------------------------------RETURN STATEMENT-----------------------------------------*/}
-    
+      
       <img
         src={pokemon.sprite}
         alt={formatPokemonDisplayName(
@@ -534,12 +546,54 @@ const activeFormKey =
   pokemonId={pokemon.id}
 />
 
-    <h2>Catch Rate</h2>
+
+<div 
+      style={{
+          marginBottom:"1rem"
+      }}>
+
+
+
+
+<h2
+
+
+
+>Biological Data</h2>
       <p>
-        {pokemon.catchRate}
+       Species: {pokemon.genus}
+      </p>
+      <p>
+       Height: {pokemonHeight} 
+       {/* {pokemonHeightInches} {pokemonHeightEnglish} */}
+       
+      </p>
+      <p>
+           Weight: {pokemonWeight}
+      </p>
+            <p>
+           Habitat: {capitalize(pokemon.habitat)}
+      </p>
+              <p>
+           Color: {capitalize(pokemon.color)}
       </p>
 
+        <p>
+           Body Style: {capitalize(pokemon.shape)}
+      </p>
+      
 
+      </div>
+<h2>Misc</h2>
+      <p>
+       Catch Rate: {pokemon.catchRate}
+      </p>
+      <p>
+       Base Experience: {pokemon.baseExperience} Exp
+      </p>
+            <p>
+       Hatch Counter: {pokemon.hatchCounter}
+      </p>
 
 
 
