@@ -22,6 +22,7 @@ import BaseStatsChart from "../components/BaseStatsChart";
 import PokemonSummaryCard from "../components/PokemonSummaryCard.jsx";
 import WhereToFind from "../components/WhereToFind";
 import SizeComparison from "../components/SizeComparison"
+import AdditionalImages from "../components/AdditionalImages";
 import Seo from "../seo/Seo";
 import { pokemonSeo } from "../seo/seoConfig";
 import {
@@ -528,6 +529,12 @@ function formatWeightEnglish(weight) {
   pokemonId={pokemon.id}
 />
 
+<AdditionalImages
+  pokemonId={pokemon.id}
+  pokemonName={formatPokemonDisplayName(
+    pokemon
+  )}
+/>
 
 <div 
       style={{
@@ -615,6 +622,8 @@ function formatWeightEnglish(weight) {
       </p>
 
 {/* <SizeComparison pokemon={pokemon} /> */}
+
+
 
     </div>
   );
