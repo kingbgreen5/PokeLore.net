@@ -1,6 +1,8 @@
 import typeColors from "../constants/typeColors";
 import { useNavigate }
 from "react-router-dom";
+import { formatPokemonDisplayName }
+from "../utils/pokemonNames";
 
 const CARD_SIZES = {
   full: {
@@ -54,17 +56,6 @@ const CARD_SIZES = {
 };
 
 
-function capitalize(text) {
-  return text
-    .split("-")
-    .map(
-      word =>
-        word.charAt(0).toUpperCase() +
-        word.slice(1)
-    )
-    .join(" ");
-}
-
 function PokemonSummaryCard({
   pokemon,
   compact = false,
@@ -85,6 +76,10 @@ function PokemonSummaryCard({
   const size =
     CARD_SIZES[sizeKey] ||
     CARD_SIZES.full;
+  const displayName =
+    formatPokemonDisplayName(
+      pokemon
+    );
   
   return (
     <div
@@ -148,7 +143,7 @@ onClick={() =>
 
       <img
         src={pokemon.sprite}
-        alt={pokemon.name}
+        alt={displayName}
         loading="lazy"
         style={{
           width: size.spriteSize,
@@ -174,9 +169,7 @@ onClick={() =>
 
         }}
       >
-        {capitalize(
-          pokemon.name
-        )}
+        {displayName}
       </h2>
 
       {/* Types */}

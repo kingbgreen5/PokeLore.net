@@ -23,6 +23,10 @@ import PokemonSummaryCard from "../components/PokemonSummaryCard.jsx";
 import WhereToFind from "../components/WhereToFind";
 import Seo from "../seo/Seo";
 import { pokemonSeo } from "../seo/seoConfig";
+import {
+  formatPokemonDisplayName,
+  getRegionalFormKey
+} from "../utils/pokemonNames";
 
 
 
@@ -37,29 +41,6 @@ function capitalize(text) {
         word.slice(1)
     )
     .join(" ");
-}
-
-function getFormKey(pokemon) {
-  if (
-    !pokemon ||
-    !pokemon.species ||
-    pokemon.name === pokemon.species
-  ) {
-    return null;
-  }
-
-  const prefix =
-    `${pokemon.species}-`;
-
-  if (
-    pokemon.name.startsWith(prefix)
-  ) {
-    return pokemon.name.slice(
-      prefix.length
-    );
-  }
-
-  return null;
 }
 
 function PokemonDetailPage() {
@@ -242,7 +223,7 @@ if (loading) {
 }
 
 const activeFormKey =
-  getFormKey(pokemon);
+  getRegionalFormKey(pokemon);
 
 
 //----------------------------------------RETURN STATEMENT-----------------------------------------
@@ -261,7 +242,9 @@ const activeFormKey =
     
       <img
         src={pokemon.sprite}
-        alt={pokemon.name}
+        alt={formatPokemonDisplayName(
+          pokemon
+        )}
         style={{
           width: "250px"
         }}
@@ -273,8 +256,8 @@ const activeFormKey =
 /> */}
       <h1>
        
-        {capitalize(
-          pokemon.name
+        {formatPokemonDisplayName(
+          pokemon
         )}
       </h1>
 {/* 

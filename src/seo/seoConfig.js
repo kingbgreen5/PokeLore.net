@@ -1,3 +1,6 @@
+import { formatPokemonDisplayName }
+from "../utils/pokemonNames";
+
 export const SITE_NAME = "PokéLore";
 export const SITE_URL = "https://pokelore.net";
 
@@ -153,7 +156,8 @@ export function locationSeo(location) {
 }
 
 export function pokemonSeo(pokemon) {
-  const name = formatName(pokemon?.name);
+  const name =
+    formatPokemonDisplayName(pokemon);
 
   return {
     title: `${name} Pokédex Entries, Learnset & Evolution | ${SITE_NAME}`,
