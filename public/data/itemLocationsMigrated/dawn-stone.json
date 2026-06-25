@@ -1,0 +1,960 @@
+{
+  "item": "dawn-stone",
+  "displayName": "Dawn Stone",
+  "source": "items/dawn-stone.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "mt-coronet",
+        "displayName": "Mt. Coronet"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Mt. Coronet",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Dawn Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 51–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "sinnoh-route-225",
+        "displayName": "Route 225"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 225",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "mt-silver-cave",
+        "displayName": "Mt. Silver Cave"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Mt. Silver Cave",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "national-park",
+        "displayName": "National Park"
+      },
+      "method": "Win the post-National Pokédex Bug-Catching Contest; a Dawn Stone is one possible first prize.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Obtain the National Pokédex",
+        "Win first place"
+      ],
+      "originalLocationText": "National Park",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "pokeathlon-dome",
+        "displayName": "Pokéathlon Dome"
+      },
+      "method": "Purchase for 3,000 Athlete Points on Tuesday, Wednesday, Friday, or Saturday after obtaining the National Pokédex.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Obtain the National Pokédex",
+        "Available only on Tuesday, Wednesday, Friday, or Saturday"
+      ],
+      "originalLocationText": "Pokéathlon Dome",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Route 17",
+      "method": "Biker Aiden may give one after a rematch.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Register Aiden's phone number"
+      ],
+      "locationMatchStatus": "ambiguous",
+      "locationCandidates": [
+        "alola-route-17",
+        "kalos-route-17",
+        "kanto-route-17",
+        "unova-route-17"
+      ]
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Silph Co.",
+      "method": "The Beldum received through the in-game trade is holding a Dawn Stone.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete the Beldum in-game trade"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "sinnoh-route-212",
+        "displayName": "Route 212"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [],
+      "originalLocationText": "Route 212",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black"
+      ],
+      "location": {
+        "name": "black-city",
+        "displayName": "Black City"
+      },
+      "method": "Purchase from Grace when she is present.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Grace must be present",
+        "Pokémon Black only"
+      ],
+      "originalLocationText": "Black City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": "Caves with dust clouds",
+      "method": "A Dawn Stone can randomly appear in a dust cloud.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "unova-route-10",
+        "displayName": "Route 10"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 10",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2"
+      ],
+      "location": "Black City — Store 4",
+      "method": "Purchase a Dawn Stone.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Black 2 only"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "dreamyard",
+        "displayName": "Dreamyard"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Dreamyard",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Eligible caves",
+      "method": "A Dawn Stone can randomly appear in dust clouds.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Funfest Mission — Do a Great Trade-Up!",
+      "method": "Obtain as a possible mission reward.",
+      "acquisitionType": "quest-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Join Avenue — Antique Shop",
+      "method": "A Dawn Stone can appear among randomized antique rewards.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "moor-of-icirrus",
+        "displayName": "Moor of Icirrus"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Moor of Icirrus",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "unova-route-2",
+        "displayName": "Route 2"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 2",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Route 3 Hidden Grotto",
+      "method": "A Dawn Stone can appear in the regenerated Hidden Grotto item pool.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "white-forest",
+        "displayName": "White Forest"
+      },
+      "method": "Find through Grace's White Forest item pool when she is present.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Grace must be present",
+        "Pokémon White only"
+      ],
+      "originalLocationText": "White Forest",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Mauville City — Inverse Battle Stop",
+      "method": "Earn from Inver after a sufficiently successful Inverse Battle.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "One reward attempt per day"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "sea-mauville",
+        "displayName": "Sea Mauville"
+      },
+      "method": "Mysterious Sisters Scall and Ion may award one after a rematch.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Sea Mauville",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "secret-base",
+        "displayName": "Secret Base"
+      },
+      "method": "A Secret Pal using the 'Pick up stones' skill may find one.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Secret Base",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Secret Super Training",
+      "method": "Earn from Those Long Shots Are No Long Shot!.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "hoenn-victory-road",
+        "displayName": "Victory Road"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Victory Road",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "kalos-route-18",
+        "displayName": "Route 18"
+      },
+      "method": "Earn from Psychic Inver after a sufficiently successful Inverse Battle.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "One Inverse Battle reward attempt per day"
+      ],
+      "originalLocationText": "Route 18",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "kalos-route-3",
+        "displayName": "Route 3"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 3",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": "Secret Super Training",
+      "method": "Earn from Those Long Shots Are No Long Shot!.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon"
+      ],
+      "location": {
+        "name": "hauoli-city",
+        "displayName": "Hau'oli City"
+      },
+      "method": "Collect or receive the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Hau'oli City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon"
+      ],
+      "location": "Poké Pelago — Isle Aphun",
+      "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Poké Pelago — Isle Aphun",
+      "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": {
+        "name": "royal-avenue",
+        "displayName": "Royal Avenue"
+      },
+      "method": "Collect or receive the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Royal Avenue",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": {
+        "name": "mt-coronet",
+        "displayName": "Mt. Coronet"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Mt. Coronet",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Dawn Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 11–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": {
+        "name": "sinnoh-route-225",
+        "displayName": "Route 225"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 225",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Coronet Highlands and Alabaster Icelands",
+      "method": "Break eligible blue ore deposits for a chance to obtain one.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Galaxy Hall",
+      "method": "Receive for completing Request 82, 'Traces of a Lost Village'.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete Request 82"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Ginkgo Guild cart",
+      "method": "Ginter may randomly offer it as the 'Eye-Like Rock'.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Jubilife Village — Trading Post",
+      "method": "Purchase for 1,200 Merit Points.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "1,200 Merit Points"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Obsidian Fieldlands",
+      "method": "Receive for completing Request 102, 'Daybreak'.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete Request 102"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Space-time distortions",
+      "method": "Find as a random distortion item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Bridge Field — Digging Duo",
+      "method": "Pay the Digging Duo for a chance to dig up a Dawn Stone.",
+      "acquisitionType": "mining",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Crown Tundra — Ballimere Lake",
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Crown Tundra — Old Cemetery",
+      "method": "Pick up a recurring hidden Dawn Stone.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "giants-cap",
+        "displayName": "Giant's Cap"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Giant's Cap",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "lake-of-outrage",
+        "displayName": "Lake of Outrage"
+      },
+      "method": "Pick up a recurring hidden Dawn Stone near the stone circle.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Rotom Bike water upgrade"
+      ],
+      "originalLocationText": "Lake of Outrage",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Bleu Sector 3",
+      "method": "Receive for completing Side Mission 090, 'Froslass's Unfinished Business'.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete Side Mission 090"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Stone Emporium",
+      "method": "Purchase a Dawn Stone.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "paldea-east-province-area-three",
+        "displayName": "East Province (Area Three)"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "East Province (Area Three)",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "glaseado-mountain",
+        "displayName": "Glaseado Mountain"
+      },
+      "method": "Find as a sparkling overworld item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Glaseado Mountain",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Paldea Pokédex",
+      "method": "Receive after registering 270 Pokémon.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Register 270 Pokémon"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "porto-marinada",
+        "displayName": "Porto Marinada"
+      },
+      "method": "Purchase when a Dawn Stone appears at auction.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Porto Marinada",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Indigo Disk — Canyon Biome",
+      "method": "Find as a sparkling overworld item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Indigo Disk — Item Printer",
+      "method": "Produce as a possible Item Printer result.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC",
+        "Unlock the Item Printer"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Teal Mask — Oni Mountain",
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Teal Mask DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "paldea-west-province-area-three",
+        "displayName": "West Province (Area Three)"
+      },
+      "method": "Collect the fixed Dawn Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "West Province (Area Three)",
+      "locationMatchStatus": "matched"
+    }
+  ]
+}

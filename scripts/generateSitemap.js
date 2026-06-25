@@ -36,6 +36,7 @@ function staticRoutes() {
     "/abilities",
     "/items",
     "/locations",
+    "/topics",
     "/types"
   ].map(route);
 }
@@ -70,6 +71,12 @@ function locationRoutes(locationsIndex) {
   );
 }
 
+function topicRoutes(pokedexTopics) {
+  return (pokedexTopics.topics ?? []).map(topic =>
+    route(`/topic/${topic.slug}`)
+  );
+}
+
 function typeRoutes(pokemonIndex) {
   const types = new Set(
     pokemonIndex.flatMap(
@@ -88,7 +95,8 @@ async function buildRoutes() {
     moves,
     abilities,
     itemsIndex,
-    locationsIndex
+    locationsIndex,
+    pokedexTopics
   ] = await Promise.all([
     readJson(
       path.join(dataDir, "pokemonIndex.json")
@@ -102,6 +110,9 @@ async function buildRoutes() {
     ),
     readJson(
       path.join(dataDir, "locationsIndex.json")
+    ),
+    readJson(
+      path.join(dataDir, "pokedexTopics.json")
     )
   ]);
 
@@ -112,6 +123,7 @@ async function buildRoutes() {
     abilityRoutes(abilities),
     itemRoutes(itemsIndex),
     locationRoutes(locationsIndex),
+    topicRoutes(pokedexTopics),
     typeRoutes(pokemonIndex)
   ].flat();
 }

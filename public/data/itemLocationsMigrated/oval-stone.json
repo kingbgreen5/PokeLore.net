@@ -1,0 +1,611 @@
+{
+  "item": "oval-stone",
+  "displayName": "Oval Stone",
+  "source": "items/oval-stone.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "lost-tower",
+        "displayName": "Lost Tower"
+      },
+      "method": "Collect the fixed Oval Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Lost Tower",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": "Wild Happiny and Chansey",
+      "method": "May be held by wild Happiny or Chansey.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "50% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "rock-tunnel",
+        "displayName": "Rock Tunnel"
+      },
+      "method": "Collect the fixed Oval Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Rock Tunnel",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Route 15",
+      "method": "Receive one from Twins Kay & Tia.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "ambiguous",
+      "locationCandidates": [
+        "alola-route-15",
+        "kalos-route-15",
+        "kanto-route-15",
+        "unova-route-15"
+      ]
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "National Park — Bug-Catching Contest",
+      "method": "Win first place after obtaining the National Pokédex; an Oval Stone is available as a first prize.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Obtain the National Pokédex",
+        "Win first place"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Wild Chansey",
+      "method": "May be held by wild Chansey.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "50% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "challengers-cave",
+        "displayName": "Challenger's Cave"
+      },
+      "method": "Collect the fixed Oval Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Challenger's Cave",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black"
+      ],
+      "location": {
+        "name": "black-city",
+        "displayName": "Black City"
+      },
+      "method": "Obtain it through Carlos when he is present.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Black only",
+        "Carlos must be present"
+      ],
+      "originalLocationText": "Black City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "white-forest",
+        "displayName": "White Forest"
+      },
+      "method": "Obtain it through Carlos when he is present.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon White only",
+        "Carlos must be present"
+      ],
+      "originalLocationText": "White Forest",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": "Cave dust clouds",
+      "method": "May randomly appear in a dust cloud.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": "Wild Happiny",
+      "method": "May be held by wild Happiny.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "50% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Eligible caves — dust clouds",
+      "method": "May randomly appear in dust clouds in Chargestone Cave, Mistralton Cave, Clay Tunnel, Twist Mountain, Underground Ruins, Victory Road, Wellspring Cave, Seaside Cave, or Giant Chasm.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon White 2"
+      ],
+      "location": "White Forest — Store 4",
+      "method": "Purchase from the marketplace shop.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon White 2 only",
+        "Unlock Store 4"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Funfest Mission: \"Do a Great Trade-Up!\"",
+      "method": "Obtain it as a possible mission reward.",
+      "acquisitionType": "quest-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "unknown-dungeon",
+        "displayName": "Unknown Dungeon"
+      },
+      "method": "Find it as a recurring hidden item.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Unknown Dungeon",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Wild Happiny",
+      "method": "May be held by wild Happiny.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "50% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon"
+      ],
+      "location": {
+        "name": "paniola-ranch",
+        "displayName": "Paniola Ranch"
+      },
+      "method": "Collect the fixed Oval Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [],
+      "originalLocationText": "Paniola Ranch",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon",
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Poké Pelago — Isle Aphun",
+      "method": "Obtain it through Brilliant-Stone Hunting; Ultra Sun and Ultra Moon may also find it through Interesting-Item Hunting.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Poni Plains — Chansey ambush encounters",
+      "method": "A Chansey from an ambush encounter may yield an Oval Stone.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon",
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Wild Happiny",
+      "method": "May be held by wild Happiny.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "50% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "The Isle of Armor — Soothing Wetlands and Courageous Cavern",
+      "method": "Find it as a recurring hidden item.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "The Isle of Armor — Cram-o-matic",
+      "method": "Produce it with a Rock-type recipe totaling 22–30 points.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor DLC",
+        "Rock-type Cram-o-matic recipe worth 22–30 points"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Wild Happiny",
+      "method": "May be held by wild Happiny.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "50% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": {
+        "name": "lost-tower",
+        "displayName": "Lost Tower"
+      },
+      "method": "Collect the fixed Oval Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Lost Tower",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": "Grand Underground",
+      "method": "Dig for an Oval Stone.",
+      "acquisitionType": "mining",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": "Wild Happiny",
+      "method": "May be held by wild Happiny.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "50% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Jubilife Village — Vessa's wisp rewards",
+      "method": "Receive one after collecting five wisps.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Collect 5 wisps"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Trading Post",
+      "method": "Purchase for 400 Merit Points.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "400 Merit Points"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Ginkgo Guild cart",
+      "method": "Ginter may randomly offer it for sale under the name \"Egg-Like Rock.\"",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "levincia",
+        "displayName": "Levincia"
+      },
+      "method": "Collect the fixed Oval Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Levincia",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "alfornada-cavern",
+        "displayName": "Alfornada Cavern"
+      },
+      "method": "Collect the fixed Oval Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Alfornada Cavern",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "casseroya-lake",
+        "displayName": "Casseroya Lake"
+      },
+      "method": "Collect the fixed Oval Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Casseroya Lake",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "paldea-east-province-area-three",
+        "displayName": "East Province (Area Three)"
+      },
+      "method": "Collect the fixed Oval Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "East Province (Area Three)",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "paldea-north-province-area-two",
+        "displayName": "North Province (Area Two)"
+      },
+      "method": "Collect the fixed Oval Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "North Province (Area Two)",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Wild Happiny, Chansey, and Blissey",
+      "method": "May be held by wild Happiny, Chansey, or Blissey.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Happiny: 5% chance",
+        "Chansey and Blissey: 30% chance each"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Indigo Disk — Item Printer",
+      "method": "Produce it as a possible Item Printer result.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC",
+        "Unlock the Item Printer"
+      ],
+      "locationMatchStatus": "unmatched"
+    }
+  ]
+}

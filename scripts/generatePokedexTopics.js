@@ -1,0 +1,508 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, "..");
+const dataDir = path.join(rootDir, "public", "data");
+const outputPath = path.join(dataDir, "pokedexTopics.json");
+
+
+
+
+
+
+
+
+const topicDefinitions = [
+  {
+    slug: "forest-pokemon",
+    title: "Pokémon That Live in Forests",
+    shortDescription:
+      "Pokémon mentioned in forest, woodland, jungle, and tree-related Pokédex entries.",
+    searchTerms: [
+      "forest",
+      "forests",
+      "woods",
+      "woodland",
+      "jungle",
+      "trees"
+    ],
+    introText:
+      "These Pokémon are connected to forests, woods, jungles, trees, and similar habitats through official Pokédex entry text.",
+    seoTitle:
+      "Pokémon That Live in Forests | PokéLore",
+    seoDescription:
+      "Explore Pokémon mentioned in forest-related Pokédex entries, with matching lore excerpts and links to each Pokémon page."
+  },
+  {
+    slug: "mountain-pokemon",
+    title: "Mountain Pokémon",
+    shortDescription:
+      "Pokémon connected to mountains, cliffs, rocky peaks, and highland habitats.",
+    searchTerms: [
+      "mountain",
+      "mountains",
+      "cliff",
+      "cliffs",
+      "peak",
+      "peaks",
+      "rocky",
+      "highlands"
+    ],
+    introText:
+      "These Pokémon have Pokédex entries that mention mountains, cliffs, peaks, rocky places, or highland environments.",
+    seoTitle:
+      "Mountain Pokémon | PokéLore",
+    seoDescription:
+      "Explore Pokémon connected to mountain-related Pokédex entries, with official lore excerpts and links to each Pokémon page."
+  },
+  {
+    slug: "cave-pokemon",
+    title: "Cave Pokémon",
+    shortDescription:
+      "Pokémon associated with caves, caverns, underground places, and darkness.",
+    searchTerms: [
+      "cave",
+      "caves",
+      "cavern",
+      "caverns",
+      "underground",
+      "darkness"
+    ],
+    introText:
+      "These Pokémon are tied to caves, caverns, underground areas, or darkness through official Pokédex entries.",
+    seoTitle:
+      "Cave Pokémon | PokéLore",
+    seoDescription:
+      "Find Pokémon mentioned in cave-related Pokédex entries, including official excerpts and links to Pokémon detail pages."
+  },
+  {
+    slug: "night-pokemon",
+    title: "Pokémon Active at Night",
+    shortDescription:
+      "Pokémon whose Pokédex entries mention night, moonlight, darkness, or nocturnal behavior.",
+    searchTerms: [
+      "night",
+      "nighttime",
+      "moonlight",
+      "darkness",
+      "nocturnal",
+      "after dark"
+    ],
+    introText:
+      "These Pokémon have official Pokédex entries that connect them to night, moonlight, darkness, or activity after dark.",
+    seoTitle:
+      "Pokémon Active at Night | PokéLore",
+    seoDescription:
+      "Browse Pokémon with night-related Pokédex lore, including official entry excerpts and links to each Pokémon."
+  },
+  {
+    slug: "ocean-pokemon",
+    title: "Ocean Pokémon",
+    shortDescription:
+      "Pokémon connected to oceans, seas, seafloors, waves, and marine life.",
+    searchTerms: [
+      "ocean",
+      "sea",
+      "seas",
+      "seafloor",
+      "underwater",
+      "waves",
+      "marine"
+    ],
+    introText:
+      "These Pokémon are associated with oceans, seas, underwater places, waves, and marine environments through Pokédex text.",
+    seoTitle:
+      "Ocean Pokémon | PokéLore",
+    seoDescription:
+      "Explore Pokémon with ocean-related Pokédex entries, including official lore excerpts and Pokémon detail links."
+  },
+  {
+    slug: "river-pokemon",
+    title: "River and Lake Pokémon",
+    shortDescription:
+      "Pokémon mentioned near rivers, lakes, ponds, streams, or freshwater habitats.",
+    searchTerms: [
+      "river",
+      "rivers",
+      "lake",
+      "lakes",
+      "pond",
+      "ponds",
+      "stream",
+      "streams",
+      "freshwater"
+    ],
+    introText:
+      "These Pokémon are connected to rivers, lakes, ponds, streams, or freshwater habitats in official Pokédex entries.",
+    seoTitle:
+      "River and Lake Pokémon | PokéLore",
+    seoDescription:
+      "Find Pokémon connected to river and lake Pokédex lore, with official excerpts and links to Pokémon pages."
+  },
+  {
+    slug: "aggressive-pokemon",
+    title: "Aggressive Pokémon",
+    shortDescription:
+      "Pokémon whose entries mention aggressive, violent, hostile, or ferocious behavior.",
+    searchTerms: [
+      "aggressive",
+      "attacks",
+      "attack",
+      "violent",
+      "vicious",
+      "savage",
+      "ferocious",
+      "hostile"
+    ],
+    introText:
+      "These Pokémon have official Pokédex entries describing aggressive, hostile, vicious, or ferocious behavior.",
+    seoTitle:
+      "Aggressive Pokémon | PokéLore",
+    seoDescription:
+      "Explore Pokémon described as aggressive or hostile in official Pokédex entries, with matching lore excerpts."
+  },
+  {
+    slug: "dangerous-pokemon",
+    title: "Dangerous Pokémon",
+    shortDescription:
+      "Pokémon described with danger, deadly traits, venom, poison, toxins, or fear.",
+    searchTerms: [
+      "dangerous",
+      "danger",
+      "deadly",
+      "venomous",
+      "poisonous",
+      "toxic",
+      "beware",
+      "feared"
+    ],
+    introText:
+      "These Pokémon have official Pokédex entries that mention danger, poison, venom, toxins, fear, or warnings.",
+    seoTitle:
+      "Dangerous Pokémon | PokéLore",
+    seoDescription:
+      "Browse dangerous Pokémon according to official Pokédex entries, with real lore excerpts and Pokémon links."
+  },
+  {
+    slug: "ancient-pokemon",
+    title: "Ancient Pokémon",
+    shortDescription:
+      "Pokémon connected to ancient times, fossils, extinction, prehistory, or primeval life.",
+    searchTerms: [
+      "ancient",
+      "prehistoric",
+      "fossil",
+      "fossils",
+      "extinct",
+      "primeval"
+    ],
+    introText:
+      "These Pokémon are connected to ancient history, fossils, extinction, prehistoric eras, or primeval life in Pokédex entries.",
+    seoTitle:
+      "Ancient Pokémon | PokéLore",
+    seoDescription:
+      "Explore ancient and fossil-related Pokémon using official Pokédex entry excerpts and links to Pokémon pages."
+  },
+  {
+    slug: "rare-pokemon",
+    title: "Rare Pokémon",
+    shortDescription:
+      "Pokémon described as rare, elusive, seldom seen, or hard to find.",
+    searchTerms: [
+      "rare",
+      "rarely",
+      "seldom",
+      "elusive",
+      "scarcely seen",
+      "hard to find"
+    ],
+    introText:
+      "These Pokémon have official Pokédex entries describing them as rare, elusive, seldom seen, or hard to find.",
+    seoTitle:
+      "Rare Pokémon | PokéLore",
+    seoDescription:
+      "Find Pokémon described as rare or elusive in official Pokédex entries, with matching lore excerpts."
+  },
+  {
+    slug: "ghostly-pokemon",
+    title: "Ghostly and Mysterious Pokémon",
+    shortDescription:
+      "Pokémon tied to ghosts, spirits, haunted places, curses, mystery, or eerie lore.",
+    searchTerms: [
+      "ghost",
+      "ghosts",
+      "spirit",
+      "spirits",
+      "haunted",
+      "mysterious",
+      "eerie",
+      "curse",
+      "cursed"
+    ],
+    introText:
+      "These Pokémon have official Pokédex entries involving ghosts, spirits, haunted places, curses, mystery, or eerie details.",
+    seoTitle:
+      "Ghostly and Mysterious Pokémon | PokéLore",
+    seoDescription:
+      "Explore ghostly and mysterious Pokémon using official Pokédex entry excerpts and links to Pokémon pages."
+  },
+  {
+    slug: "urban-pokemon",
+    title: "Pokémon Found Near Cities and People",
+    shortDescription:
+      "Pokémon mentioned around cities, towns, villages, people, houses, or buildings.",
+    searchTerms: [
+      "city",
+      "cities",
+      "town",
+      "towns",
+      "village",
+      "villages",
+      "people",
+      "houses",
+      "buildings"
+    ],
+    introText:
+      "These Pokémon are linked to cities, towns, villages, people, homes, or buildings in official Pokédex entries.",
+    seoTitle:
+      "Pokémon Found Near Cities and People | PokéLore",
+    seoDescription:
+      "Browse Pokémon found near cities and people according to official Pokédex entries, with matching lore excerpts."
+  }
+];
+
+async function readJson(fileName) {
+  const text = await fs.readFile(
+    path.join(dataDir, fileName),
+    "utf8"
+  );
+  return JSON.parse(text);
+}
+
+async function readOptionalJson(
+  fileName,
+  fallback
+) {
+  try {
+    return await readJson(fileName);
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      return fallback;
+    }
+
+    throw error;
+  }
+}
+
+function normalizeText(text) {
+  return String(text ?? "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function escapeRegExp(value) {
+  return value.replace(
+    /[.*+?^${}()|[\]\\]/g,
+    "\\$&"
+  );
+}
+
+function makeTermMatcher(term) {
+  const normalizedTerm =
+    normalizeText(term);
+  const escaped =
+    escapeRegExp(normalizedTerm);
+
+  return new RegExp(
+    `(^|[^a-z0-9])${escaped}(?=$|[^a-z0-9])`,
+    "i"
+  );
+}
+
+function matchingTerms(text, terms) {
+  return terms.filter(term =>
+    makeTermMatcher(term).test(text)
+  );
+}
+
+function hasExcludedTerm(text, terms = []) {
+  return terms.some(term =>
+    makeTermMatcher(term).test(text)
+  );
+}
+
+function buildPokemonLookup(pokemonIndex) {
+  return new Map(
+    pokemonIndex.map(pokemon => [
+      pokemon.name,
+      pokemon
+    ])
+  );
+}
+
+function buildTopic(topic, entries, pokemonByName) {
+  const pokemonMatches = new Map();
+  const excludedPokemon =
+    topic.excludedPokemon ?? new Set();
+  const {
+    excludedPokemon: _excludedPokemon,
+    ...topicOutput
+  } = topic;
+
+  entries.forEach(entry => {
+    const normalizedEntryText =
+      normalizeText(entry.text);
+    const terms = matchingTerms(
+      normalizedEntryText,
+      topic.searchTerms
+    );
+
+    if (
+      terms.length === 0 ||
+      hasExcludedTerm(
+        normalizedEntryText,
+        topic.excludeTerms
+      )
+    ) {
+      return;
+    }
+
+    const pokemon =
+      pokemonByName.get(entry.pokemon);
+
+    if (
+      !pokemon ||
+      excludedPokemon.has(pokemon.id) ||
+      excludedPokemon.has(pokemon.name)
+    ) {
+      return;
+    }
+
+    if (!pokemonMatches.has(entry.pokemon)) {
+      pokemonMatches.set(entry.pokemon, {
+        pokemon: {
+          id: pokemon.id,
+          name: pokemon.name,
+          sprite: pokemon.sprite,
+          types: pokemon.types ?? []
+        },
+        entries: [],
+        seenText: new Set()
+      });
+    }
+
+    const match =
+      pokemonMatches.get(entry.pokemon);
+    const textKey =
+      normalizeText(entry.text);
+
+    if (match.seenText.has(textKey)) {
+      return;
+    }
+
+    match.seenText.add(textKey);
+    match.entries.push({
+      versions: entry.versions ?? [],
+      text: entry.text,
+      matchedTerms: terms
+    });
+  });
+
+  const results =
+    [...pokemonMatches.values()]
+      .sort(
+        (a, b) =>
+          a.pokemon.id - b.pokemon.id
+      )
+      .map(match => ({
+        pokemon: match.pokemon,
+        entries: match.entries
+      }));
+  const entryCount =
+    results.reduce(
+      (total, result) =>
+        total + result.entries.length,
+      0
+    );
+
+  return {
+    ...topicOutput,
+    excludeTerms: topic.excludeTerms ?? [],
+    pokemonCount: results.length,
+    entryCount,
+    results
+  };
+}
+
+async function main() {
+  const [
+    entries,
+    pokemonIndex,
+    curation
+  ] =
+    await Promise.all([
+      readJson("condensedEntries.json"),
+      readJson("pokemonIndex.json"),
+      readOptionalJson(
+        "pokedexTopicCuration.json",
+        {
+          excludedPokemonByTopic: {}
+        }
+      )
+    ]);
+  const pokemonByName =
+    buildPokemonLookup(pokemonIndex);
+  const topics = topicDefinitions.map(topic => {
+    const excludedPokemon =
+      new Set(
+        curation.excludedPokemonByTopic?.[
+          topic.slug
+        ] ?? []
+      );
+
+    return buildTopic(
+      {
+        ...topic,
+        excludedPokemon
+      },
+      entries,
+      pokemonByName
+    );
+  });
+
+  await fs.writeFile(
+    outputPath,
+    `${JSON.stringify(
+      {
+        generatedAt:
+          new Date().toISOString(),
+        topics
+      },
+      null,
+      2
+    )}\n`,
+    "utf8"
+  );
+
+  console.log(
+    `Generated ${topics.length} Pokedex topics at ${outputPath}`
+  );
+
+  topics.forEach(topic => {
+    console.log(
+      `${topic.slug}: ${topic.pokemonCount} Pokemon, ${topic.entryCount} entries`
+    );
+  });
+}
+
+main().catch(error => {
+  console.error(
+    "Failed to generate Pokedex topics:",
+    error
+  );
+  throw error;
+});

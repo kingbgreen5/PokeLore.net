@@ -1,0 +1,142 @@
+{
+  "location": {
+    "name": "hammerlocke",
+    "displayName": "Hammerlocke"
+  },
+  "items": [
+    {
+      "item": {
+        "name": "razor-claw",
+        "displayName": "Razor Claw",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-claw.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon Shield",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": null,
+              "details": "Exchange 10 BP for a Razor Claw.",
+              "notes": null,
+              "requirements": [
+                "10 BP"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon Sword",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": null,
+              "details": "Exchange 10 BP for a Razor Claw.",
+              "notes": null,
+              "requirements": [
+                "10 BP"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "reaper-cloth",
+        "displayName": "Reaper Cloth",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/reaper-cloth.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon Shield",
+          "methods": [
+            {
+              "type": "quest-reward",
+              "area": null,
+              "details": "Receive after delivering the Old Letter.",
+              "notes": null,
+              "requirements": [
+                "Complete the Old Letter delivery task"
+              ],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon Sword",
+          "methods": [
+            {
+              "type": "quest-reward",
+              "area": null,
+              "details": "Receive after delivering the Old Letter.",
+              "notes": null,
+              "requirements": [
+                "Complete the Old Letter delivery task"
+              ],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "sweet-apple",
+        "displayName": "Sweet Apple",
+        "sprite": null
+      },
+      "versions": [
+        {
+          "version": "Pokémon Shield",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive the fixed Sweet Apple from the NPC involved in the Applin request.",
+              "notes": null,
+              "requirements": [
+                "Pokémon Shield only",
+                "Complete the Hammerlocke Applin request"
+              ],
+              "repeatable": false,
+              "versionExclusive": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "tart-apple",
+        "displayName": "Tart Apple",
+        "sprite": null
+      },
+      "versions": [
+        {
+          "version": "Pokémon Sword",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive the fixed Tart Apple from the NPC involved in the Applin request.",
+              "notes": null,
+              "requirements": [
+                "Pokémon Sword only",
+                "Complete the Hammerlocke Applin request"
+              ],
+              "repeatable": false,
+              "versionExclusive": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,375 @@
+{
+  "item": "deep-sea-tooth",
+  "displayName": "Deep Sea Tooth",
+  "source": "items/deep-sea-tooth.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon Ruby",
+        "Pokémon Sapphire",
+        "Pokémon Emerald"
+      ],
+      "location": {
+        "name": "slateport-city",
+        "displayName": "Slateport City"
+      },
+      "method": "Give the Scanner recovered from the Abandoned Ship to Captain Stern and choose the Deep Sea Tooth rather than the Deep Sea Scale.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Recover the Scanner from the Abandoned Ship",
+        "Choose this item instead of the Deep Sea Scale"
+      ],
+      "originalLocationText": "Slateport City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon FireRed",
+        "Pokémon LeafGreen"
+      ],
+      "location": "Compatible Generation III game",
+      "method": "Receive the item on a Pokémon traded from Pokémon Ruby, Sapphire, or Emerald; it has no native FireRed or LeafGreen source.",
+      "acquisitionType": "item-exchange",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "A compatible Generation III game and a second system or trading setup"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Carvanha or Sharpedo.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Route 20",
+      "method": "Collect the visible field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "ambiguous",
+      "locationCandidates": [
+        "kalos-route-20",
+        "unova-route-20"
+      ]
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "unova-route-17",
+        "displayName": "Route 17"
+      },
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 17",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "unova-route-13",
+        "displayName": "Route 13"
+      },
+      "method": "The treasure hunter may give one as his daily item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 13",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Carvanha, Sharpedo, Huntail, or Red-Striped Basculin.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Join Avenue Antique Shop",
+      "method": "May be found in an Antique Box purchased from an Antique Shop.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon White 2"
+      ],
+      "location": "White Forest Store 1",
+      "method": "Purchase from the marketplace shop.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Unlock the relevant White Forest shop"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2"
+      ],
+      "location": "Funfest Mission: What Is the Best Price?",
+      "method": "May be awarded for completing the Funfest Mission.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Carvanha, Sharpedo, Huntail, or Red-Striped Basculin.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "azure-bay",
+        "displayName": "Azure Bay"
+      },
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Azure Bay",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Carvanha, Sharpedo, Huntail, or Red-Striped Basculin.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "crescent-isle",
+        "displayName": "Crescent Isle"
+      },
+      "method": "Collect the field item when this Mirage Spot is available.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Crescent Isle must be present"
+      ],
+      "originalLocationText": "Crescent Isle",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Mirage Caves",
+      "method": "May appear as a hidden item in certain Mirage Caves.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby"
+      ],
+      "location": "Mauville Food Court",
+      "method": "May be earned from a Food Court challenge.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Carvanha or Sharpedo.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": {
+        "name": "konikoni-city",
+        "displayName": "Konikoni City"
+      },
+      "method": "Collect the fixed item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Konikoni City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon",
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": {
+        "name": "battle-tree",
+        "displayName": "Battle Tree"
+      },
+      "method": "Purchase for 32 BP.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Battle Tree",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon",
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by applicable wild Sharpedo; Ultra Sun and Ultra Moon also add Carvanha and Huntail.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun"
+      ],
+      "location": "Wild Red-Striped Basculin",
+      "method": "May be held by wild Red-Striped Basculin.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Carvanha or Sharpedo.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    }
+  ]
+}

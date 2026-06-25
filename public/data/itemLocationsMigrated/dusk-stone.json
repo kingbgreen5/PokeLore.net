@@ -1,0 +1,1010 @@
+{
+  "item": "dusk-stone",
+  "displayName": "Dusk Stone",
+  "source": "items/dusk-stone.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": "Galactic Warehouse",
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Dusk Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 31–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "sinnoh-victory-road",
+        "displayName": "Victory Road"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Victory Road",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "cerulean-cave",
+        "displayName": "Cerulean Cave"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Cerulean Cave",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "national-park",
+        "displayName": "National Park"
+      },
+      "method": "Win the post-National Pokédex Bug-Catching Contest; a Dusk Stone is one possible first prize.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Obtain the National Pokédex",
+        "Win first place"
+      ],
+      "originalLocationText": "National Park",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "pokeathlon-dome",
+        "displayName": "Pokéathlon Dome"
+      },
+      "method": "Purchase for 3,000 Athlete Points on Monday, Tuesday, Thursday, Friday, or Saturday after obtaining the National Pokédex.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Obtain the National Pokédex",
+        "Available only on Monday, Tuesday, Thursday, Friday, or Saturday"
+      ],
+      "originalLocationText": "Pokéathlon Dome",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Route 17",
+      "method": "Biker Reese may give one after a rematch.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Register Reese's phone number"
+      ],
+      "locationMatchStatus": "ambiguous",
+      "locationCandidates": [
+        "alola-route-17",
+        "kalos-route-17",
+        "kanto-route-17",
+        "unova-route-17"
+      ]
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "wayward-cave",
+        "displayName": "Wayward Cave"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [],
+      "originalLocationText": "Wayward Cave",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black"
+      ],
+      "location": {
+        "name": "black-city",
+        "displayName": "Black City"
+      },
+      "method": "Purchase from Herman when he is present.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Herman must be present",
+        "Pokémon Black only"
+      ],
+      "originalLocationText": "Black City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": "Caves with dust clouds",
+      "method": "A Dusk Stone can randomly appear in a dust cloud.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "mistralton-cave",
+        "displayName": "Mistralton Cave"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Mistralton Cave",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "unova-route-10",
+        "displayName": "Route 10"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 10",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2"
+      ],
+      "location": "Black City — Store 3",
+      "method": "Purchase a Dusk Stone.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Black 2 only"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2"
+      ],
+      "location": "Funfest Mission — Find Mysterious Ores!",
+      "method": "Obtain as a possible mission reward.",
+      "acquisitionType": "quest-reward",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Black 2 only"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Eligible caves",
+      "method": "A Dusk Stone can randomly appear in dust clouds.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Join Avenue — Antique Shop",
+      "method": "A Dusk Stone can appear among randomized antique rewards.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Routes 6 and 13; Abundant Shrine Hidden Grottoes",
+      "method": "A Dusk Stone can appear in the regenerated Hidden Grotto item pool.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "strange-house",
+        "displayName": "Strange House"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Strange House",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "twist-mountain",
+        "displayName": "Twist Mountain"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Twist Mountain",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "unova-victory-road",
+        "displayName": "Victory Road"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Victory Road",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "white-forest",
+        "displayName": "White Forest"
+      },
+      "method": "Find through Herman's White Forest item pool when he is present.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Herman must be present",
+        "Pokémon White only"
+      ],
+      "originalLocationText": "White Forest",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Mauville City — Inverse Battle Stop",
+      "method": "Earn from Inver after a sufficiently successful Inverse Battle.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "One reward attempt per day"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "mt-pyre",
+        "displayName": "Mt. Pyre"
+      },
+      "method": "Hex Maniac Valerie may award one after a rematch.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Mt. Pyre",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "secret-base",
+        "displayName": "Secret Base"
+      },
+      "method": "A Secret Pal using the 'Pick up stones' skill may find one.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Secret Base",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Secret Super Training",
+      "method": "Earn from Watch Out! That's One Tricky Second Half!.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "laverre-city",
+        "displayName": "Laverre City"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Laverre City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "kalos-route-18",
+        "displayName": "Route 18"
+      },
+      "method": "Earn from Psychic Inver after a sufficiently successful Inverse Battle.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "One Inverse Battle reward attempt per day"
+      ],
+      "originalLocationText": "Route 18",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": "Secret Super Training",
+      "method": "Earn from Watch Out! That's One Tricky Second Half!.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "terminus-cave",
+        "displayName": "Terminus Cave"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Terminus Cave",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Moon"
+      ],
+      "location": {
+        "name": "malie-city",
+        "displayName": "Malie City"
+      },
+      "method": "Collect or receive the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Moon only"
+      ],
+      "originalLocationText": "Malie City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon"
+      ],
+      "location": "Poké Pelago — Isle Aphun",
+      "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon"
+      ],
+      "location": {
+        "name": "poni-wilds",
+        "displayName": "Poni Wilds"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Poni Wilds",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Moon"
+      ],
+      "location": {
+        "name": "malie-city",
+        "displayName": "Malie City"
+      },
+      "method": "Collect or receive the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Ultra Moon only"
+      ],
+      "originalLocationText": "Malie City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Poké Pelago — Isle Aphun",
+      "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": {
+        "name": "poni-wilds",
+        "displayName": "Poni Wilds"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Poni Wilds",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": "Galactic Warehouse",
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Dusk Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 11–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": {
+        "name": "sinnoh-victory-road",
+        "displayName": "Victory Road"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Victory Road",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Coronet Highlands and Alabaster Icelands",
+      "method": "Break eligible black ore deposits for a chance to obtain one.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Ginkgo Guild cart",
+      "method": "Ginter may randomly offer it as the 'Deep-Dark Rock'.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": {
+        "name": "jubilife-village",
+        "displayName": "Jubilife Village"
+      },
+      "method": "Vessa gives one after the player collects 30 wisps.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Collect 30 wisps"
+      ],
+      "originalLocationText": "Jubilife Village",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Jubilife Village — Trading Post",
+      "method": "Purchase for 1,200 Merit Points.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "1,200 Merit Points"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Space-time distortions",
+      "method": "Find as a random distortion item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Bridge Field — Digging Duo",
+      "method": "Pay the Digging Duo for a chance to dig up a Dusk Stone.",
+      "acquisitionType": "mining",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Crown Tundra — Roaring-Sea Caves",
+      "method": "Pick up a recurring hidden Dusk Stone.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Crown Tundra — Snowslide Slope",
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Isle of Armor — Brawlers' Cave",
+      "method": "Pick up a recurring hidden Dusk Stone.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "lake-of-outrage",
+        "displayName": "Lake of Outrage"
+      },
+      "method": "Pick up a recurring hidden Dusk Stone near the stone circle.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Rotom Bike water upgrade"
+      ],
+      "originalLocationText": "Lake of Outrage",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Poké Jobs",
+      "method": "Receive as a possible reward from qualifying job tiers.",
+      "acquisitionType": "quest-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "stow-on-side",
+        "displayName": "Stow-on-Side"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Stow-on-Side",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Rouge Street",
+      "method": "Receive for completing Side Mission 083, 'Honedge's Cutting Edge'.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete Side Mission 083"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Stone Emporium",
+      "method": "Purchase a Dusk Stone.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Alfornada Cavern, Area Zero, and Dalizapa Passage",
+      "method": "Find as a sparkling overworld item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "area-zero",
+        "displayName": "Area Zero"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Area Zero",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "montenevera",
+        "displayName": "Montenevera"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Montenevera",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Paldea Pokédex",
+      "method": "Receive after registering 130 Pokémon.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Register 130 Pokémon"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "porto-marinada",
+        "displayName": "Porto Marinada"
+      },
+      "method": "Purchase when a Dusk Stone appears at auction.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Porto Marinada",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Indigo Disk — Item Printer",
+      "method": "Produce as a possible Item Printer result.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC",
+        "Unlock the Item Printer"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Teal Mask — Timeless Woods",
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Teal Mask DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "paldea-west-province-area-one",
+        "displayName": "West Province (Area One)"
+      },
+      "method": "Collect the fixed Dusk Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "West Province (Area One)",
+      "locationMatchStatus": "matched"
+    }
+  ]
+}

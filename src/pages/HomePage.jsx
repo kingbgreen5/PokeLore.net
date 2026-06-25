@@ -18,6 +18,9 @@ function HomePage() {
   const [pokemonIndex, setPokemonIndex] =
     useState([]);
 
+  const [isDesktopGrid, setIsDesktopGrid] =
+    useState(false);
+
   const [searchTerm, setSearchTerm] =
     useQueryParamState(
       "search",
@@ -68,6 +71,31 @@ function HomePage() {
     }
 
     loadPokemon();
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(min-width: 768px)"
+    );
+
+    function updateGridSize() {
+      setIsDesktopGrid(
+        mediaQuery.matches
+      );
+    }
+
+    updateGridSize();
+    mediaQuery.addEventListener(
+      "change",
+      updateGridSize
+    );
+
+    return () => {
+      mediaQuery.removeEventListener(
+        "change",
+        updateGridSize
+      );
+    };
   }, []);
 
   //-----------------------------------------
@@ -183,9 +211,10 @@ function HomePage() {
   return (
     <div
       style={{
-        padding: "1.5rem",
+        // padding: "1.5rem",
         maxWidth: "1800px",
-        margin: "0 auto"
+        margin: "0 auto",
+        width: "100%"
       }}
     >
       <Seo {...homeSeo()} />
@@ -207,7 +236,7 @@ function HomePage() {
           Pokédex
         </h3> */}
 
-        <p
+        {/* <p
           style={{
             opacity: 0.8,
             maxWidth: "700px",
@@ -219,7 +248,7 @@ function HomePage() {
           name, filter by type, and
           explore detailed Pokémon
           data.
-        </p>
+        </p> */}
       </div>
 
       {/* Controls */}
@@ -229,14 +258,16 @@ function HomePage() {
           display: "flex",
           flexWrap: "wrap",
           gap: "1rem",
-          marginBottom: "2rem",
+          marginBottom: ".5rem",
           alignItems: "center",
           justifyContent: "center"
         }}
       >
         {/* Search */}
 
-        <input
+{/* -----------------------------------------Commenting this out for now to test functionality */}
+
+        {/* <input
           type="text"
           placeholder="Search Pokémon name or dex number"
           value={searchTerm}
@@ -257,7 +288,10 @@ function HomePage() {
             width: "100%",
             fontSize: "1rem"
           }}
-        />
+        /> */}
+
+
+
 
         {/* Type Filter */}
 
@@ -337,7 +371,7 @@ function HomePage() {
 
       <div
         style={{
-          marginBottom: "1.5rem",
+          marginBottom: ".5rem",
           opacity: 0.8,
           textAlign: "center"
         }}
@@ -350,10 +384,15 @@ function HomePage() {
 
       <div
         style={{
+          boxSizing: "border-box",
           display: "grid",
           gridTemplateColumns:
-            "repeat(auto-fit, minmax(240px, 1fr))",
-          gap: "1rem"
+            isDesktopGrid
+              ? "repeat(auto-fill, minmax(240px, 320px))"
+              : "repeat(auto-fill, minmax(140px, 140px))",
+          gap: "1rem",
+          justifyContent: "center",
+          width: "100%"
         }}
       >
         {filteredPokemon.map(
@@ -361,6 +400,7 @@ function HomePage() {
             <PokemonSummaryCard
               key={pokemon.id}
               pokemon={pokemon}
+              compact={!isDesktopGrid}
             />
           )
         )}

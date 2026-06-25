@@ -1,0 +1,75 @@
+{
+  "item": "metal-alloy",
+  "displayName": "Metal Alloy",
+  "source": "items/metal-alloy.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Indigo Disk — Chargestone Cavern",
+      "method": "Collect the fixed Metal Alloy.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Blueberry Pokédex",
+      "method": "Receive one after registering 190 Pokémon.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC",
+        "Register 190 Pokémon in the Blueberry Pokédex"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Blueberry Academy School Store",
+      "method": "Purchase for 300 BP.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC",
+        "300 BP"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Indigo Disk — Item Printer",
+      "method": "Produce it as a possible Item Printer result.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC",
+        "Unlock the Item Printer"
+      ],
+      "locationMatchStatus": "unmatched"
+    }
+  ]
+}

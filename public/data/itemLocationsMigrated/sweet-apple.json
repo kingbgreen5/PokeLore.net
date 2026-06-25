@@ -1,0 +1,114 @@
+{
+  "item": "sweet-apple",
+  "displayName": "Sweet Apple",
+  "source": "items/sweet-apple.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "hammerlocke",
+        "displayName": "Hammerlocke"
+      },
+      "method": "Receive the fixed Sweet Apple from the NPC involved in the Applin request.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Shield only",
+        "Complete the Hammerlocke Applin request"
+      ],
+      "originalLocationText": "Hammerlocke",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "axews-eye",
+        "displayName": "Axew's Eye"
+      },
+      "method": "Find it as a recurring hidden item.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Shield only",
+        "Rotom Bike water upgrade"
+      ],
+      "originalLocationText": "Axew's Eye",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "The Isle of Armor — Soothing Wetlands and Loop Lagoon",
+      "method": "Find it as a recurring hidden item.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Delibird Presents",
+      "method": "Purchase after earning three Gym Badges.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Earn 3 Gym Badges"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "tagtree-thicket",
+        "displayName": "Tagtree Thicket"
+      },
+      "method": "Find it as a sparkling overworld item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Tagtree Thicket",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Teal Mask — Apple Hills",
+      "method": "Find it as a sparkling overworld item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Teal Mask DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "location": {
+    "name": "johto-route-42",
+    "displayName": "Route 42"
+  },
+  "items": [
+    {
+      "item": {
+        "name": "dubious-disc",
+        "displayName": "Dubious Disc",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dubious-disc.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "field-item",
+              "area": null,
+              "details": "Collect the fixed field item.",
+              "notes": null,
+              "requirements": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "field-item",
+              "area": null,
+              "details": "Collect the fixed field item.",
+              "notes": null,
+              "requirements": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "water-stone",
+        "displayName": "Water Stone",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/water-stone.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon Crystal",
+          "methods": [
+            {
+              "type": "battle-reward",
+              "area": null,
+              "details": "Fisherman Tully may call after rematches and give a Water Stone.",
+              "notes": null,
+              "requirements": [
+                "Register Tully's phone number",
+                "Pokémon Crystal only"
+              ],
+              "repeatable": true,
+              "versionExclusive": true
+            }
+          ]
+        },
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "battle-reward",
+              "area": null,
+              "details": "Fisherman Tully may give one after a rematch.",
+              "notes": null,
+              "requirements": [
+                "Register Tully's phone number"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "battle-reward",
+              "area": null,
+              "details": "Fisherman Tully may give one after a rematch.",
+              "notes": null,
+              "requirements": [
+                "Register Tully's phone number"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

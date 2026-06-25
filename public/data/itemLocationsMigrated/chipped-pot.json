@@ -1,0 +1,102 @@
+{
+  "item": "chipped-pot",
+  "displayName": "Chipped Pot",
+  "source": "items/chipped-pot.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Stow-on-Side bargain shop",
+      "method": "Purchase it when it appears as the bargain seller's daily item.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "The Crown Tundra — Ballimere Lake",
+      "method": "Collect the fixed Chipped Pot.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "The Crown Tundra — Giant's Bed and Snowslide Slope",
+      "method": "Find it as a recurring hidden item.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "The Crown Tundra — Max Raid Battles",
+      "method": "Obtain it as a rare reward from applicable three- through five-star dens in Giant's Bed, Old Cemetery, or Ballimere Lake.",
+      "acquisitionType": "raid-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra DLC",
+        "3-Star, 4-Star, or 5-Star applicable raid"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Porto Marinada auction",
+      "method": "Purchase it when it appears as an auction lot.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Indigo Disk — Item Printer",
+      "method": "Produce it as a rare possible Item Printer result.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC",
+        "Unlock the Item Printer"
+      ],
+      "locationMatchStatus": "unmatched"
+    }
+  ]
+}

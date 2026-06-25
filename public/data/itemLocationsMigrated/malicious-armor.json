@@ -1,0 +1,76 @@
+{
+  "item": "malicious-armor",
+  "displayName": "Malicious Armor",
+  "source": "items/malicious-armor.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "zapapico",
+        "displayName": "Zapapico"
+      },
+      "method": "Exchange ten Sinistea Chips with the woman beside the fountain near the eastern Pokémon Center.",
+      "acquisitionType": "item-exchange",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Violet only",
+        "10 Sinistea Chips per exchange"
+      ],
+      "originalLocationText": "Zapapico",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet"
+      ],
+      "location": "Trade",
+      "method": "Receive the item on a Pokémon traded from Pokémon Violet; Scarlet has no native Paldea source.",
+      "acquisitionType": "item-exchange",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "A compatible copy of Pokémon Violet and a trading partner"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Side Mission 132: \"Bitter Blue Flames vs. Blazing Crimson\"",
+      "method": "Receive it from Adver by choosing the Malicious Armor rather than the Auspicious Armor.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete Side Mission 132",
+        "Choose this item instead of the Auspicious Armor"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Mega Dimension — 5-Star Hyperspace Zones",
+      "method": "Destroy a Floating Poké Ball while Item Power: Special is active; the armor is a possible result.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Mega Dimension content",
+        "5-Star Hyperspace Zone",
+        "Item Power: Special"
+      ],
+      "locationMatchStatus": "unmatched"
+    }
+  ]
+}

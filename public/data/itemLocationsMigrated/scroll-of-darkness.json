@@ -1,0 +1,42 @@
+{
+  "item": "scroll-of-darkness",
+  "displayName": "Scroll of Darkness",
+  "source": "items/scroll-of-darkness.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "The Isle of Armor — Tower of Darkness",
+      "method": "After defeating Mustard at the top of the tower, have Kubfu inspect the scroll to evolve. In these games the scroll is an interactive object and is not added to the Bag.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor DLC",
+        "Choose and complete the Tower of Darkness",
+        "Bring Kubfu"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Porto Marinada auction",
+      "method": "Purchase the Scroll of Darkness when it appears after the game detects that the player owns a Kubfu.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Own a Kubfu"
+      ],
+      "locationMatchStatus": "unmatched"
+    }
+  ]
+}

@@ -1,0 +1,497 @@
+{
+  "item": "up-grade",
+  "displayName": "Upgrade",
+  "source": "items/up-grade.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 2,
+      "games": [
+        "Pokémon Gold",
+        "Pokémon Silver",
+        "Pokémon Crystal"
+      ],
+      "location": "Silph Co.",
+      "method": "Receive the fixed item from an NPC.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon Ruby",
+        "Pokémon Sapphire",
+        "Pokémon Emerald"
+      ],
+      "location": "Compatible Generation III game",
+      "method": "Receive the item on a Pokémon traded from FireRed or LeafGreen; it has no native Ruby, Sapphire, or Emerald source.",
+      "acquisitionType": "item-exchange",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "A compatible Generation III game and a second system or trading setup"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon FireRed",
+        "Pokémon LeafGreen"
+      ],
+      "location": "Rocket Warehouse",
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon FireRed",
+        "Pokémon LeafGreen"
+      ],
+      "location": "Trainer Tower — Single Mode",
+      "method": "Receive as a prize for completing Single Mode.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "eterna-city",
+        "displayName": "Eterna City"
+      },
+      "method": "Receive the fixed item.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Obtain the National Pokédex"
+      ],
+      "originalLocationText": "Eterna City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "sinnoh-route-224",
+        "displayName": "Route 224"
+      },
+      "method": "Collect the additional fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [],
+      "originalLocationText": "Route 224",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Platinum"
+      ],
+      "location": "Team Galactic Eterna Building",
+      "method": "Collect the additional fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Silph Co.",
+      "method": "Receive the fixed item from an NPC.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "unova-route-15",
+        "displayName": "Route 15"
+      },
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 15",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "unova-route-13",
+        "displayName": "Route 13"
+      },
+      "method": "The treasure hunter may give one as his daily item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 13",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "pinwheel-forest",
+        "displayName": "Pinwheel Forest"
+      },
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Pinwheel Forest",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "striaton-city",
+        "displayName": "Striaton City"
+      },
+      "method": "Receive the fixed item.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Striaton City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Join Avenue Antique Shop",
+      "method": "May be found in an Antique Box.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2"
+      ],
+      "location": "Black City Store 3",
+      "method": "Purchase from the marketplace shop.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Unlock the relevant Black City shop"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon White 2"
+      ],
+      "location": "Funfest Mission: Not-Found Lost Items!",
+      "method": "May be awarded for completing the Funfest Mission.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "battle-maison",
+        "displayName": "Battle Maison"
+      },
+      "method": "Purchase for 32 BP.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Battle Maison",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "battle-maison",
+        "displayName": "Battle Maison"
+      },
+      "method": "Purchase for 32 BP.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Battle Maison",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon",
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Aether House",
+      "method": "Collect the fixed item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon",
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": {
+        "name": "battle-tree",
+        "displayName": "Battle Tree"
+      },
+      "method": "Purchase for 32 BP.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Battle Tree",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "training-lowlands",
+        "displayName": "Training Lowlands"
+      },
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor expansion"
+      ],
+      "originalLocationText": "Training Lowlands",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Cram-o-matic",
+      "method": "May be produced with Electric-type inputs totaling 72–80 points.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": {
+        "name": "eterna-city",
+        "displayName": "Eterna City"
+      },
+      "method": "Receive the fixed item.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Obtain the National Pokédex"
+      ],
+      "originalLocationText": "Eterna City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": {
+        "name": "battle-park",
+        "displayName": "Battle Park"
+      },
+      "method": "Purchase for 5 BP.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Battle Park",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Jubilife Village Trading Post",
+      "method": "Purchase for 1,000 Merit Points.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Ginkgo Guild cart",
+      "method": "Ginter may randomly offer it as the “Mysterious Box.”",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Space-time distortions",
+      "method": "May appear as a distortion item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Blueberry Pokédex",
+      "method": "Receive as the reward for registering 100 Pokémon.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC",
+        "Register 100 Pokémon in the Blueberry Pokédex"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Blueberry Academy School Store",
+      "method": "Purchase for 250 BP.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Item Printer",
+      "method": "May be produced by the Item Printer.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Hyperspace wild zones",
+      "method": "May appear inside floating Poké Balls in hyperspace wild zones.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Mega Dimension DLC",
+        "Item Power: Special active"
+      ],
+      "locationMatchStatus": "unmatched"
+    }
+  ]
+}

@@ -23,6 +23,8 @@ import ItemsPage from "./pages/ItemsPage";
 import ItemDetailPage from "./pages/ItemDetailPage";
 import LocationsPage from "./pages/LocationsPage";
 import LocationDetailPage from "./pages/LocationDetailPage";
+import TopicsPage from "./pages/TopicsPage";
+import TopicDetailPage from "./pages/TopicDetailPage";
 
 
 
@@ -84,6 +86,16 @@ function App() {
 <Route
   path="/locations"
   element={<LocationsPage />}
+/>
+
+<Route
+  path="/topics"
+  element={<TopicsPage />}
+/>
+
+<Route
+  path="/topic/:topicSlug"
+  element={<TopicDetailPage />}
 />
 
 <Route

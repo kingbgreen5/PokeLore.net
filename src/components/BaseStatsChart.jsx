@@ -53,15 +53,20 @@ function BaseStatsChart({ stats }) {
         maxWidth: "300px",
         width: "100%",
         margin: "1.5rem auto 0",
+     
       
       
       }}
     >
-      <h2>Base Stats</h2>
+      <h2
+      style={{
+        marginBottom:"0rem"
+        }
+      }>Base Stats</h2>
 
       <div
         style={{
-          marginBottom: "1rem",
+          // marginBottom: "0rem",
           fontWeight: "bold",
           fontSize: "1.1rem"
         }}

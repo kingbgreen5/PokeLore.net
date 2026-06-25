@@ -52,6 +52,18 @@ function filterVersions(versions, selectedVersion) {
   );
 }
 
+async function fetchOptionalJson(url) {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) return null;
+
+    return response.json();
+  } catch {
+    return null;
+  }
+}
+
 function EncounterDetails({
   versions
 }) {
@@ -118,10 +130,140 @@ function EncounterDetails({
   );
 }
 
+function LocationItemsSection({
+  locationItems
+}) {
+  if (
+    !locationItems?.items ||
+    locationItems.items.length === 0
+  ) {
+    return null;
+  }
+
+  return (
+    <section
+      style={{
+        marginBottom: "2rem"
+      }}
+    >
+      <h2>Items Obtainable Here</h2>
+
+      <div
+        style={{
+          display: "grid",
+          gap: "1rem",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(220px, 1fr))"
+        }}
+      >
+        {locationItems.items.map(itemEntry => (
+          <article
+            key={itemEntry.item.name}
+            style={{
+              border: "1px solid #666",
+              borderRadius: "12px",
+              padding: "1rem",
+              textAlign: "left"
+            }}
+          >
+            <Link
+              to={`/item/${itemEntry.item.name}`}
+              style={{
+                alignItems: "center",
+                display: "flex",
+                gap: ".75rem",
+                marginBottom: ".75rem"
+              }}
+            >
+              {itemEntry.item.sprite && (
+                <img
+                  src={itemEntry.item.sprite}
+                  alt=""
+                  style={{
+                    height: "32px",
+                    imageRendering:
+                      "pixelated",
+                    width: "32px"
+                  }}
+                />
+              )}
+              <strong>
+                {itemEntry.item.displayName}
+              </strong>
+            </Link>
+
+            <div
+              style={{
+                display: "grid",
+                gap: ".75rem"
+              }}
+            >
+              {itemEntry.versions.map(
+                versionEntry => (
+                  <div
+                    key={versionEntry.version}
+                    style={{
+                      borderTop:
+                        "1px solid #444",
+                      paddingTop: ".75rem"
+                    }}
+                  >
+                    <strong>
+                      {versionEntry.version}
+                    </strong>
+
+                    {versionEntry.methods.map(
+                      (method, index) => (
+                        <div
+                          key={`${method.type}-${method.details}-${index}`}
+                          style={{
+                            fontSize: ".9rem",
+                            marginTop: ".5rem"
+                          }}
+                        >
+                          <p
+                            style={{
+                              margin: 0
+                            }}
+                          >
+                            {capitalize(
+                              method.type
+                            )}
+                            {method.area
+                              ? ` · ${method.area}`
+                              : ""}
+                          </p>
+                          {method.details && (
+                            <p
+                              style={{
+                                margin:
+                                  ".25rem 0 0",
+                                opacity: 0.85
+                              }}
+                            >
+                              {method.details}
+                            </p>
+                          )}
+                        </div>
+                      )
+                    )}
+                  </div>
+                )
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function LocationDetailPage() {
   const { locationName } = useParams();
 
   const [location, setLocation] =
+    useState(null);
+  const [locationItems, setLocationItems] =
     useState(null);
   const [loading, setLoading] =
     useState(true);
@@ -133,23 +275,34 @@ function LocationDetailPage() {
       try {
         setLoading(true);
 
-        const response = await fetch(
-          `/data/locations/${locationName}.json`
-        );
+        const [
+          response,
+          itemData
+        ] = await Promise.all([
+          fetch(
+            `/data/locations/${locationName}.json`
+          ),
+          fetchOptionalJson(
+            `/data/locationItems/${locationName}.json`
+          )
+        ]);
 
         if (!response.ok) {
           setLocation(null);
+          setLocationItems(null);
           return;
         }
 
         const data = await response.json();
         setLocation(data);
+        setLocationItems(itemData);
       } catch (error) {
         console.error(
           "Failed to load location:",
           error
         );
         setLocation(null);
+        setLocationItems(null);
       } finally {
         setLoading(false);
       }
@@ -253,6 +406,10 @@ function LocationDetailPage() {
           ))}
         </select>
       )}
+
+      <LocationItemsSection
+        locationItems={locationItems}
+      />
 
       {location.areas.length === 0 ? (
         <p>No location areas found.</p>

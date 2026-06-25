@@ -2,6 +2,7 @@ import {
   useMemo,
   useState
 } from "react";
+import { Link } from "react-router-dom";
 import CollapsibleSection from "./CollapsibleSection";
 import useSessionState from "../hooks/useSessionState";
 
@@ -16,6 +17,41 @@ function formatAcquisitionType(type) {
         word.slice(1)
     )
     .join(" ");
+}
+
+function formatLocationKey(location) {
+  if (!location) return "no-location";
+
+  if (typeof location === "string") {
+    return location;
+  }
+
+  return location.name ?? location.displayName;
+}
+
+function ItemLocationLink({
+  location
+}) {
+  if (!location) return null;
+
+  if (typeof location === "string") {
+    return <span>{location}</span>;
+  }
+
+  if (
+    location.name &&
+    location.displayName
+  ) {
+    return (
+      <Link
+        to={`/location/${location.name}`}
+      >
+        {location.displayName}
+      </Link>
+    );
+  }
+
+  return null;
 }
 
 function AcquisitionMethods({
@@ -158,7 +194,7 @@ function AcquisitionMethods({
           {filteredAcquisition.map(
             (method, index) => (
               <article
-                key={`${method.generation}-${method.location}-${method.method}-${index}`}
+                key={`${method.generation}-${formatLocationKey(method.location)}-${method.method}-${index}`}
                 style={{
                   border:
                     "1px solid #666",
@@ -224,13 +260,27 @@ function AcquisitionMethods({
                       Location
                     </strong>
                     <p>
-                      {method.location}
+                      <ItemLocationLink
+                        location={
+                          method.location
+                        }
+                      />
                     </p>
                   </div>
 
+                  {method.area && (
+                    <div>
+                      <strong>Area</strong>
+                      <p>{method.area}</p>
+                    </div>
+                  )}
+
                   <div>
                     <strong>Method</strong>
-                    <p>{method.method}</p>
+                    <p>
+                      {method.method ??
+                        method.details}
+                    </p>
                   </div>
 
                   {method.requirements

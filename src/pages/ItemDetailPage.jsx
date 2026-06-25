@@ -24,6 +24,18 @@ function capitalize(text) {
     .join(" ");
 }
 
+async function fetchOptionalJson(url) {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) return null;
+
+    return response.json();
+  } catch {
+    return null;
+  }
+}
+
 
 // item overview details
 function DetailRow({
@@ -69,13 +81,17 @@ function ItemDetailPage() {
 
         const [
           itemResponse,
-          pokemonIndexResponse
+          pokemonIndexResponse,
+          migratedLocationData
         ] = await Promise.all([
           fetch(
             `/data/items/${itemName}.json`
           ),
           fetch(
             "/data/pokemonIndex.json"
+          ),
+          fetchOptionalJson(
+            `/data/itemLocationsMigrated/${itemName}.json`
           )
         ]);
 
@@ -92,7 +108,12 @@ function ItemDetailPage() {
           pokemonIndexResponse.json()
         ]);
 
-        setItem(data);
+        setItem({
+          ...data,
+          acquisition:
+            migratedLocationData?.acquisition ??
+            data.acquisition
+        });
         setPokemonIndex(
           pokemonIndexData
         );

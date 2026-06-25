@@ -1,0 +1,1328 @@
+{
+  "item": "fire-stone",
+  "displayName": "Fire Stone",
+  "source": "items/fire-stone.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 1,
+      "games": [
+        "Pokémon Red",
+        "Pokémon Blue",
+        "Pokémon Yellow"
+      ],
+      "location": "Celadon Department Store",
+      "method": "Purchase from the fourth-floor Evolution stone counter.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 2,
+      "games": [
+        "Pokémon Crystal"
+      ],
+      "location": {
+        "name": "johto-route-36",
+        "displayName": "Route 36"
+      },
+      "method": "Schoolboy Alan may call after rematches and give a Fire Stone.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Register Alan's phone number",
+        "Pokémon Crystal only"
+      ],
+      "originalLocationText": "Route 36",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 2,
+      "games": [
+        "Pokémon Gold",
+        "Pokémon Silver",
+        "Pokémon Crystal"
+      ],
+      "location": "Sea Cottage",
+      "method": "Bill's grandfather gives one after the player shows him the requested Pokémon.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Kanto",
+        "Show Bill's grandfather the requested Pokémon"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon FireRed",
+        "Pokémon LeafGreen"
+      ],
+      "location": "Celadon Department Store",
+      "method": "Purchase from the fourth-floor Evolution stone counter.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon FireRed",
+        "Pokémon LeafGreen"
+      ],
+      "location": {
+        "name": "mt-ember",
+        "displayName": "Mt. Ember"
+      },
+      "method": "Collect either of the two fixed Fire Stones.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Two copies are available"
+      ],
+      "originalLocationText": "Mt. Ember",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon Ruby",
+        "Pokémon Sapphire",
+        "Pokémon Emerald"
+      ],
+      "location": {
+        "name": "fiery-path",
+        "displayName": "Fiery Path"
+      },
+      "method": "Collect the visible Fire Stone on the ground.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Fiery Path",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon Ruby",
+        "Pokémon Sapphire",
+        "Pokémon Emerald"
+      ],
+      "location": {
+        "name": "hoenn-route-124",
+        "displayName": "Route 124"
+      },
+      "method": "Trade a Red Shard to the Treasure Hunter for a Fire Stone.",
+      "acquisitionType": "item-exchange",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "One Red Shard per exchange"
+      ],
+      "originalLocationText": "Route 124",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl"
+      ],
+      "location": {
+        "name": "fuego-ironworks",
+        "displayName": "Fuego Ironworks"
+      },
+      "method": "Collect the two fixed Fire Stones.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Two copies are available"
+      ],
+      "originalLocationText": "Fuego Ironworks",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": "The Underground",
+      "method": "Dig for a Fire Stone in the mining minigame.",
+      "acquisitionType": "mining",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "national-park",
+        "displayName": "National Park"
+      },
+      "method": "Win the post-National Pokédex Bug-Catching Contest; a Fire Stone is one possible first prize.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Obtain the National Pokédex",
+        "Win first place"
+      ],
+      "originalLocationText": "National Park",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "pokeathlon-dome",
+        "displayName": "Pokéathlon Dome"
+      },
+      "method": "Purchase for 2,500 Athlete Points on Sunday, Tuesday, or Thursday.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Available only on Sunday, Tuesday, or Thursday"
+      ],
+      "originalLocationText": "Pokéathlon Dome",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "johto-route-36",
+        "displayName": "Route 36"
+      },
+      "method": "School Kid Alan may give one after a rematch.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Register Alan's phone number"
+      ],
+      "originalLocationText": "Route 36",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Sea Cottage",
+      "method": "Bill's grandfather gives one after the player shows him the requested Pokémon.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Kanto",
+        "Show Bill's grandfather the requested Pokémon"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "fuego-ironworks",
+        "displayName": "Fuego Ironworks"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [],
+      "originalLocationText": "Fuego Ironworks",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "solaceon-ruins",
+        "displayName": "Solaceon Ruins"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [],
+      "originalLocationText": "Solaceon Ruins",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "stark-mountain",
+        "displayName": "Stark Mountain"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [],
+      "originalLocationText": "Stark Mountain",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black"
+      ],
+      "location": {
+        "name": "black-city",
+        "displayName": "Black City"
+      },
+      "method": "Purchase from Vincent when he is present in Black City.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Vincent must be present",
+        "Pokémon Black only"
+      ],
+      "originalLocationText": "Black City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": "Castelia City — Thumb Pier",
+      "method": "Choose a Fire Stone from the NPC offering a Fire Stone, Water Stone, or Leaf Stone.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Only one of the three stones may be chosen"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": "Caves with dust clouds",
+      "method": "A Fire Stone can randomly appear in a dust cloud.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "desert-resort",
+        "displayName": "Desert Resort"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Desert Resort",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2"
+      ],
+      "location": "Black City — Store 2",
+      "method": "Purchase a Fire Stone.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Black 2 only"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Battle Subway / Pokémon World Tournament",
+      "method": "Exchange 3 BP for a Fire Stone.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "3 BP"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "desert-resort",
+        "displayName": "Desert Resort"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Desert Resort",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Eligible Hidden Grottoes",
+      "method": "A Fire Stone can appear in the regenerated Hidden Grotto item pool.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Eligible caves",
+      "method": "A Fire Stone can randomly appear in dust clouds.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Funfest Missions",
+      "method": "Obtain as a possible mission reward.",
+      "acquisitionType": "quest-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Join Avenue — Antique Shop",
+      "method": "A Fire Stone can appear among the shop's randomized antique rewards.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "lentimas-town",
+        "displayName": "Lentimas Town"
+      },
+      "method": "Receive or collect the fixed Fire Stone in town.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Lentimas Town",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "white-forest",
+        "displayName": "White Forest"
+      },
+      "method": "Find through Vincent's White Forest item pool when he is present.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Vincent must be present",
+        "Pokémon White only"
+      ],
+      "originalLocationText": "White Forest",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "fiery-path",
+        "displayName": "Fiery Path"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Fiery Path",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Mauville City — Inverse Battle Stop",
+      "method": "Earn from Inver after a sufficiently successful Inverse Battle.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "One reward attempt per day"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "hoenn-route-114",
+        "displayName": "Route 114"
+      },
+      "method": "Kindler Bernie may award one after a rematch.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 114",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "hoenn-route-124",
+        "displayName": "Route 124"
+      },
+      "method": "Trade a Red Shard to the Treasure Hunter for a Fire Stone.",
+      "acquisitionType": "item-exchange",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "One Red Shard per exchange"
+      ],
+      "originalLocationText": "Route 124",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "secret-base",
+        "displayName": "Secret Base"
+      },
+      "method": "A Secret Pal using the 'Pick up stones' skill may find one.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Secret Base",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Secret Super Training",
+      "method": "Earn from the Fire Stone Cup or Battle for the Best course.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": "Lumiose City — Stone Emporium",
+      "method": "Purchase a Fire Stone.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "kalos-route-13",
+        "displayName": "Route 13"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 13",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "kalos-route-18",
+        "displayName": "Route 18"
+      },
+      "method": "Earn from Psychic Inver after a sufficiently successful Inverse Battle.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "One Inverse Battle reward attempt per day"
+      ],
+      "originalLocationText": "Route 18",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "kalos-route-9",
+        "displayName": "Route 9"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 9",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": "Routes with spiky rocks",
+      "method": "Break the appropriate spiky rock battle object for a chance to receive a Fire Stone.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": "Secret Super Training",
+      "method": "Earn from a Fire Stone Cup or Battle for the Best course.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon"
+      ],
+      "location": {
+        "name": "digletts-tunnel",
+        "displayName": "Diglett’s Tunnel"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Diglett's Tunnel",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon"
+      ],
+      "location": "Konikoni City — Olivia's jewelry shop",
+      "method": "Purchase a Fire Stone.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon"
+      ],
+      "location": "Poké Pelago — Isle Aphun",
+      "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": {
+        "name": "digletts-tunnel",
+        "displayName": "Diglett’s Tunnel"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Diglett's Tunnel",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Konikoni City — Olivia's jewelry shop",
+      "method": "Purchase a Fire Stone.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": {
+        "name": "paniola-ranch",
+        "displayName": "Paniola Ranch"
+      },
+      "method": "Receive one of a Fire Stone, Water Stone, or Thunder Stone.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Only one of the three stones is received"
+      ],
+      "originalLocationText": "Paniola Ranch",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Poké Pelago — Isle Aphun",
+      "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon: Let's Go, Pikachu!",
+        "Pokémon: Let's Go, Eevee!"
+      ],
+      "location": "Celadon Department Store",
+      "method": "Purchase a Fire Stone.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon: Let's Go, Pikachu!",
+        "Pokémon: Let's Go, Eevee!"
+      ],
+      "location": {
+        "name": "pokemon-mansion",
+        "displayName": "Pokémon Mansion"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Pokémon Mansion",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon: Let's Go, Pikachu!",
+        "Pokémon: Let's Go, Eevee!"
+      ],
+      "location": "Rock Tunnel and Victory Road",
+      "method": "A walking Rock-type Pokémon may find one at certain searchable rocks.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Have a Rock-type Pokémon following the player"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon: Let's Go, Pikachu!",
+        "Pokémon: Let's Go, Eevee!"
+      ],
+      "location": {
+        "name": "kanto-route-8",
+        "displayName": "Route 8"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 8",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": {
+        "name": "fuego-ironworks",
+        "displayName": "Fuego Ironworks"
+      },
+      "method": "Collect the two fixed Fire Stones.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Two copies are available"
+      ],
+      "originalLocationText": "Fuego Ironworks",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": "Grand Underground",
+      "method": "Dig for a Fire Stone.",
+      "acquisitionType": "mining",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Cobalt Coastlands",
+      "method": "Break eligible black ore deposits for a chance to obtain one.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Ginkgo Guild cart",
+      "method": "Ginter may randomly offer it as the 'Flame-Patterned Rock'.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Jubilife Village — Trading Post",
+      "method": "Purchase for 1,000 Merit Points.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "1,000 Merit Points"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Obsidian Fieldlands, Crimson Mirelands, and Cobalt Coastlands",
+      "method": "Break eligible red ore deposits for a chance to obtain one.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Path of Tenacity",
+      "method": "Receive as a possible battle challenge reward.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Space-time distortions",
+      "method": "Find as a random distortion item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Bridge Field — Digging Duo",
+      "method": "Pay the Digging Duo for a chance to dig up a Fire Stone.",
+      "acquisitionType": "mining",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Crown Tundra — Ballimere Lake",
+      "method": "Obtain as a possible Max Raid Battle reward.",
+      "acquisitionType": "raid-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Crown Tundra — Tunnel to the Top",
+      "method": "Pick up a recurring hidden Fire Stone.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Isle of Armor — Potbottom Desert",
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "lake-of-outrage",
+        "displayName": "Lake of Outrage"
+      },
+      "method": "Pick up a recurring hidden Fire Stone near the stone circle.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Rotom Bike water upgrade"
+      ],
+      "originalLocationText": "Lake of Outrage",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "motostoke-riverbank",
+        "displayName": "Motostoke Riverbank"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Motostoke Riverbank",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Poké Jobs",
+      "method": "Receive as a possible reward from qualifying job tiers.",
+      "acquisitionType": "quest-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Autumnal Avenue",
+      "method": "Receive for completing Side Mission 026, 'Burn, Litleo, Burn'.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete Side Mission 026"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Bleu Sector 3",
+      "method": "Receive for completing Side Mission 057, 'The Camerupt Entrepreneur'.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete Side Mission 057"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Stone Emporium",
+      "method": "Purchase a Fire Stone.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "area-zero",
+        "displayName": "Area Zero"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Area Zero",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Delibird Presents",
+      "method": "Purchase after earning three Gym Badges.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Earn 3 Gym Badges"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "paldea-east-province-area-three",
+        "displayName": "East Province (Area Three)"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "East Province (Area Three)",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "paldea-east-province-area-three",
+        "displayName": "East Province (Area Three)"
+      },
+      "method": "Find as a sparkling overworld item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "East Province (Area Three)",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "paldea-east-province-area-two",
+        "displayName": "East Province (Area Two)"
+      },
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "East Province (Area Two)",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Paldea Pokédex",
+      "method": "Receive after registering 60 Pokémon.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Register 60 Pokémon"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Tera Raid Battles",
+      "method": "Obtain as a possible reward from one- through five-star raids.",
+      "acquisitionType": "raid-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Indigo Disk — Item Printer",
+      "method": "Produce as a possible Item Printer result.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC",
+        "Unlock the Item Printer"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Teal Mask — Oni Mountain",
+      "method": "Collect the fixed Fire Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Teal Mask DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Teal Mask — Wistful Fields",
+      "method": "Find as a sparkling overworld item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Teal Mask DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    }
+  ]
+}

@@ -33,6 +33,12 @@ const navItems = [
     label: "Locations",
     matches: ["/location"]
   },
+  // This Feature is not yet ready for prime time.
+  // {
+  //   to: "/topics",
+  //   label: "Topics",
+  //   matches: ["/topic"]
+  // },
   {
     to: "/types",
     label: "Types",
@@ -75,7 +81,8 @@ function Navbar() {
         display: "grid",
         gap: ".85rem",
         justifyItems: "center",
-        padding: ".75rem 1rem 1.25rem"
+        paddingLeft:"1rem",
+        paddingRight:"1rem"
       }}
     >
       <GlobalSiteSearch />

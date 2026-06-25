@@ -133,6 +133,39 @@ export function locationsSeo() {
   };
 }
 
+export function topicsSeo() {
+  return {
+    title: `Pokédex Lore Topics | ${SITE_NAME}`,
+    description:
+      "Explore curated Pokémon lore topics built from official Pokédex entry text, including habitats, behavior, rarity, danger, and mystery.",
+    canonical: pageUrl("/topics")
+  };
+}
+
+export function topicSeo(topic) {
+  const slug =
+    typeof topic === "string"
+      ? topic
+      : topic?.slug;
+  const title =
+    typeof topic === "string"
+      ? `${formatName(topic)} | ${SITE_NAME}`
+      : topic?.seoTitle ??
+        `${topic?.title ?? "Pokédex Topic"} | ${SITE_NAME}`;
+  const description =
+    typeof topic === "string"
+      ? "Explore Pokémon grouped by official Pokédex entry text."
+      : topic?.seoDescription ??
+        topic?.shortDescription ??
+        "Explore Pokémon grouped by official Pokédex entry text.";
+
+  return {
+    title,
+    description,
+    canonical: pageUrl(`/topic/${slug}`)
+  };
+}
+
 export function locationSeo(location) {
   const slug =
     typeof location === "string"

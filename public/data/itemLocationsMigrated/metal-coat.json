@@ -1,0 +1,803 @@
+{
+  "item": "metal-coat",
+  "displayName": "Metal Coat",
+  "source": "items/metal-coat.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 2,
+      "games": [
+        "Pokémon Gold",
+        "Pokémon Silver",
+        "Pokémon Crystal"
+      ],
+      "location": {
+        "name": "ss-aqua",
+        "displayName": "S.S. Aqua"
+      },
+      "method": "Collect the fixed item aboard the ship.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "S.S. Aqua",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 2,
+      "games": [
+        "Pokémon Crystal"
+      ],
+      "location": "Kanto Power Plant in-game trade",
+      "method": "The Magneton received in the in-game trade is holding a Metal Coat.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Complete the in-game trade"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 2,
+      "games": [
+        "Pokémon Gold",
+        "Pokémon Silver",
+        "Pokémon Crystal"
+      ],
+      "location": "Wild Magnemite",
+      "method": "May be held by wild Magnemite.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "2% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon Ruby",
+        "Pokémon Sapphire",
+        "Pokémon Emerald"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Magnemite or Magneton.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon FireRed",
+        "Pokémon LeafGreen"
+      ],
+      "location": {
+        "name": "memorial-pillar",
+        "displayName": "Memorial Pillar"
+      },
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Memorial Pillar",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon FireRed",
+        "Pokémon LeafGreen"
+      ],
+      "location": "Trainer Tower — Knockout Mode",
+      "method": "Receive as a prize for completing Knockout Mode.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "iron-island",
+        "displayName": "Iron Island"
+      },
+      "method": "Byron gives one after the player receives the Riolu Egg.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Iron Island",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "iron-island",
+        "displayName": "Iron Island"
+      },
+      "method": "Collect an additional fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [],
+      "originalLocationText": "Iron Island",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by applicable wild Magnemite, Steelix, Beldum, Bronzor, or Bronzong; Platinum also includes Magneton.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "ss-aqua",
+        "displayName": "S.S. Aqua"
+      },
+      "method": "Collect the fixed item aboard the ship.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "S.S. Aqua",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Kanto Power Plant in-game trade",
+      "method": "The Magneton received in the in-game trade is holding a Metal Coat.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete the in-game trade"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "pokeathlon-dome",
+        "displayName": "Pokéathlon Dome"
+      },
+      "method": "Purchase for 2,500 Athlete Points on Tuesday, Friday, or Saturday.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Pokéathlon Dome",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Magnemite, Magneton, Steelix, Beldum, Metang, Bronzor, or Bronzong.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "twist-mountain",
+        "displayName": "Twist Mountain"
+      },
+      "method": "Collect the fixed item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Twist Mountain",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "unova-route-13",
+        "displayName": "Route 13"
+      },
+      "method": "The treasure hunter may give one as his daily item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 13",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Magnemite, Metang, Metagross, or Bronzong.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "chargestone-cave",
+        "displayName": "Chargestone Cave"
+      },
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Chargestone Cave",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "clay-tunnel",
+        "displayName": "Clay Tunnel"
+      },
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Clay Tunnel",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Join Avenue Antique Shop",
+      "method": "May be found in an Antique Box.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2"
+      ],
+      "location": "Black City Store 2",
+      "method": "Purchase from the marketplace shop.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Unlock the relevant Black City shop"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Funfest Mission: Do a Great Trade-Up!",
+      "method": "May be awarded for completing the Funfest Mission.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Magnemite, Magneton, Magnezone, Metang, Metagross, Bronzor, or Bronzong.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "poke-ball-factory",
+        "displayName": "Poké Ball Factory"
+      },
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Poké Ball Factory",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Magneton, Metang, or Bronzong.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "new-mauville",
+        "displayName": "New Mauville"
+      },
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "New Mauville",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Magnemite, Skarmory, or Bronzor.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": {
+        "name": "poni-gauntlet",
+        "displayName": "Poni Gauntlet"
+      },
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Poni Gauntlet",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon",
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Magnemite, Skarmory, or Beldum.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "stow-on-side",
+        "displayName": "Stow-on-Side"
+      },
+      "method": "Collect the fixed item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Stow-on-Side",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Digging Duo — Bridge Field",
+      "method": "May be dug up by the Digging Duo.",
+      "acquisitionType": "mining",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Stow-on-Side bargain shop",
+      "method": "May be offered as the daily bargain.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Steelix, Bronzor, or Bronzong.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "challenge-road",
+        "displayName": "Challenge Road"
+      },
+      "method": "Collect the fixed field item.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor expansion"
+      ],
+      "originalLocationText": "Challenge Road",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Cram-o-matic",
+      "method": "May be produced with Steel-type inputs totaling 62–70 points.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Magnemite or Magneton on the Isle of Armor.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor expansion",
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "giants-bed",
+        "displayName": "Giant's Bed"
+      },
+      "method": "May reappear as a hidden item.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra expansion"
+      ],
+      "originalLocationText": "Giant's Bed",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Beldum, Metang, or Metagross in the Crown Tundra.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra expansion",
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": {
+        "name": "iron-island",
+        "displayName": "Iron Island"
+      },
+      "method": "Byron gives one after the player receives the Riolu Egg.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Iron Island",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": "Wild Pokémon",
+      "method": "May be held by wild Magnemite, Steelix, Skarmory, Beldum, Bronzor, or Bronzong.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Jubilife Village Trading Post",
+      "method": "Purchase for 1,000 Merit Points.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Ginkgo Guild cart",
+      "method": "Ginter may randomly offer it as the “Metallic Spread.”",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Space-time distortions",
+      "method": "May appear as a distortion item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Delibird Presents — Levincia",
+      "method": "Purchase for ₽3,000 after earning three Gym Badges.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Earn three Gym Badges"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Porto Marinada auctions",
+      "method": "May appear as an auction lot.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Item Printer",
+      "method": "May be produced by the Item Printer.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Side Mission 101",
+      "method": "Receive as the mission reward.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Side Mission 114",
+      "method": "Receive as the mission reward.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Infinite Z-A Royale",
+      "method": "May be earned as a repeatable reward.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Racine Construction",
+      "method": "Purchase after the shop stocks it.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    }
+  ]
+}

@@ -1,0 +1,1297 @@
+{
+  "item": "sun-stone",
+  "displayName": "Sun Stone",
+  "source": "items/sun-stone.json",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 2,
+      "games": [
+        "Pokémon Gold",
+        "Pokémon Silver",
+        "Pokémon Crystal"
+      ],
+      "location": {
+        "name": "national-park",
+        "displayName": "National Park"
+      },
+      "method": "Win first place in the Bug-Catching Contest.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Win first place"
+      ],
+      "originalLocationText": "National Park",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon FireRed",
+        "Pokémon LeafGreen"
+      ],
+      "location": {
+        "name": "ruin-valley",
+        "displayName": "Ruin Valley"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Ruin Valley",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon Ruby",
+        "Pokémon Emerald"
+      ],
+      "location": "Wild Solrock",
+      "method": "A wild Solrock may be holding a Sun Stone.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "5% held-item chance",
+        "Solrock is unavailable in Pokémon Sapphire"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon Ruby",
+        "Pokémon Sapphire",
+        "Pokémon Emerald"
+      ],
+      "location": {
+        "name": "mossdeep-space-center",
+        "displayName": "Mossdeep Space Center"
+      },
+      "method": "Receive the fixed Sun Stone from an NPC.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Mossdeep Space Center",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": "The Underground",
+      "method": "Dig for a Sun Stone.",
+      "acquisitionType": "mining",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum"
+      ],
+      "location": "Wild Solrock",
+      "method": "A wild Solrock may be holding a Sun Stone.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance",
+        "Availability varies by version"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "national-park",
+        "displayName": "National Park"
+      },
+      "method": "Win first place in the Bug-Catching Contest.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Win first place"
+      ],
+      "originalLocationText": "National Park",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Sun Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 31–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "pokeathlon-dome",
+        "displayName": "Pokéathlon Dome"
+      },
+      "method": "Purchase for 3,000 Athlete Points on Sunday, Monday, or Friday after obtaining the National Pokédex.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Obtain the National Pokédex",
+        "Available only on Sunday, Monday, or Friday"
+      ],
+      "originalLocationText": "Pokéathlon Dome",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Route 13",
+      "method": "Camper Tanner gives a Sun Stone.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "ambiguous",
+      "locationCandidates": [
+        "alola-route-13",
+        "kalos-route-13",
+        "kanto-route-13",
+        "unova-route-13"
+      ]
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Wild Solrock",
+      "method": "A wild Solrock may be holding a Sun Stone.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "mt-coronet",
+        "displayName": "Mt. Coronet"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [],
+      "originalLocationText": "Mt. Coronet",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Platinum"
+      ],
+      "location": {
+        "name": "valor-lakefront",
+        "displayName": "Valor Lakefront"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [],
+      "originalLocationText": "Valor Lakefront",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black"
+      ],
+      "location": {
+        "name": "black-city",
+        "displayName": "Black City"
+      },
+      "method": "Purchase from Lena when she is present.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Lena must be present",
+        "Pokémon Black only"
+      ],
+      "originalLocationText": "Black City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": "Caves with dust clouds",
+      "method": "A Sun Stone can randomly appear in a dust cloud.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "nimbasa-city",
+        "displayName": "Nimbasa City"
+      },
+      "method": "Collect or receive the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Nimbasa City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Sun Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 31–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "relic-castle",
+        "displayName": "Relic Castle"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Relic Castle",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": "Wild Solrock",
+      "method": "A wild Solrock may be holding a Sun Stone.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2"
+      ],
+      "location": "Funfest Mission — What is the Best Price?",
+      "method": "Obtain as a possible mission reward.",
+      "acquisitionType": "quest-reward",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Black 2 only"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Eligible caves",
+      "method": "A Sun Stone can randomly appear in dust clouds.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "giant-chasm",
+        "displayName": "Giant Chasm"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Giant Chasm",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Join Avenue — Antique Shop",
+      "method": "A Sun Stone can appear among randomized antique rewards.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "nimbasa-city",
+        "displayName": "Nimbasa City"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Nimbasa City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Sun Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 31–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "pinwheel-forest",
+        "displayName": "Pinwheel Forest"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Pinwheel Forest",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "relic-castle",
+        "displayName": "Relic Castle"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Relic Castle",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Routes 6 and 13; Abundant Shrine Hidden Grottoes",
+      "method": "A Sun Stone can appear in the regenerated Hidden Grotto item pool.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": "Wild Solrock",
+      "method": "A wild Solrock may be holding a Sun Stone.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "white-forest",
+        "displayName": "White Forest"
+      },
+      "method": "Find through Lena's White Forest item pool when she is present.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Lena must be present",
+        "Pokémon White only"
+      ],
+      "originalLocationText": "White Forest",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby"
+      ],
+      "location": "Wild Solrock",
+      "method": "A wild Solrock may be holding a Sun Stone.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "5% held-item chance",
+        "Pokémon Omega Ruby only"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Mauville City — Inverse Battle Stop",
+      "method": "Earn from Inver after a sufficiently successful Inverse Battle.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "One reward attempt per day"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "mossdeep-space-center",
+        "displayName": "Mossdeep Space Center"
+      },
+      "method": "Receive the fixed Sun Stone from an NPC.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Mossdeep Space Center",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Sun Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 31–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "hoenn-route-115",
+        "displayName": "Route 115"
+      },
+      "method": "Expert Timothy may award one after a rematch.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 115",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "secret-base",
+        "displayName": "Secret Base"
+      },
+      "method": "A Secret Pal using the 'Pick up stones' skill may find one.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Secret Base",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Secret Super Training",
+      "method": "Earn from the Drag Down Hydreigon course.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "anistar-city",
+        "displayName": "Anistar City"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Anistar City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Sun Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 31–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "kalos-route-13",
+        "displayName": "Route 13"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Route 13",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "kalos-route-18",
+        "displayName": "Route 18"
+      },
+      "method": "Earn from Psychic Inver after a sufficiently successful Inverse Battle.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "One Inverse Battle reward attempt per day"
+      ],
+      "originalLocationText": "Route 18",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": "Secret Super Training",
+      "method": "Earn from the Drag Down Hydreigon course.",
+      "acquisitionType": "battle-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "shalour-city",
+        "displayName": "Shalour City"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Shalour City",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": "Wild Solrock",
+      "method": "A wild Solrock may be holding a Sun Stone.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "5% held-item chance"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun"
+      ],
+      "location": {
+        "name": "haina-desert",
+        "displayName": "Haina Desert"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Sun only"
+      ],
+      "originalLocationText": "Haina Desert",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon"
+      ],
+      "location": {
+        "name": "blush-mountain",
+        "displayName": "Blush Mountain"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Blush Mountain",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Sun Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 11–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon"
+      ],
+      "location": "Poké Pelago — Isle Aphun",
+      "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun"
+      ],
+      "location": {
+        "name": "haina-desert",
+        "displayName": "Haina Desert"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon Ultra Sun only"
+      ],
+      "originalLocationText": "Haina Desert",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": {
+        "name": "blush-mountain",
+        "displayName": "Blush Mountain"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Blush Mountain",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Sun Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 11–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Poké Pelago — Isle Aphun",
+      "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond"
+      ],
+      "location": "Wild Solrock",
+      "method": "A wild Solrock may be holding a Sun Stone.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "5% held-item chance",
+        "Pokémon Brilliant Diamond only"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": "Grand Underground",
+      "method": "Dig for a Sun Stone.",
+      "acquisitionType": "mining",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Ginkgo Guild cart",
+      "method": "Ginter may randomly offer it as the 'Sunlike Rock'.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": {
+        "name": "jubilife-village",
+        "displayName": "Jubilife Village"
+      },
+      "method": "Receive for completing Request 85, 'At Home under the Eaves'.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete Request 85"
+      ],
+      "originalLocationText": "Jubilife Village",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Jubilife Village — Trading Post",
+      "method": "Purchase for 1,000 Merit Points.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "1,000 Merit Points"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Legends: Arceus"
+      ],
+      "location": "Space-time distortions",
+      "method": "Find as a random distortion item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword"
+      ],
+      "location": "Wild Solrock",
+      "method": "A wild Solrock may be holding a Sun Stone.",
+      "acquisitionType": "held-by-wild-pokemon",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "5% held-item chance",
+        "Pokémon Sword only"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Bridge Field — Digging Duo",
+      "method": "Pay the Digging Duo for a chance to dig up a Sun Stone.",
+      "acquisitionType": "mining",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Crown Tundra — Ballimere Lake",
+      "method": "Pick up a recurring hidden Sun Stone.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "dusty-bowl",
+        "displayName": "Dusty Bowl"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Dusty Bowl",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Isle of Armor — Fields of Honor",
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Isle of Armor — Potbottom Desert",
+      "method": "Pick up a recurring hidden Sun Stone.",
+      "acquisitionType": "hidden-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor expansion"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Sun Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 11–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Poké Jobs",
+      "method": "Receive as a possible reward from qualifying job tiers.",
+      "acquisitionType": "quest-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "South Boulevard",
+      "method": "Receive for completing Side Mission 093, 'Finding a Place for Heliolisk'.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete Side Mission 093"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Stone Emporium",
+      "method": "Purchase a Sun Stone.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "area-zero",
+        "displayName": "Area Zero"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Area Zero",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "artazon",
+        "displayName": "Artazon"
+      },
+      "method": "Receive for completing the Sunflora Hide-and-Seek challenge.",
+      "acquisitionType": "quest-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Artazon",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "asado-desert",
+        "displayName": "Asado Desert"
+      },
+      "method": "Find as a sparkling overworld item.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Asado Desert",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "paldea-east-province-area-three",
+        "displayName": "East Province (Area Three)"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "East Province (Area Three)",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Pickup",
+      "method": "A Pokémon with Pickup may obtain a Sun Stone.",
+      "acquisitionType": "pickup",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pickup user level 11–100"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "porto-marinada",
+        "displayName": "Porto Marinada"
+      },
+      "method": "Purchase when a Sun Stone appears at auction.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "Porto Marinada",
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Indigo Disk — Item Printer",
+      "method": "Produce as a possible Item Printer result.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC",
+        "Unlock the Item Printer"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "The Teal Mask — Paradise Barrens",
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Teal Mask DLC"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "paldea-west-province-area-one",
+        "displayName": "West Province (Area One)"
+      },
+      "method": "Collect the fixed Sun Stone.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "originalLocationText": "West Province (Area One)",
+      "locationMatchStatus": "matched"
+    }
+  ]
+}
