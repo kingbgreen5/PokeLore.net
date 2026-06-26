@@ -321,7 +321,7 @@ function PokemonSpriteCarousel({
       }}
     >
 
-
+<h2>Navigation</h2>
 
   
       {/* //---------------------------CAROUSEL WINDOW--------------------------- */}
@@ -368,7 +368,7 @@ function PokemonSpriteCarousel({
 
           return (
             //---------------------------POKEMON CARD---------------------------
-
+      
             <button
               key={entry.id}
               ref={element => {
@@ -415,7 +415,7 @@ function PokemonSpriteCarousel({
                 
                 display: "flex",
                 flex: isCurrent
-                  ? "0 0 240px"
+                  ? "0 0 110px"
                   : "0 0 110px",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -423,17 +423,17 @@ function PokemonSpriteCarousel({
                   ? "285px"
                   : "142px",
                   paddingRight: isCurrent
-                  ? "2rem"
+                  ? ".5rem"
                   : ".5rem",
                 paddingLeft: isCurrent
-                  ? "2rem"
+                  ? ".5rem"
                   : ".5rem",
                 opacity: isCurrent
                   ? 1
                   : 0.9,
                 scrollSnapAlign: "center",
                 transform: isCurrent
-                  ? "scale(1.3)"
+                  ? "scale(.9)"
                   : "scale(.9)",
                 transition:
                   "transform .15s ease, border-color .15s ease, background-color .15s ease, flex-basis .15s ease, opacity .15s ease"

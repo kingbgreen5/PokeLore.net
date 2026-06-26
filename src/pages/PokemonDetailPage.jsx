@@ -24,6 +24,7 @@ import WhereToFind from "../components/WhereToFind";
 import SizeComparison from "../components/SizeComparison"
 import AdditionalImages from "../components/AdditionalImages";
 import Seo from "../seo/Seo";
+import PokemonSpriteCarousel from "../components/PokemonSpriteCarousel.jsx"
 import { pokemonSeo } from "../seo/seoConfig";
 import {
   formatPokemonDisplayName,
@@ -284,9 +285,6 @@ function formatWeightEnglish(weight) {
       />
 
 
-{/* <PokemonSpriteCarousel
-  pokemon={pokemon}
-/> */}
       <h1>
        
         {formatPokemonDisplayName(
@@ -623,6 +621,9 @@ function formatWeightEnglish(weight) {
 
 <SizeComparison pokemon={pokemon} />
 
+<PokemonSpriteCarousel
+  pokemon={pokemon}
+/>
 
 
     </div>
