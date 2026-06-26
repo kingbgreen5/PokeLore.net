@@ -34,11 +34,11 @@ const navItems = [
     matches: ["/location"]
   },
   // This Feature is not yet ready for prime time.
-  // {
-  //   to: "/topics",
-  //   label: "Topics",
-  //   matches: ["/topic"]
-  // },
+  {
+    to: "/topics",
+    label: "Topics",
+    matches: ["/topic"]
+  },
   {
     to: "/types",
     label: "Types",

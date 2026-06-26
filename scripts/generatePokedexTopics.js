@@ -8,6 +8,14 @@ const rootDir = path.resolve(__dirname, "..");
 const dataDir = path.join(rootDir, "public", "data");
 const outputPath = path.join(dataDir, "pokedexTopics.json");
 
+const habitatSupplementByTopic = {
+  "cave-pokemon": ["cave"],
+  "forest-pokemon": ["forest"],
+  "mountain-pokemon": ["mountain"],
+  "ocean-pokemon": ["sea"],
+  "urban-pokemon": ["urban"]
+};
+
 
 
 
@@ -18,7 +26,9 @@ const outputPath = path.join(dataDir, "pokedexTopics.json");
 const topicDefinitions = [
   {
     slug: "forest-pokemon",
-    title: "Pokémon That Live in Forests",
+    active: true,
+    subgroup: "biomes",
+    title: "Forest",
     shortDescription:
       "Pokémon mentioned in forest, woodland, jungle, and tree-related Pokédex entries.",
     searchTerms: [
@@ -30,7 +40,7 @@ const topicDefinitions = [
       "trees"
     ],
     introText:
-      "These Pokémon are connected to forests, woods, jungles, trees, and similar habitats through official Pokédex entry text.",
+      "These Pokémon are connected to forests, woods, jungles, trees, and similar habitats through official Pokédex entry text. Or their habitat is listed as 'Forest' in the database",
     seoTitle:
       "Pokémon That Live in Forests | PokéLore",
     seoDescription:
@@ -38,7 +48,9 @@ const topicDefinitions = [
   },
   {
     slug: "mountain-pokemon",
-    title: "Mountain Pokémon",
+    active: true,
+    subgroup: "biomes",
+    title: "Mountain",
     shortDescription:
       "Pokémon connected to mountains, cliffs, rocky peaks, and highland habitats.",
     searchTerms: [
@@ -52,7 +64,7 @@ const topicDefinitions = [
       "highlands"
     ],
     introText:
-      "These Pokémon have Pokédex entries that mention mountains, cliffs, peaks, rocky places, or highland environments.",
+      "These Pokémon have Pokédex entries that mention mountains, cliffs, peaks, rocky places, or highland environments. Or their habitat is listed as 'Mountain' in the database",
     seoTitle:
       "Mountain Pokémon | PokéLore",
     seoDescription:
@@ -60,7 +72,9 @@ const topicDefinitions = [
   },
   {
     slug: "cave-pokemon",
-    title: "Cave Pokémon",
+    active: true,
+    subgroup: "biomes",
+    title: "Cave",
     shortDescription:
       "Pokémon associated with caves, caverns, underground places, and darkness.",
     searchTerms: [
@@ -72,7 +86,7 @@ const topicDefinitions = [
       "darkness"
     ],
     introText:
-      "These Pokémon are tied to caves, caverns, underground areas, or darkness through official Pokédex entries.",
+      "These Pokémon are tied to caves, caverns, underground areas, or darkness through official Pokédex entries. Or their habitat is listed as 'Cave' in the database",
     seoTitle:
       "Cave Pokémon | PokéLore",
     seoDescription:
@@ -80,7 +94,9 @@ const topicDefinitions = [
   },
   {
     slug: "night-pokemon",
-    title: "Pokémon Active at Night",
+    active: true,
+    subgroup: "behavior",
+    title: "Nocturnal",
     shortDescription:
       "Pokémon whose Pokédex entries mention night, moonlight, darkness, or nocturnal behavior.",
     searchTerms: [
@@ -100,7 +116,9 @@ const topicDefinitions = [
   },
   {
     slug: "ocean-pokemon",
-    title: "Ocean Pokémon",
+    active: true,
+    subgroup: "biomes",
+    title: "Ocean",
     shortDescription:
       "Pokémon connected to oceans, seas, seafloors, waves, and marine life.",
     searchTerms: [
@@ -121,6 +139,8 @@ const topicDefinitions = [
   },
   {
     slug: "river-pokemon",
+    active: false,
+    subgroup: "biomes",
     title: "River and Lake Pokémon",
     shortDescription:
       "Pokémon mentioned near rivers, lakes, ponds, streams, or freshwater habitats.",
@@ -144,6 +164,8 @@ const topicDefinitions = [
   },
   {
     slug: "aggressive-pokemon",
+    active: false,
+    subgroup: "behavior",
     title: "Aggressive Pokémon",
     shortDescription:
       "Pokémon whose entries mention aggressive, violent, hostile, or ferocious behavior.",
@@ -166,6 +188,8 @@ const topicDefinitions = [
   },
   {
     slug: "dangerous-pokemon",
+    active: false,
+    subgroup: "behavior",
     title: "Dangerous Pokémon",
     shortDescription:
       "Pokémon described with danger, deadly traits, venom, poison, toxins, or fear.",
@@ -188,6 +212,8 @@ const topicDefinitions = [
   },
   {
     slug: "ancient-pokemon",
+    active: false,
+    subgroup: "lore",
     title: "Ancient Pokémon",
     shortDescription:
       "Pokémon connected to ancient times, fossils, extinction, prehistory, or primeval life.",
@@ -208,6 +234,8 @@ const topicDefinitions = [
   },
   {
     slug: "rare-pokemon",
+    active: false,
+    subgroup: "lore",
     title: "Rare Pokémon",
     shortDescription:
       "Pokémon described as rare, elusive, seldom seen, or hard to find.",
@@ -228,6 +256,8 @@ const topicDefinitions = [
   },
   {
     slug: "ghostly-pokemon",
+    active: false,
+    subgroup: "lore",
     title: "Ghostly and Mysterious Pokémon",
     shortDescription:
       "Pokémon tied to ghosts, spirits, haunted places, curses, mystery, or eerie lore.",
@@ -251,7 +281,9 @@ const topicDefinitions = [
   },
   {
     slug: "urban-pokemon",
-    title: "Pokémon Found Near Cities and People",
+    active: true,
+    subgroup: "biomes",
+    title: "Urban",
     shortDescription:
       "Pokémon mentioned around cities, towns, villages, people, houses, or buildings.",
     searchTerms: [
@@ -261,7 +293,6 @@ const topicDefinitions = [
       "towns",
       "village",
       "villages",
-      "people",
       "houses",
       "buildings"
     ],
@@ -344,10 +375,85 @@ function buildPokemonLookup(pokemonIndex) {
   );
 }
 
-function buildTopic(topic, entries, pokemonByName) {
+function buildPokemonIdLookup(pokemonIndex) {
+  return new Map(
+    pokemonIndex.map(pokemon => [
+      pokemon.id,
+      pokemon
+    ])
+  );
+}
+
+function addPokemonMatch({
+  pokemonMatches,
+  pokemon
+}) {
+  if (!pokemonMatches.has(pokemon.name)) {
+    pokemonMatches.set(pokemon.name, {
+      pokemon: {
+        id: pokemon.id,
+        name: pokemon.name,
+        sprite: pokemon.sprite,
+        types: pokemon.types ?? []
+      },
+      entries: [],
+      habitatMatches: [],
+      seenText: new Set()
+    });
+  }
+
+  return pokemonMatches.get(pokemon.name);
+}
+
+function buildExcludedPokemonSets(
+  excludedPokemon
+) {
+  const values = [
+    ...(excludedPokemon ?? [])
+  ];
+
+  return {
+    ids: new Set(
+      values
+        .map(value => Number(value))
+        .filter(value =>
+          Number.isFinite(value)
+        )
+    ),
+    names: new Set(
+      values.map(value =>
+        String(value).toLowerCase()
+      )
+    )
+  };
+}
+
+function isPokemonExcluded(
+  pokemon,
+  excludedPokemon
+) {
+  return (
+    excludedPokemon.ids.has(
+      Number(pokemon.id)
+    ) ||
+    excludedPokemon.names.has(
+      String(pokemon.name).toLowerCase()
+    )
+  );
+}
+
+function buildTopic(
+  topic,
+  entries,
+  pokemonByName,
+  pokemonById,
+  habitatData
+) {
   const pokemonMatches = new Map();
   const excludedPokemon =
-    topic.excludedPokemon ?? new Set();
+    buildExcludedPokemonSets(
+      topic.excludedPokemon
+    );
   const {
     excludedPokemon: _excludedPokemon,
     ...topicOutput
@@ -376,27 +482,18 @@ function buildTopic(topic, entries, pokemonByName) {
 
     if (
       !pokemon ||
-      excludedPokemon.has(pokemon.id) ||
-      excludedPokemon.has(pokemon.name)
+      isPokemonExcluded(
+        pokemon,
+        excludedPokemon
+      )
     ) {
       return;
     }
 
-    if (!pokemonMatches.has(entry.pokemon)) {
-      pokemonMatches.set(entry.pokemon, {
-        pokemon: {
-          id: pokemon.id,
-          name: pokemon.name,
-          sprite: pokemon.sprite,
-          types: pokemon.types ?? []
-        },
-        entries: [],
-        seenText: new Set()
-      });
-    }
-
-    const match =
-      pokemonMatches.get(entry.pokemon);
+    const match = addPokemonMatch({
+      pokemonMatches,
+      pokemon
+    });
     const textKey =
       normalizeText(entry.text);
 
@@ -412,6 +509,51 @@ function buildTopic(topic, entries, pokemonByName) {
     });
   });
 
+  (
+    habitatSupplementByTopic[
+      topic.slug
+    ] ?? []
+  ).forEach(habitatName => {
+    const habitat =
+      habitatData?.habitats?.[habitatName];
+
+    if (!habitat) return;
+
+    habitat.pokemonIds.forEach(pokemonId => {
+      const pokemon =
+        pokemonById.get(pokemonId);
+
+      if (
+        !pokemon ||
+        isPokemonExcluded(
+          pokemon,
+          excludedPokemon
+        )
+      ) {
+        return;
+      }
+
+      const match = addPokemonMatch({
+        pokemonMatches,
+        pokemon
+      });
+      const alreadyAdded =
+        match.habitatMatches.some(
+          currentHabitat =>
+            currentHabitat.name === habitatName
+        );
+
+      if (!alreadyAdded) {
+        match.habitatMatches.push({
+          name: habitatName,
+          displayName:
+            habitat.displayName ??
+            habitatName
+        });
+      }
+    });
+  });
+
   const results =
     [...pokemonMatches.values()]
       .sort(
@@ -420,7 +562,9 @@ function buildTopic(topic, entries, pokemonByName) {
       )
       .map(match => ({
         pokemon: match.pokemon,
-        entries: match.entries
+        entries: match.entries,
+        habitatMatches:
+          match.habitatMatches
       }));
   const entryCount =
     results.reduce(
@@ -431,6 +575,7 @@ function buildTopic(topic, entries, pokemonByName) {
 
   return {
     ...topicOutput,
+    active: topic.active === true,
     excludeTerms: topic.excludeTerms ?? [],
     pokemonCount: results.length,
     entryCount,
@@ -442,7 +587,8 @@ async function main() {
   const [
     entries,
     pokemonIndex,
-    curation
+    curation,
+    habitatData
   ] =
     await Promise.all([
       readJson("condensedEntries.json"),
@@ -452,10 +598,18 @@ async function main() {
         {
           excludedPokemonByTopic: {}
         }
+      ),
+      readOptionalJson(
+        "habitatData.json",
+        {
+          habitats: {}
+        }
       )
     ]);
   const pokemonByName =
     buildPokemonLookup(pokemonIndex);
+  const pokemonById =
+    buildPokemonIdLookup(pokemonIndex);
   const topics = topicDefinitions.map(topic => {
     const excludedPokemon =
       new Set(
@@ -470,7 +624,9 @@ async function main() {
         excludedPokemon
       },
       entries,
-      pokemonByName
+      pokemonByName,
+      pokemonById,
+      habitatData
     );
   });
 

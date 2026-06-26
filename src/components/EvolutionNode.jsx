@@ -330,7 +330,7 @@ function EvolutionNode({
         display: "flex",
         width: "100%",
         flexDirection: "column",
-      marginBottom: "2rem",
+      marginBottom: "1rem",
       marginTop: "auto",
         alignItems: "center",
 

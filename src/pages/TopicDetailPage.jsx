@@ -125,7 +125,11 @@ function TopicDetailPage() {
               currentTopic.slug === topicSlug
           );
 
-        if (!matchingTopic) {
+        if (
+          !matchingTopic ||
+          (!matchingTopic.active &&
+            !reviewMode)
+        ) {
           setNotFound(true);
           setTopic(null);
           return;
@@ -152,7 +156,7 @@ function TopicDetailPage() {
     }
 
     loadTopic();
-  }, [topicSlug]);
+  }, [reviewMode, topicSlug]);
 
   const visibleResults = useMemo(
     () =>
@@ -320,8 +324,8 @@ function TopicDetailPage() {
       ) : (
         <div
           style={{
-            display: "grid",
-            gap: "1rem"
+            columnGap: "1rem",
+            columnWidth: "260px"
           }}
         >
           {visibleResults.map(result => (
@@ -331,10 +335,12 @@ function TopicDetailPage() {
                 backgroundColor: "#2c2c2c",
                 border: "2px solid #555",
                 borderRadius: "12px",
-                display: "grid",
+                breakInside: "avoid",
+                boxSizing: "border-box",
+                display: "flex",
+                flexDirection: "column",
                 gap: "1rem",
-                gridTemplateColumns:
-                  "repeat(auto-fit, minmax(220px, 1fr))",
+                marginBottom: "1rem",
                 padding: "1rem"
               }}
             >
@@ -344,7 +350,6 @@ function TopicDetailPage() {
                     alignItems: "center",
                     display: "flex",
                     gap: ".45rem",
-                    gridColumn: "1 / -1",
                     justifySelf: "start"
                   }}
                 >
@@ -419,6 +424,8 @@ function TopicDetailPage() {
                     display: "flex",
                     flexWrap: "wrap",
                     gap: ".35rem",
+                    justifyContent:
+                      "center",
                     marginBottom: ".75rem"
                   }}
                 >
@@ -449,6 +456,33 @@ function TopicDetailPage() {
                     gap: ".75rem"
                   }}
                 >
+                  {result.habitatMatches
+                    ?.length > 0 && (
+                    <section
+                      style={{
+                        borderLeft:
+                          "3px solid #7ac97a",
+                        paddingLeft: ".75rem"
+                      }}
+                    >
+                      <p
+                        style={{
+                          lineHeight: 1.5,
+                          margin:
+                            "0 0 .35rem"
+                        }}
+                      >
+                        Habitat:{" "}
+                        {result.habitatMatches
+                          .map(
+                            habitat =>
+                              habitat.displayName
+                          )
+                          .join(", ")}
+                      </p>
+                    </section>
+                  )}
+
                   {result.entries.map(
                     (entry, index) => (
                       <section

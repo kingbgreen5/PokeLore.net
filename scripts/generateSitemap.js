@@ -72,9 +72,11 @@ function locationRoutes(locationsIndex) {
 }
 
 function topicRoutes(pokedexTopics) {
-  return (pokedexTopics.topics ?? []).map(topic =>
-    route(`/topic/${topic.slug}`)
-  );
+  return (pokedexTopics.topics ?? [])
+    .filter(topic => topic.active)
+    .map(topic =>
+      route(`/topic/${topic.slug}`)
+    );
 }
 
 function typeRoutes(pokemonIndex) {
