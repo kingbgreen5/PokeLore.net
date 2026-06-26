@@ -197,14 +197,55 @@
 // export default SizeComparison;
 
 
-  import oakSprite from "../assets/FRLG_Professor_Oak_Portrait.png";
-import oakSprite2 from "../assets/Red_Green_Prof_Oak.png";
+import {
+  useEffect,
+  useMemo,
+  useState
+} from "react";
+import oakSprite from "../assets/FRLG_Professor_Oak_Portrait.png";
 
 function SizeComparison({ pokemon }) {
   const oakHeightInches = 67;
+  const fallbackSpriteCorrectionFactor = 1.2;
 
   const chartHeightPx = 420;
-  const chartMaxInches = 72;
+  const [
+    spriteBoundsById,
+    setSpriteBoundsById
+  ] = useState({});
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadSpriteBounds() {
+      try {
+        const response = await fetch(
+          "/data/pokemonSpriteBounds.json"
+        );
+
+        if (!response.ok) return;
+
+        const data = await response.json();
+
+        if (isMounted) {
+          setSpriteBoundsById(
+            data.sprites ?? {}
+          );
+        }
+      } catch (error) {
+        console.warn(
+          "Sprite bounds data unavailable:",
+          error
+        );
+      }
+    }
+
+    loadSpriteBounds();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   function heightToInches(height) {
     return Math.round((height / 10) * 39.3701);
@@ -217,12 +258,60 @@ function SizeComparison({ pokemon }) {
   }
 
   const pokemonHeightInches = heightToInches(pokemon.height);
+  const tallestHeightInches = Math.max(
+    pokemonHeightInches,
+    oakHeightInches,
+    72
+  );
+  const chartMaxFeet = Math.ceil(
+    tallestHeightInches / 12
+  );
+  const chartMaxInches = chartMaxFeet * 12;
+  const rulerMarks = Array.from(
+    {
+      length: chartMaxFeet + 1
+    },
+    (_, index) => chartMaxFeet - index
+  );
 
   const oakHeightPx =
     (oakHeightInches / chartMaxInches) * chartHeightPx;
 
   const pokemonHeightPx =
     (pokemonHeightInches / chartMaxInches) * chartHeightPx;
+  const spriteBounds =
+    spriteBoundsById[pokemon.id];
+  const pokemonSpriteSizing = useMemo(() => {
+    if (
+      spriteBounds?.visibleBounds?.height &&
+      spriteBounds?.height
+    ) {
+      const scale =
+        pokemonHeightPx /
+        spriteBounds.visibleBounds.height;
+
+      return {
+        renderedHeight:
+          spriteBounds.height * scale,
+        floorOffset:
+          (spriteBounds.transparentPadding
+            ?.bottom ?? 0) * scale,
+        usesBounds: true
+      };
+    }
+
+    return {
+      renderedHeight:
+        pokemonHeightPx *
+        fallbackSpriteCorrectionFactor,
+      floorOffset: 0,
+      usesBounds: false
+    };
+  }, [
+    pokemonHeightPx,
+    spriteBounds,
+    fallbackSpriteCorrectionFactor
+  ]);
 
   return (
     <section
@@ -244,8 +333,9 @@ function SizeComparison({ pokemon }) {
           letterSpacing: "1px",
         }}
       >
-        Size Comparison
+        Approximate Size Comparison
       </h2>
+   
 
       <div
         style={{
@@ -264,7 +354,7 @@ function SizeComparison({ pokemon }) {
             paddingRight: "0.75rem",
           }}
         >
-          {[6, 5, 4, 3, 2, 1, 0].map((feet) => (
+          {rulerMarks.map((feet) => (
             <span key={feet}>{feet} ft</span>
           ))}
         </div>
@@ -275,13 +365,17 @@ function SizeComparison({ pokemon }) {
             borderLeft: "2px solid #222",
             borderBottom: "2px solid #222",
             height: "100%",
+            overflow: "visible",
           }}
         >
-          {[6, 5, 4, 3, 2, 1, 0].map((feet) => (
+          {rulerMarks.map((feet) => (
             <div
               key={feet}
               style={{
-                height: "calc(100% / 6)",
+                position: "absolute",
+                bottom: `${(feet / chartMaxFeet) * 100}%`,
+                left: 0,
+                right: 0,
                 borderTop: "1px dashed #cbd3dc",
               }}
             />
@@ -326,11 +420,12 @@ function SizeComparison({ pokemon }) {
               src={pokemon.sprite}
               alt={pokemon.name}
               style={{
-                height: `${pokemonHeightPx}px`,
+                height: `${pokemonSpriteSizing.renderedHeight}px`,
                 width: "auto",
-                maxWidth: "100%",
+                maxWidth: "none",
                 objectFit: "contain",
-                marginBottom: "-2rem",
+                transform: `translateY(${pokemonSpriteSizing.floorOffset}px)`,
+                // marginBottom: "-4rem",
               }}
             />
           </div>

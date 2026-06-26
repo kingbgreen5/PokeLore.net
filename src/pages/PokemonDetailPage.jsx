@@ -621,7 +621,7 @@ function formatWeightEnglish(weight) {
        Hatch Counter: {pokemon.hatchCounter}
       </p>
 
-{/* <SizeComparison pokemon={pokemon} /> */}
+<SizeComparison pokemon={pokemon} />
 
 
 
