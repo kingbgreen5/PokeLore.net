@@ -402,7 +402,8 @@ function SizeComparison({ pokemon }) {
   function ComparisonStage({
     metrics,
     stacked = false,
-    clipOverflow = false
+    clipOverflow = false,
+    compactSpacing = false
   }) {
     if (stacked) {
       return (
@@ -438,22 +439,47 @@ function SizeComparison({ pokemon }) {
         }}
       >
         <RulerLines metrics={metrics} />
-        <SpriteColumn
-          width="45%"
-          left="6%"
-        >
-          <PokemonSprite
-            metrics={metrics}
-          />
-        </SpriteColumn>
-        <SpriteColumn
-          width="40%"
-          right="8%"
-        >
-          <OakSprite
-            metrics={metrics}
-          />
-        </SpriteColumn>
+        {compactSpacing ? (
+          <>
+            <SpriteColumn
+              width="max-content"
+              left="38%"
+              transform="translateX(-50%)"
+            >
+              <PokemonSprite
+                metrics={metrics}
+              />
+            </SpriteColumn>
+            <SpriteColumn
+              width="max-content"
+              left="62%"
+              transform="translateX(-50%)"
+            >
+              <OakSprite
+                metrics={metrics}
+              />
+            </SpriteColumn>
+          </>
+        ) : (
+          <>
+            <SpriteColumn
+              width="45%"
+              left="6%"
+            >
+              <PokemonSprite
+                metrics={metrics}
+              />
+            </SpriteColumn>
+            <SpriteColumn
+              width="40%"
+              right="8%"
+            >
+              <OakSprite
+                metrics={metrics}
+              />
+            </SpriteColumn>
+          </>
+        )}
       </div>
     );
   }
@@ -511,6 +537,7 @@ function SizeComparison({ pokemon }) {
     children,
     left,
     right,
+    transform,
     width
   }) {
     return (
@@ -523,6 +550,7 @@ function SizeComparison({ pokemon }) {
           left,
           position: "absolute",
           right,
+          transform,
           width
         }}
       >
@@ -575,6 +603,7 @@ function SizeComparison({ pokemon }) {
     stacked = false,
     minWidth = "720px",
     clipOverflow = false,
+    compactSpacing = false,
     showHeader = true
   }) {
     const metrics =
@@ -602,6 +631,7 @@ function SizeComparison({ pokemon }) {
           metrics={metrics}
           stacked={stacked}
           clipOverflow={clipOverflow}
+          compactSpacing={compactSpacing}
         />
       </div>
     );
@@ -693,15 +723,17 @@ function SizeComparison({ pokemon }) {
           letterSpacing: "1px",
         }}
       >
-        Approximate Size Comparison
+        Approximate Size Comparison: BETA
       </h2>
+     
       {isMobile ? (
         <ChartFrame
           title="Mobile"
           chartHeightPx={300}
-          minWidth="680px"
+          minWidth="560px"
           scrollable={true}
           clipOverflow={true}
+          compactSpacing={true}
           showHeader={false}
         />
       ) : (
