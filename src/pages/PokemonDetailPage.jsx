@@ -621,9 +621,9 @@ function formatWeightEnglish(weight) {
 
 <SizeComparison pokemon={pokemon} />
 
-<PokemonSpriteCarousel
+{/* <PokemonSpriteCarousel
   pokemon={pokemon}
-/>
+/> */}
 
 
     </div>
