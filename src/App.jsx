@@ -2,6 +2,7 @@
 import { useState } from "react";
 
 import {
+  useLocation,
   Routes,
   Route
 } from "react-router-dom";
@@ -25,6 +26,13 @@ import LocationsPage from "./pages/LocationsPage";
 import LocationDetailPage from "./pages/LocationDetailPage";
 import TopicsPage from "./pages/TopicsPage";
 import TopicDetailPage from "./pages/TopicDetailPage";
+import {
+  OgItemPreview,
+  OgMovePreview,
+  OgPokemonPreview,
+  OgPreviewHome,
+  OgTopicPreview
+} from "./og/OgPreviewPage";
 
 
 
@@ -32,6 +40,11 @@ import ScrollToTop from "./components/ScrollToTop";
 import "./App.css";
 
 function App() {
+  const location = useLocation();
+  const isOgPreviewRoute =
+    location.pathname.startsWith(
+      "/og-preview"
+    );
   const [
     selectedMove,
     setSelectedMove
@@ -39,13 +52,19 @@ function App() {
 
   return (
     <>
-      <Banner />
+      {!isOgPreviewRoute && (
+        <Banner />
+      )}
 
-      <Navbar />
+      {!isOgPreviewRoute && (
+        <Navbar />
+      )}
 
 
 
-  <ScrollToTop />
+  {!isOgPreviewRoute && (
+    <ScrollToTop />
+  )}
 
       <Routes>
 
@@ -96,6 +115,31 @@ function App() {
 <Route
   path="/topic/:topicSlug"
   element={<TopicDetailPage />}
+/>
+
+<Route
+  path="/og-preview"
+  element={<OgPreviewHome />}
+/>
+
+<Route
+  path="/og-preview/pokemon/:id"
+  element={<OgPokemonPreview />}
+/>
+
+<Route
+  path="/og-preview/move/:moveName"
+  element={<OgMovePreview />}
+/>
+
+<Route
+  path="/og-preview/topic/:topicSlug"
+  element={<OgTopicPreview />}
+/>
+
+<Route
+  path="/og-preview/item/:itemName"
+  element={<OgItemPreview />}
 />
 
 <Route

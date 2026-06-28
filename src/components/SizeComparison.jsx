@@ -1,13 +1,46 @@
 
 import {
   useEffect,
+  useLayoutEffect,
   useMemo,
+  useRef,
   useState
 } from "react";
+import {
+  useNavigate
+} from "react-router-dom";
 // import oakSprite from "../assets/FRLG_Professor_Oak_Portrait.png";
 import oakSprite from "../assets/OakSprite3.png";
+import { formatPokemonDisplayName }
+from "../utils/pokemonNames";
 
-function SizeComparison({ pokemon }) {
+const LOCAL_CORRECTIONS_KEY =
+  "pokemonSpriteManualCorrections";
+
+function readLocalCorrections() {
+  try {
+    return JSON.parse(
+      localStorage.getItem(
+        LOCAL_CORRECTIONS_KEY
+      ) ?? "{}"
+    );
+  } catch {
+    return {};
+  }
+}
+
+function writeLocalCorrections(corrections) {
+  localStorage.setItem(
+    LOCAL_CORRECTIONS_KEY,
+    JSON.stringify(corrections)
+  );
+}
+
+function SizeComparison({
+  pokemon,
+  reviewMode = false
+}) {
+  const navigate = useNavigate();
   const oakHeightInches = 67;
   const fallbackSpriteCorrectionFactor = 1.2;
   const [
@@ -16,6 +49,50 @@ function SizeComparison({ pokemon }) {
   ] = useState({});
   const [isMobile, setIsMobile] =
     useState(false);
+  const [topLayer, setTopLayer] =
+    useState("pokemon");
+  const chartScrollRef = useRef(null);
+  const pendingScrollLeftRef = useRef(null);
+  const [
+    baseCorrectionsById,
+    setBaseCorrectionsById
+  ] = useState({});
+  const [
+    localCorrectionsById,
+    setLocalCorrectionsById
+  ] = useState(() =>
+    readLocalCorrections()
+  );
+  const [pokemonIndex, setPokemonIndex] =
+    useState([]);
+
+  useLayoutEffect(() => {
+    if (
+      pendingScrollLeftRef.current === null
+    ) {
+      return;
+    }
+
+    const savedScrollLeft =
+      pendingScrollLeftRef.current;
+    pendingScrollLeftRef.current = null;
+
+    if (chartScrollRef.current) {
+      chartScrollRef.current.scrollLeft =
+        savedScrollLeft;
+    }
+  }, [topLayer]);
+
+  function handleTopLayerToggle() {
+    pendingScrollLeftRef.current =
+      chartScrollRef.current?.scrollLeft ?? null;
+
+    setTopLayer(currentLayer =>
+      currentLayer === "pokemon"
+        ? "oak"
+        : "pokemon"
+    );
+  }
 
   useEffect(() => {
     let isMounted = true;
@@ -73,6 +150,60 @@ function SizeComparison({ pokemon }) {
     };
   }, []);
 
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadCorrectionData() {
+      try {
+        const [
+          correctionsResponse,
+          indexResponse
+        ] = await Promise.all([
+          fetch(
+            "/data/pokemonSpriteCorrections.json"
+          ),
+          reviewMode
+            ? fetch("/data/pokemonIndex.json")
+            : Promise.resolve(null)
+        ]);
+
+        if (correctionsResponse.ok) {
+          const correctionData =
+            await correctionsResponse.json();
+
+          if (isMounted) {
+            setBaseCorrectionsById(
+              correctionData.sprites ?? {}
+            );
+          }
+        }
+
+        if (
+          reviewMode &&
+          indexResponse?.ok
+        ) {
+          const indexData =
+            await indexResponse.json();
+
+          if (isMounted) {
+            setPokemonIndex(indexData);
+          }
+        }
+      } catch (error) {
+        console.warn(
+          "Sprite correction data unavailable:",
+          error
+        );
+      }
+    }
+
+    loadCorrectionData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [reviewMode]);
+
   function heightToInches(height) {
     return Math.round((height / 10) * 39.3701);
   }
@@ -86,6 +217,14 @@ function SizeComparison({ pokemon }) {
   const pokemonHeightInches = heightToInches(pokemon.height);
   const spriteBounds =
     spriteBoundsById[pokemon.id];
+  const correctionData =
+    localCorrectionsById[pokemon.id] ??
+    baseCorrectionsById[pokemon.id] ??
+    null;
+  const manualCorrectionFactor =
+    typeof correctionData === "number"
+      ? correctionData
+      : Number(correctionData?.factor ?? 1);
   const getPokemonSpriteSizing = useMemo(() => {
     return pokemonHeightPx => {
     if (
@@ -98,10 +237,14 @@ function SizeComparison({ pokemon }) {
 
       return {
         renderedHeight:
-          spriteBounds.height * scale,
+          spriteBounds.height *
+          scale *
+          manualCorrectionFactor,
         floorOffset:
           (spriteBounds.transparentPadding
-            ?.bottom ?? 0) * scale,
+            ?.bottom ?? 0) *
+          scale *
+          manualCorrectionFactor,
         usesBounds: true
       };
     }
@@ -109,15 +252,96 @@ function SizeComparison({ pokemon }) {
     return {
       renderedHeight:
         pokemonHeightPx *
-        fallbackSpriteCorrectionFactor,
+        fallbackSpriteCorrectionFactor *
+        manualCorrectionFactor,
       floorOffset: 0,
       usesBounds: false
     };
     };
   }, [
     spriteBounds,
+    manualCorrectionFactor,
     fallbackSpriteCorrectionFactor
   ]);
+
+  const correctionExport = useMemo(() => {
+    return JSON.stringify(
+      {
+        sprites: {
+          ...baseCorrectionsById,
+          ...localCorrectionsById
+        }
+      },
+      null,
+      2
+    );
+  }, [
+    baseCorrectionsById,
+    localCorrectionsById
+  ]);
+
+  const currentDexIndex = useMemo(
+    () =>
+      pokemonIndex.findIndex(
+        indexedPokemon =>
+          indexedPokemon.id === pokemon.id
+      ),
+    [pokemon.id, pokemonIndex]
+  );
+
+  const previousPokemon =
+    currentDexIndex > 0
+      ? pokemonIndex[currentDexIndex - 1]
+      : null;
+  const nextPokemon =
+    currentDexIndex >= 0 &&
+    currentDexIndex <
+      pokemonIndex.length - 1
+      ? pokemonIndex[currentDexIndex + 1]
+      : null;
+
+  function updateManualCorrection(delta) {
+    const nextFactor = Math.max(
+      0.25,
+      Math.min(
+        3,
+        Number(
+          (
+            manualCorrectionFactor + delta
+          ).toFixed(2)
+        )
+      )
+    );
+    const nextCorrections = {
+      ...localCorrectionsById,
+      [pokemon.id]: {
+        id: pokemon.id,
+        name: pokemon.name,
+        factor: nextFactor
+      }
+    };
+
+    setLocalCorrectionsById(nextCorrections);
+    writeLocalCorrections(nextCorrections);
+  }
+
+  function resetManualCorrection() {
+    const nextCorrections = {
+      ...localCorrectionsById
+    };
+
+    delete nextCorrections[pokemon.id];
+    setLocalCorrectionsById(nextCorrections);
+    writeLocalCorrections(nextCorrections);
+  }
+
+  function navigateToPokemon(nextPokemon) {
+    if (!nextPokemon) return;
+
+    navigate(
+      `/pokemon/${nextPokemon.id}?size-review=1`
+    );
+  }
 
   function getChartMetrics(chartHeightPx) {
     const tallestHeightInches = Math.max(
@@ -208,7 +432,8 @@ function SizeComparison({ pokemon }) {
     metrics,
     stacked = false,
     clipOverflow = false,
-    compactSpacing = false
+    compactSpacing = false,
+    topLayer = "pokemon"
   }) {
     if (stacked) {
       return (
@@ -250,6 +475,11 @@ function SizeComparison({ pokemon }) {
               width="max-content"
               left="38%"
               transform="translateX(-50%)"
+              zIndex={
+                topLayer === "pokemon"
+                  ? 2
+                  : 1
+              }
             >
               <PokemonSprite
                 metrics={metrics}
@@ -259,6 +489,11 @@ function SizeComparison({ pokemon }) {
               width="max-content"
               left="62%"
               transform="translateX(-50%)"
+              zIndex={
+                topLayer === "oak"
+                  ? 2
+                  : 1
+              }
             >
               <OakSprite
                 metrics={metrics}
@@ -270,6 +505,11 @@ function SizeComparison({ pokemon }) {
             <SpriteColumn
               width="45%"
               left="6%"
+              zIndex={
+                topLayer === "pokemon"
+                  ? 2
+                  : 1
+              }
             >
               <PokemonSprite
                 metrics={metrics}
@@ -278,6 +518,11 @@ function SizeComparison({ pokemon }) {
             <SpriteColumn
               width="40%"
               right="8%"
+              zIndex={
+                topLayer === "oak"
+                  ? 2
+                  : 1
+              }
             >
               <OakSprite
                 metrics={metrics}
@@ -343,7 +588,8 @@ function SizeComparison({ pokemon }) {
     left,
     right,
     transform,
-    width
+    width,
+    zIndex
   }) {
     return (
       <div
@@ -356,7 +602,8 @@ function SizeComparison({ pokemon }) {
           position: "absolute",
           right,
           transform,
-          width
+          width,
+          zIndex
         }}
       >
         {children}
@@ -410,6 +657,7 @@ function SizeComparison({ pokemon }) {
     minWidth = "720px",
     clipOverflow = false,
     compactSpacing = false,
+    topLayer = "pokemon",
     showHeader = true
   }) {
     const metrics =
@@ -438,6 +686,7 @@ function SizeComparison({ pokemon }) {
           stacked={stacked}
           clipOverflow={clipOverflow}
           compactSpacing={compactSpacing}
+          topLayer={topLayer}
         />
       </div>
     );
@@ -445,13 +694,13 @@ function SizeComparison({ pokemon }) {
     return (
       <section
         style={{
-          border:
-            "1px solid #d5dce5",
-          borderRadius: "18px",
+          // border:
+          //   "1px solid #d5dce5",
+          // borderRadius: "18px",
           boxShadow:
             "0 4px 12px rgba(0, 0, 0, 0.08)",
           marginBottom: "2rem",
-          padding: "1.5rem",
+          // padding: "1.5rem",
           textAlign: "center"
         }}
       >
@@ -495,6 +744,7 @@ function SizeComparison({ pokemon }) {
         )}
         {scrollable ? (
           <div
+            ref={chartScrollRef}
             style={{
               overflowX: "auto",
               paddingBottom: ".75rem"
@@ -512,9 +762,9 @@ function SizeComparison({ pokemon }) {
   return (
     <section
       style={{
-        maxWidth: "900px",
+        maxWidth: "1000px",
         margin: "2rem auto",
-        padding: "1.5rem",
+        padding: ".5rem",
         border: "1px solid #666",
         borderRadius: "18px",
         background: "#2c2c2c",
@@ -540,13 +790,158 @@ function SizeComparison({ pokemon }) {
           scrollable={true}
           clipOverflow={true}
           compactSpacing={true}
+          topLayer={topLayer}
           showHeader={false}
         />
       ) : (
         <ChartFrame
           title="Desktop"
+          topLayer={topLayer}
           showHeader={false}
         />
+      )}
+
+      <button
+        type="button"
+        onClick={handleTopLayerToggle}
+        style={{
+          backgroundColor: "#fab856",
+          border: "none",
+          borderRadius: "999px",
+          color: "#1b1b1b",
+          cursor: "pointer",
+          fontWeight: "700",
+          padding: ".55rem 1rem"
+        }}
+      >
+        Top Layer:{" "}
+        {topLayer === "pokemon"
+          ? "Pokémon"
+          : "Professor Oak"}
+      </button>
+
+      {reviewMode && (
+        <section
+          style={{
+            border: "1px solid #666",
+            borderRadius: "12px",
+            marginTop: "1rem",
+            padding: "1rem",
+            textAlign: "left"
+          }}
+        >
+          <h3
+            style={{
+              marginTop: 0
+            }}
+          >
+            Sprite Size Review
+          </h3>
+
+          <p>
+            Editing{" "}
+            <strong>
+              {formatPokemonDisplayName(
+                pokemon
+              )}
+            </strong>
+            {" "}at correction factor{" "}
+            <strong>
+              {manualCorrectionFactor.toFixed(
+                2
+              )}
+            </strong>
+            .
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: ".5rem",
+              margin: "1rem 0"
+            }}
+          >
+            <button
+              type="button"
+              onClick={() =>
+                navigateToPokemon(
+                  previousPokemon
+                )
+              }
+              disabled={!previousPokemon}
+            >
+              Previous
+            </button>
+
+            <button
+              type="button"
+              onClick={() =>
+                updateManualCorrection(
+                  -0.05
+                )
+              }
+            >
+              Decrease Size
+            </button>
+
+            <button
+              type="button"
+              onClick={() =>
+                updateManualCorrection(
+                  0.05
+                )
+              }
+            >
+              Increase Size
+            </button>
+
+            <button
+              type="button"
+              onClick={resetManualCorrection}
+            >
+              Reset
+            </button>
+
+            <button
+              type="button"
+              onClick={() =>
+                navigateToPokemon(nextPokemon)
+              }
+              disabled={!nextPokemon}
+            >
+              Next
+            </button>
+          </div>
+
+          <p
+            style={{
+              opacity: 0.8
+            }}
+          >
+            Local edits are saved in this
+            browser. Copy this JSON into{" "}
+            <code>
+              public/data/pokemonSpriteCorrections.json
+            </code>
+            {" "}when you want to keep the
+            corrections in the project data.
+          </p>
+
+          <pre
+            style={{
+              backgroundColor: "#111",
+              border: "1px solid #555",
+              borderRadius: "8px",
+              maxHeight: "260px",
+              overflow: "auto",
+              padding: "1rem",
+              whiteSpace: "pre-wrap"
+            }}
+          >
+            {correctionExport}
+          </pre>
+        </section>
       )}
     </section>
   );

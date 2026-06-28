@@ -1,4 +1,5 @@
 import {
+  useLocation,
   useParams
 } from "react-router-dom";
 
@@ -50,6 +51,7 @@ function PokemonDetailPage() {
   const evolutionScrollRef = useRef(null);
 const rootNodeRef = useRef(null);
 const { id } = useParams();
+const location = useLocation();
 
 const navigate = useNavigate();
 
@@ -227,6 +229,10 @@ if (loading) {
 
 const activeFormKey =
   getRegionalFormKey(pokemon);
+const sizeReviewMode =
+  new URLSearchParams(
+    location.search
+  ).get("size-review") === "1";
 
 
 
@@ -619,7 +625,10 @@ function formatWeightEnglish(weight) {
        Hatch Counter: {pokemon.hatchCounter}
       </p>
 
-<SizeComparison pokemon={pokemon} />
+<SizeComparison
+  pokemon={pokemon}
+  reviewMode={sizeReviewMode}
+/>
 
 {/* <PokemonSpriteCarousel
   pokemon={pokemon}
