@@ -227,36 +227,65 @@ function SizeComparison({
       : Number(correctionData?.factor ?? 1);
   const getPokemonSpriteSizing = useMemo(() => {
     return pokemonHeightPx => {
-    if (
-      spriteBounds?.visibleBounds?.height &&
-      spriteBounds?.height
-    ) {
-      const scale =
-        pokemonHeightPx /
-        spriteBounds.visibleBounds.height;
+      if (
+        spriteBounds?.visibleBounds?.height &&
+        spriteBounds?.height
+      ) {
+        const scaledCorrection =
+          manualCorrectionFactor;
+        const scale =
+          pokemonHeightPx /
+          spriteBounds.visibleBounds.height;
+        const effectiveScale =
+          scale * scaledCorrection;
+        const leftPadding =
+          spriteBounds.transparentPadding
+            ?.left ?? 0;
+        const rightPadding =
+          spriteBounds.transparentPadding
+            ?.right ?? 0;
+        const visibleWidth =
+          spriteBounds.visibleBounds
+            ?.width ?? spriteBounds.width;
 
-      return {
-        renderedHeight:
-          spriteBounds.height *
-          scale *
-          manualCorrectionFactor,
-        floorOffset:
-          (spriteBounds.transparentPadding
-            ?.bottom ?? 0) *
-          scale *
-          manualCorrectionFactor,
-        usesBounds: true
-      };
-    }
+        return {
+          renderedHeight:
+            spriteBounds.height *
+            effectiveScale,
+          renderedWidth:
+            (spriteBounds.width ?? 0) *
+            effectiveScale,
+          visibleRenderedWidth:
+            visibleWidth * effectiveScale,
+          visibleLeftOffset:
+            leftPadding * effectiveScale,
+          floorOffset:
+            (spriteBounds.transparentPadding
+              ?.bottom ?? 0) *
+            effectiveScale,
+          horizontalOffset:
+            ((rightPadding - leftPadding) /
+              2) *
+            effectiveScale,
+          usesBounds: true
+        };
+      }
 
-    return {
-      renderedHeight:
+      const fallbackRenderedHeight =
         pokemonHeightPx *
         fallbackSpriteCorrectionFactor *
-        manualCorrectionFactor,
-      floorOffset: 0,
-      usesBounds: false
-    };
+        manualCorrectionFactor;
+
+      return {
+        renderedHeight: fallbackRenderedHeight,
+        renderedWidth: fallbackRenderedHeight,
+        visibleRenderedWidth:
+          fallbackRenderedHeight,
+        visibleLeftOffset: 0,
+        floorOffset: 0,
+        horizontalOffset: 0,
+        usesBounds: false
+      };
     };
   }, [
     spriteBounds,
@@ -365,15 +394,30 @@ function SizeComparison({
     const pokemonHeightPx =
       (pokemonHeightInches / chartMaxInches) *
       chartHeightPx;
+    const pokemonSpriteSizing =
+      getPokemonSpriteSizing(
+        pokemonHeightPx
+      );
+    const mobileSubjectWidth =
+      Math.ceil(
+        (pokemonSpriteSizing
+          .visibleRenderedWidth || 0) +
+          oakHeightPx * 0.55 +
+          96
+      );
+    const recommendedMinWidthPx =
+      60 +
+      Math.max(
+        500,
+        mobileSubjectWidth
+      );
 
     return {
       chartMaxFeet,
       chartHeightPx,
       oakHeightPx,
-      pokemonSpriteSizing:
-        getPokemonSpriteSizing(
-          pokemonHeightPx
-        ),
+      pokemonSpriteSizing,
+      recommendedMinWidthPx,
       rulerMarks
     };
   }
@@ -435,6 +479,14 @@ function SizeComparison({
     compactSpacing = false,
     topLayer = "pokemon"
   }) {
+    const mobileScenePadding = 14;
+    const mobileOakOverlap = 58;
+    const mobileOakLeft =
+      mobileScenePadding +
+      (metrics.pokemonSpriteSizing
+        .visibleRenderedWidth || 0) -
+      mobileOakOverlap;
+
     if (stacked) {
       return (
         <div
@@ -473,8 +525,7 @@ function SizeComparison({
           <>
             <SpriteColumn
               width="max-content"
-              left="38%"
-              transform="translateX(-50%)"
+              left={`${mobileScenePadding}px`}
               zIndex={
                 topLayer === "pokemon"
                   ? 2
@@ -483,12 +534,12 @@ function SizeComparison({
             >
               <PokemonSprite
                 metrics={metrics}
+                alignVisibleLeft={true}
               />
             </SpriteColumn>
             <SpriteColumn
               width="max-content"
-              left="62%"
-              transform="translateX(-50%)"
+              left={`${mobileOakLeft}px`}
               zIndex={
                 topLayer === "oak"
                   ? 2
@@ -631,8 +682,16 @@ function SizeComparison({
   }
 
   function PokemonSprite({
-    metrics
+    metrics,
+    alignVisibleLeft = false
   }) {
+    const horizontalOffset =
+      alignVisibleLeft
+        ? -metrics.pokemonSpriteSizing
+            .visibleLeftOffset
+        : metrics.pokemonSpriteSizing
+            .horizontalOffset;
+
     return (
       <img
         src={pokemon.sprite}
@@ -641,7 +700,7 @@ function SizeComparison({
           height: `${metrics.pokemonSpriteSizing.renderedHeight}px`,
           maxWidth: "none",
           objectFit: "contain",
-          transform: `translateY(${metrics.pokemonSpriteSizing.floorOffset}px)`,
+          transform: `translate(${horizontalOffset}px, ${metrics.pokemonSpriteSizing.floorOffset}px)`,
           width: "auto"
         }}
       />
@@ -662,6 +721,19 @@ function SizeComparison({
   }) {
     const metrics =
       getChartMetrics(chartHeightPx);
+    const requestedMinWidthPx =
+      Number.parseFloat(minWidth);
+    const chartMinWidth =
+      scrollable
+        ? `${Math.max(
+            Number.isFinite(
+              requestedMinWidthPx
+            )
+              ? requestedMinWidthPx
+              : 0,
+            metrics.recommendedMinWidthPx
+          )}px`
+        : undefined;
     const chart = (
       <div
         style={{
@@ -673,9 +745,7 @@ function SizeComparison({
           height: stacked
             ? "auto"
             : `${chartHeightPx}px`,
-          minWidth: scrollable
-            ? minWidth
-            : undefined
+          minWidth: chartMinWidth
         }}
       >
         {!stacked && (
