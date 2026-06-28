@@ -479,8 +479,9 @@ function SizeComparison({
     compactSpacing = false,
     topLayer = "pokemon"
   }) {
-    const mobileScenePadding = 14;
-    const mobileOakOverlap = 58;
+    const mobileScenePadding = 35
+    ;
+    const mobileOakOverlap = 55;
     const mobileOakLeft =
       mobileScenePadding +
       (metrics.pokemonSpriteSizing
