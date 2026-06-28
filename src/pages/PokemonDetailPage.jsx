@@ -630,9 +630,9 @@ function formatWeightEnglish(weight) {
   reviewMode={sizeReviewMode}
 />
 
-{/* <PokemonSpriteCarousel
+<PokemonSpriteCarousel
   pokemon={pokemon}
-/> */}
+/>
 
 
     </div>

@@ -69,11 +69,11 @@ function PokemonSpriteCarouselPlaceholder() {
               boxSizing: "border-box",
               flex:
                 index === 1
-                  ? "0 0 240px"
+                  ? "0 0 110px"
                   : "0 0 110px",
               minHeight:
                 index === 1
-                  ? "285px"
+                  ? "142px"
                   : "142px",
               opacity:
                 index === 1 ? 0.35 : 0.45
@@ -206,18 +206,29 @@ function PokemonSpriteCarousel({
     () => {
       if (!carouselPokemon) return;
 
+      const container = containerRef.current;
       const item =
         itemRefs.current.get(
           carouselPokemon.id
         );
 
-      if (!item) return;
+      if (!container || !item) return;
 
-      item.scrollIntoView({
-        behavior: "auto",
-        block: "nearest",
-        inline: "center"
-      });
+      const containerRect =
+        container.getBoundingClientRect();
+      const itemRect =
+        item.getBoundingClientRect();
+      const itemOffsetLeft =
+        itemRect.left -
+        containerRect.left +
+        container.scrollLeft;
+      const centeredScrollLeft =
+        itemOffsetLeft -
+        container.clientWidth / 2 +
+        item.offsetWidth / 2;
+
+      container.scrollLeft =
+        centeredScrollLeft;
 
       window.setTimeout(
         updateCurrentCentered,
@@ -394,6 +405,8 @@ function PokemonSpriteCarousel({
                 backgroundColor: isCurrent
                   ? "transparent"
                   : "#2c2c2c",
+                  backgroundColor: "#2c2c2c",
+        
                 border: isCurrent
                   ? "2px solid transparent"
                   : "1px solid #707070",
@@ -420,7 +433,7 @@ function PokemonSpriteCarousel({
                 flexDirection: "column",
                 justifyContent: "center",
                 minHeight: isCurrent
-                  ? "285px"
+                  ? "142px"
                   : "142px",
                   paddingRight: isCurrent
                   ? ".5rem"
@@ -429,7 +442,7 @@ function PokemonSpriteCarousel({
                   ? ".5rem"
                   : ".5rem",
                 opacity: isCurrent
-                  ? 1
+                  ? .5
                   : 0.9,
                 scrollSnapAlign: "center",
                 transform: isCurrent
@@ -466,11 +479,11 @@ function PokemonSpriteCarousel({
                 loading="lazy"
                 style={{
                   height: isCurrent
-                    ? "220px"
+                    ? "150px"
                     : "78px",
                   objectFit: "contain",
                   width: isCurrent
-                    ? "220px"
+                    ? "150px"
                     : "78px"
                 }}
               />
