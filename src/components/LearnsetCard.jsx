@@ -141,9 +141,6 @@ const filteredMoves =
       onToggle={() =>
         setExpanded(!expanded)
       }
-      style={{
-        maxWidth: "95%"
-      }}
       contentStyle={{
         marginTop: "1rem"
       }}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { capitalize } from "../utils/capitalize";
 import Seo from "../seo/Seo";
 import { dexEntriesSeo } from "../seo/seoConfig";
@@ -94,7 +95,15 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
       }}
     >
       <h2>
-        {capitalize(pokemonName)}
+        <Link
+          to={`/pokemon/${pokemonName}`}
+          style={{
+            color: "inherit",
+            textDecoration: "none"
+          }}
+        >
+          {capitalize(pokemonName)}
+        </Link>
       </h2>
 
       {pokemonEntries.map((entry, index) => (
