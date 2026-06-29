@@ -1,5 +1,8 @@
 import typeColors from "../constants/typeColors";
-import { useNavigate }
+import {
+  useLocation,
+  useNavigate
+}
 from "react-router-dom";
 import { formatPokemonDisplayName }
 from "../utils/pokemonNames";
@@ -64,6 +67,7 @@ function PokemonSummaryCard({
 }) {
   
    const navigate = useNavigate();
+   const location = useLocation();
 
   const sizeKey =
     variant ||
@@ -80,6 +84,20 @@ function PokemonSummaryCard({
     formatPokemonDisplayName(
       pokemon
     );
+  const searchParams =
+    new URLSearchParams(
+      location.search
+    );
+  const sizeReviewValue =
+    searchParams.get("size-review");
+  const isSizeReviewMode =
+    searchParams.has("size-review") &&
+    sizeReviewValue !== "0" &&
+    sizeReviewValue !== "false";
+  const sizeReviewSearch =
+    isSizeReviewMode
+      ? "?size-review=1"
+      : "";
   
   return (
     <div
@@ -89,7 +107,15 @@ function PokemonSummaryCard({
       // }
 
 onClick={() =>
-  navigate(`/pokemon/${pokemon.id}`)
+  navigate(
+    `/pokemon/${pokemon.name ?? pokemon.id}${sizeReviewSearch}`,
+    {
+      state: {
+        preserveScroll:
+          isSizeReviewMode
+      }
+    }
+  )
 }
 
 // ------------------------------------------------container

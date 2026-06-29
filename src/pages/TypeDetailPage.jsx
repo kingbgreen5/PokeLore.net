@@ -18,6 +18,48 @@ import { typeSeo } from "../seo/seoConfig";
 
 const allTypes = Object.keys(typeColors);
 
+const pokemonStatOptions = {
+  baseStatTotal: {
+    label: "BST",
+    displayName: "Base Stat Total"
+  },
+  hp: {
+    label: "HP",
+    displayName: "HP"
+  },
+  attack: {
+    label: "Atk",
+    displayName: "Attack"
+  },
+  defense: {
+    label: "Def",
+    displayName: "Defense"
+  },
+  specialAttack: {
+    label: "SpA",
+    displayName: "Sp. Atk"
+  },
+  specialDefense: {
+    label: "SpD",
+    displayName: "Sp. Def"
+  },
+  speed: {
+    label: "Spe",
+    displayName: "Speed"
+  }
+};
+
+function getPokemonStatValue(
+  pokemon,
+  statKey
+) {
+  if (statKey === "baseStatTotal") {
+    return pokemon.baseStatTotal;
+  }
+
+  return pokemon.stats?.[statKey];
+}
+
 function capitalize(text) {
   return text
     .split("-")
@@ -224,6 +266,14 @@ function TypeDetailPage() {
     powerSortMode,
     setPowerSortMode
   ] = useState("default");
+  const [
+    pokemonStatFilter,
+    setPokemonStatFilter
+  ] = useState("default");
+  const [
+    pokemonStatSortDirection,
+    setPokemonStatSortDirection
+  ] = useState("desc");
 
   useEffect(() => {
     async function loadTypeData() {
@@ -269,6 +319,86 @@ function TypeDetailPage() {
       ),
     [pokemonIndex, type]
   );
+
+  const sortedPokemonOfType = useMemo(
+    () => {
+      if (
+        pokemonStatFilter === "default"
+      ) {
+        return pokemonOfType;
+      }
+
+      return [...pokemonOfType].sort(
+        (first, second) => {
+          const firstValue =
+            getPokemonStatValue(
+              first,
+              pokemonStatFilter
+            );
+          const secondValue =
+            getPokemonStatValue(
+              second,
+              pokemonStatFilter
+            );
+
+          const sortResult =
+            (secondValue ?? -1) -
+            (firstValue ?? -1);
+
+          return pokemonStatSortDirection ===
+            "asc"
+            ? sortResult * -1
+            : sortResult;
+        }
+      );
+    },
+    [
+      pokemonOfType,
+      pokemonStatFilter,
+      pokemonStatSortDirection
+    ]
+  );
+
+  const selectedPokemonStatOption =
+    pokemonStatOptions[
+      pokemonStatFilter
+    ];
+
+  function renderPokemonStatLabel(pokemon) {
+    if (
+      !selectedPokemonStatOption
+    ) {
+      return null;
+    }
+
+    const value = getPokemonStatValue(
+      pokemon,
+      pokemonStatFilter
+    );
+
+    if (
+      value === undefined ||
+      value === null
+    ) {
+      return null;
+    }
+
+    return (
+      <div
+        style={{
+          color: "#f3f3f3",
+          fontSize: ".85rem",
+          fontWeight: "700",
+          marginTop: ".35rem",
+          opacity: 0.9,
+          textAlign: "center"
+        }}
+      >
+        {selectedPokemonStatOption.label}
+        : {value}
+      </div>
+    );
+  }
 
   const movesOfType = useMemo(
     () =>
@@ -418,19 +548,105 @@ function TypeDetailPage() {
       >
         <div
           style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: ".75rem",
+            marginBottom: "1rem"
+          }}
+        >
+          <select
+            value={pokemonStatFilter}
+            onChange={e =>
+              setPokemonStatFilter(
+                e.target.value
+              )
+            }
+            style={{
+              backgroundColor: "#2c2c2c",
+              border: "2px solid #555",
+              borderRadius: "12px",
+              color: "white",
+              fontSize: "1rem",
+              padding: ".7rem 1rem"
+            }}
+          >
+            <option value="default">
+              Nat. Dex. Number
+            </option>
+
+            {Object.entries(
+              pokemonStatOptions
+            ).map(([value, option]) => (
+              <option
+                key={value}
+                value={value}
+              >
+                {option.displayName}
+              </option>
+            ))}
+          </select>
+
+          <select
+            value={pokemonStatSortDirection}
+            onChange={e =>
+              setPokemonStatSortDirection(
+                e.target.value
+              )
+            }
+            disabled={
+              pokemonStatFilter === "default"
+            }
+            style={{
+              backgroundColor: "#2c2c2c",
+              border: "2px solid #555",
+              borderRadius: "12px",
+              color: "white",
+              fontSize: "1rem",
+              opacity:
+                pokemonStatFilter ===
+                "default"
+                  ? 0.55
+                  : 1,
+              padding: ".7rem 1rem"
+            }}
+          >
+            <option value="desc">
+              Descending
+            </option>
+
+            <option value="asc">
+              Ascending
+            </option>
+          </select>
+        </div>
+
+        <div
+          style={{
             display: "grid",
             gap: "1rem",
             gridTemplateColumns:
               "repeat(auto-fit, minmax(130px, 1fr))"
           }}
         >
-          {pokemonOfType.map(
+          {sortedPokemonOfType.map(
             pokemon => (
-              <PokemonSummaryCard
+              <div
                 key={pokemon.id}
-                pokemon={pokemon}
-                compact={true}
-              />
+                style={{
+                  alignItems: "center",
+                  display: "flex",
+                  flexDirection: "column"
+                }}
+              >
+                <PokemonSummaryCard
+                  pokemon={pokemon}
+                  compact={true}
+                />
+
+                {renderPokemonStatLabel(
+                  pokemon
+                )}
+              </div>
             )
           )}
         </div>

@@ -6,7 +6,10 @@ import {
   useRef,
   useState
 } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate
+} from "react-router-dom";
 
 //---------------------------FORMAT NAME---------------------------
 
@@ -93,11 +96,13 @@ function PokemonSpriteCarousel({
   //---------------------------ROUTER + REFS---------------------------
 
   const navigate = useNavigate();
+  const location = useLocation();
   const containerRef = useRef(null);
   const itemRefs = useRef(new Map());
   const dragStateRef = useRef({
     isDragging: false,
     moved: false,
+    pressedPokemonName: null,
     startX: 0,
     scrollLeft: 0
   });
@@ -253,6 +258,12 @@ function PokemonSpriteCarousel({
     if (!container) return;
 
     suppressClickRef.current = false;
+    const pressedCard =
+      event.target instanceof Element
+        ? event.target.closest(
+            "[data-pokemon-name]"
+          )
+        : null;
 
     if (event.pointerType !== "mouse") {
       return;
@@ -261,6 +272,9 @@ function PokemonSpriteCarousel({
     dragStateRef.current = {
       isDragging: true,
       moved: false,
+      pressedPokemonName:
+        pressedCard?.dataset
+          ?.pokemonName ?? null,
       startX: event.clientX,
       scrollLeft: container.scrollLeft
     };
@@ -301,8 +315,48 @@ function PokemonSpriteCarousel({
       return;
     }
 
+    const dragState = dragStateRef.current;
     dragStateRef.current.isDragging = false;
     setIsDragging(false);
+
+    if (
+      !dragState.moved &&
+      dragState.pressedPokemonName
+    ) {
+      suppressClickRef.current = true;
+      navigateToPokemonName(
+        dragState.pressedPokemonName
+      );
+    }
+  }
+
+  function navigateToPokemonName(name) {
+    if (!name) return;
+
+    const searchParams =
+      new URLSearchParams(
+        location.search
+      );
+    const sizeReviewValue =
+      searchParams.get("size-review");
+    const isSizeReviewMode =
+      searchParams.has("size-review") &&
+      sizeReviewValue !== "0" &&
+      sizeReviewValue !== "false";
+    const sizeReviewSearch =
+      isSizeReviewMode
+        ? "?size-review=1"
+        : "";
+
+    navigate(
+      `/pokemon/${name}${sizeReviewSearch}`,
+      {
+        state: {
+          preserveScroll:
+            isSizeReviewMode
+        }
+      }
+    );
   }
 
   function handleCardClick(event, entry) {
@@ -313,7 +367,7 @@ function PokemonSpriteCarousel({
       return;
     }
 
-    navigate(`/pokemon/${entry.id}`);
+    navigateToPokemonName(entry.name);
   }
 
   //---------------------------LOADING FALLBACK---------------------------
@@ -382,6 +436,7 @@ function PokemonSpriteCarousel({
       
             <button
               key={entry.id}
+              data-pokemon-name={entry.name}
               ref={element => {
                 if (element) {
                   itemRefs.current.set(

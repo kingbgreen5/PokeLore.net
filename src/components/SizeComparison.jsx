@@ -413,7 +413,12 @@ function SizeComparison({
     if (!nextPokemon) return;
 
     navigate(
-      `/pokemon/${nextPokemon.id}?size-review=1`
+      `/pokemon/${nextPokemon.name}?size-review=1`,
+      {
+        state: {
+          preserveScroll: true
+        }
+      }
     );
   }
 

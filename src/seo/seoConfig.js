@@ -191,11 +191,21 @@ export function locationSeo(location) {
 export function pokemonSeo(pokemon) {
   const name =
     formatPokemonDisplayName(pokemon);
+  const dexNumber =
+    pokemon?.id
+      ? String(pokemon.id).padStart(3, "0")
+      : null;
+  const dexSuffix =
+    pokemon?.isDefaultForm && dexNumber
+      ? ` — Pokédex #${dexNumber}`
+      : "";
 
   return {
-    title: `${name} Pokédex Entries, Learnset & Evolution | ${SITE_NAME}`,
-    description: `View ${name}'s Pokédex entries, abilities, evolutions, base stats, types, and learnset across Pokémon games.`,
-    canonical: pageUrl(`/pokemon/${pokemon?.id}`),
+    title: `${name} Stats, Moves, Abilities & Locations | ${SITE_NAME}${dexSuffix}`,
+    description: pokemon?.isDefaultForm && pokemon?.id
+      ? `Explore ${name}'s base stats, abilities, moves, evolution details, type matchups, encounter locations, and National Pokédex number ${pokemon.id}.`
+      : `Explore ${name}'s base stats, abilities, moves, evolution details, type matchups, and encounter locations.`,
+    canonical: pageUrl(`/pokemon/${pokemon?.name}`),
     image: pokemon?.sprite ?? undefined
   };
 }

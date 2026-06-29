@@ -34,6 +34,41 @@ async function fetchPokemon(id) {
   return response.json();
 }
 
+function buildStats(statsArray) {
+  return {
+    hp: statsArray.find(
+      stat => stat.stat.name === "hp"
+    )?.base_stat,
+    attack: statsArray.find(
+      stat => stat.stat.name === "attack"
+    )?.base_stat,
+    defense: statsArray.find(
+      stat => stat.stat.name === "defense"
+    )?.base_stat,
+    specialAttack: statsArray.find(
+      stat =>
+        stat.stat.name ===
+        "special-attack"
+    )?.base_stat,
+    specialDefense: statsArray.find(
+      stat =>
+        stat.stat.name ===
+        "special-defense"
+    )?.base_stat,
+    speed: statsArray.find(
+      stat => stat.stat.name === "speed"
+    )?.base_stat
+  };
+}
+
+function getBaseStatTotal(stats) {
+  return Object.values(stats).reduce(
+    (total, value) =>
+      total + Number(value ?? 0),
+    0
+  );
+}
+
 //-----------------------------------------
 // Build Index
 //-----------------------------------------
@@ -53,6 +88,9 @@ async function buildIndex() {
 
       const data =
         await fetchPokemon(id);
+      const stats = buildStats(
+        data.stats
+      );
 
       const pokemonEntry = {
         id: data.id,
@@ -72,7 +110,12 @@ async function buildIndex() {
         types: data.types.map(
           type =>
             type.type.name
-        )
+        ),
+
+        stats,
+
+        baseStatTotal:
+          getBaseStatTotal(stats)
       };
 
       pokemonIndex.push(

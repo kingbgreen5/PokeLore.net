@@ -9,8 +9,10 @@ from "react-router-dom";
 
 function ScrollToTop() {
 
-  const { pathname } =
+  const location =
     useLocation();
+  const { pathname } =
+    location;
   const navigationType =
     useNavigationType();
 
@@ -29,12 +31,19 @@ function ScrollToTop() {
       return;
     }
 
+    if (
+      location.state?.preserveScroll
+    ) {
+      return;
+    }
+
     window.scrollTo({
       top: 0,
       behavior: "auto"
     });
 
   }, [
+    location.state,
     navigationType,
     pathname
   ]);

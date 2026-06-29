@@ -277,7 +277,7 @@ function GlobalSiteSearch() {
               id: `pokemon-${pokemon.id}`,
               label: capitalize(pokemon.name),
               category: "Pokémon",
-              route: `/pokemon/${pokemon.id}`,
+              route: `/pokemon/${pokemon.name}`,
               description: `No. ${pokemon.id}`,
               sprite: pokemon.sprite,
               keywords: [

@@ -373,7 +373,7 @@ function TopicDetailPage() {
               )}
 
               <Link
-                to={`/pokemon/${result.pokemon.id}`}
+                to={`/pokemon/${result.pokemon.name}`}
                 style={{
                   alignItems: "center",
                   color: "inherit",

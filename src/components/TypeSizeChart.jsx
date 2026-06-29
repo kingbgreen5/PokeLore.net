@@ -257,7 +257,7 @@ function TypeSizeChart({
             return (
               <Link
                 key={currentPokemon.id}
-                to={`/pokemon/${currentPokemon.id}`}
+                to={`/pokemon/${currentPokemon.name}`}
                 style={{
                   alignItems: "center",
                   color: "inherit",

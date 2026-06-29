@@ -1,4 +1,5 @@
 import {
+  Navigate,
   useLocation,
   useParams
 } from "react-router-dom";
@@ -80,10 +81,30 @@ function isHiddenAbility(
   return index === 2;
 }
 
+function normalizePokemonIdentifier(
+  identifier
+) {
+  try {
+    return decodeURIComponent(
+      String(identifier ?? "")
+    )
+      .trim()
+      .toLowerCase();
+  } catch {
+    return String(identifier ?? "")
+      .trim()
+      .toLowerCase();
+  }
+}
+
+function isNumericIdentifier(identifier) {
+  return /^\d+$/.test(identifier);
+}
+
 function PokemonDetailPage() {
   const evolutionScrollRef = useRef(null);
 const rootNodeRef = useRef(null);
-const { id } = useParams();
+const { identifier } = useParams();
 const location = useLocation();
 
 const navigate = useNavigate();
@@ -91,6 +112,8 @@ const navigate = useNavigate();
 const [pokemon, setPokemon] = useState(null);
 const [learnsetData, setLearnsetData] = useState(null);
 const [loading, setLoading] = useState(true);
+const [notFound, setNotFound] = useState(false);
+const [redirectPath, setRedirectPath] = useState(null);
 const [evolutionData, setEvolutionData] = useState(null);
 const [movesData, setMovesData] = useState({});
 //---------------------------------------------------------------------LOAD POKEMON USE EFFECT---------------------------------------------------------------------
@@ -100,6 +123,71 @@ useEffect(() => {
     try {
 
       setLoading(true);
+      setNotFound(false);
+      setRedirectPath(null);
+      setPokemon(null);
+      setLearnsetData(null);
+      setEvolutionData(null);
+
+      const normalizedIdentifier =
+        normalizePokemonIdentifier(
+          identifier
+        );
+
+      const routesResponse =
+        await fetch(
+          "/data/pokemonRoutes.json"
+        );
+
+      if (!routesResponse.ok) {
+        throw new Error(
+          "Failed to load Pokémon route lookup"
+        );
+      }
+
+      const routes =
+        await routesResponse.json();
+
+      if (
+        isNumericIdentifier(
+          normalizedIdentifier
+        )
+      ) {
+        const canonicalName =
+          routes.byId?.[
+            normalizedIdentifier
+          ];
+
+        if (!canonicalName) {
+          setNotFound(true);
+          return;
+        }
+
+        setRedirectPath(
+          `/pokemon/${canonicalName}${location.search}`
+        );
+        return;
+      }
+
+      const pokemonId =
+        routes.byName?.[
+          normalizedIdentifier
+        ];
+
+      if (!pokemonId) {
+        setNotFound(true);
+        return;
+      }
+
+      if (
+        normalizedIdentifier !==
+        identifier
+      ) {
+        setRedirectPath(
+          `/pokemon/${normalizedIdentifier}${location.search}`
+        );
+        return;
+      }
 
       //-------------------------------------
       // Pokemon
@@ -107,8 +195,13 @@ useEffect(() => {
 
       const pokemonResponse =
         await fetch(
-          `/data/pokemonData/${id}.json`
+          `/data/pokemonData/${pokemonId}.json`
         );
+
+      if (!pokemonResponse.ok) {
+        setNotFound(true);
+        return;
+      }
 
       const pokemonData =
         await pokemonResponse.json();
@@ -134,12 +227,12 @@ useEffect(() => {
       try {
         const learnsetResponse =
           await fetch(
-            `/data/pokemonLearnsets/${id}.json`
+            `/data/pokemonLearnsets/${pokemonId}.json`
           );
 
         if (!learnsetResponse.ok) {
           throw new Error(
-            `Missing learnset for ${id}`
+            `Missing learnset for ${pokemonId}`
           );
         }
 
@@ -206,6 +299,7 @@ setEvolutionData(
         "Failed to load Pokémon:",
         error
       );
+      setNotFound(true);
 
     } finally {
 
@@ -216,7 +310,10 @@ setEvolutionData(
 
   loadPokemon();
 
-}, [id]);
+}, [
+  identifier,
+  location.search
+]);
 
 
 
@@ -256,16 +353,39 @@ useEffect(() => {
 
 }, [evolutionData]);
 
+if (redirectPath) {
+  return (
+    <Navigate
+      to={redirectPath}
+      replace
+    />
+  );
+}
+
 if (loading) {
   return <p>Loading...</p>;
 }
 
+if (notFound || !pokemon) {
+  return (
+    <p>
+      Pokémon not found.
+    </p>
+  );
+}
+
 const activeFormKey =
   getRegionalFormKey(pokemon);
-const sizeReviewMode =
+const searchParams =
   new URLSearchParams(
     location.search
-  ).get("size-review") === "1";
+  );
+const sizeReviewValue =
+  searchParams.get("size-review");
+const sizeReviewMode =
+  searchParams.has("size-review") &&
+  sizeReviewValue !== "0" &&
+  sizeReviewValue !== "false";
 
 
 
