@@ -13,8 +13,16 @@
     "flying"
   ],
   "abilities": [
-    "static",
-    "motor-drive"
+    {
+      "name": "Static",
+      "hidden": false,
+      "slot": 1
+    },
+    {
+      "name": "Motor Drive",
+      "hidden": true,
+      "slot": 3
+    }
   ],
   "stats": {
     "hp": 55,

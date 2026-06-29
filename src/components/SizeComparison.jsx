@@ -225,6 +225,19 @@ function SizeComparison({
     typeof correctionData === "number"
       ? correctionData
       : Number(correctionData?.factor ?? 1);
+  const topLayerPreset =
+    typeof correctionData === "object" &&
+    correctionData?.topLayer === "oak"
+      ? "oak"
+      : "pokemon";
+
+  useEffect(() => {
+    setTopLayer(topLayerPreset);
+  }, [
+    pokemon.id,
+    topLayerPreset
+  ]);
+
   const getPokemonSpriteSizing = useMemo(() => {
     return pokemonHeightPx => {
       if (
@@ -329,6 +342,27 @@ function SizeComparison({
       ? pokemonIndex[currentDexIndex + 1]
       : null;
 
+  function buildCorrectionEntry(
+    overrides = {}
+  ) {
+    const currentCorrection =
+      typeof correctionData === "number"
+        ? {
+            factor: correctionData
+          }
+        : {
+            ...(correctionData ?? {})
+          };
+
+    return {
+      ...currentCorrection,
+      id: pokemon.id,
+      name: pokemon.name,
+      factor: manualCorrectionFactor,
+      ...overrides
+    };
+  }
+
   function updateManualCorrection(delta) {
     const nextFactor = Math.max(
       0.25,
@@ -343,13 +377,24 @@ function SizeComparison({
     );
     const nextCorrections = {
       ...localCorrectionsById,
-      [pokemon.id]: {
-        id: pokemon.id,
-        name: pokemon.name,
+      [pokemon.id]: buildCorrectionEntry({
         factor: nextFactor
-      }
+      })
     };
 
+    setLocalCorrectionsById(nextCorrections);
+    writeLocalCorrections(nextCorrections);
+  }
+
+  function updateTopLayerPreset(layer) {
+    const nextCorrections = {
+      ...localCorrectionsById,
+      [pokemon.id]: buildCorrectionEntry({
+        topLayer: layer
+      })
+    };
+
+    setTopLayer(layer);
     setLocalCorrectionsById(nextCorrections);
     writeLocalCorrections(nextCorrections);
   }
@@ -378,16 +423,30 @@ function SizeComparison({
       oakHeightInches,
       72
     );
-    const chartMaxFeet = Math.ceil(
+    const rawChartMaxFeet = Math.ceil(
       tallestHeightInches / 12
     );
-    const chartMaxInches = chartMaxFeet * 12;
-    const rulerMarks = Array.from(
-      {
-        length: chartMaxFeet + 1
-      },
-      (_, index) => chartMaxFeet - index
-    );
+    const rulerInterval =
+      getRulerInterval(
+        rawChartMaxFeet,
+        chartHeightPx
+      );
+    const chartMaxFeet =
+      Math.ceil(
+        rawChartMaxFeet /
+          rulerInterval
+      ) * rulerInterval;
+    const chartMaxInches =
+      chartMaxFeet * 12;
+    const rulerMarks = [];
+
+    for (
+      let feet = chartMaxFeet;
+      feet >= 0;
+      feet -= rulerInterval
+    ) {
+      rulerMarks.push(feet);
+    }
     const oakHeightPx =
       (oakHeightInches / chartMaxInches) *
       chartHeightPx;
@@ -418,8 +477,37 @@ function SizeComparison({
       oakHeightPx,
       pokemonSpriteSizing,
       recommendedMinWidthPx,
+      rulerInterval,
       rulerMarks
     };
+  }
+
+  function getRulerInterval(
+    chartMaxFeet,
+    chartHeightPx
+  ) {
+    const minimumPixelsPerTick = 32;
+    const intervals = [
+      1,
+      2,
+      5,
+      10,
+      20,
+      50
+    ];
+
+    return (
+      intervals.find(interval => {
+        const tickCount =
+          chartMaxFeet / interval;
+
+        return (
+          chartHeightPx / tickCount >=
+          minimumPixelsPerTick
+        );
+      }) ??
+      intervals[intervals.length - 1]
+    );
   }
 
   function Ruler({
@@ -429,22 +517,31 @@ function SizeComparison({
     return (
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
           fontSize: compact
             ? ".75rem"
             : "1rem",
           fontWeight: "700",
-          justifyContent:
-            "space-between",
+          height: "100%",
           paddingRight: compact
             ? ".45rem"
             : "0.75rem",
+          position: "relative",
           textAlign: "right"
         }}
       >
         {metrics.rulerMarks.map(feet => (
-          <span key={feet}>
+          <span
+            key={feet}
+            style={{
+              bottom: `${(feet / metrics.chartMaxFeet) * 100}%`,
+              position: "absolute",
+              right: compact
+                ? ".45rem"
+                : "0.75rem",
+              transform:
+                "translateY(50%)"
+            }}
+          >
             {feet} ft
           </span>
         ))}
@@ -712,6 +809,7 @@ function SizeComparison({
     title,
     description,
     chartHeightPx = 420,
+    topPaddingPx = 0,
     scrollable = false,
     stacked = false,
     minWidth = "720px",
@@ -745,7 +843,11 @@ function SizeComparison({
               : "60px 1fr",
           height: stacked
             ? "auto"
-            : `${chartHeightPx}px`,
+            : `${chartHeightPx + topPaddingPx}px`,
+          boxSizing: "border-box",
+          paddingTop: topPaddingPx
+            ? `${topPaddingPx}px`
+            : undefined,
           minWidth: chartMinWidth
         }}
       >
@@ -818,6 +920,7 @@ function SizeComparison({
             ref={chartScrollRef}
             style={{
               overflowX: "auto",
+              overflowY: "visible",
               paddingBottom: ".75rem"
             }}
           >
@@ -857,9 +960,10 @@ function SizeComparison({
         <ChartFrame
           title="Mobile"
           chartHeightPx={300}
+          topPaddingPx={48}
           minWidth="560px"
           scrollable={true}
-          clipOverflow={true}
+          clipOverflow={false}
           compactSpacing={true}
           topLayer={topLayer}
           showHeader={false}
@@ -972,6 +1076,30 @@ function SizeComparison({
               onClick={resetManualCorrection}
             >
               Reset
+            </button>
+
+            <button
+              type="button"
+              onClick={() =>
+                updateTopLayerPreset(
+                  "pokemon"
+                )
+              }
+              disabled={
+                topLayerPreset === "pokemon"
+              }
+            >
+              Preset Pokémon Front
+            </button>
+
+            <button
+              type="button"
+              onClick={() =>
+                updateTopLayerPreset("oak")
+              }
+              disabled={topLayerPreset === "oak"}
+            >
+              Preset Oak Front
             </button>
 
             <button

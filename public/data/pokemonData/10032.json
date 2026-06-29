@@ -13,9 +13,21 @@
     "grass"
   ],
   "abilities": [
-    "pickup",
-    "frisk",
-    "insomnia"
+    {
+      "name": "Pickup",
+      "hidden": false,
+      "slot": 1
+    },
+    {
+      "name": "Frisk",
+      "hidden": false,
+      "slot": 2
+    },
+    {
+      "name": "Insomnia",
+      "hidden": true,
+      "slot": 3
+    }
   ],
   "stats": {
     "hp": 85,

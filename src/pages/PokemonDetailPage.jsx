@@ -37,7 +37,7 @@ import {
 
 
 function capitalize(text) {
-  return text
+  return String(text)
     .split("-")
     .map(
       word =>
@@ -45,6 +45,39 @@ function capitalize(text) {
         word.slice(1)
     )
     .join(" ");
+}
+
+function getAbilityDisplayName(ability) {
+  return typeof ability === "string"
+    ? capitalize(ability)
+    : ability.name;
+}
+
+function getAbilitySlug(ability) {
+  const abilityName =
+    typeof ability === "string"
+      ? ability
+      : ability.name;
+
+  return String(abilityName)
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-");
+}
+
+function isHiddenAbility(
+  ability,
+  index
+) {
+  if (
+    typeof ability === "object" &&
+    ability !== null &&
+    "hidden" in ability
+  ) {
+    return ability.hidden === true;
+  }
+
+  return index === 2;
 }
 
 function PokemonDetailPage() {
@@ -359,14 +392,25 @@ function formatWeightEnglish(weight) {
   }}
 >
   {pokemon.abilities.map(
-    (ability, index) => (
+    (ability, index) => {
+      const abilitySlug =
+        getAbilitySlug(ability);
+      const abilityDisplayName =
+        getAbilityDisplayName(ability);
+      const hiddenAbility =
+        isHiddenAbility(
+          ability,
+          index
+        );
+
+      return (
 
       <button
-        key={ability}
+        key={abilitySlug}
 
         onClick={() =>
           navigate(
-            `/ability/${ability}`
+            `/ability/${abilitySlug}`
           )
         }
 
@@ -383,11 +427,9 @@ function formatWeightEnglish(weight) {
           
         }}
       >
-        {capitalize(
-          ability
-        )}
+        {abilityDisplayName}
 
-        {index === 2 && (
+        {hiddenAbility && (
           <span
             style={{
               display: "block",
@@ -401,7 +443,8 @@ function formatWeightEnglish(weight) {
         )}
       </button>
 
-    )
+    );
+    }
   )}
 </div>
 

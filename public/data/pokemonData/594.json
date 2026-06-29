@@ -12,9 +12,21 @@
     "water"
   ],
   "abilities": [
-    "healer",
-    "hydration",
-    "regenerator"
+    {
+      "name": "Healer",
+      "hidden": false,
+      "slot": 1
+    },
+    {
+      "name": "Hydration",
+      "hidden": false,
+      "slot": 2
+    },
+    {
+      "name": "Regenerator",
+      "hidden": true,
+      "slot": 3
+    }
   ],
   "stats": {
     "hp": 165,
