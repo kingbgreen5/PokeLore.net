@@ -4,6 +4,7 @@ import {
   useState
 } from "react";
 import {
+  Navigate,
   useNavigate,
   useParams
 } from "react-router-dom";
@@ -14,7 +15,7 @@ import Seo from "../seo/Seo";
 import { itemSeo } from "../seo/seoConfig";
 
 function capitalize(text) {
-  return text
+  return String(text ?? "")
     .split("-")
     .map(
       word =>
@@ -24,16 +25,72 @@ function capitalize(text) {
     .join(" ");
 }
 
-async function fetchOptionalJson(url) {
+async function readJsonFile(
+  url,
+  {
+    warn = false
+  } = {}
+) {
   try {
     const response = await fetch(url);
 
     if (!response.ok) return null;
 
-    return response.json();
-  } catch {
+    const text = await response.text();
+    const trimmed = text.trim();
+
+    if (
+      !trimmed.startsWith("{") &&
+      !trimmed.startsWith("[")
+    ) {
+      if (warn) {
+        console.warn(
+          `Skipping non-JSON response for ${url}`
+        );
+      }
+
+      return null;
+    }
+
+    return JSON.parse(text);
+  } catch (error) {
+    if (warn) {
+      console.warn(
+        `Failed to read JSON from ${url}:`,
+        error
+      );
+    }
+
     return null;
   }
+}
+
+function normalizeItemName(itemName) {
+  let normalized = "";
+
+  try {
+    normalized = decodeURIComponent(
+      String(itemName ?? "")
+    );
+  } catch {
+    normalized = String(itemName ?? "");
+  }
+
+  normalized = normalized
+    .trim()
+    .toLowerCase();
+
+  normalized = normalized.replace(
+    /^(tm|hm|tr)-(\d+)$/,
+    "$1$2"
+  );
+
+  normalized = normalized.replace(
+    /^(tm|hm|tr)(\d+)s$/,
+    "$1$2"
+  );
+
+  return normalized;
 }
 
 
@@ -64,6 +121,10 @@ function DetailRow({
 function ItemDetailPage() {
   const navigate = useNavigate();
   const { itemName } = useParams();
+  const normalizedItemName =
+    normalizeItemName(itemName);
+  const rawItemName =
+    String(itemName ?? "");
 
   const [item, setItem] =
     useState(null);
@@ -79,43 +140,57 @@ function ItemDetailPage() {
       try {
         setLoading(true);
 
-        const [
-          itemResponse,
-          pokemonIndexResponse,
-          migratedLocationData
-        ] = await Promise.all([
-          fetch(
-            `/data/items/${itemName}.json`
-          ),
-          fetch(
-            "/data/pokemonIndex.json"
-          ),
-          fetchOptionalJson(
-            `/data/itemLocationsMigrated/${itemName}.json`
-          )
-        ]);
+        const itemCandidates = [
+          normalizedItemName,
+          rawItemName
+        ]
+          .filter(Boolean)
+          .filter(
+            (candidate, index, all) =>
+              all.indexOf(candidate) === index
+          );
 
-        if (!itemResponse.ok) {
+        let itemData = null;
+
+        for (const candidate of itemCandidates) {
+          itemData = await readJsonFile(
+            `/data/items/${candidate}.json`,
+            {
+              warn: true
+            }
+          );
+
+          if (itemData) break;
+        }
+
+        if (!itemData) {
           setItem(null);
+          setPokemonIndex([]);
           return;
         }
 
         const [
-          data,
-          pokemonIndexData
+          pokemonIndexData,
+          migratedLocationData
         ] = await Promise.all([
-          itemResponse.json(),
-          pokemonIndexResponse.json()
+          readJsonFile(
+            "/data/pokemonIndex.json"
+          ),
+          readJsonFile(
+            `/data/itemLocationsMigrated/${normalizedItemName}.json`
+          )
         ]);
 
         setItem({
-          ...data,
+          ...itemData,
           acquisition:
             migratedLocationData?.acquisition ??
-            data.acquisition
+            itemData.acquisition
         });
         setPokemonIndex(
-          pokemonIndexData
+          Array.isArray(pokemonIndexData)
+            ? pokemonIndexData
+            : []
         );
       } catch (error) {
         console.error(
@@ -129,7 +204,10 @@ function ItemDetailPage() {
     }
 
     loadItem();
-  }, [itemName]);
+  }, [
+    normalizedItemName,
+    rawItemName
+  ]);
 
   const pokemonById = useMemo(
     () =>
@@ -180,9 +258,21 @@ function ItemDetailPage() {
   if (loading) {
     return (
       <>
-        <Seo {...itemSeo(itemName)} />
+        <Seo {...itemSeo(normalizedItemName)} />
         <p>Loading...</p>
       </>
+    );
+  }
+
+  if (
+    item &&
+    itemName !== item.name
+  ) {
+    return (
+      <Navigate
+        to={`/item/${item.name}`}
+        replace
+      />
     );
   }
 
@@ -193,7 +283,7 @@ function ItemDetailPage() {
         padding: "2rem"
       }}
     >
-        <Seo {...itemSeo(itemName)} />
+        <Seo {...itemSeo(normalizedItemName)} />
 
         <button
           onClick={() =>
