@@ -149,25 +149,7 @@ function AcquisitionMethods({
   if (
     acquisitionList.length === 0
   ) {
-    return (
-      <CollapsibleSection
-        title="Acquisition"
-        summary={expanded ? "▲" : "▼"}
-        expanded={expanded}
-        onToggle={() =>
-          setExpanded(
-            isExpanded => !isExpanded
-          )
-        }
-        style={{
-          border: "1px solid #666",
-          marginBottom: "2rem",
-          padding: "1rem"
-        }}
-      >
-          <p>No location data yet.</p>
-      </CollapsibleSection>
-    );
+    return null;
   }
 
   return (

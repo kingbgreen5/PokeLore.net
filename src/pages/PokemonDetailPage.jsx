@@ -28,6 +28,7 @@ import AdditionalImages from "../components/AdditionalImages";
 import Seo from "../seo/Seo";
 import PokemonSpriteCarousel from "../components/PokemonSpriteCarousel.jsx"
 import { pokemonSeo } from "../seo/seoConfig";
+import { readJsonFile } from "../utils/readJsonFile";
 import {
   formatPokemonDisplayName,
   getRegionalFormKey
@@ -115,6 +116,7 @@ const [loading, setLoading] = useState(true);
 const [notFound, setNotFound] = useState(false);
 const [redirectPath, setRedirectPath] = useState(null);
 const [evolutionData, setEvolutionData] = useState(null);
+const [evolutionMethodOverrides, setEvolutionMethodOverrides] = useState({});
 const [movesData, setMovesData] = useState({});
 //---------------------------------------------------------------------LOAD POKEMON USE EFFECT---------------------------------------------------------------------
 useEffect(() => {
@@ -128,6 +130,7 @@ useEffect(() => {
       setPokemon(null);
       setLearnsetData(null);
       setEvolutionData(null);
+      setEvolutionMethodOverrides({});
 
       const normalizedIdentifier =
         normalizePokemonIdentifier(
@@ -285,6 +288,18 @@ const evolutionJson =
 
 setEvolutionData(
   evolutionJson
+);
+
+const evolutionOverrides =
+  await readJsonFile(
+    "/data/evolutionMethodOverrides.json",
+    {
+      warn: true
+    }
+  );
+
+setEvolutionMethodOverrides(
+  evolutionOverrides ?? {}
 );
 
 
@@ -625,6 +640,7 @@ function formatWeightEnglish(weight) {
    isRoot={true}
   rootRef={rootNodeRef}
   activeFormKey={activeFormKey}
+  evolutionMethodOverrides={evolutionMethodOverrides}
  
 />
     )}

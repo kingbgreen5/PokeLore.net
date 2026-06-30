@@ -139,7 +139,8 @@ function getEvolutionDescription(node) {
 }
 
 function EvolutionDescription({
-  node
+  node,
+  evolutionMethodOverrides
 }) {
   const navigate = useNavigate();
 
@@ -264,6 +265,25 @@ function EvolutionDescription({
     );
   }
 
+  const additionalItems =
+    evolutionMethodOverrides?.[
+      node.pokemon?.name
+    ]?.additionalMethods?.filter(
+      method =>
+        method.type === "use-item" &&
+        method.item
+    ) ?? [];
+
+  additionalItems.forEach(
+    method => {
+      parts.push(
+        <>
+          / {itemLink(method.item)}
+        </>
+      );
+    }
+  );
+
   return (
     <>
       {parts.map((part, index) => (
@@ -308,7 +328,8 @@ function EvolutionNode({
   node,
   rootRef,
   isRoot,
-  activeFormKey
+  activeFormKey,
+  evolutionMethodOverrides
 }) {
   const displayedPokemon =
     getDisplayedPokemon(
@@ -363,6 +384,9 @@ function EvolutionNode({
   >
     <EvolutionDescription
       node={node}
+      evolutionMethodOverrides={
+        evolutionMethodOverrides
+      }
     />
      <div> ↓</div>
   </div>
@@ -405,6 +429,9 @@ function EvolutionNode({
                 node={child}
                 activeFormKey={
                   activeFormKey
+                }
+                evolutionMethodOverrides={
+                  evolutionMethodOverrides
                 }
               />
 
