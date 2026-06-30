@@ -8,8 +8,10 @@ import {
   useParams
 } from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { locationSeo } from "../seo/seoConfig";
+import { readJsonFile } from "../utils/readJsonFile";
 
 const ENCOUNTER_LIMIT = 80;
 
@@ -52,16 +54,28 @@ function filterVersions(versions, selectedVersion) {
   );
 }
 
-async function fetchOptionalJson(url) {
-  try {
-    const response = await fetch(url);
-
-    if (!response.ok) return null;
-
-    return response.json();
-  } catch {
-    return null;
+function filterMethodRates(
+  methodRates,
+  selectedVersion
+) {
+  if (selectedVersion === "all") {
+    return methodRates;
   }
+
+  return methodRates
+    .map(rate => ({
+      ...rate,
+      versionDetails:
+        rate.versionDetails?.filter(
+          detail =>
+            detail.version ===
+            selectedVersion
+        ) ?? []
+    }))
+    .filter(
+      rate =>
+        rate.versionDetails.length > 0
+    );
 }
 
 function EncounterDetails({
@@ -268,7 +282,10 @@ function LocationDetailPage() {
   const [loading, setLoading] =
     useState(true);
   const [selectedVersion, setSelectedVersion] =
-    useState("all");
+    useQueryParamState(
+      "version",
+      "all"
+    );
 
   useEffect(() => {
     async function loadLocation() {
@@ -276,24 +293,20 @@ function LocationDetailPage() {
         setLoading(true);
 
         const [
-          response,
+          data,
           itemData
         ] = await Promise.all([
-          fetch(
-            `/data/locations/${locationName}.json`
+          readJsonFile(
+            `/data/locations/${locationName}.json`,
+            {
+              required: true
+            }
           ),
-          fetchOptionalJson(
+          readJsonFile(
             `/data/locationItems/${locationName}.json`
           )
         ]);
 
-        if (!response.ok) {
-          setLocation(null);
-          setLocationItems(null);
-          return;
-        }
-
-        const data = await response.json();
         setLocation(data);
         setLocationItems(itemData);
       } catch (error) {
@@ -327,6 +340,10 @@ function LocationDetailPage() {
       )
     ].sort();
   }, [location]);
+
+  const selectedVersionIsAvailable =
+    selectedVersion === "all" ||
+    versions.includes(selectedVersion);
 
   if (loading) {
     return (
@@ -376,35 +393,56 @@ function LocationDetailPage() {
       </p>
 
       {versions.length > 0 && (
-        <select
-          value={selectedVersion}
-          onChange={event =>
-            setSelectedVersion(
-              event.target.value
-            )
-          }
+        <div
           style={{
-            backgroundColor: "#2c2c2c",
-            border: "2px solid #555",
-            borderRadius: "12px",
-            color: "white",
-            fontSize: "1rem",
             marginBottom: "2rem",
-            padding: ".75rem 1rem"
           }}
         >
-          <option value="all">
-            All Versions
-          </option>
-          {versions.map(version => (
-            <option
-              key={version}
-              value={version}
-            >
-              {capitalize(version)}
+          <label
+            htmlFor="location-version-filter"
+            style={{
+              display: "block",
+              fontWeight: 700,
+              marginBottom: ".5rem"
+            }}
+          >
+            Filter Encounters By Version
+          </label>
+
+          <select
+            id="location-version-filter"
+            value={
+              selectedVersionIsAvailable
+                ? selectedVersion
+                : "all"
+            }
+            onChange={event =>
+              setSelectedVersion(
+                event.target.value
+              )
+            }
+            style={{
+              backgroundColor: "#2c2c2c",
+              border: "2px solid #555",
+              borderRadius: "12px",
+              color: "white",
+              fontSize: "1rem",
+              padding: ".75rem 1rem"
+            }}
+          >
+            <option value="all">
+              All Versions
             </option>
-          ))}
-        </select>
+            {versions.map(version => (
+              <option
+                key={version}
+                value={version}
+              >
+                {capitalize(version)}
+              </option>
+            ))}
+          </select>
+        </div>
       )}
 
       <LocationItemsSection
@@ -415,13 +453,17 @@ function LocationDetailPage() {
         <p>No location areas found.</p>
       ) : (
         location.areas.map(area => {
+          const activeVersion =
+            selectedVersionIsAvailable
+              ? selectedVersion
+              : "all";
           const encounters =
             area.pokemonEncounters
               .map(encounter => ({
                 ...encounter,
                 versions: filterVersions(
                   encounter.versions,
-                  selectedVersion
+                  activeVersion
                 )
               }))
               .filter(
@@ -431,9 +473,14 @@ function LocationDetailPage() {
           const visibleEncounters =
             encounters.slice(
               0,
-              selectedVersion === "all"
+              activeVersion === "all"
                 ? ENCOUNTER_LIMIT
                 : encounters.length
+            );
+          const methodRates =
+            filterMethodRates(
+              area.encounterMethodRates,
+              activeVersion
             );
 
           return (
@@ -447,7 +494,7 @@ function LocationDetailPage() {
             >
               <h2>{area.displayName}</h2>
 
-              {area.encounterMethodRates.length >
+              {methodRates.length >
                 0 && (
                 <div
                   style={{
@@ -458,7 +505,7 @@ function LocationDetailPage() {
                     marginBottom: "1rem"
                   }}
                 >
-                  {area.encounterMethodRates.map(
+                  {methodRates.map(
                     rate => (
                       <span
                         key={rate.method}
@@ -475,6 +522,12 @@ function LocationDetailPage() {
                         }}
                       >
                         {capitalize(rate.method)}
+                        {activeVersion !==
+                          "all" &&
+                          rate.versionDetails?.[0]
+                            ?.rate !==
+                            undefined &&
+                          ` · ${rate.versionDetails[0].rate}%`}
                       </span>
                     )
                   )}
@@ -493,7 +546,8 @@ function LocationDetailPage() {
                   >
                     {visibleEncounters.map(
                       encounter => (
-                        <div classname="SummaryCardAndEncountersDiv"
+                        <div
+                          className="SummaryCardAndEncountersDiv"
                           key={
                             encounter.pokemon.id
                           }

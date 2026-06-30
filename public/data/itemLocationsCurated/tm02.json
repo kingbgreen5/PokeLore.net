@@ -1,0 +1,63 @@
+{
+  "item": "tm02",
+  "displayName": "TM02",
+  "source": "gen1_tm_hm_location_slug_matches_updated.json",
+  "sourceTitle": "Nintendo Player's Guide – Technical & Hidden Machine List",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 1,
+      "games": [
+        "Pokémon Red",
+        "Pokémon Blue",
+        "Pokémon Yellow"
+      ],
+      "location": {
+        "name": "celadon-city",
+        "displayName": "Celadon City"
+      },
+      "area": "Game Corner Basement 4 - northwest room",
+      "method": "Pick up in the northwest room of Game Corner Basement 4.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "razor-wind",
+        "displayName": "Razor Wind"
+      },
+      "originalLocationText": "Game Corner Basement 4 - northwest room",
+      "locationMatchStatus": "matched",
+      "matchConfidence": "high"
+    },
+    {
+      "generation": 1,
+      "games": [
+        "Pokémon Red",
+        "Pokémon Blue",
+        "Pokémon Yellow"
+      ],
+      "location": {
+        "name": "celadon-city",
+        "displayName": "Celadon City"
+      },
+      "area": "Celadon Department Store",
+      "method": "Purchase at Celadon Department Store.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "razor-wind",
+        "displayName": "Razor Wind"
+      },
+      "originalLocationText": "Celadon Department Store",
+      "locationMatchStatus": "matched",
+      "matchConfidence": "high",
+      "cost": {
+        "amount": 2000,
+        "currency": "money"
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "item": "tm01",
+  "displayName": "TM01",
+  "source": "gen1_tm_hm_location_slug_matches_updated.json",
+  "sourceTitle": "Nintendo Player's Guide – Technical & Hidden Machine List",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 1,
+      "games": [
+        "Pokémon Red",
+        "Pokémon Blue",
+        "Pokémon Yellow"
+      ],
+      "location": {
+        "name": "mt-moon",
+        "displayName": "Mt. Moon"
+      },
+      "area": "Mt. Moon - B2F northeast corner",
+      "method": "Pick up from the northeast corner of the second basement floor.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "mega-punch",
+        "displayName": "Mega Punch"
+      },
+      "originalLocationText": "Mt. Moon - B2F northeast corner",
+      "locationMatchStatus": "matched",
+      "matchConfidence": "high"
+    },
+    {
+      "generation": 1,
+      "games": [
+        "Pokémon Red",
+        "Pokémon Blue",
+        "Pokémon Yellow"
+      ],
+      "location": {
+        "name": "celadon-city",
+        "displayName": "Celadon City"
+      },
+      "area": "Celadon Department Store",
+      "method": "Purchase at Celadon Department Store.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "mega-punch",
+        "displayName": "Mega Punch"
+      },
+      "originalLocationText": "Celadon Department Store",
+      "locationMatchStatus": "matched",
+      "matchConfidence": "high",
+      "cost": {
+        "amount": 3000,
+        "currency": "money"
+      }
+    }
+  ]
+}

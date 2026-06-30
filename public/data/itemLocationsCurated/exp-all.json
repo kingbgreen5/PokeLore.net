@@ -1,0 +1,31 @@
+{
+  "item": "exp-all",
+  "displayName": "Exp. All",
+  "source": "itemLocationsCurated.json",
+  "sourceTitle": "PokéLore curated Gen 1 item acquisition notes",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 1,
+      "games": [
+        "Pokémon Red",
+        "Pokémon Blue",
+        "Pokémon Yellow"
+      ],
+      "versionExclusive": false,
+      "locationMatchStatus": "matched",
+      "matchConfidence": "high",
+      "location": {
+        "name": "kanto-route-15",
+        "displayName": "Route 15"
+      },
+      "area": "Route 15 - west gate house",
+      "method": "Receive from the NPC in the house west of Route 15 after catching at least 50 unique Pokémon.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "requirements": [
+        "Have caught at least 50 unique Pokémon"
+      ]
+    }
+  ]
+}

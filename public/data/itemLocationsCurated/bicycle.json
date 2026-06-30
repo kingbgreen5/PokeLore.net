@@ -1,0 +1,37 @@
+{
+  "item": "bicycle",
+  "displayName": "Bicycle",
+  "source": "itemLocationsCurated.json",
+  "sourceTitle": "PokéLore curated Gen 1 item acquisition notes",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 1,
+      "games": [
+        "Pokémon Red",
+        "Pokémon Blue",
+        "Pokémon Yellow"
+      ],
+      "versionExclusive": false,
+      "locationMatchStatus": "matched",
+      "matchConfidence": "high",
+      "location": {
+        "name": "cerulean-city",
+        "displayName": "Cerulean City"
+      },
+      "area": "Bike Shop",
+      "method": "Exchange the Bike Voucher for a Bicycle at the Cerulean City Bike Shop.",
+      "acquisitionType": "item-exchange",
+      "repeatable": false,
+      "requirements": [
+        "Bike Voucher"
+      ],
+      "relatedItems": [
+        {
+          "name": "bike-voucher",
+          "displayName": "Bike Voucher"
+        }
+      ]
+    }
+  ]
+}

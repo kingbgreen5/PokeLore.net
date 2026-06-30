@@ -1,0 +1,63 @@
+{
+  "item": "tm09",
+  "displayName": "TM09",
+  "source": "gen1_tm_hm_location_slug_matches_updated.json",
+  "sourceTitle": "Nintendo Player's Guide – Technical & Hidden Machine List",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 1,
+      "games": [
+        "Pokémon Red",
+        "Pokémon Blue",
+        "Pokémon Yellow"
+      ],
+      "location": {
+        "name": "saffron-city",
+        "displayName": "Saffron City"
+      },
+      "area": "Silph Co. - 5F southwest corner",
+      "method": "Pick up in the southwest corner on the fifth floor of Silph Co.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "take-down",
+        "displayName": "Take Down"
+      },
+      "originalLocationText": "Silph Co. - 5F southwest corner",
+      "locationMatchStatus": "matched",
+      "matchConfidence": "high"
+    },
+    {
+      "generation": 1,
+      "games": [
+        "Pokémon Red",
+        "Pokémon Blue",
+        "Pokémon Yellow"
+      ],
+      "location": {
+        "name": "celadon-city",
+        "displayName": "Celadon City"
+      },
+      "area": "Celadon Department Store",
+      "method": "Purchase at Celadon Department Store.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "take-down",
+        "displayName": "Take Down"
+      },
+      "originalLocationText": "Celadon Department Store",
+      "locationMatchStatus": "matched",
+      "matchConfidence": "high",
+      "cost": {
+        "amount": 3000,
+        "currency": "money"
+      }
+    }
+  ]
+}

@@ -6,7 +6,7 @@ import {
 import MoveSummaryCard from "../MoveSummaryCard";
 
 function capitalize(text) {
-  return text
+  return String(text ?? "")
     .split("-")
     .map(
       word =>
@@ -175,72 +175,27 @@ function TmMoveDetails({
       [item]
     );
 
-  const groupedByGeneration =
-    useMemo(() => {
-      const groups = new Map();
-
-      for (const machine of machineEntries) {
-        const generation =
-          generationForVersionGroup(
-            machine.versionGroup
-          );
-
-        if (!groups.has(generation)) {
-          groups.set(
-            generation,
-            []
-          );
-        }
-
-        groups
-          .get(generation)
-          .push(machine);
-      }
-
-      return Array.from(
-        groups,
-        ([generation, entries]) => {
-          const moveGroups =
-            new Map();
-
-          for (const entry of entries) {
-            const moveName =
-              entry.move?.name;
-
-            if (!moveName) {
-              continue;
-            }
-
-            if (!moveGroups.has(moveName)) {
-              moveGroups.set(
-                moveName,
-                []
-              );
-            }
-
-            moveGroups
-              .get(moveName)
-              .push(entry);
-          }
-
-          return {
-            generation,
-            moveGroups:
-              Array.from(
-                moveGroups,
-                ([
-                  moveName,
-                  moveEntries
-                ]) => ({
-                  moveName,
-                  entries:
-                    moveEntries
-                })
-              )
-          };
-        }
-      );
-    }, [machineEntries]);
+  const machineRows =
+    useMemo(
+      () =>
+        machineEntries
+          .map((entry, index) => ({
+            generation:
+              generationForVersionGroup(
+                entry.versionGroup
+              ),
+            key:
+              entry.machineId ??
+              entry.machineUrl ??
+              `${entry.versionGroup}-${entry.move?.name}-${index}`,
+            moveName:
+              entry.move?.name,
+            versionGroup:
+              entry.versionGroup
+          }))
+          .filter(row => row.moveName),
+      [machineEntries]
+    );
 
   if (!machineEntries.length) {
     return null;
@@ -259,275 +214,91 @@ function TmMoveDetails({
 
 
 
-{/* 
-      <p
-        style={{
-          lineHeight: 1.6,
-          marginTop: 0,
-          opacity: 0.85
-        }}
-      >
-        {item.displayName} teaches{" "}
-        {taughtMoveNames.length > 0
-          ? taughtMoveNames
-              .map(capitalize)
-              .join(", ")
-          : "different moves"}{" "}
-        depending on the game.
-      </p>
- */}
 
 
-{/* 
       <div
         style={{
-          display: "grid",
+          alignItems: "start",
+          display: "flex",
+          flexWrap: "wrap",
           gap: "1rem",
-          marginBottom: "1.25rem"
+          justifyContent: "center",
+                   border:'1px',
+                borderColor:"AccentColor"
         }}
       >
-        {taughtMoveNames.map(moveName => {
+        {machineRows.map(row => {
           const move =
-            movesData[moveName];
+            movesData[row.moveName];
 
           return (
             <div
-              key={moveName}
+              key={row.key}
               style={{
-                backgroundColor:
-                  "#2c2c2c",
-                border:
-                  "1px solid #555",
-                borderRadius: "8px",
-                padding: "1rem"
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column",
+                // gap: ".5rem",
+                width: "150px",
+               border: "2px solid #555",
+                // backgroundColor:"AccentColor"
+                padding:".5rem",
+                    borderRadius: "18px",
+       
               }}
             >
-              <div
+              <h3
                 style={{
-                  alignItems:
-                    "center",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: ".6rem",
-                  justifyContent:
-                    "space-between"
+                  fontSize: ".95rem",
+                  margin: 0,
+                  textAlign: "center"
                 }}
               >
-                <Link
-                  to={`/move/${moveName}`}
-                  style={{
-                    color: "#ff8c42",
-                    fontSize: "1.15rem",
-                    fontWeight: "bold",
-                    textDecoration:
-                      "none"
-                  }}
-                >
-                  {capitalize(moveName)}
-                </Link>
+                {row.generation}
+              </h3>
 
-                {move?.type && (
-                  <Link
-                    to={`/type/${move.type}`}
-                    style={{
-                      backgroundColor:
-                        typeColors[
-                          move.type
-                        ],
-                      borderRadius:
-                        "999px",
-                      color: "white",
-                      fontSize: ".75rem",
-                      fontWeight:
-                        "bold",
-                      padding:
-                        ".25rem .65rem",
-                      textDecoration:
-                        "none",
-                      textTransform:
-                        "uppercase"
-                    }}
-                  >
-                    {move.type}
-                  </Link>
+              <div
+                style={{
+                  fontSize: ".78rem",
+                  minHeight: "2.1rem",
+                  opacity: 0.82,
+                  textAlign: "center"
+                }}
+              >
+                {capitalize(
+                  row.versionGroup
                 )}
               </div>
 
-
-
-              {move && (
+              {move ? (
+                <MoveSummaryCard
+                  name={row.moveName}
+                  move={move}
+                />
+              ) : (
                 <div
                   style={{
-                    display: "grid",
-                    gap: ".75rem",
-                    gridTemplateColumns:
-                      "repeat(auto-fit, minmax(90px, 1fr))",
-                    marginTop: "1rem",
-                    textAlign: "center"
+                    alignItems: "center",
+                    backgroundColor:
+                      "#2c2c2c",
+                    border: "2px solid #555",
+                    borderRadius: "18px",
+                    boxSizing: "border-box",
+                    display: "flex",
+                    minHeight: "150px",
+                    padding: ".35rem",
+                    textAlign: "center",
+                    width: "150px"
                   }}
                 >
-                  <MoveStat
-                    label="Category"
-                    value={
-                      move.category
-                        ? capitalize(
-                            move.category
-                          )
-                        : "-"
-                    }
-                  />
-                  <MoveStat
-                    label="Power"
-                    value={move.power}
-                  />
-                  <MoveStat
-                    label="Accuracy"
-                    value={move.accuracy}
-                  />
-                  <MoveStat
-                    label="PP"
-                    value={move.pp}
-                  />
+                  {capitalize(
+                    row.moveName
+                  )}
                 </div>
               )}
             </div>
           );
         })}
-      </div>
- */}
-
-
-
-      <div
-        style={{
-          display: "grid",
-          gap: "1rem"
-      
-        }}
-      >
-        {groupedByGeneration.map(
-          ({ generation, moveGroups }) => (
-            <div key={generation}>
-              <h3
-                style={{
-                  marginBottom: ".5rem"
-                }}
-              >
-                {generation}
-              </h3>
-
-              <div
-                style={{
-                  alignItems:
-                    "start",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: ".5rem",
-                  justifyContent:
-                    "center"
-                }}
-              >
-                {moveGroups.map(
-                  ({
-                    moveName,
-                    entries
-                  }) => {
-                    const move =
-                      movesData[moveName];
-
-                    return (
-                    <div
-                      key={`${generation}-${moveName}`}
-                      style={{
-                        alignItems:
-                          "center",
-                        display:
-                          "flex",
-                        flexDirection:
-                          "column",
-                        gap: ".5rem",
-                        width: "150px"
-                      }}
-                    >
-                      {move ? (
-                        <MoveSummaryCard
-                          name={moveName}
-                          move={move}
-                        />
-                      ) : (
-                        <div
-                          style={{
-                            alignItems:
-                              "center",
-                            backgroundColor:
-                              "#2c2c2c",
-                            border:
-                              "2px solid #555",
-                            borderRadius:
-                              "18px",
-                            boxSizing:
-                              "border-box",
-                            display:
-                              "flex",
-                            minHeight:
-                              "150px",
-                            padding:
-                              ".35rem",
-                            textAlign:
-                              "center",
-                            width:
-                              "150px"
-                          }}
-                        >
-                          {capitalize(
-                            moveName
-                          )}
-                        </div>
-                      )}
-
-                      <div
-                        style={{
-                          display:
-                            "flex",
-                          flexWrap:
-                            "wrap",
-                          gap: ".25rem",
-                          justifyContent:
-                            "center"
-                        }}
-                      >
-                        {entries.map(
-                          entry => (
-                            <span
-                              key={`${entry.versionGroup}-${entry.machineId ?? entry.machineUrl}`}
-                              style={{
-                                backgroundColor:
-                                  "#252525",
-                                border:
-                                  "1px solid #444",
-                                borderRadius:
-                                  "999px",
-                                fontSize:
-                                  ".68rem",
-                                padding:
-                                  ".2rem .45rem"
-                              }}
-                            >
-                              {capitalize(
-                                entry.versionGroup
-                              )}
-                            </span>
-                          )
-                        )}
-                      </div>
-                    </div>
-                    );
-                  }
-                )}
-              </div>
-            </div>
-          )
-        )}
       </div>
     </section>
   );

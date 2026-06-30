@@ -1,0 +1,44 @@
+{
+  "item": "hm05",
+  "displayName": "HM05",
+  "source": "gen1_tm_hm_location_slug_matches_updated.json",
+  "sourceTitle": "Nintendo Player's Guide – Technical & Hidden Machine List",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 1,
+      "games": [
+        "Pokémon Red",
+        "Pokémon Blue",
+        "Pokémon Yellow"
+      ],
+      "location": {
+        "name": "kanto-route-2",
+        "displayName": "Route 2"
+      },
+      "area": "Route 2 - NPC house accessed from Diglett's Cave",
+      "method": "Pass through Diglett's Cave, cut a tree, and talk to the NPC in the house.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Pass through Diglett's Cave",
+        "Cut",
+        "Have caught at least 10 Pokémon"
+      ],
+      "move": {
+        "name": "flash",
+        "displayName": "Flash"
+      },
+      "originalLocationText": "Route 2 - NPC house accessed from Diglett's Cave",
+      "locationMatchStatus": "matched",
+      "matchConfidence": "high",
+      "relatedLocations": [
+        {
+          "name": "digletts-cave",
+          "displayName": "Diglett's Cave"
+        }
+      ]
+    }
+  ]
+}

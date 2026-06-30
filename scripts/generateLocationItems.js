@@ -9,7 +9,7 @@ const ROOT = path.resolve(__dirname, "..");
 const DATA_DIR = path.join(ROOT, "public", "data");
 const MIGRATED_DIR = path.join(
   DATA_DIR,
-  "itemLocationsMigrated"
+  "itemLocationsCurated"
 );
 const OUTPUT_DIR = path.join(DATA_DIR, "locationItems");
 

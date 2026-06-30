@@ -8,6 +8,7 @@ import usePersistedScroll from "../hooks/usePersistedScroll";
 import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { itemsSeo } from "../seo/seoConfig";
+import { isItemHiddenFromUi } from "../utils/itemVisibility";
 
 function capitalize(text) {
   return text
@@ -75,6 +76,9 @@ function ItemsPage() {
     "all",
     ...new Set(
       items
+        .filter(
+          item => !isItemHiddenFromUi(item)
+        )
         .map(item => item.pocket)
         .filter(Boolean)
     )
@@ -87,6 +91,10 @@ function ItemsPage() {
         .toLowerCase();
 
     return items.filter(item => {
+      if (isItemHiddenFromUi(item)) {
+        return false;
+      }
+
       const matchesSearch =
         !term ||
         item.name.includes(term) ||

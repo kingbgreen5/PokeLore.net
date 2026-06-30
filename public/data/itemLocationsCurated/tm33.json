@@ -1,0 +1,63 @@
+{
+  "item": "tm33",
+  "displayName": "TM33",
+  "source": "gen1_tm_hm_location_slug_matches_updated.json",
+  "sourceTitle": "Nintendo Player's Guide – Technical & Hidden Machine List",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 1,
+      "games": [
+        "Pokémon Red",
+        "Pokémon Blue",
+        "Pokémon Yellow"
+      ],
+      "location": {
+        "name": "celadon-city",
+        "displayName": "Celadon City"
+      },
+      "area": "Celadon Department Store",
+      "method": "Purchase at Celadon Department Store.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "reflect",
+        "displayName": "Reflect"
+      },
+      "originalLocationText": "Celadon Department Store",
+      "locationMatchStatus": "matched",
+      "matchConfidence": "high",
+      "cost": {
+        "amount": 1000,
+        "currency": "money"
+      }
+    },
+    {
+      "generation": 1,
+      "games": [
+        "Pokémon Red",
+        "Pokémon Blue",
+        "Pokémon Yellow"
+      ],
+      "location": {
+        "name": "kanto-power-plant",
+        "displayName": "Kanto Power Plant"
+      },
+      "area": "Power Plant - south room",
+      "method": "Pick up in the south room of the Power Plant.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "reflect",
+        "displayName": "Reflect"
+      },
+      "originalLocationText": "Power Plant - south room",
+      "locationMatchStatus": "matched",
+      "matchConfidence": "high"
+    }
+  ]
+}

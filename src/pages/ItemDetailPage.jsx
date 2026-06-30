@@ -13,6 +13,8 @@ import TmMoveDetails from "../components/items/TmMoveDetails";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import Seo from "../seo/Seo";
 import { itemSeo } from "../seo/seoConfig";
+import { readJsonFile } from "../utils/readJsonFile";
+import { isItemHiddenFromUi } from "../utils/itemVisibility";
 
 function capitalize(text) {
   return String(text ?? "")
@@ -25,48 +27,8 @@ function capitalize(text) {
     .join(" ");
 }
 
-async function readJsonFile(
-  url,
-  {
-    warn = false
-  } = {}
-) {
-  try {
-    const response = await fetch(url);
-
-    if (!response.ok) return null;
-
-    const text = await response.text();
-    const trimmed = text.trim();
-
-    if (
-      !trimmed.startsWith("{") &&
-      !trimmed.startsWith("[")
-    ) {
-      if (warn) {
-        console.warn(
-          `Skipping non-JSON response for ${url}`
-        );
-      }
-
-      return null;
-    }
-
-    return JSON.parse(text);
-  } catch (error) {
-    if (warn) {
-      console.warn(
-        `Failed to read JSON from ${url}:`,
-        error
-      );
-    }
-
-    return null;
-  }
-}
-
 function normalizeItemName(itemName) {
-  let normalized = "";
+  let normalized;
 
   try {
     normalized = decodeURIComponent(
@@ -163,7 +125,10 @@ function ItemDetailPage() {
           if (itemData) break;
         }
 
-        if (!itemData) {
+        if (
+          !itemData ||
+          isItemHiddenFromUi(itemData)
+        ) {
           setItem(null);
           setPokemonIndex([]);
           return;
@@ -177,7 +142,7 @@ function ItemDetailPage() {
             "/data/pokemonIndex.json"
           ),
           readJsonFile(
-            `/data/itemLocationsMigrated/${normalizedItemName}.json`
+            `/data/itemLocationsCurated/${normalizedItemName}.json`
           )
         ]);
 

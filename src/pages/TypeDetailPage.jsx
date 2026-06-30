@@ -4,6 +4,7 @@ import {
   useState
 } from "react";
 import {
+  Link,
   useNavigate,
   useParams
 } from "react-router-dom";
@@ -240,6 +241,77 @@ function MatchupPanel({
   );
 }
 
+function TypeAbilityCard({
+  ability
+}) {
+  return (
+    <Link
+      to={`/ability/${ability.name}`}
+      style={{
+        backgroundColor: "#2c2c2c",
+        border: "1px solid #666",
+        borderRadius: "12px",
+        color: "inherit",
+        display: "grid",
+        gap: ".5rem",
+        padding: "1rem",
+        textAlign: "left",
+        textDecoration: "none"
+      }}
+    >
+      <div
+        style={{
+          alignItems: "center",
+          display: "flex",
+          gap: ".5rem",
+          justifyContent:
+            "space-between"
+        }}
+      >
+        <strong>
+          {ability.displayName}
+        </strong>
+
+        <span
+          style={{
+            border: "1px solid #777",
+            borderRadius: "999px",
+            fontSize: ".78rem",
+            padding: ".2rem .55rem"
+          }}
+        >
+          {ability.pokemonCount} Pokémon
+        </span>
+      </div>
+
+      {ability.shortEffect && (
+        <p
+          style={{
+            fontSize: ".9rem",
+            margin: 0,
+            opacity: 0.85
+          }}
+        >
+          {ability.shortEffect}
+        </p>
+      )}
+
+      {ability.hiddenPokemonCount >
+        0 && (
+        <span
+          style={{
+            color: "#f7c96b",
+            fontSize: ".82rem"
+          }}
+        >
+          Hidden ability for{" "}
+          {ability.hiddenPokemonCount}
+        </span>
+      )}
+    </Link>
+  );
+}
+
 function TypeDetailPage() {
   const { typeName } = useParams();
 
@@ -251,6 +323,10 @@ function TypeDetailPage() {
 
   const [moves, setMoves] =
     useState({});
+  const [
+    typeAbilities,
+    setTypeAbilities
+  ] = useState({});
 
   const [loading, setLoading] =
     useState(true);
@@ -261,6 +337,10 @@ function TypeDetailPage() {
   const [
     attacksSectionExpanded,
     setAttacksSectionExpanded
+  ] = useState(false);
+  const [
+    abilitiesSectionExpanded,
+    setAbilitiesSectionExpanded
   ] = useState(false);
   const [
     powerSortMode,
@@ -280,24 +360,33 @@ function TypeDetailPage() {
       try {
         const [
           pokemonResponse,
-          movesResponse
+          movesResponse,
+          abilitiesResponse
         ] = await Promise.all([
           fetch(
             "/data/pokemonIndex.json"
           ),
-          fetch("/data/moves.json")
+          fetch("/data/moves.json"),
+          fetch(
+            "/data/typeAbilities.json"
+          )
         ]);
 
         const [
           pokemonData,
-          movesData
+          movesData,
+          abilitiesData
         ] = await Promise.all([
           pokemonResponse.json(),
-          movesResponse.json()
+          movesResponse.json(),
+          abilitiesResponse.json()
         ]);
 
         setPokemonIndex(pokemonData);
         setMoves(movesData);
+        setTypeAbilities(
+          abilitiesData
+        );
       } catch (error) {
         console.error(
           "Failed to load type data:",
@@ -407,6 +496,11 @@ function TypeDetailPage() {
           move.type === type
       ),
     [moves, type]
+  );
+
+  const abilitiesOfType = useMemo(
+    () => typeAbilities[type] ?? [],
+    [typeAbilities, type]
   );
 
   const sortedMovesOfType = useMemo(
@@ -647,6 +741,41 @@ function TypeDetailPage() {
                   pokemon
                 )}
               </div>
+            )
+          )}
+        </div>
+      </CollapsibleSection>
+
+      <CollapsibleSection
+        title={`Abilities of ${capitalize(type)} Pokémon`}
+        summary={`${abilitiesOfType.length} abilities`}
+        expanded={abilitiesSectionExpanded}
+        onToggle={() =>
+          setAbilitiesSectionExpanded(
+            !abilitiesSectionExpanded
+          )
+        }
+        style={{
+          marginBottom: "3rem"
+        }}
+        contentStyle={{
+          marginTop: "1rem"
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gap: "1rem",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(220px, 1fr))"
+          }}
+        >
+          {abilitiesOfType.map(
+            ability => (
+              <TypeAbilityCard
+                key={ability.name}
+                ability={ability}
+              />
             )
           )}
         </div>

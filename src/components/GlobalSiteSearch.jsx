@@ -6,6 +6,7 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import typeColors from "../constants/typeColors";
+import { isItemHiddenFromUi } from "../utils/itemVisibility";
 
 const RESULT_LIMIT = 12;
 
@@ -319,24 +320,28 @@ function GlobalSiteSearch() {
                 ]
               })
           ),
-          ...items.map(item =>
-            buildSearchRecord({
-              id: `item-${item.name}`,
-              label:
-                item.displayName ??
-                capitalize(item.name),
-              category: "Item",
-              route: `/item/${item.name}`,
-              description:
-                item.categoryDisplayName,
-              sprite: item.sprite,
-              keywords: [
-                item.name,
-                item.pocket,
-                item.shortEffect
-              ]
-            })
-          ),
+          ...items
+            .filter(
+              item => !isItemHiddenFromUi(item)
+            )
+            .map(item =>
+              buildSearchRecord({
+                id: `item-${item.name}`,
+                label:
+                  item.displayName ??
+                  capitalize(item.name),
+                category: "Item",
+                route: `/item/${item.name}`,
+                description:
+                  item.categoryDisplayName,
+                sprite: item.sprite,
+                keywords: [
+                  item.name,
+                  item.pocket,
+                  item.shortEffect
+                ]
+              })
+            ),
           ...locations.map(location =>
             buildSearchRecord({
               id: `location-${location.name}`,

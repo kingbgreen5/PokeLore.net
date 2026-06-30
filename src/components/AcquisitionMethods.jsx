@@ -54,6 +54,48 @@ function ItemLocationLink({
   return null;
 }
 
+function ItemLink({
+  item
+}) {
+  if (!item) return null;
+
+  if (typeof item === "string") {
+    return <span>{item}</span>;
+  }
+
+  if (
+    item.name &&
+    item.displayName
+  ) {
+    return (
+      <Link to={`/item/${item.name}`}>
+        {item.displayName}
+      </Link>
+    );
+  }
+
+  return null;
+}
+
+function formatCost(cost) {
+  if (!cost) return null;
+
+  if (typeof cost === "string") {
+    return cost;
+  }
+
+  if (
+    cost.amount === null ||
+    cost.amount === undefined
+  ) {
+    return null;
+  }
+
+  return `${cost.amount.toLocaleString()} ${
+    cost.currency ?? ""
+  }`.trim();
+}
+
 function AcquisitionMethods({
   acquisition,
   storageKey = "acquisition-expanded"
@@ -283,6 +325,17 @@ function AcquisitionMethods({
                     </p>
                   </div>
 
+                  {formatCost(method.cost) && (
+                    <div>
+                      <strong>Cost</strong>
+                      <p>
+                        {formatCost(
+                          method.cost
+                        )}
+                      </p>
+                    </div>
+                  )}
+
                   {method.requirements
                     ?.length > 0 && (
                     <div>
@@ -305,6 +358,76 @@ function AcquisitionMethods({
                               }
                             >
                               {requirement}
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  )}
+
+                  {method.relatedItems
+                    ?.length > 0 && (
+                    <div>
+                      <strong>
+                        Related Items
+                      </strong>
+                      <ul
+                        style={{
+                          margin:
+                            ".35rem 0 0",
+                          paddingLeft:
+                            "1.25rem"
+                        }}
+                      >
+                        {method.relatedItems.map(
+                          item => (
+                            <li
+                              key={
+                                typeof item ===
+                                "string"
+                                  ? item
+                                  : item.name
+                              }
+                            >
+                              <ItemLink
+                                item={item}
+                              />
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  )}
+
+                  {method.relatedLocations
+                    ?.length > 0 && (
+                    <div>
+                      <strong>
+                        Related Locations
+                      </strong>
+                      <ul
+                        style={{
+                          margin:
+                            ".35rem 0 0",
+                          paddingLeft:
+                            "1.25rem"
+                        }}
+                      >
+                        {method.relatedLocations.map(
+                          location => (
+                            <li
+                              key={
+                                typeof location ===
+                                "string"
+                                  ? location
+                                  : location.name
+                              }
+                            >
+                              <ItemLocationLink
+                                location={
+                                  location
+                                }
+                              />
                             </li>
                           )
                         )}
