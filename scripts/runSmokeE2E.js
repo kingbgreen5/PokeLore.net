@@ -214,6 +214,36 @@ async function run() {
       );
     });
 
+    async function verifyGlobalSearch() {
+      const searchInput =
+        page.locator(
+          'input[type="search"]'
+        );
+
+      await searchInput.fill(
+        "fire stone"
+      );
+
+      const resultText =
+        await page
+          .locator(
+            'input[type="search"] + div'
+          )
+          .innerText({
+            timeout: 5000
+          });
+
+      if (
+        !/fire stone/i.test(resultText)
+      ) {
+        throw new Error(
+          `Global search did not show Fire Stone. Got ${resultText.slice(0, 160)}`
+        );
+      }
+
+      await searchInput.fill("");
+    }
+
     for (const route of routes) {
       const url =
         new URL(
@@ -248,6 +278,13 @@ async function run() {
         throw new Error(
           `${route.path}: rendered a not-found state.`
         );
+      }
+
+      if (
+        route.path ===
+        "/pokemon/pikachu"
+      ) {
+        await verifyGlobalSearch();
       }
     }
 

@@ -7,11 +7,13 @@ import {
   Link,
   useParams
 } from "react-router-dom";
+import CollapsibleSection from "../components/CollapsibleSection";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { locationSeo } from "../seo/seoConfig";
 import { readJsonFile } from "../utils/readJsonFile";
+import { sortVersions } from "../constants/versionOrder";
 
 const ENCOUNTER_LIMIT = 80;
 
@@ -145,7 +147,9 @@ function EncounterDetails({
 }
 
 function LocationItemsSection({
-  locationItems
+  expanded,
+  locationItems,
+  onToggle
 }) {
   if (
     !locationItems?.items ||
@@ -155,13 +159,20 @@ function LocationItemsSection({
   }
 
   return (
-    <section
+    <CollapsibleSection
+      title="Items Obtainable Here"
+      summary={`${locationItems.items.length} items`}
+      expanded={expanded}
+      onToggle={onToggle}
       style={{
-        marginBottom: "2rem"
+        boxSizing: "border-box",
+        marginBottom: "2rem",
+        width: "100%"
+      }}
+      contentStyle={{
+        marginTop: "1rem"
       }}
     >
-      <h2>Items Obtainable Here</h2>
-
       <div
         style={{
           display: "grid",
@@ -268,7 +279,7 @@ function LocationItemsSection({
           </article>
         ))}
       </div>
-    </section>
+    </CollapsibleSection>
   );
 }
 
@@ -281,6 +292,14 @@ function LocationDetailPage() {
     useState(null);
   const [loading, setLoading] =
     useState(true);
+  const [
+    encountersExpanded,
+    setEncountersExpanded
+  ] = useState(true);
+  const [
+    itemsExpanded,
+    setItemsExpanded
+  ] = useState(true);
   const [selectedVersion, setSelectedVersion] =
     useQueryParamState(
       "version",
@@ -327,8 +346,8 @@ function LocationDetailPage() {
   const versions = useMemo(() => {
     if (!location) return [];
 
-    return [
-      ...new Set(
+    return sortVersions(
+      new Set(
         location.areas.flatMap(area =>
           area.pokemonEncounters.flatMap(
             encounter =>
@@ -338,12 +357,29 @@ function LocationDetailPage() {
           )
         )
       )
-    ].sort();
+    );
   }, [location]);
 
   const selectedVersionIsAvailable =
     selectedVersion === "all" ||
     versions.includes(selectedVersion);
+  const activeVersion =
+    selectedVersionIsAvailable
+      ? selectedVersion
+      : "all";
+  const encounterCount =
+    location?.areas?.reduce(
+      (total, area) =>
+        total +
+        area.pokemonEncounters.filter(
+          encounter =>
+            filterVersions(
+              encounter.versions,
+              activeVersion
+            ).length > 0
+        ).length,
+      0
+    ) ?? 0;
 
   if (loading) {
     return (
@@ -392,218 +428,240 @@ function LocationDetailPage() {
         {location.areas.length} areas
       </p>
 
-      {versions.length > 0 && (
-        <div
-          style={{
-            marginBottom: "2rem",
-          }}
-        >
-          <label
-            htmlFor="location-version-filter"
-            style={{
-              display: "block",
-              fontWeight: 700,
-              marginBottom: ".5rem"
-            }}
-          >
-            Filter Encounters By Version
-          </label>
-
-          <select
-            id="location-version-filter"
-            value={
-              selectedVersionIsAvailable
-                ? selectedVersion
-                : "all"
-            }
-            onChange={event =>
-              setSelectedVersion(
-                event.target.value
-              )
-            }
-            style={{
-              backgroundColor: "#2c2c2c",
-              border: "2px solid #555",
-              borderRadius: "12px",
-              color: "white",
-              fontSize: "1rem",
-              padding: ".75rem 1rem"
-            }}
-          >
-            <option value="all">
-              All Versions
-            </option>
-            {versions.map(version => (
-              <option
-                key={version}
-                value={version}
-              >
-                {capitalize(version)}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
-
       <LocationItemsSection
+        expanded={itemsExpanded}
         locationItems={locationItems}
+        onToggle={() =>
+          setItemsExpanded(
+            expanded => !expanded
+          )
+        }
       />
 
-      {location.areas.length === 0 ? (
-        <p>No location areas found.</p>
-      ) : (
-        location.areas.map(area => {
-          const activeVersion =
-            selectedVersionIsAvailable
-              ? selectedVersion
-              : "all";
-          const encounters =
-            area.pokemonEncounters
-              .map(encounter => ({
-                ...encounter,
-                versions: filterVersions(
-                  encounter.versions,
-                  activeVersion
-                )
-              }))
-              .filter(
-                encounter =>
-                  encounter.versions.length > 0
-              );
-          const visibleEncounters =
-            encounters.slice(
-              0,
-              activeVersion === "all"
-                ? ENCOUNTER_LIMIT
-                : encounters.length
-            );
-          const methodRates =
-            filterMethodRates(
-              area.encounterMethodRates,
-              activeVersion
-            );
-
-          return (
-            <section
-              key={area.name}
+      <CollapsibleSection
+        title="Pokémon Encounters"
+        summary={`${encounterCount} encounters`}
+        expanded={encountersExpanded}
+        onToggle={() =>
+          setEncountersExpanded(
+            expanded => !expanded
+          )
+        }
+        style={{
+          boxSizing: "border-box",
+          width: "100%"
+        }}
+        contentStyle={{
+          display: "grid",
+          gap: "1rem",
+          marginTop: "1rem"
+        }}
+      >
+        {versions.length > 0 && (
+          <div
+            style={{
+              marginBottom: "1rem"
+            }}
+          >
+            <label
+              htmlFor="location-version-filter"
               style={{
- 
-                marginBottom: "2rem",
-                padding: ".1rem"
+                display: "block",
+                fontWeight: 700,
+                marginBottom: ".5rem"
               }}
             >
-              <h2>{area.displayName}</h2>
+              Filter Encounters By Version
+            </label>
 
-              {methodRates.length >
-                0 && (
-                <div
-                  style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: ".5rem",
-                    justifyContent: "center",
-                    marginBottom: "1rem"
-                  }}
+            <select
+              id="location-version-filter"
+              value={
+                selectedVersionIsAvailable
+                  ? selectedVersion
+                  : "all"
+              }
+              onChange={event =>
+                setSelectedVersion(
+                  event.target.value
+                )
+              }
+              style={{
+                backgroundColor: "#2c2c2c",
+                border: "2px solid #555",
+                borderRadius: "12px",
+                color: "white",
+                fontSize: "1rem",
+                padding: ".75rem 1rem"
+              }}
+            >
+              <option value="all">
+                All Versions
+              </option>
+              {versions.map(version => (
+                <option
+                  key={version}
+                  value={version}
                 >
-                  {methodRates.map(
-                    rate => (
-                      <span
-                        key={rate.method}
-                        style={{
-                          backgroundColor:
-                            "#2c2c2c",
-                          border:
-                            "1px solid #666",
-                          borderRadius:
-                            "999px",
-                          padding:
-                            ".35rem .35rem",
-                            fontSize:"small"
-                        }}
-                      >
-                        {capitalize(rate.method)}
-                        {activeVersion !==
-                          "all" &&
-                          rate.versionDetails?.[0]
-                            ?.rate !==
-                            undefined &&
-                          ` · ${rate.versionDetails[0].rate}%`}
-                      </span>
-                    )
-                  )}
-                </div>
-              )}
+                  {capitalize(version)}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
-              {encounters.length === 0 ? (
-                <p>No Pokémon encounters for this filter.</p>
-              ) : (
-                <>
-                  <div 
+        {location.areas.length === 0 ? (
+          <p>No location areas found.</p>
+        ) : (
+          location.areas.map(area => {
+            const encounters =
+              area.pokemonEncounters
+                .map(encounter => ({
+                  ...encounter,
+                  versions: filterVersions(
+                    encounter.versions,
+                    activeVersion
+                  )
+                }))
+                .filter(
+                  encounter =>
+                    encounter.versions.length > 0
+                );
+            const visibleEncounters =
+              encounters.slice(
+                0,
+                activeVersion === "all"
+                  ? ENCOUNTER_LIMIT
+                  : encounters.length
+              );
+            const methodRates =
+              filterMethodRates(
+                area.encounterMethodRates,
+                activeVersion
+              );
+
+            return (
+              <section
+                key={area.name}
+                style={{
+                  marginBottom: "2rem",
+                  padding: ".1rem"
+                }}
+              >
+                <h2>{area.displayName}</h2>
+
+                {methodRates.length >
+                  0 && (
+                  <div
                     style={{
-                      display: "grid",
-                      gap: "1rem"
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: ".5rem",
+                      justifyContent: "center",
+                      marginBottom: "1rem"
                     }}
                   >
-                    {visibleEncounters.map(
-                      encounter => (
-                        <div
-                          className="SummaryCardAndEncountersDiv"
-                          key={
-                            encounter.pokemon.id
-                          }
+                    {methodRates.map(
+                      rate => (
+                        <span
+                          key={rate.method}
                           style={{
-                            alignItems: "start",
-                            display: "grid",
-                            gap: "1rem",
+                            backgroundColor:
+                              "#2c2c2c",
                             border:
                               "1px solid #666",
                             borderRadius:
-                              "18px",
-                            padding: ".1rem",
-                            gridTemplateColumns:
-                              "repeat(auto-fit, minmax(90px, 1fr))"
+                              "999px",
+                            fontSize:
+                              "small",
+                            padding:
+                              ".35rem .35rem"
                           }}
                         >
-                          <PokemonSummaryCard
-                            pokemon={
-                              encounter.pokemon
-                            }
-                            compact={true}
-                          />
-
-                          <EncounterDetails
-                            versions={
-                              encounter.versions
-                            }
-                          />
-                        </div>
+                          {capitalize(rate.method)}
+                          {activeVersion !==
+                            "all" &&
+                            rate.versionDetails?.[0]
+                              ?.rate !==
+                              undefined &&
+                            ` · ${rate.versionDetails[0].rate}%`}
+                        </span>
                       )
                     )}
                   </div>
+                )}
 
-                  {visibleEncounters.length <
-                    encounters.length && (
-                    <p
+                {encounters.length === 0 ? (
+                  <p>No Pokémon encounters for this filter.</p>
+                ) : (
+                  <>
+                    <div 
                       style={{
-                        marginTop: "1rem",
-                        opacity: 0.8
+                        display: "grid",
+                        gap: "1rem"
                       }}
                     >
-                      Showing first{" "}
-                      {
-                        visibleEncounters.length
-                      }{" "}
-                      encounters. Choose a
-                      version to narrow this
-                      area.
-                    </p>
-                  )}
-                </>
-              )}
-            </section>
-          );
-        })
-      )}
+                      {visibleEncounters.map(
+                        encounter => (
+                          <div
+                            className="SummaryCardAndEncountersDiv"
+                            key={
+                              encounter.pokemon.id
+                            }
+                            style={{
+                              alignItems: "start",
+                              border:
+                                "1px solid #666",
+                              borderRadius:
+                                "18px",
+                              display: "grid",
+                              gap: "1rem",
+                              gridTemplateColumns:
+                                "repeat(auto-fit, minmax(90px, 1fr))",
+                              padding: ".1rem"
+                            }}
+                          >
+                            <PokemonSummaryCard
+                              pokemon={
+                                encounter.pokemon
+                              }
+                              compact={true}
+                            />
+
+                            <EncounterDetails
+                              versions={
+                                encounter.versions
+                              }
+                            />
+                          </div>
+                        )
+                      )}
+                    </div>
+
+                    {visibleEncounters.length <
+                      encounters.length && (
+                      <p
+                        style={{
+                          marginTop: "1rem",
+                          opacity: 0.8
+                        }}
+                      >
+                        Showing first{" "}
+                        {
+                          visibleEncounters.length
+                        }{" "}
+                        encounters. Choose a
+                        version to narrow this
+                        area.
+                      </p>
+                    )}
+                  </>
+                )}
+              </section>
+            );
+          })
+        )}
+      </CollapsibleSection>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import {
 import { Link } from "react-router-dom";
 import CollapsibleSection from "./CollapsibleSection";
 import useSessionState from "../hooks/useSessionState";
+import { sortVersions } from "../constants/versionOrder";
 
 function capitalize(text) {
   return String(text)
@@ -83,21 +84,19 @@ function WhereToFind({
   const versionOptions = useMemo(
     () => [
       "all",
-      ...new Set(
-        encounterData?.locations?.flatMap(
-          location =>
-            location.areas.flatMap(area =>
-              area.versions.map(
-                version => version.version
+      ...sortVersions(
+        new Set(
+          encounterData?.locations?.flatMap(
+            location =>
+              location.areas.flatMap(area =>
+                area.versions.map(
+                  version => version.version
+                )
               )
-            )
-        ) ?? []
+          ) ?? []
+        )
       )
-    ].sort((a, b) => {
-      if (a === "all") return -1;
-      if (b === "all") return 1;
-      return a.localeCompare(b);
-    }),
+    ],
     [encounterData]
   );
 

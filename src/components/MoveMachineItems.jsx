@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import CollapsibleSection from "./CollapsibleSection";
 import useSessionState from "../hooks/useSessionState";
+import { sortVersionGroups } from "../constants/versionOrder";
 
 function capitalize(text) {
   return text
@@ -251,7 +252,9 @@ function MoveMachineItems({
                               ".65rem"
                           }}
                         >
-                          {versionGroups.map(
+                          {sortVersionGroups(
+                            new Set(versionGroups)
+                          ).map(
                             versionGroup => (
                               <span
                                 key={versionGroup}

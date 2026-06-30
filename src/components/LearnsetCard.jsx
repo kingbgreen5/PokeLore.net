@@ -10,6 +10,7 @@ import useSessionState from "../hooks/useSessionState";
 import physicalBadge from "../assets/Physical Badge.png";
 import specialBadge from "../assets/Special Badge.png";
 import statusBadge from "../assets/Status Badge.png";
+import { sortVersionGroups } from "../constants/versionOrder";
 
 function capitalize(text) {
   return text
@@ -65,9 +66,11 @@ function LearnsetCard({
 
 const versionGroups = [
   "all",
-  ...new Set(
-    pokemonData.moves.map(
-      move => move.versionGroup
+  ...sortVersionGroups(
+    new Set(
+      pokemonData.moves.map(
+        move => move.versionGroup
+      )
     )
   )
 ];

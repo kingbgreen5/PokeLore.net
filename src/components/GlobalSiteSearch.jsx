@@ -200,6 +200,19 @@ async function fetchJson(path) {
   return response.json();
 }
 
+function settledValue(result, fallback, label) {
+  if (result.status === "fulfilled") {
+    return result.value;
+  }
+
+  console.warn(
+    `Global search could not load ${label}:`,
+    result.reason
+  );
+
+  return fallback;
+}
+
 function GlobalSiteSearch() {
   const navigate = useNavigate();
   const wrapperRef = useRef(null);
@@ -217,18 +230,48 @@ function GlobalSiteSearch() {
     async function loadSearchData() {
       try {
         const [
-          pokemonIndex,
-          moves,
-          abilities,
-          items,
-          locations
-        ] = await Promise.all([
+          pokemonResult,
+          movesResult,
+          abilitiesResult,
+          itemsResult,
+          locationsResult
+        ] = await Promise.allSettled([
           fetchJson("/data/pokemonIndex.json"),
           fetchJson("/data/moves.json"),
           fetchJson("/data/abilities.json"),
           fetchJson("/data/itemsIndex.json"),
           fetchJson("/data/locationsIndex.json")
         ]);
+        const pokemonIndex =
+          settledValue(
+            pokemonResult,
+            [],
+            "Pokemon index"
+          );
+        const moves =
+          settledValue(
+            movesResult,
+            {},
+            "moves"
+          );
+        const abilities =
+          settledValue(
+            abilitiesResult,
+            {},
+            "abilities"
+          );
+        const items =
+          settledValue(
+            itemsResult,
+            [],
+            "items"
+          );
+        const locations =
+          settledValue(
+            locationsResult,
+            [],
+            "locations"
+          );
 
         const nextRecords = [
           buildSearchRecord({
@@ -475,6 +518,7 @@ function GlobalSiteSearch() {
       style={{
         maxWidth: "520px",
         position: "relative",
+        zIndex: 1000,
         width: "100%"
       }}
     >
@@ -485,7 +529,9 @@ function GlobalSiteSearch() {
         onChange={event => {
           setQuery(event.target.value);
           setActiveIndex(0);
+          setIsFocused(true);
         }}
+        onClick={() => setIsFocused(true)}
         onFocus={() => setIsFocused(true)}
         onKeyDown={handleKeyDown}
         style={{
@@ -515,7 +561,7 @@ function GlobalSiteSearch() {
             position: "absolute",
             right: 0,
             top: "calc(100% + .35rem)",
-            zIndex: 20
+            zIndex: 1001
           }}
         >
           {results.length === 0 ? (

@@ -4,6 +4,7 @@ import {
   useState
 } from "react";
 import MoveSummaryCard from "../MoveSummaryCard";
+import { compareVersionGroups } from "../../constants/versionOrder";
 
 function capitalize(text) {
   return String(text ?? "")
@@ -193,7 +194,14 @@ function TmMoveDetails({
             versionGroup:
               entry.versionGroup
           }))
-          .filter(row => row.moveName),
+          .filter(row => row.moveName)
+          .sort(
+            (a, b) =>
+              compareVersionGroups(
+                a.versionGroup,
+                b.versionGroup
+              )
+          ),
       [machineEntries]
     );
 
