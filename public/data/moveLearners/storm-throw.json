@@ -8,9 +8,46 @@
       "types": [
         "bug"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 20,
+          "versionGroup": "brilliant-diamond-shining-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 20,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "level-up",
+          "level": 33,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 33,
+          "versionGroup": "x-y"
+        },
+        {
+          "method": "level-up",
+          "level": 36,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 36,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 36,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
-      "level": 33,
-      "versionGroup": "black-2-white-2"
+      "level": 20,
+      "versionGroup": "brilliant-diamond-shining-pearl"
     },
     {
       "id": 538,
@@ -19,9 +56,46 @@
       "types": [
         "fighting"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 17,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 17,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 25,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 25,
+          "versionGroup": "black-white"
+        },
+        {
+          "method": "level-up",
+          "level": 25,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 25,
+          "versionGroup": "x-y"
+        },
+        {
+          "method": "level-up",
+          "level": 30,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
-      "level": 25,
-      "versionGroup": "black-white"
+      "level": 17,
+      "versionGroup": "sun-moon"
     },
     {
       "id": 674,
@@ -30,9 +104,36 @@
       "types": [
         "fighting"
       ],
+      "methods": [
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "egg",
       "level": 0,
-      "versionGroup": "x-y"
+      "versionGroup": "omega-ruby-alpha-sapphire"
     },
     {
       "id": 10040,
@@ -42,9 +143,132 @@
         "bug",
         "flying"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 33,
+          "versionGroup": "x-y"
+        },
+        {
+          "method": "level-up",
+          "level": 36,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 36,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 36,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
       "level": 33,
       "versionGroup": "x-y"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 127,
+          "name": "pinsir",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/127.png",
+          "types": [
+            "bug"
+          ],
+          "method": "level-up",
+          "levels": [
+            20,
+            33,
+            36
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "brilliant-diamond-shining-pearl",
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 20
+        },
+        {
+          "id": 538,
+          "name": "throh",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/538.png",
+          "types": [
+            "fighting"
+          ],
+          "method": "level-up",
+          "levels": [
+            17,
+            25,
+            30
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 17
+        },
+        {
+          "id": 10040,
+          "name": "pinsir-mega",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10040.png",
+          "types": [
+            "bug",
+            "flying"
+          ],
+          "method": "level-up",
+          "levels": [
+            33,
+            36
+          ],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 33
+        }
+      ]
+    },
+    {
+      "method": "egg",
+      "label": "Via Breeding",
+      "pokemon": [
+        {
+          "id": 674,
+          "name": "pancham",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/674.png",
+          "types": [
+            "fighting"
+          ],
+          "method": "egg",
+          "levels": [],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": null
+        }
+      ]
     }
   ]
 }

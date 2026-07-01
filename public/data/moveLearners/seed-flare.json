@@ -8,9 +8,66 @@
       "types": [
         "grass"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 57,
+          "versionGroup": "legends-arceus"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "black-white"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "diamond-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "heartgold-soulsilver"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "platinum"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
-      "level": 100,
-      "versionGroup": "diamond-pearl"
+      "level": 57,
+      "versionGroup": "legends-arceus"
     },
     {
       "id": 10006,
@@ -20,9 +77,116 @@
         "grass",
         "flying"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "black-white"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "heartgold-soulsilver"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "platinum"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 100,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
       "level": 100,
-      "versionGroup": "platinum"
+      "versionGroup": "black-2-white-2"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 492,
+          "name": "shaymin-land",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/492.png",
+          "types": [
+            "grass"
+          ],
+          "method": "level-up",
+          "levels": [
+            57,
+            100
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "diamond-pearl",
+            "heartgold-soulsilver",
+            "legends-arceus",
+            "omega-ruby-alpha-sapphire",
+            "platinum",
+            "scarlet-violet",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 57
+        },
+        {
+          "id": 10006,
+          "name": "shaymin-sky",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10006.png",
+          "types": [
+            "grass",
+            "flying"
+          ],
+          "method": "level-up",
+          "levels": [
+            100
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "heartgold-soulsilver",
+            "omega-ruby-alpha-sapphire",
+            "platinum",
+            "scarlet-violet",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 100
+        }
+      ]
     }
   ]
 }

@@ -9,6 +9,13 @@
         "psychic",
         "fighting"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 1,
       "versionGroup": "scarlet-violet"
@@ -19,6 +26,13 @@
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/501.png",
       "types": [
         "water"
+      ],
+      "methods": [
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        }
       ],
       "method": "egg",
       "level": 0,
@@ -31,6 +45,13 @@
       "types": [
         "water"
       ],
+      "methods": [
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "egg",
       "level": 0,
       "versionGroup": "scarlet-violet"
@@ -41,6 +62,13 @@
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/503.png",
       "types": [
         "water"
+      ],
+      "methods": [
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        }
       ],
       "method": "egg",
       "level": 0,
@@ -54,6 +82,13 @@
         "flying",
         "water"
       ],
+      "methods": [
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "egg",
       "level": 0,
       "versionGroup": "scarlet-violet"
@@ -65,6 +100,13 @@
       "types": [
         "water"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 21,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 21,
       "versionGroup": "scarlet-violet"
@@ -75,6 +117,13 @@
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/913.png",
       "types": [
         "water"
+      ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 23,
+          "versionGroup": "scarlet-violet"
+        }
       ],
       "method": "level-up",
       "level": 23,
@@ -88,6 +137,13 @@
         "water",
         "fighting"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 21,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 21,
       "versionGroup": "scarlet-violet"
@@ -100,9 +156,170 @@
         "water",
         "psychic"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 25,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 25,
       "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 475,
+          "name": "gallade",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/475.png",
+          "types": [
+            "psychic",
+            "fighting"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 1
+        },
+        {
+          "id": 912,
+          "name": "quaxly",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/912.png",
+          "types": [
+            "water"
+          ],
+          "method": "level-up",
+          "levels": [
+            21
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 21
+        },
+        {
+          "id": 913,
+          "name": "quaxwell",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/913.png",
+          "types": [
+            "water"
+          ],
+          "method": "level-up",
+          "levels": [
+            23
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 23
+        },
+        {
+          "id": 914,
+          "name": "quaquaval",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/914.png",
+          "types": [
+            "water",
+            "fighting"
+          ],
+          "method": "level-up",
+          "levels": [
+            21
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 21
+        },
+        {
+          "id": 976,
+          "name": "veluza",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/976.png",
+          "types": [
+            "water",
+            "psychic"
+          ],
+          "method": "level-up",
+          "levels": [
+            25
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 25
+        }
+      ]
+    },
+    {
+      "method": "egg",
+      "label": "Via Breeding",
+      "pokemon": [
+        {
+          "id": 501,
+          "name": "oshawott",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/501.png",
+          "types": [
+            "water"
+          ],
+          "method": "egg",
+          "levels": [],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": null
+        },
+        {
+          "id": 502,
+          "name": "dewott",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/502.png",
+          "types": [
+            "water"
+          ],
+          "method": "egg",
+          "levels": [],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": null
+        },
+        {
+          "id": 503,
+          "name": "samurott",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/503.png",
+          "types": [
+            "water"
+          ],
+          "method": "egg",
+          "levels": [],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": null
+        },
+        {
+          "id": 845,
+          "name": "cramorant",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/845.png",
+          "types": [
+            "flying",
+            "water"
+          ],
+          "method": "egg",
+          "levels": [],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": null
+        }
+      ]
     }
   ]
 }

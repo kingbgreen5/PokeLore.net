@@ -9,9 +9,41 @@
         "dark",
         "psychic"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 15,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 15,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 15,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 15,
+          "versionGroup": "x-y"
+        },
+        {
+          "method": "level-up",
+          "level": 36,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 36,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 15,
-      "versionGroup": "x-y"
+      "versionGroup": "omega-ruby-alpha-sapphire"
     },
     {
       "id": 687,
@@ -21,9 +53,41 @@
         "dark",
         "psychic"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 15,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 15,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 15,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 15,
+          "versionGroup": "x-y"
+        },
+        {
+          "method": "level-up",
+          "level": 42,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 42,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 15,
-      "versionGroup": "x-y"
+      "versionGroup": "omega-ruby-alpha-sapphire"
     },
     {
       "id": 853,
@@ -32,9 +96,86 @@
       "types": [
         "fighting"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 50,
       "versionGroup": "sword-shield"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 686,
+          "name": "inkay",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/686.png",
+          "types": [
+            "dark",
+            "psychic"
+          ],
+          "method": "level-up",
+          "levels": [
+            15,
+            36
+          ],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "scarlet-violet",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 15
+        },
+        {
+          "id": 687,
+          "name": "malamar",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/687.png",
+          "types": [
+            "dark",
+            "psychic"
+          ],
+          "method": "level-up",
+          "levels": [
+            15,
+            42
+          ],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "scarlet-violet",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 15
+        },
+        {
+          "id": 853,
+          "name": "grapploct",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/853.png",
+          "types": [
+            "fighting"
+          ],
+          "method": "level-up",
+          "levels": [
+            50
+          ],
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "lowestLevel": 50
+        }
+      ]
     }
   ]
 }

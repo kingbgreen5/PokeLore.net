@@ -8,9 +8,66 @@
       "types": [
         "water"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 76,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 76,
+          "versionGroup": "black-white"
+        },
+        {
+          "method": "level-up",
+          "level": 76,
+          "versionGroup": "brilliant-diamond-shining-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 76,
+          "versionGroup": "diamond-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 76,
+          "versionGroup": "heartgold-soulsilver"
+        },
+        {
+          "method": "level-up",
+          "level": 76,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 76,
+          "versionGroup": "platinum"
+        },
+        {
+          "method": "level-up",
+          "level": 76,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 76,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 76,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
-      "level": 76,
-      "versionGroup": "diamond-pearl"
+      "level": 1,
+      "versionGroup": "scarlet-violet"
     },
     {
       "id": 801,
@@ -19,6 +76,18 @@
       "types": [
         "steel",
         "fairy"
+      ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 89,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 89,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
       ],
       "method": "level-up",
       "level": 89,
@@ -32,9 +101,92 @@
         "steel",
         "fairy"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 89,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 89,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
       "level": 89,
       "versionGroup": "sun-moon"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 490,
+          "name": "manaphy",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/490.png",
+          "types": [
+            "water"
+          ],
+          "method": "level-up",
+          "levels": [
+            1,
+            76
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "brilliant-diamond-shining-pearl",
+            "diamond-pearl",
+            "heartgold-soulsilver",
+            "omega-ruby-alpha-sapphire",
+            "platinum",
+            "scarlet-violet",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 1
+        },
+        {
+          "id": 801,
+          "name": "magearna",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/801.png",
+          "types": [
+            "steel",
+            "fairy"
+          ],
+          "method": "level-up",
+          "levels": [
+            89
+          ],
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 89
+        },
+        {
+          "id": 10147,
+          "name": "magearna-original",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10147.png",
+          "types": [
+            "steel",
+            "fairy"
+          ],
+          "method": "level-up",
+          "levels": [
+            89
+          ],
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 89
+        }
+      ]
     }
   ]
 }

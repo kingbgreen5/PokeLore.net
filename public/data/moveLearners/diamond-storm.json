@@ -9,9 +9,41 @@
         "rock",
         "fairy"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "x-y"
+        },
+        {
+          "method": "level-up",
+          "level": 91,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
-      "level": 50,
-      "versionGroup": "x-y"
+      "level": 1,
+      "versionGroup": "scarlet-violet"
     },
     {
       "id": 10075,
@@ -21,9 +53,77 @@
         "rock",
         "fairy"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
       "level": 50,
       "versionGroup": "omega-ruby-alpha-sapphire"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 719,
+          "name": "diancie",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/719.png",
+          "types": [
+            "rock",
+            "fairy"
+          ],
+          "method": "level-up",
+          "levels": [
+            1,
+            50,
+            91
+          ],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "scarlet-violet",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 1
+        },
+        {
+          "id": 10075,
+          "name": "diancie-mega",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10075.png",
+          "types": [
+            "rock",
+            "fairy"
+          ],
+          "method": "level-up",
+          "levels": [
+            50
+          ],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 50
+        }
+      ]
     }
   ]
 }

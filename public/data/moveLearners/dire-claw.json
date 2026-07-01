@@ -9,9 +9,47 @@
         "fighting",
         "poison"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 11,
+          "versionGroup": "legends-arceus"
+        }
+      ],
       "method": "level-up",
-      "level": 11,
-      "versionGroup": "legends-arceus"
+      "level": 0,
+      "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 903,
+          "name": "sneasler",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/903.png",
+          "types": [
+            "fighting",
+            "poison"
+          ],
+          "method": "level-up",
+          "levels": [
+            11
+          ],
+          "versionGroups": [
+            "legends-arceus",
+            "scarlet-violet"
+          ],
+          "lowestLevel": 11
+        }
+      ]
     }
   ]
 }

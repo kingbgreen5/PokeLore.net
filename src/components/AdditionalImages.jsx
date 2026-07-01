@@ -158,6 +158,7 @@ function AdditionalImages({
       onToggle={() =>
         setExpanded(!expanded)
       }
+      seoVisible={false}
       style={{
         marginTop: "1rem"
       }}

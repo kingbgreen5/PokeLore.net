@@ -8,6 +8,13 @@
       "types": [
         "rock"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 0,
       "versionGroup": "scarlet-violet"
@@ -19,9 +26,54 @@
       "types": [
         "rock"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 24,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 24,
       "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 933,
+          "name": "naclstack",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/933.png",
+          "types": [
+            "rock"
+          ],
+          "method": "level-up",
+          "levels": [],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": null
+        },
+        {
+          "id": 934,
+          "name": "garganacl",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/934.png",
+          "types": [
+            "rock"
+          ],
+          "method": "level-up",
+          "levels": [
+            24
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 24
+        }
+      ]
     }
   ]
 }

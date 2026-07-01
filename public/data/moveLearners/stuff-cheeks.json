@@ -8,6 +8,13 @@
       "types": [
         "poison"
       ],
+      "methods": [
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "egg",
       "level": 0,
       "versionGroup": "scarlet-violet"
@@ -19,9 +26,21 @@
       "types": [
         "normal"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 10,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 10,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 10,
-      "versionGroup": "sword-shield"
+      "versionGroup": "scarlet-violet"
     },
     {
       "id": 820,
@@ -30,9 +49,21 @@
       "types": [
         "normal"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 1,
-      "versionGroup": "sword-shield"
+      "versionGroup": "scarlet-violet"
     },
     {
       "id": 915,
@@ -41,9 +72,92 @@
       "types": [
         "normal"
       ],
+      "methods": [
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "egg",
       "level": 0,
       "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 819,
+          "name": "skwovet",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/819.png",
+          "types": [
+            "normal"
+          ],
+          "method": "level-up",
+          "levels": [
+            10
+          ],
+          "versionGroups": [
+            "scarlet-violet",
+            "sword-shield"
+          ],
+          "lowestLevel": 10
+        },
+        {
+          "id": 820,
+          "name": "greedent",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/820.png",
+          "types": [
+            "normal"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "scarlet-violet",
+            "sword-shield"
+          ],
+          "lowestLevel": 1
+        }
+      ]
+    },
+    {
+      "method": "egg",
+      "label": "Via Breeding",
+      "pokemon": [
+        {
+          "id": 316,
+          "name": "gulpin",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/316.png",
+          "types": [
+            "poison"
+          ],
+          "method": "egg",
+          "levels": [],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": null
+        },
+        {
+          "id": 915,
+          "name": "lechonk",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/915.png",
+          "types": [
+            "normal"
+          ],
+          "method": "egg",
+          "levels": [],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": null
+        }
+      ]
     }
   ]
 }

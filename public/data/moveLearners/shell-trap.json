@@ -9,9 +9,54 @@
         "fire",
         "dragon"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 40,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "level-up",
+          "level": 45,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 45,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
-      "level": 45,
-      "versionGroup": "sun-moon"
+      "level": 40,
+      "versionGroup": "sword-shield"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 776,
+          "name": "turtonator",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/776.png",
+          "types": [
+            "fire",
+            "dragon"
+          ],
+          "method": "level-up",
+          "levels": [
+            40,
+            45
+          ],
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 40
+        }
+      ]
     }
   ]
 }

@@ -8,9 +8,47 @@
       "types": [
         "psychic"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 57,
+          "versionGroup": "legends-arceus"
+        },
+        {
+          "method": "level-up",
+          "level": 72,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 57,
       "versionGroup": "legends-arceus"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 488,
+          "name": "cresselia",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/488.png",
+          "types": [
+            "psychic"
+          ],
+          "method": "level-up",
+          "levels": [
+            57,
+            72
+          ],
+          "versionGroups": [
+            "legends-arceus",
+            "scarlet-violet"
+          ],
+          "lowestLevel": 57
+        }
+      ]
     }
   ]
 }

@@ -315,6 +315,53 @@ function machineItemKind(itemName) {
   return "Machine";
 }
 
+const learnerMethodOrder = [
+  "level-up",
+  "machine",
+  "egg",
+  "tutor"
+];
+
+function learnerMethodLabel(method) {
+  if (method === "level-up") {
+    return "Level Up";
+  }
+
+  if (method === "machine") {
+    return "TMs, HMs, and TRs";
+  }
+
+  if (method === "egg") {
+    return "Via Breeding";
+  }
+
+  if (method === "tutor") {
+    return "Move Tutor";
+  }
+
+  return displayName(method ?? "other");
+}
+
+function learnerMethodRank(method) {
+  const index =
+    learnerMethodOrder.indexOf(method);
+
+  return index === -1
+    ? learnerMethodOrder.length
+    : index;
+}
+
+function sortLearnerMethods(a, b) {
+  return (
+    learnerMethodRank(a.method) -
+      learnerMethodRank(b.method) ||
+    (a.level ?? 0) - (b.level ?? 0) ||
+    String(a.versionGroup ?? "").localeCompare(
+      String(b.versionGroup ?? "")
+    )
+  );
+}
+
 async function buildMachineItemsByMove() {
   const byMove = new Map();
 
@@ -438,40 +485,183 @@ async function buildMoveLearners() {
       if (!learners.has(moveEntry.move)) {
         learners.set(moveEntry.move, {
           move: moveEntry.move,
-          pokemon: []
+          pokemonById: new Map(),
+          methodGroupsByMethod: new Map()
         });
       }
 
-      learners
-        .get(moveEntry.move)
-        .pokemon.push({
-          ...pokemon,
-          method: moveEntry.method,
-          level: moveEntry.level,
-          versionGroup:
-            moveEntry.versionGroup
-        });
+      const learnerData =
+        learners.get(moveEntry.move);
+      const methodRecord = {
+        method: moveEntry.method,
+        level: moveEntry.level,
+        versionGroup:
+          moveEntry.versionGroup
+      };
+
+      if (
+        !learnerData.pokemonById.has(
+          pokemon.id
+        )
+      ) {
+        learnerData.pokemonById.set(
+          pokemon.id,
+          {
+            ...pokemon,
+            methods: []
+          }
+        );
+      }
+
+      const pokemonRecord =
+        learnerData.pokemonById.get(
+          pokemon.id
+        );
+      const methodKey =
+        `${methodRecord.method}:${methodRecord.level}:${methodRecord.versionGroup}`;
+
+      if (
+        !pokemonRecord.methods.some(
+          existing =>
+            `${existing.method}:${existing.level}:${existing.versionGroup}` ===
+            methodKey
+        )
+      ) {
+        pokemonRecord.methods.push(
+          methodRecord
+        );
+      }
+
+      const groupMethod =
+        moveEntry.method ?? "other";
+
+      if (
+        !learnerData.methodGroupsByMethod.has(
+          groupMethod
+        )
+      ) {
+        learnerData.methodGroupsByMethod.set(
+          groupMethod,
+          {
+            method: groupMethod,
+            label:
+              learnerMethodLabel(
+                groupMethod
+              ),
+            pokemonById: new Map()
+          }
+        );
+      }
+
+      const methodGroup =
+        learnerData.methodGroupsByMethod.get(
+          groupMethod
+        );
+
+      if (
+        !methodGroup.pokemonById.has(
+          pokemon.id
+        )
+      ) {
+        methodGroup.pokemonById.set(
+          pokemon.id,
+          {
+            ...pokemon,
+            method: groupMethod,
+            levels: [],
+            versionGroups: []
+          }
+        );
+      }
+
+      const methodPokemon =
+        methodGroup.pokemonById.get(
+          pokemon.id
+        );
+
+      if (
+        moveEntry.level &&
+        !methodPokemon.levels.includes(
+          moveEntry.level
+        )
+      ) {
+        methodPokemon.levels.push(
+          moveEntry.level
+        );
+      }
+
+      if (
+        moveEntry.versionGroup &&
+        !methodPokemon.versionGroups.includes(
+          moveEntry.versionGroup
+        )
+      ) {
+        methodPokemon.versionGroups.push(
+          moveEntry.versionGroup
+        );
+      }
     }
   }
 
   for (const learnerData of learners.values()) {
-    const seen = new Set();
-
-    learnerData.pokemon =
-      learnerData.pokemon
-        .filter(entry => {
-          const key = `${entry.id}`;
-
-          if (seen.has(key)) {
-            return false;
-          }
-
-          seen.add(key);
-          return true;
-        })
-        .sort(
-          (a, b) => a.id - b.id
+    learnerData.pokemon = Array.from(
+      learnerData.pokemonById.values()
+    )
+      .map(pokemon => {
+        const methods = pokemon.methods.sort(
+          sortLearnerMethods
         );
+        const primaryMethod =
+          methods[0] ?? {};
+
+        return {
+          ...pokemon,
+          method: primaryMethod.method,
+          level: primaryMethod.level,
+          versionGroup:
+            primaryMethod.versionGroup,
+          methods
+        };
+      })
+      .sort((a, b) => a.id - b.id);
+
+    learnerData.methodGroups = Array.from(
+      learnerData.methodGroupsByMethod.values()
+    )
+      .sort(
+        (a, b) =>
+          learnerMethodRank(a.method) -
+            learnerMethodRank(b.method) ||
+          a.method.localeCompare(b.method)
+      )
+      .map(group => ({
+        method: group.method,
+        label: group.label,
+        pokemon: Array.from(
+          group.pokemonById.values()
+        )
+          .map(pokemon => {
+            const levels =
+              pokemon.levels.sort(
+                (a, b) => a - b
+              );
+
+            return {
+              ...pokemon,
+              levels,
+              lowestLevel:
+                levels[0] ?? null,
+              versionGroups:
+                pokemon.versionGroups.sort()
+            };
+          })
+          .sort(
+            (a, b) => a.id - b.id
+          )
+      }));
+
+    delete learnerData.pokemonById;
+    delete learnerData.methodGroupsByMethod;
   }
 
   return learners;
@@ -553,6 +743,35 @@ async function writeJson(filePath, data) {
   );
 }
 
+async function getMoveList() {
+  try {
+    console.log("Fetching move list...");
+
+    const list =
+      await fetchJson(
+        `${API_BASE}/move?limit=100000`
+      );
+
+    return list.results ?? [];
+  } catch (error) {
+    console.warn(
+      `Could not fetch move list, using local move files instead: ${error.message}`
+    );
+
+    const files =
+      await fs.readdir(movesDir);
+
+    return files
+      .filter(file =>
+        file.endsWith(".json")
+      )
+      .map(file => ({
+        name: file.replace(/\.json$/, ""),
+        url: null
+      }));
+  }
+}
+
 async function main() {
   await fs.mkdir(movesDir, {
     recursive: true
@@ -567,14 +786,8 @@ async function main() {
     await buildMoveLearners();
   const failures = [];
 
-  console.log("Fetching move list...");
-
-  const list =
-    await fetchJson(
-      `${API_BASE}/move?limit=100000`
-    );
   const moveList =
-    list.results ?? [];
+    await getMoveList();
   const movesIndex = [];
   const legacyMoves = {};
 
@@ -608,6 +821,12 @@ async function main() {
           : null;
 
       if (!moveRecord?.name) {
+        if (!move.url) {
+          throw new Error(
+            "No local move file and no API URL available"
+          );
+        }
+
         const data =
           await fetchJson(move.url);
         const machineItems =

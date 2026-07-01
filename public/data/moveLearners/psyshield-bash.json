@@ -8,6 +8,18 @@
       "types": [
         "normal"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 21,
+          "versionGroup": "legends-arceus"
+        },
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 21,
       "versionGroup": "legends-arceus"
@@ -20,9 +32,83 @@
         "normal",
         "psychic"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 21,
+          "versionGroup": "legends-arceus"
+        }
+      ],
       "method": "level-up",
-      "level": 21,
-      "versionGroup": "legends-arceus"
+      "level": 0,
+      "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 234,
+          "name": "stantler",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/234.png",
+          "types": [
+            "normal"
+          ],
+          "method": "level-up",
+          "levels": [
+            21
+          ],
+          "versionGroups": [
+            "legends-arceus"
+          ],
+          "lowestLevel": 21
+        },
+        {
+          "id": 899,
+          "name": "wyrdeer",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/899.png",
+          "types": [
+            "normal",
+            "psychic"
+          ],
+          "method": "level-up",
+          "levels": [
+            21
+          ],
+          "versionGroups": [
+            "legends-arceus",
+            "scarlet-violet"
+          ],
+          "lowestLevel": 21
+        }
+      ]
+    },
+    {
+      "method": "egg",
+      "label": "Via Breeding",
+      "pokemon": [
+        {
+          "id": 234,
+          "name": "stantler",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/234.png",
+          "types": [
+            "normal"
+          ],
+          "method": "egg",
+          "levels": [],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": null
+        }
+      ]
     }
   ]
 }

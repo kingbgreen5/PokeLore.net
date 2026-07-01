@@ -8,9 +8,41 @@
       "types": [
         "water"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 45,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 45,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 45,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 63,
+          "versionGroup": "brilliant-diamond-shining-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 63,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
-      "level": 45,
-      "versionGroup": "omega-ruby-alpha-sapphire"
+      "level": 1,
+      "versionGroup": "scarlet-violet"
     },
     {
       "id": 10077,
@@ -19,9 +51,75 @@
       "types": [
         "water"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 45,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 45,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 45,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
       "level": 45,
       "versionGroup": "omega-ruby-alpha-sapphire"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 382,
+          "name": "kyogre",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/382.png",
+          "types": [
+            "water"
+          ],
+          "method": "level-up",
+          "levels": [
+            1,
+            45,
+            63
+          ],
+          "versionGroups": [
+            "brilliant-diamond-shining-pearl",
+            "omega-ruby-alpha-sapphire",
+            "scarlet-violet",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 1
+        },
+        {
+          "id": 10077,
+          "name": "kyogre-primal",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10077.png",
+          "types": [
+            "water"
+          ],
+          "method": "level-up",
+          "levels": [
+            45
+          ],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 45
+        }
+      ]
     }
   ]
 }

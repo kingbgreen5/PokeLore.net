@@ -9,6 +9,13 @@
         "water",
         "dragon"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 63,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 63,
       "versionGroup": "sword-shield"
@@ -21,9 +28,58 @@
         "water",
         "ice"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 63,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 63,
       "versionGroup": "sword-shield"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 882,
+          "name": "dracovish",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/882.png",
+          "types": [
+            "water",
+            "dragon"
+          ],
+          "method": "level-up",
+          "levels": [
+            63
+          ],
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "lowestLevel": 63
+        },
+        {
+          "id": 883,
+          "name": "arctovish",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/883.png",
+          "types": [
+            "water",
+            "ice"
+          ],
+          "method": "level-up",
+          "levels": [
+            63
+          ],
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "lowestLevel": 63
+        }
+      ]
     }
   ]
 }

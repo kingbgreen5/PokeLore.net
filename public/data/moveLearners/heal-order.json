@@ -9,9 +9,90 @@
         "bug",
         "flying"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 25,
+          "versionGroup": "black-white"
+        },
+        {
+          "method": "level-up",
+          "level": 25,
+          "versionGroup": "diamond-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 25,
+          "versionGroup": "heartgold-soulsilver"
+        },
+        {
+          "method": "level-up",
+          "level": 25,
+          "versionGroup": "platinum"
+        },
+        {
+          "method": "level-up",
+          "level": 29,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 29,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 29,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 29,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 29,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
       "level": 25,
-      "versionGroup": "diamond-pearl"
+      "versionGroup": "black-white"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 416,
+          "name": "vespiquen",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/416.png",
+          "types": [
+            "bug",
+            "flying"
+          ],
+          "method": "level-up",
+          "levels": [
+            25,
+            29
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "diamond-pearl",
+            "heartgold-soulsilver",
+            "omega-ruby-alpha-sapphire",
+            "platinum",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 25
+        }
+      ]
     }
   ]
 }

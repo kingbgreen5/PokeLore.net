@@ -8,6 +8,18 @@
       "types": [
         "water"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 46,
+          "versionGroup": "legends-arceus"
+        },
+        {
+          "method": "level-up",
+          "level": 75,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 46,
       "versionGroup": "legends-arceus"
@@ -19,9 +31,65 @@
       "types": [
         "water"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 46,
+          "versionGroup": "legends-arceus"
+        },
+        {
+          "method": "level-up",
+          "level": 76,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 46,
       "versionGroup": "legends-arceus"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 489,
+          "name": "phione",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/489.png",
+          "types": [
+            "water"
+          ],
+          "method": "level-up",
+          "levels": [
+            46,
+            75
+          ],
+          "versionGroups": [
+            "legends-arceus",
+            "scarlet-violet"
+          ],
+          "lowestLevel": 46
+        },
+        {
+          "id": 490,
+          "name": "manaphy",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/490.png",
+          "types": [
+            "water"
+          ],
+          "method": "level-up",
+          "levels": [
+            46,
+            76
+          ],
+          "versionGroups": [
+            "legends-arceus",
+            "scarlet-violet"
+          ],
+          "lowestLevel": 46
+        }
+      ]
     }
   ]
 }

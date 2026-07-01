@@ -8,6 +8,13 @@
       "types": [
         "dragon"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 34,
+          "versionGroup": "legends-arceus"
+        }
+      ],
       "method": "level-up",
       "level": 34,
       "versionGroup": "legends-arceus"
@@ -20,9 +27,21 @@
         "steel",
         "dragon"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 34,
+          "versionGroup": "legends-arceus"
+        }
+      ],
       "method": "level-up",
-      "level": 34,
-      "versionGroup": "legends-arceus"
+      "level": 0,
+      "versionGroup": "scarlet-violet"
     },
     {
       "id": 10242,
@@ -32,9 +51,82 @@
         "steel",
         "dragon"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 34,
+          "versionGroup": "legends-arceus"
+        }
+      ],
       "method": "level-up",
-      "level": 34,
-      "versionGroup": "legends-arceus"
+      "level": 1,
+      "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 704,
+          "name": "goomy",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/704.png",
+          "types": [
+            "dragon"
+          ],
+          "method": "level-up",
+          "levels": [
+            34
+          ],
+          "versionGroups": [
+            "legends-arceus"
+          ],
+          "lowestLevel": 34
+        },
+        {
+          "id": 10241,
+          "name": "sliggoo-hisui",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10241.png",
+          "types": [
+            "steel",
+            "dragon"
+          ],
+          "method": "level-up",
+          "levels": [
+            34
+          ],
+          "versionGroups": [
+            "legends-arceus",
+            "scarlet-violet"
+          ],
+          "lowestLevel": 34
+        },
+        {
+          "id": 10242,
+          "name": "goodra-hisui",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10242.png",
+          "types": [
+            "steel",
+            "dragon"
+          ],
+          "method": "level-up",
+          "levels": [
+            1,
+            34
+          ],
+          "versionGroups": [
+            "legends-arceus",
+            "scarlet-violet"
+          ],
+          "lowestLevel": 1
+        }
+      ]
     }
   ]
 }

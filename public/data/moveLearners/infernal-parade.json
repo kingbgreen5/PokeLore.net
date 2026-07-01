@@ -9,9 +9,47 @@
         "fire",
         "ghost"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 40,
+          "versionGroup": "legends-arceus"
+        }
+      ],
       "method": "level-up",
-      "level": 40,
-      "versionGroup": "legends-arceus"
+      "level": 0,
+      "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 10233,
+          "name": "typhlosion-hisui",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10233.png",
+          "types": [
+            "fire",
+            "ghost"
+          ],
+          "method": "level-up",
+          "levels": [
+            40
+          ],
+          "versionGroups": [
+            "legends-arceus",
+            "scarlet-violet"
+          ],
+          "lowestLevel": 40
+        }
+      ]
     }
   ]
 }

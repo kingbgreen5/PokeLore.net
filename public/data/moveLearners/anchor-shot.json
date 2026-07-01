@@ -9,9 +9,54 @@
         "ghost",
         "grass"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 32,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 32,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 52,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 32,
       "versionGroup": "sun-moon"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 781,
+          "name": "dhelmise",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/781.png",
+          "types": [
+            "ghost",
+            "grass"
+          ],
+          "method": "level-up",
+          "levels": [
+            32,
+            52
+          ],
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 32
+        }
+      ]
     }
   ]
 }

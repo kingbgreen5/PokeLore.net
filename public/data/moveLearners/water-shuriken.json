@@ -8,6 +8,28 @@
       "types": [
         "bug"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
       "level": 1,
       "versionGroup": "omega-ruby-alpha-sapphire"
@@ -20,9 +42,56 @@
         "water",
         "dark"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 36,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 36,
+          "versionGroup": "x-y"
+        },
+        {
+          "method": "level-up",
+          "level": 75,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 75,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
-      "level": 36,
-      "versionGroup": "x-y"
+      "level": 0,
+      "versionGroup": "scarlet-violet"
     },
     {
       "id": 10116,
@@ -31,6 +100,28 @@
       "types": [
         "water",
         "dark"
+      ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
       ],
       "method": "level-up",
       "level": 0,
@@ -44,9 +135,123 @@
         "water",
         "dark"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
       "level": 0,
-      "versionGroup": "sun-moon"
+      "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 617,
+          "name": "accelgor",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/617.png",
+          "types": [
+            "bug"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 1
+        },
+        {
+          "id": 658,
+          "name": "greninja",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/658.png",
+          "types": [
+            "water",
+            "dark"
+          ],
+          "method": "level-up",
+          "levels": [
+            1,
+            36,
+            75
+          ],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "scarlet-violet",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 1
+        },
+        {
+          "id": 10116,
+          "name": "greninja-battle-bond",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10116.png",
+          "types": [
+            "water",
+            "dark"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 1
+        },
+        {
+          "id": 10117,
+          "name": "greninja-ash",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10117.png",
+          "types": [
+            "water",
+            "dark"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "scarlet-violet",
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 1
+        }
+      ]
     }
   ]
 }

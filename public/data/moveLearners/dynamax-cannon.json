@@ -9,9 +9,21 @@
         "poison",
         "dragon"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 56,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 56,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 56,
-      "versionGroup": "sword-shield"
+      "versionGroup": "scarlet-violet"
     },
     {
       "id": 10190,
@@ -21,9 +33,59 @@
         "poison",
         "dragon"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 56,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 56,
       "versionGroup": "sword-shield"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 890,
+          "name": "eternatus",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/890.png",
+          "types": [
+            "poison",
+            "dragon"
+          ],
+          "method": "level-up",
+          "levels": [
+            56
+          ],
+          "versionGroups": [
+            "scarlet-violet",
+            "sword-shield"
+          ],
+          "lowestLevel": 56
+        },
+        {
+          "id": 10190,
+          "name": "eternatus-eternamax",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10190.png",
+          "types": [
+            "poison",
+            "dragon"
+          ],
+          "method": "level-up",
+          "levels": [
+            56
+          ],
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "lowestLevel": 56
+        }
+      ]
     }
   ]
 }

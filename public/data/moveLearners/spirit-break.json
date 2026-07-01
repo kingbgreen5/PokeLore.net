@@ -9,9 +9,26 @@
         "dark",
         "fairy"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 0,
-      "versionGroup": "sword-shield"
+      "versionGroup": "scarlet-violet"
     },
     {
       "id": 1006,
@@ -21,9 +38,59 @@
         "fairy",
         "fighting"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 91,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 91,
       "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 861,
+          "name": "grimmsnarl",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/861.png",
+          "types": [
+            "dark",
+            "fairy"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "scarlet-violet",
+            "sword-shield"
+          ],
+          "lowestLevel": 1
+        },
+        {
+          "id": 1006,
+          "name": "iron-valiant",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1006.png",
+          "types": [
+            "fairy",
+            "fighting"
+          ],
+          "method": "level-up",
+          "levels": [
+            91
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 91
+        }
+      ]
     }
   ]
 }

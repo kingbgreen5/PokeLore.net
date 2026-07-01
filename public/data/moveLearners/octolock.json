@@ -8,9 +8,45 @@
       "types": [
         "fighting"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 0,
       "versionGroup": "sword-shield"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 853,
+          "name": "grapploct",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/853.png",
+          "types": [
+            "fighting"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "sword-shield"
+          ],
+          "lowestLevel": 1
+        }
+      ]
     }
   ]
 }

@@ -8,9 +8,59 @@
       "types": [
         "fairy"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 30,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 30,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "level-up",
+          "level": 37,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 37,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
-      "level": 37,
-      "versionGroup": "sun-moon"
+      "level": 30,
+      "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 764,
+          "name": "comfey",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/764.png",
+          "types": [
+            "fairy"
+          ],
+          "method": "level-up",
+          "levels": [
+            30,
+            37
+          ],
+          "versionGroups": [
+            "scarlet-violet",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 30
+        }
+      ]
     }
   ]
 }

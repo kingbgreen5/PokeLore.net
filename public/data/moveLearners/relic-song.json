@@ -9,9 +9,46 @@
         "normal",
         "psychic"
       ],
-      "method": "tutor",
-      "level": 0,
-      "versionGroup": "black-white"
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "black-white"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "x-y"
+        }
+      ],
+      "method": "level-up",
+      "level": 50,
+      "versionGroup": "scarlet-violet"
     },
     {
       "id": 10018,
@@ -21,9 +58,134 @@
         "normal",
         "fighting"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "black-white"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "x-y"
+        }
+      ],
+      "method": "level-up",
+      "level": 50,
+      "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 648,
+          "name": "meloetta-aria",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/648.png",
+          "types": [
+            "normal",
+            "psychic"
+          ],
+          "method": "level-up",
+          "levels": [
+            50
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 50
+        },
+        {
+          "id": 10018,
+          "name": "meloetta-pirouette",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10018.png",
+          "types": [
+            "normal",
+            "fighting"
+          ],
+          "method": "level-up",
+          "levels": [
+            50
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 50
+        }
+      ]
+    },
+    {
       "method": "tutor",
-      "level": 0,
-      "versionGroup": "black-white"
+      "label": "Move Tutor",
+      "pokemon": [
+        {
+          "id": 648,
+          "name": "meloetta-aria",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/648.png",
+          "types": [
+            "normal",
+            "psychic"
+          ],
+          "method": "tutor",
+          "levels": [],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": null
+        },
+        {
+          "id": 10018,
+          "name": "meloetta-pirouette",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10018.png",
+          "types": [
+            "normal",
+            "fighting"
+          ],
+          "method": "tutor",
+          "levels": [],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": null
+        }
+      ]
     }
   ]
 }

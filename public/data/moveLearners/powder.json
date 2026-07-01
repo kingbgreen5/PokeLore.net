@@ -9,9 +9,51 @@
         "bug",
         "flying"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "x-y"
+        },
+        {
+          "method": "level-up",
+          "level": 55,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 55,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 55,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 55,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
       "level": 1,
-      "versionGroup": "x-y"
+      "versionGroup": "omega-ruby-alpha-sapphire"
     },
     {
       "id": 742,
@@ -21,9 +63,66 @@
         "bug",
         "fairy"
       ],
+      "methods": [
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "egg",
       "level": 0,
       "versionGroup": "ultra-sun-ultra-moon"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 666,
+          "name": "vivillon",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/666.png",
+          "types": [
+            "bug",
+            "flying"
+          ],
+          "method": "level-up",
+          "levels": [
+            1,
+            55
+          ],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 1
+        }
+      ]
+    },
+    {
+      "method": "egg",
+      "label": "Via Breeding",
+      "pokemon": [
+        {
+          "id": 742,
+          "name": "cutiefly",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/742.png",
+          "types": [
+            "bug",
+            "fairy"
+          ],
+          "method": "egg",
+          "levels": [],
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": null
+        }
+      ]
     }
   ]
 }

@@ -187,8 +187,7 @@ function HeroStatStack({
         display: "grid",
         gap: ".1rem",
         margin: "4.5rem auto 2.5rem",
-        maxWidth: "470px",
-        width: "100%"
+        maxWidth: "470px"
       }}
     >
       {rows.map(row => (
@@ -204,9 +203,9 @@ function HeroStatStack({
               ? "clamp(2rem, 2vw, 3.25rem)"
               : "clamp(1.45rem, 4vw, 2.45rem)",
             fontWeight: "900",
-            gap: ".4rem",
+            gap: "1.2rem",
             gridTemplateColumns:
-              "minmax(0, 1fr) auto minmax(0, 1fr)",
+              "minmax(0, 1fr) auto",
             letterSpacing: 0,
             lineHeight: 1.05,
             textTransform:
@@ -220,19 +219,12 @@ function HeroStatStack({
               textAlign: "right"
             }}
           >
-            {row.label}
+            {row.label}:
           </span>
 
           <span
             style={{
-              textAlign: "center"
-            }}
-          >
-            :
-          </span>
-
-          <span
-            style={{
+              minWidth: "120px",
               textAlign: "left"
             }}
           >
@@ -605,9 +597,126 @@ function FlavorTextSection({
   );
 }
 
+const learnerMethodOrder = [
+  "level-up",
+  "machine",
+  "egg",
+  "tutor",
+  "other"
+];
+
+function getLearnerMethodLabel(method) {
+  if (method === "level-up") {
+    return "Level Up";
+  }
+
+  if (method === "machine") {
+    return "TMs, HMs, and TRs";
+  }
+
+  if (method === "egg") {
+    return "Via Breeding";
+  }
+
+  if (method === "tutor") {
+    return "Move Tutor";
+  }
+
+  return "Other Methods";
+}
+
+function getLearnerMethodRank(method) {
+  const index =
+    learnerMethodOrder.indexOf(method);
+
+  return index === -1
+    ? learnerMethodOrder.length
+    : index;
+}
+
+function normalizeLearnerGroups(
+  pokemonThatLearnMove,
+  methodGroups
+) {
+  if (methodGroups?.length) {
+    return methodGroups
+      .filter(group => group.pokemon?.length)
+      .map(group => ({
+        method: group.method,
+        label:
+          group.label ??
+          getLearnerMethodLabel(
+            group.method
+          ),
+        pokemon: group.pokemon
+      }))
+      .sort(
+        (a, b) =>
+          getLearnerMethodRank(a.method) -
+            getLearnerMethodRank(b.method) ||
+          a.label.localeCompare(b.label)
+      );
+  }
+
+  const groupsByMethod = new Map();
+
+  pokemonThatLearnMove.forEach(pokemon => {
+    const methods =
+      pokemon.methods?.length
+        ? pokemon.methods
+        : [
+            {
+              method:
+                pokemon.method ?? "other"
+            }
+          ];
+
+    methods.forEach(methodEntry => {
+      const method =
+        methodEntry.method ?? "other";
+
+      if (!groupsByMethod.has(method)) {
+        groupsByMethod.set(method, {
+          method,
+          label:
+            getLearnerMethodLabel(
+              method
+            ),
+          pokemonById: new Map()
+        });
+      }
+
+      groupsByMethod
+        .get(method)
+        .pokemonById.set(
+          pokemon.id,
+          pokemon
+        );
+    });
+  });
+
+  return Array.from(
+    groupsByMethod.values()
+  )
+    .map(group => ({
+      method: group.method,
+      label: group.label,
+      pokemon: Array.from(
+        group.pokemonById.values()
+      ).sort((a, b) => a.id - b.id)
+    }))
+    .sort(
+      (a, b) =>
+        getLearnerMethodRank(a.method) -
+          getLearnerMethodRank(b.method) ||
+        a.label.localeCompare(b.label)
+    );
+}
+
 function MoveLearnersSection({
   moveName,
-  pokemonThatLearnMove
+  pokemonThatLearnMove,
+  methodGroups
 }) {
   const [
     pokemonLearnersExpanded,
@@ -616,6 +725,11 @@ function MoveLearnersSection({
     `move:${moveName}:pokemon-learners-expanded`,
     false
   );
+  const learnerGroups =
+    normalizeLearnerGroups(
+      pokemonThatLearnMove,
+      methodGroups
+    );
 
   return (
     <CollapsibleSection
@@ -629,23 +743,72 @@ function MoveLearnersSection({
       }
       style={compactSectionStyle()}
       contentStyle={{
-        display: "grid",
-        gap: "1rem",
-        gridTemplateColumns:
-          "repeat(auto-fit, minmax(130px, 1fr))",
         marginTop: "1rem"
       }}
     >
-      {/* ------------------------ MOVE LEARNER POKEMON GRID ------------------------ */}
-      {pokemonThatLearnMove.map(
-        pokemon => (
-          <PokemonSummaryCard
-            key={pokemon.id}
-            pokemon={pokemon}
-            compact={true}
-          />
-        )
-      )}
+      {/* ------------------------ MOVE LEARNER METHOD GROUPS ------------------------ */}
+      <div
+        data-section="move-learner-method-groups"
+        style={{
+          display: "grid",
+          gap: "1.5rem"
+        }}
+      >
+        {learnerGroups.map(group => (
+          <section
+            key={group.method}
+            data-section={`move-learner-group-${group.method}`}
+          >
+            <div
+              style={{
+                alignItems: "baseline",
+                display: "flex",
+                gap: ".75rem",
+                justifyContent:
+                  "space-between",
+                marginBottom: ".75rem"
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: "1.05rem",
+                  margin: 0
+                }}
+              >
+                {group.label}
+              </h3>
+
+              <span
+                style={{
+                  color: "#aaa",
+                  fontSize: ".9rem"
+                }}
+              >
+                {group.pokemon.length} Pokémon
+              </span>
+            </div>
+
+            <div
+              style={{
+                display: "grid",
+                gap: "1rem",
+                gridTemplateColumns:
+                  "repeat(auto-fit, minmax(130px, 1fr))"
+              }}
+            >
+              {group.pokemon.map(
+                pokemon => (
+                  <PokemonSummaryCard
+                    key={`${group.method}-${pokemon.id}`}
+                    pokemon={pokemon}
+                    compact={true}
+                  />
+                )
+              )}
+            </div>
+          </section>
+        ))}
+      </div>
     </CollapsibleSection>
   );
 }
@@ -666,6 +829,10 @@ function MoveDetailPage({
     useState([]);
   const [generatedLearners, setGeneratedLearners] =
     useState(null);
+  const [
+    generatedLearnerGroups,
+    setGeneratedLearnerGroups
+  ] = useState(null);
   const [loading, setLoading] =
     useState(true);
 
@@ -679,6 +846,7 @@ function MoveDetailPage({
         setLoading(true);
         setMoveData(null);
         setGeneratedLearners(null);
+        setGeneratedLearnerGroups(null);
         setLearnsets([]);
         setPokemonIndex([]);
 
@@ -706,6 +874,10 @@ function MoveDetailPage({
           if (!ignore) {
             setGeneratedLearners(
               generatedLearnerData.pokemon
+            );
+            setGeneratedLearnerGroups(
+              generatedLearnerData.methodGroups ??
+                null
             );
           }
 
@@ -964,6 +1136,9 @@ function MoveDetailPage({
           moveName={moveName}
           pokemonThatLearnMove={
             pokemonThatLearnMove
+          }
+          methodGroups={
+            generatedLearnerGroups
           }
         />
       </div>

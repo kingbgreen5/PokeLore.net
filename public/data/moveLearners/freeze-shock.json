@@ -9,9 +9,78 @@
         "dragon",
         "ice"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 50,
+          "versionGroup": "x-y"
+        },
+        {
+          "method": "level-up",
+          "level": 80,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 80,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 50,
       "versionGroup": "black-2-white-2"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 10022,
+          "name": "kyurem-black",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10022.png",
+          "types": [
+            "dragon",
+            "ice"
+          ],
+          "method": "level-up",
+          "levels": [
+            50,
+            80
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "omega-ruby-alpha-sapphire",
+            "scarlet-violet",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 50
+        }
+      ]
     }
   ]
 }

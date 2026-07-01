@@ -8,6 +8,13 @@
       "types": [
         "fire"
       ],
+      "methods": [
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "egg",
       "level": 0,
       "versionGroup": "scarlet-violet"
@@ -19,6 +26,18 @@
       "types": [
         "fire",
         "fighting"
+      ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 46,
+          "versionGroup": "legends-arceus"
+        },
+        {
+          "method": "level-up",
+          "level": 65,
+          "versionGroup": "scarlet-violet"
+        }
       ],
       "method": "level-up",
       "level": 46,
@@ -32,6 +51,13 @@
         "fire",
         "dragon"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 91,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 91,
       "versionGroup": "scarlet-violet"
@@ -44,9 +70,104 @@
         "fire",
         "rock"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 29,
+          "versionGroup": "legends-arceus"
+        },
+        {
+          "method": "level-up",
+          "level": 64,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 29,
       "versionGroup": "legends-arceus"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 392,
+          "name": "infernape",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/392.png",
+          "types": [
+            "fire",
+            "fighting"
+          ],
+          "method": "level-up",
+          "levels": [
+            46,
+            65
+          ],
+          "versionGroups": [
+            "legends-arceus",
+            "scarlet-violet"
+          ],
+          "lowestLevel": 46
+        },
+        {
+          "id": 1020,
+          "name": "gouging-fire",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1020.png",
+          "types": [
+            "fire",
+            "dragon"
+          ],
+          "method": "level-up",
+          "levels": [
+            91
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 91
+        },
+        {
+          "id": 10230,
+          "name": "arcanine-hisui",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10230.png",
+          "types": [
+            "fire",
+            "rock"
+          ],
+          "method": "level-up",
+          "levels": [
+            29,
+            64
+          ],
+          "versionGroups": [
+            "legends-arceus",
+            "scarlet-violet"
+          ],
+          "lowestLevel": 29
+        }
+      ]
+    },
+    {
+      "method": "egg",
+      "label": "Via Breeding",
+      "pokemon": [
+        {
+          "id": 58,
+          "name": "growlithe",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/58.png",
+          "types": [
+            "fire"
+          ],
+          "method": "egg",
+          "levels": [],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": null
+        }
+      ]
     }
   ]
 }

@@ -8,9 +8,53 @@
       "types": [
         "water"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 21,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 21,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 25,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 21,
       "versionGroup": "sun-moon"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 771,
+          "name": "pyukumuku",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/771.png",
+          "types": [
+            "water"
+          ],
+          "method": "level-up",
+          "levels": [
+            21,
+            25
+          ],
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 21
+        }
+      ]
     }
   ]
 }

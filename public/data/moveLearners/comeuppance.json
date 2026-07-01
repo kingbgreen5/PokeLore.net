@@ -9,6 +9,13 @@
         "dark",
         "fire"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 37,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 37,
       "versionGroup": "scarlet-violet"
@@ -20,6 +27,13 @@
       "types": [
         "dark",
         "fire"
+      ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 41,
+          "versionGroup": "scarlet-violet"
+        }
       ],
       "method": "level-up",
       "level": 41,
@@ -33,6 +47,13 @@
         "dark",
         "flying"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 65,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 65,
       "versionGroup": "scarlet-violet"
@@ -43,6 +64,13 @@
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/943.png",
       "types": [
         "dark"
+      ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        }
       ],
       "method": "level-up",
       "level": 0,
@@ -56,9 +84,110 @@
         "normal",
         "ghost"
       ],
+      "methods": [
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "egg",
       "level": 0,
       "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 228,
+          "name": "houndour",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/228.png",
+          "types": [
+            "dark",
+            "fire"
+          ],
+          "method": "level-up",
+          "levels": [
+            37
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 37
+        },
+        {
+          "id": 229,
+          "name": "houndoom",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/229.png",
+          "types": [
+            "dark",
+            "fire"
+          ],
+          "method": "level-up",
+          "levels": [
+            41
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 41
+        },
+        {
+          "id": 430,
+          "name": "honchkrow",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/430.png",
+          "types": [
+            "dark",
+            "flying"
+          ],
+          "method": "level-up",
+          "levels": [
+            65
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 65
+        },
+        {
+          "id": 943,
+          "name": "mabosstiff",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/943.png",
+          "types": [
+            "dark"
+          ],
+          "method": "level-up",
+          "levels": [],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": null
+        }
+      ]
+    },
+    {
+      "method": "egg",
+      "label": "Via Breeding",
+      "pokemon": [
+        {
+          "id": 10238,
+          "name": "zorua-hisui",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10238.png",
+          "types": [
+            "normal",
+            "ghost"
+          ],
+          "method": "egg",
+          "levels": [],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": null
+        }
+      ]
     }
   ]
 }

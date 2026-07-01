@@ -9,9 +9,109 @@
         "bug",
         "flying"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 13,
+          "versionGroup": "black-white"
+        },
+        {
+          "method": "level-up",
+          "level": 13,
+          "versionGroup": "diamond-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 13,
+          "versionGroup": "heartgold-soulsilver"
+        },
+        {
+          "method": "level-up",
+          "level": 13,
+          "versionGroup": "platinum"
+        },
+        {
+          "method": "level-up",
+          "level": 17,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 17,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 17,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 17,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 17,
+          "versionGroup": "x-y"
+        },
+        {
+          "method": "level-up",
+          "level": 40,
+          "versionGroup": "brilliant-diamond-shining-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 40,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 40,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 13,
-      "versionGroup": "diamond-pearl"
+      "versionGroup": "black-white"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 416,
+          "name": "vespiquen",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/416.png",
+          "types": [
+            "bug",
+            "flying"
+          ],
+          "method": "level-up",
+          "levels": [
+            13,
+            17,
+            40
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "brilliant-diamond-shining-pearl",
+            "diamond-pearl",
+            "heartgold-soulsilver",
+            "omega-ruby-alpha-sapphire",
+            "platinum",
+            "scarlet-violet",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 13
+        }
+      ]
     }
   ]
 }

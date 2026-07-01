@@ -9,9 +9,41 @@
         "steel",
         "ghost"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
-      "level": 1,
-      "versionGroup": "x-y"
+      "level": 0,
+      "versionGroup": "sword-shield"
     },
     {
       "id": 10026,
@@ -21,9 +53,91 @@
         "steel",
         "ghost"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
-      "level": 1,
-      "versionGroup": "x-y"
+      "level": 0,
+      "versionGroup": "sword-shield"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 681,
+          "name": "aegislash-shield",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/681.png",
+          "types": [
+            "steel",
+            "ghost"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 1
+        },
+        {
+          "id": 10026,
+          "name": "aegislash-blade",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10026.png",
+          "types": [
+            "steel",
+            "ghost"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 1
+        }
+      ]
     }
   ]
 }

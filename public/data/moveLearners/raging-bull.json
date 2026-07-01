@@ -8,6 +8,13 @@
       "types": [
         "normal"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 35,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 35,
       "versionGroup": "scarlet-violet"
@@ -18,6 +25,13 @@
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10250.png",
       "types": [
         "fighting"
+      ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 35,
+          "versionGroup": "scarlet-violet"
+        }
       ],
       "method": "level-up",
       "level": 35,
@@ -31,6 +45,13 @@
         "fighting",
         "fire"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 35,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 35,
       "versionGroup": "scarlet-violet"
@@ -43,9 +64,90 @@
         "fighting",
         "water"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 35,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 35,
       "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 128,
+          "name": "tauros",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/128.png",
+          "types": [
+            "normal"
+          ],
+          "method": "level-up",
+          "levels": [
+            35
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 35
+        },
+        {
+          "id": 10250,
+          "name": "tauros-paldea-combat-breed",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10250.png",
+          "types": [
+            "fighting"
+          ],
+          "method": "level-up",
+          "levels": [
+            35
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 35
+        },
+        {
+          "id": 10251,
+          "name": "tauros-paldea-blaze-breed",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10251.png",
+          "types": [
+            "fighting",
+            "fire"
+          ],
+          "method": "level-up",
+          "levels": [
+            35
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 35
+        },
+        {
+          "id": 10252,
+          "name": "tauros-paldea-aqua-breed",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10252.png",
+          "types": [
+            "fighting",
+            "water"
+          ],
+          "method": "level-up",
+          "levels": [
+            35
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 35
+        }
+      ]
     }
   ]
 }

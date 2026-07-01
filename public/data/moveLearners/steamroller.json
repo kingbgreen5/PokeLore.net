@@ -9,9 +9,41 @@
         "rock",
         "ground"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 10,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 10,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 10,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 11,
+          "versionGroup": "x-y"
+        },
+        {
+          "method": "level-up",
+          "level": 18,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 18,
+          "versionGroup": "black-white"
+        }
+      ],
       "method": "level-up",
-      "level": 18,
-      "versionGroup": "black-white"
+      "level": 10,
+      "versionGroup": "omega-ruby-alpha-sapphire"
     },
     {
       "id": 543,
@@ -21,9 +53,41 @@
         "bug",
         "poison"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 33,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 33,
+          "versionGroup": "black-white"
+        },
+        {
+          "method": "level-up",
+          "level": 33,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 33,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 33,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 33,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
       "level": 33,
-      "versionGroup": "black-white"
+      "versionGroup": "black-2-white-2"
     },
     {
       "id": 544,
@@ -33,9 +97,41 @@
         "bug",
         "poison"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 37,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 37,
+          "versionGroup": "black-white"
+        },
+        {
+          "method": "level-up",
+          "level": 37,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 37,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 37,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 37,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
       "level": 37,
-      "versionGroup": "black-white"
+      "versionGroup": "black-2-white-2"
     },
     {
       "id": 545,
@@ -45,9 +141,41 @@
         "bug",
         "poison"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 39,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 39,
+          "versionGroup": "black-white"
+        },
+        {
+          "method": "level-up",
+          "level": 39,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 39,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 39,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 39,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
       "level": 39,
-      "versionGroup": "black-white"
+      "versionGroup": "black-2-white-2"
     },
     {
       "id": 799,
@@ -56,6 +184,18 @@
       "types": [
         "dark",
         "dragon"
+      ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 19,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 19,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
       ],
       "method": "level-up",
       "level": 19,
@@ -69,9 +209,155 @@
         "rock",
         "electric"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 10,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 10,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
       "level": 10,
       "versionGroup": "sun-moon"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 76,
+          "name": "golem",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/76.png",
+          "types": [
+            "rock",
+            "ground"
+          ],
+          "method": "level-up",
+          "levels": [
+            10,
+            11,
+            18
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 10
+        },
+        {
+          "id": 543,
+          "name": "venipede",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/543.png",
+          "types": [
+            "bug",
+            "poison"
+          ],
+          "method": "level-up",
+          "levels": [
+            33
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 33
+        },
+        {
+          "id": 544,
+          "name": "whirlipede",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/544.png",
+          "types": [
+            "bug",
+            "poison"
+          ],
+          "method": "level-up",
+          "levels": [
+            37
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 37
+        },
+        {
+          "id": 545,
+          "name": "scolipede",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/545.png",
+          "types": [
+            "bug",
+            "poison"
+          ],
+          "method": "level-up",
+          "levels": [
+            39
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 39
+        },
+        {
+          "id": 799,
+          "name": "guzzlord",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/799.png",
+          "types": [
+            "dark",
+            "dragon"
+          ],
+          "method": "level-up",
+          "levels": [
+            19
+          ],
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 19
+        },
+        {
+          "id": 10111,
+          "name": "golem-alola",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10111.png",
+          "types": [
+            "rock",
+            "electric"
+          ],
+          "method": "level-up",
+          "levels": [
+            10
+          ],
+          "versionGroups": [
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 10
+        }
+      ]
     }
   ]
 }

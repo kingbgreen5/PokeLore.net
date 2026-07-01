@@ -8,6 +8,7 @@ function CollapsibleSection({
   children,
   className,
   contentStyle,
+  seoVisible = true,
   style
 }) {
   const generatedId =
@@ -55,12 +56,21 @@ function CollapsibleSection({
 
       <div
         id={contentId}
+        data-seo-visible={
+          seoVisible
+            ? "true"
+            : "false"
+        }
         className={
           expanded
             ? "collapsible-content open"
             : "collapsible-content collapsed"
         }
-        aria-hidden={!expanded}
+        aria-hidden={
+          seoVisible
+            ? undefined
+            : !expanded
+        }
         style={contentStyle}
       >
         {children}

@@ -9,9 +9,41 @@
         "dragon",
         "flying"
       ],
-      "method": "tutor",
-      "level": 0,
-      "versionGroup": "omega-ruby-alpha-sapphire"
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "brilliant-diamond-shining-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
+      "method": "level-up",
+      "level": 1,
+      "versionGroup": "brilliant-diamond-shining-pearl"
     },
     {
       "id": 10079,
@@ -21,9 +53,93 @@
         "dragon",
         "flying"
       ],
+      "methods": [
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "tutor",
+          "level": 0,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "tutor",
       "level": 0,
       "versionGroup": "omega-ruby-alpha-sapphire"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 384,
+          "name": "rayquaza",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/384.png",
+          "types": [
+            "dragon",
+            "flying"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "brilliant-diamond-shining-pearl",
+            "scarlet-violet",
+            "sword-shield"
+          ],
+          "lowestLevel": 1
+        }
+      ]
+    },
+    {
+      "method": "tutor",
+      "label": "Move Tutor",
+      "pokemon": [
+        {
+          "id": 384,
+          "name": "rayquaza",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/384.png",
+          "types": [
+            "dragon",
+            "flying"
+          ],
+          "method": "tutor",
+          "levels": [],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": null
+        },
+        {
+          "id": 10079,
+          "name": "rayquaza-mega",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10079.png",
+          "types": [
+            "dragon",
+            "flying"
+          ],
+          "method": "tutor",
+          "levels": [],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": null
+        }
+      ]
     }
   ]
 }

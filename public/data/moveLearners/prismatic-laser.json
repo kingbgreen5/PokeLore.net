@@ -8,6 +8,28 @@
       "types": [
         "psychic"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 73,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 73,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 88,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 88,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 73,
       "versionGroup": "sun-moon"
@@ -19,6 +41,23 @@
       "types": [
         "psychic",
         "steel"
+      ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 73,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 88,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 88,
+          "versionGroup": "sword-shield"
+        }
       ],
       "method": "level-up",
       "level": 73,
@@ -32,9 +71,26 @@
         "psychic",
         "ghost"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 66,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "level-up",
+          "level": 73,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 88,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
-      "level": 73,
-      "versionGroup": "ultra-sun-ultra-moon"
+      "level": 66,
+      "versionGroup": "sword-shield"
     },
     {
       "id": 10157,
@@ -44,9 +100,102 @@
         "psychic",
         "dragon"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 73,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
       "level": 73,
       "versionGroup": "ultra-sun-ultra-moon"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 800,
+          "name": "necrozma",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/800.png",
+          "types": [
+            "psychic"
+          ],
+          "method": "level-up",
+          "levels": [
+            73,
+            88
+          ],
+          "versionGroups": [
+            "scarlet-violet",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 73
+        },
+        {
+          "id": 10155,
+          "name": "necrozma-dusk",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10155.png",
+          "types": [
+            "psychic",
+            "steel"
+          ],
+          "method": "level-up",
+          "levels": [
+            73,
+            88
+          ],
+          "versionGroups": [
+            "scarlet-violet",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 73
+        },
+        {
+          "id": 10156,
+          "name": "necrozma-dawn",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10156.png",
+          "types": [
+            "psychic",
+            "ghost"
+          ],
+          "method": "level-up",
+          "levels": [
+            66,
+            73,
+            88
+          ],
+          "versionGroups": [
+            "scarlet-violet",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 66
+        },
+        {
+          "id": 10157,
+          "name": "necrozma-ultra",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10157.png",
+          "types": [
+            "psychic",
+            "dragon"
+          ],
+          "method": "level-up",
+          "levels": [
+            73
+          ],
+          "versionGroups": [
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 73
+        }
+      ]
     }
   ]
 }

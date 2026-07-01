@@ -8,9 +8,36 @@
       "types": [
         "grass"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "brilliant-diamond-shining-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
       "level": 1,
-      "versionGroup": "x-y"
+      "versionGroup": "brilliant-diamond-shining-pearl"
     },
     {
       "id": 420,
@@ -19,9 +46,41 @@
       "types": [
         "grass"
       ],
+      "methods": [
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "brilliant-diamond-shining-pearl"
+        },
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "sword-shield"
+        },
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "egg",
+          "level": 0,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "egg",
       "level": 0,
-      "versionGroup": "x-y"
+      "versionGroup": "brilliant-diamond-shining-pearl"
     },
     {
       "id": 421,
@@ -30,9 +89,21 @@
       "types": [
         "grass"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "brilliant-diamond-shining-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 1,
-      "versionGroup": "sword-shield"
+      "versionGroup": "brilliant-diamond-shining-pearl"
     },
     {
       "id": 671,
@@ -41,9 +112,31 @@
       "types": [
         "fairy"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "x-y"
+        }
+      ],
       "method": "level-up",
       "level": 1,
-      "versionGroup": "x-y"
+      "versionGroup": "omega-ruby-alpha-sapphire"
     },
     {
       "id": 764,
@@ -52,9 +145,134 @@
       "types": [
         "fairy"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 1,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 12,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 1,
       "versionGroup": "sun-moon"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 192,
+          "name": "sunflora",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/192.png",
+          "types": [
+            "grass"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "brilliant-diamond-shining-pearl",
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 1
+        },
+        {
+          "id": 421,
+          "name": "cherrim",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/421.png",
+          "types": [
+            "grass"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "brilliant-diamond-shining-pearl",
+            "sword-shield"
+          ],
+          "lowestLevel": 1
+        },
+        {
+          "id": 671,
+          "name": "florges",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/671.png",
+          "types": [
+            "fairy"
+          ],
+          "method": "level-up",
+          "levels": [
+            1
+          ],
+          "versionGroups": [
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 1
+        },
+        {
+          "id": 764,
+          "name": "comfey",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/764.png",
+          "types": [
+            "fairy"
+          ],
+          "method": "level-up",
+          "levels": [
+            1,
+            12
+          ],
+          "versionGroups": [
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 1
+        }
+      ]
+    },
+    {
+      "method": "egg",
+      "label": "Via Breeding",
+      "pokemon": [
+        {
+          "id": 420,
+          "name": "cherubi",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/420.png",
+          "types": [
+            "grass"
+          ],
+          "method": "egg",
+          "levels": [],
+          "versionGroups": [
+            "brilliant-diamond-shining-pearl",
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": null
+        }
+      ]
     }
   ]
 }

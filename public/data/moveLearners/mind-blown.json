@@ -9,9 +9,48 @@
         "fire",
         "ghost"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 59,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 70,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 59,
       "versionGroup": "ultra-sun-ultra-moon"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 806,
+          "name": "blacephalon",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/806.png",
+          "types": [
+            "fire",
+            "ghost"
+          ],
+          "method": "level-up",
+          "levels": [
+            59,
+            70
+          ],
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 59
+        }
+      ]
     }
   ]
 }

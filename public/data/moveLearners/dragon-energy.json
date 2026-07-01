@@ -8,9 +8,46 @@
       "types": [
         "dragon"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 66,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 66,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 66,
-      "versionGroup": "sword-shield"
+      "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 895,
+          "name": "regidrago",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/895.png",
+          "types": [
+            "dragon"
+          ],
+          "method": "level-up",
+          "levels": [
+            66
+          ],
+          "versionGroups": [
+            "scarlet-violet",
+            "sword-shield"
+          ],
+          "lowestLevel": 66
+        }
+      ]
     }
   ]
 }

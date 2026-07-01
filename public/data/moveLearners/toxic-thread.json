@@ -9,9 +9,31 @@
         "bug",
         "poison"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 51,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 54,
+          "versionGroup": "brilliant-diamond-shining-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 54,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 54,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
-      "level": 54,
-      "versionGroup": "sun-moon"
+      "level": 51,
+      "versionGroup": "scarlet-violet"
     },
     {
       "id": 168,
@@ -21,9 +43,81 @@
         "bug",
         "poison"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 59,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 63,
+          "versionGroup": "brilliant-diamond-shining-pearl"
+        },
+        {
+          "method": "level-up",
+          "level": 63,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 63,
+          "versionGroup": "ultra-sun-ultra-moon"
+        }
+      ],
       "method": "level-up",
-      "level": 63,
-      "versionGroup": "sun-moon"
+      "level": 59,
+      "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 167,
+          "name": "spinarak",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/167.png",
+          "types": [
+            "bug",
+            "poison"
+          ],
+          "method": "level-up",
+          "levels": [
+            51,
+            54
+          ],
+          "versionGroups": [
+            "brilliant-diamond-shining-pearl",
+            "scarlet-violet",
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 51
+        },
+        {
+          "id": 168,
+          "name": "ariados",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/168.png",
+          "types": [
+            "bug",
+            "poison"
+          ],
+          "method": "level-up",
+          "levels": [
+            59,
+            63
+          ],
+          "versionGroups": [
+            "brilliant-diamond-shining-pearl",
+            "scarlet-violet",
+            "sun-moon",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 59
+        }
+      ]
     }
   ]
 }

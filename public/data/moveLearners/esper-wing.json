@@ -9,9 +9,47 @@
         "psychic",
         "flying"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 0,
+          "versionGroup": "scarlet-violet"
+        },
+        {
+          "method": "level-up",
+          "level": 25,
+          "versionGroup": "legends-arceus"
+        }
+      ],
       "method": "level-up",
-      "level": 25,
-      "versionGroup": "legends-arceus"
+      "level": 0,
+      "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 10240,
+          "name": "braviary-hisui",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10240.png",
+          "types": [
+            "psychic",
+            "flying"
+          ],
+          "method": "level-up",
+          "levels": [
+            25
+          ],
+          "versionGroups": [
+            "legends-arceus",
+            "scarlet-violet"
+          ],
+          "lowestLevel": 25
+        }
+      ]
     }
   ]
 }

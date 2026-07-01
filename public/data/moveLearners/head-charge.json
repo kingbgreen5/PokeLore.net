@@ -8,9 +8,77 @@
       "types": [
         "normal"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 31,
+          "versionGroup": "black-2-white-2"
+        },
+        {
+          "method": "level-up",
+          "level": 31,
+          "versionGroup": "black-white"
+        },
+        {
+          "method": "level-up",
+          "level": 31,
+          "versionGroup": "omega-ruby-alpha-sapphire"
+        },
+        {
+          "method": "level-up",
+          "level": 31,
+          "versionGroup": "sun-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 31,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 31,
+          "versionGroup": "x-y"
+        },
+        {
+          "method": "level-up",
+          "level": 40,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 31,
-      "versionGroup": "black-white"
+      "versionGroup": "black-2-white-2"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 626,
+          "name": "bouffalant",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/626.png",
+          "types": [
+            "normal"
+          ],
+          "method": "level-up",
+          "levels": [
+            31,
+            40
+          ],
+          "versionGroups": [
+            "black-2-white-2",
+            "black-white",
+            "omega-ruby-alpha-sapphire",
+            "sun-moon",
+            "sword-shield",
+            "ultra-sun-ultra-moon",
+            "x-y"
+          ],
+          "lowestLevel": 31
+        }
+      ]
     }
   ]
 }

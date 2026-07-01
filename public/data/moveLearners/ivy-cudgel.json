@@ -8,6 +8,13 @@
       "types": [
         "grass"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 30,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 30,
       "versionGroup": "scarlet-violet"
@@ -19,6 +26,13 @@
       "types": [
         "grass",
         "water"
+      ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 30,
+          "versionGroup": "scarlet-violet"
+        }
       ],
       "method": "level-up",
       "level": 30,
@@ -32,6 +46,13 @@
         "grass",
         "fire"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 30,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 30,
       "versionGroup": "scarlet-violet"
@@ -44,9 +65,91 @@
         "grass",
         "rock"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 30,
+          "versionGroup": "scarlet-violet"
+        }
+      ],
       "method": "level-up",
       "level": 30,
       "versionGroup": "scarlet-violet"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 1017,
+          "name": "ogerpon",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1017.png",
+          "types": [
+            "grass"
+          ],
+          "method": "level-up",
+          "levels": [
+            30
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 30
+        },
+        {
+          "id": 10273,
+          "name": "ogerpon-wellspring-mask",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10273.png",
+          "types": [
+            "grass",
+            "water"
+          ],
+          "method": "level-up",
+          "levels": [
+            30
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 30
+        },
+        {
+          "id": 10274,
+          "name": "ogerpon-hearthflame-mask",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10274.png",
+          "types": [
+            "grass",
+            "fire"
+          ],
+          "method": "level-up",
+          "levels": [
+            30
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 30
+        },
+        {
+          "id": 10275,
+          "name": "ogerpon-cornerstone-mask",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10275.png",
+          "types": [
+            "grass",
+            "rock"
+          ],
+          "method": "level-up",
+          "levels": [
+            30
+          ],
+          "versionGroups": [
+            "scarlet-violet"
+          ],
+          "lowestLevel": 30
+        }
+      ]
     }
   ]
 }

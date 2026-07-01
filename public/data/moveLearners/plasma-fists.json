@@ -8,9 +8,47 @@
       "types": [
         "electric"
       ],
+      "methods": [
+        {
+          "method": "level-up",
+          "level": 43,
+          "versionGroup": "ultra-sun-ultra-moon"
+        },
+        {
+          "method": "level-up",
+          "level": 88,
+          "versionGroup": "sword-shield"
+        }
+      ],
       "method": "level-up",
       "level": 43,
       "versionGroup": "ultra-sun-ultra-moon"
+    }
+  ],
+  "methodGroups": [
+    {
+      "method": "level-up",
+      "label": "Level Up",
+      "pokemon": [
+        {
+          "id": 807,
+          "name": "zeraora",
+          "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/807.png",
+          "types": [
+            "electric"
+          ],
+          "method": "level-up",
+          "levels": [
+            43,
+            88
+          ],
+          "versionGroups": [
+            "sword-shield",
+            "ultra-sun-ultra-moon"
+          ],
+          "lowestLevel": 43
+        }
+      ]
     }
   ]
 }
