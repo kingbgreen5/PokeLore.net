@@ -1,0 +1,360 @@
+{
+  "id": 94,
+  "name": "psychic",
+  "displayName": "Psychic",
+  "type": "psychic",
+  "category": "special",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 10,
+  "target": "selected-pokemon",
+  "generation": "generation-i",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Defense by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Special Defense by one stage.",
+  "description": "Has a chance to lower the target’s Special Defense by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Defense by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "An attack that may lower SPCL.DEF."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "An attack that may lower SPCL.DEF."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "A powerful psychic attack that may lower SP. DEF."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "A powerful psychic attack that may lower SP. DEF."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "A strong telekinetic attack. It may also lower the foe’s SP. DEF stat."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The foe is hit by a strong telekinetic force. It may also reduce the foe’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The foe is hit by a strong telekinetic force. It may also reduce the foe’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The foe is hit by a strong telekinetic force. It may also reduce the foe’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The target is hit by a strong telekinetic force. It may also reduce the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The target is hit by a strong telekinetic force. It may also reduce the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The target is hit by a strong telekinetic force. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The target is hit by a strong telekinetic force. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The target is hit by a strong telekinetic force. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The target is hit by a strong telekinetic force. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The target is hit by a strong telekinetic force. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The target is hit by a strong telekinetic force. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The target is hit with a strong telekinetic force to inflict damage. This may also lower the target’s defensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The target is hit with a strong telekinetic force to inflict damage. This may also lower the target’s Sp. Def stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 10
+  },
+  "statChanges": [
+    {
+      "stat": "special-defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [
+    {
+      "accuracy": null,
+      "effectChance": null,
+      "power": null,
+      "pp": null,
+      "type": null,
+      "versionGroup": "gold-silver",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": [
+    {
+      "itemId": 1963,
+      "itemName": "tm120",
+      "itemDisplayName": "TM120",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1935,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 618,
+      "versionGroup": "red-blue",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 619,
+      "versionGroup": "yellow",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 620,
+      "versionGroup": "gold-silver",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 621,
+      "versionGroup": "crystal",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 622,
+      "versionGroup": "ruby-sapphire",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 623,
+      "versionGroup": "emerald",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 624,
+      "versionGroup": "firered-leafgreen",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 625,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 626,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 627,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 628,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 629,
+      "versionGroup": "colosseum",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 630,
+      "versionGroup": "xd",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 631,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 632,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 633,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 634,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 635,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 638,
+      "versionGroup": "red-green-japan",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 333,
+      "itemName": "tm29",
+      "itemDisplayName": "TM29",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 639,
+      "versionGroup": "blue-japan",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 344,
+      "itemName": "tm40",
+      "itemDisplayName": "TM40",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 878,
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 1199,
+      "itemName": "tr11",
+      "itemDisplayName": "TR11",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1710,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

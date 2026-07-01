@@ -1,0 +1,697 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __filename =
+  fileURLToPath(import.meta.url);
+const __dirname =
+  path.dirname(__filename);
+const rootDir =
+  path.resolve(__dirname, "..");
+const dataDir =
+  path.join(rootDir, "public", "data");
+const movesDir =
+  path.join(dataDir, "moves");
+const moveLearnersDir =
+  path.join(dataDir, "moveLearners");
+const itemsDir =
+  path.join(dataDir, "items");
+const pokemonDataDir =
+  path.join(dataDir, "pokemonData");
+const pokemonLearnsetsDir =
+  path.join(dataDir, "pokemonLearnsets");
+const movesIndexPath =
+  path.join(dataDir, "movesIndex.json");
+const legacyMovesPath =
+  path.join(dataDir, "moves.json");
+
+const API_BASE =
+  "https://pokeapi.co/api/v2";
+const REQUEST_DELAY_MS = 80;
+const refreshExisting =
+  process.argv.includes("--refresh");
+
+const requestCache = new Map();
+
+function sleep(ms) {
+  return new Promise(resolve =>
+    setTimeout(resolve, ms)
+  );
+}
+
+function cleanText(text) {
+  return String(text ?? "")
+    .replace(/\f/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function displayName(slug) {
+  return String(slug ?? "")
+    .split("-")
+    .filter(Boolean)
+    .map(
+      word =>
+        word.charAt(0).toUpperCase() +
+        word.slice(1)
+    )
+    .join(" ");
+}
+
+function getUrlId(url) {
+  const match =
+    String(url ?? "").match(/\/(\d+)\/?$/);
+
+  return match ? Number(match[1]) : null;
+}
+
+async function readJson(filePath, fallback) {
+  try {
+    return JSON.parse(
+      await fs.readFile(filePath, "utf8")
+    );
+  } catch {
+    return fallback;
+  }
+}
+
+async function fetchJson(url) {
+  if (requestCache.has(url)) {
+    return requestCache.get(url);
+  }
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(
+      `${response.status} ${response.statusText}`
+    );
+  }
+
+  const data = await response.json();
+  requestCache.set(url, data);
+  await sleep(REQUEST_DELAY_MS);
+
+  return data;
+}
+
+function englishEntries(entries = []) {
+  return entries.filter(
+    entry =>
+      entry.language?.name === "en"
+  );
+}
+
+function getEnglishName(data) {
+  return (
+    data.names?.find(
+      entry =>
+        entry.language?.name === "en"
+    )?.name ?? displayName(data.name)
+  );
+}
+
+function mapEffectEntries(entries = []) {
+  return englishEntries(entries).map(
+    entry => ({
+      effect: cleanText(entry.effect),
+      shortEffect: cleanText(
+        entry.short_effect
+      )
+    })
+  );
+}
+
+function mapFlavorTextEntries(entries = []) {
+  const seen = new Set();
+
+  return englishEntries(entries)
+    .map(entry => ({
+      versionGroup:
+        entry.version_group?.name,
+      text: cleanText(entry.flavor_text)
+    }))
+    .filter(entry => {
+      const key =
+        `${entry.versionGroup}:${entry.text}`;
+
+      if (
+        !entry.versionGroup ||
+        !entry.text ||
+        seen.has(key)
+      ) {
+        return false;
+      }
+
+      seen.add(key);
+      return true;
+    });
+}
+
+function mapNamedResource(resource) {
+  return resource?.name ?? null;
+}
+
+function mapMeta(meta) {
+  if (!meta) {
+    return null;
+  }
+
+  return {
+    ailment:
+      mapNamedResource(meta.ailment),
+    category:
+      mapNamedResource(meta.category),
+    minHits: meta.min_hits,
+    maxHits: meta.max_hits,
+    minTurns: meta.min_turns,
+    maxTurns: meta.max_turns,
+    drain: meta.drain,
+    healing: meta.healing,
+    critRate: meta.crit_rate,
+    ailmentChance:
+      meta.ailment_chance,
+    flinchChance:
+      meta.flinch_chance,
+    statChance: meta.stat_chance
+  };
+}
+
+function mapStatChanges(statChanges = []) {
+  return statChanges.map(change => ({
+    stat: change.stat?.name,
+    change: change.change
+  }));
+}
+
+function mapPastValues(pastValues = []) {
+  return pastValues.map(value => ({
+    accuracy: value.accuracy,
+    effectChance:
+      value.effect_chance,
+    power: value.power,
+    pp: value.pp,
+    type: value.type?.name ?? null,
+    versionGroup:
+      value.version_group?.name ?? null,
+    effectEntries: mapEffectEntries(
+      value.effect_entries
+    )
+  }));
+}
+
+function generationForVersionGroup(
+  versionGroup
+) {
+  if (
+    [
+      "red-green-japan",
+      "blue-japan",
+      "red-blue",
+      "yellow"
+    ].includes(versionGroup)
+  ) {
+    return "Generation I";
+  }
+
+  if (
+    [
+      "gold-silver",
+      "crystal"
+    ].includes(versionGroup)
+  ) {
+    return "Generation II";
+  }
+
+  if (
+    [
+      "ruby-sapphire",
+      "emerald",
+      "firered-leafgreen",
+      "colosseum",
+      "xd"
+    ].includes(versionGroup)
+  ) {
+    return "Generation III";
+  }
+
+  if (
+    [
+      "diamond-pearl",
+      "platinum",
+      "heartgold-soulsilver"
+    ].includes(versionGroup)
+  ) {
+    return "Generation IV";
+  }
+
+  if (
+    [
+      "black-white",
+      "black-2-white-2"
+    ].includes(versionGroup)
+  ) {
+    return "Generation V";
+  }
+
+  if (
+    [
+      "x-y",
+      "omega-ruby-alpha-sapphire"
+    ].includes(versionGroup)
+  ) {
+    return "Generation VI";
+  }
+
+  if (
+    [
+      "sun-moon",
+      "ultra-sun-ultra-moon",
+      "lets-go-pikachu-lets-go-eevee"
+    ].includes(versionGroup)
+  ) {
+    return "Generation VII";
+  }
+
+  if (
+    [
+      "sword-shield",
+      "the-isle-of-armor",
+      "the-crown-tundra",
+      "brilliant-diamond-shining-pearl",
+      "brilliant-diamond-and-shining-pearl",
+      "legends-arceus"
+    ].includes(versionGroup)
+  ) {
+    return "Generation VIII";
+  }
+
+  if (
+    [
+      "scarlet-violet",
+      "the-teal-mask",
+      "the-indigo-disk"
+    ].includes(versionGroup)
+  ) {
+    return "Generation IX";
+  }
+
+  return "Other Games";
+}
+
+function machineItemKind(itemName) {
+  if (itemName.startsWith("tm")) {
+    return "TM";
+  }
+
+  if (itemName.startsWith("hm")) {
+    return "HM";
+  }
+
+  if (itemName.startsWith("tr")) {
+    return "TR";
+  }
+
+  return "Machine";
+}
+
+async function buildMachineItemsByMove() {
+  const byMove = new Map();
+
+  let files = [];
+  try {
+    files = await fs.readdir(itemsDir);
+  } catch {
+    return byMove;
+  }
+
+  for (const file of files.filter(file =>
+    file.endsWith(".json")
+  )) {
+    const item =
+      await readJson(
+        path.join(itemsDir, file),
+        null
+      );
+
+    if (!item?.machines?.length) {
+      continue;
+    }
+
+    for (const machine of item.machines) {
+      const moveName =
+        machine.move?.name;
+
+      if (!moveName) {
+        continue;
+      }
+
+      if (!byMove.has(moveName)) {
+        byMove.set(moveName, []);
+      }
+
+      byMove.get(moveName).push({
+        itemId: item.id,
+        itemName: item.name,
+        itemDisplayName:
+          item.displayName,
+        itemSprite: item.sprite,
+        itemKind:
+          machineItemKind(item.name),
+        machineId:
+          machine.machineId,
+        versionGroup:
+          machine.versionGroup,
+        generation:
+          generationForVersionGroup(
+            machine.versionGroup
+          )
+      });
+    }
+  }
+
+  return byMove;
+}
+
+async function getPokemonSummary(
+  pokemonId
+) {
+  const pokemon =
+    await readJson(
+      path.join(
+        pokemonDataDir,
+        `${pokemonId}.json`
+      ),
+      null
+    );
+
+  if (!pokemon) {
+    return null;
+  }
+
+  return {
+    id: pokemon.id,
+    name: pokemon.name,
+    sprite: pokemon.sprite,
+    types: pokemon.types
+  };
+}
+
+async function buildMoveLearners() {
+  const learners = new Map();
+
+  let files = [];
+  try {
+    files = await fs.readdir(
+      pokemonLearnsetsDir
+    );
+  } catch {
+    return learners;
+  }
+
+  for (const file of files.filter(file =>
+    file.endsWith(".json")
+  )) {
+    const learnset =
+      await readJson(
+        path.join(
+          pokemonLearnsetsDir,
+          file
+        ),
+        null
+      );
+
+    if (!learnset?.moves?.length) {
+      continue;
+    }
+
+    const pokemon =
+      await getPokemonSummary(
+        learnset.id
+      );
+
+    if (!pokemon) {
+      continue;
+    }
+
+    for (const moveEntry of learnset.moves) {
+      if (!learners.has(moveEntry.move)) {
+        learners.set(moveEntry.move, {
+          move: moveEntry.move,
+          pokemon: []
+        });
+      }
+
+      learners
+        .get(moveEntry.move)
+        .pokemon.push({
+          ...pokemon,
+          method: moveEntry.method,
+          level: moveEntry.level,
+          versionGroup:
+            moveEntry.versionGroup
+        });
+    }
+  }
+
+  for (const learnerData of learners.values()) {
+    const seen = new Set();
+
+    learnerData.pokemon =
+      learnerData.pokemon
+        .filter(entry => {
+          const key = `${entry.id}`;
+
+          if (seen.has(key)) {
+            return false;
+          }
+
+          seen.add(key);
+          return true;
+        })
+        .sort(
+          (a, b) => a.id - b.id
+        );
+  }
+
+  return learners;
+}
+
+function buildMoveRecord(
+  data,
+  machineItems
+) {
+  const effectEntries =
+    mapEffectEntries(data.effect_entries);
+  const primaryEffect =
+    effectEntries[0] ?? {};
+
+  return {
+    id: data.id,
+    name: data.name,
+    displayName: getEnglishName(data),
+    type: data.type?.name ?? null,
+    category:
+      data.damage_class?.name ?? null,
+    power: data.power,
+    accuracy: data.accuracy,
+    pp: data.pp,
+    priority: data.priority,
+    effectChance:
+      data.effect_chance,
+    target:
+      data.target?.name ?? null,
+    generation:
+      data.generation?.name ?? null,
+    effect:
+      primaryEffect.effect ?? null,
+    shortEffect:
+      primaryEffect.shortEffect ?? null,
+    description:
+      primaryEffect.shortEffect ?? null,
+    effectEntries,
+    flavorTextEntries:
+      mapFlavorTextEntries(
+        data.flavor_text_entries
+      ),
+    meta: mapMeta(data.meta),
+    statChanges: mapStatChanges(
+      data.stat_changes
+    ),
+    pastValues: mapPastValues(
+      data.past_values
+    ),
+    machineItems:
+      machineItems ?? []
+  };
+}
+
+function buildIndexRecord(move) {
+  return {
+    id: move.id,
+    name: move.name,
+    displayName: move.displayName,
+    type: move.type,
+    category: move.category,
+    power: move.power,
+    accuracy: move.accuracy,
+    pp: move.pp,
+    priority: move.priority,
+    effectChance: move.effectChance,
+    target: move.target,
+    generation: move.generation,
+    description: move.description,
+    shortEffect: move.shortEffect,
+    machineItems: move.machineItems
+  };
+}
+
+async function writeJson(filePath, data) {
+  await fs.writeFile(
+    filePath,
+    `${JSON.stringify(data, null, 2)}\n`
+  );
+}
+
+async function main() {
+  await fs.mkdir(movesDir, {
+    recursive: true
+  });
+  await fs.mkdir(moveLearnersDir, {
+    recursive: true
+  });
+
+  const machineItemsByMove =
+    await buildMachineItemsByMove();
+  const learnersByMove =
+    await buildMoveLearners();
+  const failures = [];
+
+  console.log("Fetching move list...");
+
+  const list =
+    await fetchJson(
+      `${API_BASE}/move?limit=100000`
+    );
+  const moveList =
+    list.results ?? [];
+  const movesIndex = [];
+  const legacyMoves = {};
+
+  console.log(
+    `Found ${moveList.length} moves.`
+  );
+
+  for (const [index, move] of moveList.entries()) {
+    try {
+      if (
+        index % 25 === 0 ||
+        index === moveList.length - 1
+      ) {
+        console.log(
+          `[${index + 1}/${moveList.length}] ${move.name}`
+        );
+      }
+
+      const moveFilePath =
+        path.join(
+          movesDir,
+          `${move.name}.json`
+        );
+
+      let moveRecord =
+        !refreshExisting
+          ? await readJson(
+              moveFilePath,
+              null
+            )
+          : null;
+
+      if (!moveRecord?.name) {
+        const data =
+          await fetchJson(move.url);
+        const machineItems =
+          machineItemsByMove.get(
+            data.name
+          ) ?? [];
+
+        moveRecord =
+          buildMoveRecord(
+            data,
+            machineItems
+          );
+
+        await writeJson(
+          moveFilePath,
+          moveRecord
+        );
+      }
+
+      movesIndex.push(
+        buildIndexRecord(moveRecord)
+      );
+
+      legacyMoves[moveRecord.name] =
+        buildIndexRecord(moveRecord);
+
+      const learners =
+        learnersByMove.get(
+          moveRecord.name
+        );
+
+      if (learners) {
+        await writeJson(
+          path.join(
+            moveLearnersDir,
+            `${moveRecord.name}.json`
+          ),
+          learners
+        );
+      }
+    } catch (error) {
+      failures.push({
+        move: move.name,
+        error: error.message
+      });
+      console.warn(
+        `Failed to generate ${move.name}: ${error.message}`
+      );
+    }
+  }
+
+  movesIndex.sort(
+    (a, b) => a.id - b.id
+  );
+
+  await writeJson(
+    movesIndexPath,
+    movesIndex
+  );
+  await writeJson(
+    legacyMovesPath,
+    legacyMoves
+  );
+
+  console.log(
+    `Generated ${movesIndex.length} moves.`
+  );
+  console.log(
+    `Generated ${learnersByMove.size} move learner files.`
+  );
+
+  if (failures.length) {
+    console.warn(
+      `Failed ${failures.length} moves:`
+    );
+    for (const failure of failures) {
+      console.warn(
+        `- ${failure.move}: ${failure.error}`
+      );
+    }
+  }
+}
+
+main().catch(error => {
+  console.error(error);
+  process.exit(1);
+});

@@ -1,0 +1,79 @@
+{
+  "id": 620,
+  "name": "dragon-ascent",
+  "displayName": "Dragon Ascent",
+  "type": "flying",
+  "category": "physical",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-vi",
+  "effect": "Inflicts regular damage, then lowers the user’s Defense and Special Defense by one stage each.",
+  "shortEffect": "Lowers the user’s Defense and Special Defense by one stage after inflicting damage.",
+  "description": "Lowers the user’s Defense and Special Defense by one stage after inflicting damage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage, then lowers the user’s Defense and Special Defense by one stage each.",
+      "shortEffect": "Lowers the user’s Defense and Special Defense by one stage after inflicting damage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "After soaring upward, the user attacks its target by dropping out of the sky at high speeds, although it lowers its own Defense and Sp. Def in the process."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "After soaring upward, the user attacks its target by dropping out of the sky at high speeds. But it lowers its own Defense and Sp. Def stats in the process."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "After soaring upward, the user attacks its target by dropping out of the sky at high speeds. But it lowers its own Defense and Sp. Def stats in the process."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "After soaring upward, the user attacks its target by dropping out of the sky at high speeds. But it lowers its own Defense and Sp. Def stats in the process."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "After soaring upward, the user attacks its target by dropping out of the sky at high speeds. But it lowers its own Defense and Sp. Def stats in the process."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "After soaring upward, the user attacks its target by dropping out of the sky at high speeds. But it lowers its own Defense and Sp. Def stats in the process."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks the target by dropping out of the sky at high speed. This also lowers the user's Defense and Sp. Def stats."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-raise",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "defense",
+      "change": -1
+    },
+    {
+      "stat": "special-defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": []
+}

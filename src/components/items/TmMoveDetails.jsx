@@ -5,6 +5,7 @@ import {
 } from "react";
 import MoveSummaryCard from "../MoveSummaryCard";
 import { compareVersionGroups } from "../../constants/versionOrder";
+import { loadMovesMap } from "../../utils/loadMovesData";
 
 function capitalize(text) {
   return String(text ?? "")
@@ -135,17 +136,8 @@ function TmMoveDetails({
 
     async function loadMoves() {
       try {
-        const response =
-          await fetch(
-            "/data/moves.json"
-          );
-
-        if (!response.ok) {
-          return;
-        }
-
         const data =
-          await response.json();
+          await loadMovesMap();
 
         if (!ignore) {
           setMovesData(data);

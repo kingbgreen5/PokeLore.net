@@ -1,0 +1,44 @@
+{
+  "id": 884,
+  "name": "pounce",
+  "displayName": "Pounce",
+  "type": "bug",
+  "category": "physical",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-ix",
+  "effect": null,
+  "shortEffect": null,
+  "description": null,
+  "effectEntries": [],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks by pouncing on the target. This also lowers the target's Speed stat."
+    }
+  ],
+  "meta": null,
+  "statChanges": [
+    {
+      "stat": "speed",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 325,
+      "itemName": "tm21",
+      "itemDisplayName": "TM21",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1836,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    }
+  ]
+}

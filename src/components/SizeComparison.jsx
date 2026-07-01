@@ -208,12 +208,6 @@ function SizeComparison({
     return Math.round((height / 10) * 39.3701);
   }
 
-  function formatFeetInches(totalInches) {
-    const feet = Math.floor(totalInches / 12);
-    const inches = totalInches % 12;
-    return `${feet}' ${inches}"`;
-  }
-
   const pokemonHeightInches = heightToInches(pokemon.height);
   const spriteBounds =
     spriteBoundsById[pokemon.id];
@@ -221,10 +215,17 @@ function SizeComparison({
     localCorrectionsById[pokemon.id] ??
     baseCorrectionsById[pokemon.id] ??
     null;
-  const manualCorrectionFactor =
+  const parsedManualCorrectionFactor =
     typeof correctionData === "number"
       ? correctionData
       : Number(correctionData?.factor ?? 1);
+  const manualCorrectionFactor =
+    Number.isFinite(parsedManualCorrectionFactor)
+      ? parsedManualCorrectionFactor
+      : 1;
+  const effectivePokemonHeightInches =
+    pokemonHeightInches *
+    manualCorrectionFactor;
   const topLayerPreset =
     typeof correctionData === "object" &&
     correctionData?.topLayer === "oak"
@@ -424,7 +425,7 @@ function SizeComparison({
 
   function getChartMetrics(chartHeightPx) {
     const tallestHeightInches = Math.max(
-      pokemonHeightInches,
+      effectivePokemonHeightInches,
       oakHeightInches,
       72
     );

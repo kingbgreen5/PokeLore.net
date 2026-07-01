@@ -1,0 +1,124 @@
+{
+  "id": 370,
+  "name": "close-combat",
+  "displayName": "Close Combat",
+  "type": "fighting",
+  "category": "physical",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-iv",
+  "effect": "Inflicts regular damage, then lowers the user’s Defense and Special Defense by one stage each.",
+  "shortEffect": "Lowers the user’s Defense and Special Defense by one stage after inflicting damage.",
+  "description": "Lowers the user’s Defense and Special Defense by one stage after inflicting damage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage, then lowers the user’s Defense and Special Defense by one stage each.",
+      "shortEffect": "Lowers the user’s Defense and Special Defense by one stage after inflicting damage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user fights the foe in close without guarding itself. It also cuts the user’s Defense and Sp. Def."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user fights the foe in close without guarding itself. It also cuts the user’s Defense and Sp. Def."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user fights the foe up close without guarding itself. It also cuts the user’s Defense and Sp. Def."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user fights the target up close without guarding itself. It also cuts the user’s Defense and Sp. Def."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user fights the target up close without guarding itself. It also cuts the user’s Defense and Sp. Def."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user fights the target up close without guarding itself. This also lowers the user’s Defense and Sp. Def stats."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user fights the target up close without guarding itself. This also lowers the user’s Defense and Sp. Def stats."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user fights the target up close without guarding itself. This also lowers the user’s Defense and Sp. Def stats."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user fights the target up close without guarding itself. This also lowers the user’s Defense and Sp. Def stats."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user fights the target up close without guarding itself. This also lowers the user’s Defense and Sp. Def stats."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user fights the target up close without guarding itself. This also lowers the user’s Defense and Sp. Def stats."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user fights the target up close, inflicting damage without guarding itself. This also lowers the user's defensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user fights the target up close, inflicting damage without guarding itself. This also lowers the user's Defense and Sp. Def stats."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-raise",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "defense",
+      "change": -1
+    },
+    {
+      "stat": "special-defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2010,
+      "itemName": "tm167",
+      "itemDisplayName": "TM167",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1982,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1241,
+      "itemName": "tr53",
+      "itemDisplayName": "TR53",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1752,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

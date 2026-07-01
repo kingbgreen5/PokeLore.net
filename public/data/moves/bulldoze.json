@@ -1,0 +1,178 @@
+{
+  "id": 523,
+  "name": "bulldoze",
+  "displayName": "Bulldoze",
+  "type": "ground",
+  "category": "physical",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "all-other-pokemon",
+  "generation": "generation-v",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Speed by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Speed by one stage.",
+  "description": "Has a chance to lower the target’s Speed by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Speed by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "black-white",
+      "text": "The user stomps down on the ground and attacks everything in the area. Hit Pokémon’s Speed stat is reduced."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user stomps down on the ground and attacks everything in the area. Hit Pokémon’s Speed stat is reduced."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user strikes everything around it by stomping down on the ground. This lowers the Speed stat of those hit."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user strikes everything around it by stomping down on the ground. This lowers the Speed stat of those hit."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user strikes everything around it by stomping down on the ground. This lowers the Speed stat of those hit."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user strikes everything around it by stomping down on the ground. This lowers the Speed stat of those hit."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user strikes everything around it by stomping down on the ground. This lowers the Speed stat of those hit."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user strikes everything around it by stomping down on the ground. This lowers the Speed stats of those hit."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user tramples its target into the ground, dealing damage. This also lowers the target’s action speed."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user strikes everything around it by stomping down on the ground. This lowers the Speed stats of those hit."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "speed",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 332,
+      "itemName": "tm28",
+      "itemDisplayName": "TM28",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1843,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 382,
+      "itemName": "tm78",
+      "itemDisplayName": "TM78",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1385,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 382,
+      "itemName": "tm78",
+      "itemDisplayName": "TM78",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1386,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 382,
+      "itemName": "tm78",
+      "itemDisplayName": "TM78",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1387,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 382,
+      "itemName": "tm78",
+      "itemDisplayName": "TM78",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1388,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 382,
+      "itemName": "tm78",
+      "itemDisplayName": "TM78",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1389,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 382,
+      "itemName": "tm78",
+      "itemDisplayName": "TM78",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1390,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 385,
+      "itemName": "tm81",
+      "itemDisplayName": "TM81",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1421,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    },
+    {
+      "itemId": 387,
+      "itemName": "tm83",
+      "itemDisplayName": "TM83",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1807,
+      "versionGroup": "brilliant-diamond-shining-pearl",
+      "generation": "Generation VIII"
+    }
+  ]
+}

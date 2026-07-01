@@ -1,0 +1,75 @@
+{
+  "id": 815,
+  "name": "scorching-sands",
+  "displayName": "Scorching Sands",
+  "type": "ground",
+  "category": "special",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 30,
+  "target": "selected-pokemon",
+  "generation": "generation-viii",
+  "effect": "Inflicts regular damage. Has a chance to burn the target.",
+  "shortEffect": "Has a chance to burn the target.",
+  "description": "Has a chance to burn the target.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to burn the target.",
+      "shortEffect": "Has a chance to burn the target."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user throws scorching sand at the target to attack. This may also leave the target with a burn."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user throws scorching sand at the target to attack. This may also leave the target with a burn."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user throws scorching sand at the target to attack. This may also leave the target with a burn."
+    }
+  ],
+  "meta": {
+    "ailment": "burn",
+    "category": "damage-ailment",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 30,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2204,
+      "itemName": "tm215",
+      "itemDisplayName": "TM215",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2030,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2204,
+      "itemName": "tm215",
+      "itemDisplayName": "TM215",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2198,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    }
+  ]
+}

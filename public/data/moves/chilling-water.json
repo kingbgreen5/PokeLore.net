@@ -1,0 +1,44 @@
+{
+  "id": 886,
+  "name": "chilling-water",
+  "displayName": "Chilling Water",
+  "type": "water",
+  "category": "special",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-ix",
+  "effect": null,
+  "shortEffect": null,
+  "description": null,
+  "effectEntries": [],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks the target by showering it with water that's so cold it saps the target's power. This also lowers the target's Attack stat."
+    }
+  ],
+  "meta": null,
+  "statChanges": [
+    {
+      "stat": "attack",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1837,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    }
+  ]
+}

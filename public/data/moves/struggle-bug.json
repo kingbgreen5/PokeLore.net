@@ -1,0 +1,148 @@
+{
+  "id": 522,
+  "name": "struggle-bug",
+  "displayName": "Struggle Bug",
+  "type": "bug",
+  "category": "special",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "all-opponents",
+  "generation": "generation-v",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Attack by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Special Attack by one stage.",
+  "description": "Has a chance to lower the target’s Special Attack by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Attack by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Special Attack by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "black-white",
+      "text": "While resisting, the user attacks the opposing Pokémon. The targets’ Sp. Atk stat is reduced."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "While resisting, the user attacks the opposing Pokémon. The targets’ Sp. Atk stat is reduced."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "While resisting, the user attacks the opposing Pokémon. This lowers the Sp. Atk stat of those hit."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "While resisting, the user attacks the opposing Pokémon. This lowers the Sp. Atk stat of those hit."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "While resisting, the user attacks the opposing Pokémon. This lowers the Sp. Atk stat of those hit."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "While resisting, the user attacks the opposing Pokémon. This lowers the Sp. Atk stat of those hit."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "While resisting, the user attacks the opposing Pokémon. This lowers the Sp. Atk stat of those hit."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "While resisting, the user attacks opposing Pokémon. This lowers the Sp. Atk stats of those hit."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user struggles against the target, dealing damage. This also lowers the target's offensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks by struggling against opposing Pokémon. This also lowers their Sp. Atk stats."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "special-attack",
+      "change": -1
+    }
+  ],
+  "pastValues": [
+    {
+      "accuracy": null,
+      "effectChance": null,
+      "power": 30,
+      "pp": null,
+      "type": null,
+      "versionGroup": "x-y",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": [
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1830,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 380,
+      "itemName": "tm76",
+      "itemDisplayName": "TM76",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1365,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 380,
+      "itemName": "tm76",
+      "itemDisplayName": "TM76",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1366,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 380,
+      "itemName": "tm76",
+      "itemDisplayName": "TM76",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1367,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 380,
+      "itemName": "tm76",
+      "itemDisplayName": "TM76",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1368,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    }
+  ]
+}

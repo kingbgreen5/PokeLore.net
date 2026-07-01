@@ -1,0 +1,287 @@
+{
+  "id": 269,
+  "name": "taunt",
+  "displayName": "Taunt",
+  "type": "dark",
+  "category": "status",
+  "power": null,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-iii",
+  "effect": "Target is forced to only use damaging moves for the next 3–5 turns, selected at random. Moves that select other moves not known in advance do not count as damaging. Assist, Copycat, Me First, Metronome, Mirror Move, and Sleep Talk do not directly inflict damage and thus may not be used. Bide, Counter, Endeavor, Metal Burst, and Mirror Coat are allowed.",
+  "shortEffect": "For the next few turns, the target can only use damaging moves.",
+  "description": "For the next few turns, the target can only use damaging moves.",
+  "effectEntries": [
+    {
+      "effect": "Target is forced to only use damaging moves for the next 3–5 turns, selected at random. Moves that select other moves not known in advance do not count as damaging. Assist, Copycat, Me First, Metronome, Mirror Move, and Sleep Talk do not directly inflict damage and thus may not be used. Bide, Counter, Endeavor, Metal Burst, and Mirror Coat are allowed.",
+      "shortEffect": "For the next few turns, the target can only use damaging moves."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Taunts the foe into only using attack moves."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Taunts the foe into only using attack moves."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "The foe is taunted into a rage that allows it to use only attack moves."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The foe is taunted into a rage that allows it to use only attack moves for two to four turns."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The foe is taunted into a rage that allows it to use only attack moves for two to four turns."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The foe is taunted into a rage that allows it to use only attack moves for two to four turns."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The target is taunted into a rage that allows it to use only attack moves for three turns."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The target is taunted into a rage that allows it to use only attack moves for three turns."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The target is taunted into a rage that allows it to use only attack moves for three turns."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The target is taunted into a rage that allows it to use only attack moves for three turns."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The target is taunted into a rage that allows it to use only attack moves for three turns."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The target is taunted into a rage that allows it to use only attack moves for three turns."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The target is taunted into a rage that allows it to use only attack moves for three turns."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The target is taunted into a rage that allows it to use only attack moves for three turns."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The target is taunted into a rage that allows it to use only attack moves for three turns."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The target is taunted into a rage that allows it to use only attack moves for three turns."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "unique",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 306,
+      "itemName": "tm02",
+      "itemDisplayName": "TM02",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 42,
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 248,
+      "versionGroup": "ruby-sapphire",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 249,
+      "versionGroup": "emerald",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 250,
+      "versionGroup": "firered-leafgreen",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 251,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 252,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 253,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 254,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 255,
+      "versionGroup": "colosseum",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 256,
+      "versionGroup": "xd",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 257,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 258,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 259,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 260,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 316,
+      "itemName": "tm12",
+      "itemDisplayName": "TM12",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 261,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 391,
+      "itemName": "tm87",
+      "itemDisplayName": "TM87",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1902,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 391,
+      "itemName": "tm87",
+      "itemDisplayName": "TM87",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2110,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1225,
+      "itemName": "tr37",
+      "itemDisplayName": "TR37",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1736,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

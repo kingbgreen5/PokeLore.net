@@ -1,0 +1,75 @@
+{
+  "id": 796,
+  "name": "steel-beam",
+  "displayName": "Steel Beam",
+  "type": "steel",
+  "category": "special",
+  "power": 140,
+  "accuracy": 95,
+  "pp": 5,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-viii",
+  "effect": "Inflicts damage, and the user takes damage equal to half of its max HP, rounded up. The user still takes damage if the move is blocked by Protect or Substitute, misses, or if the target has Flash Fire.",
+  "shortEffect": "Inflicts damage, and the user takes damage equal to half of its max HP, rounded up.",
+  "description": "Inflicts damage, and the user takes damage equal to half of its max HP, rounded up.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts damage, and the user takes damage equal to half of its max HP, rounded up. The user still takes damage if the move is blocked by Protect or Substitute, misses, or if the target has Flash Fire.",
+      "shortEffect": "Inflicts damage, and the user takes damage equal to half of its max HP, rounded up."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user fires a beam of steel that it collected from its entire body. This also damages the user."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user fires a beam of steel that it collected from its entire body. This also damages the user."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user fires a beam of steel that it collected from its entire body. This also damages the user."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2013,
+      "itemName": "tm170",
+      "itemDisplayName": "TM170",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1985,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2013,
+      "itemName": "tm170",
+      "itemDisplayName": "TM170",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2049,
+      "versionGroup": "the-teal-mask",
+      "generation": "Generation IX"
+    }
+  ]
+}

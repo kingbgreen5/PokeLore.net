@@ -1,0 +1,374 @@
+{
+  "id": 76,
+  "name": "solar-beam",
+  "displayName": "Solar Beam",
+  "type": "grass",
+  "category": "special",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-i",
+  "effect": "Inflicts regular damage. User charges for one turn before attacking. During Sunny Day, the charge turn is skipped. During Hail, Rain Dance, or Sandstorm, power is halved. This move cannot be selected by Sleep Talk.",
+  "shortEffect": "Requires a turn to charge before attacking.",
+  "description": "Requires a turn to charge before attacking.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. User charges for one turn before attacking. During Sunny Day, the charge turn is skipped. During Hail, Rain Dance, or Sandstorm, power is halved. This move cannot be selected by Sleep Talk.",
+      "shortEffect": "Requires a turn to charge before attacking."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "1st turn: Prepare 2nd turn: Attack"
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "1st turn: Prepare 2nd turn: Attack"
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Absorbs light in one turn, then attacks next turn."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Absorbs light in one turn, then attacks next turn."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "A 2-turn move that blasts the foe with absorbed energy in the 2nd turn."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "A two-turn attack. The user gathers light, then blasts a bundled beam on the next turn."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "A two-turn attack. The user gathers light, then blasts a bundled beam on the next turn."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user gathers light on the first turn, then blasts a bundled beam on the next turn."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [
+    {
+      "accuracy": null,
+      "effectChance": null,
+      "power": 120,
+      "pp": null,
+      "type": null,
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "effectEntries": []
+    },
+    {
+      "accuracy": null,
+      "effectChance": null,
+      "power": 200,
+      "pp": null,
+      "type": null,
+      "versionGroup": "sword-shield",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": [
+    {
+      "itemId": 315,
+      "itemName": "tm11",
+      "itemDisplayName": "TM11",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 241,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    },
+    {
+      "itemId": 2011,
+      "itemName": "tm168",
+      "itemDisplayName": "TM168",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1983,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2011,
+      "itemName": "tm168",
+      "itemDisplayName": "TM168",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2170,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 464,
+      "versionGroup": "red-blue",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 465,
+      "versionGroup": "yellow",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 466,
+      "versionGroup": "gold-silver",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 467,
+      "versionGroup": "crystal",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 468,
+      "versionGroup": "ruby-sapphire",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 469,
+      "versionGroup": "emerald",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 470,
+      "versionGroup": "firered-leafgreen",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 471,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 472,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 473,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 474,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 475,
+      "versionGroup": "colosseum",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 476,
+      "versionGroup": "xd",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 477,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 478,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 479,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 480,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 481,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 484,
+      "versionGroup": "red-green-japan",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 326,
+      "itemName": "tm22",
+      "itemDisplayName": "TM22",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 485,
+      "versionGroup": "blue-japan",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 349,
+      "itemName": "tm45",
+      "itemDisplayName": "TM45",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 988,
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "generation": "Generation VII"
+    }
+  ]
+}

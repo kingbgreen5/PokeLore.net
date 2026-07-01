@@ -1,0 +1,152 @@
+{
+  "id": 330,
+  "name": "muddy-water",
+  "displayName": "Muddy Water",
+  "type": "water",
+  "category": "special",
+  "power": 90,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 30,
+  "target": "all-opponents",
+  "generation": "generation-iii",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s accuracy by one stage.",
+  "shortEffect": "Has a chance to lower the target’s accuracy by one stage.",
+  "description": "Has a chance to lower the target’s accuracy by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s accuracy by one stage.",
+      "shortEffect": "Has a chance to lower the target’s accuracy by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Attacks with muddy water. May lower accuracy."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Attacks with muddy water. May lower accuracy."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "The user attacks with muddy water. It may also lower the foe’s accuracy."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user attacks by shooting out muddy water. It may also lower the foe’s accuracy."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user attacks by shooting out muddy water. It may also lower the foe’s accuracy."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user attacks by shooting out muddy water. It may also lower the foe’s accuracy."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user attacks by shooting muddy water at the opposing team. It may also lower the targets’ accuracy."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user attacks by shooting muddy water at the opposing team. It may also lower the targets’ accuracy."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user attacks by shooting muddy water at the opposing Pokémon. This may also lower their accuracy."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user attacks by shooting muddy water at the opposing Pokémon. This may also lower their accuracy."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user attacks by shooting muddy water at the opposing Pokémon. This may also lower their accuracy."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user attacks by shooting muddy water at the opposing Pokémon. This may also lower their accuracy."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user attacks by shooting muddy water at the opposing Pokémon. This may also lower their accuracy."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user attacks by shooting muddy water at opposing Pokémon. This may also lower their accuracy."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user attacks by shooting muddy water at opposing Pokémon. This may also lower their accuracy."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks by shooting muddy water at opposing Pokémon. This may also lower their accuracy."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 30
+  },
+  "statChanges": [
+    {
+      "stat": "accuracy",
+      "change": -1
+    }
+  ],
+  "pastValues": [
+    {
+      "accuracy": null,
+      "effectChance": null,
+      "power": 95,
+      "pp": null,
+      "type": null,
+      "versionGroup": "x-y",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": [
+    {
+      "itemId": 2198,
+      "itemName": "tm209",
+      "itemDisplayName": "TM209",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2024,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2198,
+      "itemName": "tm209",
+      "itemDisplayName": "TM209",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2192,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1233,
+      "itemName": "tr45",
+      "itemDisplayName": "TR45",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1744,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "id": 789,
+  "name": "spirit-break",
+  "displayName": "Spirit Break",
+  "type": "fairy",
+  "category": "physical",
+  "power": 75,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-viii",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Attack by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Special Attack by one stage.",
+  "description": "Has a chance to lower the target’s Special Attack by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Attack by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Special Attack by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user attacks the target with so much force that it could break the target’s spirit. This also lowers the target’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user attacks the target with so much force that it could break the target's spirit. This also lowers the target's Sp. Atk stat."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks the target with so much force that it could break the target's spirit. This also lowers the target's Sp. Atk stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "special-attack",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": []
+}

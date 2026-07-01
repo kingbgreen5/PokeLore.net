@@ -1,0 +1,90 @@
+{
+  "id": 784,
+  "name": "breaking-swipe",
+  "displayName": "Breaking Swipe",
+  "type": "dragon",
+  "category": "physical",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "all-opponents",
+  "generation": "generation-viii",
+  "effect": "Inflicts regular damage. Lowers the target’s Attack by one stage.",
+  "shortEffect": "Lowers the target’s Attack by one stage after inflicting damage.",
+  "description": "Lowers the target’s Attack by one stage after inflicting damage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Lowers the target’s Attack by one stage.",
+      "shortEffect": "Lowers the target’s Attack by one stage after inflicting damage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user swings its tough tail wildly and attacks opposing Pokémon. This also lowers their Attack stats."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user swings its tough tail wildly and attacks opposing Pokémon. This also lowers their Attack stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user swings its tough tail wildly and attacks opposing Pokémon. This also lowers their Attack stats."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "attack",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2211,
+      "itemName": "tm222",
+      "itemDisplayName": "TM222",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2037,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2211,
+      "itemName": "tm222",
+      "itemDisplayName": "TM222",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2205,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 748,
+      "itemName": "tm99",
+      "itemDisplayName": "TM99",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1572,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

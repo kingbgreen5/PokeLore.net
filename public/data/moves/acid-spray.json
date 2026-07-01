@@ -1,0 +1,108 @@
+{
+  "id": 491,
+  "name": "acid-spray",
+  "displayName": "Acid Spray",
+  "type": "poison",
+  "category": "special",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-v",
+  "effect": "Inflicts regular damage. Lowers the target’s Special Defense by two stages.",
+  "shortEffect": "Lowers the target’s Special Defense by two stages.",
+  "description": "Lowers the target’s Special Defense by two stages.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Lowers the target’s Special Defense by two stages.",
+      "shortEffect": "Lowers the target’s Special Defense by two stages."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "black-white",
+      "text": "The user spits fluid that works to melt the target. This harshly reduces the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user spits fluid that works to melt the target. This harshly reduces the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user spits fluid that works to melt the target. This harshly lowers the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user spits fluid that works to melt the target. This harshly lowers the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user spits fluid that works to melt the target. This harshly lowers the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user spits fluid that works to melt the target. This harshly lowers the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user spits fluid that works to melt the target. This harshly lowers the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user spits fluid that works to melt the target. This harshly lowers the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user spits fluid that works to melt the target. This may also lower the target’s defensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks by spitting fluid that works to melt the target. This also harshly lowers the target's Sp. Def stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "special-defense",
+      "change": -2
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 317,
+      "itemName": "tm13",
+      "itemDisplayName": "TM13",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1828,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 317,
+      "itemName": "tm13",
+      "itemDisplayName": "TM13",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2082,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    }
+  ]
+}

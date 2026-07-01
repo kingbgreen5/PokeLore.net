@@ -1,0 +1,85 @@
+{
+  "id": 799,
+  "name": "scale-shot",
+  "displayName": "Scale Shot",
+  "type": "dragon",
+  "category": "physical",
+  "power": 25,
+  "accuracy": 90,
+  "pp": 20,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-viii",
+  "effect": "Inflicts regular damage two to five times in a row, raising the user’s Speed and lowering the user’s Defense by one stage each upon last hit.",
+  "shortEffect": "Boosts the user’s Speed and lowers their Defense by one stage after inflicting damage two to five times in a row.",
+  "description": "Boosts the user’s Speed and lowers their Defense by one stage after inflicting damage two to five times in a row.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage two to five times in a row, raising the user’s Speed and lowering the user’s Defense by one stage each upon last hit.",
+      "shortEffect": "Boosts the user’s Speed and lowers their Defense by one stage after inflicting damage two to five times in a row."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user attacks by shooting scales two to five times in a row. This move boosts the user’s Speed stat but lowers its Defense stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user attacks by shooting scales two to five times in a row. This move boosts the user's Speed stat but lowers its Defense stat."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks by shooting scales two to five times in a row. This move boosts the user's Speed stat but lowers its Defense stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage",
+    "minHits": 2,
+    "maxHits": 5,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2189,
+      "itemName": "tm200",
+      "itemDisplayName": "TM200",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2015,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2189,
+      "itemName": "tm200",
+      "itemDisplayName": "TM200",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2078,
+      "versionGroup": "the-teal-mask",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2189,
+      "itemName": "tm200",
+      "itemDisplayName": "TM200",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2183,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "id": 317,
+  "name": "rock-tomb",
+  "displayName": "Rock Tomb",
+  "type": "rock",
+  "category": "physical",
+  "power": 60,
+  "accuracy": 95,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-iii",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Speed by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Speed by one stage.",
+  "description": "Has a chance to lower the target’s Speed by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Speed by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Stops the foe from moving with rocks and cuts SPEED."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Stops the foe from moving with rocks and cuts SPEED."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "Boulders are hurled at the foe. It also lowers the foe’s SPEED if it hits."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "Boulders are hurled at the foe. It also lowers the foe’s Speed by preventing its movement."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "Boulders are hurled at the foe. It also lowers the foe’s Speed by preventing its movement."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "Boulders are hurled at the foe. It also lowers the foe’s Speed by preventing its movement."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "Boulders are hurled at the target. It also lowers the target’s Speed by preventing its movement."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "Boulders are hurled at the target. It also lowers the target’s Speed by preventing its movement."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "Boulders are hurled at the target. This also lowers the target’s Speed stat by preventing its movement."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "Boulders are hurled at the target. This also lowers the target’s Speed stat by preventing its movement."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "Boulders are hurled at the target. This also lowers the target’s Speed stat by preventing its movement."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "Boulders are hurled at the target. This also lowers the target’s Speed stat by preventing its movement."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "Boulders are hurled at the target. This also lowers the target’s Speed stat by preventing its movement."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "Boulders are hurled at the target. This also lowers the target’s Speed stat by preventing its movement."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "Boulders are hurled at the target. This also lowers the target's Speed stat by preventing its movement."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user hurls boulders at the target to inflict damage. This also lowers the target's Speed stat by cutting off its movement."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "speed",
+      "change": -1
+    }
+  ],
+  "pastValues": [
+    {
+      "accuracy": 80,
+      "effectChance": null,
+      "power": 50,
+      "pp": 10,
+      "type": null,
+      "versionGroup": "x-y",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": [
+    {
+      "itemId": 340,
+      "itemName": "tm36",
+      "itemDisplayName": "TM36",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1851,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 842,
+      "versionGroup": "ruby-sapphire",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 843,
+      "versionGroup": "emerald",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 844,
+      "versionGroup": "firered-leafgreen",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 845,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 846,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 847,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 848,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 849,
+      "versionGroup": "colosseum",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 850,
+      "versionGroup": "xd",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 851,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 852,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 853,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 854,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 343,
+      "itemName": "tm39",
+      "itemDisplayName": "TM39",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 855,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 352,
+      "itemName": "tm48",
+      "itemDisplayName": "TM48",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1055,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

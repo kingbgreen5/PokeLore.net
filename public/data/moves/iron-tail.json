@@ -1,0 +1,240 @@
+{
+  "id": 231,
+  "name": "iron-tail",
+  "displayName": "Iron Tail",
+  "type": "steel",
+  "category": "physical",
+  "power": 100,
+  "accuracy": 75,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 30,
+  "target": "selected-pokemon",
+  "generation": "generation-ii",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Defense by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Defense by one stage.",
+  "description": "Has a chance to lower the target’s Defense by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Defense by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Defense by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "An attack that may reduce DEFENSE."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "An attack that may reduce DEFENSE."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Attacks with a rock-hard tail. May lower DEFENSE."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Attacks with a rock-hard tail. May lower DEFENSE."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "An attack with a steel-hard tail. It may lower the foe’s DEFENSE stat."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The foe is slammed with a steel-hard tail. It may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The foe is slammed with a steel-hard tail. It may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The foe is slammed with a steel-hard tail. It may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The target is slammed with a steel-hard tail. It may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The target is slammed with a steel-hard tail. It may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The target is slammed with a steel-hard tail. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The target is slammed with a steel-hard tail. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The target is slammed with a steel-hard tail. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The target is slammed with a steel-hard tail. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The target is slammed with a steel-hard tail. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The target is slammed with a steel-hard tail. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The target is slammed with a steel-hard tail. This may also lower the target’s defensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The target is slammed with a steel-hard tail. This may also lower the target's Defense stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 30
+  },
+  "statChanges": [
+    {
+      "stat": "defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 323,
+      "itemName": "tm19",
+      "itemDisplayName": "TM19",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 416,
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 327,
+      "itemName": "tm23",
+      "itemDisplayName": "TM23",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 488,
+      "versionGroup": "gold-silver",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 327,
+      "itemName": "tm23",
+      "itemDisplayName": "TM23",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 489,
+      "versionGroup": "crystal",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 327,
+      "itemName": "tm23",
+      "itemDisplayName": "TM23",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 490,
+      "versionGroup": "ruby-sapphire",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 327,
+      "itemName": "tm23",
+      "itemDisplayName": "TM23",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 491,
+      "versionGroup": "emerald",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 327,
+      "itemName": "tm23",
+      "itemDisplayName": "TM23",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 492,
+      "versionGroup": "firered-leafgreen",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 327,
+      "itemName": "tm23",
+      "itemDisplayName": "TM23",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 493,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 327,
+      "itemName": "tm23",
+      "itemDisplayName": "TM23",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 494,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 327,
+      "itemName": "tm23",
+      "itemDisplayName": "TM23",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 495,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 327,
+      "itemName": "tm23",
+      "itemDisplayName": "TM23",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 497,
+      "versionGroup": "colosseum",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 327,
+      "itemName": "tm23",
+      "itemDisplayName": "TM23",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 498,
+      "versionGroup": "xd",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 1219,
+      "itemName": "tr31",
+      "itemDisplayName": "TR31",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1730,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "id": 492,
+  "name": "foul-play",
+  "displayName": "Foul Play",
+  "type": "dark",
+  "category": "physical",
+  "power": 95,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-v",
+  "effect": "Inflicts regular damage. Damage is calculated using the target’s attacking stat rather than the user’s.",
+  "shortEffect": "Calculates damage with the target’s attacking stat.",
+  "description": "Calculates damage with the target’s attacking stat.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Damage is calculated using the target’s attacking stat rather than the user’s.",
+      "shortEffect": "Calculates damage with the target’s attacking stat."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "black-white",
+      "text": "The user turns the target’s power against it. The higher the target’s Attack stat, the greater the damage."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user turns the target’s power against it. The higher the target’s Attack stat, the greater the damage."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user turns the target’s power against it. The higher the target’s Attack stat, the greater the move’s power."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user turns the target’s power against it. The higher the target’s Attack stat, the greater the move’s power."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user turns the target’s power against it. The higher the target’s Attack stat, the greater the move’s power."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user turns the target’s power against it. The higher the target’s Attack stat, the greater the move’s power."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user turns the target’s power against it. The higher the target’s Attack stat, the greater the damage it deals."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user turns the target’s power against it. The higher the target’s Attack stat, the greater the damage it deals."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user turns the target's power against it. The higher the target's Attack stat, the greater the damage it deals."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user turns the target's strength against it. The higher the target's Attack stat, the greater the damage this move inflicts."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 325,
+      "itemName": "tm21",
+      "itemDisplayName": "TM21",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 460,
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 366,
+      "itemName": "tm62",
+      "itemDisplayName": "TM62",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1877,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1269,
+      "itemName": "tr81",
+      "itemDisplayName": "TR81",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1780,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

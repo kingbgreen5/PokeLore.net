@@ -1,0 +1,59 @@
+{
+  "id": 778,
+  "name": "drum-beating",
+  "displayName": "Drum Beating",
+  "type": "grass",
+  "category": "physical",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-viii",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Speed by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Speed by one stage.",
+  "description": "Has a chance to lower the target’s Speed by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Speed by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user plays its drum, controlling the drum’s roots to attack the target. This also lowers the target’s Speed stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user plays its drum, controlling the drum's roots to attack the target. This also lowers the target's Speed stat."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user plays its drum, controlling the drum's roots to attack the target. This also lowers the target's Speed stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "speed",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": []
+}

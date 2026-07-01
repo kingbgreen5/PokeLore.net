@@ -3,7 +3,7 @@ import PokemonSummaryCard from "../components/PokemonSummaryCard";
 
 function capitalize(text) {
 
-  return text
+  return String(text ?? "")
     .split("-")
     .map(
       word =>
@@ -14,6 +14,127 @@ function capitalize(text) {
 
 }
 
+function getEvolutionOverride(
+  pokemonName,
+  evolutionMethodOverrides
+) {
+  return evolutionMethodOverrides?.[
+    pokemonName
+  ] ?? null;
+}
+
+function getMethodSlug(method) {
+  return (
+    method.slug ||
+    method.item ||
+    method.move ||
+    ""
+  );
+}
+
+function getMethodLabel(method) {
+  return (
+    method.label ||
+    method.text ||
+    capitalize(getMethodSlug(method))
+  );
+}
+
+function shouldSuppressNode(
+  node,
+  evolutionMethodOverrides
+) {
+  return Boolean(
+    getEvolutionOverride(
+      node.pokemon?.name,
+      evolutionMethodOverrides
+    )?.suppressEvolutionNode
+  );
+}
+
+function getSourcePokemonName(
+  node,
+  evolutionMethodOverrides
+) {
+  return getEvolutionOverride(
+    node.pokemon?.name,
+    evolutionMethodOverrides
+  )?.sourcePokemonName ?? null;
+}
+
+function shouldShowChildNode(
+  child,
+  displayedPokemon,
+  evolutionMethodOverrides
+) {
+  if (
+    shouldSuppressNode(
+      child,
+      evolutionMethodOverrides
+    )
+  ) {
+    return false;
+  }
+
+  const sourcePokemonName =
+    getSourcePokemonName(
+      child,
+      evolutionMethodOverrides
+    );
+
+  if (!sourcePokemonName) {
+    return true;
+  }
+
+  return (
+    sourcePokemonName ===
+    displayedPokemon?.name
+  );
+}
+
+function findSourceOverrideName(
+  node,
+  currentPokemonName,
+  evolutionMethodOverrides
+) {
+  if (!currentPokemonName) {
+    return null;
+  }
+
+  for (const child of node.evolvesTo ?? []) {
+    const childNames = [
+      child.pokemon?.name,
+      ...(child.varieties ?? []).map(
+        variety => variety.name
+      )
+    ].filter(Boolean);
+
+    if (
+      childNames.includes(
+        currentPokemonName
+      )
+    ) {
+      const matchingOverride =
+        getEvolutionOverride(
+          currentPokemonName,
+          evolutionMethodOverrides
+        ) ||
+        getEvolutionOverride(
+          child.pokemon?.name,
+          evolutionMethodOverrides
+        );
+
+      if (
+        matchingOverride?.sourcePokemonName
+      ) {
+        return matchingOverride
+          .sourcePokemonName;
+      }
+    }
+  }
+
+  return null;
+}
 
 function getEvolutionDescription(node) {
 
@@ -85,7 +206,9 @@ function getEvolutionDescription(node) {
 
   if (node.timeOfDay) {
     parts.push(
-      `during the ${node.timeOfDay}`
+      node.timeOfDay === "full-moon"
+        ? "during a full moon"
+        : `during the ${node.timeOfDay}`
     );
   }
 
@@ -129,6 +252,38 @@ function getEvolutionDescription(node) {
     );
   }
 
+  if (node.tradeSpecies) {
+    parts.push(
+      `with ${capitalize(
+        node.tradeSpecies
+      )}`
+    );
+  }
+
+  if (node.gender === 1) {
+    parts.push("female only");
+  }
+
+  if (node.gender === 2) {
+    parts.push("male only");
+  }
+
+  if (node.relativePhysicalStats === 1) {
+    parts.push("Attack > Defense");
+  }
+
+  if (node.relativePhysicalStats === -1) {
+    parts.push("Attack < Defense");
+  }
+
+  if (node.relativePhysicalStats === 0) {
+    parts.push("Attack = Defense");
+  }
+
+  if (node.needsOverworldRain) {
+    parts.push("during rain");
+  }
+
   if (node.turnUpsideDown) {
     parts.push(
       "while holding the console upside down"
@@ -140,11 +295,15 @@ function getEvolutionDescription(node) {
 
 function EvolutionDescription({
   node,
+  displayedPokemon,
   evolutionMethodOverrides
 }) {
   const navigate = useNavigate();
 
-  function itemLink(itemName) {
+  function itemLink(
+    itemName,
+    label = null
+  ) {
     return (
       <button
         onClick={() =>
@@ -164,12 +323,15 @@ function EvolutionDescription({
             "underline"
         }}
       >
-        {capitalize(itemName)}
+        {label || capitalize(itemName)}
       </button>
     );
   }
 
-  function moveLink(moveName) {
+  function moveLink(
+    moveName,
+    label = null
+  ) {
     return (
       <button
         onClick={() =>
@@ -189,96 +351,225 @@ function EvolutionDescription({
             "underline"
         }}
       >
-        {capitalize(moveName)}
+        {label || capitalize(moveName)}
       </button>
     );
   }
 
-  const parts = [];
-
-  if (node.trigger === "level-up") {
-    parts.push("Lvl. up");
-  }
-
-  if (node.trigger === "trade") {
-    parts.push("Trade");
-  }
-
-  if (node.item) {
-    parts.push(
-      itemLink(node.item)
+  function locationLink(
+    locationName,
+    label = null
+  ) {
+    return (
+      <button
+        onClick={() =>
+          navigate(
+            `/location/${locationName}`
+          )
+        }
+        style={{
+          background: "none",
+          border: "none",
+          color: "inherit",
+          cursor: "pointer",
+          font: "inherit",
+          fontWeight: "bold",
+          padding: 0,
+          textDecoration:
+            "underline"
+        }}
+      >
+        {label || capitalize(locationName)}
+      </button>
     );
   }
 
-  if (node.heldItem) {
-    parts.push(
-      <>
-        holding{" "}
-        {itemLink(node.heldItem)}
-      </>
+  function renderLinkedSegment(
+    segment,
+    index
+  ) {
+    if (typeof segment === "string") {
+      return (
+        <span key={index}>
+          {segment}
+        </span>
+      );
+    }
+
+    if (segment.type === "item") {
+      return (
+        <span key={index}>
+          {itemLink(
+            segment.slug,
+            segment.text
+          )}
+        </span>
+      );
+    }
+
+    if (segment.type === "move") {
+      return (
+        <span key={index}>
+          {moveLink(
+            segment.slug,
+            segment.text
+          )}
+        </span>
+      );
+    }
+
+    if (segment.type === "location") {
+      return (
+        <span key={index}>
+          {locationLink(
+            segment.slug,
+            segment.text
+          )}
+        </span>
+      );
+    }
+
+    return (
+      <span key={index}>
+        {segment.text ?? ""}
+      </span>
     );
   }
 
-  if (node.trigger === "use-move") {
-    const moveName =
-      node.useMove ||
-      node.requiredMove ||
-      (node.pokemon?.name ===
-      "annihilape"
-        ? "rage-fist"
-        : null);
-
-    if (moveName) {
-      parts.push(
+  function renderMethod(method) {
+    if (method.segments) {
+      return (
         <>
-          use{" "}
-          {moveLink(moveName)}
-          {node.requiredMoveUses ||
-          node.moveUses
-            ? ` ${node.requiredMoveUses || node.moveUses} times`
-            : node.pokemon?.name ===
-                "annihilape"
-              ? " 20 times"
-              : ""}
+          {method.segments.map(
+            renderLinkedSegment
+          )}
         </>
       );
-    } else {
-      parts.push("Use move");
     }
+
+    if (
+      method.type === "item" ||
+      method.type === "use-item"
+    ) {
+      return itemLink(
+        getMethodSlug(method),
+        getMethodLabel(method)
+      );
+    }
+
+    if (method.type === "move") {
+      return moveLink(
+        getMethodSlug(method),
+        getMethodLabel(method)
+      );
+    }
+
+    if (method.type === "location") {
+      return locationLink(
+        getMethodSlug(method),
+        getMethodLabel(method)
+      );
+    }
+
+    return getMethodLabel(method);
   }
 
-  const remainingDescription =
-    getEvolutionDescription({
-      ...node,
-      item: null,
-      heldItem: null,
-      trigger: node.trigger === "use-item"
-        ? null
-        : node.trigger === "use-move"
-          ? null
-          : undefined
-    });
-
-  if (remainingDescription) {
-    parts.push(
-      remainingDescription
+  const override =
+    getEvolutionOverride(
+      displayedPokemon?.name,
+      evolutionMethodOverrides
+    ) ||
+    getEvolutionOverride(
+      node.pokemon?.name,
+      evolutionMethodOverrides
     );
+
+  const parts = [];
+
+  if (override?.primaryMethod) {
+    parts.push(
+      renderMethod(
+        override.primaryMethod
+      )
+    );
+  } else {
+
+    if (node.trigger === "level-up") {
+      parts.push("Lvl. up");
+    }
+
+    if (node.trigger === "trade") {
+      parts.push("Trade");
+    }
+
+    if (node.item) {
+      parts.push(
+        itemLink(node.item)
+      );
+    }
+
+    if (node.heldItem) {
+      parts.push(
+        <>
+          holding{" "}
+          {itemLink(node.heldItem)}
+        </>
+      );
+    }
+
+    if (node.trigger === "use-move") {
+      const moveName =
+        node.useMove ||
+        node.requiredMove;
+
+      if (moveName) {
+        parts.push(
+          <>
+            use{" "}
+            {moveLink(moveName)}
+            {node.requiredMoveUses ||
+            node.moveUses
+              ? ` ${node.requiredMoveUses || node.moveUses} times`
+              : ""}
+          </>
+        );
+      } else {
+        parts.push("Use move");
+      }
+    }
+
+    const remainingDescription =
+      getEvolutionDescription({
+        ...node,
+        item: null,
+        heldItem: null,
+        trigger: node.trigger === "use-item"
+          ? null
+          : node.trigger === "use-move"
+            ? null
+            : undefined
+      });
+
+    if (remainingDescription) {
+      parts.push(
+        remainingDescription
+      );
+    }
+
   }
 
   const additionalItems =
-    evolutionMethodOverrides?.[
-      node.pokemon?.name
-    ]?.additionalMethods?.filter(
+    override?.additionalMethods?.filter(
       method =>
-        method.type === "use-item" &&
-        method.item
+        method.type === "use-item" ||
+        method.type === "item"
     ) ?? [];
 
   additionalItems.forEach(
     method => {
       parts.push(
         <>
-          / {itemLink(method.item)}
+          / {renderMethod(method)}
         </>
       );
     }
@@ -300,10 +591,40 @@ function EvolutionDescription({
 
 function getDisplayedPokemon(
   node,
-  activeFormKey
+  activeFormKey,
+  currentPokemonName,
+  evolutionMethodOverrides
 ) {
+  const matchingCurrentVariety =
+    node.varieties?.find(
+      variety =>
+        variety.name ===
+        currentPokemonName
+    );
+
+  if (matchingCurrentVariety) {
+    return matchingCurrentVariety;
+  }
+
   if (!activeFormKey) {
-    return node.pokemon;
+    const sourceOverrideName =
+      findSourceOverrideName(
+        node,
+        currentPokemonName,
+        evolutionMethodOverrides
+      );
+
+    const sourceOverrideVariety =
+      node.varieties?.find(
+        variety =>
+          variety.name ===
+          sourceOverrideName
+      );
+
+    return (
+      sourceOverrideVariety ||
+      node.pokemon
+    );
   }
 
   const matchingVariety =
@@ -329,12 +650,25 @@ function EvolutionNode({
   rootRef,
   isRoot,
   activeFormKey,
+  currentPokemonName,
   evolutionMethodOverrides
 }) {
   const displayedPokemon =
     getDisplayedPokemon(
       node,
-      activeFormKey
+      activeFormKey,
+      currentPokemonName,
+      evolutionMethodOverrides
+    );
+
+  const visibleChildren =
+    (node.evolvesTo ?? []).filter(
+      child =>
+        shouldShowChildNode(
+          child,
+          displayedPokemon,
+          evolutionMethodOverrides
+        )
     );
 
   return (
@@ -384,6 +718,9 @@ function EvolutionNode({
   >
     <EvolutionDescription
       node={node}
+      displayedPokemon={
+        displayedPokemon
+      }
       evolutionMethodOverrides={
         evolutionMethodOverrides
       }
@@ -409,7 +746,7 @@ function EvolutionNode({
 </div>
 
 
-      {node.evolvesTo.length >
+      {visibleChildren.length >
         0 && (
 
         <div
@@ -419,7 +756,7 @@ function EvolutionNode({
           }}
         >
 
-          {node.evolvesTo.map(
+          {visibleChildren.map(
             child => (
 
               <EvolutionNode
@@ -429,6 +766,9 @@ function EvolutionNode({
                 node={child}
                 activeFormKey={
                   activeFormKey
+                }
+                currentPokemonName={
+                  currentPokemonName
                 }
                 evolutionMethodOverrides={
                   evolutionMethodOverrides

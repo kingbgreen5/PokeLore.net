@@ -1,0 +1,170 @@
+{
+  "id": 196,
+  "name": "icy-wind",
+  "displayName": "Icy Wind",
+  "type": "ice",
+  "category": "special",
+  "power": 55,
+  "accuracy": 95,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "all-opponents",
+  "generation": "generation-ii",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Speed by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Speed by one stage.",
+  "description": "Has a chance to lower the target’s Speed by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Speed by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "An icy attack that lowers SPEED."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "An icy attack that lowers SPEED."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "A chilling attack that lowers the foe’s SPEED."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "A chilling attack that lowers the foe’s SPEED."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "A chilling wind is used to attack. It also lowers the SPEED stat."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user attacks with a gust of chilled air. It also lowers the target’s Speed stat."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user attacks with a gust of chilled air. It also lowers the target’s Speed stat."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user attacks with a gust of chilled air. It also lowers the target’s Speed stat."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user attacks with a gust of chilled air. It also reduces the targets’ Speed stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user attacks with a gust of chilled air. It also reduces the targets’ Speed stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user attacks with a gust of chilled air. This also lowers the opposing Pokémon’s Speed stats."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user attacks with a gust of chilled air. This also lowers the opposing Pokémon’s Speed stats."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user attacks with a gust of chilled air. This also lowers the opposing Pokémon’s Speed stats."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user attacks with a gust of chilled air. This also lowers the opposing Pokémon’s Speed stats."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user attacks with a gust of chilled air. This also lowers the opposing Pokémon’s Speed stats."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user attacks with a gust of chilled air. This also lowers opposing Pokémon’s Speed stats."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user attacks with a gust of chilled air."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks with a gust of chilled air. This also lowers opposing Pokémon's Speed stats."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "speed",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 320,
+      "itemName": "tm16",
+      "itemDisplayName": "TM16",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 334,
+      "versionGroup": "gold-silver",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 320,
+      "itemName": "tm16",
+      "itemDisplayName": "TM16",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 335,
+      "versionGroup": "crystal",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 331,
+      "itemName": "tm27",
+      "itemDisplayName": "TM27",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 593,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    },
+    {
+      "itemId": 338,
+      "itemName": "tm34",
+      "itemDisplayName": "TM34",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1849,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 338,
+      "itemName": "tm34",
+      "itemDisplayName": "TM34",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2085,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    }
+  ]
+}

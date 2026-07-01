@@ -1,0 +1,310 @@
+{
+  "id": 247,
+  "name": "shadow-ball",
+  "displayName": "Shadow Ball",
+  "type": "ghost",
+  "category": "special",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 20,
+  "target": "selected-pokemon",
+  "generation": "generation-ii",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Defense by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Special Defense by one stage.",
+  "description": "Has a chance to lower the target’s Special Defense by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Defense by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "An attack that may lower SPCL.DEF."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "An attack that may lower SPCL.DEF."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Hurls a black blob that may lower the foe’s SP. DEF."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Hurls a black blob that may lower the foe’s SP. DEF."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "A shadowy blob is hurled at the foe. May also lower the foe’s SP. DEF."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user hurls a shadowy blob at the foe. It may also lower the foe’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user hurls a shadowy blob at the foe. It may also lower the foe’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user hurls a shadowy blob at the foe. It may also lower the foe’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user hurls a shadowy blob at the target. It may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user hurls a shadowy blob at the target. It may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user hurls a shadowy blob at the target. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user hurls a shadowy blob at the target. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user hurls a shadowy blob at the target. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user hurls a shadowy blob at the target. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user hurls a shadowy blob at the target. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user hurls a shadowy blob at the target. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user hurls a shadowy blob at the target to deal damage. This may also lower the target’s defensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks by hurling a shadowy blob at the target. This may also lower the target’s Sp. Def stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 20
+  },
+  "statChanges": [
+    {
+      "stat": "special-defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 1957,
+      "itemName": "tm114",
+      "itemDisplayName": "TM114",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1929,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 642,
+      "versionGroup": "gold-silver",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 643,
+      "versionGroup": "crystal",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 644,
+      "versionGroup": "ruby-sapphire",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 645,
+      "versionGroup": "emerald",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 646,
+      "versionGroup": "firered-leafgreen",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 647,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 648,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 649,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 650,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 651,
+      "versionGroup": "colosseum",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 652,
+      "versionGroup": "xd",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 653,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 654,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 655,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 656,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 334,
+      "itemName": "tm30",
+      "itemDisplayName": "TM30",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 657,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 347,
+      "itemName": "tm43",
+      "itemDisplayName": "TM43",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 944,
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 1221,
+      "itemName": "tr33",
+      "itemDisplayName": "TR33",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1732,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "id": 437,
+  "name": "leaf-storm",
+  "displayName": "Leaf Storm",
+  "type": "grass",
+  "category": "special",
+  "power": 130,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-iv",
+  "effect": "Inflicts regular damage, then lowers the user’s Special Attack by two stages.",
+  "shortEffect": "Lowers the user’s Special Attack by two stages after inflicting damage.",
+  "description": "Lowers the user’s Special Attack by two stages after inflicting damage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage, then lowers the user’s Special Attack by two stages.",
+      "shortEffect": "Lowers the user’s Special Attack by two stages after inflicting damage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "A storm of sharp leaves is whipped up. The attack’s recoil sharply reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "A storm of sharp leaves is whipped up. The attack’s recoil sharply reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "A storm of sharp leaves is whipped up. The attack’s recoil sharply reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user whips up a storm of leaves around the target. The attack’s recoil harshly reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user whips up a storm of leaves around the target. The attack’s recoil harshly reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user whips up a storm of leaves around the target. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user whips up a storm of leaves around the target. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user whips up a storm of leaves around the target. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user whips up a storm of leaves around the target. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user whips up a storm of leaves around the target. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user whips up a storm of leaves around the target. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user whips up a storm of leaves around the target. The recoil from this move lowers the user’s offensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user whips up a storm of leaves around the target. The recoil from this move harshly lowers the user's Sp. Atk stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-raise",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "special-attack",
+      "change": -2
+    }
+  ],
+  "pastValues": [
+    {
+      "accuracy": null,
+      "effectChance": null,
+      "power": 140,
+      "pp": null,
+      "type": null,
+      "versionGroup": "x-y",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": [
+    {
+      "itemId": 2002,
+      "itemName": "tm159",
+      "itemDisplayName": "TM159",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1974,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2002,
+      "itemName": "tm159",
+      "itemDisplayName": "TM159",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2162,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1259,
+      "itemName": "tr71",
+      "itemDisplayName": "TR71",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1770,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

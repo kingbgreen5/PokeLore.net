@@ -9,6 +9,7 @@ import usePersistedScroll from "../hooks/usePersistedScroll";
 import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { movesSeo } from "../seo/seoConfig";
+import { loadMovesMap } from "../utils/loadMovesData";
 
 function capitalize(text) {
   return text
@@ -66,13 +67,8 @@ const [powerSortMode, setPowerSortMode] =
 
       try {
 
-        const response =
-          await fetch(
-            "/data/moves.json"
-          );
-
         const data =
-          await response.json();
+          await loadMovesMap();
 
         setMoves(data);
 

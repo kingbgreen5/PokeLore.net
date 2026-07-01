@@ -1,0 +1,120 @@
+{
+  "id": 434,
+  "name": "draco-meteor",
+  "displayName": "Draco Meteor",
+  "type": "dragon",
+  "category": "special",
+  "power": 130,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-iv",
+  "effect": "Inflicts regular damage, then lowers the user’s Special Attack by two stages.",
+  "shortEffect": "Lowers the user’s Special Attack by two stages after inflicting damage.",
+  "description": "Lowers the user’s Special Attack by two stages after inflicting damage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage, then lowers the user’s Special Attack by two stages.",
+      "shortEffect": "Lowers the user’s Special Attack by two stages after inflicting damage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "Comets are summoned down from the sky. The attack’s recoil sharply reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "Comets are summoned down from the sky. The attack’s recoil sharply reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "Comets are summoned down from the sky. The attack’s recoil sharply reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "Comets are summoned down from the sky onto the target. The attack’s recoil harshly reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "Comets are summoned down from the sky onto the target. The attack’s recoil harshly reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "Comets are summoned down from the sky onto the target. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "Comets are summoned down from the sky onto the target. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "Comets are summoned down from the sky onto the target. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "Comets are summoned down from the sky onto the target. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "Comets are summoned down from the sky onto the target. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "Comets are summoned down from the sky onto the target. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "Comets are summoned down from the sky onto the target. The recoil from this move lowers the user’s offensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "Comets are summoned down from the sky onto the target. The recoil from this move harshly lowers the user’s Sp. Atk stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-raise",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "special-attack",
+      "change": -2
+    }
+  ],
+  "pastValues": [
+    {
+      "accuracy": null,
+      "effectChance": null,
+      "power": 140,
+      "pp": null,
+      "type": null,
+      "versionGroup": "x-y",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": [
+    {
+      "itemId": 2012,
+      "itemName": "tm169",
+      "itemDisplayName": "TM169",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1984,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    }
+  ]
+}

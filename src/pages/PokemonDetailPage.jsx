@@ -29,6 +29,7 @@ import Seo from "../seo/Seo";
 import PokemonSpriteCarousel from "../components/PokemonSpriteCarousel.jsx"
 import { pokemonSeo } from "../seo/seoConfig";
 import { readJsonFile } from "../utils/readJsonFile";
+import { loadMovesMap } from "../utils/loadMovesData";
 import {
   formatPokemonDisplayName,
   getRegionalFormKey
@@ -217,13 +218,8 @@ useEffect(() => {
       // Learnsets + Moves
       //-------------------------------------
 
-      const movesResponse =
-        await fetch(
-          "/data/moves.json"
-        );
-
       const movesJson =
-        await movesResponse.json();
+        await loadMovesMap();
 
       setMovesData(movesJson);
 
@@ -640,6 +636,7 @@ function formatWeightEnglish(weight) {
    isRoot={true}
   rootRef={rootNodeRef}
   activeFormKey={activeFormKey}
+  currentPokemonName={pokemon.name}
   evolutionMethodOverrides={evolutionMethodOverrides}
  
 />

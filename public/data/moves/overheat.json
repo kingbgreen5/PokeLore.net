@@ -1,0 +1,292 @@
+{
+  "id": 315,
+  "name": "overheat",
+  "displayName": "Overheat",
+  "type": "fire",
+  "category": "special",
+  "power": 130,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-iii",
+  "effect": "Inflicts regular damage, then lowers the user’s Special Attack by two stages.",
+  "shortEffect": "Lowers the user’s Special Attack by two stages after inflicting damage.",
+  "description": "Lowers the user’s Special Attack by two stages after inflicting damage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage, then lowers the user’s Special Attack by two stages.",
+      "shortEffect": "Lowers the user’s Special Attack by two stages after inflicting damage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Allows a full-power attack, but sharply lowers SP. ATK."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Allows a full-power attack, but sharply lowers SP. ATK."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "An intense attack that also sharply reduces the user’s SP. ATK stat."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user attacks the foe at full power. The attack’s recoil sharply reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user attacks the foe at full power. The attack’s recoil sharply reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user attacks the foe at full power. The attack’s recoil sharply reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user attacks the target at full power. The attack’s recoil harshly reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user attacks the target at full power. The attack’s recoil harshly reduces the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user attacks the target at full power. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user attacks the target at full power. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user attacks the target at full power. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user attacks the target at full power. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user attacks the target at full power. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user attacks the target at full power. The attack’s recoil harshly lowers the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user attacks the target at full power. The recoil from this move lowers the user’s offensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks the target with all its might. The recoil from this move harshly lowers the user's Sp. Atk stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-raise",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "special-attack",
+      "change": -2
+    }
+  ],
+  "pastValues": [
+    {
+      "accuracy": null,
+      "effectChance": null,
+      "power": 140,
+      "pp": null,
+      "type": null,
+      "versionGroup": "x-y",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": [
+    {
+      "itemId": 2000,
+      "itemName": "tm157",
+      "itemDisplayName": "TM157",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1972,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2000,
+      "itemName": "tm157",
+      "itemDisplayName": "TM157",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2160,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1084,
+      "versionGroup": "ruby-sapphire",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1085,
+      "versionGroup": "emerald",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1086,
+      "versionGroup": "firered-leafgreen",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1087,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1088,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1089,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1090,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1091,
+      "versionGroup": "colosseum",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1092,
+      "versionGroup": "xd",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1093,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1094,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1095,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1096,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 354,
+      "itemName": "tm50",
+      "itemDisplayName": "TM50",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1097,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 1231,
+      "itemName": "tr43",
+      "itemDisplayName": "TR43",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1742,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

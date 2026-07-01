@@ -1,0 +1,87 @@
+{
+  "id": 707,
+  "name": "stomping-tantrum",
+  "displayName": "Stomping Tantrum",
+  "type": "ground",
+  "category": "physical",
+  "power": 75,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-vii",
+  "effect": "Inflicts regular damage. Power is doubled if the user’s last move failed for any reason (i.e., produced the message \"But it failed!\") or was ineffective due to types.",
+  "shortEffect": "Has double power if the user’s last move failed.",
+  "description": "Has double power if the user’s last move failed.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Power is doubled if the user’s last move failed for any reason (i.e., produced the message \"But it failed!\") or was ineffective due to types.",
+      "shortEffect": "Has double power if the user’s last move failed."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sun-moon",
+      "text": "Driven by frustration, the user attacks the target. If the user’s previous move has failed, the power of this move doubles."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "Driven by frustration, the user attacks the target. If the user’s previous move has failed, the power of this move doubles."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "Driven by frustration, the user attacks the target. If the user’s previous move has failed, the power of this move doubles."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "Driven by frustration, the user attacks the target. If the user’s previous move has failed, the power of this move doubles."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "Driven by frustration, the user attacks the target. If the user's previous move has failed, the power of this move doubles."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "Driven by frustration, the user attacks the target. This move's power is doubled if the user's previous move failed."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 388,
+      "itemName": "tm84",
+      "itemDisplayName": "TM84",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1899,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 747,
+      "itemName": "tm98",
+      "itemDisplayName": "TM98",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1567,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

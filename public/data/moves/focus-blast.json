@@ -1,0 +1,220 @@
+{
+  "id": 411,
+  "name": "focus-blast",
+  "displayName": "Focus Blast",
+  "type": "fighting",
+  "category": "special",
+  "power": 120,
+  "accuracy": 70,
+  "pp": 5,
+  "priority": 0,
+  "effectChance": 10,
+  "target": "selected-pokemon",
+  "generation": "generation-iv",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Defense by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Special Defense by one stage.",
+  "description": "Has a chance to lower the target’s Special Defense by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Defense by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user heightens its mental focus and unleashes its power. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user heightens its mental focus and unleashes its power. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user heightens its mental focus and unleashes its power. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user heightens its mental focus and unleashes its power. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user heightens its mental focus and unleashes its power. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user heightens its mental focus and unleashes its power. This may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user heightens its mental focus and unleashes its power. This may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user heightens its mental focus and unleashes its power. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user heightens its mental focus and unleashes its power. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user heightens its mental focus and unleashes its power. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user heightens its mental focus and unleashes its power. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user heightens its mental focus and unleashes its power. This may also lower the target's Sp. Def stat."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user heightens its mental focus and unleashes its power. This may also lower the target's Sp. Def stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 10
+  },
+  "statChanges": [
+    {
+      "stat": "special-defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2001,
+      "itemName": "tm158",
+      "itemDisplayName": "TM158",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1973,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2001,
+      "itemName": "tm158",
+      "itemDisplayName": "TM158",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2161,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 356,
+      "itemName": "tm52",
+      "itemDisplayName": "TM52",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1113,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 356,
+      "itemName": "tm52",
+      "itemDisplayName": "TM52",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1114,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 356,
+      "itemName": "tm52",
+      "itemDisplayName": "TM52",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1115,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 356,
+      "itemName": "tm52",
+      "itemDisplayName": "TM52",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1116,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 356,
+      "itemName": "tm52",
+      "itemDisplayName": "TM52",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1117,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 356,
+      "itemName": "tm52",
+      "itemDisplayName": "TM52",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1118,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 356,
+      "itemName": "tm52",
+      "itemDisplayName": "TM52",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1119,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 356,
+      "itemName": "tm52",
+      "itemDisplayName": "TM52",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1120,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 356,
+      "itemName": "tm52",
+      "itemDisplayName": "TM52",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1121,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 1252,
+      "itemName": "tr64",
+      "itemDisplayName": "TR64",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1763,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

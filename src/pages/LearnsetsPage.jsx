@@ -4,6 +4,7 @@ import LearnsetCard from "../components/LearnsetCard";
 import { useMemo } from "react";
 import Seo from "../seo/Seo";
 import { learnsetsSeo } from "../seo/seoConfig";
+import { loadMovesMap } from "../utils/loadMovesData";
 
 
 
@@ -27,16 +28,11 @@ function LearnsetsPage() {
           "/data/learnsets.json"
         );
 
-      const movesResponse =
-        await fetch(
-          "/data/moves.json"
-        );
-
       const learnsetsData =
         await learnsetsResponse.json();
 
       const movesJson =
-        await movesResponse.json();
+        await loadMovesMap();
 
       setLearnsets(learnsetsData);
       setMovesData(movesJson);

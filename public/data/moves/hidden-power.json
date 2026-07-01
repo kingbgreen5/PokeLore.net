@@ -1,0 +1,277 @@
+{
+  "id": 237,
+  "name": "hidden-power",
+  "displayName": "Hidden Power",
+  "type": "normal",
+  "category": "special",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-ii",
+  "effect": "Inflicts regular damage. Power and type are determined by the user’s IVs. Power is given by `x * 40 / 63 + 30`. `x` is obtained by arranging bit 1 from the IV for each of Special Defense, Special Attack, Speed, Defense, Attack, and HP in that order. (Bit 1 is 1 if the IV is of the form `4n + 2` or `4n + 3`. `x` is then 64 * Special Defense IV bit 1, plus 32 * Special Attack IV bit 1, etc.) Power is always between 30 and 70, inclusive. Average power is 49.5. Type is given by `y * 15 / 63`, where `y` is similar to `x` above, except constructed from bit 0. (Bit 0 is 1 if the IV is odd.) The result is looked up in the following table. Value | Type ----: | -------- 0 | Fighting 1 | Flying 2 | Poison 3 | Ground 4 | Rock 5 | Bug 6 | Ghost 7 | Steel 8 | Fire 9 | Water 10 | Grass 11 | Electric 12 | Psychic 13 | Ice 14 | Dragon 15 | Dark This move thus cannot be Normal. Most other types have an equal 1/16 chance to be selected, given random IVs. However, due to the flooring used here, Bug, Fighting, and Grass appear 5/64 of the time, and Dark only 1/64 of the time.",
+  "shortEffect": "Power and type depend upon user’s IVs. Power can range from 30 to 70.",
+  "description": "Power and type depend upon user’s IVs. Power can range from 30 to 70.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Power and type are determined by the user’s IVs. Power is given by `x * 40 / 63 + 30`. `x` is obtained by arranging bit 1 from the IV for each of Special Defense, Special Attack, Speed, Defense, Attack, and HP in that order. (Bit 1 is 1 if the IV is of the form `4n + 2` or `4n + 3`. `x` is then 64 * Special Defense IV bit 1, plus 32 * Special Attack IV bit 1, etc.) Power is always between 30 and 70, inclusive. Average power is 49.5. Type is given by `y * 15 / 63`, where `y` is similar to `x` above, except constructed from bit 0. (Bit 0 is 1 if the IV is odd.) The result is looked up in the following table. Value | Type ----: | -------- 0 | Fighting 1 | Flying 2 | Poison 3 | Ground 4 | Rock 5 | Bug 6 | Ghost 7 | Steel 8 | Fire 9 | Water 10 | Grass 11 | Electric 12 | Psychic 13 | Ice 14 | Dragon 15 | Dark This move thus cannot be Normal. Most other types have an equal 1/16 chance to be selected, given random IVs. However, due to the flooring used here, Bug, Fighting, and Grass appear 5/64 of the time, and Dark only 1/64 of the time.",
+      "shortEffect": "Power and type depend upon user’s IVs. Power can range from 30 to 70."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "The power varies with the POKéMON."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "The power varies with the POKéMON."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "The effectiveness varies with the user."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "The effectiveness varies with the user."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "An attack that varies in type and intensity depending on the user."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "A unique attack that varies in type and intensity depending on the Pokémon using it."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "A unique attack that varies in type and intensity depending on the Pokémon using it."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "A unique attack that varies in type and intensity depending on the Pokémon using it."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "A unique attack that varies in type and intensity depending on the Pokémon using it."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "A unique attack that varies in type and intensity depending on the Pokémon using it."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "A unique attack that varies in type depending on the Pokémon using it."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "A unique attack that varies in type depending on the Pokémon using it."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "A unique attack that varies in type depending on the Pokémon using it."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "A unique attack that varies in type depending on the Pokémon using it."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "A unique attack that varies in type depending on the Pokémon using it."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "This move can’t be used. It’s recommended that this move is forgotten. Once forgotten, this move can’t be remembered."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [
+    {
+      "accuracy": null,
+      "effectChance": null,
+      "power": 1,
+      "pp": null,
+      "type": null,
+      "versionGroup": "x-y",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": [
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 202,
+      "versionGroup": "gold-silver",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 203,
+      "versionGroup": "crystal",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 204,
+      "versionGroup": "ruby-sapphire",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 205,
+      "versionGroup": "emerald",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 206,
+      "versionGroup": "firered-leafgreen",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 207,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 208,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 209,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 210,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 211,
+      "versionGroup": "colosseum",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 212,
+      "versionGroup": "xd",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 213,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 214,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 215,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 216,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 314,
+      "itemName": "tm10",
+      "itemDisplayName": "TM10",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 217,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    }
+  ]
+}

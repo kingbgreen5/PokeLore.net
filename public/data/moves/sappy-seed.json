@@ -1,0 +1,60 @@
+{
+  "id": 738,
+  "name": "sappy-seed",
+  "displayName": "Sappy Seed",
+  "type": "grass",
+  "category": "physical",
+  "power": 100,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-vii",
+  "effect": "Inflicts regular damage.",
+  "shortEffect": "Inflicts regular damage with no additional effect.",
+  "description": "Inflicts regular damage with no additional effect.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage.",
+      "shortEffect": "Inflicts regular damage with no additional effect."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user grows a gigantic stalk that scatters seeds to attack the target. The seeds drain the target’s HP every turn."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "This move can’t be used. It’s recommended that this move is forgotten. Once forgotten, this move can’t be remembered."
+    }
+  ],
+  "meta": {
+    "ailment": "leech-seed",
+    "category": "damage-ailment",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 100,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [
+    {
+      "accuracy": 100,
+      "effectChance": null,
+      "power": 90,
+      "pp": 15,
+      "type": null,
+      "versionGroup": "sword-shield",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": []
+}

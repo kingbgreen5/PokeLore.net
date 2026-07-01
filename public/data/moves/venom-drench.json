@@ -1,0 +1,90 @@
+{
+  "id": 599,
+  "name": "venom-drench",
+  "displayName": "Venom Drench",
+  "type": "poison",
+  "category": "status",
+  "power": null,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "all-opponents",
+  "generation": "generation-vi",
+  "effect": "Lowers the target’s Attack, Special Attack, and Speed by one stage if it is poisoned.",
+  "shortEffect": "Lowers the target’s Attack, Special Attack, and Speed by one stage if it is poisoned.",
+  "description": "Lowers the target’s Attack, Special Attack, and Speed by one stage if it is poisoned.",
+  "effectEntries": [
+    {
+      "effect": "Lowers the target’s Attack, Special Attack, and Speed by one stage if it is poisoned.",
+      "shortEffect": "Lowers the target’s Attack, Special Attack, and Speed by one stage if it is poisoned."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "x-y",
+      "text": "Opposing Pokémon are drenched in an odd poisonous liquid. This lowers the Attack, Sp. Atk, and Speed stats of a poisoned target."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "Opposing Pokémon are drenched in an odd poisonous liquid. This lowers the Attack, Sp. Atk, and Speed stats of a poisoned target."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "Opposing Pokémon are drenched in an odd poisonous liquid. This lowers the Attack, Sp. Atk, and Speed stats of a poisoned target."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "Opposing Pokémon are drenched in an odd poisonous liquid. This lowers the Attack, Sp. Atk, and Speed stats of a poisoned target."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "Opposing Pokémon are drenched in an odd poisonous liquid. This lowers the Attack, Sp. Atk, and Speed stats of a poisoned target."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "Opposing Pokémon are drenched in an odd poisonous liquid. This lowers the Attack, Sp. Atk, and Speed stats of a poisoned target."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "net-good-stats",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "attack",
+      "change": -1
+    },
+    {
+      "stat": "special-attack",
+      "change": -1
+    },
+    {
+      "stat": "speed",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 1279,
+      "itemName": "tr91",
+      "itemDisplayName": "TR91",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1790,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "id": 189,
+  "name": "mud-slap",
+  "displayName": "Mud-Slap",
+  "type": "ground",
+  "category": "special",
+  "power": 20,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-ii",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s accuracy by one stage.",
+  "shortEffect": "Has a chance to lower the target’s accuracy by one stage.",
+  "description": "Has a chance to lower the target’s accuracy by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s accuracy by one stage.",
+      "shortEffect": "Has a chance to lower the target’s accuracy by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "Reduces the foe's accuracy."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "Reduces the foe's accuracy."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Hurls mud in the foe’s face to reduce its accuracy."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Hurls mud in the foe’s face to reduce its accuracy."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "Mud is hurled in the foe’s face to inflict damage and lower its accuracy."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user hurls mud in the foe’s face to inflict damage and lower its accuracy."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user hurls mud in the foe’s face to inflict damage and lower its accuracy."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user hurls mud in the foe’s face to inflict damage and lower its accuracy."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user hurls mud in the target’s face to inflict damage and lower its accuracy."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user hurls mud in the target’s face to inflict damage and lower its accuracy."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user hurls mud in the target’s face to inflict damage and lower its accuracy."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user hurls mud in the target’s face to inflict damage and lower its accuracy."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user hurls mud in the target’s face to inflict damage and lower its accuracy."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user hurls mud in the target’s face to inflict damage and lower its accuracy."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user hurls mud in the target’s face to inflict damage and lower its accuracy."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user hurls mud in the target’s face to inflict damage and lower its accuracy."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user hurls mud in the target's face to inflict damage. Incoming moves also become more likely to miss."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user hurls mud in the target's face to inflict damage and lower its accuracy."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "accuracy",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 309,
+      "itemName": "tm05",
+      "itemDisplayName": "TM05",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1820,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 335,
+      "itemName": "tm31",
+      "itemDisplayName": "TM31",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 664,
+      "versionGroup": "gold-silver",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 335,
+      "itemName": "tm31",
+      "itemDisplayName": "TM31",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 665,
+      "versionGroup": "crystal",
+      "generation": "Generation II"
+    }
+  ]
+}

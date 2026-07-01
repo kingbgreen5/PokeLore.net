@@ -1,0 +1,63 @@
+{
+  "id": 708,
+  "name": "shadow-bone",
+  "displayName": "Shadow Bone",
+  "type": "ghost",
+  "category": "physical",
+  "power": 85,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 20,
+  "target": "selected-pokemon",
+  "generation": "generation-vii",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Defense by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Defense by one stage.",
+  "description": "Has a chance to lower the target’s Defense by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Defense by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Defense by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user attacks by beating the target with a bone that contains a spirit. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user attacks by beating the target with a bone that contains a spirit. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user attacks by beating the target with a bone that contains a spirit. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user attacks by beating the target with a bone that contains a spirit. This may also lower the target’s Defense stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 20
+  },
+  "statChanges": [
+    {
+      "stat": "defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": []
+}

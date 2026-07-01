@@ -16,6 +16,7 @@ import typeChart from "../constants/Types";
 import typeColors from "../constants/typeColors";
 import Seo from "../seo/Seo";
 import { typeSeo } from "../seo/seoConfig";
+import { loadMovesMap } from "../utils/loadMovesData";
 
 const allTypes = Object.keys(typeColors);
 
@@ -360,13 +361,13 @@ function TypeDetailPage() {
       try {
         const [
           pokemonResponse,
-          movesResponse,
+          movesData,
           abilitiesResponse
         ] = await Promise.all([
           fetch(
             "/data/pokemonIndex.json"
           ),
-          fetch("/data/moves.json"),
+          loadMovesMap(),
           fetch(
             "/data/typeAbilities.json"
           )
@@ -374,11 +375,10 @@ function TypeDetailPage() {
 
         const [
           pokemonData,
-          movesData,
           abilitiesData
         ] = await Promise.all([
           pokemonResponse.json(),
-          movesResponse.json(),
+          Promise.resolve(movesData),
           abilitiesResponse.json()
         ]);
 

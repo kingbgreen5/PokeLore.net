@@ -1,0 +1,75 @@
+{
+  "id": 808,
+  "name": "lash-out",
+  "displayName": "Lash Out",
+  "type": "dark",
+  "category": "physical",
+  "power": 75,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-viii",
+  "effect": "Inflicts regular damage.",
+  "shortEffect": "Inflicts regular damage with no additional effect.",
+  "description": "Inflicts regular damage with no additional effect.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage.",
+      "shortEffect": "Inflicts regular damage with no additional effect."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user lashes out to vent its frustration toward the target. If the user’s stats were lowered during this turn, the power of this move is doubled."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user lashes out to vent its frustration toward the target. If its stats were lowered during the turn, the power of this move is doubled."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user lashes out to vent its frustration toward the target. This move's power is doubled if the user's stats were lowered during this turn."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2188,
+      "itemName": "tm199",
+      "itemDisplayName": "TM199",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2014,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2188,
+      "itemName": "tm199",
+      "itemDisplayName": "TM199",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2077,
+      "versionGroup": "the-teal-mask",
+      "generation": "Generation IX"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": 800,
+  "name": "meteor-beam",
+  "displayName": "Meteor Beam",
+  "type": "rock",
+  "category": "special",
+  "power": 120,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-viii",
+  "effect": "Inflicts regular damage.",
+  "shortEffect": "Inflicts regular damage with no additional effect.",
+  "description": "Inflicts regular damage with no additional effect.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage.",
+      "shortEffect": "Inflicts regular damage with no additional effect."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "In this two-turn attack, the user gathers space power and boosts its Sp. Atk stat, then attacks the target on the next turn."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "In this two-turn attack, the user gathers space power and boosts its Sp. Atk stat, then attacks the target on the next turn."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user gathers energy from space and boosts its Sp. Atk stat on the first turn, then attacks on the next turn."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 100,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2209,
+      "itemName": "tm220",
+      "itemDisplayName": "TM220",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2035,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2209,
+      "itemName": "tm220",
+      "itemDisplayName": "TM220",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2203,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    }
+  ]
+}

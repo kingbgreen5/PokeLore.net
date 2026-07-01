@@ -1,0 +1,140 @@
+{
+  "id": 405,
+  "name": "bug-buzz",
+  "displayName": "Bug Buzz",
+  "type": "bug",
+  "category": "special",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 10,
+  "target": "selected-pokemon",
+  "generation": "generation-iv",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Defense by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Special Defense by one stage.",
+  "description": "Has a chance to lower the target’s Special Defense by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Defense by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user vibrates its wings to generate a damaging sound wave. It may also lower the foe’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user vibrates its wings to generate a damaging sound wave. It may also lower the foe’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user vibrates its wings to generate a damaging sound wave. It may also lower the foe’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user vibrates its wings to generate a damaging sound wave. It may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user vibrates its wings to generate a damaging sound wave. It may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user vibrates its wings to generate a damaging sound wave. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user vibrates its wings to generate a damaging sound wave. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user generates a damaging sound wave by vibration. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user generates a damaging sound wave by vibration. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user generates a damaging sound wave by vibration. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user generates a damaging sound wave by vibration. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user vibrates to generate a damaging sound wave. This may also lower the target’s defensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user vibrates to generate a damaging sound wave. This may also lower the target's Sp. Def stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 10
+  },
+  "statChanges": [
+    {
+      "stat": "special-defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2005,
+      "itemName": "tm162",
+      "itemDisplayName": "TM162",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1977,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2005,
+      "itemName": "tm162",
+      "itemDisplayName": "TM162",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2165,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 366,
+      "itemName": "tm62",
+      "itemDisplayName": "TM62",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1804,
+      "versionGroup": "brilliant-diamond-shining-pearl",
+      "generation": "Generation VIII"
+    },
+    {
+      "itemId": 1249,
+      "itemName": "tr61",
+      "itemDisplayName": "TR61",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1760,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

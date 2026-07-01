@@ -1,0 +1,200 @@
+{
+  "id": 451,
+  "name": "charge-beam",
+  "displayName": "Charge Beam",
+  "type": "electric",
+  "category": "special",
+  "power": 50,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 70,
+  "target": "selected-pokemon",
+  "generation": "generation-iv",
+  "effect": "Inflicts regular damage. Has a chance to raise the user’s Special Attack by one stage.",
+  "shortEffect": "Has a chance to raise the user’s Special Attack by one stage.",
+  "description": "Has a chance to raise the user’s Special Attack by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to raise the user’s Special Attack by one stage.",
+      "shortEffect": "Has a chance to raise the user’s Special Attack by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user fires a concentrated bundle of electricity. It may also raise the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user fires a concentrated bundle of electricity. It may also raise the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user fires a concentrated bundle of electricity. It may also raise the user’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user attacks with an electric charge. The user may use any remaining electricity to raise its Sp. Atk stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user attacks with an electric charge. The user may use any remaining electricity to raise its Sp. Atk stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user attacks with an electric charge. The user may use any remaining electricity to raise its Sp. Atk stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user attacks with an electric charge. The user may use any remaining electricity to raise its Sp. Atk stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user attacks with an electric charge. The user may use any remaining electricity to raise its Sp. Atk stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user attacks with an electric charge. The user may use any remaining electricity to raise its Sp. Atk stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user attacks with an electric charge. The user may use any remaining electricity to raise its Sp. Atk stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user attacks the target with an electric charge. The user may use any remaining electricity to raise its Sp. Atk stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user attacks the target with an electric charge. The leftover electricity may also raise the user’s offensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks the target with an electric charge. The residual electricity may also boost the user's Sp. Atk stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-raise",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 70
+  },
+  "statChanges": [
+    {
+      "stat": "special-attack",
+      "change": 1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 327,
+      "itemName": "tm23",
+      "itemDisplayName": "TM23",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1838,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 361,
+      "itemName": "tm57",
+      "itemDisplayName": "TM57",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1168,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 361,
+      "itemName": "tm57",
+      "itemDisplayName": "TM57",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1169,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 361,
+      "itemName": "tm57",
+      "itemDisplayName": "TM57",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1170,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 361,
+      "itemName": "tm57",
+      "itemDisplayName": "TM57",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1171,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 361,
+      "itemName": "tm57",
+      "itemDisplayName": "TM57",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1172,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 361,
+      "itemName": "tm57",
+      "itemDisplayName": "TM57",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1173,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 361,
+      "itemName": "tm57",
+      "itemDisplayName": "TM57",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1174,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 361,
+      "itemName": "tm57",
+      "itemDisplayName": "TM57",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1175,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 361,
+      "itemName": "tm57",
+      "itemDisplayName": "TM57",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1176,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    }
+  ]
+}

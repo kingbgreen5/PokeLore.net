@@ -7,6 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import typeColors from "../constants/typeColors";
 import { isItemHiddenFromUi } from "../utils/itemVisibility";
+import { loadMovesMap } from "../utils/loadMovesData";
 
 const RESULT_LIMIT = 12;
 
@@ -237,7 +238,7 @@ function GlobalSiteSearch() {
           locationsResult
         ] = await Promise.allSettled([
           fetchJson("/data/pokemonIndex.json"),
-          fetchJson("/data/moves.json"),
+          loadMovesMap(),
           fetchJson("/data/abilities.json"),
           fetchJson("/data/itemsIndex.json"),
           fetchJson("/data/locationsIndex.json")

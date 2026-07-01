@@ -1,0 +1,158 @@
+{
+  "id": 488,
+  "name": "flame-charge",
+  "displayName": "Flame Charge",
+  "type": "fire",
+  "category": "physical",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-v",
+  "effect": "Inflicts regular damage. Raises the user’s Speed by one stage.",
+  "shortEffect": "Inflicts regular damage. Raises the user’s Speed by one stage.",
+  "description": "Inflicts regular damage. Raises the user’s Speed by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Raises the user’s Speed by one stage.",
+      "shortEffect": "Inflicts regular damage. Raises the user’s Speed by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "black-white",
+      "text": "The user cloaks itself with flame and attacks. Building up more power, it raises the user’s Speed stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user cloaks itself with flame and attacks. Building up more power, it raises the user’s Speed stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "Cloaking itself in flame, the user attacks. Then, building up more power, the user raises its Speed stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "Cloaking itself in flame, the user attacks. Then, building up more power, the user raises its Speed stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "Cloaking itself in flame, the user attacks. Then, building up more power, the user raises its Speed stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "Cloaking itself in flame, the user attacks. Then, building up more power, the user raises its Speed stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "Cloaking itself in flame, the user attacks. Then, building up more power, the user raises its Speed stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "Cloaking itself in flame, the user attacks the target. Then, building up more power, the user raises its Speed stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "Cloaking itself in flame, the user attacks the target. Then, building up more power, the user raises its Speed stat."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "Cloaking itself in flame, the user attacks the target. Then, building up momentum, the user boosts its Speed stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-raise",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "speed",
+      "change": 1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 342,
+      "itemName": "tm38",
+      "itemDisplayName": "TM38",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1853,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 347,
+      "itemName": "tm43",
+      "itemDisplayName": "TM43",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 936,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 347,
+      "itemName": "tm43",
+      "itemDisplayName": "TM43",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 939,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 347,
+      "itemName": "tm43",
+      "itemDisplayName": "TM43",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 940,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 347,
+      "itemName": "tm43",
+      "itemDisplayName": "TM43",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 941,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 347,
+      "itemName": "tm43",
+      "itemDisplayName": "TM43",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 942,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 347,
+      "itemName": "tm43",
+      "itemDisplayName": "TM43",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 943,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    }
+  ]
+}

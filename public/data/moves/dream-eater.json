@@ -1,0 +1,275 @@
+{
+  "id": 138,
+  "name": "dream-eater",
+  "displayName": "Dream Eater",
+  "type": "psychic",
+  "category": "special",
+  "power": 100,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-i",
+  "effect": "Fails if not used on a sleeping Pokémon. Inflicts regular damage. Drains half the damage inflicted to heal the user.",
+  "shortEffect": "Only works on sleeping Pokémon. Drains half the damage inflicted to heal the user.",
+  "description": "Only works on sleeping Pokémon. Drains half the damage inflicted to heal the user.",
+  "effectEntries": [
+    {
+      "effect": "Fails if not used on a sleeping Pokémon. Inflicts regular damage. Drains half the damage inflicted to heal the user.",
+      "shortEffect": "Only works on sleeping Pokémon. Drains half the damage inflicted to heal the user."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "Steals HP from a sleeping victim."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "Steals HP from a sleeping victim."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Takes one half the damage inflicted on a sleeping foe."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Takes one half the damage inflicted on a sleeping foe."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "Absorbs half the damage it inflicted on a sleeping foe to restore HP."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "An attack that works only on a sleeping foe. It absorbs half the damage caused to heal the user’s HP."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "An attack that works only on a sleeping foe. It absorbs half the damage caused to heal the user’s HP."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "An attack that works only on a sleeping foe. It absorbs half the damage caused to heal the user’s HP."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user eats the dreams of a sleeping target. It absorbs half the damage caused to heal the user’s HP."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user eats the dreams of a sleeping target. It absorbs half the damage caused to heal the user’s HP."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user eats the dreams of a sleeping target. It absorbs half the damage caused to heal its own HP."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user eats the dreams of a sleeping target. It absorbs half the damage caused to heal its own HP."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user eats the dreams of a sleeping target. It absorbs half the damage caused to heal its own HP."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user eats the dreams of a sleeping target. It absorbs half the damage caused to heal its own HP."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user eats the dreams of a sleeping target. It absorbs half the damage caused to heal its own HP."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user eats the dreams of a sleeping target. The user’s HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user eats the dreams of a sleeping target. The user's HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user eats the dreams of a sleeping target. The user's HP is restored by up to half the damage taken by the target."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-heal",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 50,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 346,
+      "itemName": "tm42",
+      "itemDisplayName": "TM42",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 904,
+      "versionGroup": "red-blue",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 346,
+      "itemName": "tm42",
+      "itemDisplayName": "TM42",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 905,
+      "versionGroup": "yellow",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 346,
+      "itemName": "tm42",
+      "itemDisplayName": "TM42",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 906,
+      "versionGroup": "gold-silver",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 346,
+      "itemName": "tm42",
+      "itemDisplayName": "TM42",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 907,
+      "versionGroup": "crystal",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 346,
+      "itemName": "tm42",
+      "itemDisplayName": "TM42",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 924,
+      "versionGroup": "red-green-japan",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 346,
+      "itemName": "tm42",
+      "itemDisplayName": "TM42",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 925,
+      "versionGroup": "blue-japan",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 363,
+      "itemName": "tm59",
+      "itemDisplayName": "TM59",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1199,
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 389,
+      "itemName": "tm85",
+      "itemDisplayName": "TM85",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1452,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 389,
+      "itemName": "tm85",
+      "itemDisplayName": "TM85",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1453,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 389,
+      "itemName": "tm85",
+      "itemDisplayName": "TM85",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1454,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 389,
+      "itemName": "tm85",
+      "itemDisplayName": "TM85",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1455,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 389,
+      "itemName": "tm85",
+      "itemDisplayName": "TM85",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1456,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 389,
+      "itemName": "tm85",
+      "itemDisplayName": "TM85",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1457,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 389,
+      "itemName": "tm85",
+      "itemDisplayName": "TM85",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1458,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 389,
+      "itemName": "tm85",
+      "itemDisplayName": "TM85",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1459,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 389,
+      "itemName": "tm85",
+      "itemDisplayName": "TM85",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1460,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    }
+  ]
+}

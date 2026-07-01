@@ -1,0 +1,355 @@
+{
+  "id": 63,
+  "name": "hyper-beam",
+  "displayName": "Hyper Beam",
+  "type": "normal",
+  "category": "special",
+  "power": 150,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-i",
+  "effect": "Inflicts regular damage. User loses its next turn to \"recharge\", and cannot attack or switch out during that turn.",
+  "shortEffect": "User foregoes its next turn to recharge.",
+  "description": "User foregoes its next turn to recharge.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. User loses its next turn to \"recharge\", and cannot attack or switch out during that turn.",
+      "shortEffect": "User foregoes its next turn to recharge."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "1st turn: Attack 2nd turn: Rest"
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "1st turn: Attack 2nd turn: Rest"
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Powerful, but leaves the user immobile the next turn."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Powerful, but leaves the user immobile the next turn."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "A severely damaging attack that makes the user rest on the next turn."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The foe is attacked with a powerful beam. The user must rest on the next turn to regain its energy."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The foe is attacked with a powerful beam. The user must rest on the next turn to regain its energy."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The foe is attacked with a powerful beam. The user must rest on the next turn to regain its energy."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The target is attacked with a powerful beam. The user must rest on the next turn to regain its energy."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The target is attacked with a powerful beam. The user must rest on the next turn to regain its energy."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The target is attacked with a powerful beam. The user can’t move on the next turn."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The target is attacked with a powerful beam. The user can’t move on the next turn."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The target is attacked with a powerful beam. The user can’t move on the next turn."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The target is attacked with a powerful beam. The user can’t move on the next turn."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The target is attacked with a powerful beam. The user can’t move on the next turn."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The target is attacked with a powerful beam. The user can’t move on the next turn."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The target is attacked with a powerful beam."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The target is attacked with a powerful beam. The user can't move on the next turn."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 312,
+      "itemName": "tm08",
+      "itemDisplayName": "TM08",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 175,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 310,
+      "versionGroup": "red-blue",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 311,
+      "versionGroup": "yellow",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 312,
+      "versionGroup": "gold-silver",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 313,
+      "versionGroup": "crystal",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 314,
+      "versionGroup": "ruby-sapphire",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 315,
+      "versionGroup": "emerald",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 316,
+      "versionGroup": "firered-leafgreen",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 317,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 318,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 319,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 320,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 321,
+      "versionGroup": "colosseum",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 322,
+      "versionGroup": "xd",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 323,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 324,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 325,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 326,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 327,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 330,
+      "versionGroup": "red-green-japan",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 319,
+      "itemName": "tm15",
+      "itemDisplayName": "TM15",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 331,
+      "versionGroup": "blue-japan",
+      "generation": "Generation I"
+    },
+    {
+      "itemId": 2006,
+      "itemName": "tm163",
+      "itemDisplayName": "TM163",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1978,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2006,
+      "itemName": "tm163",
+      "itemDisplayName": "TM163",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2166,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 352,
+      "itemName": "tm48",
+      "itemDisplayName": "TM48",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1054,
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "generation": "Generation VII"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "id": 788,
+  "name": "grav-apple",
+  "displayName": "Grav Apple",
+  "type": "grass",
+  "category": "physical",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-viii",
+  "effect": "Inflicts regular damage. Lowers the target’s Defense by one stage.",
+  "shortEffect": "Lowers the target’s Defense by one stage after inflicting damage.",
+  "description": "Lowers the target’s Defense by one stage after inflicting damage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Lowers the target’s Defense by one stage.",
+      "shortEffect": "Lowers the target’s Defense by one stage after inflicting damage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user inflicts damage by dropping an apple from high above. This also lowers the target’s Defense stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user inflicts damage by dropping an apple from high above. This also lowers the target's Defense stat."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user inflicts damage by dropping an apple from high above. This also lowers the target's Defense stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": []
+}

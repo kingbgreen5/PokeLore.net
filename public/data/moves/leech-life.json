@@ -1,0 +1,165 @@
+{
+  "id": 141,
+  "name": "leech-life",
+  "displayName": "Leech Life",
+  "type": "bug",
+  "category": "physical",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-i",
+  "effect": "Inflicts regular damage. Drains half the damage inflicted to heal the user.",
+  "shortEffect": "Drains half the damage inflicted to heal the user.",
+  "description": "Drains half the damage inflicted to heal the user.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Drains half the damage inflicted to heal the user.",
+      "shortEffect": "Drains half the damage inflicted to heal the user."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "Steals 1/2 of the damage inflicted."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "Steals 1/2 of the damage inflicted."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "An attack that steals half the damage inflicted."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "An attack that steals half the damage inflicted."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "An attack that absorbs half the damage it inflicted to restore HP."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "A blood-draining attack. The user’s HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "A blood-draining attack. The user’s HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "A blood-draining attack. The user’s HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user drains the target’s blood. The user’s HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user drains the target’s blood. The user’s HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user drains the target’s blood. The user’s HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user drains the target’s blood. The user’s HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user drains the target’s blood. The user’s HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user drains the target’s blood. The user’s HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user drains the target’s blood. The user’s HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user drains the target’s blood. The user’s HP is restored by half the damage taken by the target."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user attacks by draining the target's blood. Some of the damage dealt to the target is absorbed by the user to restore their own HP."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user drains the target's blood. The user's HP is restored by up to half the damage taken by the target."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-heal",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 50,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [
+    {
+      "accuracy": null,
+      "effectChance": null,
+      "power": 20,
+      "pp": 15,
+      "type": null,
+      "versionGroup": "sun-moon",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": [
+    {
+      "itemId": 332,
+      "itemName": "tm28",
+      "itemDisplayName": "TM28",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 612,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 332,
+      "itemName": "tm28",
+      "itemDisplayName": "TM28",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 613,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 661,
+      "itemName": "tm95",
+      "itemDisplayName": "TM95",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1910,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1206,
+      "itemName": "tr18",
+      "itemDisplayName": "TR18",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1717,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "id": 8,
+  "name": "ice-punch",
+  "displayName": "Ice Punch",
+  "type": "ice",
+  "category": "physical",
+  "power": 75,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 10,
+  "target": "selected-pokemon",
+  "generation": "generation-i",
+  "effect": "Inflicts regular damage. Has a chance to freeze the target.",
+  "shortEffect": "Has a chance to freeze the target.",
+  "description": "Has a chance to freeze the target.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to freeze the target.",
+      "shortEffect": "Has a chance to freeze the target."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "An icy punch. May cause freezing."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "An icy punch. May cause freezing."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "An icy punch that may freeze the foe."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "An icy punch that may freeze the foe."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "The foe is punched with an icy fist. It may leave the foe frozen."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The foe is punched with an icy fist. It may leave the target frozen."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The foe is punched with an icy fist. It may leave the target frozen."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The foe is punched with an icy fist. It may leave the target frozen."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The target is punched with an icy fist. It may also leave the target frozen."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The target is punched with an icy fist. It may also leave the target frozen."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The target is punched with an icy fist. This may also leave the target frozen."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The target is punched with an icy fist. This may also leave the target frozen."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The target is punched with an icy fist. This may also leave the target frozen."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The target is punched with an icy fist. This may also leave the target frozen."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The target is punched with an icy fist. This may also leave the target frozen."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The target is punched with an icy fist. This may also leave the target frozen."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The target is punched with an icy fist. This may also leave the target with frostbite."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The target is attacked with an icy punch. This may also leave the target frozen."
+    }
+  ],
+  "meta": {
+    "ailment": "freeze",
+    "category": "damage-ailment",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 10,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 308,
+      "itemName": "tm04",
+      "itemDisplayName": "TM04",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 87,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    },
+    {
+      "itemId": 337,
+      "itemName": "tm33",
+      "itemDisplayName": "TM33",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 708,
+      "versionGroup": "gold-silver",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 337,
+      "itemName": "tm33",
+      "itemDisplayName": "TM33",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 709,
+      "versionGroup": "crystal",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 339,
+      "itemName": "tm35",
+      "itemDisplayName": "TM35",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 768,
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 373,
+      "itemName": "tm69",
+      "itemDisplayName": "TM69",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1884,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 373,
+      "itemName": "tm69",
+      "itemDisplayName": "TM69",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2047,
+      "versionGroup": "the-teal-mask",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 373,
+      "itemName": "tm69",
+      "itemDisplayName": "TM69",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2100,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "id": 675,
+  "name": "throat-chop",
+  "displayName": "Throat Chop",
+  "type": "dark",
+  "category": "physical",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-vii",
+  "effect": "Inflicts regular damage. Silences the target for two turns, preventing it from using any sound-based moves.",
+  "shortEffect": "Prevents the target from using sound-based moves for two turns.",
+  "description": "Prevents the target from using sound-based moves for two turns.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Silences the target for two turns, preventing it from using any sound-based moves.",
+      "shortEffect": "Prevents the target from using sound-based moves for two turns."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user attacks the target’s throat, and the resultant suffering prevents the target from using moves that emit sound for two turns."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user attacks the target’s throat, and the resultant suffering prevents the target from using moves that emit sound for two turns."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user attacks the target’s throat, and the resultant suffering prevents the target from using moves that emit sound for two turns."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user attacks the target’s throat, and the resultant suffering prevents the target from using moves that emit sound for two turns."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user attacks the target's throat, and the resultant suffering prevents the target from using moves that emit sound for two turns."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks the target's throat, and the resultant suffering prevents the target from using sound-based moves for two turns."
+    }
+  ],
+  "meta": {
+    "ailment": "silence",
+    "category": "damage-ailment",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": 2,
+    "maxTurns": 2,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 100,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2210,
+      "itemName": "tm221",
+      "itemDisplayName": "TM221",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2036,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2210,
+      "itemName": "tm221",
+      "itemDisplayName": "TM221",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2204,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1283,
+      "itemName": "tr95",
+      "itemDisplayName": "TR95",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1794,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

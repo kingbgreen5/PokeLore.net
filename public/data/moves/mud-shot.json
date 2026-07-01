@@ -1,0 +1,132 @@
+{
+  "id": 341,
+  "name": "mud-shot",
+  "displayName": "Mud Shot",
+  "type": "ground",
+  "category": "special",
+  "power": 55,
+  "accuracy": 95,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-iii",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Speed by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Speed by one stage.",
+  "description": "Has a chance to lower the target’s Speed by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Speed by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Hurls mud at the foe and reduces SPEED."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Hurls mud at the foe and reduces SPEED."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "The user attacks by hurling mud. It also reduces the foe’s SPEED."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user attacks by hurling a blob of mud at the foe. It also reduces the target’s Speed."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user attacks by hurling a blob of mud at the foe. It also reduces the target’s Speed."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user attacks by hurling a blob of mud at the foe. It also reduces the target’s Speed."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user attacks by hurling a blob of mud at the target. It also reduces the target’s Speed."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user attacks by hurling a blob of mud at the target. It also reduces the target’s Speed."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user attacks by hurling a blob of mud at the target. This also lowers the target’s Speed stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user attacks by hurling a blob of mud at the target. This also lowers the target’s Speed stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user attacks by hurling a blob of mud at the target. This also lowers the target’s Speed stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user attacks by hurling a blob of mud at the target. This also lowers the target’s Speed stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user attacks by hurling a blob of mud at the target. This also lowers the target’s Speed stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user attacks by hurling a blob of mud at the target. This also lowers the target’s Speed stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user attacks by hurling a blob of mud at the target. This also lowers the target's Speed stat."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks by hurling a blob of mud at the target. This also lowers the target's Speed stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "speed",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 339,
+      "itemName": "tm35",
+      "itemDisplayName": "TM35",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1850,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 357,
+      "itemName": "tm53",
+      "itemDisplayName": "TM53",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1134,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

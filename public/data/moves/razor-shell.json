@@ -1,0 +1,98 @@
+{
+  "id": 534,
+  "name": "razor-shell",
+  "displayName": "Razor Shell",
+  "type": "water",
+  "category": "physical",
+  "power": 75,
+  "accuracy": 95,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 50,
+  "target": "selected-pokemon",
+  "generation": "generation-v",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Defense by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Defense by one stage.",
+  "description": "Has a chance to lower the target’s Defense by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Defense by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Defense by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "black-white",
+      "text": "The user cuts its target with sharp shells. This attack may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user cuts its target with sharp shells. This attack may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user cuts its target with sharp shells. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user cuts its target with sharp shells. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user cuts its target with sharp shells. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user cuts its target with sharp shells. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user cuts its target with sharp shells. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user cuts its target with sharp shells. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user cuts its target with sharp shells. This may also lower the target's Defense stat."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user cuts the target with sharp shells to inflict damage. This may also lower the target's Defense stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 50
+  },
+  "statChanges": [
+    {
+      "stat": "defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 387,
+      "itemName": "tm83",
+      "itemDisplayName": "TM83",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1441,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

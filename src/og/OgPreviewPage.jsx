@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import OgCard from "./OgCard";
 import { formatName } from "../seo/seoConfig";
+import { loadMoveDetail } from "../utils/loadMovesData";
 
 function PreviewShell({
   children
@@ -148,17 +149,15 @@ export function OgMovePreview() {
       try {
         setNotFound(false);
 
-        const response = await fetch(
-          "/data/moves.json"
-        );
-        const moves = await response.json();
+        const moveData =
+          await loadMoveDetail(moveName);
 
-        if (!moves[moveName]) {
+        if (!moveData) {
           setNotFound(true);
           return;
         }
 
-        setMove(moves[moveName]);
+        setMove(moveData);
       } catch {
         setNotFound(true);
       }

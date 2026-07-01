@@ -1,0 +1,280 @@
+{
+  "id": 249,
+  "name": "rock-smash",
+  "displayName": "Rock Smash",
+  "type": "fighting",
+  "category": "physical",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 50,
+  "target": "selected-pokemon",
+  "generation": "generation-ii",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Defense by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Defense by one stage.",
+  "description": "Has a chance to lower the target’s Defense by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Defense by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Defense by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "An attack that may lower DEFENSE."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "An attack that may lower DEFENSE."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "A rock-crushing attack that may lower DEFENSE."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "A rock-crushing attack that may lower DEFENSE."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "An attack that may also cut DEFENSE. It can also smash cracked boulders."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user slugs the foe with a shattering punch. It can also smash cracked boulders."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user slugs the foe with a shattering punch. It can also smash cracked boulders."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user hits with a punch that may lower the target’s Defense. It can also smash cracked boulders."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user attacks with a punch that can shatter a rock. It may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user attacks with a punch that can shatter a rock. It may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user attacks with a punch. This may also lower the target’s Defense stat. This move can also shatter rocks in the field."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user attacks with a punch. This may also lower the target’s Defense stat. This move can also shatter rocks in the field."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user attacks with a punch. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user attacks with a punch. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user attacks with a punch. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user attacks with a punch. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user attacks with a punch. This may also lower the target’s defensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks with a punch. This may also lower the target's Defense stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 50
+  },
+  "statChanges": [
+    {
+      "stat": "defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [
+    {
+      "accuracy": null,
+      "effectChance": null,
+      "power": 20,
+      "pp": null,
+      "type": null,
+      "versionGroup": "diamond-pearl",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": [
+    {
+      "itemId": 402,
+      "itemName": "hm06",
+      "itemDisplayName": "HM06",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1675,
+      "versionGroup": "ruby-sapphire",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 402,
+      "itemName": "hm06",
+      "itemDisplayName": "HM06",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1676,
+      "versionGroup": "emerald",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 402,
+      "itemName": "hm06",
+      "itemDisplayName": "HM06",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1677,
+      "versionGroup": "firered-leafgreen",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 402,
+      "itemName": "hm06",
+      "itemDisplayName": "HM06",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1678,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 402,
+      "itemName": "hm06",
+      "itemDisplayName": "HM06",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1679,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 402,
+      "itemName": "hm06",
+      "itemDisplayName": "HM06",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1680,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 402,
+      "itemName": "hm06",
+      "itemDisplayName": "HM06",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1682,
+      "versionGroup": "colosseum",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 402,
+      "itemName": "hm06",
+      "itemDisplayName": "HM06",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1683,
+      "versionGroup": "xd",
+      "generation": "Generation III"
+    },
+    {
+      "itemId": 402,
+      "itemName": "hm06",
+      "itemDisplayName": "HM06",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1685,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 402,
+      "itemName": "hm06",
+      "itemDisplayName": "HM06",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1813,
+      "versionGroup": "brilliant-diamond-shining-pearl",
+      "generation": "Generation VIII"
+    },
+    {
+      "itemId": 312,
+      "itemName": "tm08",
+      "itemDisplayName": "TM08",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 158,
+      "versionGroup": "gold-silver",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 312,
+      "itemName": "tm08",
+      "itemDisplayName": "TM08",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 159,
+      "versionGroup": "crystal",
+      "generation": "Generation II"
+    },
+    {
+      "itemId": 660,
+      "itemName": "tm94",
+      "itemDisplayName": "TM94",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1539,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 660,
+      "itemName": "tm94",
+      "itemDisplayName": "TM94",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1540,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 660,
+      "itemName": "tm94",
+      "itemDisplayName": "TM94",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1541,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    }
+  ]
+}

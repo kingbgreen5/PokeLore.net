@@ -1,0 +1,92 @@
+{
+  "id": 612,
+  "name": "power-up-punch",
+  "displayName": "Power-Up Punch",
+  "type": "fighting",
+  "category": "physical",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-vi",
+  "effect": "Inflicts regular damage. Raises the user’s Attack by one stage.",
+  "shortEffect": "Raises the user’s Attack by one stage after inflicting damage.",
+  "description": "Raises the user’s Attack by one stage after inflicting damage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Raises the user’s Attack by one stage.",
+      "shortEffect": "Raises the user’s Attack by one stage after inflicting damage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "x-y",
+      "text": "Striking opponents over and over makes the user’s fists harder. Hitting a target raises the Attack stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "Striking opponents over and over makes the user’s fists harder. Hitting a target raises the Attack stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "Striking opponents over and over makes the user’s fists harder. Hitting a target raises the Attack stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "Striking opponents over and over makes the user’s fists harder. Hitting a target raises the Attack stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "Striking opponents over and over makes the user’s fists harder. Hitting a target raises the Attack stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "Striking opponents over and over makes the user’s fists harder. Hitting a target raises the Attack stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-raise",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "attack",
+      "change": 1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 747,
+      "itemName": "tm98",
+      "itemDisplayName": "TM98",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1563,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 747,
+      "itemName": "tm98",
+      "itemDisplayName": "TM98",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1564,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    }
+  ]
+}

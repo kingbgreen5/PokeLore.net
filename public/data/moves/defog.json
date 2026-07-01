@@ -1,0 +1,130 @@
+{
+  "id": 432,
+  "name": "defog",
+  "displayName": "Defog",
+  "type": "flying",
+  "category": "status",
+  "power": null,
+  "accuracy": null,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-iv",
+  "effect": "Lowers the target’s evasion by one stage. Clears away fog. Removes the effects of Mist, Light Screen, Reflect, Safeguard, Spikes, Stealth Rock, and Toxic Spikes from the target’s side of the field. If the target is protected by Mist, it will prevent the evasion change, then be removed by this move.",
+  "shortEffect": "Lowers the target’s evasion by one stage. Removes field effects from the enemy field.",
+  "description": "Lowers the target’s evasion by one stage. Removes field effects from the enemy field.",
+  "effectEntries": [
+    {
+      "effect": "Lowers the target’s evasion by one stage. Clears away fog. Removes the effects of Mist, Light Screen, Reflect, Safeguard, Spikes, Stealth Rock, and Toxic Spikes from the target’s side of the field. If the target is protected by Mist, it will prevent the evasion change, then be removed by this move.",
+      "shortEffect": "Lowers the target’s evasion by one stage. Removes field effects from the enemy field."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "Obstacles are moved, reducing the foe’s evasion stat. It can also be used to clear deep fog, etc."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "Obstacles are moved, reducing the foe’s evasion stat. It can also be used to clear deep fog, etc."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "It reduces the foe’s evasion stat. It also removes spikes, light screens, etc."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "A strong wind blows away the target’s obstacles such as Reflect or Light Screen. It also lowers the target’s evasiveness."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "A strong wind blows away the target’s obstacles such as Reflect or Light Screen. It also lowers the target’s evasiveness."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "A strong wind blows away the target’s barriers such as Reflect or Light Screen. This also lowers the target’s evasiveness."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "A strong wind blows away the target’s barriers such as Reflect or Light Screen. This also lowers the target’s evasiveness."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "A strong wind blows away the target’s barriers such as Reflect or Light Screen. This also lowers the target’s evasiveness."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "A strong wind blows away the target’s barriers such as Reflect or Light Screen. This also lowers the target’s evasiveness."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "A strong wind blows away the target’s barriers such as Reflect or Light Screen. This also lowers the target’s evasiveness."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "A strong wind blows away the target’s barriers such as Reflect or Light Screen. This also lowers the target’s evasiveness."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "A strong wind blows away the target's barriers such as Reflect or Light Screen. This also lowers the target's evasiveness."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "A strong wind blows away the target's barriers such as Reflect or Light Screen. This also lowers the target's evasiveness."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "unique",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [
+    {
+      "stat": "evasion",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 401,
+      "itemName": "hm05",
+      "itemDisplayName": "HM05",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1661,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 401,
+      "itemName": "hm05",
+      "itemDisplayName": "HM05",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1662,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 401,
+      "itemName": "hm05",
+      "itemDisplayName": "HM05",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png",
+      "itemKind": "HM",
+      "machineId": 1812,
+      "versionGroup": "brilliant-diamond-shining-pearl",
+      "generation": "Generation VIII"
+    }
+  ]
+}

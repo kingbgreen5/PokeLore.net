@@ -1,0 +1,120 @@
+{
+  "id": 583,
+  "name": "play-rough",
+  "displayName": "Play Rough",
+  "type": "fairy",
+  "category": "physical",
+  "power": 90,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 10,
+  "target": "selected-pokemon",
+  "generation": "generation-vi",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Attack by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Attack by one stage.",
+  "description": "Has a chance to lower the target’s Attack by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Attack by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Attack by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "x-y",
+      "text": "The user plays rough with the target and attacks it. This may also lower the target’s Attack stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user plays rough with the target and attacks it. This may also lower the target’s Attack stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user plays rough with the target and attacks it. This may also lower the target’s Attack stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user plays rough with the target and attacks it. This may also lower the target’s Attack stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user plays rough with the target and attacks it. This may also lower the target’s Attack stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user plays rough with the target and attacks it. This may also lower the target’s Attack stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user plays rough with the target and attacks it. This may also lower the target’s offensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks by playing rough with the target. This may also lower the target's Attack stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 10
+  },
+  "statChanges": [
+    {
+      "stat": "attack",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 1970,
+      "itemName": "tm127",
+      "itemDisplayName": "TM127",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1942,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1970,
+      "itemName": "tm127",
+      "itemDisplayName": "TM127",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2135,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 348,
+      "itemName": "tm44",
+      "itemDisplayName": "TM44",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 966,
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 1278,
+      "itemName": "tr90",
+      "itemDisplayName": "TR90",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1789,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

@@ -1,9 +1,62 @@
 {
+  "annihilape": {
+    "primaryMethod": {
+      "segments": [
+        {
+          "text": "use "
+        },
+        {
+          "type": "move",
+          "slug": "rage-fist",
+          "text": "Rage Fist"
+        },
+        {
+          "text": " 20 times"
+        }
+      ],
+      "note": "Primeape evolves after using Rage Fist 20 times."
+    }
+  },
+  "wyrdeer": {
+    "primaryMethod": {
+      "segments": [
+        {
+          "text": "use "
+        },
+        {
+          "type": "move",
+          "slug": "psyshield-bash",
+          "text": "Psyshield Bash"
+        },
+        {
+          "text": " in Agile Style 20 times"
+        }
+      ]
+    }
+  },
+  "overqwil": {
+    "primaryMethod": {
+      "segments": [
+        {
+          "text": "use "
+        },
+        {
+          "type": "move",
+          "slug": "barb-barrage",
+          "text": "Barb Barrage"
+        },
+        {
+          "text": " in Strong Style 20 times"
+        }
+      ]
+    }
+  },
   "leafeon": {
     "additionalMethods": [
       {
-        "type": "use-item",
-        "item": "leaf-stone",
+        "type": "item",
+        "slug": "leaf-stone",
+        "label": "Leaf Stone",
         "appliesFrom": "generation-viii",
         "note": "Alternative to leveling up near a Moss Rock in games where that location method is unavailable."
       }
@@ -12,8 +65,9 @@
   "glaceon": {
     "additionalMethods": [
       {
-        "type": "use-item",
-        "item": "ice-stone",
+        "type": "item",
+        "slug": "ice-stone",
+        "label": "Ice Stone",
         "appliesFrom": "generation-viii",
         "note": "Alternative to leveling up near an Ice Rock in games where that location method is unavailable."
       }
@@ -22,8 +76,9 @@
   "magnezone": {
     "additionalMethods": [
       {
-        "type": "use-item",
-        "item": "thunder-stone",
+        "type": "item",
+        "slug": "thunder-stone",
+        "label": "Thunder Stone",
         "appliesFrom": "generation-viii",
         "note": "Alternative to leveling up in a special magnetic field in later games."
       }
@@ -32,8 +87,9 @@
   "probopass": {
     "additionalMethods": [
       {
-        "type": "use-item",
-        "item": "thunder-stone",
+        "type": "item",
+        "slug": "thunder-stone",
+        "label": "Thunder Stone",
         "appliesFrom": "legends-arceus",
         "note": "Alternative to leveling up in a special magnetic field in games that support it."
       }
@@ -42,8 +98,9 @@
   "vikavolt": {
     "additionalMethods": [
       {
-        "type": "use-item",
-        "item": "thunder-stone",
+        "type": "item",
+        "slug": "thunder-stone",
+        "label": "Thunder Stone",
         "appliesFrom": "generation-viii",
         "note": "Alternative to leveling up in a special magnetic field in later games."
       }
@@ -52,10 +109,222 @@
   "crabominable": {
     "additionalMethods": [
       {
-        "type": "use-item",
-        "item": "ice-stone",
+        "type": "item",
+        "slug": "ice-stone",
+        "label": "Ice Stone",
         "appliesFrom": "generation-ix",
         "note": "Alternative to leveling up at Mount Lanakila in Scarlet and Violet onward."
+      }
+    ]
+  },
+  "basculegion-male": {
+    "sourcePokemonName": "basculin-white-striped",
+    "primaryMethod": {
+      "label": "take 294+ recoil damage without fainting"
+    }
+  },
+  "basculegion-female": {
+    "sourcePokemonName": "basculin-white-striped",
+    "primaryMethod": {
+      "label": "take 294+ recoil damage without fainting"
+    }
+  },
+  "cofagrigus": {
+    "sourcePokemonName": "yamask"
+  },
+  "runerigus": {
+    "sourcePokemonName": "yamask-galar",
+    "primaryMethod": {
+      "segments": [
+        {
+          "text": "take 49+ damage, then pass under the "
+        },
+        {
+          "type": "location",
+          "slug": "dusty-bowl",
+          "text": "Dusty Bowl"
+        },
+        {
+          "text": " stone arch"
+        }
+      ]
+    }
+  },
+  "kingambit": {
+    "primaryMethod": {
+      "segments": [
+        {
+          "text": "defeat 3 Bisharp holding "
+        },
+        {
+          "type": "item",
+          "slug": "leaders-crest",
+          "text": "Leader's Crest"
+        }
+      ]
+    }
+  },
+  "sirfetchd": {
+    "primaryMethod": {
+      "label": "land 3 critical hits in one battle"
+    }
+  },
+  "alcremie": {
+    "primaryMethod": {
+      "label": "hold a Sweet and spin"
+    }
+  },
+  "pawmot": {
+    "primaryMethod": {
+      "label": "walk 1000 steps in Let's Go mode, then level up"
+    }
+  },
+  "brambleghast": {
+    "primaryMethod": {
+      "label": "walk 1000 steps in Let's Go mode, then level up"
+    }
+  },
+  "rabsca": {
+    "primaryMethod": {
+      "label": "walk 1000 steps in Let's Go mode, then level up"
+    }
+  },
+  "gholdengo": {
+    "primaryMethod": {
+      "label": "level up with 999 Gimmighoul Coins"
+    }
+  },
+  "urshifu-single-strike": {
+    "primaryMethod": {
+      "label": "complete the Tower of Darkness"
+    }
+  },
+  "urshifu-rapid-strike": {
+    "primaryMethod": {
+      "label": "complete the Tower of Waters"
+    }
+  },
+  "manaphy": {
+    "suppressEvolutionNode": true,
+    "note": "Phione does not evolve into Manaphy."
+  },
+  "alakazam": {
+    "additionalMethods": [
+      {
+        "type": "item",
+        "slug": "linking-cord",
+        "label": "Linking Cord",
+        "appliesFrom": "legends-arceus"
+      }
+    ]
+  },
+  "machamp": {
+    "additionalMethods": [
+      {
+        "type": "item",
+        "slug": "linking-cord",
+        "label": "Linking Cord",
+        "appliesFrom": "legends-arceus"
+      }
+    ]
+  },
+  "golem": {
+    "additionalMethods": [
+      {
+        "type": "item",
+        "slug": "linking-cord",
+        "label": "Linking Cord",
+        "appliesFrom": "legends-arceus"
+      }
+    ]
+  },
+  "gengar": {
+    "additionalMethods": [
+      {
+        "type": "item",
+        "slug": "linking-cord",
+        "label": "Linking Cord",
+        "appliesFrom": "legends-arceus"
+      }
+    ]
+  },
+  "steelix": {
+    "additionalMethods": [
+      {
+        "type": "item",
+        "slug": "metal-coat",
+        "label": "Metal Coat",
+        "appliesFrom": "legends-arceus"
+      }
+    ]
+  },
+  "scizor": {
+    "additionalMethods": [
+      {
+        "type": "item",
+        "slug": "metal-coat",
+        "label": "Metal Coat",
+        "appliesFrom": "legends-arceus"
+      }
+    ]
+  },
+  "rhyperior": {
+    "additionalMethods": [
+      {
+        "type": "item",
+        "slug": "protector",
+        "label": "Protector",
+        "appliesFrom": "legends-arceus"
+      }
+    ]
+  },
+  "electivire": {
+    "additionalMethods": [
+      {
+        "type": "item",
+        "slug": "electirizer",
+        "label": "Electirizer",
+        "appliesFrom": "legends-arceus"
+      }
+    ]
+  },
+  "magmortar": {
+    "additionalMethods": [
+      {
+        "type": "item",
+        "slug": "magmarizer",
+        "label": "Magmarizer",
+        "appliesFrom": "legends-arceus"
+      }
+    ]
+  },
+  "dusknoir": {
+    "additionalMethods": [
+      {
+        "type": "item",
+        "slug": "reaper-cloth",
+        "label": "Reaper Cloth",
+        "appliesFrom": "legends-arceus"
+      }
+    ]
+  },
+  "porygon2": {
+    "additionalMethods": [
+      {
+        "type": "item",
+        "slug": "up-grade",
+        "label": "Up-Grade",
+        "appliesFrom": "legends-arceus"
+      }
+    ]
+  },
+  "porygon-z": {
+    "additionalMethods": [
+      {
+        "type": "item",
+        "slug": "dubious-disc",
+        "label": "Dubious Disc",
+        "appliesFrom": "legends-arceus"
       }
     ]
   }

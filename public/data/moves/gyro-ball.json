@@ -1,0 +1,215 @@
+{
+  "id": 360,
+  "name": "gyro-ball",
+  "displayName": "Gyro Ball",
+  "type": "steel",
+  "category": "physical",
+  "power": null,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-iv",
+  "effect": "Inflicts regular damage. Power increases with the target’s current Speed compared to the user, given by `1 + 25 * target Speed / user Speed`, capped at 150.",
+  "shortEffect": "Power raises when the user has lower Speed, up to a maximum of 150.",
+  "description": "Power raises when the user has lower Speed, up to a maximum of 150.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Power increases with the target’s current Speed compared to the user, given by `1 + 25 * target Speed / user Speed`, capped at 150.",
+      "shortEffect": "Power raises when the user has lower Speed, up to a maximum of 150."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user tackles the foe with a high-speed spin. The slower the user, the greater the damage."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user tackles the foe with a high-speed spin. The slower the user, the greater the damage."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user tackles the foe with a high-speed spin. The slower the user, the greater the damage."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user tackles the target with a high-speed spin. The slower the user, the greater the damage."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user tackles the target with a high-speed spin. The slower the user, the greater the damage."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user tackles the target with a high-speed spin. The slower the user compared to the target, the greater the move’s power."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user tackles the target with a high-speed spin. The slower the user compared to the target, the greater the move’s power."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user tackles the target with a high-speed spin. The slower the user compared to the target, the greater the move’s power."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user tackles the target with a high-speed spin. The slower the user compared to the target, the greater the move’s power."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user tackles the target with a high-speed spin. The slower the user compared to the target, the greater the move’s power."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user tackles the target with a high-speed spin. The slower the user compared to the target, the greater the move’s power."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user tackles the target with a high-speed spin. The slower the user compared to the target, the greater the move's power."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user tackles the target with a high-speed spin. The slower the user is than the target, the greater the move's power."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2169,
+      "itemName": "tm180",
+      "itemDisplayName": "TM180",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1995,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2169,
+      "itemName": "tm180",
+      "itemDisplayName": "TM180",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2058,
+      "versionGroup": "the-teal-mask",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 378,
+      "itemName": "tm74",
+      "itemDisplayName": "TM74",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1342,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 378,
+      "itemName": "tm74",
+      "itemDisplayName": "TM74",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1343,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 378,
+      "itemName": "tm74",
+      "itemDisplayName": "TM74",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1344,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 378,
+      "itemName": "tm74",
+      "itemDisplayName": "TM74",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1345,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 378,
+      "itemName": "tm74",
+      "itemDisplayName": "TM74",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1346,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 378,
+      "itemName": "tm74",
+      "itemDisplayName": "TM74",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1347,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 378,
+      "itemName": "tm74",
+      "itemDisplayName": "TM74",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1348,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 378,
+      "itemName": "tm74",
+      "itemDisplayName": "TM74",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1349,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 378,
+      "itemName": "tm74",
+      "itemDisplayName": "TM74",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1350,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 1240,
+      "itemName": "tr52",
+      "itemDisplayName": "TR52",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1751,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

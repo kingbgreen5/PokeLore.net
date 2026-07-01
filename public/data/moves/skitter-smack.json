@@ -1,0 +1,80 @@
+{
+  "id": 806,
+  "name": "skitter-smack",
+  "displayName": "Skitter Smack",
+  "type": "bug",
+  "category": "physical",
+  "power": 70,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-viii",
+  "effect": "Inflicts regular damage.",
+  "shortEffect": "Inflicts regular damage with no additional effect.",
+  "description": "Inflicts regular damage with no additional effect.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage.",
+      "shortEffect": "Inflicts regular damage with no additional effect."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user skitters behind the target to attack. This also lowers the target’s Sp. Atk stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user skitters behind the target to attack. This also lowers the target's Sp. Atk stat."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user skitters behind the target to attack. This also lowers the target's Sp. Atk stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "special-attack",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2208,
+      "itemName": "tm219",
+      "itemDisplayName": "TM219",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2034,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2208,
+      "itemName": "tm219",
+      "itemDisplayName": "TM219",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2202,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    }
+  ]
+}

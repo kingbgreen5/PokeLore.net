@@ -1,0 +1,230 @@
+{
+  "id": 412,
+  "name": "energy-ball",
+  "displayName": "Energy Ball",
+  "type": "grass",
+  "category": "special",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 10,
+  "target": "selected-pokemon",
+  "generation": "generation-iv",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Defense by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Special Defense by one stage.",
+  "description": "Has a chance to lower the target’s Special Defense by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Defense by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user draws power from nature and fires it at the foe. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user draws power from nature and fires it at the foe. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user draws power from nature and fires it at the foe. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user draws power from nature and fires it at the target. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user draws power from nature and fires it at the target. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user draws power from nature and fires it at the target. This may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user draws power from nature and fires it at the target. This may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user draws power from nature and fires it at the target. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user draws power from nature and fires it at the target. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user draws power from nature and fires it at the target. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user draws power from nature and fires it at the target. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user draws power from nature and fires it at the target. This may also lower the target’s defensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user draws power from nature and fires it at the target. This may also lower the target's Sp. Def stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 10
+  },
+  "statChanges": [
+    {
+      "stat": "special-defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [
+    {
+      "accuracy": null,
+      "effectChance": null,
+      "power": 80,
+      "pp": null,
+      "type": null,
+      "versionGroup": "x-y",
+      "effectEntries": []
+    }
+  ],
+  "machineItems": [
+    {
+      "itemId": 1962,
+      "itemName": "tm119",
+      "itemDisplayName": "TM119",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1934,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1962,
+      "itemName": "tm119",
+      "itemDisplayName": "TM119",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2130,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 357,
+      "itemName": "tm53",
+      "itemDisplayName": "TM53",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1124,
+      "versionGroup": "diamond-pearl",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 357,
+      "itemName": "tm53",
+      "itemDisplayName": "TM53",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1125,
+      "versionGroup": "platinum",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 357,
+      "itemName": "tm53",
+      "itemDisplayName": "TM53",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1126,
+      "versionGroup": "heartgold-soulsilver",
+      "generation": "Generation IV"
+    },
+    {
+      "itemId": 357,
+      "itemName": "tm53",
+      "itemDisplayName": "TM53",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1127,
+      "versionGroup": "black-white",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 357,
+      "itemName": "tm53",
+      "itemDisplayName": "TM53",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1128,
+      "versionGroup": "black-2-white-2",
+      "generation": "Generation V"
+    },
+    {
+      "itemId": 357,
+      "itemName": "tm53",
+      "itemDisplayName": "TM53",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1129,
+      "versionGroup": "x-y",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 357,
+      "itemName": "tm53",
+      "itemDisplayName": "TM53",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1130,
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "generation": "Generation VI"
+    },
+    {
+      "itemId": 357,
+      "itemName": "tm53",
+      "itemDisplayName": "TM53",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1131,
+      "versionGroup": "sun-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 357,
+      "itemName": "tm53",
+      "itemDisplayName": "TM53",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1132,
+      "versionGroup": "ultra-sun-ultra-moon",
+      "generation": "Generation VII"
+    },
+    {
+      "itemId": 1253,
+      "itemName": "tr65",
+      "itemDisplayName": "TR65",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1764,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

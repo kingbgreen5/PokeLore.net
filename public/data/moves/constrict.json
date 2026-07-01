@@ -1,0 +1,111 @@
+{
+  "id": 132,
+  "name": "constrict",
+  "displayName": "Constrict",
+  "type": "normal",
+  "category": "physical",
+  "power": 10,
+  "accuracy": 100,
+  "pp": 35,
+  "priority": 0,
+  "effectChance": 10,
+  "target": "selected-pokemon",
+  "generation": "generation-i",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Speed by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Speed by one stage.",
+  "description": "Has a chance to lower the target’s Speed by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Speed by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "An attack that may lower SPEED."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "An attack that may lower SPEED."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Constricts to inflict pain. May lower SPEED."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Constricts to inflict pain. May lower SPEED."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "The foe is attacked with long tentacles or vines. It may lower SPEED."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The foe is attacked with long, creeping tentacles or vines. It may also lower the target’s Speed."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The foe is attacked with long, creeping tentacles or vines. It may also lower the target’s Speed."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The foe is attacked with long, creeping tentacles or vines. It may also lower the target’s Speed."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The target is attacked with long, creeping tentacles or vines. It may also lower the target’s Speed stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The target is attacked with long, creeping tentacles or vines. It may also lower the target’s Speed stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The target is attacked with long, creeping tentacles or vines. This may also lower the target’s Speed stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The target is attacked with long, creeping tentacles or vines. This may also lower the target’s Speed stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The target is attacked with long, creeping tentacles, vines, or the like. This may also lower the target’s Speed stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The target is attacked with long, creeping tentacles, vines, or the like. This may also lower the target’s Speed stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The target is attacked with long, creeping tentacles, vines, or the like. This may also lower the target’s Speed stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "This move can’t be used. It’s recommended that this move is forgotten. Once forgotten, this move can’t be remembered."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 10
+  },
+  "statChanges": [
+    {
+      "stat": "speed",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": []
+}

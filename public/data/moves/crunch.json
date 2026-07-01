@@ -1,0 +1,150 @@
+{
+  "id": 242,
+  "name": "crunch",
+  "displayName": "Crunch",
+  "type": "dark",
+  "category": "physical",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 20,
+  "target": "selected-pokemon",
+  "generation": "generation-ii",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Defense by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Defense by one stage.",
+  "description": "Has a chance to lower the target’s Defense by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Defense by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Defense by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "An attack that may lower SPCL.DEF."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "An attack that may lower SPCL.DEF."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Crunches with sharp fangs. May lower SP. DEF."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Crunches with sharp fangs. May lower SP. DEF."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "The foe is crunched with sharp fangs. It may lower the foe’s SP. DEF."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user crunches up the foe with sharp fangs. It may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user crunches up the foe with sharp fangs. It may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user crunches up the foe with sharp fangs. It may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user crunches up the target with sharp fangs. It may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user crunches up the target with sharp fangs. It may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user crunches up the target with sharp fangs. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user crunches up the target with sharp fangs. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user crunches up the target with sharp fangs. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user crunches up the target with sharp fangs. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user crunches up the target with sharp fangs. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user crunches up the target with sharp fangs. This may also lower the target’s Defense stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user crunches up the target with sharp fangs. This may also lower the target's defensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user crunches up the target with sharp fangs. This may also lower the target's Defense stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 20
+  },
+  "statChanges": [
+    {
+      "stat": "defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 1951,
+      "itemName": "tm108",
+      "itemDisplayName": "TM108",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1923,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1951,
+      "itemName": "tm108",
+      "itemDisplayName": "TM108",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2121,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1220,
+      "itemName": "tr32",
+      "itemDisplayName": "TR32",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1731,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

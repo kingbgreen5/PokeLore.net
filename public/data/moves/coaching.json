@@ -1,0 +1,84 @@
+{
+  "id": 811,
+  "name": "coaching",
+  "displayName": "Coaching",
+  "type": "fighting",
+  "category": "status",
+  "power": null,
+  "accuracy": null,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "user-and-allies",
+  "generation": "generation-viii",
+  "effect": "Inflicts regular damage.",
+  "shortEffect": "Inflicts regular damage with no additional effect.",
+  "description": "Inflicts regular damage with no additional effect.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage.",
+      "shortEffect": "Inflicts regular damage with no additional effect."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user properly coaches its ally Pokémon, boosting their Attack and Defense stats."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user properly coaches its ally Pokémon, boosting their Attack and Defense stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user properly coaches its ally Pokémon, boosting their Attack and Defense stats."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "net-good-stats",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "attack",
+      "change": 1
+    },
+    {
+      "stat": "defense",
+      "change": 1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2202,
+      "itemName": "tm213",
+      "itemDisplayName": "TM213",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2028,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2202,
+      "itemName": "tm213",
+      "itemDisplayName": "TM213",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2196,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    }
+  ]
+}

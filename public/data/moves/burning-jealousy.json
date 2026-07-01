@@ -1,0 +1,75 @@
+{
+  "id": 807,
+  "name": "burning-jealousy",
+  "displayName": "Burning Jealousy",
+  "type": "fire",
+  "category": "special",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "all-opponents",
+  "generation": "generation-viii",
+  "effect": "Inflicts regular damage.",
+  "shortEffect": "Inflicts regular damage with no additional effect.",
+  "description": "Inflicts regular damage with no additional effect.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage.",
+      "shortEffect": "Inflicts regular damage with no additional effect."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user attacks with energy from jealousy. This leaves all opposing Pokémon that have had their stats boosted during the turn with a burn."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user attacks with energy from jealousy. This leaves all opposing Pokémon that have had their stats boosted during the turn with a burn."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user attacks with energy from jealousy. This leaves all opposing Pokémon that have had their stats boosted during the turn with a burn."
+    }
+  ],
+  "meta": {
+    "ailment": "burn",
+    "category": "damage-ailment",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 100,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2184,
+      "itemName": "tm195",
+      "itemDisplayName": "TM195",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2010,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2184,
+      "itemName": "tm195",
+      "itemDisplayName": "TM195",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2073,
+      "versionGroup": "the-teal-mask",
+      "generation": "Generation IX"
+    }
+  ]
+}

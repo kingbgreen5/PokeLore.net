@@ -1,0 +1,71 @@
+{
+  "id": 668,
+  "name": "strength-sap",
+  "displayName": "Strength Sap",
+  "type": "grass",
+  "category": "status",
+  "power": null,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-vii",
+  "effect": "Lowers the target’s Attack by one stage. Heals the user by the target’s current Attack, including modifiers, but not including this move’s Attack-lowering effect. If the target’s Attack is already at -6, this move will fail. In any other situation that would prevent a stat modification, the healing will still succeed.",
+  "shortEffect": "Heals the user by the target’s current Attack stat and lowers the target’s Attack by one stage.",
+  "description": "Heals the user by the target’s current Attack stat and lowers the target’s Attack by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Lowers the target’s Attack by one stage. Heals the user by the target’s current Attack, including modifiers, but not including this move’s Attack-lowering effect. If the target’s Attack is already at -6, this move will fail. In any other situation that would prevent a stat modification, the healing will still succeed.",
+      "shortEffect": "Heals the user by the target’s current Attack stat and lowers the target’s Attack by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user restores its HP by the same amount as the target’s Attack stat. It also lowers the target’s Attack stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user restores its HP by the same amount as the target’s Attack stat. It also lowers the target’s Attack stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user restores its HP by the same amount as the target’s Attack stat. It also lowers the target’s Attack stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user restores its HP by the same amount as the target’s Attack stat. It also lowers the target’s Attack stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user restores its HP by the same amount as the target's Attack stat. It also lowers the target's Attack stat."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user restores its own HP by the same amount as the target's Attack stat. It then lowers the target's Attack stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "unique",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "attack",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": []
+}

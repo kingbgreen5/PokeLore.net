@@ -1,0 +1,54 @@
+{
+  "id": 749,
+  "name": "tar-shot",
+  "displayName": "Tar Shot",
+  "type": "rock",
+  "category": "status",
+  "power": null,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "selected-pokemon",
+  "generation": "generation-viii",
+  "effect": null,
+  "shortEffect": null,
+  "description": null,
+  "effectEntries": [],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user pours sticky tar over the target, lowering the target’s Speed stat. The target becomes weaker to Fire-type moves."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user pours sticky tar over the target, lowering the target's Speed stat. The target becomes weaker to Fire-type moves."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user pours sticky tar over the target, lowering the target's Speed stat. The target becomes weaker to Fire-type moves."
+    }
+  ],
+  "meta": {
+    "ailment": "tar-shot",
+    "category": "swagger",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 100,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "speed",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": []
+}

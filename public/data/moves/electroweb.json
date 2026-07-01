@@ -1,0 +1,118 @@
+{
+  "id": 527,
+  "name": "electroweb",
+  "displayName": "Electroweb",
+  "type": "electric",
+  "category": "special",
+  "power": 55,
+  "accuracy": 95,
+  "pp": 15,
+  "priority": 0,
+  "effectChance": 100,
+  "target": "all-opponents",
+  "generation": "generation-v",
+  "effect": "Lowers the target’s Speed by one stage.",
+  "shortEffect": "Lowers the target’s Speed by one stage.",
+  "description": "Lowers the target’s Speed by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Lowers the target’s Speed by one stage.",
+      "shortEffect": "Lowers the target’s Speed by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "black-white",
+      "text": "The user captures and attacks opposing Pokémon by using an electric net. It reduces the targets’ Speed stat."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user captures and attacks opposing Pokémon by using an electric net. It reduces the targets’ Speed stat."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user attacks and captures opposing Pokémon using an electric net. This lowers their Speed stat."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user attacks and captures opposing Pokémon using an electric net. This lowers their Speed stat."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user attacks and captures opposing Pokémon using an electric net. This lowers their Speed stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user attacks and captures opposing Pokémon using an electric net. This lowers their Speed stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user attacks and captures opposing Pokémon using an electric net. This lowers their Speed stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user attacks and captures opposing Pokémon using an electric net. This lowers their Speed stats."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user attacks and captures opposing Pokémon using an electric net. This lowers their Speed stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user captures opposing Pokémon in an electric net to inflict damage. This also lowers their Speed stats."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 100
+  },
+  "statChanges": [
+    {
+      "stat": "speed",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2200,
+      "itemName": "tm211",
+      "itemDisplayName": "TM211",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2026,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2200,
+      "itemName": "tm211",
+      "itemDisplayName": "TM211",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2194,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 386,
+      "itemName": "tm82",
+      "itemDisplayName": "TM82",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1431,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

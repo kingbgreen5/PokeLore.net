@@ -1,0 +1,130 @@
+{
+  "id": 414,
+  "name": "earth-power",
+  "displayName": "Earth Power",
+  "type": "ground",
+  "category": "special",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0,
+  "effectChance": 10,
+  "target": "selected-pokemon",
+  "generation": "generation-iv",
+  "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Defense by one stage.",
+  "shortEffect": "Has a chance to lower the target’s Special Defense by one stage.",
+  "description": "Has a chance to lower the target’s Special Defense by one stage.",
+  "effectEntries": [
+    {
+      "effect": "Inflicts regular damage. Has a chance to lower the target’s Special Defense by one stage.",
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user makes the ground under the foe erupt with power. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user makes the ground under the foe erupt with power. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user makes the ground under the foe erupt with power. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user makes the ground under the target erupt with power. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user makes the ground under the target erupt with power. It may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user makes the ground under the target erupt with power. This may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user makes the ground under the target erupt with power. This may also lower the target’s Sp. Def."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user makes the ground under the target erupt with power. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user makes the ground under the target erupt with power. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user makes the ground under the target erupt with power. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user makes the ground under the target erupt with power. This may also lower the target’s Sp. Def stat."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user makes the ground under the target erupt with power. This may also lower the target's defensive stats."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user makes the ground under the target erupt with power. This may also lower the target's Sp. Def stat."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "damage-lower",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 10
+  },
+  "statChanges": [
+    {
+      "stat": "special-defense",
+      "change": -1
+    }
+  ],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 1976,
+      "itemName": "tm133",
+      "itemDisplayName": "TM133",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 1948,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1976,
+      "itemName": "tm133",
+      "itemDisplayName": "TM133",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2140,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 1255,
+      "itemName": "tr67",
+      "itemDisplayName": "TR67",
+      "itemSprite": null,
+      "itemKind": "TR",
+      "machineId": 1766,
+      "versionGroup": "sword-shield",
+      "generation": "Generation VIII"
+    }
+  ]
+}

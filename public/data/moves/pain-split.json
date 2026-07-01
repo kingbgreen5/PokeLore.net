@@ -1,0 +1,135 @@
+{
+  "id": 220,
+  "name": "pain-split",
+  "displayName": "Pain Split",
+  "type": "normal",
+  "category": "status",
+  "power": null,
+  "accuracy": null,
+  "pp": 20,
+  "priority": 0,
+  "effectChance": null,
+  "target": "selected-pokemon",
+  "generation": "generation-ii",
+  "effect": "Changes the user’s and target’s remaining HP to the average of their current remaining HP. Ignores accuracy and evasion modifiers. This effect does not count as inflicting damage for other moves and effects that respond to damage taken. This effect fails against a Substitute.",
+  "shortEffect": "Sets the user’s and targets’s HP to the average of their current HP.",
+  "description": "Sets the user’s and targets’s HP to the average of their current HP.",
+  "effectEntries": [
+    {
+      "effect": "Changes the user’s and target’s remaining HP to the average of their current remaining HP. Ignores accuracy and evasion modifiers. This effect does not count as inflicting damage for other moves and effects that respond to damage taken. This effect fails against a Substitute.",
+      "shortEffect": "Sets the user’s and targets’s HP to the average of their current HP."
+    }
+  ],
+  "flavorTextEntries": [
+    {
+      "versionGroup": "gold-silver",
+      "text": "Adds user & foe's HPs. Shares total."
+    },
+    {
+      "versionGroup": "crystal",
+      "text": "Adds user & foe's HPs. Shares total."
+    },
+    {
+      "versionGroup": "ruby-sapphire",
+      "text": "Adds the user and foe’s HP, then shares them equally."
+    },
+    {
+      "versionGroup": "emerald",
+      "text": "Adds the user and foe’s HP, then shares them equally."
+    },
+    {
+      "versionGroup": "firered-leafgreen",
+      "text": "The user adds its HP to the foe’s HP, then equally shares the total HP."
+    },
+    {
+      "versionGroup": "diamond-pearl",
+      "text": "The user adds its HP to the foe’s HP, then equally shares the combined HP with the foe."
+    },
+    {
+      "versionGroup": "platinum",
+      "text": "The user adds its HP to the foe’s HP, then equally shares the combined HP with the foe."
+    },
+    {
+      "versionGroup": "heartgold-soulsilver",
+      "text": "The user adds its HP to the foe’s HP, then equally shares the combined HP with the foe."
+    },
+    {
+      "versionGroup": "black-white",
+      "text": "The user adds its HP to the target’s HP, then equally shares the combined HP with the target."
+    },
+    {
+      "versionGroup": "black-2-white-2",
+      "text": "The user adds its HP to the target’s HP, then equally shares the combined HP with the target."
+    },
+    {
+      "versionGroup": "x-y",
+      "text": "The user adds its HP to the target’s HP, then equally shares the combined HP with the target."
+    },
+    {
+      "versionGroup": "omega-ruby-alpha-sapphire",
+      "text": "The user adds its HP to the target’s HP, then equally shares the combined HP with the target."
+    },
+    {
+      "versionGroup": "sun-moon",
+      "text": "The user adds its HP to the target’s HP, then equally shares the combined HP with the target."
+    },
+    {
+      "versionGroup": "ultra-sun-ultra-moon",
+      "text": "The user adds its HP to the target’s HP, then equally shares the combined HP with the target."
+    },
+    {
+      "versionGroup": "lets-go-pikachu-lets-go-eevee",
+      "text": "The user adds its HP to the target’s HP, then equally shares the combined HP with the target."
+    },
+    {
+      "versionGroup": "sword-shield",
+      "text": "The user adds its HP to the target’s HP, then equally shares the combined HP with the target."
+    },
+    {
+      "versionGroup": "legends-arceus",
+      "text": "The user adds its HP to the target's HP, then equally shares the combined HP with the target."
+    },
+    {
+      "versionGroup": "scarlet-violet",
+      "text": "The user adds its HP to the target's HP, then equally splits the combined HP between the target and itself."
+    }
+  ],
+  "meta": {
+    "ailment": "none",
+    "category": "unique",
+    "minHits": null,
+    "maxHits": null,
+    "minTurns": null,
+    "maxTurns": null,
+    "drain": 0,
+    "healing": 0,
+    "critRate": 0,
+    "ailmentChance": 0,
+    "flinchChance": 0,
+    "statChance": 0
+  },
+  "statChanges": [],
+  "pastValues": [],
+  "machineItems": [
+    {
+      "itemId": 2191,
+      "itemName": "tm202",
+      "itemDisplayName": "TM202",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2017,
+      "versionGroup": "scarlet-violet",
+      "generation": "Generation IX"
+    },
+    {
+      "itemId": 2191,
+      "itemName": "tm202",
+      "itemDisplayName": "TM202",
+      "itemSprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png",
+      "itemKind": "TM",
+      "machineId": 2185,
+      "versionGroup": "the-indigo-disk",
+      "generation": "Generation IX"
+    }
+  ]
+}
