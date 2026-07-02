@@ -3,6 +3,7 @@ import {
   useMemo,
   useState
 } from "react";
+import CollapsibleSection from "../CollapsibleSection";
 import MoveSummaryCard from "../MoveSummaryCard";
 import { compareVersionGroups } from "../../constants/versionOrder";
 import { loadMovesMap } from "../../utils/loadMovesData";
@@ -94,6 +95,7 @@ function generationForVersionGroup(
       "sword-shield",
       "the-isle-of-armor",
       "the-crown-tundra",
+      "brilliant-diamond-shining-pearl",
       "brilliant-diamond-and-shining-pearl",
       "legends-arceus"
     ].includes(versionGroup)
@@ -114,11 +116,38 @@ function generationForVersionGroup(
   return "Other Games";
 }
 
+function generationRank(generation) {
+  const order = [
+    "Generation I",
+    "Generation II",
+    "Generation III",
+    "Generation IV",
+    "Generation V",
+    "Generation VI",
+    "Generation VII",
+    "Generation VIII",
+    "Generation IX",
+    "Other Games"
+  ];
+  const index =
+    order.indexOf(generation);
+
+  return index === -1
+    ? order.length
+    : index;
+}
+
 function TmMoveDetails({
   item
 }) {
   const [movesData, setMovesData] =
     useState({});
+  const [expanded, setExpanded] =
+    useState(false);
+  const [
+    selectedGeneration,
+    setSelectedGeneration
+  ] = useState("all");
 
   const hasMachineData =
     item?.machines?.some(
@@ -197,24 +226,122 @@ function TmMoveDetails({
       [machineEntries]
     );
 
+  const generations = useMemo(
+    () => [
+      "all",
+      ...Array.from(
+        new Set(
+          machineRows.map(
+            row => row.generation
+          )
+        )
+      ).sort(
+        (a, b) =>
+          generationRank(a) -
+            generationRank(b) ||
+          a.localeCompare(b)
+      )
+    ],
+    [machineRows]
+  );
+
+  const filteredMachineRows =
+    useMemo(
+      () =>
+        selectedGeneration === "all"
+          ? machineRows
+          : machineRows.filter(
+              row =>
+                row.generation ===
+                selectedGeneration
+            ),
+      [
+        machineRows,
+        selectedGeneration
+      ]
+    );
+
   if (!machineEntries.length) {
     return null;
   }
 
   return (
-    <section
+    <CollapsibleSection
+      title="Machine Moves"
+      summary={`${machineRows.length} entries`}
+      expanded={expanded}
+      onToggle={() =>
+        setExpanded(
+          isExpanded => !isExpanded
+        )
+      }
       style={{
-        border: "1px solid #666",
-        borderRadius: "12px",
-        marginBottom: "2rem",
-        padding: "1rem"
+        marginBottom: "2rem"
+      }}
+      contentStyle={{
+        display: "grid",
+        gap: "1rem",
+        marginTop: "1rem"
       }}
     >
-      <h2>Machine Moves</h2>
+      <div
+        style={{
+          alignItems: "center",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "1rem",
+          justifyContent:
+            "space-between"
+        }}
+      >
+        <label
+          style={{
+            display: "grid",
+            gap: ".35rem"
+          }}
+        >
+          <span
+            style={{
+              color: "#ccc",
+              fontSize: ".9rem"
+            }}
+          >
+            Filter by generation
+          </span>
 
-
-
-
+          <select
+            value={selectedGeneration}
+            onChange={event =>
+              setSelectedGeneration(
+                event.target.value
+              )
+            }
+            style={{
+              backgroundColor:
+                "#2c2c2c",
+              border:
+                "2px solid #555",
+              borderRadius: "12px",
+              color: "white",
+              fontSize: "1rem",
+              padding: ".55rem .8rem"
+            }}
+          >
+            {generations.map(
+              generation => (
+                <option
+                  key={generation}
+                  value={generation}
+                >
+                  {generation === "all"
+                    ? "All Generations"
+                    : generation}
+                </option>
+              )
+            )}
+          </select>
+        </label>
+      </div>
 
       <div
         style={{
@@ -227,7 +354,7 @@ function TmMoveDetails({
                 borderColor:"AccentColor"
         }}
       >
-        {machineRows.map(row => {
+        {filteredMachineRows.map(row => {
           const move =
             movesData[row.moveName];
 
@@ -300,7 +427,7 @@ function TmMoveDetails({
           );
         })}
       </div>
-    </section>
+    </CollapsibleSection>
   );
 }
 

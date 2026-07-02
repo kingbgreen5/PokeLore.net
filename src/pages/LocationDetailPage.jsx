@@ -13,7 +13,10 @@ import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { locationSeo } from "../seo/seoConfig";
 import { readJsonFile } from "../utils/readJsonFile";
-import { sortVersions } from "../constants/versionOrder";
+import {
+  compareVersions,
+  sortVersions
+} from "../constants/versionOrder";
 
 const ENCOUNTER_LIMIT = 80;
 
@@ -76,8 +79,166 @@ function filterMethodRates(
     }))
     .filter(
       rate =>
-        rate.versionDetails.length > 0
+      rate.versionDetails.length > 0
     );
+}
+
+function formatItemMethodType(type) {
+  return capitalize(type ?? "method");
+}
+
+function versionDisplayToSlug(version) {
+  return String(version ?? "")
+    .replace(/^Pokémon\s+/i, "")
+    .replace(/^Pokemon\s+/i, "")
+    .toLowerCase()
+    .replace(/[':]/g, "")
+    .replace(/\s+/g, "-");
+}
+
+function compareDisplayVersions(a, b) {
+  return compareVersions(
+    versionDisplayToSlug(a),
+    versionDisplayToSlug(b)
+  );
+}
+
+function getLocationItemRows(locationItems) {
+  return (
+    locationItems?.items?.flatMap(itemEntry =>
+      itemEntry.versions.flatMap(
+        versionEntry =>
+          versionEntry.methods.map(
+            (method, index) => ({
+              item: itemEntry.item,
+              version:
+                versionEntry.version,
+              method,
+              key: `${itemEntry.item.name}-${versionEntry.version}-${method.type}-${method.details}-${index}`
+            })
+          )
+      )
+    ) ?? []
+  );
+}
+
+function formatList(values) {
+  if (values.length <= 1) {
+    return values[0] ?? "";
+  }
+
+  if (values.length === 2) {
+    return `${values[0]} and ${values[1]}`;
+  }
+
+  return `${values.slice(0, -1).join(", ")}, and ${
+    values[values.length - 1]
+  }`;
+}
+
+function formatVersionList(versions) {
+  const cleanedVersions =
+    versions.map(version =>
+      String(version ?? "").trim()
+    );
+  const pokemonPrefix =
+    cleanedVersions.every(version =>
+      version.startsWith("Pokémon ")
+    );
+
+  if (!pokemonPrefix) {
+    return formatList(cleanedVersions);
+  }
+
+  return `Pokémon ${formatList(
+    cleanedVersions.map(version =>
+      version.replace(/^Pokémon\s+/, "")
+    )
+  )}`;
+}
+
+function arraysMatch(a, b) {
+  if (a.length !== b.length) {
+    return false;
+  }
+
+  return a.every(
+    (value, index) => value === b[index]
+  );
+}
+
+function formatItemAnswer(
+  locationDisplayName,
+  itemGroup
+) {
+  const versions = formatVersionList(
+    itemGroup.versions
+  );
+
+  return `Obtainable at ${locationDisplayName} in ${versions}.`;
+}
+
+function methodGroupKey(method) {
+  return [
+    method.type ?? "",
+    method.area ?? "",
+    method.details ?? "",
+    method.notes ?? "",
+    method.repeatable ? "repeatable" : "",
+    method.versionExclusive
+      ? "version-exclusive"
+      : "",
+    ...(method.requirements ?? [])
+  ].join("|");
+}
+
+function groupItemRows(itemRows) {
+  const itemGroups = new Map();
+
+  itemRows.forEach(row => {
+    if (!itemGroups.has(row.item.name)) {
+      itemGroups.set(row.item.name, {
+        item: row.item,
+        versions: new Set(),
+        methodsByKey: new Map()
+      });
+    }
+
+    const itemGroup =
+      itemGroups.get(row.item.name);
+    itemGroup.versions.add(row.version);
+
+    const key =
+      methodGroupKey(row.method);
+
+    if (!itemGroup.methodsByKey.has(key)) {
+      itemGroup.methodsByKey.set(key, {
+        ...row.method,
+        versions: new Set()
+      });
+    }
+
+    itemGroup.methodsByKey
+      .get(key)
+      .versions.add(row.version);
+  });
+
+  return Array.from(itemGroups.values()).map(
+    itemGroup => ({
+      item: itemGroup.item,
+      versions: Array.from(
+        itemGroup.versions
+      ).sort(compareDisplayVersions),
+      methods: Array.from(
+        itemGroup.methodsByKey.values()
+      ).map(method => ({
+        ...method,
+        versions: Array.from(
+          method.versions
+        ).sort(compareDisplayVersions)
+      }))
+    })
+  );
 }
 
 function EncounterDetails({
@@ -151,6 +312,56 @@ function LocationItemsSection({
   locationItems,
   onToggle
 }) {
+  const [
+    selectedItemVersion,
+    setSelectedItemVersion
+  ] = useState("all");
+  const locationDisplayName =
+    locationItems?.location
+      ?.displayName ?? "this location";
+  const itemRows = useMemo(
+    () =>
+      getLocationItemRows(locationItems),
+    [locationItems]
+  );
+  const itemVersions = useMemo(
+    () => [
+      "all",
+      ...Array.from(
+        new Set(
+          itemRows.map(row => row.version)
+        )
+      ).sort(compareDisplayVersions)
+    ],
+    [itemRows]
+  );
+  const filteredItemRows = useMemo(
+    () =>
+      selectedItemVersion === "all"
+        ? itemRows
+        : itemRows.filter(
+            row =>
+              row.version ===
+              selectedItemVersion
+          ),
+    [
+      itemRows,
+      selectedItemVersion
+    ]
+  );
+  const groupedItems = useMemo(
+    () =>
+      groupItemRows(filteredItemRows),
+    [filteredItemRows]
+  );
+  const previewItems =
+    locationItems?.items
+      ?.slice(0, 6)
+      .map(
+        itemEntry =>
+          itemEntry.item.displayName
+      ) ?? [];
+
   if (
     !locationItems?.items ||
     locationItems.items.length === 0
@@ -160,7 +371,7 @@ function LocationItemsSection({
 
   return (
     <CollapsibleSection
-      title="Items Obtainable Here"
+      title={`Items Found in ${locationDisplayName}`}
       summary={`${locationItems.items.length} items`}
       expanded={expanded}
       onToggle={onToggle}
@@ -170,9 +381,103 @@ function LocationItemsSection({
         width: "100%"
       }}
       contentStyle={{
+        display: "grid",
+        gap: "1rem",
         marginTop: "1rem"
       }}
     >
+      <section
+        data-section="location-items-seo-answer"
+        itemScope
+        itemType="https://schema.org/Question"
+        style={{
+          border: "1px solid #555",
+          borderRadius: "12px",
+          padding: "1rem",
+          textAlign: "left"
+        }}
+      >
+        <meta
+          itemProp="name"
+          content={`What items can be found in ${locationDisplayName}?`}
+        />
+
+        <div
+          itemProp="acceptedAnswer"
+          itemScope
+          itemType="https://schema.org/Answer"
+        >
+          <p
+            itemProp="text"
+            style={{
+              lineHeight: 1.5,
+              marginBottom: 0
+            }}
+          >
+            {locationDisplayName} has{" "}
+            {locationItems.items.length} obtainable{" "}
+            {locationItems.items.length === 1
+              ? "item"
+              : "items"}
+            {previewItems.length > 0 &&
+              `, including ${previewItems.join(", ")}`}
+            . Use the version filter to see the
+            item locations, methods, areas, and
+            requirements for a specific Pokémon
+            game.
+          </p>
+        </div>
+      </section>
+
+      {itemVersions.length > 1 && (
+        <div
+          style={{
+            marginBottom: ".5rem",
+            textAlign: "left"
+          }}
+        >
+          <label
+            htmlFor="location-item-version-filter"
+            style={{
+              display: "block",
+              fontWeight: 700,
+              marginBottom: ".5rem"
+            }}
+          >
+            Filter Items By Version
+          </label>
+
+          <select
+            id="location-item-version-filter"
+            value={selectedItemVersion}
+            onChange={event =>
+              setSelectedItemVersion(
+                event.target.value
+              )
+            }
+            style={{
+              backgroundColor: "#2c2c2c",
+              border: "2px solid #555",
+              borderRadius: "12px",
+              color: "white",
+              fontSize: "1rem",
+              padding: ".75rem 1rem"
+            }}
+          >
+            {itemVersions.map(version => (
+              <option
+                key={version}
+                value={version}
+              >
+                {version === "all"
+                  ? "All Versions"
+                  : version}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
       <div
         style={{
           display: "grid",
@@ -181,9 +486,9 @@ function LocationItemsSection({
             "repeat(auto-fit, minmax(220px, 1fr))"
         }}
       >
-        {locationItems.items.map(itemEntry => (
+        {groupedItems.map(itemGroup => (
           <article
-            key={itemEntry.item.name}
+            key={itemGroup.item.name}
             style={{
               border: "1px solid #666",
               borderRadius: "12px",
@@ -192,7 +497,7 @@ function LocationItemsSection({
             }}
           >
             <Link
-              to={`/item/${itemEntry.item.name}`}
+              to={`/item/${itemGroup.item.name}`}
               style={{
                 alignItems: "center",
                 display: "flex",
@@ -200,9 +505,9 @@ function LocationItemsSection({
                 marginBottom: ".75rem"
               }}
             >
-              {itemEntry.item.sprite && (
+              {itemGroup.item.sprite && (
                 <img
-                  src={itemEntry.item.sprite}
+                  src={itemGroup.item.sprite}
                   alt=""
                   style={{
                     height: "32px",
@@ -213,9 +518,21 @@ function LocationItemsSection({
                 />
               )}
               <strong>
-                {itemEntry.item.displayName}
+                {itemGroup.item.displayName}
               </strong>
             </Link>
+
+            <p
+              style={{
+                lineHeight: 1.5,
+                marginTop: 0
+              }}
+            >
+              {formatItemAnswer(
+                locationDisplayName,
+                itemGroup
+              )}
+            </p>
 
             <div
               style={{
@@ -223,58 +540,104 @@ function LocationItemsSection({
                 gap: ".75rem"
               }}
             >
-              {itemEntry.versions.map(
-                versionEntry => (
-                  <div
-                    key={versionEntry.version}
-                    style={{
-                      borderTop:
-                        "1px solid #444",
-                      paddingTop: ".75rem"
-                    }}
-                  >
-                    <strong>
-                      {versionEntry.version}
-                    </strong>
+              <div
+                style={{
+                  display: "grid",
+                  gap: ".75rem"
+                }}
+              >
+                {itemGroup.methods.map(
+                  (method, index) => (
+                    <div
+                      key={`${methodGroupKey(method)}-${index}`}
+                      style={{
+                        borderTop:
+                          "1px solid #444",
+                        paddingTop:
+                          ".75rem"
+                      }}
+                    >
+                      <strong>
+                        {formatItemMethodType(
+                          method.type
+                        )}
+                      </strong>
 
-                    {versionEntry.methods.map(
-                      (method, index) => (
-                        <div
-                          key={`${method.type}-${method.details}-${index}`}
+                      <p
+                        style={{
+                          margin:
+                            ".35rem 0 0"
+                        }}
+                      >
+                        {!arraysMatch(
+                          method.versions,
+                          itemGroup.versions
+                        ) && (
+                          <>
+                            <span>
+                              {formatVersionList(
+                                method.versions
+                              )}
+                            </span>
+                            {" · "}
+                          </>
+                        )}
+                        {method.area
+                          ? method.area
+                          : "Location details listed above"}
+                      </p>
+
+                      {method.details && (
+                        <p
                           style={{
-                            fontSize: ".9rem",
-                            marginTop: ".5rem"
+                            margin:
+                              ".35rem 0 0",
+                            opacity: 0.85
                           }}
                         >
-                          <p
+                          {method.details}
+                        </p>
+                      )}
+
+                      {method.requirements
+                        ?.length > 0 && (
+                        <div
+                          style={{
+                            marginTop:
+                              ".5rem"
+                          }}
+                        >
+                          <strong>
+                            Requirements
+                          </strong>
+                          <ul
                             style={{
-                              margin: 0
+                              margin:
+                                ".35rem 0 0",
+                              paddingLeft:
+                                "1.25rem"
                             }}
                           >
-                            {capitalize(
-                              method.type
+                            {method.requirements.map(
+                              requirement => (
+                                <li
+                                  key={
+                                    requirement
+                                  }
+                                >
+                                  {
+                                    requirement
+                                  }
+                                </li>
+                              )
                             )}
-                            {method.area
-                              ? ` · ${method.area}`
-                              : ""}
-                          </p>
-                          {method.details && (
-                            <p
-                              style={{
-                                margin:
-                                  ".25rem 0 0",
-                                opacity: 0.85
-                              }}
-                            >
-                              {method.details}
-                            </p>
-                          )}
+                          </ul>
                         </div>
-                      )
-                    )}
-                  </div>
-                )
-              )}
+                      )}
+                    </div>
+                  )
+                )}
+              </div>
             </div>
           </article>
         ))}

@@ -29,6 +29,43 @@ function formatLocationKey(location) {
   return location.name ?? location.displayName;
 }
 
+function formatLocationText(location) {
+  if (!location) return "unknown location";
+
+  if (typeof location === "string") {
+    return location;
+  }
+
+  return (
+    location.displayName ??
+    location.name ??
+    "unknown location"
+  );
+}
+
+function formatGames(games = []) {
+  return games.join(", ");
+}
+
+function formatAcquisitionAnswer(
+  itemName,
+  method
+) {
+  const games =
+    formatGames(method.games);
+  const location =
+    formatLocationText(method.location);
+  const area = method.area
+    ? ` in ${method.area}`
+    : "";
+  const methodText =
+    method.method ??
+    method.details ??
+    "Check the listed acquisition method.";
+
+  return `In ${games}, ${itemName} can be found at ${location}${area}. ${methodText}`;
+}
+
 function ItemLocationLink({
   location
 }) {
@@ -98,6 +135,7 @@ function formatCost(cost) {
 
 function AcquisitionMethods({
   acquisition,
+  itemName = "this item",
   storageKey = "acquisition-expanded"
 }) {
   const [expanded, setExpanded] =
@@ -171,6 +209,47 @@ function AcquisitionMethods({
         textAlign: "left"
       }}
     >
+      <section
+        data-section="item-acquisition-seo-answer"
+        itemScope
+        itemType="https://schema.org/Question"
+        style={{
+          border:
+            "1px solid #555",
+          borderRadius: "12px",
+          padding: "1rem"
+        }}
+      >
+        <h3
+          itemProp="name"
+          style={{
+            marginTop: 0
+          }}
+        >
+          Where can I find {itemName} in
+          Pokémon games?
+        </h3>
+
+        <div
+          itemProp="acceptedAnswer"
+          itemScope
+          itemType="https://schema.org/Answer"
+        >
+          <p
+            itemProp="text"
+            style={{
+              marginBottom: 0
+            }}
+          >
+            {itemName} acquisition methods are
+            listed below by generation, game,
+            location, and method. Use the
+            generation filter to narrow the list
+            to a specific Pokémon game era.
+          </p>
+        </div>
+      </section>
+
       <div
         style={{
           alignItems: "center",
@@ -219,13 +298,26 @@ function AcquisitionMethods({
             (method, index) => (
               <article
                 key={`${method.generation}-${formatLocationKey(method.location)}-${method.method}-${index}`}
+                data-section="item-acquisition-answer"
                 style={{
                   border:
                     "1px solid #666",
                   borderRadius: "12px",
                   padding: "1rem"
-                }}
-              >
+                  }}
+                >
+                <p
+                  style={{
+                    lineHeight: 1.5,
+                    marginTop: 0
+                  }}
+                >
+                  {formatAcquisitionAnswer(
+                    itemName,
+                    method
+                  )}
+                </p>
+
                 <div
                   style={{
                     alignItems: "center",

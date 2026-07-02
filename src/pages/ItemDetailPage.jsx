@@ -358,6 +358,10 @@ function ItemDetailPage() {
       <AcquisitionMethods
         key={item.name}
         acquisition={item.acquisition}
+        itemName={
+          item.displayName ??
+          capitalize(item.name)
+        }
         storageKey={`item:${item.name}:acquisition-expanded`}
       />
 
