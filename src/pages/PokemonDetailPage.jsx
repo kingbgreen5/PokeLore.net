@@ -23,6 +23,7 @@ import EvolutionNode from "../components/EvolutionNode";
 import BaseStatsChart from "../components/BaseStatsChart";
 import PokemonSummaryCard from "../components/PokemonSummaryCard.jsx";
 import WhereToFind from "../components/WhereToFind";
+import HeldItems from "../components/HeldItems";
 import SizeComparison from "../components/SizeComparison"
 import AdditionalImages from "../components/AdditionalImages";
 import Seo from "../seo/Seo";
@@ -706,6 +707,11 @@ function formatWeightEnglish(weight) {
 
 <WhereToFind
   key={`where-to-find-${pokemon.id}`}
+  pokemonId={pokemon.id}
+/>
+
+<HeldItems
+  key={`held-items-${pokemon.id}`}
   pokemonId={pokemon.id}
 />
 

@@ -55,6 +55,56 @@ function normalizeItemName(itemName) {
   return normalized;
 }
 
+function isMachineItem(item) {
+  return (
+    item?.machines?.length > 0 ||
+    /^(tm|hm|tr)\d+/i.test(
+      item?.name ?? ""
+    )
+  );
+}
+
+function formatList(values) {
+  if (values.length <= 1) {
+    return values[0] ?? "";
+  }
+
+  if (values.length === 2) {
+    return `${values[0]} or ${values[1]}`;
+  }
+
+  return `${values.slice(0, -1).join(", ")}, or ${
+    values[values.length - 1]
+  }`;
+}
+
+function buildMachineItemDescription(item) {
+  const moveNames = Array.from(
+    new Set(
+      item?.machines
+        ?.map(machine =>
+          machine.move?.name
+        )
+        .filter(Boolean) ?? []
+    )
+  ).map(capitalize);
+
+  if (moveNames.length === 0) {
+    return null;
+  }
+
+  const itemName =
+    item.displayName ?? capitalize(item.name);
+  const moveList =
+    formatList(moveNames);
+
+  return `${itemName} teaches ${moveList}${
+    moveNames.length > 1
+      ? " depending on version"
+      : ""
+  }.`;
+}
+
 
 // item overview details
 function DetailRow({
@@ -220,6 +270,19 @@ function ItemDetailPage() {
     ]
   );
 
+  const machineItemDescription = useMemo(
+    () =>
+      isMachineItem(item)
+        ? buildMachineItemDescription(item)
+        : null,
+    [item]
+  );
+  const effectText =
+    machineItemDescription ?? item?.effect;
+  const showShortEffect =
+    item?.shortEffect &&
+    !machineItemDescription;
+
   if (loading) {
     return (
       <>
@@ -339,10 +402,10 @@ function ItemDetailPage() {
         }}
       >
         <h2>Effect</h2>
-        <p>{item.effect}</p>
+        <p>{effectText}</p>
       </section>
 
-      {item.shortEffect && (
+      {showShortEffect && (
         <section
           style={{
             marginBottom: "2rem"
@@ -358,10 +421,6 @@ function ItemDetailPage() {
       <AcquisitionMethods
         key={item.name}
         acquisition={item.acquisition}
-        itemName={
-          item.displayName ??
-          capitalize(item.name)
-        }
         storageKey={`item:${item.name}:acquisition-expanded`}
       />
 

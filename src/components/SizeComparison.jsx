@@ -17,6 +17,39 @@ from "../utils/pokemonNames";
 const LOCAL_CORRECTIONS_KEY =
   "pokemonSpriteManualCorrections";
 
+const SIZE_CORRECTION_REASONS = [
+  {
+    value: "coiled-body-length",
+    label: "Coiled body length",
+    explanation:
+      "the official measurement appears to describe total body length rather than upright visual height"
+  },
+  {
+    value: "wings",
+    label: "Wings",
+    explanation:
+      "wings can extend beyond the main body silhouette"
+  },
+  {
+    value: "antennae",
+    label: "Antennae",
+    explanation:
+      "antennae can extend above the substantial head or body"
+  },
+  {
+    value: "large-ears",
+    label: "Large ears",
+    explanation:
+      "large or floppy ears can extend above the substantial head"
+  },
+  {
+    value: "leaves-foliage",
+    label: "Leaves/foliage",
+    explanation:
+      "leaves or foliage can extend beyond the substantial body"
+  }
+];
+
 function readLocalCorrections() {
   try {
     return JSON.parse(
@@ -33,6 +66,14 @@ function writeLocalCorrections(corrections) {
   localStorage.setItem(
     LOCAL_CORRECTIONS_KEY,
     JSON.stringify(corrections)
+  );
+}
+
+function getCorrectionReason(reasonValue) {
+  return (
+    SIZE_CORRECTION_REASONS.find(
+      reason => reason.value === reasonValue
+    ) ?? null
   );
 }
 
@@ -208,7 +249,24 @@ function SizeComparison({
     return Math.round((height / 10) * 39.3701);
   }
 
+  function formatFeetInches(totalInches) {
+    const feet = Math.floor(totalInches / 12);
+    const inches = totalInches % 12;
+
+    return `${feet}' ${inches}"`;
+  }
+
+  function formatMeters(height) {
+    return `${(Number(height) / 10).toFixed(1)} m`;
+  }
+
   const pokemonHeightInches = heightToInches(pokemon.height);
+  const pokemonDisplayName =
+    formatPokemonDisplayName(pokemon);
+  const listedHeightLabel =
+    formatFeetInches(pokemonHeightInches);
+  const listedMetricHeight =
+    formatMeters(pokemon.height);
   const spriteBounds =
     spriteBoundsById[pokemon.id];
   const correctionData =
@@ -231,6 +289,16 @@ function SizeComparison({
     correctionData?.topLayer === "oak"
       ? "oak"
       : "pokemon";
+  const correctionReason =
+    typeof correctionData === "object"
+      ? getCorrectionReason(correctionData?.reason)
+      : null;
+  const sizeComparisonSummary =
+    manualCorrectionFactor === 1
+      ? `${pokemonDisplayName} is listed at ${listedHeightLabel} (${listedMetricHeight}) and shown in an in-chart visual comparison.`
+      : correctionReason
+        ? `${pokemonDisplayName} is listed at ${listedHeightLabel} (${listedMetricHeight}); this chart uses a pose-adjusted visual scale because ${correctionReason.explanation}.`
+        : `${pokemonDisplayName} is listed at ${listedHeightLabel} (${listedMetricHeight}); this chart uses a pose-adjusted visual scale.`;
 
   useEffect(() => {
     setTopLayer(topLayerPreset);
@@ -355,13 +423,19 @@ function SizeComparison({
             ...(correctionData ?? {})
           };
 
-    return {
+    const nextCorrection = {
       ...currentCorrection,
       id: pokemon.id,
       name: pokemon.name,
       factor: manualCorrectionFactor,
       ...overrides
     };
+
+    if (!nextCorrection.reason) {
+      delete nextCorrection.reason;
+    }
+
+    return nextCorrection;
   }
 
   function updateManualCorrection(delta) {
@@ -396,6 +470,18 @@ function SizeComparison({
     };
 
     setTopLayer(layer);
+    setLocalCorrectionsById(nextCorrections);
+    writeLocalCorrections(nextCorrections);
+  }
+
+  function updateCorrectionReason(reason) {
+    const nextCorrections = {
+      ...localCorrectionsById,
+      [pokemon.id]: buildCorrectionEntry({
+        reason: reason || undefined
+      })
+    };
+
     setLocalCorrectionsById(nextCorrections);
     writeLocalCorrections(nextCorrections);
   }
@@ -941,6 +1027,9 @@ function SizeComparison({
 
   return (
     <section
+      id="size"
+      aria-labelledby="size-comparison-heading"
+      aria-describedby="size-comparison-summary"
       style={{
         maxWidth: "1000px",
         margin: "2rem auto",
@@ -953,14 +1042,26 @@ function SizeComparison({
       }}
     >
       <h2
+        id="size-comparison-heading"
         style={{
-          marginBottom: "1.5rem",
+          marginBottom: ".4rem",
           textTransform: "uppercase",
           letterSpacing: "1px",
         }}
       >
-        Approximate Size Comparison: BETA
+        {pokemonDisplayName} Size Comparison: BETA
       </h2>
+      <p
+        id="size-comparison-summary"
+        style={{
+          fontSize: ".9rem",
+          margin: "0 auto 1.25rem",
+          maxWidth: "680px",
+          opacity: 0.82
+        }}
+      >
+        {sizeComparisonSummary}
+      </p>
      
       {isMobile ? (
         <ChartFrame
@@ -981,6 +1082,86 @@ function SizeComparison({
           showHeader={false}
         />
       )}
+
+      <details
+        style={{
+          borderTop: "1px solid #555",
+          margin: "0 auto 1rem",
+          maxWidth: "760px",
+          paddingTop: ".85rem",
+          textAlign: "left"
+        }}
+      >
+        <summary
+          style={{
+            cursor: "pointer",
+            fontWeight: "700"
+          }}
+        >
+          How is visual size determined?
+        </summary>
+
+        <div
+          style={{
+            fontSize: ".9rem",
+            lineHeight: 1.55,
+            opacity: 0.9,
+            paddingTop: ".7rem"
+          }}
+        >
+          <p
+            style={{
+              margin: "0 0 .65rem"
+            }}
+          >
+            Pokédex height is treated as the
+            official listed measurement, but
+            the chart uses pose-aware visual
+            scaling so each sprite looks
+            reasonable in a direct comparison.
+          </p>
+
+          <p
+            style={{
+              margin: "0 0 .65rem"
+            }}
+          >
+            For long or coiled Pokémon, the
+            listed height may represent total
+            body length rather than upright
+            height. For Pokémon with floppy
+            ears, leaves, feathers, antennae,
+            wings, or other flexible features,
+            the chart usually measures to the
+            top of the solid, substantial part
+            of the head or body instead of the
+            tallest decorative feature.
+          </p>
+
+          <p
+            style={{
+              margin: 0
+            }}
+          >
+            The goal is not to replace the
+            official height, but to make the
+            artwork compare naturally at the
+            size it appears to occupy.
+          </p>
+
+          {manualCorrectionFactor !== 1 && (
+            <p
+              style={{
+                margin: ".65rem 0 0"
+              }}
+            >
+              {correctionReason
+                ? `${pokemonDisplayName} is currently tagged for ${correctionReason.label.toLowerCase()}.`
+                : `${pokemonDisplayName} currently uses a pose-adjusted visual scale.`}
+            </p>
+          )}
+        </div>
+      </details>
 
       <button
         type="button"
@@ -1107,6 +1288,42 @@ function SizeComparison({
             >
               Preset Oak Front
             </button>
+
+            <label
+              style={{
+                alignItems: "center",
+                display: "flex",
+                gap: ".35rem"
+              }}
+            >
+              Reason
+              <select
+                value={
+                  typeof correctionData === "object"
+                    ? correctionData?.reason ?? ""
+                    : ""
+                }
+                onChange={event =>
+                  updateCorrectionReason(
+                    event.target.value
+                  )
+                }
+              >
+                <option value="">
+                  No specific reason
+                </option>
+                {SIZE_CORRECTION_REASONS.map(
+                  reason => (
+                    <option
+                      key={reason.value}
+                      value={reason.value}
+                    >
+                      {reason.label}
+                    </option>
+                  )
+                )}
+              </select>
+            </label>
 
             <button
               type="button"

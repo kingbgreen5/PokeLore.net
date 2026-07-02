@@ -16,6 +16,25 @@ function pageUrl(path = "/") {
   return `${SITE_URL}${path === "/" ? "" : path}`;
 }
 
+function heightToInches(height) {
+  return Math.round((height / 10) * 39.3701);
+}
+
+function formatFeetInches(totalInches) {
+  const feet = Math.floor(totalInches / 12);
+  const inches = totalInches % 12;
+
+  return `${feet}' ${inches}"`;
+}
+
+function formatMeters(height) {
+  return `${(Number(height) / 10).toFixed(1)} m`;
+}
+
+function formatKilograms(weight) {
+  return `${(Number(weight) / 10).toFixed(1)} kg`;
+}
+
 export function defaultSeo() {
   return {
     title: `${SITE_NAME} | Pokémon Lore Database`,
@@ -135,9 +154,9 @@ export function locationsSeo() {
 
 export function topicsSeo() {
   return {
-    title: `Pokédex Lore Topics | ${SITE_NAME}`,
+    title: `Pokémon Topics, Item Locations & Lore Guides | ${SITE_NAME}`,
     description:
-      "Explore curated Pokémon lore topics built from official Pokédex entry text, including habitats, behavior, rarity, danger, and mystery.",
+      "Explore curated Pokémon topics, item-location guides, habitats, behavior, rarity, danger, and Pokédex lore.",
     canonical: pageUrl("/topics")
   };
 }
@@ -191,6 +210,8 @@ export function locationSeo(location) {
 export function pokemonSeo(pokemon) {
   const name =
     formatPokemonDisplayName(pokemon);
+  const canonical =
+    pageUrl(`/pokemon/${pokemon?.name}`);
   const dexNumber =
     pokemon?.id
       ? String(pokemon.id).padStart(3, "0")
@@ -199,14 +220,152 @@ export function pokemonSeo(pokemon) {
     pokemon?.isDefaultForm && dexNumber
       ? ` — Pokédex #${dexNumber}`
       : "";
+  const heightInches =
+    Number.isFinite(Number(pokemon?.height))
+      ? heightToInches(pokemon.height)
+      : null;
+  const heightEnglish =
+    heightInches
+      ? formatFeetInches(heightInches)
+      : null;
+  const heightMetric =
+    Number.isFinite(Number(pokemon?.height))
+      ? formatMeters(pokemon.height)
+      : null;
+  const weightMetric =
+    Number.isFinite(Number(pokemon?.weight))
+      ? formatKilograms(pokemon.weight)
+      : null;
+  const typeNames =
+    Array.isArray(pokemon?.types)
+      ? pokemon.types
+          .map(type =>
+            typeof type === "string"
+              ? formatName(type)
+              : formatName(type?.type?.name ?? type?.name)
+          )
+          .filter(Boolean)
+      : [];
+  const sizeDescription =
+    heightEnglish && heightMetric
+      ? ` ${name} is listed at ${heightEnglish} (${heightMetric}) with an in-chart visual size comparison.`
+      : "";
+  const description =
+    pokemon?.isDefaultForm && pokemon?.id
+      ? `Explore ${name}'s stats, moves, abilities, evolution details, type matchups, locations, National Pokédex number ${pokemon.id}, and size chart.${sizeDescription}`
+      : `Explore ${name}'s stats, moves, abilities, evolution details, type matchups, locations, and size chart.${sizeDescription}`;
+  const title =
+    `${name} Stats, Moves, Abilities & Locations | ${SITE_NAME}${dexSuffix}`;
+  const pokemonId =
+    `${canonical}#pokemon`;
+  const sizeComparisonId =
+    `${canonical}#size-comparison`;
+  const additionalProperty = [
+    pokemon?.id
+      ? {
+          "@type": "PropertyValue",
+          name: "National Pokédex number",
+          value: pokemon.id
+        }
+      : null,
+    typeNames.length > 0
+      ? {
+          "@type": "PropertyValue",
+          name: "Pokémon type",
+          value: typeNames.join(", ")
+        }
+      : null,
+    heightEnglish && heightMetric
+      ? {
+          "@type": "PropertyValue",
+          name: "Listed height",
+          value: `${heightEnglish} (${heightMetric})`
+        }
+      : null,
+    weightMetric
+      ? {
+          "@type": "PropertyValue",
+          name: "Listed weight",
+          value: weightMetric
+        }
+      : null
+  ].filter(Boolean);
 
   return {
-    title: `${name} Stats, Moves, Abilities & Locations | ${SITE_NAME}${dexSuffix}`,
-    description: pokemon?.isDefaultForm && pokemon?.id
-      ? `Explore ${name}'s base stats, abilities, moves, evolution details, type matchups, encounter locations, and National Pokédex number ${pokemon.id}.`
-      : `Explore ${name}'s base stats, abilities, moves, evolution details, type matchups, and encounter locations.`,
-    canonical: pageUrl(`/pokemon/${pokemon?.name}`),
-    image: pokemon?.sprite ?? undefined
+    title,
+    description,
+    canonical,
+    image: pokemon?.sprite ?? undefined,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": `${canonical}#webpage`,
+          url: canonical,
+          name: title,
+          description,
+          mainEntity: {
+            "@id": pokemonId
+          },
+          hasPart: {
+            "@id": sizeComparisonId
+          },
+          breadcrumb: {
+            "@id": `${canonical}#breadcrumb`
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": `${canonical}#breadcrumb`,
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: SITE_NAME,
+              item: SITE_URL
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name,
+              item: canonical
+            }
+          ]
+        },
+        {
+          "@type": "Thing",
+          "@id": pokemonId,
+          name,
+          identifier: pokemon?.id
+            ? `National Pokédex #${pokemon.id}`
+            : undefined,
+          image: pokemon?.sprite ?? undefined,
+          description,
+          height:
+            heightEnglish && heightMetric
+              ? `${heightEnglish} (${heightMetric})`
+              : undefined,
+          weight: weightMetric,
+          additionalProperty
+        },
+        {
+          "@type": "CreativeWork",
+          "@id": sizeComparisonId,
+          name: `${name} size comparison`,
+          about: {
+            "@id": pokemonId
+          },
+          description:
+            heightEnglish && heightMetric
+              ? `${name} is listed at ${heightEnglish} (${heightMetric}). The page includes a visual Pokémon size comparison.`
+              : `The page includes a visual Pokémon size comparison for ${name}.`,
+          isPartOf: {
+            "@id": `${canonical}#webpage`
+          }
+        }
+      ]
+    }
   };
 }
 

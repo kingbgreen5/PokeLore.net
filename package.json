@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run build:item-locations && npm run generate:location-items && npm run generate:type-abilities && npm run generate:pokemon-routes && npm run generate:topics && npm run generate:sitemap",
+    "prebuild": "npm run build:item-locations && npm run generate:location-items && npm run generate:pokemon-held-items && npm run generate:type-abilities && npm run generate:pokemon-routes && npm run generate:topics && npm run generate:sitemap",
     "build": "vite build",
     "generate:topics": "node scripts/generatePokedexTopics.js",
     "generate:pokemon-routes": "node scripts/generatePokemonRoutes.js",
@@ -17,6 +17,7 @@
     "migrate:item-locations": "node scripts/migrateItemLocations.js",
     "generate:moves": "node scripts/generateMoves.js",
     "generate:location-items": "node scripts/generateLocationItems.js",
+    "generate:pokemon-held-items": "node scripts/generatePokemonHeldItems.js",
     "generate:sitemap": "node scripts/generateSitemap.js",
     "lint": "eslint .",
     "preview": "vite preview",

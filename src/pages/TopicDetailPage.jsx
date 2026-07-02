@@ -13,6 +13,7 @@ import Seo from "../seo/Seo";
 import { topicSeo } from "../seo/seoConfig";
 import { formatPokemonDisplayName }
 from "../utils/pokemonNames";
+import { itemLocationTopicComponents } from "../topics/topicRegistry";
 
 const REVIEW_STORAGE_PREFIX =
   "pokedex-topic-review:";
@@ -82,7 +83,7 @@ function readAllStoredRemovals() {
   };
 }
 
-function TopicDetailPage() {
+function PokedexTopicDetailPage() {
   const { topicSlug } = useParams();
   const location = useLocation();
   const reviewMode =
@@ -602,6 +603,20 @@ function TopicDetailPage() {
       )}
     </main>
   );
+}
+
+function TopicDetailPage() {
+  const { topicSlug } = useParams();
+  const StaticTopicComponent =
+    itemLocationTopicComponents[
+      topicSlug
+    ];
+
+  if (StaticTopicComponent) {
+    return <StaticTopicComponent />;
+  }
+
+  return <PokedexTopicDetailPage />;
 }
 
 export default TopicDetailPage;

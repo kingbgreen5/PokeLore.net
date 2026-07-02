@@ -60,11 +60,37 @@ function setCanonical(href) {
   element.setAttribute("href", href);
 }
 
+function setStructuredData(data) {
+  const scriptId = "seo-structured-data";
+  const existingScript =
+    document.head.querySelector(
+      `script#${scriptId}`
+    );
+
+  if (!data) {
+    existingScript?.remove();
+    return;
+  }
+
+  const script =
+    existingScript ??
+    document.createElement("script");
+
+  script.id = scriptId;
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify(data);
+
+  if (!existingScript) {
+    document.head.appendChild(script);
+  }
+}
+
 function Seo({
   title,
   description,
   canonical,
   image,
+  structuredData,
   type = "website"
 }) {
   useEffect(() => {
@@ -113,11 +139,14 @@ function Seo({
       removeMeta("property", "og:image");
       removeMeta("name", "twitter:image");
     }
+
+    setStructuredData(structuredData);
   }, [
     title,
     description,
     canonical,
     image,
+    structuredData,
     type
   ]);
 

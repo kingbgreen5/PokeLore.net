@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { itemLocationTopics } from "../src/topics/topicMetadata.js";
 
 const SITE_URL = "https://pokelore.net";
 const __filename = fileURLToPath(import.meta.url);
@@ -74,7 +75,10 @@ function locationRoutes(locationsIndex) {
 }
 
 function topicRoutes(pokedexTopics) {
-  return (pokedexTopics.topics ?? [])
+  return [
+    ...itemLocationTopics,
+    ...(pokedexTopics.topics ?? [])
+  ]
     .filter(topic => topic.active)
     .map(topic =>
       route(`/topic/${topic.slug}`)

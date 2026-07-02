@@ -6,9 +6,11 @@ import {
 import { Link } from "react-router-dom";
 import Seo from "../seo/Seo";
 import { topicsSeo } from "../seo/seoConfig";
+import { staticTopics } from "../topics/topicRegistry";
 
 const subgroupLabels = {
   biomes: "Biomes",
+  "item-locations": "Item Locations",
   behavior: "Behavior",
   lore: "Lore"
 };
@@ -28,11 +30,14 @@ function TopicsPage() {
         const data =
           await response.json();
 
-        setTopics(
-          (data.topics ?? []).filter(
+        setTopics([
+          ...staticTopics.filter(
+            topic => topic.active
+          ),
+          ...(data.topics ?? []).filter(
             topic => topic.active
           )
-        );
+        ]);
       } catch (error) {
         console.error(
           "Failed to load Pokedex topics:",
@@ -65,6 +70,7 @@ function TopicsPage() {
   }, [topics]);
 
   const subgroupOrder = [
+    "item-locations",
     "biomes",
     "behavior",
     "lore",
@@ -88,7 +94,7 @@ function TopicsPage() {
     >
       <Seo {...topicsSeo()} />
 
-      <h1>Pokédex Lore Topics</h1>
+      <h1>Pokémon Topics</h1>
 
       <p
         style={{
@@ -96,10 +102,10 @@ function TopicsPage() {
           maxWidth: "760px"
         }}
       >
-        Browse curated topic pages built from
-        official Pokédex entry text. Each topic
-        links to matching Pokémon and the exact
-        entry excerpts that caused the match.
+        Browse curated topic pages and guides,
+        including item locations, Pokémon
+        habitats, behavior, and official
+        Pokédex lore excerpts.
       </p>
 
       {topics.length === 0 ? (
@@ -176,10 +182,8 @@ function TopicsPage() {
                           margin: 0
                         }}
                       >
-                        {topic.pokemonCount}{" "}
-                        Pokemon ·{" "}
-                        {topic.entryCount}{" "}
-                        entries
+                        {topic.countLabel ??
+                          `${topic.pokemonCount} Pokemon · ${topic.entryCount} entries`}
                       </p>
                     </Link>
                   )

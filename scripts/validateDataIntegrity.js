@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { itemLocationTopics } from "../src/topics/topicMetadata.js";
 
 const __filename =
   fileURLToPath(import.meta.url);
@@ -240,7 +241,10 @@ function getTopicSlugs() {
       : [];
 
   return new Set(
-    topics
+    [
+      ...itemLocationTopics,
+      ...topics
+    ]
       .map(topic => topic.slug)
       .filter(Boolean)
   );
