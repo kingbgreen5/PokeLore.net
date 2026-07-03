@@ -1,7 +1,7 @@
 import typeColors from "../constants/typeColors";
 import {
+  Link,
   useLocation,
-  useNavigate
 }
 from "react-router-dom";
 import { formatPokemonDisplayName }
@@ -66,7 +66,6 @@ function PokemonSummaryCard({
   variant
 }) {
   
-   const navigate = useNavigate();
    const location = useLocation();
 
   const sizeKey =
@@ -100,31 +99,18 @@ function PokemonSummaryCard({
       : "";
   
   return (
-    <div
-
-      // onClick={() =>
-      //   onClick?.(pokemon)
-      // }
-
-onClick={() =>
-  navigate(
-    `/pokemon/${pokemon.name ?? pokemon.id}${sizeReviewSearch}`,
-    {
-      state: {
+    <Link
+      to={`/pokemon/${pokemon.name ?? pokemon.id}${sizeReviewSearch}`}
+      state={{
         preserveScroll:
           isSizeReviewMode
-      }
-    }
-  )
-}
-
-// ------------------------------------------------container
-
+      }}
       style={{
         border: "2px solid #555",
         borderRadius: "18px",
         backgroundColor:
           "#2c2c2c",
+        color: "inherit",
         cursor: "pointer",
         transition:
           "transform 0.15s ease",
@@ -136,7 +122,8 @@ onClick={() =>
         minHeight: size.minHeight,
         maxHeight: size.maxHeight,
         maxWidth: size.maxWidth,
-        padding: size.padding
+        padding: size.padding,
+        textDecoration: "none"
       }}
       onMouseEnter={e => {
         e.currentTarget.style.transform =
@@ -244,7 +231,7 @@ onClick={() =>
         
         
       </div>
-    </div>
+    </Link>
   );
 }
 

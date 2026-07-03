@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import typeColors from "../constants/typeColors";
 import Seo from "../seo/Seo";
 import {
@@ -7,7 +7,6 @@ import {
 } from "../seo/seoConfig";
 
 function TypesPage() {
-  const navigate = useNavigate();
   const types = Object.keys(typeColors);
 
   return (
@@ -32,11 +31,9 @@ function TypesPage() {
         }}
       >
         {types.map(type => (
-          <button
+          <Link
             key={type}
-            onClick={() =>
-              navigate(`/type/${type}`)
-            }
+            to={`/type/${type}`}
             style={{
               backgroundColor:
                 typeColors[type],
@@ -48,11 +45,13 @@ function TypesPage() {
               fontWeight: "bold",
               minHeight: "64px",
               padding: ".85rem 1rem",
+              textAlign: "center",
+              textDecoration: "none",
               textTransform: "uppercase"
             }}
           >
             {formatName(type)}
-          </button>
+          </Link>
         ))}
       </div>
     </div>

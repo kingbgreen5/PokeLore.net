@@ -7,6 +7,7 @@ import {
   useState
 } from "react";
 import {
+  Link,
   useLocation,
   useNavigate
 } from "react-router-dom";
@@ -330,9 +331,7 @@ function PokemonSpriteCarousel({
     }
   }
 
-  function navigateToPokemonName(name) {
-    if (!name) return;
-
+  function getPokemonNavigation(name) {
     const searchParams =
       new URLSearchParams(
         location.search
@@ -348,18 +347,28 @@ function PokemonSpriteCarousel({
         ? "?size-review=1"
         : "";
 
-    navigate(
-      `/pokemon/${name}${sizeReviewSearch}`,
-      {
-        state: {
-          preserveScroll:
-            isSizeReviewMode
-        }
+    return {
+      to: `/pokemon/${name}${sizeReviewSearch}`,
+      state: {
+        preserveScroll:
+          isSizeReviewMode
       }
+    };
+  }
+
+  function navigateToPokemonName(name) {
+    if (!name) return;
+
+    const pokemonNavigation =
+      getPokemonNavigation(name);
+
+    navigate(
+      pokemonNavigation.to,
+      { state: pokemonNavigation.state }
     );
   }
 
-  function handleCardClick(event, entry) {
+  function handleCardClick(event) {
     if (suppressClickRef.current) {
       event.preventDefault();
       event.stopPropagation();
@@ -367,7 +376,6 @@ function PokemonSpriteCarousel({
       return;
     }
 
-    navigateToPokemonName(entry.name);
   }
 
   //---------------------------LOADING FALLBACK---------------------------
@@ -431,11 +439,16 @@ function PokemonSpriteCarousel({
           const isCurrent =
             entry.id === carouselPokemon.id;
 
+          const pokemonNavigation =
+            getPokemonNavigation(entry.name);
+
           return (
             //---------------------------POKEMON CARD---------------------------
       
-            <button
+            <Link
               key={entry.id}
+              to={pokemonNavigation.to}
+              state={pokemonNavigation.state}
               data-pokemon-name={entry.name}
               ref={element => {
                 if (element) {
@@ -451,16 +464,12 @@ function PokemonSpriteCarousel({
               }}
               onClick={event =>
                 handleCardClick(
-                  event,
-                  entry
+                  event
                 )
               }
               style={{
                 alignItems: "center",
-                backgroundColor: isCurrent
-                  ? "transparent"
-                  : "#2c2c2c",
-                  backgroundColor: "#2c2c2c",
+                backgroundColor: "#2c2c2c",
         
                 border: isCurrent
                   ? "2px solid transparent"
@@ -504,7 +513,8 @@ function PokemonSpriteCarousel({
                   ? "scale(.9)"
                   : "scale(.9)",
                 transition:
-                  "transform .15s ease, border-color .15s ease, background-color .15s ease, flex-basis .15s ease, opacity .15s ease"
+                  "transform .15s ease, border-color .15s ease, background-color .15s ease, flex-basis .15s ease, opacity .15s ease",
+                textDecoration: "none"
               }}
             >
               {/* //---------------------------DEX NUMBER--------------------------- */}
@@ -558,7 +568,7 @@ function PokemonSpriteCarousel({
               >
                 {capitalize(entry.name)}
               </span>
-            </button>
+            </Link>
           );
         })}
       </div>

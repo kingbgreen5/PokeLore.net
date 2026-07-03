@@ -4,7 +4,10 @@ import {
   useRef,
   useState
 } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  Link,
+  useNavigate
+} from "react-router-dom";
 import typeColors from "../constants/typeColors";
 import { isItemHiddenFromUi } from "../utils/itemVisibility";
 import { loadMovesMap } from "../utils/loadMovesData";
@@ -478,6 +481,12 @@ function GlobalSiteSearch() {
     setIsFocused(false);
   }
 
+  function closeResults() {
+    setQuery("");
+    setActiveIndex(0);
+    setIsFocused(false);
+  }
+
   function handleKeyDown(event) {
     if (!results.length) {
       return;
@@ -577,14 +586,15 @@ function GlobalSiteSearch() {
             </div>
           ) : (
             results.map((result, index) => (
-              <button
+              <Link
                 key={result.id}
-                onMouseDown={event =>
-                  event.preventDefault()
-                }
-                onClick={() =>
-                  selectResult(result)
-                }
+                to={result.route}
+                onMouseDown={event => {
+                  if (event.button === 0) {
+                    event.preventDefault();
+                  }
+                }}
+                onClick={closeResults}
                 style={{
                   alignItems: "center",
                   backgroundColor:
@@ -604,6 +614,7 @@ function GlobalSiteSearch() {
                     "36px 1fr auto",
                   padding: ".55rem",
                   textAlign: "left",
+                  textDecoration: "none",
                   width: "100%"
                 }}
               >
@@ -669,7 +680,7 @@ function GlobalSiteSearch() {
                 >
                   {result.category}
                 </span>
-              </button>
+              </Link>
             ))
           )}
         </div>

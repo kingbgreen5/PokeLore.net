@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import typeColors from "../constants/typeColors";
-import { useNavigate }
+import { Link }
 from "react-router-dom";
 import CollapsibleSection from "./CollapsibleSection";
 import useSessionState from "../hooks/useSessionState";
@@ -51,7 +51,6 @@ function LearnsetCard({
       `pokemon:${pokemonData.id ?? pokemonData.pokemon}:learnsets-expanded`,
       false
     );
-  const navigate = useNavigate();
   //-----------------------------------------
   // Version Groups
   //-----------------------------------------
@@ -366,21 +365,8 @@ const filteredMoves =
 
                             {/* Move Button */}
 
-                            <button
-                              // onClick={() =>
-                              //   setSelectedMove(
-                              //     move.move
-                              //   )
-                              // }
-
-onClick={() =>
-  navigate(
-    `/move/${move.move}`
-  )
-}
-
-
-
+                            <Link
+                              to={`/move/${move.move}`}
                               style={{
                                 background:
                                   "none",
@@ -393,55 +379,68 @@ onClick={() =>
                                 padding:
                                   0,
                                 fontWeight:
-                                  "bold"
+                                  "bold",
+                                textDecoration:
+                                  "none"
                               }}
                             >
                               {capitalize(
                                 move.move
                               )}
-                            </button>
+                            </Link>
 
                             {/* Type */}
 
-                            <button
-                              type="button"
-                              onClick={() => {
-                                if (
-                                  moveDetails?.type
-                                ) {
-                                  navigate(
-                                    `/type/${moveDetails.type}`
-                                  );
-                                }
-                              }}
-                              style={{
-                                backgroundColor:
-                                  typeColors[
-                                    moveDetails?.type
-                                  ],
-                                border:
-                                  "none",
-                                cursor:
-                                  moveDetails?.type
-                                    ? "pointer"
-                                    : "default",
-                                color:
-                                  "white",
-                                padding:
-                                  "0.2rem 0.5rem",
-                                borderRadius:
-                                  "999px",
-                                textAlign:
-                                  "center",
-                                fontSize:
-                                  ".6rem",
-                                textTransform:
-                                  "uppercase"
-                              }}
-                            >
-                              {moveDetails?.type ||
-                                "---"}
-                            </button>
+                            {moveDetails?.type ? (
+                              <Link
+                                to={`/type/${moveDetails.type}`}
+                                style={{
+                                  backgroundColor:
+                                    typeColors[
+                                      moveDetails.type
+                                    ],
+                                  border:
+                                    "none",
+                                  borderRadius:
+                                    "999px",
+                                  color:
+                                    "white",
+                                  cursor:
+                                    "pointer",
+                                  fontSize:
+                                    ".6rem",
+                                  padding:
+                                    "0.2rem 0.5rem",
+                                  textAlign:
+                                    "center",
+                                  textDecoration:
+                                    "none",
+                                  textTransform:
+                                    "uppercase"
+                                }}
+                              >
+                                {moveDetails.type}
+                              </Link>
+                            ) : (
+                              <span
+                                style={{
+                                  borderRadius:
+                                    "999px",
+                                  color:
+                                    "white",
+                                  fontSize:
+                                    ".6rem",
+                                  padding:
+                                    "0.2rem 0.5rem",
+                                  textAlign:
+                                    "center",
+                                  textTransform:
+                                    "uppercase"
+                                }}
+                              >
+                                ---
+                              </span>
+                            )}
 
                             {/* Power */}
 

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import typeColors from "../constants/typeColors";
 
 function capitalize(text) {
@@ -16,19 +16,16 @@ function MoveSummaryCard({
   name,
   move
 }) {
-  const navigate = useNavigate();
-
   return (
-    <div
-      onClick={() =>
-        navigate(`/move/${name}`)
-      }
+    <Link
+      to={`/move/${name}`}
       style={{
         alignItems: "center",
         backgroundColor: "#2c2c2c",
         border: "2px solid #555",
         borderRadius: "18px",
         boxSizing: "border-box",
+        color: "inherit",
         cursor: "pointer",
         display: "flex",
         flexDirection: "column",
@@ -39,6 +36,7 @@ function MoveSummaryCard({
         height:"120px",
                 width: "120px",
         padding: ".35rem",
+        textDecoration: "none",
         transition:
           "transform 0.15s ease",
 
@@ -105,7 +103,7 @@ function MoveSummaryCard({
           PP: {move.pp ?? "-"}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

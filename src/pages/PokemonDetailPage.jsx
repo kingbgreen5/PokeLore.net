@@ -1,4 +1,5 @@
 import {
+  Link,
   Navigate,
   useLocation,
   useParams
@@ -9,11 +10,6 @@ import {
   useState,
   useRef
 } from "react";
-
-import { useNavigate }
-from "react-router-dom";
-
-
 
 import typeColors from "../constants/typeColors";
 import LearnsetCard from "../components/LearnsetCard";
@@ -109,8 +105,6 @@ function PokemonDetailPage() {
 const rootNodeRef = useRef(null);
 const { identifier } = useParams();
 const location = useLocation();
-
-const navigate = useNavigate();
 
 const [pokemon, setPokemon] = useState(null);
 const [learnsetData, setLearnsetData] = useState(null);
@@ -482,13 +476,9 @@ function formatWeightEnglish(weight) {
  
         {pokemon.types.map(
           type => (
-            <button
+            <Link
               key={type}
-              onClick={() =>
-                navigate(
-                  `/type/${type}`
-                )
-              }
+              to={`/type/${type}`}
               style={{
                 backgroundColor:
                   typeColors[
@@ -501,11 +491,13 @@ function formatWeightEnglish(weight) {
                   ".4rem .9rem",
                 borderRadius:
                   "999px",
-                  textTransform: "uppercase"
+                textDecoration:
+                  "none",
+                textTransform: "uppercase"
               }}
             >
               {type}
-            </button>
+            </Link>
           )
         )}
       </div>
@@ -537,15 +529,9 @@ function formatWeightEnglish(weight) {
 
       return (
 
-      <button
+      <Link
         key={abilitySlug}
-
-        onClick={() =>
-          navigate(
-            `/ability/${abilitySlug}`
-          )
-        }
-
+        to={`/ability/${abilitySlug}`}
         style={{
           padding:
             ".4rem .8rem",
@@ -555,7 +541,11 @@ function formatWeightEnglish(weight) {
 
           border: "none",
 
-          cursor: "pointer"
+          color: "inherit",
+
+          cursor: "pointer",
+
+          textDecoration: "none"
           
         }}
       >
@@ -573,7 +563,7 @@ function formatWeightEnglish(weight) {
             Hidden Ability
           </span>
         )}
-      </button>
+      </Link>
 
     );
     }

@@ -3,7 +3,7 @@ import {
   useMemo,
   useState
 } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import usePersistedScroll from "../hooks/usePersistedScroll";
 import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
@@ -21,8 +21,6 @@ function capitalize(text) {
 }
 
 function LocationsPage() {
-  const navigate = useNavigate();
-
   const [locations, setLocations] =
     useState([]);
   const [loading, setLoading] =
@@ -237,13 +235,9 @@ function LocationsPage() {
         }}
       >
         {filteredLocations.map(location => (
-          <button
+          <Link
             key={location.name}
-            onClick={() =>
-              navigate(
-                `/location/${location.name}`
-              )
-            }
+            to={`/location/${location.name}`}
             style={{
               backgroundColor: "#2c2c2c",
               border: "1px solid #666",
@@ -251,7 +245,8 @@ function LocationsPage() {
               color: "inherit",
               cursor: "pointer",
               padding: "1rem",
-              textAlign: "left"
+              textAlign: "left",
+              textDecoration: "none"
             }}
           >
             <h2
@@ -278,7 +273,7 @@ function LocationsPage() {
                 ? "Encounters"
                 : "No encounter data"}
             </p>
-          </button>
+          </Link>
         ))}
       </div>
     </div>

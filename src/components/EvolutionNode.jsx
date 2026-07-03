@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 
 function capitalize(text) {
@@ -298,19 +298,13 @@ function EvolutionDescription({
   displayedPokemon,
   evolutionMethodOverrides
 }) {
-  const navigate = useNavigate();
-
   function itemLink(
     itemName,
     label = null
   ) {
     return (
-      <button
-        onClick={() =>
-          navigate(
-            `/item/${itemName}`
-          )
-        }
+      <Link
+        to={`/item/${itemName}`}
         style={{
           background: "none",
           border: "none",
@@ -324,7 +318,7 @@ function EvolutionDescription({
         }}
       >
         {label || capitalize(itemName)}
-      </button>
+      </Link>
     );
   }
 
@@ -333,12 +327,8 @@ function EvolutionDescription({
     label = null
   ) {
     return (
-      <button
-        onClick={() =>
-          navigate(
-            `/move/${moveName}`
-          )
-        }
+      <Link
+        to={`/move/${moveName}`}
         style={{
           background: "none",
           border: "none",
@@ -352,7 +342,7 @@ function EvolutionDescription({
         }}
       >
         {label || capitalize(moveName)}
-      </button>
+      </Link>
     );
   }
 
@@ -361,12 +351,8 @@ function EvolutionDescription({
     label = null
   ) {
     return (
-      <button
-        onClick={() =>
-          navigate(
-            `/location/${locationName}`
-          )
-        }
+      <Link
+        to={`/location/${locationName}`}
         style={{
           background: "none",
           border: "none",
@@ -380,7 +366,7 @@ function EvolutionDescription({
         }}
       >
         {label || capitalize(locationName)}
-      </button>
+      </Link>
     );
   }
 

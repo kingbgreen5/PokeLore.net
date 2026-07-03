@@ -5,13 +5,11 @@ import {
 } from "react";
 import {
   Link,
-  useNavigate,
   useParams
 } from "react-router-dom";
 import CollapsibleSection from "../components/CollapsibleSection";
 import MoveSummaryCard from "../components/MoveSummaryCard";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
-import TypeSizeChart from "../components/TypeSizeChart";
 import typeChart from "../constants/Types";
 import typeColors from "../constants/typeColors";
 import Seo from "../seo/Seo";
@@ -107,13 +105,9 @@ function TypeBadge({
   type,
   multiplier
 }) {
-  const navigate = useNavigate();
-
   return (
-    <button
-      onClick={() =>
-        navigate(`/type/${type}`)
-      }
+    <Link
+      to={`/type/${type}`}
       style={{
         backgroundColor:
           typeColors[type],
@@ -126,6 +120,7 @@ function TypeBadge({
         fontWeight: "bold",
         gap: ".35rem",
         padding: ".3rem .7rem",
+        textDecoration: "none",
         textTransform: "uppercase"
       }}
     >
@@ -133,7 +128,7 @@ function TypeBadge({
       <strong>
         {multiplier}x
       </strong>
-    </button>
+    </Link>
   );
 }
 

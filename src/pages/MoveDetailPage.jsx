@@ -1,5 +1,6 @@
 import typeColors from "../constants/typeColors";
 import {
+  Link,
   useParams
 } from "react-router-dom";
 
@@ -9,9 +10,6 @@ import {
   useState
 } from "react";
 
-import {
-  useNavigate
-} from "react-router-dom";
 import CollapsibleSection from "../components/CollapsibleSection";
 import MoveMachineItems from "../components/MoveMachineItems";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
@@ -836,8 +834,6 @@ function MoveDetailPage({
   const [loading, setLoading] =
     useState(true);
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     let ignore = false;
 
@@ -962,11 +958,9 @@ function MoveDetailPage({
   if (!moveData) {
     return (
       <div style={{ padding: "2rem" }}>
-        <button
-          onClick={() => navigate("/moves")}
-        >
+        <Link to="/moves">
           ← Back
-        </button>
+        </Link>
 
         <h1>Move not found</h1>
       </div>
@@ -992,24 +986,41 @@ function MoveDetailPage({
 
       {/* ------------------------ MOVE BACK BUTTON ------------------------ */}
       <div data-section="move-back-button">
-        <button
-          onClick={() =>
-            setSelectedMove
-              ? setSelectedMove(null)
-              : navigate("/moves")
-          }
-          style={{
-            background: "none",
-            border: "1px solid #555",
-            borderRadius: "999px",
-            color: "inherit",
-            cursor: "pointer",
-            marginBottom: "1.5rem",
-            padding: "0.45rem .85rem"
-          }}
-        >
-          ← Back To Moves
-        </button>
+        {setSelectedMove ? (
+          <button
+            onClick={() =>
+              setSelectedMove(null)
+            }
+            style={{
+              background: "none",
+              border: "1px solid #555",
+              borderRadius: "999px",
+              color: "inherit",
+              cursor: "pointer",
+              marginBottom: "1.5rem",
+              padding: "0.45rem .85rem"
+            }}
+          >
+            ← Back To Moves
+          </button>
+        ) : (
+          <Link
+            to="/moves"
+            style={{
+              background: "none",
+              border: "1px solid #555",
+              borderRadius: "999px",
+              color: "inherit",
+              cursor: "pointer",
+              display: "inline-block",
+              marginBottom: "1.5rem",
+              padding: "0.45rem .85rem",
+              textDecoration: "none"
+            }}
+          >
+            ← Back To Moves
+          </Link>
+        )}
       </div>
 
       {/* ------------------------ MOVE HERO HEADER ------------------------ */}
@@ -1053,12 +1064,8 @@ function MoveDetailPage({
             }}
           />
 
-          <button
-            onClick={() =>
-              navigate(
-                `/type/${moveData.type}`
-              )
-            }
+          <Link
+            to={`/type/${moveData.type}`}
             style={{
               backgroundColor:
                 moveTypeColor,
@@ -1069,11 +1076,12 @@ function MoveDetailPage({
               fontSize: "1.15rem",
               fontWeight: "900",
               padding: ".55rem 1.9rem",
+              textDecoration: "none",
               textTransform: "uppercase"
             }}
           >
             {moveData.type}
-          </button>
+          </Link>
 
           <span
             style={{

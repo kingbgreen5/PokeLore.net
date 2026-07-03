@@ -218,7 +218,7 @@ export function pokemonSeo(pokemon) {
       : null;
   const dexSuffix =
     pokemon?.isDefaultForm && dexNumber
-      ? ` — Pokédex #${dexNumber}`
+      ? ` — #${dexNumber}`
       : "";
   const heightInches =
     Number.isFinite(Number(pokemon?.height))
@@ -255,7 +255,7 @@ export function pokemonSeo(pokemon) {
       ? `Explore ${name}'s stats, moves, abilities, evolution details, type matchups, locations, National Pokédex number ${pokemon.id}, and size chart.${sizeDescription}`
       : `Explore ${name}'s stats, moves, abilities, evolution details, type matchups, locations, and size chart.${sizeDescription}`;
   const title =
-    `${name} Stats, Moves, Abilities & Locations | ${SITE_NAME}${dexSuffix}`;
+    `${name} Stats, Moves, Abilities, Locations, and Size Chart | ${SITE_NAME}${dexSuffix}`;
   const pokemonId =
     `${canonical}#pokemon`;
   const sizeComparisonId =

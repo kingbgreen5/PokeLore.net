@@ -4,8 +4,8 @@ import {
   useState
 } from "react";
 import {
+  Link,
   Navigate,
-  useNavigate,
   useParams
 } from "react-router-dom";
 import AcquisitionMethods from "../components/AcquisitionMethods";
@@ -131,7 +131,6 @@ function DetailRow({
 
 
 function ItemDetailPage() {
-  const navigate = useNavigate();
   const { itemName } = useParams();
   const normalizedItemName =
     normalizeItemName(itemName);
@@ -313,13 +312,9 @@ function ItemDetailPage() {
     >
         <Seo {...itemSeo(normalizedItemName)} />
 
-        <button
-          onClick={() =>
-            navigate("/items")
-          }
-        >
+        <Link to="/items">
           Back To Items
-        </button>
+        </Link>
 
         <h1>Item not found</h1>
       </div>

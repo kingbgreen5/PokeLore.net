@@ -9,13 +9,17 @@ import {
 import {
   useNavigate
 } from "react-router-dom";
-// import oakSprite from "../assets/FRLG_Professor_Oak_Portrait.png";
-import oakSprite from "../assets/OakSprite3.png";
+import {
+  DEFAULT_SIZE_COMPARISON_CHARACTER_ID,
+  sizeComparisonCharacters
+} from "../data/sizeComparisonCharacters";
 import { formatPokemonDisplayName }
 from "../utils/pokemonNames";
 
 const LOCAL_CORRECTIONS_KEY =
   "pokemonSpriteManualCorrections";
+const COMPARISON_CHARACTER_KEY =
+  "pokemonSizeComparisonCharacter";
 
 const SIZE_CORRECTION_REASONS = [
   {
@@ -47,6 +51,12 @@ const SIZE_CORRECTION_REASONS = [
     label: "Leaves/foliage",
     explanation:
       "leaves or foliage can extend beyond the substantial body"
+  },
+  {
+    value: "tail",
+    label: "Tail",
+    explanation:
+      "tails can extend beyond the main body silhouette"
   }
 ];
 
@@ -69,6 +79,30 @@ function writeLocalCorrections(corrections) {
   );
 }
 
+function readComparisonCharacterId() {
+  try {
+    return (
+      localStorage.getItem(
+        COMPARISON_CHARACTER_KEY
+      ) ??
+      DEFAULT_SIZE_COMPARISON_CHARACTER_ID
+    );
+  } catch {
+    return DEFAULT_SIZE_COMPARISON_CHARACTER_ID;
+  }
+}
+
+function writeComparisonCharacterId(characterId) {
+  try {
+    localStorage.setItem(
+      COMPARISON_CHARACTER_KEY,
+      characterId
+    );
+  } catch {
+    // Ignore storage failures so the chart remains usable.
+  }
+}
+
 function getCorrectionReason(reasonValue) {
   return (
     SIZE_CORRECTION_REASONS.find(
@@ -77,12 +111,42 @@ function getCorrectionReason(reasonValue) {
   );
 }
 
+function formatFeetInches(totalInches) {
+  const feet = Math.floor(totalInches / 12);
+  const inches = totalInches % 12;
+
+  return `${feet}' ${inches}"`;
+}
+
+function formatCharacterName(character) {
+  return character.variant
+    ? `${character.name} (${character.variant})`
+    : character.name;
+}
+
+function formatCharacterOption(character) {
+  const heightLabel = formatFeetInches(
+    character.heightInches
+  );
+  const sourceLabel =
+    character.heightSource === "fallback"
+      ? "estimate"
+      : "";
+
+  return [
+    formatCharacterName(character),
+    heightLabel,
+    sourceLabel
+  ]
+    .filter(Boolean)
+    .join(" - ");
+}
+
 function SizeComparison({
   pokemon,
   reviewMode = false
 }) {
   const navigate = useNavigate();
-  const oakHeightInches = 67;
   const fallbackSpriteCorrectionFactor = 1.2;
   const [
     spriteBoundsById,
@@ -103,6 +167,12 @@ function SizeComparison({
     setLocalCorrectionsById
   ] = useState(() =>
     readLocalCorrections()
+  );
+  const [
+    comparisonCharacterId,
+    setComparisonCharacterId
+  ] = useState(() =>
+    readComparisonCharacterId()
   );
   const [pokemonIndex, setPokemonIndex] =
     useState([]);
@@ -249,13 +319,6 @@ function SizeComparison({
     return Math.round((height / 10) * 39.3701);
   }
 
-  function formatFeetInches(totalInches) {
-    const feet = Math.floor(totalInches / 12);
-    const inches = totalInches % 12;
-
-    return `${feet}' ${inches}"`;
-  }
-
   function formatMeters(height) {
     return `${(Number(height) / 10).toFixed(1)} m`;
   }
@@ -263,6 +326,21 @@ function SizeComparison({
   const pokemonHeightInches = heightToInches(pokemon.height);
   const pokemonDisplayName =
     formatPokemonDisplayName(pokemon);
+  const comparisonCharacter =
+    sizeComparisonCharacters.find(
+      character =>
+        character.id === comparisonCharacterId
+    ) ??
+    sizeComparisonCharacters.find(
+      character =>
+        character.id ===
+        DEFAULT_SIZE_COMPARISON_CHARACTER_ID
+    ) ??
+    sizeComparisonCharacters[0];
+  const comparisonCharacterName =
+    formatCharacterName(comparisonCharacter);
+  const comparisonHeightInches =
+    comparisonCharacter.heightInches;
   const listedHeightLabel =
     formatFeetInches(pokemonHeightInches);
   const listedMetricHeight =
@@ -293,6 +371,9 @@ function SizeComparison({
     typeof correctionData === "object"
       ? getCorrectionReason(correctionData?.reason)
       : null;
+  const pokemonSpriteFlipped =
+    typeof correctionData === "object" &&
+    correctionData?.flipHorizontal === true;
   const sizeComparisonSummary =
     manualCorrectionFactor === 1
       ? `${pokemonDisplayName} is listed at ${listedHeightLabel} (${listedMetricHeight}) and shown in an in-chart visual comparison.`
@@ -435,6 +516,10 @@ function SizeComparison({
       delete nextCorrection.reason;
     }
 
+    if (!nextCorrection.flipHorizontal) {
+      delete nextCorrection.flipHorizontal;
+    }
+
     return nextCorrection;
   }
 
@@ -486,6 +571,19 @@ function SizeComparison({
     writeLocalCorrections(nextCorrections);
   }
 
+  function toggleHorizontalFlip() {
+    const nextCorrections = {
+      ...localCorrectionsById,
+      [pokemon.id]: buildCorrectionEntry({
+        flipHorizontal:
+          !pokemonSpriteFlipped
+      })
+    };
+
+    setLocalCorrectionsById(nextCorrections);
+    writeLocalCorrections(nextCorrections);
+  }
+
   function resetManualCorrection() {
     const nextCorrections = {
       ...localCorrectionsById
@@ -494,6 +592,13 @@ function SizeComparison({
     delete nextCorrections[pokemon.id];
     setLocalCorrectionsById(nextCorrections);
     writeLocalCorrections(nextCorrections);
+  }
+
+  function handleComparisonCharacterChange(event) {
+    const nextCharacterId = event.target.value;
+
+    setComparisonCharacterId(nextCharacterId);
+    writeComparisonCharacterId(nextCharacterId);
   }
 
   function navigateToPokemon(nextPokemon) {
@@ -512,7 +617,7 @@ function SizeComparison({
   function getChartMetrics(chartHeightPx) {
     const tallestHeightInches = Math.max(
       effectivePokemonHeightInches,
-      oakHeightInches,
+      comparisonHeightInches,
       72
     );
     const rawChartMaxFeet = Math.ceil(
@@ -539,8 +644,9 @@ function SizeComparison({
     ) {
       rulerMarks.push(feet);
     }
-    const oakHeightPx =
-      (oakHeightInches / chartMaxInches) *
+    const comparisonHeightPx =
+      (comparisonHeightInches /
+        chartMaxInches) *
       chartHeightPx;
     const pokemonHeightPx =
       (pokemonHeightInches / chartMaxInches) *
@@ -553,7 +659,7 @@ function SizeComparison({
       Math.ceil(
         (pokemonSpriteSizing
           .visibleRenderedWidth || 0) +
-          oakHeightPx * 0.55 +
+          comparisonHeightPx * 0.55 +
           96
       );
     const recommendedMinWidthPx =
@@ -566,7 +672,7 @@ function SizeComparison({
     return {
       chartMaxFeet,
       chartHeightPx,
-      oakHeightPx,
+      comparisonHeightPx,
       pokemonSpriteSizing,
       recommendedMinWidthPx,
       rulerInterval,
@@ -670,12 +776,12 @@ function SizeComparison({
   }) {
     const mobileScenePadding = 35
     ;
-    const mobileOakOverlap = 55;
-    const mobileOakLeft =
+    const mobileComparisonOverlap = 55;
+    const mobileComparisonLeft =
       mobileScenePadding +
       (metrics.pokemonSpriteSizing
         .visibleRenderedWidth || 0) -
-      mobileOakOverlap;
+      mobileComparisonOverlap;
 
     if (stacked) {
       return (
@@ -729,14 +835,14 @@ function SizeComparison({
             </SpriteColumn>
             <SpriteColumn
               width="max-content"
-              left={`${mobileOakLeft}px`}
+              left={`${mobileComparisonLeft}px`}
               zIndex={
                 topLayer === "oak"
                   ? 2
                   : 1
               }
             >
-              <OakSprite
+              <ComparisonCharacterSprite
                 metrics={metrics}
               />
             </SpriteColumn>
@@ -765,7 +871,7 @@ function SizeComparison({
                   : 1
               }
             >
-              <OakSprite
+              <ComparisonCharacterSprite
                 metrics={metrics}
               />
             </SpriteColumn>
@@ -814,7 +920,7 @@ function SizeComparison({
                 metrics={metrics}
               />
             ) : (
-              <OakSprite
+              <ComparisonCharacterSprite
                 metrics={metrics}
               />
             )}
@@ -852,15 +958,15 @@ function SizeComparison({
     );
   }
 
-  function OakSprite({
+  function ComparisonCharacterSprite({
     metrics
   }) {
     return (
       <img
-        src={oakSprite}
-        alt="Professor Oak"
+        src={comparisonCharacter.sprite}
+        alt={comparisonCharacterName}
         style={{
-          height: `${metrics.oakHeightPx}px`,
+          height: `${metrics.comparisonHeightPx}px`,
           // imageRendering: "pixelated",
           maxWidth: "none",
           objectFit: "contain",
@@ -890,7 +996,8 @@ function SizeComparison({
           height: `${metrics.pokemonSpriteSizing.renderedHeight}px`,
           maxWidth: "none",
           objectFit: "contain",
-          transform: `translate(${horizontalOffset}px, ${metrics.pokemonSpriteSizing.floorOffset}px)`,
+          transform: `translate(${horizontalOffset}px, ${metrics.pokemonSpriteSizing.floorOffset}px) scaleX(${pokemonSpriteFlipped ? -1 : 1})`,
+          transformOrigin: "center bottom",
           width: "auto"
         }}
       />
@@ -1062,7 +1169,7 @@ function SizeComparison({
       >
         {sizeComparisonSummary}
       </p>
-     
+
       {isMobile ? (
         <ChartFrame
           title="Mobile"
@@ -1163,24 +1270,77 @@ function SizeComparison({
         </div>
       </details>
 
-      <button
-        type="button"
-        onClick={handleTopLayerToggle}
+      <div
         style={{
-          backgroundColor: "#fab856",
-          border: "none",
-          borderRadius: "999px",
-          color: "#1b1b1b",
-          cursor: "pointer",
-          fontWeight: "700",
-          padding: ".55rem 1rem"
+          alignItems: "center",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: ".6rem",
+          justifyContent: "center",
+          margin: "0 auto 1rem"
         }}
       >
-        Top Layer:{" "}
-        {topLayer === "pokemon"
-          ? "Pokémon"
-          : "Professor Oak"}
-      </button>
+        <label
+          style={{
+            alignItems: "center",
+            display: "flex",
+            flexWrap: "wrap",
+            fontSize: ".9rem",
+            fontWeight: "700",
+            gap: ".4rem",
+            justifyContent: "center"
+          }}
+        >
+          Compare with
+          <select
+            value={comparisonCharacter.id}
+            onChange={
+              handleComparisonCharacterChange
+            }
+            style={{
+              backgroundColor: "#171a20",
+              border: "1px solid #6f7a86",
+              borderRadius: "8px",
+              color: "#f5f5f5",
+              font: "inherit",
+              maxWidth: "min(82vw, 360px)",
+              padding: ".45rem .6rem"
+            }}
+          >
+            {sizeComparisonCharacters.map(
+              character => (
+                <option
+                  key={character.id}
+                  value={character.id}
+                >
+                  {formatCharacterOption(
+                    character
+                  )}
+                </option>
+              )
+            )}
+          </select>
+        </label>
+
+        <button
+          type="button"
+          onClick={handleTopLayerToggle}
+          style={{
+            backgroundColor: "#fab856",
+            border: "none",
+            borderRadius: "999px",
+            color: "#1b1b1b",
+            cursor: "pointer",
+            fontWeight: "700",
+            padding: ".55rem 1rem"
+          }}
+        >
+          Top Layer:{" "}
+          {topLayer === "pokemon"
+            ? "Pokémon"
+            : comparisonCharacterName}
+        </button>
+      </div>
 
       {reviewMode && (
         <section
@@ -1267,6 +1427,15 @@ function SizeComparison({
 
             <button
               type="button"
+              onClick={toggleHorizontalFlip}
+            >
+              {pokemonSpriteFlipped
+                ? "Unflip Image"
+                : "Horizontally Flip Image"}
+            </button>
+
+            <button
+              type="button"
               onClick={() =>
                 updateTopLayerPreset(
                   "pokemon"
@@ -1286,7 +1455,7 @@ function SizeComparison({
               }
               disabled={topLayerPreset === "oak"}
             >
-              Preset Oak Front
+              Preset Character Front
             </button>
 
             <label

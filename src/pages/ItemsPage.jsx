@@ -3,7 +3,7 @@ import {
   useMemo,
   useState
 } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import usePersistedScroll from "../hooks/usePersistedScroll";
 import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
@@ -22,8 +22,6 @@ function capitalize(text) {
 }
 
 function ItemsPage() {
-  const navigate = useNavigate();
-
   const [items, setItems] =
     useState([]);
 
@@ -212,13 +210,9 @@ function ItemsPage() {
         }}
       >
         {filteredItems.map(item => (
-          <button
+          <Link
             key={item.name}
-            onClick={() =>
-              navigate(
-                `/item/${item.name}`
-              )
-            }
+            to={`/item/${item.name}`}
             style={{
               backgroundColor: "#2c2c2c",
               border: "1px solid #666",
@@ -226,7 +220,8 @@ function ItemsPage() {
               color: "inherit",
               cursor: "pointer",
               padding: "1rem",
-              textAlign: "left"
+              textAlign: "left",
+              textDecoration: "none"
             }}
           >
             <div
@@ -272,7 +267,7 @@ function ItemsPage() {
             >
               {item.shortEffect}
             </p>
-          </button>
+          </Link>
         ))}
       </div>
     </div>

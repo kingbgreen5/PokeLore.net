@@ -1,21 +1,20 @@
 
-import { useNavigate }
+import { Link }
 from "react-router-dom";
 
 import bannerImage
 from "../assets/Banner.png";
 
 function Banner() {
-
-  const navigate = useNavigate();
-
   return (
-    <div
-      onClick={() => navigate("/")}
+    <Link
+      to="/"
       style={{
+        display: "block",
         padding: ".5rem",
         cursor: "pointer",
-        textAlign: "center"
+        textAlign: "center",
+        textDecoration: "none"
 
 
         
@@ -45,7 +44,7 @@ onMouseLeave={e => {
       </div>
 
 
-    </div>
+    </Link>
   );
 }
 

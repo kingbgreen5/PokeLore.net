@@ -5,7 +5,7 @@ import {
 } from "react";
 
 import {
-  useNavigate
+  Link
 } from "react-router-dom";
 import usePersistedScroll from "../hooks/usePersistedScroll";
 import useQueryParamState from "../hooks/useQueryParamState";
@@ -24,9 +24,6 @@ function capitalize(text) {
 }
 
 function AbilitiesPage() {
-
-  const navigate = useNavigate();
-
   const [abilities, setAbilities] =
     useState({});
 
@@ -152,15 +149,9 @@ function AbilitiesPage() {
         {filteredAbilities.map(
           ability => (
 
-            <div
+            <Link
               key={ability.name}
-
-              onClick={() =>
-                navigate(
-                  `/ability/${ability.name}`
-                )
-              }
-
+              to={`/ability/${ability.name}`}
               style={{
                 border:
                   "1px solid #666",
@@ -168,9 +159,13 @@ function AbilitiesPage() {
                 borderRadius:
                   "12px",
 
+                color: "inherit",
+
                 padding: "1rem",
 
-                cursor: "pointer"
+                cursor: "pointer",
+
+                textDecoration: "none"
               }}
             >
 
@@ -187,7 +182,7 @@ function AbilitiesPage() {
                 }
               </p>
 
-            </div>
+            </Link>
 
           )
         )}

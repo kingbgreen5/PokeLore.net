@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import typeColors from "../constants/typeColors";
 import typeChart from "../constants/Types";
 
@@ -38,13 +38,9 @@ function TypeBadge({
   type,
   multiplier
 }) {
-  const navigate = useNavigate();
-
   return (
-    <button
-      onClick={() =>
-        navigate(`/type/${type}`)
-      }
+    <Link
+      to={`/type/${type}`}
       style={{
         alignItems: "center",
         backgroundColor:
@@ -58,6 +54,7 @@ function TypeBadge({
         fontWeight: "bold",
         gap: ".35rem",
         padding: ".3rem .7rem",
+        textDecoration: "none",
         textTransform: "uppercase"
       }}
     >
@@ -65,7 +62,7 @@ function TypeBadge({
       <strong>
         {multiplier}x
       </strong>
-    </button>
+    </Link>
   );
 }
 
