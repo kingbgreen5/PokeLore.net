@@ -368,14 +368,10 @@ function TypeDetailPage() {
           )
         ]);
 
-        const [
-          pokemonData,
-          abilitiesData
-        ] = await Promise.all([
-          pokemonResponse.json(),
-          Promise.resolve(movesData),
-          abilitiesResponse.json()
-        ]);
+        const pokemonData =
+          await pokemonResponse.json();
+        const abilitiesData =
+          await abilitiesResponse.json();
 
         setPokemonIndex(pokemonData);
         setMoves(movesData);
