@@ -1,0 +1,34 @@
+{
+  "item": "red-apricorn",
+  "displayName": "Red Apricorn",
+  "source": "itemLocationsCurated.json",
+  "sourceTitle": "PokéLore curated Pokéathlon Dome shop data",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pok?mon HeartGold",
+        "Pok?mon SoulSilver"
+      ],
+      "location": {
+        "name": "pokeathlon-dome",
+        "displayName": "Pok?athlon Dome"
+      },
+      "area": "Athlete Shop",
+      "method": "Purchase for 200 Athlete Points on Monday, Friday, or Sunday.",
+      "acquisitionType": "purchase",
+      "cost": {
+        "amount": 200,
+        "currency": "Athlete Points"
+      },
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Available only on Monday, Friday, or Sunday"
+      ],
+      "originalLocationText": "Pok?athlon Dome",
+      "locationMatchStatus": "matched"
+    }
+  ]
+}

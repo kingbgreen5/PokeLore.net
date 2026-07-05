@@ -193,26 +193,6 @@
         "Pokémon SoulSilver"
       ],
       "location": {
-        "name": "pokeathlon-dome",
-        "displayName": "Pokéathlon Dome"
-      },
-      "method": "Purchase for 2,500 Athlete Points on Tuesday, Thursday, or Saturday.",
-      "acquisitionType": "purchase",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "Available only on Tuesday, Thursday, or Saturday"
-      ],
-      "originalLocationText": "Pokéathlon Dome",
-      "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 4,
-      "games": [
-        "Pokémon HeartGold",
-        "Pokémon SoulSilver"
-      ],
-      "location": {
         "name": "johto-route-34",
         "displayName": "Route 34"
       },
@@ -1214,6 +1194,31 @@
         "The Teal Mask DLC"
       ],
       "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pok?mon HeartGold",
+        "Pok?mon SoulSilver"
+      ],
+      "location": {
+        "name": "pokeathlon-dome",
+        "displayName": "Pok?athlon Dome"
+      },
+      "area": "Athlete Shop",
+      "method": "Purchase for 2,500 Athlete Points on Saturday.",
+      "acquisitionType": "purchase",
+      "cost": {
+        "amount": 2500,
+        "currency": "Athlete Points"
+      },
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Available only on Saturday"
+      ],
+      "originalLocationText": "Pok?athlon Dome",
+      "locationMatchStatus": "matched"
     }
   ]
 }

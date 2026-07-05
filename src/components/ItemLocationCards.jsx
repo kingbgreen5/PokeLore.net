@@ -16,6 +16,25 @@ function formatItemMethodType(type) {
   return capitalize(type ?? "method");
 }
 
+function formatCost(cost) {
+  if (!cost) return null;
+
+  if (typeof cost === "string") {
+    return cost;
+  }
+
+  if (
+    cost.amount === null ||
+    cost.amount === undefined
+  ) {
+    return null;
+  }
+
+  return `${cost.amount.toLocaleString()} ${
+    cost.currency ?? ""
+  }`.trim();
+}
+
 function versionDisplayToSlug(version) {
   return String(version ?? "")
     .replace(/^Pokémon\s+/i, "")
@@ -90,6 +109,7 @@ function methodGroupKey(method) {
     method.type ?? "",
     method.area ?? "",
     method.details ?? "",
+    formatCost(method.cost) ?? "",
     method.notes ?? "",
     method.repeatable ? "repeatable" : "",
     method.versionExclusive
@@ -334,6 +354,19 @@ function ItemLocationCards({
                       }}
                     >
                       {method.details}
+                    </p>
+                  )}
+
+                  {formatCost(method.cost) && (
+                    <p
+                      style={{
+                        margin:
+                          ".35rem 0 0",
+                        opacity: 0.85
+                      }}
+                    >
+                      Cost:{" "}
+                      {formatCost(method.cost)}
                     </p>
                   )}
 

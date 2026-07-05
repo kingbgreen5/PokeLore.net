@@ -1,9 +1,1214 @@
 {
   "location": {
     "name": "pokeathlon-dome",
-    "displayName": "Pokéathlon Dome"
+    "displayName": "Pok?athlon Dome"
   },
   "items": [
+    {
+      "item": {
+        "name": "black-apricorn",
+        "displayName": "Black Apricorn",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/black-apricorn.png"
+      },
+      "versions": [
+        {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Wednesday, Saturday, or Sunday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Wednesday, Saturday, or Sunday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Wednesday, Saturday, or Sunday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Wednesday, Saturday, or Sunday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "blue-apricorn",
+        "displayName": "Blue Apricorn",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/blue-apricorn.png"
+      },
+      "versions": [
+        {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Monday, Wednesday, or Sunday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Monday, Wednesday, or Sunday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Monday, Wednesday, or Sunday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Monday, Wednesday, or Sunday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-01",
+        "displayName": "Data Card 01",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 01 from the Data Card Shop after reaching Pokéathlon Level 1.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 1"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 01 from the Data Card Shop after reaching Pokéathlon Level 1.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 1"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-02",
+        "displayName": "Data Card 02",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 02 from the Data Card Shop after reaching Pokéathlon Level 1.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 1"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 02 from the Data Card Shop after reaching Pokéathlon Level 1.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 1"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-03",
+        "displayName": "Data Card 03",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 03 from the Data Card Shop after reaching Pokéathlon Level 1.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 1"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 03 from the Data Card Shop after reaching Pokéathlon Level 1.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 1"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-04",
+        "displayName": "Data Card 04",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 04 from the Data Card Shop after reaching Pokéathlon Level 1.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 1"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 04 from the Data Card Shop after reaching Pokéathlon Level 1.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 1"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-05",
+        "displayName": "Data Card 05",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 05 from the Data Card Shop after reaching Pokéathlon Level 1.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 1"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 05 from the Data Card Shop after reaching Pokéathlon Level 1.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 1"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-06",
+        "displayName": "Data Card 06",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 06 from the Data Card Shop after reaching Pokéathlon Level 1.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 1"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 06 from the Data Card Shop after reaching Pokéathlon Level 1.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 1"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-07",
+        "displayName": "Data Card 07",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 07 from the Data Card Shop after reaching Pokéathlon Level 2.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 2"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 07 from the Data Card Shop after reaching Pokéathlon Level 2.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 2"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-08",
+        "displayName": "Data Card 08",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 08 from the Data Card Shop after reaching Pokéathlon Level 2.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 2"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 08 from the Data Card Shop after reaching Pokéathlon Level 2.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 2"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-09",
+        "displayName": "Data Card 09",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 09 from the Data Card Shop after reaching Pokéathlon Level 2.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 2"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 09 from the Data Card Shop after reaching Pokéathlon Level 2.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 2"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-10",
+        "displayName": "Data Card 10",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 10 from the Data Card Shop after reaching Pokéathlon Level 2.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 2"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 10 from the Data Card Shop after reaching Pokéathlon Level 2.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 2"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-11",
+        "displayName": "Data Card 11",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 11 from the Data Card Shop after reaching Pokéathlon Level 2.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 2"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 11 from the Data Card Shop after reaching Pokéathlon Level 2.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 2"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-12",
+        "displayName": "Data Card 12",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 12 from the Data Card Shop after reaching Pokéathlon Level 2.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 2"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 12 from the Data Card Shop after reaching Pokéathlon Level 2.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 2"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-13",
+        "displayName": "Data Card 13",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 13 from the Data Card Shop after reaching Pokéathlon Level 3.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 3"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 13 from the Data Card Shop after reaching Pokéathlon Level 3.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 3"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-14",
+        "displayName": "Data Card 14",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 14 from the Data Card Shop after reaching Pokéathlon Level 3.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 3"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 14 from the Data Card Shop after reaching Pokéathlon Level 3.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 3"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-15",
+        "displayName": "Data Card 15",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 15 from the Data Card Shop after reaching Pokéathlon Level 3.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 3"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 15 from the Data Card Shop after reaching Pokéathlon Level 3.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 3"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-16",
+        "displayName": "Data Card 16",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 16 from the Data Card Shop after reaching Pokéathlon Level 3.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 3"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 16 from the Data Card Shop after reaching Pokéathlon Level 3.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 3"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-17",
+        "displayName": "Data Card 17",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 17 from the Data Card Shop after reaching Pokéathlon Level 3.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 3"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 17 from the Data Card Shop after reaching Pokéathlon Level 3.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 3"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-18",
+        "displayName": "Data Card 18",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 18 from the Data Card Shop after reaching Pokéathlon Level 3.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 3"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 18 from the Data Card Shop after reaching Pokéathlon Level 3.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 3"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-19",
+        "displayName": "Data Card 19",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 19 from the Data Card Shop after reaching Pokéathlon Level 4.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 4"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 19 from the Data Card Shop after reaching Pokéathlon Level 4.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 4"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-20",
+        "displayName": "Data Card 20",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 20 from the Data Card Shop after reaching Pokéathlon Level 4.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 4"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 20 from the Data Card Shop after reaching Pokéathlon Level 4.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 4"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-21",
+        "displayName": "Data Card 21",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 21 from the Data Card Shop after reaching Pokéathlon Level 4.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 4"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 21 from the Data Card Shop after reaching Pokéathlon Level 4.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 4"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-22",
+        "displayName": "Data Card 22",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 22 from the Data Card Shop after reaching Pokéathlon Level 4.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 4"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 22 from the Data Card Shop after reaching Pokéathlon Level 4.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 4"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-23",
+        "displayName": "Data Card 23",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 23 from the Data Card Shop after reaching Pokéathlon Level 4.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 4"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 23 from the Data Card Shop after reaching Pokéathlon Level 4.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 4"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-24",
+        "displayName": "Data Card 24",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 24 from the Data Card Shop after reaching Pokéathlon Level 4.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 4"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 24 from the Data Card Shop after reaching Pokéathlon Level 4.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 4"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-25",
+        "displayName": "Data Card 25",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 25 from the Data Card Shop after reaching Pokéathlon Level 5.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 5"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 25 from the Data Card Shop after reaching Pokéathlon Level 5.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 5"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-26",
+        "displayName": "Data Card 26",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 26 from the Data Card Shop after reaching Pokéathlon Level 5.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 5"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 26 from the Data Card Shop after reaching Pokéathlon Level 5.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 5"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "data-card-27",
+        "displayName": "Data Card 27",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/data-card.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 27 from the Data Card Shop after reaching Pokéathlon Level 5.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 5"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Data Card Shop",
+              "details": "Purchase Data Card 27 from the Data Card Shop after reaching Pokéathlon Level 5.",
+              "notes": null,
+              "requirements": [
+                "Reach Pokéathlon Level 5"
+              ],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
     {
       "item": {
         "name": "dawn-stone",
@@ -139,18 +1344,69 @@
       },
       "versions": [
         {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 2,500 Athlete Points on Tuesday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Tuesday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 2500,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 2,500 Athlete Points on Tuesday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Tuesday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 2500,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "fresh-water",
+        "displayName": "Fresh Water",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fresh-water.png"
+      },
+      "versions": [
+        {
           "version": "Pokémon HeartGold",
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 2,500 Athlete Points on Sunday, Tuesday, or Thursday.",
+              "area": "Player vending machines",
+              "details": "Purchase from a Pokéathlon Dome vending machine for 200 Poké Dollars.",
               "notes": null,
-              "requirements": [
-                "Available only on Sunday, Tuesday, or Thursday"
-              ],
+              "requirements": [],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Poké Dollars"
+              }
             }
           ]
         },
@@ -159,14 +1415,114 @@
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 2,500 Athlete Points on Sunday, Tuesday, or Thursday.",
+              "area": "Player vending machines",
+              "details": "Purchase from a Pokéathlon Dome vending machine for 200 Poké Dollars.",
+              "notes": null,
+              "requirements": [],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Poké Dollars"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "green-apricorn",
+        "displayName": "Green Apricorn",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/green-apricorn.png"
+      },
+      "versions": [
+        {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Monday, Friday, or Saturday.",
               "notes": null,
               "requirements": [
-                "Available only on Sunday, Tuesday, or Thursday"
+                "Available only on Monday, Friday, or Saturday"
               ],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Monday, Friday, or Saturday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Monday, Friday, or Saturday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "heart-scale",
+        "displayName": "Heart Scale",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/heart-scale.png"
+      },
+      "versions": [
+        {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 1,000 Athlete Points on Wednesday or Sunday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Wednesday or Sunday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 1000,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 1,000 Athlete Points on Wednesday or Sunday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Wednesday or Sunday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 1000,
+                "currency": "Athlete Points"
+              }
             }
           ]
         }
@@ -180,30 +1536,42 @@
       },
       "versions": [
         {
-          "version": "Pokémon HeartGold",
+          "version": "Pok?mon HeartGold",
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 3,000 Athlete Points on Sunday, Monday, or Thursday.",
+              "area": "Athlete Shop",
+              "details": "Purchase for 3,000 Athlete Points on Sunday.",
               "notes": null,
-              "requirements": [],
+              "requirements": [
+                "Available only on Sunday"
+              ],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 3000,
+                "currency": "Athlete Points"
+              }
             }
           ]
         },
         {
-          "version": "Pokémon SoulSilver",
+          "version": "Pok?mon SoulSilver",
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 3,000 Athlete Points on Sunday, Monday, or Thursday.",
+              "area": "Athlete Shop",
+              "details": "Purchase for 3,000 Athlete Points on Sunday.",
               "notes": null,
-              "requirements": [],
+              "requirements": [
+                "Available only on Sunday"
+              ],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 3000,
+                "currency": "Athlete Points"
+              }
             }
           ]
         }
@@ -217,18 +1585,69 @@
       },
       "versions": [
         {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 2,500 Athlete Points on Saturday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Saturday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 2500,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 2,500 Athlete Points on Saturday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Saturday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 2500,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "lemonade",
+        "displayName": "Lemonade",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lemonade.png"
+      },
+      "versions": [
+        {
           "version": "Pokémon HeartGold",
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 2,500 Athlete Points on Tuesday, Thursday, or Saturday.",
+              "area": "Player vending machines",
+              "details": "Purchase from a Pokéathlon Dome vending machine for 350 Poké Dollars.",
               "notes": null,
-              "requirements": [
-                "Available only on Tuesday, Thursday, or Saturday"
-              ],
+              "requirements": [],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 350,
+                "currency": "Poké Dollars"
+              }
             }
           ]
         },
@@ -237,14 +1656,16 @@
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 2,500 Athlete Points on Tuesday, Thursday, or Saturday.",
+              "area": "Player vending machines",
+              "details": "Purchase from a Pokéathlon Dome vending machine for 350 Poké Dollars.",
               "notes": null,
-              "requirements": [
-                "Available only on Tuesday, Thursday, or Saturday"
-              ],
+              "requirements": [],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 350,
+                "currency": "Poké Dollars"
+              }
             }
           ]
         }
@@ -258,30 +1679,91 @@
       },
       "versions": [
         {
-          "version": "Pokémon HeartGold",
+          "version": "Pok?mon HeartGold",
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 2,500 Athlete Points on Tuesday, Friday, or Saturday.",
+              "area": "Athlete Shop",
+              "details": "Purchase for 2,500 Athlete Points on Friday.",
               "notes": null,
-              "requirements": [],
+              "requirements": [
+                "Available only on Friday"
+              ],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 2500,
+                "currency": "Athlete Points"
+              }
             }
           ]
         },
         {
-          "version": "Pokémon SoulSilver",
+          "version": "Pok?mon SoulSilver",
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 2,500 Athlete Points on Tuesday, Friday, or Saturday.",
+              "area": "Athlete Shop",
+              "details": "Purchase for 2,500 Athlete Points on Friday.",
               "notes": null,
-              "requirements": [],
+              "requirements": [
+                "Available only on Friday"
+              ],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 2500,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "moomoo-milk",
+        "displayName": "Moomoo Milk",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moomoo-milk.png"
+      },
+      "versions": [
+        {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 100 Athlete Points on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, or Sunday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, or Sunday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 100,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 100 Athlete Points on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, or Sunday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, or Sunday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 100,
+                "currency": "Athlete Points"
+              }
             }
           ]
         }
@@ -295,34 +1777,287 @@
       },
       "versions": [
         {
-          "version": "Pokémon HeartGold",
+          "version": "Pok?mon HeartGold",
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 3,000 Athlete Points on Monday or Wednesday.",
+              "area": "Athlete Shop",
+              "details": "Purchase for 3,000 Athlete Points on Monday.",
               "notes": null,
               "requirements": [
-                "Available only on Monday or Wednesday"
+                "Available only on Monday"
               ],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 3000,
+                "currency": "Athlete Points"
+              }
             }
           ]
         },
         {
-          "version": "Pokémon SoulSilver",
+          "version": "Pok?mon SoulSilver",
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 3,000 Athlete Points on Monday or Wednesday.",
+              "area": "Athlete Shop",
+              "details": "Purchase for 3,000 Athlete Points on Monday.",
               "notes": null,
               "requirements": [
-                "Available only on Monday or Wednesday"
+                "Available only on Monday"
               ],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 3000,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "nugget",
+        "displayName": "Nugget",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/nugget.png"
+      },
+      "versions": [
+        {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 500 Athlete Points on Friday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Friday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 500,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 500 Athlete Points on Friday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Friday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 500,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "pink-apricorn",
+        "displayName": "Pink Apricorn",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pink-apricorn.png"
+      },
+      "versions": [
+        {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Tuesday, Wednesday, or Thursday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Tuesday, Wednesday, or Thursday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Tuesday, Wednesday, or Thursday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Tuesday, Wednesday, or Thursday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "pp-up",
+        "displayName": "PP Up",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pp-up.png"
+      },
+      "versions": [
+        {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 1,000 Athlete Points on Tuesday or Thursday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Tuesday or Thursday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 1000,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 1,000 Athlete Points on Tuesday or Thursday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Tuesday or Thursday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 1000,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "rare-candy",
+        "displayName": "Rare Candy",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png"
+      },
+      "versions": [
+        {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 2,000 Athlete Points on Monday or Saturday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Monday or Saturday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 2000,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 2,000 Athlete Points on Monday or Saturday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Monday or Saturday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 2000,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "red-apricorn",
+        "displayName": "Red Apricorn",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/red-apricorn.png"
+      },
+      "versions": [
+        {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Monday, Friday, or Sunday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Monday, Friday, or Sunday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Monday, Friday, or Sunday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Monday, Friday, or Sunday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
             }
           ]
         }
@@ -366,6 +2101,51 @@
               ],
               "repeatable": true,
               "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "soda-pop",
+        "displayName": "Soda Pop",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/soda-pop.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Player vending machines",
+              "details": "Purchase from a Pokéathlon Dome vending machine for 300 Poké Dollars.",
+              "notes": null,
+              "requirements": [],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 300,
+                "currency": "Poké Dollars"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Player vending machines",
+              "details": "Purchase from a Pokéathlon Dome vending machine for 300 Poké Dollars.",
+              "notes": null,
+              "requirements": [],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 300,
+                "currency": "Poké Dollars"
+              }
             }
           ]
         }
@@ -422,34 +2202,42 @@
       },
       "versions": [
         {
-          "version": "Pokémon HeartGold",
+          "version": "Pok?mon HeartGold",
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 2,500 Athlete Points on Wednesday, Thursday, or Saturday.",
+              "area": "Athlete Shop",
+              "details": "Purchase for 2,500 Athlete Points on Thursday.",
               "notes": null,
               "requirements": [
-                "Available only on Wednesday, Thursday, or Saturday"
+                "Available only on Thursday"
               ],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 2500,
+                "currency": "Athlete Points"
+              }
             }
           ]
         },
         {
-          "version": "Pokémon SoulSilver",
+          "version": "Pok?mon SoulSilver",
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 2,500 Athlete Points on Wednesday, Thursday, or Saturday.",
+              "area": "Athlete Shop",
+              "details": "Purchase for 2,500 Athlete Points on Thursday.",
               "notes": null,
               "requirements": [
-                "Available only on Wednesday, Thursday, or Saturday"
+                "Available only on Thursday"
               ],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 2500,
+                "currency": "Athlete Points"
+              }
             }
           ]
         }
@@ -463,34 +2251,140 @@
       },
       "versions": [
         {
-          "version": "Pokémon HeartGold",
+          "version": "Pok?mon HeartGold",
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 2,500 Athlete Points on Monday, Tuesday, Wednesday, or Friday.",
+              "area": "Athlete Shop",
+              "details": "Purchase for 2,500 Athlete Points on Wednesday.",
               "notes": null,
               "requirements": [
-                "Available only on Monday, Tuesday, Wednesday, or Friday"
+                "Available only on Wednesday"
               ],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 2500,
+                "currency": "Athlete Points"
+              }
             }
           ]
         },
         {
-          "version": "Pokémon SoulSilver",
+          "version": "Pok?mon SoulSilver",
           "methods": [
             {
               "type": "purchase",
-              "area": null,
-              "details": "Purchase for 2,500 Athlete Points on Monday, Tuesday, Wednesday, or Friday.",
+              "area": "Athlete Shop",
+              "details": "Purchase for 2,500 Athlete Points on Wednesday.",
               "notes": null,
               "requirements": [
-                "Available only on Monday, Tuesday, Wednesday, or Friday"
+                "Available only on Wednesday"
               ],
               "repeatable": true,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "cost": {
+                "amount": 2500,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "white-apricorn",
+        "displayName": "White Apricorn",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/white-apricorn.png"
+      },
+      "versions": [
+        {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Tuesday, Thursday, or Saturday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Tuesday, Thursday, or Saturday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Tuesday, Thursday, or Saturday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Tuesday, Thursday, or Saturday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "yellow-apricorn",
+        "displayName": "Yellow Apricorn",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/yellow-apricorn.png"
+      },
+      "versions": [
+        {
+          "version": "Pok?mon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Tuesday, Thursday, or Friday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Tuesday, Thursday, or Friday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
+            }
+          ]
+        },
+        {
+          "version": "Pok?mon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Athlete Shop",
+              "details": "Purchase for 200 Athlete Points on Tuesday, Thursday, or Friday.",
+              "notes": null,
+              "requirements": [
+                "Available only on Tuesday, Thursday, or Friday"
+              ],
+              "repeatable": true,
+              "versionExclusive": false,
+              "cost": {
+                "amount": 200,
+                "currency": "Athlete Points"
+              }
             }
           ]
         }

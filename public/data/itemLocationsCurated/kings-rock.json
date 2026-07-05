@@ -245,24 +245,6 @@
         "Pokémon HeartGold",
         "Pokémon SoulSilver"
       ],
-      "location": {
-        "name": "pokeathlon-dome",
-        "displayName": "Pokéathlon Dome"
-      },
-      "method": "Purchase for 3,000 Athlete Points on Sunday, Monday, or Thursday.",
-      "acquisitionType": "purchase",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
-      "originalLocationText": "Pokéathlon Dome",
-      "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 4,
-      "games": [
-        "Pokémon HeartGold",
-        "Pokémon SoulSilver"
-      ],
       "location": "Pickup",
       "method": "May be obtained through Pickup by Pokémon at levels 11–30.",
       "acquisitionType": "pickup",
@@ -833,6 +815,31 @@
       "versionExclusive": false,
       "requirements": [],
       "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pok?mon HeartGold",
+        "Pok?mon SoulSilver"
+      ],
+      "location": {
+        "name": "pokeathlon-dome",
+        "displayName": "Pok?athlon Dome"
+      },
+      "area": "Athlete Shop",
+      "method": "Purchase for 3,000 Athlete Points on Sunday.",
+      "acquisitionType": "purchase",
+      "cost": {
+        "amount": 3000,
+        "currency": "Athlete Points"
+      },
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Available only on Sunday"
+      ],
+      "originalLocationText": "Pok?athlon Dome",
+      "locationMatchStatus": "matched"
     }
   ]
 }

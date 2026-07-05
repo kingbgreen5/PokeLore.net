@@ -33,7 +33,7 @@ function formatGenerationVersion(generation) {
 }
 
 function methodDetails(method) {
-  return {
+  const details = {
     type:
       method.acquisitionType ??
       method.type ??
@@ -51,6 +51,15 @@ function methodDetails(method) {
     versionExclusive:
       method.versionExclusive ?? null
   };
+
+  if (
+    method.cost &&
+    method.location?.name === "pokeathlon-dome"
+  ) {
+    details.cost = method.cost;
+  }
+
+  return details;
 }
 
 function addMethod({

@@ -197,24 +197,6 @@
         "Pokémon HeartGold",
         "Pokémon SoulSilver"
       ],
-      "location": {
-        "name": "pokeathlon-dome",
-        "displayName": "Pokéathlon Dome"
-      },
-      "method": "Purchase for 2,500 Athlete Points on Tuesday, Friday, or Saturday.",
-      "acquisitionType": "purchase",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
-      "originalLocationText": "Pokéathlon Dome",
-      "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 4,
-      "games": [
-        "Pokémon HeartGold",
-        "Pokémon SoulSilver"
-      ],
       "location": "Wild Pokémon",
       "method": "May be held by wild Magnemite, Magneton, Steelix, Beldum, Metang, Bronzor, or Bronzong.",
       "acquisitionType": "held-by-wild-pokemon",
@@ -798,6 +780,31 @@
       "versionExclusive": false,
       "requirements": [],
       "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pok?mon HeartGold",
+        "Pok?mon SoulSilver"
+      ],
+      "location": {
+        "name": "pokeathlon-dome",
+        "displayName": "Pok?athlon Dome"
+      },
+      "area": "Athlete Shop",
+      "method": "Purchase for 2,500 Athlete Points on Friday.",
+      "acquisitionType": "purchase",
+      "cost": {
+        "amount": 2500,
+        "currency": "Athlete Points"
+      },
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Available only on Friday"
+      ],
+      "originalLocationText": "Pok?athlon Dome",
+      "locationMatchStatus": "matched"
     }
   ]
 }

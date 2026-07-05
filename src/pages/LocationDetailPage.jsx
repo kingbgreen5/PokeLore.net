@@ -119,6 +119,263 @@ function getLocationItemRows(locationItems) {
   );
 }
 
+const WEEKDAYS = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday"
+];
+
+function formatCost(cost) {
+  if (!cost) return null;
+
+  if (typeof cost === "string") {
+    return cost;
+  }
+
+  if (
+    cost.amount === null ||
+    cost.amount === undefined
+  ) {
+    return null;
+  }
+
+  return `${cost.amount.toLocaleString()} ${
+    cost.currency ?? ""
+  }`.trim();
+}
+
+function methodText(row) {
+  return [
+    row.method.details,
+    row.method.notes,
+    ...(row.method.requirements ?? [])
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function daysForAthleteShopRow(row) {
+  const text = methodText(row);
+
+  return WEEKDAYS.filter(day =>
+    new RegExp(`\\b${day}\\b`, "i").test(text)
+  );
+}
+
+function dataCardLevel(row) {
+  const text = methodText(row);
+  const match = text.match(
+    /Pok[eé]athlon Level\s+(\d+)/i
+  );
+
+  return match?.[1] ?? "Other";
+}
+
+function uniqueRowsByItem(rows) {
+  return Array.from(
+    rows
+      .reduce((map, row) => {
+        if (!map.has(row.item.name)) {
+          map.set(row.item.name, row);
+        }
+
+        return map;
+      }, new Map())
+      .values()
+  ).sort((a, b) =>
+    a.item.displayName.localeCompare(
+      b.item.displayName
+    )
+  );
+}
+
+function ItemShopGrid({
+  rows
+}) {
+  const uniqueRows =
+    uniqueRowsByItem(rows);
+
+  if (uniqueRows.length === 0) {
+    return null;
+  }
+
+  return (
+    <div
+      style={{
+        display: "grid",
+        gap: ".75rem",
+        gridTemplateColumns:
+          "repeat(auto-fit, minmax(180px, 1fr))"
+      }}
+    >
+      {uniqueRows.map(row => {
+        const cost = formatCost(
+          row.method.cost
+        );
+
+        return (
+          <Link
+            key={row.item.name}
+            to={`/item/${row.item.name}`}
+            style={{
+              alignItems: "center",
+              border: "1px solid #666",
+              borderRadius: "12px",
+              display: "flex",
+              gap: ".75rem",
+              padding: ".75rem",
+              textDecoration: "none"
+            }}
+          >
+            {row.item.sprite && (
+              <img
+                src={row.item.sprite}
+                alt=""
+                style={{
+                  height: "32px",
+                  imageRendering: "pixelated",
+                  width: "32px"
+                }}
+              />
+            )}
+
+            <span>
+              <strong
+                style={{
+                  display: "block"
+                }}
+              >
+                {row.item.displayName}
+              </strong>
+
+              {cost && (
+                <small>{cost}</small>
+              )}
+            </span>
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
+function PokeathlonDomeItems({
+  itemRows,
+  locationDisplayName
+}) {
+  const athleteRows = itemRows.filter(
+    row =>
+      row.method.area ===
+      "Athlete Shop"
+  );
+  const dataCardRows = itemRows.filter(
+    row =>
+      row.method.area ===
+      "Data Card Shop"
+  );
+  const vendingRows = itemRows.filter(
+    row =>
+      row.method.area ===
+      "Player vending machines"
+  );
+  const coveredItems = new Set(
+    [
+      ...athleteRows,
+      ...dataCardRows,
+      ...vendingRows
+    ].map(row => row.item.name)
+  );
+  const additionalRows = itemRows.filter(
+    row => !coveredItems.has(row.item.name)
+  );
+
+  return (
+    <>
+      {athleteRows.length > 0 && (
+        <section
+          style={{
+            display: "grid",
+            gap: "1rem"
+          }}
+        >
+          <h3>Athlete Shop</h3>
+
+          {WEEKDAYS.map(day => {
+            const dayRows =
+              athleteRows.filter(row =>
+                daysForAthleteShopRow(
+                  row
+                ).includes(day)
+              );
+
+            if (dayRows.length === 0) {
+              return null;
+            }
+
+            return (
+              <section key={day}>
+                <h4>{day}</h4>
+                <ItemShopGrid rows={dayRows} />
+              </section>
+            );
+          })}
+        </section>
+      )}
+
+      {dataCardRows.length > 0 && (
+        <section>
+          <h3>Data Card Shop</h3>
+
+          {[1, 2, 3, 4, 5].map(level => {
+            const levelRows =
+              dataCardRows.filter(
+                row =>
+                  dataCardLevel(row) ===
+                  String(level)
+              );
+
+            if (levelRows.length === 0) {
+              return null;
+            }
+
+            return (
+              <section key={level}>
+                <h4>Level {level}</h4>
+                <ItemShopGrid
+                  rows={levelRows}
+                />
+              </section>
+            );
+          })}
+        </section>
+      )}
+
+      {vendingRows.length > 0 && (
+        <section>
+          <h3>Vending Machines</h3>
+          <ItemShopGrid rows={vendingRows} />
+        </section>
+      )}
+
+      {additionalRows.length > 0 && (
+        <section>
+          <h3>Additional Listings</h3>
+          <ItemLocationCards
+            rows={additionalRows}
+            locationDisplayName={
+              locationDisplayName
+            }
+          />
+        </section>
+      )}
+    </>
+  );
+}
+
 function EncounterDetails({
   versions
 }) {
@@ -351,12 +608,22 @@ function LocationItemsSection({
         </div>
       )}
 
-      <ItemLocationCards
-        rows={filteredItemRows}
-        locationDisplayName={
-          locationDisplayName
-        }
-      />
+      {locationItems.location?.name ===
+      "pokeathlon-dome" ? (
+        <PokeathlonDomeItems
+          itemRows={filteredItemRows}
+          locationDisplayName={
+            locationDisplayName
+          }
+        />
+      ) : (
+        <ItemLocationCards
+          rows={filteredItemRows}
+          locationDisplayName={
+            locationDisplayName
+          }
+        />
+      )}
     </CollapsibleSection>
   );
 }
