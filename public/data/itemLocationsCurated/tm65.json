@@ -1,0 +1,56 @@
+{
+  "item": "tm65",
+  "displayName": "TM65",
+  "source": "items/tm65.json",
+  "sourceTitle": "HGSS guidebook TM/HM tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "johto-route-42",
+        "displayName": "Route 42"
+      },
+      "method": "Find on Route 42.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "shadow-claw",
+        "displayName": "Shadow Claw"
+      },
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Route 42"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "goldenrod-city",
+        "displayName": "Goldenrod City"
+      },
+      "method": "Win as the Goldenrod City Department Store drawing 1st prize on Monday.",
+      "acquisitionType": "lottery-prize",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Monday"
+      ],
+      "move": {
+        "name": "shadow-claw",
+        "displayName": "Shadow Claw"
+      },
+      "locationMatchStatus": "matched",
+      "area": "Goldenrod City Department Store drawing",
+      "originalLocationText": "Goldenrod City"
+    }
+  ]
+}

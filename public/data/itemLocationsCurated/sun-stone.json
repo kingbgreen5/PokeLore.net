@@ -2,6 +2,7 @@
   "item": "sun-stone",
   "displayName": "Sun Stone",
   "source": "items/sun-stone.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
   "schemaVersion": 1,
   "acquisition": [
     {
@@ -188,22 +189,6 @@
         "kanto-route-13",
         "unova-route-13"
       ]
-    },
-    {
-      "generation": 4,
-      "games": [
-        "Pokémon HeartGold",
-        "Pokémon SoulSilver"
-      ],
-      "location": "Wild Solrock",
-      "method": "A wild Solrock may be holding a Sun Stone.",
-      "acquisitionType": "held-by-wild-pokemon",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "5% held-item chance"
-      ],
-      "locationMatchStatus": "unmatched"
     },
     {
       "generation": 4,
@@ -426,22 +411,6 @@
         "Pokémon Black 2",
         "Pokémon White 2"
       ],
-      "location": "Pickup",
-      "method": "A Pokémon with Pickup may obtain a Sun Stone.",
-      "acquisitionType": "pickup",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "Pickup user level 31–100"
-      ],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 5,
-      "games": [
-        "Pokémon Black 2",
-        "Pokémon White 2"
-      ],
       "location": {
         "name": "pinwheel-forest",
         "displayName": "Pinwheel Forest"
@@ -460,46 +429,12 @@
         "Pokémon Black 2",
         "Pokémon White 2"
       ],
-      "location": {
-        "name": "relic-castle",
-        "displayName": "Relic Castle"
-      },
-      "method": "Collect the fixed Sun Stone.",
-      "acquisitionType": "field-item",
-      "repeatable": false,
-      "versionExclusive": false,
-      "requirements": [],
-      "originalLocationText": "Relic Castle",
-      "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 5,
-      "games": [
-        "Pokémon Black 2",
-        "Pokémon White 2"
-      ],
       "location": "Routes 6 and 13; Abundant Shrine Hidden Grottoes",
       "method": "A Sun Stone can appear in the regenerated Hidden Grotto item pool.",
       "acquisitionType": "random-item-pool",
       "repeatable": true,
       "versionExclusive": false,
       "requirements": [],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 5,
-      "games": [
-        "Pokémon Black 2",
-        "Pokémon White 2"
-      ],
-      "location": "Wild Solrock",
-      "method": "A wild Solrock may be holding a Sun Stone.",
-      "acquisitionType": "held-by-wild-pokemon",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "5% held-item chance"
-      ],
       "locationMatchStatus": "unmatched"
     },
     {
@@ -662,22 +597,6 @@
         "Pokémon X",
         "Pokémon Y"
       ],
-      "location": "Pickup",
-      "method": "A Pokémon with Pickup may obtain a Sun Stone.",
-      "acquisitionType": "pickup",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "Pickup user level 31–100"
-      ],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 6,
-      "games": [
-        "Pokémon X",
-        "Pokémon Y"
-      ],
       "location": {
         "name": "kalos-route-13",
         "displayName": "Route 13"
@@ -716,20 +635,6 @@
         "Pokémon X",
         "Pokémon Y"
       ],
-      "location": "Secret Super Training",
-      "method": "Earn from the Drag Down Hydreigon course.",
-      "acquisitionType": "battle-reward",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 6,
-      "games": [
-        "Pokémon X",
-        "Pokémon Y"
-      ],
       "location": {
         "name": "shalour-city",
         "displayName": "Shalour City"
@@ -741,22 +646,6 @@
       "requirements": [],
       "originalLocationText": "Shalour City",
       "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 6,
-      "games": [
-        "Pokémon X",
-        "Pokémon Y"
-      ],
-      "location": "Wild Solrock",
-      "method": "A wild Solrock may be holding a Sun Stone.",
-      "acquisitionType": "held-by-wild-pokemon",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "5% held-item chance"
-      ],
-      "locationMatchStatus": "unmatched"
     },
     {
       "generation": 7,
@@ -816,73 +705,6 @@
       "games": [
         "Pokémon Sun",
         "Pokémon Moon"
-      ],
-      "location": "Poké Pelago — Isle Aphun",
-      "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
-      "acquisitionType": "random-item-pool",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun"
-      ],
-      "location": {
-        "name": "haina-desert",
-        "displayName": "Haina Desert"
-      },
-      "method": "Collect the fixed Sun Stone.",
-      "acquisitionType": "field-item",
-      "repeatable": false,
-      "versionExclusive": true,
-      "requirements": [
-        "Pokémon Ultra Sun only"
-      ],
-      "originalLocationText": "Haina Desert",
-      "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
-      ],
-      "location": {
-        "name": "blush-mountain",
-        "displayName": "Blush Mountain"
-      },
-      "method": "Collect the fixed Sun Stone.",
-      "acquisitionType": "field-item",
-      "repeatable": false,
-      "versionExclusive": false,
-      "requirements": [],
-      "originalLocationText": "Blush Mountain",
-      "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
-      ],
-      "location": "Pickup",
-      "method": "A Pokémon with Pickup may obtain a Sun Stone.",
-      "acquisitionType": "pickup",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "Pickup user level 11–100"
-      ],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
       ],
       "location": "Poké Pelago — Isle Aphun",
       "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
@@ -980,22 +802,6 @@
       "repeatable": true,
       "versionExclusive": false,
       "requirements": [],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 8,
-      "games": [
-        "Pokémon Sword"
-      ],
-      "location": "Wild Solrock",
-      "method": "A wild Solrock may be holding a Sun Stone.",
-      "acquisitionType": "held-by-wild-pokemon",
-      "repeatable": true,
-      "versionExclusive": true,
-      "requirements": [
-        "5% held-item chance",
-        "Pokémon Sword only"
-      ],
       "locationMatchStatus": "unmatched"
     },
     {
@@ -1292,6 +1098,25 @@
       "requirements": [],
       "originalLocationText": "West Province (Area One)",
       "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "national-park",
+        "displayName": "National Park"
+      },
+      "method": "Win first prize in the National Park Bug-Catching Contest.",
+      "acquisitionType": "contest-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": "Bug-Catching Contest",
+      "originalLocationText": "National Park"
     }
   ]
 }

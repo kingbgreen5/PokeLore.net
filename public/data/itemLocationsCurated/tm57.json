@@ -1,0 +1,56 @@
+{
+  "item": "tm57",
+  "displayName": "TM57",
+  "source": "items/tm57.json",
+  "sourceTitle": "HGSS guidebook TM/HM tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "olivine-city",
+        "displayName": "Olivine City"
+      },
+      "method": "Find in Olivine City.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "charge-beam",
+        "displayName": "Charge Beam"
+      },
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Olivine City"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "goldenrod-city",
+        "displayName": "Goldenrod City"
+      },
+      "method": "Win as the Goldenrod City Department Store drawing 1st prize on Wednesday.",
+      "acquisitionType": "lottery-prize",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Wednesday"
+      ],
+      "move": {
+        "name": "charge-beam",
+        "displayName": "Charge Beam"
+      },
+      "locationMatchStatus": "matched",
+      "area": "Goldenrod City Department Store drawing",
+      "originalLocationText": "Goldenrod City"
+    }
+  ]
+}

@@ -6,6 +6,49 @@
   "items": [
     {
       "item": {
+        "name": "fast-ball",
+        "displayName": "Fast Ball",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fast-ball.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive from Kurt after defeating Team Rocket at Slowpoke Well.",
+              "notes": null,
+              "requirements": [
+                "Defeat Team Rocket at Slowpoke Well"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive from Kurt after defeating Team Rocket at Slowpoke Well.",
+              "notes": null,
+              "requirements": [
+                "Defeat Team Rocket at Slowpoke Well"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
         "name": "kings-rock",
         "displayName": "King’s Rock",
         "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kings-rock.png"
@@ -20,6 +63,7 @@
               "details": "Collect the fixed field item.",
               "notes": null,
               "requirements": [],
+              "relatedAbilities": [],
               "repeatable": false,
               "versionExclusive": false
             }
@@ -34,6 +78,7 @@
               "details": "Collect the fixed field item.",
               "notes": null,
               "requirements": [],
+              "relatedAbilities": [],
               "repeatable": false,
               "versionExclusive": false
             }
@@ -48,6 +93,17 @@
               "details": "Collect the fixed field item.",
               "notes": null,
               "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            },
+            {
+              "type": "npc-gift",
+              "area": "B1F",
+              "details": "Receive from the man with glasses at Slowpoke Well B1F.",
+              "notes": null,
+              "requirements": [],
+              "relatedAbilities": [],
               "repeatable": false,
               "versionExclusive": false
             }
@@ -62,6 +118,7 @@
               "details": "Collect the fixed field item.",
               "notes": null,
               "requirements": [],
+              "relatedAbilities": [],
               "repeatable": false,
               "versionExclusive": false
             }
@@ -76,6 +133,60 @@
               "details": "Collect the fixed field item.",
               "notes": null,
               "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            },
+            {
+              "type": "npc-gift",
+              "area": "B1F",
+              "details": "Receive from the man with glasses at Slowpoke Well B1F.",
+              "notes": null,
+              "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "tm18",
+        "displayName": "TM18",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "field-item",
+              "area": "B2F",
+              "details": "Find on Slowpoke Well B2F.",
+              "notes": null,
+              "requirements": [
+                "HM Strength required"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "field-item",
+              "area": "B2F",
+              "details": "Find on Slowpoke Well B2F.",
+              "notes": null,
+              "requirements": [
+                "HM Strength required"
+              ],
+              "relatedAbilities": [],
               "repeatable": false,
               "versionExclusive": false
             }

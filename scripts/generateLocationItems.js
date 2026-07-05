@@ -46,6 +46,8 @@ function methodDetails(method) {
     notes: method.notes ?? null,
     requirements:
       method.requirements ?? [],
+    relatedAbilities:
+      method.relatedAbilities ?? [],
     repeatable:
       method.repeatable ?? null,
     versionExclusive:

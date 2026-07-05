@@ -2,6 +2,7 @@
   "item": "kings-rock",
   "displayName": "King’s Rock",
   "source": "items/kings-rock.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
   "schemaVersion": 1,
   "acquisition": [
     {
@@ -245,20 +246,6 @@
         "Pokémon HeartGold",
         "Pokémon SoulSilver"
       ],
-      "location": "Pickup",
-      "method": "May be obtained through Pickup by Pokémon at levels 11–30.",
-      "acquisitionType": "pickup",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 4,
-      "games": [
-        "Pokémon HeartGold",
-        "Pokémon SoulSilver"
-      ],
       "location": "Wild Pokémon",
       "method": "May be held by wild Slowbro or Poliwhirl.",
       "acquisitionType": "held-by-wild-pokemon",
@@ -359,24 +346,6 @@
         "Pokémon Black 2",
         "Pokémon White 2"
       ],
-      "location": {
-        "name": "icirrus-city",
-        "displayName": "Icirrus City"
-      },
-      "method": "Collect the fixed item.",
-      "acquisitionType": "field-item",
-      "repeatable": false,
-      "versionExclusive": false,
-      "requirements": [],
-      "originalLocationText": "Icirrus City",
-      "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 5,
-      "games": [
-        "Pokémon Black 2",
-        "Pokémon White 2"
-      ],
       "location": "Join Avenue Antique Shop",
       "method": "May be found in an Antique Box.",
       "acquisitionType": "random-item-pool",
@@ -398,20 +367,6 @@
       "requirements": [
         "Unlock the relevant White Forest shop"
       ],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 5,
-      "games": [
-        "Pokémon Black 2",
-        "Pokémon White 2"
-      ],
-      "location": "Pickup",
-      "method": "May be obtained through Pickup by Pokémon at levels 11–30.",
-      "acquisitionType": "pickup",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
       "locationMatchStatus": "unmatched"
     },
     {
@@ -491,20 +446,6 @@
       "requirements": [],
       "originalLocationText": "Mossdeep City",
       "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 6,
-      "games": [
-        "Pokémon Omega Ruby",
-        "Pokémon Alpha Sapphire"
-      ],
-      "location": "Pickup",
-      "method": "May be obtained through Pickup by Pokémon at levels 11–30.",
-      "acquisitionType": "pickup",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "unmatched"
     },
     {
       "generation": 6,
@@ -819,27 +760,46 @@
     {
       "generation": 4,
       "games": [
-        "Pok?mon HeartGold",
-        "Pok?mon SoulSilver"
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
       ],
       "location": {
         "name": "pokeathlon-dome",
-        "displayName": "Pok?athlon Dome"
+        "displayName": "Pokéathlon Dome"
       },
-      "area": "Athlete Shop",
       "method": "Purchase for 3,000 Athlete Points on Sunday.",
       "acquisitionType": "purchase",
-      "cost": {
-        "amount": 3000,
-        "currency": "Athlete Points"
-      },
       "repeatable": true,
       "versionExclusive": false,
       "requirements": [
         "Available only on Sunday"
       ],
-      "originalLocationText": "Pok?athlon Dome",
-      "locationMatchStatus": "matched"
+      "locationMatchStatus": "matched",
+      "area": "Athlete Shop",
+      "cost": {
+        "amount": 3000,
+        "currency": "Athlete Points"
+      },
+      "originalLocationText": "Pokéathlon Dome"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "slowpoke-well",
+        "displayName": "Slowpoke Well"
+      },
+      "method": "Receive from the man with glasses at Slowpoke Well B1F.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": "B1F",
+      "originalLocationText": "Slowpoke Well"
     }
   ]
 }

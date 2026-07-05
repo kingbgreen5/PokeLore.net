@@ -1,0 +1,90 @@
+{
+  "location": {
+    "name": "dragons-den",
+    "displayName": "Dragon's Den"
+  },
+  "items": [
+    {
+      "item": {
+        "name": "dragon-fang",
+        "displayName": "Dragon Fang",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dragon-fang.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "field-item",
+              "area": "B1F",
+              "details": "Find in Dragon's Den B1F.",
+              "notes": null,
+              "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "field-item",
+              "area": "B1F",
+              "details": "Find in Dragon's Den B1F.",
+              "notes": null,
+              "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "tm59",
+        "displayName": "TM59",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive from Clair at Dragon's Den after winning at Blackthorn Gym.",
+              "notes": null,
+              "requirements": [
+                "Win at Blackthorn Gym"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive from Clair at Dragon's Den after winning at Blackthorn Gym.",
+              "notes": null,
+              "requirements": [
+                "Win at Blackthorn Gym"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

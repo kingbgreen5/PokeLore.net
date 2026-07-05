@@ -1,0 +1,56 @@
+{
+  "item": "poke-ball",
+  "displayName": "Poké Ball",
+  "source": "items/poke-ball.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "johto-pokemart",
+        "displayName": "Johto Pokemart"
+      },
+      "method": "Purchase after learning how to catch Pokémon from Lyra/Ethan on Route 29.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete the Route 29 catching tutorial"
+      ],
+      "locationMatchStatus": "matched",
+      "cost": {
+        "amount": 200,
+        "currency": "Pokedollars"
+      },
+      "originalLocationText": "Poke Mart"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "goldenrod-city",
+        "displayName": "Goldenrod City"
+      },
+      "method": "Purchase at Goldenrod City Department Store 2F.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": "Goldenrod City Department Store 2F",
+      "cost": {
+        "amount": 200,
+        "currency": "Pokedollars"
+      },
+      "originalLocationText": "Goldenrod City"
+    }
+  ]
+}

@@ -58,6 +58,53 @@
         "amount": 2000,
         "currency": "money"
       }
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "kanto-route-27",
+        "displayName": "Route 27"
+      },
+      "method": "Find on Route 27.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "dragon-claw",
+        "displayName": "Dragon Claw"
+      },
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Route 27"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "goldenrod-city",
+        "displayName": "Goldenrod City"
+      },
+      "method": "Win as the Goldenrod City Department Store drawing 1st prize on Sunday.",
+      "acquisitionType": "lottery-prize",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Sunday"
+      ],
+      "move": {
+        "name": "dragon-claw",
+        "displayName": "Dragon Claw"
+      },
+      "locationMatchStatus": "matched",
+      "area": "Goldenrod City Department Store drawing",
+      "originalLocationText": "Goldenrod City"
     }
   ]
 }

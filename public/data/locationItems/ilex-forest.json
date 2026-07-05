@@ -1,0 +1,90 @@
+{
+  "location": {
+    "name": "ilex-forest",
+    "displayName": "Ilex Forest"
+  },
+  "items": [
+    {
+      "item": {
+        "name": "ether",
+        "displayName": "Ether",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ether.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "field-item",
+              "area": null,
+              "details": "Find in Ilex Forest.",
+              "notes": null,
+              "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "field-item",
+              "area": null,
+              "details": "Find in Ilex Forest.",
+              "notes": null,
+              "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "hm01",
+        "displayName": "HM01",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive from the Charcoal Man after catching both Farfetch'd.",
+              "notes": null,
+              "requirements": [
+                "Catch both Farfetch'd"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive from the Charcoal Man after catching both Farfetch'd.",
+              "notes": null,
+              "requirements": [
+                "Catch both Farfetch'd"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

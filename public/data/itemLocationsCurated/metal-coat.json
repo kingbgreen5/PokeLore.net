@@ -2,6 +2,7 @@
   "item": "metal-coat",
   "displayName": "Metal Coat",
   "source": "items/metal-coat.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
   "schemaVersion": 1,
   "acquisition": [
     {
@@ -784,27 +785,27 @@
     {
       "generation": 4,
       "games": [
-        "Pok?mon HeartGold",
-        "Pok?mon SoulSilver"
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
       ],
       "location": {
         "name": "pokeathlon-dome",
-        "displayName": "Pok?athlon Dome"
+        "displayName": "Pokéathlon Dome"
       },
-      "area": "Athlete Shop",
       "method": "Purchase for 2,500 Athlete Points on Friday.",
       "acquisitionType": "purchase",
-      "cost": {
-        "amount": 2500,
-        "currency": "Athlete Points"
-      },
       "repeatable": true,
       "versionExclusive": false,
       "requirements": [
         "Available only on Friday"
       ],
-      "originalLocationText": "Pok?athlon Dome",
-      "locationMatchStatus": "matched"
+      "locationMatchStatus": "matched",
+      "area": "Athlete Shop",
+      "cost": {
+        "amount": 2500,
+        "currency": "Athlete Points"
+      },
+      "originalLocationText": "Pokéathlon Dome"
     }
   ]
 }

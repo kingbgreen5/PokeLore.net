@@ -29,6 +29,53 @@
       "originalLocationText": "Silph Co. - 10F southwest",
       "locationMatchStatus": "matched",
       "matchConfidence": "high"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "kanto-victory-road-2",
+        "displayName": "Victory Road"
+      },
+      "method": "Find on Victory Road 2F.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "earthquake",
+        "displayName": "Earthquake"
+      },
+      "locationMatchStatus": "matched",
+      "area": "2F",
+      "originalLocationText": "Victory Road"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Pickup Ability",
+      "method": "Found with Pickup Ability.",
+      "acquisitionType": "pickup-ability",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "earthquake",
+        "displayName": "Earthquake"
+      },
+      "locationMatchStatus": "unmatched",
+      "relatedAbilities": [
+        {
+          "name": "pickup",
+          "displayName": "Pickup"
+        }
+      ]
     }
   ]
 }

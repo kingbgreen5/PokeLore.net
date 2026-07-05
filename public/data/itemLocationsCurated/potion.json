@@ -1,0 +1,54 @@
+{
+  "item": "potion",
+  "displayName": "Potion",
+  "source": "items/potion.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "johto-pokemart",
+        "displayName": "Johto Pokemart"
+      },
+      "method": "Purchase at Poke Marts from the beginning of the game.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "cost": {
+        "amount": 300,
+        "currency": "Pokedollars"
+      },
+      "originalLocationText": "Poke Mart"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "goldenrod-city",
+        "displayName": "Goldenrod City"
+      },
+      "method": "Purchase at Goldenrod City Department Store 2F.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": "Goldenrod City Department Store 2F",
+      "cost": {
+        "amount": 300,
+        "currency": "Pokedollars"
+      },
+      "originalLocationText": "Goldenrod City"
+    }
+  ]
+}

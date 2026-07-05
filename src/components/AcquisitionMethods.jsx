@@ -77,6 +77,31 @@ function ItemLink({
   return null;
 }
 
+function AbilityLink({
+  ability
+}) {
+  if (!ability) return null;
+
+  if (typeof ability === "string") {
+    return <span>{ability}</span>;
+  }
+
+  if (
+    ability.name &&
+    ability.displayName
+  ) {
+    return (
+      <Link
+        to={`/ability/${ability.name}`}
+      >
+        {ability.displayName}
+      </Link>
+    );
+  }
+
+  return null;
+}
+
 function formatCost(cost) {
   if (!cost) return null;
 
@@ -366,6 +391,40 @@ function AcquisitionMethods({
                             >
                               <ItemLink
                                 item={item}
+                              />
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  )}
+
+                  {method.relatedAbilities
+                    ?.length > 0 && (
+                    <div>
+                      <strong>
+                        Related Abilities
+                      </strong>
+                      <ul
+                        style={{
+                          margin:
+                            ".35rem 0 0",
+                          paddingLeft:
+                            "1.25rem"
+                        }}
+                      >
+                        {method.relatedAbilities.map(
+                          ability => (
+                            <li
+                              key={
+                                typeof ability ===
+                                "string"
+                                  ? ability
+                                  : ability.name
+                              }
+                            >
+                              <AbilityLink
+                                ability={ability}
                               />
                             </li>
                           )

@@ -1,0 +1,49 @@
+{
+  "item": "exp-share",
+  "displayName": "Exp. Share",
+  "source": "items/exp-share.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "johto-route-30",
+        "displayName": "Route 30"
+      },
+      "method": "Trade the Red Scale at Mr. Pokémon's house on Route 30.",
+      "acquisitionType": "item-exchange",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Red Scale"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "Mr. Pokémon's house",
+      "originalLocationText": "Route 30"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "radio-tower",
+        "displayName": "Radio Tower"
+      },
+      "method": "Win as the lucky-number drawing 2nd prize at Radio Tower.",
+      "acquisitionType": "lottery-prize",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": "Lucky-number drawing",
+      "originalLocationText": "Radio Tower"
+    }
+  ]
+}

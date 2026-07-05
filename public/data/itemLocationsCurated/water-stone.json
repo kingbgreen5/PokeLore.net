@@ -2,6 +2,7 @@
   "item": "water-stone",
   "displayName": "Water Stone",
   "source": "items/water-stone.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
   "schemaVersion": 1,
   "acquisition": [
     {
@@ -718,20 +719,6 @@
         "Pokémon Ultra Sun",
         "Pokémon Ultra Moon"
       ],
-      "location": "Konikoni City — Olivia's jewelry shop",
-      "method": "Purchase a Water Stone.",
-      "acquisitionType": "purchase",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
-      ],
       "location": {
         "name": "paniola-ranch",
         "displayName": "Paniola Ranch"
@@ -744,38 +731,6 @@
         "Only one of the three stones is received"
       ],
       "originalLocationText": "Paniola Ranch",
-      "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
-      ],
-      "location": "Poké Pelago — Isle Aphun",
-      "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
-      "acquisitionType": "random-item-pool",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
-      ],
-      "location": {
-        "name": "alola-route-8",
-        "displayName": "Route 8"
-      },
-      "method": "Collect the fixed Water Stone.",
-      "acquisitionType": "field-item",
-      "repeatable": false,
-      "versionExclusive": false,
-      "requirements": [],
-      "originalLocationText": "Route 8",
       "locationMatchStatus": "matched"
     },
     {
@@ -1261,27 +1216,27 @@
     {
       "generation": 4,
       "games": [
-        "Pok?mon HeartGold",
-        "Pok?mon SoulSilver"
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
       ],
       "location": {
         "name": "pokeathlon-dome",
-        "displayName": "Pok?athlon Dome"
+        "displayName": "Pokéathlon Dome"
       },
-      "area": "Athlete Shop",
       "method": "Purchase for 2,500 Athlete Points on Wednesday.",
       "acquisitionType": "purchase",
-      "cost": {
-        "amount": 2500,
-        "currency": "Athlete Points"
-      },
       "repeatable": true,
       "versionExclusive": false,
       "requirements": [
         "Available only on Wednesday"
       ],
-      "originalLocationText": "Pok?athlon Dome",
-      "locationMatchStatus": "matched"
+      "locationMatchStatus": "matched",
+      "area": "Athlete Shop",
+      "cost": {
+        "amount": 2500,
+        "currency": "Athlete Points"
+      },
+      "originalLocationText": "Pokéathlon Dome"
     }
   ]
 }

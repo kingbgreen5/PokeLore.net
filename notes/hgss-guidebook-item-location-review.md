@@ -13,11 +13,11 @@ Scope notes:
 
 ## Questions To Resolve
 
-1. Fire Stone conflict: the earlier Athlete Shop table says Fire Stone is available Tuesday, but `image12.jpeg` says "Pokeathlon prize (Friday)". Which source should win for the item page?
-2. Should general shop rows like "Poke Mart after one Gym Badge" use the generic `johto-pokemart` slug, or should they be left as method-only notes with no location page?
-3. Should "Goldenrod City Department Store", "Goldenrod City Flower Shop", "Goldenrod Game Corner", and "Goldenrod City Bike Shop" all attach to `goldenrod-city`, or should we create separate topic/location slugs later?
-4. For Rock Smash "Other Locations", should that be represented as an item method with no location slug, or should it be omitted until we know every eligible rock-smash map?
-5. Should Pokewalker-only sources be included, or are they outside the scope of site location data?
+1. Resolved: Use the earlier Athlete Shop table for Fire Stone, so the Pokéathlon Dome day is Tuesday.
+2. Resolved: General shop rows like "Poke Mart after one Gym Badge" use the generic `johto-pokemart` slug.
+3. Resolved: "Goldenrod City Department Store", "Goldenrod City Flower Shop", "Goldenrod Game Corner", and "Goldenrod City Bike Shop" attach to `goldenrod-city`.
+4. Resolved: Omit vague Rock Smash "Other Locations" rows for now.
+5. Resolved: Include Pokéwalker sources as method-only unmatched entries.
 
 ## Poke Balls
 
@@ -108,9 +108,7 @@ Scope notes:
 | Yellow Shard | `yellow-shard` | Rock Smash: Cliff Cave | `cliff-cave` | HeartGold; rocks after National Pokedex |
 | Blue Shard | `blue-shard` | Rock Smash: Cliff Cave | `cliff-cave` | SoulSilver; rocks after National Pokedex |
 | Green Shard | `green-shard` | Rock Smash: Cliff Cave | `cliff-cave` | SoulSilver; rocks after National Pokedex |
-| Heart Scale | `heart-scale` | Rock Smash: Other Locations | unmatched | Method-only unless specific maps are identified |
-| Revive | `revive` | Rock Smash: Other Locations | unmatched | Method-only unless specific maps are identified |
-| Star Piece | `star-piece` | Rock Smash: Other Locations | unmatched | Method-only unless specific maps are identified |
+Vague Rock Smash "Other Locations" rows are omitted until specific maps are confirmed.
 
 ## Useful Alphabetical Item Sources
 
@@ -139,7 +137,7 @@ Scope notes:
 | Carbos | `carbos` | Goldenrod City Department Store 4F | `goldenrod-city` | Price 9800 |
 | Charcoal | `charcoal` | Charcoal Man's apprentice in Azalea Town after catching both Farfetch'd | `azalea-town` |  |
 | Charcoal | `charcoal` | Ruins of Alph upper-left entrance 2 | `ruins-of-alph` |  |
-| Claw Fossil | `claw-fossil` | Lake of Rage | `lake-of-rage` | Check against Rock Smash Cliff Cave row |
+| Choice Specs | `choice-specs` | Lake of Rage | `lake-of-rage` | Corrected from the first pass; this was not Claw Fossil |
 | Damp Mulch | `damp-mulch` | Goldenrod City Flower Shop | `goldenrod-city` | Price 200 |
 | Destiny Knot | `destiny-knot` | Route 27 | `kanto-route-27` | Confirm this slug is desired for HGSS Route 27 |
 | Dire Hit | `dire-hit` | Goldenrod City Department Store 3F | `goldenrod-city` | Price 650 |
@@ -278,4 +276,3 @@ Scope notes:
 The following kinds of rows were seen in the photos but intentionally omitted from the proposal:
 - "Obtain by trading or receiving a Pokemon that's holding this item."
 - Items that only appear via cross-game trade transfer with no useful HGSS location.
-

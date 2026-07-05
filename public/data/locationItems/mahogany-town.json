@@ -1,0 +1,129 @@
+{
+  "location": {
+    "name": "mahogany-town",
+    "displayName": "Mahogany Town"
+  },
+  "items": [
+    {
+      "item": {
+        "name": "rage-candy-bar",
+        "displayName": "Rage Candy Bar",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rage-candy-bar.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": null,
+              "details": "Buy from a man in Mahogany Town.",
+              "notes": null,
+              "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": null,
+              "details": "Buy from a man in Mahogany Town.",
+              "notes": null,
+              "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "tiny-mushroom",
+        "displayName": "Tiny Mushroom",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tiny-mushroom.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Mahogany Souvenir Shop",
+              "details": "Purchase at Mahogany Souvenir Shop while under Team Rocket control.",
+              "notes": null,
+              "requirements": [
+                "Before Team Rocket is cleared from Mahogany Town"
+              ],
+              "relatedAbilities": [],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "purchase",
+              "area": "Mahogany Souvenir Shop",
+              "details": "Purchase at Mahogany Souvenir Shop while under Team Rocket control.",
+              "notes": null,
+              "requirements": [
+                "Before Team Rocket is cleared from Mahogany Town"
+              ],
+              "relatedAbilities": [],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "tm07",
+        "displayName": "TM07",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "gym-reward",
+              "area": null,
+              "details": "Win at Mahogany Gym.",
+              "notes": null,
+              "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "gym-reward",
+              "area": null,
+              "details": "Win at Mahogany Gym.",
+              "notes": null,
+              "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

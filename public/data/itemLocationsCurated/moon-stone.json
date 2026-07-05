@@ -2,6 +2,7 @@
   "item": "moon-stone",
   "displayName": "Moon Stone",
   "source": "items/moon-stone.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
   "schemaVersion": 1,
   "acquisition": [
     {
@@ -628,22 +629,6 @@
         "Pokémon Black 2",
         "Pokémon White 2"
       ],
-      "location": "Pickup",
-      "method": "A Pokémon with Pickup may obtain a Moon Stone.",
-      "acquisitionType": "pickup",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "Pickup user level 41–100"
-      ],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 5,
-      "games": [
-        "Pokémon Black 2",
-        "Pokémon White 2"
-      ],
       "location": {
         "name": "unova-route-6",
         "displayName": "Route 6"
@@ -668,23 +653,6 @@
       "repeatable": true,
       "versionExclusive": false,
       "requirements": [],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 5,
-      "games": [
-        "Pokémon Black 2",
-        "Pokémon White 2"
-      ],
-      "location": "Wild Clefairy, Clefable, and Lunatone",
-      "method": "Eligible wild Pokémon may be holding a Moon Stone.",
-      "acquisitionType": "held-by-wild-pokemon",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "5% held-item chance",
-        "Species availability varies by version"
-      ],
       "locationMatchStatus": "unmatched"
     },
     {
@@ -844,22 +812,6 @@
         "Pokémon X",
         "Pokémon Y"
       ],
-      "location": "Pickup",
-      "method": "A Pokémon with Pickup may obtain a Moon Stone.",
-      "acquisitionType": "pickup",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "Pickup user level 41–100"
-      ],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 6,
-      "games": [
-        "Pokémon X",
-        "Pokémon Y"
-      ],
       "location": {
         "name": "reflection-cave",
         "displayName": "Reflection Cave"
@@ -891,20 +843,6 @@
       ],
       "originalLocationText": "Route 18",
       "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 6,
-      "games": [
-        "Pokémon X",
-        "Pokémon Y"
-      ],
-      "location": "Secret Super Training",
-      "method": "Earn from the Drag Down Hydreigon course.",
-      "acquisitionType": "battle-reward",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "unmatched"
     },
     {
       "generation": 6,
@@ -1012,89 +950,6 @@
       "games": [
         "Pokémon Sun",
         "Pokémon Moon"
-      ],
-      "location": "Wild Cleffa, Clefairy, and Jigglypuff",
-      "method": "Eligible wild Pokémon may be holding a Moon Stone.",
-      "acquisitionType": "held-by-wild-pokemon",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "5% held-item chance"
-      ],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Moon"
-      ],
-      "location": {
-        "name": "haina-desert",
-        "displayName": "Haina Desert"
-      },
-      "method": "Collect the fixed Moon Stone.",
-      "acquisitionType": "field-item",
-      "repeatable": false,
-      "versionExclusive": true,
-      "requirements": [
-        "Pokémon Ultra Moon only"
-      ],
-      "originalLocationText": "Haina Desert",
-      "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
-      ],
-      "location": "Pickup",
-      "method": "A Pokémon with Pickup may obtain a Moon Stone.",
-      "acquisitionType": "pickup",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "Pickup user level 11–100"
-      ],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
-      ],
-      "location": "Poké Pelago — Isle Aphun",
-      "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
-      "acquisitionType": "random-item-pool",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
-      ],
-      "location": {
-        "name": "alola-route-13",
-        "displayName": "Route 13"
-      },
-      "method": "Collect the fixed Moon Stone.",
-      "acquisitionType": "field-item",
-      "repeatable": false,
-      "versionExclusive": false,
-      "requirements": [],
-      "originalLocationText": "Route 13",
-      "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
       ],
       "location": "Wild Cleffa, Clefairy, and Jigglypuff",
       "method": "Eligible wild Pokémon may be holding a Moon Stone.",
@@ -1516,27 +1371,46 @@
     {
       "generation": 4,
       "games": [
-        "Pok?mon HeartGold",
-        "Pok?mon SoulSilver"
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
       ],
       "location": {
         "name": "pokeathlon-dome",
-        "displayName": "Pok?athlon Dome"
+        "displayName": "Pokéathlon Dome"
       },
-      "area": "Athlete Shop",
       "method": "Purchase for 3,000 Athlete Points on Monday.",
       "acquisitionType": "purchase",
-      "cost": {
-        "amount": 3000,
-        "currency": "Athlete Points"
-      },
       "repeatable": true,
       "versionExclusive": false,
       "requirements": [
         "Available only on Monday"
       ],
-      "originalLocationText": "Pok?athlon Dome",
-      "locationMatchStatus": "matched"
+      "locationMatchStatus": "matched",
+      "area": "Athlete Shop",
+      "cost": {
+        "amount": 3000,
+        "currency": "Athlete Points"
+      },
+      "originalLocationText": "Pokéathlon Dome"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "ruins-of-alph",
+        "displayName": "Ruins of Alph"
+      },
+      "method": "Find at Ruins of Alph lower-right entrance 2.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": "Lower-right entrance 2",
+      "originalLocationText": "Ruins of Alph"
     }
   ]
 }

@@ -2,6 +2,7 @@
   "item": "dragon-scale",
   "displayName": "Dragon Scale",
   "source": "items/dragon-scale.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
   "schemaVersion": 1,
   "acquisition": [
     {
@@ -145,22 +146,6 @@
       "locationMatchStatus": "matched"
     },
     {
-      "generation": 4,
-      "games": [
-        "Pokémon HeartGold",
-        "Pokémon SoulSilver"
-      ],
-      "location": "Wild Pokémon",
-      "method": "May be held by wild Horsea, Seadra, Dratini, or Dragonair.",
-      "acquisitionType": "held-by-wild-pokemon",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "5% held-item chance"
-      ],
-      "locationMatchStatus": "unmatched"
-    },
-    {
       "generation": 5,
       "games": [
         "Pokémon Black",
@@ -256,22 +241,6 @@
       "versionExclusive": true,
       "requirements": [
         "Unlock the relevant White Forest shop"
-      ],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 5,
-      "games": [
-        "Pokémon Black 2",
-        "Pokémon White 2"
-      ],
-      "location": "Wild Pokémon",
-      "method": "May be held by wild Horsea, Seadra, Dratini, Dragonair, Dragonite, or Kingdra.",
-      "acquisitionType": "held-by-wild-pokemon",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "5% held-item chance"
       ],
       "locationMatchStatus": "unmatched"
     },
@@ -592,6 +561,25 @@
         "The Indigo Disk DLC"
       ],
       "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "mt-mortar",
+        "displayName": "Mt. Mortar"
+      },
+      "method": "Find at the back of Mt. Mortar 2F.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": "2F",
+      "originalLocationText": "Mt. Mortar"
     }
   ]
 }

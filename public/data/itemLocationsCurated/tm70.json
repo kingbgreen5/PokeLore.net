@@ -1,0 +1,59 @@
+{
+  "item": "tm70",
+  "displayName": "TM70",
+  "source": "items/tm70.json",
+  "sourceTitle": "HGSS guidebook TM/HM tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "sprout-tower",
+        "displayName": "Sprout Tower"
+      },
+      "method": "Receive after defeating the Elder on Sprout Tower 3F.",
+      "acquisitionType": "battle-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "flash",
+        "displayName": "Flash"
+      },
+      "locationMatchStatus": "matched",
+      "area": "3F",
+      "originalLocationText": "Sprout Tower"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "goldenrod-city",
+        "displayName": "Goldenrod City"
+      },
+      "method": "Purchase at Goldenrod City Department Store 5F.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "flash",
+        "displayName": "Flash"
+      },
+      "locationMatchStatus": "matched",
+      "area": "Goldenrod City Department Store 5F",
+      "cost": {
+        "amount": 1000,
+        "currency": "Pokedollars"
+      },
+      "originalLocationText": "Goldenrod City"
+    }
+  ]
+}

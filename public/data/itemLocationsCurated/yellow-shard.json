@@ -1,0 +1,62 @@
+{
+  "item": "yellow-shard",
+  "displayName": "Yellow Shard",
+  "source": "items/yellow-shard.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "ruins-of-alph",
+        "displayName": "Ruins of Alph"
+      },
+      "method": "Find by smashing rocks in the Ruins of Alph exterior.",
+      "acquisitionType": "rock-smash",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Ruins of Alph"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "cliff-cave",
+        "displayName": "Cliff Cave"
+      },
+      "method": "Find by smashing rocks in Cliff Cave after receiving the National Pokédex.",
+      "acquisitionType": "rock-smash",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokémon HeartGold only",
+        "Obtain the National Pokédex"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Cliff Cave"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Rock Smash",
+      "method": "Find by smashing rocks with Rock Smash.",
+      "acquisitionType": "rock-smash",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched"
+    }
+  ]
+}

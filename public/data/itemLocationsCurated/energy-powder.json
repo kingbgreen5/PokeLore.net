@@ -1,0 +1,34 @@
+{
+  "item": "energy-powder",
+  "displayName": "Energy Powder",
+  "source": "items/energy-powder.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "goldenrod-tunnel",
+        "displayName": "Goldenrod Tunnel"
+      },
+      "method": "Purchase from the Goldenrod Tunnel herbalist on Saturday or Sunday.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Saturday or Sunday"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "Herbalist",
+      "cost": {
+        "amount": 500,
+        "currency": "Pokedollars"
+      },
+      "originalLocationText": "Goldenrod Tunnel"
+    }
+  ]
+}

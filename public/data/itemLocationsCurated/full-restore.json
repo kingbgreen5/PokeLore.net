@@ -1,0 +1,33 @@
+{
+  "item": "full-restore",
+  "displayName": "Full Restore",
+  "source": "items/full-restore.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "johto-pokemart",
+        "displayName": "Johto Pokemart"
+      },
+      "method": "Purchase at Poke Marts after obtaining eight Gym Badges.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Obtain eight Gym Badges"
+      ],
+      "locationMatchStatus": "matched",
+      "cost": {
+        "amount": 3000,
+        "currency": "Pokedollars"
+      },
+      "originalLocationText": "Poke Mart"
+    }
+  ]
+}

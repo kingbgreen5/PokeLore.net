@@ -1,0 +1,33 @@
+{
+  "item": "safari-ball",
+  "displayName": "Safari Ball",
+  "source": "items/safari-ball.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "johto-safari-zone",
+        "displayName": "Johto Safari Zone"
+      },
+      "method": "Receive 30 Safari Balls after paying the Safari Zone entry fee.",
+      "acquisitionType": "facility-loan",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Pay the Safari Zone entry fee"
+      ],
+      "locationMatchStatus": "matched",
+      "cost": {
+        "amount": 500,
+        "currency": "Pokedollars"
+      },
+      "originalLocationText": "Johto Safari Zone"
+    }
+  ]
+}

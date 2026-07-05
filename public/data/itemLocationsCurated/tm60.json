@@ -1,0 +1,56 @@
+{
+  "item": "tm60",
+  "displayName": "TM60",
+  "source": "items/tm60.json",
+  "sourceTitle": "HGSS guidebook TM/HM tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "johto-route-39",
+        "displayName": "Route 39"
+      },
+      "method": "Find on Route 39.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "drain-punch",
+        "displayName": "Drain Punch"
+      },
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Route 39"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "goldenrod-city",
+        "displayName": "Goldenrod City"
+      },
+      "method": "Win as the Goldenrod City Department Store drawing 1st prize on Thursday.",
+      "acquisitionType": "lottery-prize",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Thursday"
+      ],
+      "move": {
+        "name": "drain-punch",
+        "displayName": "Drain Punch"
+      },
+      "locationMatchStatus": "matched",
+      "area": "Goldenrod City Department Store drawing",
+      "originalLocationText": "Goldenrod City"
+    }
+  ]
+}

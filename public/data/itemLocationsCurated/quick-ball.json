@@ -1,0 +1,52 @@
+{
+  "item": "quick-ball",
+  "displayName": "Quick Ball",
+  "source": "items/quick-ball.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "goldenrod-city",
+        "displayName": "Goldenrod City"
+      },
+      "method": "Win as the Goldenrod City Department Store drawing 2nd prize on Wednesday.",
+      "acquisitionType": "lottery-prize",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Wednesday"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "Goldenrod City Department Store drawing",
+      "originalLocationText": "Goldenrod City"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "safari-zone-gate",
+        "displayName": "Safari Zone Gate"
+      },
+      "method": "Purchase at Safari Zone Gate.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "cost": {
+        "amount": 1000,
+        "currency": "Pokedollars"
+      },
+      "originalLocationText": "Safari Zone Gate"
+    }
+  ]
+}

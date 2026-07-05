@@ -168,19 +168,6 @@ function groupItemRows(itemRows) {
   );
 }
 
-function formatItemAnswer(
-  locationDisplayName,
-  itemGroup
-) {
-  const versions = formatVersionList(
-    itemGroup.versions
-  );
-
-  return locationDisplayName
-    ? `Obtainable at ${locationDisplayName} in ${versions}.`
-    : `Obtainable in ${versions}.`;
-}
-
 function ItemLocationLink({
   location
 }) {
@@ -212,9 +199,39 @@ function ItemLocationLink({
   );
 }
 
+function AbilityLink({
+  ability
+}) {
+  if (!ability) {
+    return null;
+  }
+
+  if (typeof ability === "string") {
+    return <span>{ability}</span>;
+  }
+
+  if (
+    ability.name &&
+    ability.displayName
+  ) {
+    return (
+      <Link
+        to={`/ability/${ability.name}`}
+      >
+        {ability.displayName}
+      </Link>
+    );
+  }
+
+  return (
+    <span>
+      {ability.displayName ?? ability.name}
+    </span>
+  );
+}
+
 function ItemLocationCards({
   rows,
-  locationDisplayName,
   showLocation = false
 }) {
   const groupedItems =
@@ -269,18 +286,6 @@ function ItemLocationCards({
               {itemGroup.item.displayName}
             </strong>
           </Link>
-
-          <p
-            style={{
-              lineHeight: 1.5,
-              marginTop: 0
-            }}
-          >
-            {formatItemAnswer(
-              locationDisplayName,
-              itemGroup
-            )}
-          </p>
 
           <div
             style={{
@@ -395,6 +400,45 @@ function ItemLocationCards({
                               key={requirement}
                             >
                               {requirement}
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  )}
+
+                  {method.relatedAbilities
+                    ?.length > 0 && (
+                    <div
+                      style={{
+                        marginTop:
+                          ".5rem"
+                      }}
+                    >
+                      <strong>
+                        Related Abilities
+                      </strong>
+                      <ul
+                        style={{
+                          margin:
+                            ".35rem 0 0",
+                          paddingLeft:
+                            "1.25rem"
+                        }}
+                      >
+                        {method.relatedAbilities.map(
+                          ability => (
+                            <li
+                              key={
+                                typeof ability ===
+                                "string"
+                                  ? ability
+                                  : ability.name
+                              }
+                            >
+                              <AbilityLink
+                                ability={ability}
+                              />
                             </li>
                           )
                         )}

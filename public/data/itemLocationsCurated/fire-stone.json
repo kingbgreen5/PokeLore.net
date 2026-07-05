@@ -2,6 +2,7 @@
   "item": "fire-stone",
   "displayName": "Fire Stone",
   "source": "items/fire-stone.json",
+  "sourceTitle": "HGSS guidebook item tables (user photos)",
   "schemaVersion": 1,
   "acquisition": [
     {
@@ -380,24 +381,6 @@
         "Pokémon Black 2",
         "Pokémon White 2"
       ],
-      "location": {
-        "name": "desert-resort",
-        "displayName": "Desert Resort"
-      },
-      "method": "Collect the fixed Fire Stone.",
-      "acquisitionType": "field-item",
-      "repeatable": false,
-      "versionExclusive": false,
-      "requirements": [],
-      "originalLocationText": "Desert Resort",
-      "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 5,
-      "games": [
-        "Pokémon Black 2",
-        "Pokémon White 2"
-      ],
       "location": "Eligible Hidden Grottoes",
       "method": "A Fire Stone can appear in the regenerated Hidden Grotto item pool.",
       "acquisitionType": "random-item-pool",
@@ -741,38 +724,6 @@
         "Pokémon Ultra Moon"
       ],
       "location": {
-        "name": "digletts-tunnel",
-        "displayName": "Diglett’s Tunnel"
-      },
-      "method": "Collect the fixed Fire Stone.",
-      "acquisitionType": "field-item",
-      "repeatable": false,
-      "versionExclusive": false,
-      "requirements": [],
-      "originalLocationText": "Diglett's Tunnel",
-      "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
-      ],
-      "location": "Konikoni City — Olivia's jewelry shop",
-      "method": "Purchase a Fire Stone.",
-      "acquisitionType": "purchase",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "unmatched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
-      ],
-      "location": {
         "name": "paniola-ranch",
         "displayName": "Paniola Ranch"
       },
@@ -785,20 +736,6 @@
       ],
       "originalLocationText": "Paniola Ranch",
       "locationMatchStatus": "matched"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokémon Ultra Sun",
-        "Pokémon Ultra Moon"
-      ],
-      "location": "Poké Pelago — Isle Aphun",
-      "method": "Find during Brilliant-Stone Hunting or Interesting-Item Hunting expeditions.",
-      "acquisitionType": "random-item-pool",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "unmatched"
     },
     {
       "generation": 7,
@@ -1307,27 +1244,27 @@
     {
       "generation": 4,
       "games": [
-        "Pok?mon HeartGold",
-        "Pok?mon SoulSilver"
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
       ],
       "location": {
         "name": "pokeathlon-dome",
-        "displayName": "Pok?athlon Dome"
+        "displayName": "Pokéathlon Dome"
       },
-      "area": "Athlete Shop",
       "method": "Purchase for 2,500 Athlete Points on Tuesday.",
       "acquisitionType": "purchase",
-      "cost": {
-        "amount": 2500,
-        "currency": "Athlete Points"
-      },
       "repeatable": true,
       "versionExclusive": false,
       "requirements": [
         "Available only on Tuesday"
       ],
-      "originalLocationText": "Pok?athlon Dome",
-      "locationMatchStatus": "matched"
+      "locationMatchStatus": "matched",
+      "area": "Athlete Shop",
+      "cost": {
+        "amount": 2500,
+        "currency": "Athlete Points"
+      },
+      "originalLocationText": "Pokéathlon Dome"
     }
   ]
 }

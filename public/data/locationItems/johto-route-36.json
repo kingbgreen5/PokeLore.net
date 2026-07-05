@@ -6,6 +6,49 @@
   "items": [
     {
       "item": {
+        "name": "berry-pots",
+        "displayName": "Berry Pots",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/berry-pots.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive from Floria from the Flower Shop after battling Sudowoodo.",
+              "notes": null,
+              "requirements": [
+                "Battle Sudowoodo"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive from Floria from the Flower Shop after battling Sudowoodo.",
+              "notes": null,
+              "requirements": [
+                "Battle Sudowoodo"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
         "name": "fire-stone",
         "displayName": "Fire Stone",
         "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fire-stone.png"
@@ -23,6 +66,7 @@
                 "Register Alan's phone number",
                 "Pokémon Crystal only"
               ],
+              "relatedAbilities": [],
               "repeatable": true,
               "versionExclusive": true
             }
@@ -39,6 +83,7 @@
               "requirements": [
                 "Register Alan's phone number"
               ],
+              "relatedAbilities": [],
               "repeatable": true,
               "versionExclusive": false
             }
@@ -55,7 +100,90 @@
               "requirements": [
                 "Register Alan's phone number"
               ],
+              "relatedAbilities": [],
               "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "hard-stone",
+        "displayName": "Hard Stone",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hard-stone.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive from Day-of-the-Week Sibling Arthur on Route 36 on Thursday.",
+              "notes": null,
+              "requirements": [
+                "Thursday"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive from Day-of-the-Week Sibling Arthur on Route 36 on Thursday.",
+              "notes": null,
+              "requirements": [
+                "Thursday"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "hm06",
+        "displayName": "HM06",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon HeartGold",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive from the large boy on Route 36.",
+              "notes": null,
+              "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon SoulSilver",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": null,
+              "details": "Receive from the large boy on Route 36.",
+              "notes": null,
+              "requirements": [],
+              "relatedAbilities": [],
+              "repeatable": false,
               "versionExclusive": false
             }
           ]

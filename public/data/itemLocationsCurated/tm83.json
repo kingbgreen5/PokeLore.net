@@ -1,0 +1,61 @@
+{
+  "item": "tm83",
+  "displayName": "TM83",
+  "source": "items/tm83.json",
+  "sourceTitle": "HGSS guidebook TM/HM tables (user photos)",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "goldenrod-city",
+        "displayName": "Goldenrod City"
+      },
+      "method": "Purchase at Goldenrod City Department Store 5F.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "move": {
+        "name": "natural-gift",
+        "displayName": "Natural Gift"
+      },
+      "locationMatchStatus": "matched",
+      "area": "Goldenrod City Department Store 5F",
+      "cost": {
+        "amount": 2000,
+        "currency": "Pokedollars"
+      },
+      "originalLocationText": "Goldenrod City"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": {
+        "name": "johto-route-39",
+        "displayName": "Route 39"
+      },
+      "method": "Receive from the farmer lady at Moomoo Farm on Route 39 after helping Miltank.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Help Miltank"
+      ],
+      "move": {
+        "name": "natural-gift",
+        "displayName": "Natural Gift"
+      },
+      "locationMatchStatus": "matched",
+      "area": "Moomoo Farm",
+      "originalLocationText": "Route 39"
+    }
+  ]
+}
