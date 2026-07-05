@@ -343,11 +343,7 @@ function ItemLocationCards({
                       </>
                     )}
 
-                    {method.area
-                      ? method.area
-                      : showLocation
-                        ? ""
-                        : "Location details listed above"}
+                    {method.area ?? ""}
                   </p>
 
                   {method.details && (
