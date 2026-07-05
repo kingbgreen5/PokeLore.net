@@ -84,8 +84,19 @@ function filterMethodRates(
     );
 }
 
+function cleanDisplayText(text) {
+  if (typeof text !== "string") {
+    return text;
+  }
+
+  return text
+    .replace(/Pok(?:Ã©|\?)mon/g, "Pokémon")
+    .replace(/Pok(?:Ã©|\?)athlon/g, "Pokéathlon")
+    .replace(/Â·/g, "·");
+}
+
 function versionDisplayToSlug(version) {
-  return String(version ?? "")
+  return cleanDisplayText(String(version ?? ""))
     .replace(/^Pokémon\s+/i, "")
     .replace(/^Pokemon\s+/i, "")
     .toLowerCase()
@@ -109,9 +120,15 @@ function getLocationItemRows(locationItems) {
             (method, index) => ({
               item: itemEntry.item,
               version:
-                versionEntry.version,
-              method,
-              key: `${itemEntry.item.name}-${versionEntry.version}-${method.type}-${method.details}-${index}`
+                cleanDisplayText(versionEntry.version),
+              method: {
+                ...method,
+                details: cleanDisplayText(method.details),
+                notes: cleanDisplayText(method.notes),
+                requirements:
+                  method.requirements?.map(cleanDisplayText)
+              },
+              key: `${itemEntry.item.name}-${cleanDisplayText(versionEntry.version)}-${method.type}-${cleanDisplayText(method.details)}-${index}`
             })
           )
       )
@@ -452,8 +469,10 @@ function LocationItemsSection({
     setSelectedItemVersion
   ] = useState("all");
   const locationDisplayName =
-    locationItems?.location
-      ?.displayName ?? "this location";
+    cleanDisplayText(
+      locationItems?.location
+        ?.displayName ?? "this location"
+    );
   const itemRows = useMemo(
     () =>
       getLocationItemRows(locationItems),
@@ -471,14 +490,18 @@ function LocationItemsSection({
     [itemRows]
   );
   const filteredItemRows = useMemo(
-    () =>
-      selectedItemVersion === "all"
+    () => {
+      const cleanSelectedItemVersion =
+        cleanDisplayText(selectedItemVersion);
+
+      return cleanSelectedItemVersion === "all"
         ? itemRows
         : itemRows.filter(
             row =>
               row.version ===
-              selectedItemVersion
-          ),
+              cleanSelectedItemVersion
+          );
+    },
     [
       itemRows,
       selectedItemVersion
@@ -579,7 +602,7 @@ function LocationItemsSection({
 
           <select
             id="location-item-version-filter"
-            value={selectedItemVersion}
+            value={cleanDisplayText(selectedItemVersion)}
             onChange={event =>
               setSelectedItemVersion(
                 event.target.value
@@ -601,7 +624,7 @@ function LocationItemsSection({
               >
                 {version === "all"
                   ? "All Versions"
-                  : version}
+                  : cleanDisplayText(version)}
               </option>
             ))}
           </select>
