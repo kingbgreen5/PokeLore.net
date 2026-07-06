@@ -1,5 +1,9 @@
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
+import {
+  useLocation,
+  useNavigationType
+} from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import typeColors from "../constants/typeColors";
 import usePersistedScroll from "../hooks/usePersistedScroll";
@@ -7,7 +11,15 @@ import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { homeSeo } from "../seo/seoConfig";
 
+const INITIAL_VISIBLE_POKEMON = 120;
+const POKEMON_BATCH_SIZE = 120;
+
 function HomePage() {
+  const location = useLocation();
+  const navigationType =
+    useNavigationType();
+  const loadMoreRef = useRef(null);
+
   //-----------------------------------------
   // State
   //-----------------------------------------
@@ -18,10 +30,15 @@ function HomePage() {
   const [pokemonIndex, setPokemonIndex] =
     useState([]);
 
+  const [
+    visiblePokemonCount,
+    setVisiblePokemonCount
+  ] = useState(INITIAL_VISIBLE_POKEMON);
+
   const [isDesktopGrid, setIsDesktopGrid] =
     useState(false);
 
-  const [searchTerm, setSearchTerm] =
+  const [searchTerm] =
     useQueryParamState(
       "search",
       ""
@@ -184,6 +201,100 @@ function HomePage() {
     selectedType,
     sortMode
   ]);
+
+  const restoreFullGrid = useMemo(() => {
+    if (navigationType !== "POP") {
+      return false;
+    }
+
+    try {
+      const savedScroll =
+        sessionStorage.getItem(
+          `scroll:${location.pathname}${location.search}`
+        );
+
+      return Number(savedScroll ?? 0) > 0;
+    } catch {
+      return false;
+    }
+  }, [
+    location.pathname,
+    location.search,
+    navigationType
+  ]);
+
+  useEffect(() => {
+    // Reset the rendered window when filters or route state change.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setVisiblePokemonCount(
+      restoreFullGrid
+        ? filteredPokemon.length
+        : INITIAL_VISIBLE_POKEMON
+    );
+  }, [
+    filteredPokemon.length,
+    location.pathname,
+    location.search,
+    navigationType,
+    restoreFullGrid
+  ]);
+
+  useEffect(() => {
+    if (
+      visiblePokemonCount >=
+      filteredPokemon.length
+    ) {
+      return undefined;
+    }
+
+    const marker = loadMoreRef.current;
+
+    if (!marker) {
+      return undefined;
+    }
+
+    const observer =
+      new IntersectionObserver(
+        entries => {
+          if (
+            entries.some(
+              entry => entry.isIntersecting
+            )
+          ) {
+            setVisiblePokemonCount(count =>
+              Math.min(
+                count + POKEMON_BATCH_SIZE,
+                filteredPokemon.length
+              )
+            );
+          }
+        },
+        {
+          rootMargin: "900px 0px"
+        }
+      );
+
+    observer.observe(marker);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [
+    filteredPokemon.length,
+    visiblePokemonCount
+  ]);
+
+  const visiblePokemon = useMemo(
+    () =>
+      filteredPokemon.slice(
+        0,
+        visiblePokemonCount
+      ),
+    [
+      filteredPokemon,
+      visiblePokemonCount
+    ]
+  );
 
   //-----------------------------------------
   // Loading Screen
@@ -395,7 +506,7 @@ function HomePage() {
           width: "100%"
         }}
       >
-        {filteredPokemon.map(
+        {visiblePokemon.map(
           pokemon => (
             <PokemonSummaryCard
               key={pokemon.id}
@@ -405,6 +516,17 @@ function HomePage() {
           )
         )}
       </div>
+
+      {visiblePokemon.length <
+        filteredPokemon.length && (
+        <div
+          ref={loadMoreRef}
+          aria-hidden="true"
+          style={{
+            height: "1px"
+          }}
+        />
+      )}
     </div>
   );
 }

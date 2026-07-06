@@ -220,9 +220,15 @@ function settledValue(result, fallback, label) {
 function GlobalSiteSearch() {
   const navigate = useNavigate();
   const wrapperRef = useRef(null);
+  const searchLoadStartedRef =
+    useRef(false);
 
   const [records, setRecords] =
     useState([]);
+  const [
+    searchRecordsLoading,
+    setSearchRecordsLoading
+  ] = useState(false);
   const [query, setQuery] =
     useState("");
   const [isFocused, setIsFocused] =
@@ -230,9 +236,15 @@ function GlobalSiteSearch() {
   const [activeIndex, setActiveIndex] =
     useState(0);
 
-  useEffect(() => {
-    async function loadSearchData() {
-      try {
+  async function requestSearchRecords() {
+    if (searchLoadStartedRef.current) {
+      return;
+    }
+
+    searchLoadStartedRef.current = true;
+    setSearchRecordsLoading(true);
+
+    try {
         const [
           pokemonResult,
           movesResult,
@@ -417,16 +429,49 @@ function GlobalSiteSearch() {
         ];
 
         setRecords(nextRecords);
-      } catch (error) {
-        console.error(
-          "Failed to load global search data:",
-          error
-        );
-      }
+    } catch (error) {
+      searchLoadStartedRef.current = false;
+
+      console.error(
+        "Failed to load global search data:",
+        error
+      );
+    } finally {
+      setSearchRecordsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (records.length > 0) {
+      return undefined;
     }
 
-    loadSearchData();
-  }, []);
+    if (
+      "requestIdleCallback" in window
+    ) {
+      const idleId =
+        window.requestIdleCallback(
+          requestSearchRecords,
+          {
+            timeout: 5000
+          }
+        );
+
+      return () => {
+        window.cancelIdleCallback(idleId);
+      };
+    }
+
+    const timeoutId =
+      window.setTimeout(
+        requestSearchRecords,
+        2500
+      );
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [records.length]);
 
   useEffect(() => {
     function handleDocumentClick(event) {
@@ -488,6 +533,8 @@ function GlobalSiteSearch() {
   }
 
   function handleKeyDown(event) {
+    requestSearchRecords();
+
     if (!results.length) {
       return;
     }
@@ -537,12 +584,19 @@ function GlobalSiteSearch() {
         value={query}
         placeholder="Search Pokémon, items, moves, locations..."
         onChange={event => {
+          requestSearchRecords();
           setQuery(event.target.value);
           setActiveIndex(0);
           setIsFocused(true);
         }}
-        onClick={() => setIsFocused(true)}
-        onFocus={() => setIsFocused(true)}
+        onClick={() => {
+          requestSearchRecords();
+          setIsFocused(true);
+        }}
+        onFocus={() => {
+          requestSearchRecords();
+          setIsFocused(true);
+        }}
         onKeyDown={handleKeyDown}
         style={{
           backgroundColor: "#2c2c2c",
@@ -574,7 +628,18 @@ function GlobalSiteSearch() {
             zIndex: 1001
           }}
         >
-          {results.length === 0 ? (
+          {searchRecordsLoading &&
+          records.length === 0 ? (
+            <div
+              style={{
+                color: "white",
+                opacity: 0.75,
+                padding: ".75rem"
+              }}
+            >
+              Preparing search...
+            </div>
+          ) : results.length === 0 ? (
             <div
               style={{
                 color: "white",
