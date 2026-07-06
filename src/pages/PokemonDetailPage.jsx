@@ -114,8 +114,11 @@ const [redirectPath, setRedirectPath] = useState(null);
 const [evolutionData, setEvolutionData] = useState(null);
 const [evolutionMethodOverrides, setEvolutionMethodOverrides] = useState({});
 const [movesData, setMovesData] = useState({});
+const [learnsetLoading, setLearnsetLoading] = useState(false);
+const [evolutionLoading, setEvolutionLoading] = useState(false);
 //---------------------------------------------------------------------LOAD POKEMON USE EFFECT---------------------------------------------------------------------
 useEffect(() => {
+  let isActive = true;
 
   async function loadPokemon() {
     try {
@@ -127,6 +130,9 @@ useEffect(() => {
       setLearnsetData(null);
       setEvolutionData(null);
       setEvolutionMethodOverrides({});
+      setMovesData({});
+      setLearnsetLoading(false);
+      setEvolutionLoading(false);
 
       const normalizedIdentifier =
         normalizePokemonIdentifier(
@@ -146,6 +152,10 @@ useEffect(() => {
 
       const routes =
         await routesResponse.json();
+
+      if (!isActive) {
+        return;
+      }
 
       if (
         isNumericIdentifier(
@@ -197,6 +207,10 @@ useEffect(() => {
           `/data/pokemonData/${pokemonId}.json`
         );
 
+      if (!isActive) {
+        return;
+      }
+
       if (!pokemonResponse.ok) {
         setNotFound(true);
         return;
@@ -205,24 +219,57 @@ useEffect(() => {
       const pokemonData =
         await pokemonResponse.json();
 
+      if (!isActive) {
+        return;
+      }
+
       setPokemon(
         pokemonData
       );
+      setLoading(false);
+      setEvolutionLoading(true);
+
+      const evolutionResponsePromise =
+        fetch(
+          `/data/evolutionChains/${pokemonData.evolutionChainId}.json`
+        );
+
+      const evolutionOverridesPromise =
+        readJsonFile(
+          "/data/evolutionMethodOverrides.json",
+          {
+            warn: true
+          }
+        );
 
       //-------------------------------------
       // Learnsets + Moves
       //-------------------------------------
 
-      const movesJson =
-        await loadMovesMap();
+      setLearnsetLoading(true);
 
-      setMovesData(movesJson);
+      const learnsetResponsePromise =
+        fetch(
+          `/data/pokemonLearnsets/${pokemonId}.json`
+        );
 
+      void (async () => {
       try {
+        const movesJson =
+          await loadMovesMap();
+
+        if (!isActive) {
+          return;
+        }
+
+        setMovesData(movesJson);
+
         const learnsetResponse =
-          await fetch(
-            `/data/pokemonLearnsets/${pokemonId}.json`
-          );
+          await learnsetResponsePromise;
+
+        if (!isActive) {
+          return;
+        }
 
         if (!learnsetResponse.ok) {
           throw new Error(
@@ -233,17 +280,30 @@ useEffect(() => {
         const learnsetJson =
           await learnsetResponse.json();
 
+        if (!isActive) {
+          return;
+        }
+
         setLearnsetData(
           learnsetJson
         );
       } catch (error) {
+        if (!isActive) {
+          return;
+        }
+
         console.warn(
           "Failed to load learnset:",
           error
         );
 
         setLearnsetData(null);
+      } finally {
+        if (isActive) {
+          setLearnsetLoading(false);
+        }
       }
+      })();
 
       //-------------------------------------
       //  Evolution Data
@@ -269,29 +329,52 @@ useEffect(() => {
 //   evolutions[id]
 // );
 
-const evolutionResponse =
-  await fetch(
-    `/data/evolutionChains/${pokemonData.evolutionChainId}.json`
+try {
+  const [
+    evolutionResponse,
+    evolutionOverrides
+  ] = await Promise.all([
+    evolutionResponsePromise,
+    evolutionOverridesPromise
+  ]);
+
+  if (!evolutionResponse.ok) {
+    throw new Error(
+      `Missing evolution chain for ${pokemonData.evolutionChainId}`
+    );
+  }
+
+  const evolutionJson =
+    await evolutionResponse.json();
+
+  if (!isActive) {
+    return;
+  }
+
+  setEvolutionData(
+    evolutionJson
   );
 
-const evolutionJson =
-  await evolutionResponse.json();
+  setEvolutionMethodOverrides(
+    evolutionOverrides ?? {}
+  );
+} catch (error) {
+  if (!isActive) {
+    return;
+  }
 
-setEvolutionData(
-  evolutionJson
-);
-
-const evolutionOverrides =
-  await readJsonFile(
-    "/data/evolutionMethodOverrides.json",
-    {
-      warn: true
-    }
+  console.warn(
+    "Failed to load evolution data:",
+    error
   );
 
-setEvolutionMethodOverrides(
-  evolutionOverrides ?? {}
-);
+  setEvolutionData(null);
+  setEvolutionMethodOverrides({});
+} finally {
+  if (isActive) {
+    setEvolutionLoading(false);
+  }
+}
 
 
 
@@ -300,6 +383,9 @@ setEvolutionMethodOverrides(
 
 
     } catch (error) {
+      if (!isActive) {
+        return;
+      }
 
       console.error(
         "Failed to load Pokémon:",
@@ -308,13 +394,18 @@ setEvolutionMethodOverrides(
       setNotFound(true);
 
     } finally {
-
-      setLoading(false);
+      if (isActive) {
+        setLoading(false);
+      }
 
     }
   }
 
   loadPokemon();
+
+  return () => {
+    isActive = false;
+  };
 
 }, [
   identifier,
@@ -621,7 +712,11 @@ function formatWeightEnglish(weight) {
       margin:'0 auto',
     }}
   >
-    {evolutionData?.root && (
+    {evolutionLoading && (
+      <p>Loading evolution chain...</p>
+    )}
+
+    {!evolutionLoading && evolutionData?.root && (
 <EvolutionNode
   node={evolutionData.root}
    isRoot={true}
@@ -676,7 +771,9 @@ function formatWeightEnglish(weight) {
 </div>
 
 
-{learnsetData ? (
+{learnsetLoading ? (
+  <p>Loading learnsets...</p>
+) : learnsetData ? (
   <LearnsetCard
     key={`learnset-${pokemon.id}`}
     pokemonData={learnsetData}
