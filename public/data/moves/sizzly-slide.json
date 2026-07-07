@@ -56,5 +56,27 @@
       "effectEntries": []
     }
   ],
-  "machineItems": []
+  "machineItems": [],
+  "flags": [
+    {
+      "name": "contact",
+      "displayName": "Makes contact",
+      "description": "User touches the target. This triggers some abilities (e.g., Static) and items (e.g., Sticky Barb)."
+    },
+    {
+      "name": "protect",
+      "displayName": "Blocked by Detect and Protect",
+      "description": "This move will not work if the target has used Detect or Protect this turn."
+    },
+    {
+      "name": "mirror",
+      "displayName": "Copied by Mirror Move",
+      "description": "A Pokémon targeted by this move can use Mirror Move to copy it."
+    },
+    {
+      "name": "defrost",
+      "displayName": "Defrosts when used",
+      "description": "This move can be used while frozen to force the Pokémon to defrost."
+    }
+  ]
 }

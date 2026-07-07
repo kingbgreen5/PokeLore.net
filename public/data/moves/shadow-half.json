@@ -24,5 +24,17 @@
   "meta": null,
   "statChanges": [],
   "pastValues": [],
-  "machineItems": []
+  "machineItems": [],
+  "flags": [
+    {
+      "name": "recharge",
+      "displayName": "Must recharge",
+      "description": "The turn after this move is used, the Pokémon's action is skipped so it can recharge."
+    },
+    {
+      "name": "protect",
+      "displayName": "Blocked by Detect and Protect",
+      "description": "This move will not work if the target has used Detect or Protect this turn."
+    }
+  ]
 }

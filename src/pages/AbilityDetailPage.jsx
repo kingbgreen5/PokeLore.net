@@ -4,7 +4,6 @@ import {
 
 import {
   useEffect,
-  useMemo,
   useState
 } from "react";
 
@@ -31,7 +30,10 @@ function AbilityDetailPage() {
   const [ability, setAbility] =
     useState(null);
 
-  const [pokemonIndex, setPokemonIndex] =
+  const [
+    pokemonWithAbility,
+    setPokemonWithAbility
+  ] =
     useState([]);
 
   const [loading, setLoading] =
@@ -39,41 +41,82 @@ function AbilityDetailPage() {
 
   useEffect(() => {
 
+    let isActive = true;
+
     async function loadAbility() {
 
       try {
 
         setLoading(true);
+        setAbility(null);
+        setPokemonWithAbility([]);
 
         const [
           abilitiesResponse,
-          pokemonIndexResponse
+          pokemonRoutesResponse
         ] = await Promise.all([
           fetch(
             "/data/abilities.json"
           ),
           fetch(
-            "/data/pokemonIndex.json"
+            "/data/pokemonRoutes.json"
           )
         ]);
 
         const [
           abilitiesData,
-          pokemonIndexData
+          pokemonRoutes
         ] = await Promise.all([
           abilitiesResponse.json(),
-          pokemonIndexResponse.json()
+          pokemonRoutesResponse.json()
         ]);
 
-        setAbility(
+        const nextAbility =
           abilitiesData[
             abilityName
-          ]
-        );
+          ];
 
-        setPokemonIndex(
-          pokemonIndexData
-        );
+        if (!nextAbility) {
+          if (isActive) {
+            setAbility(null);
+            setPokemonWithAbility([]);
+          }
+
+          return;
+        }
+
+        const pokemonDetails =
+          await Promise.all(
+            (nextAbility.pokemon ?? [])
+              .map(async pokemonName => {
+                const pokemonId =
+                  pokemonRoutes.byName?.[
+                    pokemonName
+                  ];
+
+                if (!pokemonId) {
+                  return null;
+                }
+
+                const pokemonResponse =
+                  await fetch(
+                    `/data/pokemonData/${pokemonId}.json`
+                  );
+
+                if (!pokemonResponse.ok) {
+                  return null;
+                }
+
+                return pokemonResponse.json();
+              })
+          );
+
+        if (isActive) {
+          setAbility(nextAbility);
+          setPokemonWithAbility(
+            pokemonDetails.filter(Boolean)
+          );
+        }
 
       } catch (error) {
 
@@ -84,7 +127,9 @@ function AbilityDetailPage() {
 
       } finally {
 
-        setLoading(false);
+        if (isActive) {
+          setLoading(false);
+        }
 
       }
 
@@ -92,32 +137,11 @@ function AbilityDetailPage() {
 
     loadAbility();
 
+    return () => {
+      isActive = false;
+    };
+
   }, [abilityName]);
-
-  const pokemonByName = useMemo(
-    () =>
-      new Map(
-        pokemonIndex.map(
-          pokemon => [
-            pokemon.name,
-            pokemon
-          ]
-        )
-      ),
-    [pokemonIndex]
-  );
-
-  const pokemonWithAbility = useMemo(
-    () =>
-      ability?.pokemon
-        .map(pokemon =>
-          pokemonByName.get(
-            pokemon
-          )
-        )
-        .filter(Boolean) ?? [],
-    [ability, pokemonByName]
-  );
 
   //-----------------------------------------
   // Loading

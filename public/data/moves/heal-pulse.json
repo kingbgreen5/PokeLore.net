@@ -78,5 +78,32 @@
   },
   "statChanges": [],
   "pastValues": [],
-  "machineItems": []
+  "machineItems": [],
+  "flags": [
+    {
+      "name": "protect",
+      "displayName": "Blocked by Detect and Protect",
+      "description": "This move will not work if the target has used Detect or Protect this turn."
+    },
+    {
+      "name": "reflectable",
+      "displayName": "Reflectable",
+      "description": "This move may be reflected back at the user with Magic Coat or Magic Bounce."
+    },
+    {
+      "name": "distance",
+      "displayName": "Targets opposite side in triples",
+      "description": "In triple battles, this move can be used on either side to target the farthest away opposing Pokémon."
+    },
+    {
+      "name": "heal",
+      "displayName": "Heals",
+      "description": "This move is blocked by Heal Block."
+    },
+    {
+      "name": "pulse",
+      "displayName": "Pulse-based",
+      "description": "This move has 1.5× its usual power when used by a Pokémon with Mega Launcher."
+    }
+  ]
 }

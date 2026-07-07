@@ -27,6 +27,8 @@ const legacyMovesPath =
 
 const API_BASE =
   "https://pokeapi.co/api/v2";
+const POKEAPI_CSV_BASE =
+  "https://raw.githubusercontent.com/PokeAPI/pokeapi/master/data/v2/csv";
 const REQUEST_DELAY_MS = 80;
 const refreshExisting =
   process.argv.includes("--refresh");
@@ -83,8 +85,13 @@ async function fetchJson(url) {
   const response = await fetch(url);
 
   if (!response.ok) {
+    const body =
+      await response.text();
+
     throw new Error(
-      `${response.status} ${response.statusText}`
+      `${response.status} ${response.statusText} for ${url}${
+        body ? `: ${body.slice(0, 160)}` : ""
+      }`
     );
   }
 
@@ -93,6 +100,142 @@ async function fetchJson(url) {
   await sleep(REQUEST_DELAY_MS);
 
   return data;
+}
+
+async function fetchText(url) {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    const body =
+      await response.text();
+
+    throw new Error(
+      `${response.status} ${response.statusText} for ${url}${
+        body ? `: ${body.slice(0, 160)}` : ""
+      }`
+    );
+  }
+
+  const text = await response.text();
+  await sleep(REQUEST_DELAY_MS);
+
+  return text;
+}
+
+function parseCsvRows(text) {
+  const rows = [];
+  let row = [];
+  let field = "";
+  let inQuotes = false;
+  const source = String(text ?? "");
+
+  for (let index = 0; index < source.length; index++) {
+    const char = source[index];
+    const nextChar = source[index + 1];
+
+    if (inQuotes) {
+      if (char === '"' && nextChar === '"') {
+        field += '"';
+        index += 1;
+      } else if (char === '"') {
+        inQuotes = false;
+      } else {
+        field += char;
+      }
+
+      continue;
+    }
+
+    if (char === '"') {
+      inQuotes = true;
+      continue;
+    }
+
+    if (char === ",") {
+      row.push(field);
+      field = "";
+      continue;
+    }
+
+    if (char === "\r" || char === "\n") {
+      row.push(field);
+      rows.push(row);
+      row = [];
+      field = "";
+
+      if (char === "\r" && nextChar === "\n") {
+        index += 1;
+      }
+
+      continue;
+    }
+
+    field += char;
+  }
+
+  if (field || row.length) {
+    row.push(field);
+    rows.push(row);
+  }
+
+  return rows.filter(currentRow =>
+    currentRow.some(value => value !== "")
+  );
+}
+
+function parseCsvRecords(text) {
+  const [
+    header = [],
+    ...rows
+  ] = parseCsvRows(text);
+
+  return rows.map(row =>
+    Object.fromEntries(
+      header.map((key, index) => [
+        key,
+        row[index] ?? ""
+      ])
+    )
+  );
+}
+
+function buildFlagDetailsById(
+  flagsCsv,
+  flagProseCsv
+) {
+  const detailsById = new Map();
+
+  for (const flag of parseCsvRecords(flagsCsv)) {
+    if (!flag.id || !flag.identifier) {
+      continue;
+    }
+
+    detailsById.set(flag.id, {
+      name: flag.identifier,
+      displayName:
+        displayName(flag.identifier),
+      description: null
+    });
+  }
+
+  for (const prose of parseCsvRecords(flagProseCsv)) {
+    if (
+      prose.local_language_id !== "9" ||
+      !detailsById.has(prose.move_flag_id)
+    ) {
+      continue;
+    }
+
+    const details =
+      detailsById.get(prose.move_flag_id);
+
+    details.displayName =
+      prose.name || details.displayName;
+    details.description =
+      cleanText(prose.description);
+  }
+
+  return detailsById;
 }
 
 function englishEntries(entries = []) {
@@ -420,6 +563,111 @@ async function buildMachineItemsByMove() {
   return byMove;
 }
 
+async function buildExistingMoveFlagsByMove() {
+  const byMove = new Map();
+
+  let files = [];
+  try {
+    files = await fs.readdir(movesDir);
+  } catch {
+    return byMove;
+  }
+
+  for (const file of files.filter(file =>
+    file.endsWith(".json")
+  )) {
+    const move =
+      await readJson(
+        path.join(movesDir, file),
+        null
+      );
+
+    if (move?.name && Array.isArray(move.flags)) {
+      byMove.set(move.name, move.flags);
+    }
+  }
+
+  return byMove;
+}
+
+async function buildMoveFlagsByMove() {
+  const byMove = new Map();
+
+  try {
+    console.log("Fetching move flags...");
+
+    const [
+      flagsCsv,
+      flagProseCsv,
+      flagMapCsv,
+      moveList
+    ] = await Promise.all([
+      fetchText(
+        `${POKEAPI_CSV_BASE}/move_flags.csv`
+      ),
+      fetchText(
+        `${POKEAPI_CSV_BASE}/move_flag_prose.csv`
+      ),
+      fetchText(
+        `${POKEAPI_CSV_BASE}/move_flag_map.csv`
+      ),
+      fetchJson(
+        `${API_BASE}/move?limit=100000`
+      )
+    ]);
+    const flagDetailsById =
+      buildFlagDetailsById(
+        flagsCsv,
+        flagProseCsv
+      );
+    const movesById =
+      new Map(
+        (moveList.results ?? [])
+          .map(move => [
+            getUrlId(move.url),
+            move.name
+          ])
+          .filter(
+            ([id, name]) =>
+              id && name
+          )
+      );
+
+    for (const mapping of parseCsvRecords(
+      flagMapCsv
+    )) {
+      const moveName =
+        movesById.get(
+          Number(mapping.move_id)
+        );
+      const flagDetails =
+        flagDetailsById.get(
+          mapping.move_flag_id
+        );
+
+      if (!moveName || !flagDetails) {
+        continue;
+      }
+
+      if (!byMove.has(moveName)) {
+        byMove.set(moveName, []);
+      }
+
+      byMove
+        .get(moveName)
+        .push(flagDetails);
+    }
+
+    return byMove;
+  } catch (error) {
+    console.warn(
+      `Could not fetch move flags, using local flags instead: ${error.message}`
+    );
+
+    return buildExistingMoveFlagsByMove();
+  }
+}
+
 async function getPokemonSummary(
   pokemonId
 ) {
@@ -669,7 +917,8 @@ async function buildMoveLearners() {
 
 function buildMoveRecord(
   data,
-  machineItems
+  machineItems,
+  flags
 ) {
   const effectEntries =
     mapEffectEntries(data.effect_entries);
@@ -708,6 +957,7 @@ function buildMoveRecord(
     statChanges: mapStatChanges(
       data.stat_changes
     ),
+    flags: flags ?? [],
     pastValues: mapPastValues(
       data.past_values
     ),
@@ -732,6 +982,7 @@ function buildIndexRecord(move) {
     generation: move.generation,
     description: move.description,
     shortEffect: move.shortEffect,
+    flags: move.flags ?? [],
     machineItems: move.machineItems
   };
 }
@@ -782,6 +1033,8 @@ async function main() {
 
   const machineItemsByMove =
     await buildMachineItemsByMove();
+  const moveFlagsByMove =
+    await buildMoveFlagsByMove();
   const learnersByMove =
     await buildMoveLearners();
   const failures = [];
@@ -837,7 +1090,8 @@ async function main() {
         moveRecord =
           buildMoveRecord(
             data,
-            machineItems
+            machineItems,
+            moveFlagsByMove.get(data.name) ?? []
           );
 
         await writeJson(
@@ -845,6 +1099,11 @@ async function main() {
           moveRecord
         );
       }
+
+      moveRecord.flags =
+        moveFlagsByMove.get(moveRecord.name) ??
+        moveRecord.flags ??
+        [];
 
       movesIndex.push(
         buildIndexRecord(moveRecord)

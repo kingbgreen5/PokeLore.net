@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { compareVersions } from "../constants/versionOrder";
+import { normalizeDisplayText } from "../utils/normalizeText";
 
 function capitalize(text) {
   return String(text ?? "")
@@ -13,7 +14,9 @@ function capitalize(text) {
 }
 
 function formatItemMethodType(type) {
-  return capitalize(type ?? "method");
+  return capitalize(
+    normalizeDisplayText(type ?? "method")
+  );
 }
 
 function formatCost(cost) {
@@ -36,7 +39,7 @@ function formatCost(cost) {
 }
 
 function versionDisplayToSlug(version) {
-  return String(version ?? "")
+  return normalizeDisplayText(String(version ?? ""))
     .replace(/^Pokémon\s+/i, "")
     .replace(/^Pokemon\s+/i, "")
     .toLowerCase()
@@ -68,7 +71,7 @@ function formatList(values) {
 function formatVersionList(versions) {
   const cleanedVersions =
     versions.map(version =>
-      String(version ?? "").trim()
+      normalizeDisplayText(String(version ?? "")).trim()
     );
   const pokemonPrefix =
     cleanedVersions.every(version =>
@@ -105,17 +108,19 @@ function methodGroupKey(method) {
         "";
 
   return [
-    location,
-    method.type ?? "",
-    method.area ?? "",
-    method.details ?? "",
+    normalizeDisplayText(location),
+    normalizeDisplayText(method.type ?? ""),
+    normalizeDisplayText(method.area ?? ""),
+    normalizeDisplayText(method.details ?? ""),
     formatCost(method.cost) ?? "",
-    method.notes ?? "",
+    normalizeDisplayText(method.notes ?? ""),
     method.repeatable ? "repeatable" : "",
     method.versionExclusive
       ? "version-exclusive"
       : "",
-    ...(method.requirements ?? [])
+    ...(method.requirements ?? []).map(
+      normalizeDisplayText
+    )
   ].join("|");
 }
 
@@ -176,7 +181,11 @@ function ItemLocationLink({
   }
 
   if (typeof location === "string") {
-    return <span>{location}</span>;
+    return (
+      <span>
+        {normalizeDisplayText(location)}
+      </span>
+    );
   }
 
   if (
@@ -187,14 +196,16 @@ function ItemLocationLink({
       <Link
         to={`/location/${location.name}`}
       >
-        {location.displayName}
+        {normalizeDisplayText(location.displayName)}
       </Link>
     );
   }
 
   return (
     <span>
-      {location.displayName ?? location.name}
+      {normalizeDisplayText(
+        location.displayName ?? location.name
+      )}
     </span>
   );
 }
@@ -207,7 +218,11 @@ function AbilityLink({
   }
 
   if (typeof ability === "string") {
-    return <span>{ability}</span>;
+    return (
+      <span>
+        {normalizeDisplayText(ability)}
+      </span>
+    );
   }
 
   if (
@@ -225,7 +240,9 @@ function AbilityLink({
 
   return (
     <span>
-      {ability.displayName ?? ability.name}
+      {normalizeDisplayText(
+        ability.displayName ?? ability.name
+      )}
     </span>
   );
 }
@@ -343,7 +360,9 @@ function ItemLocationCards({
                       </>
                     )}
 
-                    {method.area ?? ""}
+                    {normalizeDisplayText(
+                      method.area ?? ""
+                    )}
                   </p>
 
                   {method.details && (
@@ -354,7 +373,9 @@ function ItemLocationCards({
                         opacity: 0.85
                       }}
                     >
-                      {method.details}
+                      {normalizeDisplayText(
+                        method.details
+                      )}
                     </p>
                   )}
 
@@ -395,7 +416,9 @@ function ItemLocationCards({
                             <li
                               key={requirement}
                             >
-                              {requirement}
+                              {normalizeDisplayText(
+                                requirement
+                              )}
                             </li>
                           )
                         )}

@@ -13,6 +13,8 @@
     "generate:sprite-bounds": "node scripts/generatePokemonSpriteBounds.js",
     "update:abilities": "node scripts/updatePokemonAbilities.js --write",
     "update:abilities:dry-run": "node scripts/updatePokemonAbilities.js --dry-run",
+    "update:move-flags": "node scripts/updateMoveFlags.js --write",
+    "update:move-flags:dry-run": "node scripts/updateMoveFlags.js --dry-run",
     "enrich:pokemon-index-stats": "node scripts/enrichPokemonIndexStats.js",
     "migrate:item-locations": "node scripts/migrateItemLocations.js",
     "generate:moves": "node scripts/generateMoves.js",

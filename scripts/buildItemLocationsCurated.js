@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { normalizeDisplayData } from "../src/utils/normalizeText.js";
 
 const __dirname = path.dirname(
   fileURLToPath(import.meta.url)
@@ -17,8 +18,8 @@ const OUTPUT_DIR = path.join(
 );
 
 async function readJson(filePath) {
-  return JSON.parse(
-    await fs.readFile(filePath, "utf8")
+  return normalizeDisplayData(
+    JSON.parse(await fs.readFile(filePath, "utf8"))
   );
 }
 

@@ -5,11 +5,12 @@ import {
 import { Link } from "react-router-dom";
 import CollapsibleSection from "./CollapsibleSection";
 import useSessionState from "../hooks/useSessionState";
+import { normalizeDisplayText } from "../utils/normalizeText";
 
 function formatAcquisitionType(type) {
   if (!type) return "Unknown";
 
-  return type
+  return normalizeDisplayText(type)
     .split("-")
     .map(
       word =>
@@ -26,7 +27,9 @@ function formatLocationKey(location) {
     return location;
   }
 
-  return location.name ?? location.displayName;
+  return normalizeDisplayText(
+    location.name ?? location.displayName
+  );
 }
 
 function ItemLocationLink({
@@ -35,7 +38,11 @@ function ItemLocationLink({
   if (!location) return null;
 
   if (typeof location === "string") {
-    return <span>{location}</span>;
+    return (
+      <span>
+        {normalizeDisplayText(location)}
+      </span>
+    );
   }
 
   if (
@@ -46,7 +53,7 @@ function ItemLocationLink({
       <Link
         to={`/location/${location.name}`}
       >
-        {location.displayName}
+        {normalizeDisplayText(location.displayName)}
       </Link>
     );
   }
@@ -60,7 +67,11 @@ function ItemLink({
   if (!item) return null;
 
   if (typeof item === "string") {
-    return <span>{item}</span>;
+    return (
+      <span>
+        {normalizeDisplayText(item)}
+      </span>
+    );
   }
 
   if (
@@ -69,12 +80,18 @@ function ItemLink({
   ) {
     return (
       <Link to={`/item/${item.name}`}>
-        {item.displayName}
+        {normalizeDisplayText(item.displayName)}
       </Link>
     );
   }
 
-  return null;
+  return (
+    <span>
+      {normalizeDisplayText(
+        item.displayName ?? item.name
+      )}
+    </span>
+  );
 }
 
 function AbilityLink({
@@ -83,7 +100,11 @@ function AbilityLink({
   if (!ability) return null;
 
   if (typeof ability === "string") {
-    return <span>{ability}</span>;
+    return (
+      <span>
+        {normalizeDisplayText(ability)}
+      </span>
+    );
   }
 
   if (
@@ -94,12 +115,18 @@ function AbilityLink({
       <Link
         to={`/ability/${ability.name}`}
       >
-        {ability.displayName}
+        {normalizeDisplayText(ability.displayName)}
       </Link>
     );
   }
 
-  return null;
+  return (
+    <span>
+      {normalizeDisplayText(
+        ability.displayName ?? ability.name
+      )}
+    </span>
+  );
 }
 
 function formatCost(cost) {
@@ -298,9 +325,9 @@ function AcquisitionMethods({
                   <div>
                     <strong>Games</strong>
                     <p>
-                      {method.games.join(
-                        ", "
-                      )}
+                      {method.games
+                        .map(normalizeDisplayText)
+                        .join(", ")}
                     </p>
                   </div>
 
@@ -320,8 +347,10 @@ function AcquisitionMethods({
                   <div>
                     <strong>Method</strong>
                     <p>
-                      {method.method ??
-                        method.details}
+                      {normalizeDisplayText(
+                        method.method ??
+                          method.details
+                      )}
                     </p>
                   </div>
 
@@ -357,7 +386,9 @@ function AcquisitionMethods({
                                 requirement
                               }
                             >
-                              {requirement}
+                              {normalizeDisplayText(
+                                requirement
+                              )}
                             </li>
                           )
                         )}

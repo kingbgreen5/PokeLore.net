@@ -14,6 +14,7 @@ import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { locationSeo } from "../seo/seoConfig";
 import { readJsonFile } from "../utils/readJsonFile";
+import { normalizeDisplayText } from "../utils/normalizeText";
 import {
   compareVersions,
   sortVersions
@@ -84,19 +85,8 @@ function filterMethodRates(
     );
 }
 
-function cleanDisplayText(text) {
-  if (typeof text !== "string") {
-    return text;
-  }
-
-  return text
-    .replace(/Pok(?:Ã©|\?)mon/g, "Pokémon")
-    .replace(/Pok(?:Ã©|\?)athlon/g, "Pokéathlon")
-    .replace(/Â·/g, "·");
-}
-
 function versionDisplayToSlug(version) {
-  return cleanDisplayText(String(version ?? ""))
+  return normalizeDisplayText(String(version ?? ""))
     .replace(/^Pokémon\s+/i, "")
     .replace(/^Pokemon\s+/i, "")
     .toLowerCase()
@@ -120,15 +110,15 @@ function getLocationItemRows(locationItems) {
             (method, index) => ({
               item: itemEntry.item,
               version:
-                cleanDisplayText(versionEntry.version),
+                normalizeDisplayText(versionEntry.version),
               method: {
                 ...method,
-                details: cleanDisplayText(method.details),
-                notes: cleanDisplayText(method.notes),
+                details: normalizeDisplayText(method.details),
+                notes: normalizeDisplayText(method.notes),
                 requirements:
-                  method.requirements?.map(cleanDisplayText)
+                  method.requirements?.map(normalizeDisplayText)
               },
-              key: `${itemEntry.item.name}-${cleanDisplayText(versionEntry.version)}-${method.type}-${cleanDisplayText(method.details)}-${index}`
+              key: `${itemEntry.item.name}-${normalizeDisplayText(versionEntry.version)}-${method.type}-${normalizeDisplayText(method.details)}-${index}`
             })
           )
       )
@@ -469,7 +459,7 @@ function LocationItemsSection({
     setSelectedItemVersion
   ] = useState("all");
   const locationDisplayName =
-    cleanDisplayText(
+    normalizeDisplayText(
       locationItems?.location
         ?.displayName ?? "this location"
     );
@@ -492,7 +482,7 @@ function LocationItemsSection({
   const filteredItemRows = useMemo(
     () => {
       const cleanSelectedItemVersion =
-        cleanDisplayText(selectedItemVersion);
+        normalizeDisplayText(selectedItemVersion);
 
       return cleanSelectedItemVersion === "all"
         ? itemRows
@@ -602,7 +592,7 @@ function LocationItemsSection({
 
           <select
             id="location-item-version-filter"
-            value={cleanDisplayText(selectedItemVersion)}
+            value={normalizeDisplayText(selectedItemVersion)}
             onChange={event =>
               setSelectedItemVersion(
                 event.target.value
@@ -624,7 +614,7 @@ function LocationItemsSection({
               >
                 {version === "all"
                   ? "All Versions"
-                  : cleanDisplayText(version)}
+                  : normalizeDisplayText(version)}
               </option>
             ))}
           </select>

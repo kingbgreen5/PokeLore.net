@@ -68,6 +68,93 @@ function formatCritChance(critRate) {
   return "Guaranteed";
 }
 
+const MOVE_FLAG_LABELS = {
+  contact: "Makes contact",
+  charge: "Charges",
+  recharge: "Recharge",
+  protect: "Protect affected",
+  reflectable: "Reflectable",
+  snatch: "Snatchable",
+  mirror: "Mirror Move",
+  punch: "Punch",
+  sound: "Sound",
+  gravity: "Gravity blocked",
+  defrost: "Thaws user",
+  distance: "Distant target",
+  heal: "Healing",
+  authentic: "Bypasses substitute",
+  powder: "Powder",
+  bite: "Bite",
+  pulse: "Pulse",
+  ballistics: "Ballistic",
+  mental: "Mental",
+  "non-sky-battle": "No Sky Battle",
+  dance: "Dance"
+};
+
+function formatMoveFlag(flag) {
+  return (
+    MOVE_FLAG_LABELS[flag] ??
+    capitalize(flag)
+  );
+}
+
+function normalizeMoveFlag(flag) {
+  if (typeof flag === "string") {
+    return {
+      name: flag,
+      displayName: formatMoveFlag(flag),
+      description: null
+    };
+  }
+
+  const name =
+    flag?.name ?? "";
+
+  return {
+    name,
+    displayName:
+      flag?.displayName ??
+      formatMoveFlag(name),
+    description:
+      flag?.description ?? null
+  };
+}
+
+function buildDisplayMoveFlags(moveData) {
+  if (!Array.isArray(moveData.flags)) {
+    return [];
+  }
+
+  const normalizedFlags =
+    moveData.flags
+      .map(normalizeMoveFlag)
+      .filter(flag => flag.name);
+  const makesContact =
+    normalizedFlags.some(
+      flag => flag.name === "contact"
+    );
+  const contactFlag =
+    makesContact
+      ? normalizedFlags.find(
+          flag => flag.name === "contact"
+        )
+      : {
+          name: "no-contact",
+          displayName:
+            "Does not make contact",
+          description:
+            "This move does not make direct contact with the target."
+        };
+
+  return [
+    contactFlag,
+    ...normalizedFlags.filter(
+      flag => flag.name !== "contact"
+    )
+  ];
+}
+
 async function readJsonUrl(url) {
   const response = await fetch(url);
 
@@ -145,6 +232,8 @@ function CritBadge({
 function HeroStatStack({
   moveData
 }) {
+  const moveFlags =
+    buildDisplayMoveFlags(moveData);
   const rows = [
     {
       label: "POWER",
@@ -230,6 +319,51 @@ function HeroStatStack({
           </span>
         </div>
       ))}
+
+      {moveFlags.length > 0 && (
+        <div
+          data-section="move-flags"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: ".35rem",
+            gridColumn: "1 / -1",
+            justifyContent: "flex-end",
+            marginTop: ".25rem"
+          }}
+        >
+          {moveFlags.map(flag => (
+            <span
+              key={flag.name}
+              aria-label={
+                flag.description
+                  ? `${flag.displayName}: ${flag.description}`
+                  : flag.displayName
+              }
+              title={
+                flag.description ??
+                flag.displayName
+              }
+              style={{
+                border: "1px solid #4d4d55",
+                borderRadius: "999px",
+                color: "#8f96a3",
+                cursor: flag.description
+                  ? "help"
+                  : "default",
+                fontSize: ".72rem",
+                fontWeight: "700",
+                letterSpacing: 0,
+                lineHeight: 1,
+                padding: ".22rem .5rem",
+                textTransform: "uppercase"
+              }}
+            >
+              {flag.displayName}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

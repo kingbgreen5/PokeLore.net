@@ -201,6 +201,95 @@ function validatePokemonRoutes() {
   return Object.keys(routes.byId).length;
 }
 
+function slugifyAbilityName(name) {
+  return String(name ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-");
+}
+
+function getPokemonAbilitySlug(ability) {
+  return typeof ability === "string"
+    ? slugifyAbilityName(ability)
+    : slugifyAbilityName(ability?.name);
+}
+
+function validateAbilityPokemonRosters() {
+  const abilities =
+    readJson(
+      path.join(dataDir, "abilities.json")
+    ) ?? {};
+  const routes =
+    readJson(
+      path.join(dataDir, "pokemonRoutes.json")
+    ) ?? {
+      byId: {},
+      byName: {}
+    };
+
+  for (const [
+    abilitySlug,
+    ability
+  ] of Object.entries(abilities)) {
+    if (!Array.isArray(ability.pokemon)) {
+      addError(
+        `Ability ${abilitySlug}: pokemon must be an array.`
+      );
+      continue;
+    }
+
+    for (const pokemonName of ability.pokemon) {
+      if (!routes.byName?.[pokemonName]) {
+        addError(
+          `Ability ${abilitySlug}: Pokemon ${pokemonName} is missing from pokemonRoutes.`
+        );
+      }
+    }
+  }
+
+  for (const [
+    id,
+    routeName
+  ] of Object.entries(routes.byId ?? {})) {
+    const pokemon =
+      readJson(
+        path.join(
+          dataDir,
+          "pokemonData",
+          `${id}.json`
+        )
+      );
+
+    if (!pokemon) {
+      continue;
+    }
+
+    for (const ability of pokemon.abilities ?? []) {
+      const abilitySlug =
+        getPokemonAbilitySlug(ability);
+
+      if (!abilities[abilitySlug]) {
+        addError(
+          `Pokemon ${routeName}: ability ${abilitySlug} is missing from abilities.json.`
+        );
+        continue;
+      }
+
+      if (
+        !abilities[abilitySlug].pokemon.includes(
+          pokemon.name
+        )
+      ) {
+        addError(
+          `Pokemon ${routeName}: ability ${abilitySlug} does not include ${pokemon.name}.`
+        );
+      }
+    }
+  }
+
+  return Object.keys(abilities).length;
+}
+
 function validateLocations() {
   const indexPath =
     path.join(dataDir, "locationsIndex.json");
@@ -400,6 +489,8 @@ const itemCount =
   validateItems();
 const pokemonRouteCount =
   validatePokemonRoutes();
+const abilityCount =
+  validateAbilityPokemonRosters();
 const locationCount =
   validateLocations();
 const sitemapCount =
@@ -433,6 +524,7 @@ console.log(
     `${parsedJsonCount} JSON files parsed,`,
     `${itemCount} items checked,`,
     `${pokemonRouteCount} Pokemon routes checked,`,
+    `${abilityCount} abilities checked,`,
     `${locationCount} locations checked,`,
     `${sitemapCount} sitemap URLs checked.`
   ].join(" ")

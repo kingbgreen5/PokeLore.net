@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { normalizeDisplayText } from "../src/utils/normalizeText.js";
 
 const __dirname = path.dirname(
   fileURLToPath(import.meta.url)
@@ -65,7 +66,7 @@ const VERSION_TO_REGION = {
 };
 
 function normalizeText(text) {
-  return String(text ?? "")
+  return String(normalizeDisplayText(text) ?? "")
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/['’]/g, "")
