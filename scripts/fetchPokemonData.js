@@ -119,6 +119,54 @@ function buildVarietySummary(
   };
 }
 
+const MANUAL_VARIETY_SUMMARIES = {
+  frillish: [
+    {
+      id: 592,
+      name: "frillish-female",
+      isDefault: false,
+      sprite:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/female/592.svg",
+      spriteFallback:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/female/592.png",
+      types: ["water", "ghost"]
+    }
+  ],
+  jellicent: [
+    {
+      id: 593,
+      name: "jellicent-female",
+      isDefault: false,
+      sprite:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/female/593.svg",
+      spriteFallback:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/female/593.png",
+      types: ["water", "ghost"]
+    }
+  ]
+};
+
+function applyManualVarietySummaries(
+  speciesName,
+  varieties
+) {
+  const manualVarieties =
+    MANUAL_VARIETY_SUMMARIES[
+      speciesName
+    ] ?? [];
+  const existingNames = new Set(
+    varieties.map(variety => variety.name)
+  );
+
+  return [
+    ...varieties,
+    ...manualVarieties.filter(
+      variety =>
+        !existingNames.has(variety.name)
+    )
+  ];
+}
+
 function buildPokemonData({
   pokemon,
   species,
@@ -266,12 +314,15 @@ async function main() {
       }
 
       const varieties =
-        fetchedVarieties.map(
-          ({ variety, pokemon }) =>
-            buildVarietySummary(
-              variety,
-              pokemon
-            )
+        applyManualVarietySummaries(
+          species.name,
+          fetchedVarieties.map(
+            ({ variety, pokemon }) =>
+              buildVarietySummary(
+                variety,
+                pokemon
+              )
+          )
         );
 
       for (const {

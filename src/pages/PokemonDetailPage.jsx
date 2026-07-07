@@ -100,6 +100,49 @@ function isNumericIdentifier(identifier) {
   return /^\d+$/.test(identifier);
 }
 
+function applySelectedVariety(
+  pokemonData,
+  normalizedIdentifier
+) {
+  const selectedVariety =
+    pokemonData.varieties?.find(
+      variety =>
+        variety.name ===
+        normalizedIdentifier
+    );
+
+  if (!selectedVariety) {
+    return pokemonData;
+  }
+
+  return {
+    ...pokemonData,
+    name: selectedVariety.name,
+    id: selectedVariety.id,
+    isDefaultForm:
+      selectedVariety.isDefault,
+    sprite:
+      selectedVariety.sprite ??
+      pokemonData.sprite,
+    spriteFallback:
+      selectedVariety.spriteFallback,
+    types:
+      selectedVariety.types ??
+      pokemonData.types
+  };
+}
+
+function useFallbackSprite(event, fallback) {
+  if (
+    !fallback ||
+    event.currentTarget.src === fallback
+  ) {
+    return;
+  }
+
+  event.currentTarget.src = fallback;
+}
+
 function PokemonDetailPage() {
   const evolutionScrollRef = useRef(null);
 const rootNodeRef = useRef(null);
@@ -224,7 +267,10 @@ useEffect(() => {
       }
 
       setPokemon(
-        pokemonData
+        applySelectedVariety(
+          pokemonData,
+          normalizedIdentifier
+        )
       );
       setLoading(false);
       setEvolutionLoading(true);
@@ -535,6 +581,12 @@ function formatWeightEnglish(weight) {
         alt={formatPokemonDisplayName(
           pokemon
         )}
+        onError={event =>
+          useFallbackSprite(
+            event,
+            pokemon.spriteFallback
+          )
+        }
         style={{
           width: "250px"
         }}

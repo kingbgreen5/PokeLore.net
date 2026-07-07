@@ -58,6 +58,16 @@ const CARD_SIZES = {
   }
 };
 
+function useFallbackSprite(event, fallback) {
+  if (
+    !fallback ||
+    event.currentTarget.src === fallback
+  ) {
+    return;
+  }
+
+  event.currentTarget.src = fallback;
+}
 
 function PokemonSummaryCard({
   pokemon,
@@ -158,6 +168,12 @@ function PokemonSummaryCard({
         src={pokemon.sprite}
         alt={displayName}
         loading="lazy"
+        onError={event =>
+          useFallbackSprite(
+            event,
+            pokemon.spriteFallback
+          )
+        }
         style={{
           width: size.spriteSize,
           height: size.spriteSize,

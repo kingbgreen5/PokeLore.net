@@ -33,7 +33,8 @@ async function readPokemonFiles() {
       return {
         file,
         id: pokemon.id,
-        name: pokemon.name
+        name: pokemon.name,
+        varieties: pokemon.varieties
       };
     })
   );
@@ -91,6 +92,34 @@ async function generatePokemonRoutes() {
 
     byId[id] = name;
     byName[name] = entry.id;
+
+    if (Array.isArray(entry.varieties)) {
+      entry.varieties.forEach(variety => {
+        const varietyName = String(
+          variety?.name ?? ""
+        )
+          .trim()
+          .toLowerCase();
+
+        if (
+          !varietyName ||
+          variety?.id !== entry.id
+        ) {
+          return;
+        }
+
+        if (
+          byName[varietyName] &&
+          byName[varietyName] !== entry.id
+        ) {
+          conflicts.push(
+            `Duplicate variety name ${varietyName}: ${byName[varietyName]} and ${entry.id}`
+          );
+        }
+
+        byName[varietyName] = entry.id;
+      });
+    }
   });
 
   if (conflicts.length) {
