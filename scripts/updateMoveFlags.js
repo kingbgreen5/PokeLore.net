@@ -291,22 +291,16 @@ function flagsMatch(currentFlags, nextFlags) {
   );
 }
 
-function updateIndexRecordFlags(
-  record,
-  flags
-) {
+function removeIndexRecordFlags(record) {
   if (!record) {
     return false;
   }
 
-  if (
-    "flags" in record &&
-    flagsMatch(record.flags, flags)
-  ) {
+  if (!("flags" in record)) {
     return false;
   }
 
-  record.flags = flags;
+  delete record.flags;
   return true;
 }
 
@@ -405,18 +399,16 @@ async function updateMoveFlags() {
       }
 
       if (
-        updateIndexRecordFlags(
-          indexByName.get(move.name),
-          nextFlags
+        removeIndexRecordFlags(
+          indexByName.get(move.name)
         )
       ) {
         summary.changedIndexRecords += 1;
       }
 
       if (
-        updateIndexRecordFlags(
-          legacyMoves[move.name],
-          nextFlags
+        removeIndexRecordFlags(
+          legacyMoves[move.name]
         )
       ) {
         summary.changedLegacyRecords += 1;
@@ -453,10 +445,10 @@ async function updateMoveFlags() {
     `Changed detail files: ${summary.changedDetails}`
   );
   console.log(
-    `Changed movesIndex records: ${summary.changedIndexRecords}`
+    `Cleaned movesIndex records: ${summary.changedIndexRecords}`
   );
   console.log(
-    `Changed legacy moves records: ${summary.changedLegacyRecords}`
+    `Cleaned legacy moves records: ${summary.changedLegacyRecords}`
   );
   console.log(
     `Written detail files: ${summary.writtenDetails}`

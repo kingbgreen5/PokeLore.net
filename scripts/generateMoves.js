@@ -982,7 +982,6 @@ function buildIndexRecord(move) {
     generation: move.generation,
     description: move.description,
     shortEffect: move.shortEffect,
-    flags: move.flags ?? [],
     machineItems: move.machineItems
   };
 }
