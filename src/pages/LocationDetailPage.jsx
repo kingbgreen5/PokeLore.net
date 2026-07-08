@@ -656,11 +656,11 @@ function LocationDetailPage() {
   const [
     encountersExpanded,
     setEncountersExpanded
-  ] = useState(true);
+  ] = useState(false);
   const [
     itemsExpanded,
     setItemsExpanded
-  ] = useState(true);
+  ] = useState(false);
   const [selectedVersion, setSelectedVersion] =
     useQueryParamState(
       "version",

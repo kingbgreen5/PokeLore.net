@@ -242,7 +242,11 @@ function OaksNotes({
         <section
           key={`${section.heading ?? "section"}-${index}`}
           style={{
-            marginTop: index === 0 ? 0 : "1rem"
+            marginTop: index === 0 ? 0 : "1rem",
+            paddingBottom:
+              index === sections.length - 1
+                ? 0
+                : "1.5rem"
           }}
         >
           {section.heading && (
