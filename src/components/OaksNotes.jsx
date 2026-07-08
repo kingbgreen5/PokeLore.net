@@ -1,5 +1,19 @@
+import {
+  useEffect,
+  useMemo,
+  useState
+} from "react";
 import { Link } from "react-router-dom";
+import PokemonSummaryCard from "./PokemonSummaryCard";
 import { normalizeDisplayText } from "../utils/normalizeText";
+
+function pokemonSlugFromLink(link) {
+  const match = String(link?.to ?? "").match(
+    /^\/pokemon\/([^/?#]+)/
+  );
+
+  return match?.[1] ?? null;
+}
 
 function NoteLink({
   link
@@ -15,9 +29,178 @@ function NoteLink({
   );
 }
 
+function PokemonNoteLinks({
+  links,
+  pokemonByName
+}) {
+  const pokemonLinks = [];
+  const regularLinks = [];
+
+  links.forEach(link => {
+    const pokemonSlug =
+      pokemonSlugFromLink(link);
+    const pokemon =
+      pokemonSlug
+        ? pokemonByName.get(pokemonSlug)
+        : null;
+
+    if (pokemon) {
+      pokemonLinks.push(pokemon);
+      return;
+    }
+
+    regularLinks.push(link);
+  });
+
+  return (
+    <>
+      {pokemonLinks.length > 0 && (
+        <div
+          style={{
+            display: "grid",
+            gap: ".75rem",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(135px, 1fr))",
+            justifyItems: "center",
+            marginTop: ".75rem"
+          }}
+        >
+          {pokemonLinks.map(pokemon => (
+            <PokemonSummaryCard
+              key={pokemon.name}
+              pokemon={pokemon}
+              compact={true}
+            />
+          ))}
+        </div>
+      )}
+
+      {regularLinks.length > 0 && (
+        <p
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: ".75rem",
+            marginBottom: 0,
+            marginTop:
+              pokemonLinks.length > 0
+                ? "1rem"
+                : 0
+          }}
+        >
+          {regularLinks.map(link => (
+            <NoteLink
+              key={`${link.to}-${link.label}`}
+              link={link}
+            />
+          ))}
+        </p>
+      )}
+    </>
+  );
+}
+
+function KeyStats({
+  stats
+}) {
+  if (!Array.isArray(stats) || stats.length === 0) {
+    return null;
+  }
+
+  return (
+    <div>
+      <h4
+        style={{
+          marginBottom: ".35rem"
+        }}
+      >
+        Key Stats
+      </h4>
+
+      <ul
+        style={{
+          margin: 0,
+          paddingLeft: "1.25rem"
+        }}
+      >
+        {stats.map(stat => (
+          <li key={stat.name}>
+            <strong>
+              {normalizeDisplayText(stat.name)}
+            </strong>
+            {stat.description
+              ? ` - ${normalizeDisplayText(stat.description)}`
+              : ""}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function OaksNotes({
   note
 }) {
+  const [pokemonIndex, setPokemonIndex] =
+    useState([]);
+
+  useEffect(() => {
+    if (!note) {
+      setPokemonIndex([]);
+      return;
+    }
+
+    const hasPokemonLinks =
+      note.sections?.some(section =>
+        section.links?.some(pokemonSlugFromLink)
+      );
+
+    if (!hasPokemonLinks) {
+      setPokemonIndex([]);
+      return;
+    }
+
+    let isActive = true;
+
+    fetch("/data/pokemonIndex.json")
+      .then(response =>
+        response.ok
+          ? response.json()
+          : []
+      )
+      .then(data => {
+        if (!isActive) return;
+
+        setPokemonIndex(
+          Array.isArray(data) ? data : []
+        );
+      })
+      .catch(error => {
+        if (!isActive) return;
+
+        console.warn(
+          "Failed to load Pokémon index for Oak's Notes:",
+          error
+        );
+        setPokemonIndex([]);
+      });
+
+    return () => {
+      isActive = false;
+    };
+  }, [note]);
+
+  const pokemonByName = useMemo(
+    () =>
+      new Map(
+        pokemonIndex.map(pokemon => [
+          pokemon.name,
+          pokemon
+        ])
+      ),
+    [pokemonIndex]
+  );
+
   if (!note) {
     return null;
   }
@@ -72,22 +255,25 @@ function OaksNotes({
             </p>
           ))}
 
+          <KeyStats stats={section.keyStats} />
+
           {section.links?.length > 0 && (
-            <p
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: ".75rem",
-                marginBottom: 0
-              }}
-            >
-              {section.links.map(link => (
-                <NoteLink
-                  key={`${link.to}-${link.label}`}
-                  link={link}
-                />
-              ))}
-            </p>
+            <>
+              {section.keyStats?.length > 0 && (
+                <h4
+                  style={{
+                    marginBottom: ".35rem"
+                  }}
+                >
+                  Recommended Pokémon
+                </h4>
+              )}
+
+              <PokemonNoteLinks
+                links={section.links}
+                pokemonByName={pokemonByName}
+              />
+            </>
           )}
         </section>
       ))}

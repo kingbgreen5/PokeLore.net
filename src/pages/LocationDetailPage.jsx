@@ -795,8 +795,6 @@ function LocationDetailPage() {
         {location.areas.length} areas
       </p>
 
-      <OaksNotes note={oaksNotes} />
-
       <LocationItemsSection
         expanded={itemsExpanded}
         locationItems={locationItems}
@@ -806,6 +804,8 @@ function LocationDetailPage() {
           )
         }
       />
+
+      <OaksNotes note={oaksNotes} />
 
       <CollapsibleSection
         title="Pokémon Encounters"
