@@ -17,6 +17,7 @@ import DexEntryCard from "../components/DexEntryCard.jsx";
 import TypeEffectivenessCard from "../components/TypeEffectivenessCard";
 import EvolutionNode from "../components/EvolutionNode";
 import BaseStatsChart from "../components/BaseStatsChart";
+import OaksNotes from "../components/OaksNotes";
 import PokemonSummaryCard from "../components/PokemonSummaryCard.jsx";
 import WhereToFind from "../components/WhereToFind";
 import HeldItems from "../components/HeldItems";
@@ -157,6 +158,7 @@ const [redirectPath, setRedirectPath] = useState(null);
 const [evolutionData, setEvolutionData] = useState(null);
 const [evolutionMethodOverrides, setEvolutionMethodOverrides] = useState({});
 const [movesData, setMovesData] = useState({});
+const [oaksNotes, setOaksNotes] = useState(null);
 const [learnsetLoading, setLearnsetLoading] = useState(false);
 const [evolutionLoading, setEvolutionLoading] = useState(false);
 //---------------------------------------------------------------------LOAD POKEMON USE EFFECT---------------------------------------------------------------------
@@ -174,6 +176,7 @@ useEffect(() => {
       setEvolutionData(null);
       setEvolutionMethodOverrides({});
       setMovesData({});
+      setOaksNotes(null);
       setLearnsetLoading(false);
       setEvolutionLoading(false);
 
@@ -266,12 +269,25 @@ useEffect(() => {
         return;
       }
 
-      setPokemon(
+      const selectedPokemon =
         applySelectedVariety(
           pokemonData,
           normalizedIdentifier
-        )
+        );
+
+      const oaksNotesData =
+        await readJsonFile(
+          `/data/oaksNotes/pokemon/${selectedPokemon.name}.json`
+        );
+
+      if (!isActive) {
+        return;
+      }
+
+      setPokemon(
+        selectedPokemon
       );
+      setOaksNotes(oaksNotesData);
       setLoading(false);
       setEvolutionLoading(true);
 
@@ -853,6 +869,8 @@ function formatWeightEnglish(weight) {
   key={`held-items-${pokemon.id}`}
   pokemonId={pokemon.id}
 />
+
+<OaksNotes note={oaksNotes} />
 
 <AdditionalImages
   pokemonId={pokemon.id}

@@ -58,7 +58,13 @@ function ItemLocationLink({
     );
   }
 
-  return null;
+  return (
+    <span>
+      {normalizeDisplayText(
+        location.displayName ?? location.name
+      )}
+    </span>
+  );
 }
 
 function ItemLink({
@@ -124,6 +130,72 @@ function AbilityLink({
     <span>
       {normalizeDisplayText(
         ability.displayName ?? ability.name
+      )}
+    </span>
+  );
+}
+
+function PokemonLink({
+  pokemon
+}) {
+  if (!pokemon) return null;
+
+  if (typeof pokemon === "string") {
+    return (
+      <span>
+        {normalizeDisplayText(pokemon)}
+      </span>
+    );
+  }
+
+  if (
+    pokemon.name &&
+    pokemon.displayName
+  ) {
+    return (
+      <Link to={`/pokemon/${pokemon.name}`}>
+        {normalizeDisplayText(pokemon.displayName)}
+      </Link>
+    );
+  }
+
+  return (
+    <span>
+      {normalizeDisplayText(
+        pokemon.displayName ?? pokemon.name
+      )}
+    </span>
+  );
+}
+
+function MoveLink({
+  move
+}) {
+  if (!move) return null;
+
+  if (typeof move === "string") {
+    return (
+      <span>
+        {normalizeDisplayText(move)}
+      </span>
+    );
+  }
+
+  if (
+    move.name &&
+    move.displayName
+  ) {
+    return (
+      <Link to={`/move/${move.name}`}>
+        {normalizeDisplayText(move.displayName)}
+      </Link>
+    );
+  }
+
+  return (
+    <span>
+      {normalizeDisplayText(
+        move.displayName ?? move.name
       )}
     </span>
   );
@@ -456,6 +528,74 @@ function AcquisitionMethods({
                             >
                               <AbilityLink
                                 ability={ability}
+                              />
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  )}
+
+                  {method.relatedPokemon
+                    ?.length > 0 && (
+                    <div>
+                      <strong>
+                        Related Pokemon
+                      </strong>
+                      <ul
+                        style={{
+                          margin:
+                            ".35rem 0 0",
+                          paddingLeft:
+                            "1.25rem"
+                        }}
+                      >
+                        {method.relatedPokemon.map(
+                          pokemon => (
+                            <li
+                              key={
+                                typeof pokemon ===
+                                "string"
+                                  ? pokemon
+                                  : pokemon.name
+                              }
+                            >
+                              <PokemonLink
+                                pokemon={pokemon}
+                              />
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  )}
+
+                  {method.relatedMoves
+                    ?.length > 0 && (
+                    <div>
+                      <strong>
+                        Related Moves
+                      </strong>
+                      <ul
+                        style={{
+                          margin:
+                            ".35rem 0 0",
+                          paddingLeft:
+                            "1.25rem"
+                        }}
+                      >
+                        {method.relatedMoves.map(
+                          move => (
+                            <li
+                              key={
+                                typeof move ===
+                                "string"
+                                  ? move
+                                  : move.name
+                              }
+                            >
+                              <MoveLink
+                                move={move}
                               />
                             </li>
                           )

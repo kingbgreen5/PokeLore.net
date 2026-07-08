@@ -9225,6 +9225,108 @@
             "currency": "Athlete Points"
           },
           "originalLocationText": "Pokéathlon Dome"
+        },
+        {
+          "generation": 4,
+          "games": [
+            "Pok?mon HeartGold",
+            "Pok?mon SoulSilver"
+          ],
+          "location": {
+            "name": "johto-route-32",
+            "displayName": "Route 32"
+          },
+          "method": "Find the hidden Heart Scale by Surfing east of the dock. It is south of the pillar near the small rock.",
+          "acquisitionType": "hidden-item",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Surf"
+          ],
+          "locationMatchStatus": "matched",
+          "area": "East of the dock",
+          "originalLocationText": "Rt 32, surf east of the dock. South of the pillar, near the small rock."
+        },
+        {
+          "generation": 4,
+          "games": [
+            "Pok?mon HeartGold",
+            "Pok?mon SoulSilver"
+          ],
+          "location": {
+            "name": "vermilion-city",
+            "displayName": "Vermilion City"
+          },
+          "method": "Find the hidden Heart Scale by Surfing east of the Gym, then southeast to the middle of the southernmost sailboat.",
+          "acquisitionType": "hidden-item",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Surf"
+          ],
+          "locationMatchStatus": "matched",
+          "area": "Southernmost sailboat",
+          "originalLocationText": "Vermillion City, begin surfing east of the gym. Surf Southeast. Heart scale is in the middle of the southernmost Sailboat."
+        },
+        {
+          "generation": 4,
+          "games": [
+            "Pok?mon HeartGold",
+            "Pok?mon SoulSilver"
+          ],
+          "location": {
+            "displayName": "Eligible Rock Smash maps"
+          },
+          "method": "Find as a possible Rock Smash item on eligible maps other than Cliff Cave and the Ruins of Alph.",
+          "acquisitionType": "rock-smash",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Rock Smash",
+            "Not Cliff Cave",
+            "Not Ruins of Alph"
+          ],
+          "locationMatchStatus": "unmatched",
+          "originalLocationText": "Rock Smash on any map other than Cliff Cave, and the Ruins of Alph."
+        },
+        {
+          "generation": 4,
+          "games": [
+            "Pok?mon HeartGold",
+            "Pok?mon SoulSilver"
+          ],
+          "location": {
+            "displayName": "Luvdisc swarms"
+          },
+          "method": "Steal from wild Luvdisc during swarms after obtaining the National Pok?dex. Compound Eyes can improve held-item odds, and Thief can take the Heart Scale.",
+          "acquisitionType": "wild-held-item",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "National Pok?dex",
+            "Luvdisc swarm",
+            "Thief recommended"
+          ],
+          "locationMatchStatus": "unmatched",
+          "relatedPokemon": [
+            {
+              "name": "luvdisc",
+              "displayName": "Luvdisc"
+            }
+          ],
+          "relatedAbilities": [
+            {
+              "name": "compound-eyes",
+              "displayName": "Compound Eyes"
+            }
+          ],
+          "relatedMoves": [
+            {
+              "name": "thief",
+              "displayName": "Thief"
+            }
+          ],
+          "originalLocationText": "Luvdisc swarms after getting the National Dex. Use Compound Eyes and Thief to steal Heart Scales from Luvdisc."
         }
       ]
     },

@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import AcquisitionMethods from "../components/AcquisitionMethods";
 import TmMoveDetails from "../components/items/TmMoveDetails";
+import OaksNotes from "../components/OaksNotes";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import Seo from "../seo/Seo";
 import { itemSeo } from "../seo/seoConfig";
@@ -142,6 +143,8 @@ function ItemDetailPage() {
 
   const [pokemonIndex, setPokemonIndex] =
     useState([]);
+  const [oaksNotes, setOaksNotes] =
+    useState(null);
 
   const [loading, setLoading] =
     useState(true);
@@ -180,18 +183,23 @@ function ItemDetailPage() {
         ) {
           setItem(null);
           setPokemonIndex([]);
+          setOaksNotes(null);
           return;
         }
 
         const [
           pokemonIndexData,
-          migratedLocationData
+          migratedLocationData,
+          oaksNotesData
         ] = await Promise.all([
           readJsonFile(
             "/data/pokemonIndex.json"
           ),
           readJsonFile(
             `/data/itemLocationsCurated/${normalizedItemName}.json`
+          ),
+          readJsonFile(
+            `/data/oaksNotes/items/${itemData.name}.json`
           )
         ]);
 
@@ -206,12 +214,14 @@ function ItemDetailPage() {
             ? pokemonIndexData
             : []
         );
+        setOaksNotes(oaksNotesData);
       } catch (error) {
         console.error(
           "Failed to load item:",
           error
         );
         setItem(null);
+        setOaksNotes(null);
       } finally {
         setLoading(false);
       }
@@ -418,6 +428,8 @@ function ItemDetailPage() {
         acquisition={item.acquisition}
         storageKey={`item:${item.name}:acquisition-expanded`}
       />
+
+      <OaksNotes note={oaksNotes} />
 
       {wildPokemonHoldingItem.length >
         0 && (

@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import CollapsibleSection from "../components/CollapsibleSection";
 import ItemLocationCards from "../components/ItemLocationCards";
+import OaksNotes from "../components/OaksNotes";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
@@ -648,6 +649,8 @@ function LocationDetailPage() {
     useState(null);
   const [locationItems, setLocationItems] =
     useState(null);
+  const [oaksNotes, setOaksNotes] =
+    useState(null);
   const [loading, setLoading] =
     useState(true);
   const [
@@ -671,7 +674,8 @@ function LocationDetailPage() {
 
         const [
           data,
-          itemData
+          itemData,
+          oaksNotesData
         ] = await Promise.all([
           readJsonFile(
             `/data/locations/${locationName}.json`,
@@ -681,11 +685,15 @@ function LocationDetailPage() {
           ),
           readJsonFile(
             `/data/locationItems/${locationName}.json`
+          ),
+          readJsonFile(
+            `/data/oaksNotes/locations/${locationName}.json`
           )
         ]);
 
         setLocation(data);
         setLocationItems(itemData);
+        setOaksNotes(oaksNotesData);
       } catch (error) {
         console.error(
           "Failed to load location:",
@@ -693,6 +701,7 @@ function LocationDetailPage() {
         );
         setLocation(null);
         setLocationItems(null);
+        setOaksNotes(null);
       } finally {
         setLoading(false);
       }
@@ -785,6 +794,8 @@ function LocationDetailPage() {
         {" · "}
         {location.areas.length} areas
       </p>
+
+      <OaksNotes note={oaksNotes} />
 
       <LocationItemsSection
         expanded={itemsExpanded}
