@@ -2,7 +2,7 @@
 
 
 import { useState } from "react";
-import typeColors from "../constants/typeColors";
+import TypeBadge from "./TypeBadge";
 import { Link }
 from "react-router-dom";
 import CollapsibleSection from "./CollapsibleSection";
@@ -395,31 +395,22 @@ const filteredMoves =
                               <Link
                                 to={`/type/${moveDetails.type}`}
                                 style={{
-                                  backgroundColor:
-                                    typeColors[
-                                      moveDetails.type
-                                    ],
                                   border:
                                     "none",
-                                  borderRadius:
-                                    "999px",
-                                  color:
-                                    "white",
                                   cursor:
                                     "pointer",
-                                  fontSize:
-                                    ".6rem",
-                                  padding:
-                                    "0.2rem 0.5rem",
+                                  display:
+                                    "inline-flex",
                                   textAlign:
                                     "center",
                                   textDecoration:
-                                    "none",
-                                  textTransform:
-                                    "uppercase"
+                                    "none"
                                 }}
                               >
-                                {moveDetails.type}
+                                <TypeBadge
+                                  height="1.25rem"
+                                  type={moveDetails.type}
+                                />
                               </Link>
                             ) : (
                               <span

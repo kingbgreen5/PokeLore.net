@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import typeColors from "../constants/typeColors";
 import typeChart from "../constants/Types";
+import TypeBadgeImage from "./TypeBadge";
 
 
 
@@ -43,22 +44,20 @@ function TypeBadge({
       to={`/type/${type}`}
       style={{
         alignItems: "center",
-        backgroundColor:
-          typeColors[type],
         border: "none",
-        borderRadius: "999px",
         color: "white",
         cursor: "pointer",
         display: "inline-flex",
         fontSize: ".72rem",
         fontWeight: "bold",
         gap: ".35rem",
-        padding: ".3rem .7rem",
-        textDecoration: "none",
-        textTransform: "uppercase"
+        textDecoration: "none"
       }}
     >
-      {type}
+      <TypeBadgeImage
+        height="1.4rem"
+        type={type}
+      />
       <strong>
         {multiplier}x
       </strong>

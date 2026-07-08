@@ -1,5 +1,5 @@
 import bannerImage from "../assets/Banner.png";
-import typeColors from "../constants/typeColors";
+import TypeBadgeImage from "../components/TypeBadge";
 import { formatName } from "../seo/seoConfig";
 import { formatPokemonDisplayName }
 from "../utils/pokemonNames";
@@ -14,22 +14,10 @@ function TypeBadge({
   type
 }) {
   return (
-    <span
-      style={{
-        backgroundColor:
-          typeColors[type] ?? "#555",
-        borderRadius: "999px",
-        color: "white",
-        display: "inline-flex",
-        fontSize: "28px",
-        fontWeight: 800,
-        letterSpacing: "1px",
-        padding: "10px 22px",
-        textTransform: "uppercase"
-      }}
-    >
-      {type}
-    </span>
+    <TypeBadgeImage
+      height="58px"
+      type={type}
+    />
   );
 }
 

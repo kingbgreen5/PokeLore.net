@@ -11,7 +11,6 @@ import {
   useRef
 } from "react";
 
-import typeColors from "../constants/typeColors";
 import LearnsetCard from "../components/LearnsetCard";
 import DexEntryCard from "../components/DexEntryCard.jsx";
 import TypeEffectivenessCard from "../components/TypeEffectivenessCard";
@@ -19,6 +18,7 @@ import EvolutionNode from "../components/EvolutionNode";
 import BaseStatsChart from "../components/BaseStatsChart";
 import OaksNotes from "../components/OaksNotes";
 import PokemonSummaryCard from "../components/PokemonSummaryCard.jsx";
+import TypeBadge from "../components/TypeBadge";
 import WhereToFind from "../components/WhereToFind";
 import HeldItems from "../components/HeldItems";
 import SizeComparison from "../components/SizeComparison"
@@ -639,23 +639,16 @@ function formatWeightEnglish(weight) {
               key={type}
               to={`/type/${type}`}
               style={{
-                backgroundColor:
-                  typeColors[
-                    type
-                  ],
                 border: "none",
-                color: "white",
                 cursor: "pointer",
-                padding:
-                  ".4rem .9rem",
-                borderRadius:
-                  "999px",
-                textDecoration:
-                  "none",
-                textTransform: "uppercase"
+                display: "inline-flex",
+                textDecoration: "none"
               }}
             >
-              {type}
+              <TypeBadge
+                height="2rem"
+                type={type}
+              />
             </Link>
           )
         )}

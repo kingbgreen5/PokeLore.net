@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import typeColors from "../constants/typeColors";
+import TypeBadge from "../components/TypeBadge";
 import Seo from "../seo/Seo";
 import {
-  formatName,
   typesSeo
 } from "../seo/seoConfig";
 
@@ -35,22 +35,22 @@ function TypesPage() {
             key={type}
             to={`/type/${type}`}
             style={{
-              backgroundColor:
-                typeColors[type],
+              alignItems: "center",
+              backgroundColor: "#2c2c2c",
               border: "2px solid rgba(255, 255, 255, .18)",
               borderRadius: "12px",
-              color: "white",
               cursor: "pointer",
-              fontSize: "1rem",
-              fontWeight: "bold",
+              display: "flex",
+              justifyContent: "center",
               minHeight: "64px",
               padding: ".85rem 1rem",
-              textAlign: "center",
-              textDecoration: "none",
-              textTransform: "uppercase"
+              textDecoration: "none"
             }}
           >
-            {formatName(type)}
+            <TypeBadge
+              height="2rem"
+              type={type}
+            />
           </Link>
         ))}
       </div>

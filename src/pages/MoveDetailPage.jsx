@@ -1,4 +1,4 @@
-import typeColors from "../constants/typeColors";
+import TypeBadge from "../components/TypeBadge";
 import {
   Link,
   useParams
@@ -1104,9 +1104,6 @@ function MoveDetailPage({
   const moveDisplayName =
     moveData.displayName ??
     capitalize(moveName);
-  const moveTypeColor =
-    typeColors[moveData.type] ?? "#555";
-
   return (
     <div
       data-section="move-detail-page"
@@ -1201,20 +1198,16 @@ function MoveDetailPage({
           <Link
             to={`/type/${moveData.type}`}
             style={{
-              backgroundColor:
-                moveTypeColor,
               border: "none",
-              borderRadius: "999px",
-              color: "white",
               cursor: "pointer",
-              fontSize: "1.15rem",
-              fontWeight: "900",
-              padding: ".55rem 1.9rem",
-              textDecoration: "none",
-              textTransform: "uppercase"
+              display: "inline-flex",
+              textDecoration: "none"
             }}
           >
-            {moveData.type}
+            <TypeBadge
+              height="2.65rem"
+              type={moveData.type}
+            />
           </Link>
 
           <span

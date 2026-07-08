@@ -10,6 +10,7 @@ import {
 import CollapsibleSection from "../components/CollapsibleSection";
 import MoveSummaryCard from "../components/MoveSummaryCard";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import TypeBadgeImage from "../components/TypeBadge";
 import typeChart from "../constants/Types";
 import typeColors from "../constants/typeColors";
 import Seo from "../seo/Seo";
@@ -109,22 +110,20 @@ function TypeBadge({
     <Link
       to={`/type/${type}`}
       style={{
-        backgroundColor:
-          typeColors[type],
         border: "none",
-        borderRadius: "999px",
         color: "white",
         cursor: "pointer",
         display: "inline-flex",
         fontSize: ".72rem",
         fontWeight: "bold",
         gap: ".35rem",
-        padding: ".3rem .7rem",
-        textDecoration: "none",
-        textTransform: "uppercase"
+        textDecoration: "none"
       }}
     >
-      {type}
+      <TypeBadgeImage
+        height="1.4rem"
+        type={type}
+      />
       <strong>
         {multiplier}x
       </strong>
@@ -560,19 +559,15 @@ function TypeDetailPage() {
 
       <div
         style={{
-          backgroundColor:
-            typeColors[type],
-          borderRadius: "999px",
-          fontFamily:"",
-          color: "white",
-          display: "inline-block",
-          fontWeight: "bold",
+          display: "flex",
+          justifyContent: "center",
           marginBottom: "1rem",
-          padding: ".45rem 1rem",
-          textTransform: "uppercase"
         }}
       >
-        {type}
+        <TypeBadgeImage
+          height="2.4rem"
+          type={type}
+        />
       </div>
 
       {/* <p

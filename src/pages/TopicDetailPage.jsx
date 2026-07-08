@@ -8,7 +8,7 @@ import {
   useLocation,
   useParams
 } from "react-router-dom";
-import typeColors from "../constants/typeColors";
+import TypeBadge from "../components/TypeBadge";
 import Seo from "../seo/Seo";
 import { topicSeo } from "../seo/seoConfig";
 import { formatPokemonDisplayName }
@@ -435,18 +435,14 @@ function PokedexTopicDetailPage() {
                       key={type}
                       to={`/type/${type}`}
                       style={{
-                        backgroundColor:
-                          typeColors[type],
-                        borderRadius: "999px",
-                        color: "white",
-                        fontSize: ".68rem",
-                        fontWeight: "bold",
-                        padding: ".2rem .55rem",
+                        display: "inline-flex",
                         textDecoration: "none",
-                        textTransform: "uppercase"
                       }}
                     >
-                      {type}
+                      <TypeBadge
+                        height="1.35rem"
+                        type={type}
+                      />
                     </Link>
                   ))}
                 </div>

@@ -307,6 +307,7 @@ const [powerSortMode, setPowerSortMode] =
       </div>
 
       <div
+        className="moves-grid"
         style={{
           display: "grid",
           justifyItems: "center",

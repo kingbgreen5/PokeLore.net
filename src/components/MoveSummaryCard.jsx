@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import typeColors from "../constants/typeColors";
+import TypeBadge from "./TypeBadge";
 
 function capitalize(text) {
   return text
@@ -18,6 +18,7 @@ function MoveSummaryCard({
 }) {
   return (
     <Link
+      className="move-summary-card"
       to={`/move/${name}`}
       style={{
         alignItems: "center",
@@ -65,20 +66,10 @@ function MoveSummaryCard({
         {capitalize(name)}
       </h3>
 
-      <span
-        style={{
-          backgroundColor:
-            typeColors[move.type],
-          borderRadius: "999px",
-          color: "white",
-          fontSize: ".55rem",
-          fontWeight: "bold",
-          padding: ".15rem .45rem",
-          textTransform: "uppercase"
-        }}
-      >
-        {move.type}
-      </span>
+      <TypeBadge
+        height="1.35rem"
+        type={move.type}
+      />
 
       <div
         style={{

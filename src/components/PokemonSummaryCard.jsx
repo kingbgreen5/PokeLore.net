@@ -1,9 +1,9 @@
-import typeColors from "../constants/typeColors";
 import {
   Link,
   useLocation,
 }
 from "react-router-dom";
+import TypeBadge from "./TypeBadge";
 import { formatPokemonDisplayName }
 from "../utils/pokemonNames";
 
@@ -19,7 +19,7 @@ const CARD_SIZES = {
     spriteSize: "170px",
     nameFontSize: "1.2rem",
     nameMargin: "0 0 .5rem 0",
-    typeGap: ".5rem",
+    typeGap: ".075rem",
     typePadding: ".35rem .85rem",
     typeFontSize: ".72rem",
     typeLetterSpacing: ".03rem"
@@ -51,7 +51,7 @@ const CARD_SIZES = {
     spriteSize: "45px",
     nameFontSize: ".48rem",
     nameMargin: "0 0 .2rem 0",
-    typeGap: ".15rem",
+    typeGap: ".025rem",
     typePadding: ".05rem .2rem",
     typeFontSize: ".25rem",
     typeLetterSpacing: "0"
@@ -204,6 +204,7 @@ function PokemonSummaryCard({
       {/* Types */}
 
       <div
+        className={`pokemon-card-types pokemon-card-types-${sizeKey}`}
         style={{
           display: "flex",
           gap: size.typeGap,
@@ -216,31 +217,17 @@ function PokemonSummaryCard({
 
         {pokemon.types.map(
           type => (
-            <span
+            <TypeBadge
               key={type}
-              style={{
-                backgroundColor:
-                  typeColors[
-                    type
-                  ],
-                color: "white",
-                padding:
-                  size.typePadding,
-                borderRadius:
-                  "999px",
-                fontSize:
-                  size.typeFontSize,
-                fontWeight:
-                  "bold",
-                textTransform:
-                  "uppercase",
-                letterSpacing:
-                  size.typeLetterSpacing,
-        
-              }}
-            >
-              {type}
-            </span>
+              height={
+                sizeKey === "subcompact"
+                  ? ".75rem"
+                  : sizeKey === "compact"
+                    ? "1.15rem"
+                    : "1.45rem"
+              }
+              type={type}
+            />
           )
         )}
 

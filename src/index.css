@@ -34,6 +34,31 @@
   filter: invert(1) brightness(2);
 }
 
+@media (min-width: 769px) {
+  .moves-grid {
+    gap: 1.75rem !important;
+    padding: 0 1rem 1rem;
+  }
+
+  .move-summary-card {
+    height: 140px !important;
+    padding: 0.85rem !important;
+    width: 132px !important;
+  }
+
+  .pokemon-card-types-full {
+    gap: 0.7rem !important;
+  }
+
+  .pokemon-card-types-compact {
+    gap: 0.22rem !important;
+  }
+
+  .pokemon-card-types-subcompact {
+    gap: 0.08rem !important;
+  }
+}
+
 html,
 body {
   margin: 0;
