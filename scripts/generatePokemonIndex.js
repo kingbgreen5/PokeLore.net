@@ -102,6 +102,12 @@ async function buildIndex() {
             .other["official-artwork"]
             .front_default,
 
+        spriteFallback:
+          data.sprites
+            .other.home
+            .front_default ??
+          data.sprites.front_default,
+
         // shinySprite:
         //   data.sprites
         //     .other["official-artwork"]

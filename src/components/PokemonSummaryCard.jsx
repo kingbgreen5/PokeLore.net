@@ -6,6 +6,10 @@ from "react-router-dom";
 import TypeBadge from "./TypeBadge";
 import { formatPokemonDisplayName }
 from "../utils/pokemonNames";
+import {
+  advanceSpriteFallback,
+  getPokemonCardSources,
+} from "../utils/pokemonSprites";
 
 const CARD_SIZES = {
   full: {
@@ -58,17 +62,6 @@ const CARD_SIZES = {
   }
 };
 
-function useFallbackSprite(event, fallback) {
-  if (
-    !fallback ||
-    event.currentTarget.src === fallback
-  ) {
-    return;
-  }
-
-  event.currentTarget.src = fallback;
-}
-
 function PokemonSummaryCard({
   pokemon,
   compact = false,
@@ -93,6 +86,8 @@ function PokemonSummaryCard({
     formatPokemonDisplayName(
       pokemon
     );
+  const cardSources =
+    getPokemonCardSources(pokemon);
   const searchParams =
     new URLSearchParams(
       location.search
@@ -164,14 +159,35 @@ function PokemonSummaryCard({
 
       {/*--------------------------------------------------------------- Sprite */}
 
+      {/*
+        Previous remote artwork implementation, retained for quick rollback:
+
+        <img
+          src={pokemon.sprite}
+          alt={displayName}
+          loading="lazy"
+          onError={event =>
+            advanceSpriteFallback(
+              event,
+              getPokemonSpriteFallbacks(pokemon)
+            )
+          }
+          style={{
+            width: size.spriteSize,
+            height: size.spriteSize,
+            objectFit: "contain"
+          }}
+        />
+      */}
+
       <img
-        src={pokemon.sprite}
+        src={cardSources[0]}
         alt={displayName}
         loading="lazy"
         onError={event =>
-          useFallbackSprite(
+          advanceSpriteFallback(
             event,
-            pokemon.spriteFallback
+            cardSources.slice(1)
           )
         }
         style={{

@@ -32,6 +32,10 @@ import {
   formatPokemonDisplayName,
   getRegionalFormKey
 } from "../utils/pokemonNames";
+import {
+  advanceSpriteFallback,
+  getPokemonDetailSources
+} from "../utils/pokemonSprites";
 
 
 
@@ -131,17 +135,6 @@ function applySelectedVariety(
       selectedVariety.types ??
       pokemonData.types
   };
-}
-
-function useFallbackSprite(event, fallback) {
-  if (
-    !fallback ||
-    event.currentTarget.src === fallback
-  ) {
-    return;
-  }
-
-  event.currentTarget.src = fallback;
 }
 
 function PokemonDetailPage() {
@@ -581,6 +574,9 @@ function formatWeightEnglish(weight) {
 
 //----------------------------------------RETURN STATEMENT-----------------------------------------
 
+  const detailSources =
+    getPokemonDetailSources(pokemon);
+
   return (
 
 
@@ -592,15 +588,33 @@ function formatWeightEnglish(weight) {
       <Seo {...pokemonSeo(pokemon)} />
 
       
+      {/*
+        Previous remote artwork implementation, retained for quick rollback:
+
+        <img
+          key={`${pokemon.id}-${pokemon.name}-${pokemon.sprite}`}
+          src={pokemon.sprite}
+          alt={formatPokemonDisplayName(pokemon)}
+          onError={event =>
+            advanceSpriteFallback(
+              event,
+              getPokemonSpriteFallbacks(pokemon)
+            )
+          }
+          style={{ width: "250px" }}
+        />
+      */}
+
       <img
-        src={pokemon.sprite}
+        key={`${pokemon.id}-${pokemon.name}-${detailSources[0]}`}
+        src={detailSources[0]}
         alt={formatPokemonDisplayName(
           pokemon
         )}
         onError={event =>
-          useFallbackSprite(
+          advanceSpriteFallback(
             event,
-            pokemon.spriteFallback
+            detailSources.slice(1)
           )
         }
         style={{

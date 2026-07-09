@@ -1,9 +1,12 @@
 
-import { useMemo, useState, useEffect, useRef } from "react";
 import {
-  useLocation,
-  useNavigationType
-} from "react-router-dom";
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react";
+import { useSearchParams }
+from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import typeColors from "../constants/typeColors";
 import usePersistedScroll from "../hooks/usePersistedScroll";
@@ -11,14 +14,12 @@ import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { homeSeo } from "../seo/seoConfig";
 
-const INITIAL_VISIBLE_POKEMON = 120;
-const POKEMON_BATCH_SIZE = 120;
+const POKEMON_PAGE_SIZE = 150;
 
 function HomePage() {
-  const location = useLocation();
-  const navigationType =
-    useNavigationType();
-  const loadMoreRef = useRef(null);
+  const gridRef = useRef(null);
+  const [, setHomeSearchParams] =
+    useSearchParams();
 
   //-----------------------------------------
   // State
@@ -30,11 +31,6 @@ function HomePage() {
   const [pokemonIndex, setPokemonIndex] =
     useState([]);
 
-  const [
-    visiblePokemonCount,
-    setVisiblePokemonCount
-  ] = useState(INITIAL_VISIBLE_POKEMON);
-
   const [isDesktopGrid, setIsDesktopGrid] =
     useState(false);
 
@@ -44,16 +40,22 @@ function HomePage() {
       ""
     );
 
-  const [selectedType, setSelectedType] =
+  const [selectedType] =
     useQueryParamState(
       "type",
       "all"
     );
 
-  const [sortMode, setSortMode] =
+  const [sortMode] =
     useQueryParamState(
       "sort",
       "dex-asc"
+    );
+
+  const [pageParam, setPageParam] =
+    useQueryParamState(
+      "page",
+      "1"
     );
 
   usePersistedScroll(
@@ -202,99 +204,71 @@ function HomePage() {
     sortMode
   ]);
 
-  const restoreFullGrid = useMemo(() => {
-    if (navigationType !== "POP") {
-      return false;
-    }
-
-    try {
-      const savedScroll =
-        sessionStorage.getItem(
-          `scroll:${location.pathname}${location.search}`
-        );
-
-      return Number(savedScroll ?? 0) > 0;
-    } catch {
-      return false;
-    }
-  }, [
-    location.pathname,
-    location.search,
-    navigationType
-  ]);
-
-  useEffect(() => {
-    // Reset the rendered window when filters or route state change.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setVisiblePokemonCount(
-      restoreFullGrid
-        ? filteredPokemon.length
-        : INITIAL_VISIBLE_POKEMON
-    );
-  }, [
-    filteredPokemon.length,
-    location.pathname,
-    location.search,
-    navigationType,
-    restoreFullGrid
-  ]);
-
-  useEffect(() => {
-    if (
-      visiblePokemonCount >=
-      filteredPokemon.length
-    ) {
-      return undefined;
-    }
-
-    const marker = loadMoreRef.current;
-
-    if (!marker) {
-      return undefined;
-    }
-
-    const observer =
-      new IntersectionObserver(
-        entries => {
-          if (
-            entries.some(
-              entry => entry.isIntersecting
-            )
-          ) {
-            setVisiblePokemonCount(count =>
-              Math.min(
-                count + POKEMON_BATCH_SIZE,
-                filteredPokemon.length
-              )
-            );
-          }
-        },
-        {
-          rootMargin: "900px 0px"
-        }
-      );
-
-    observer.observe(marker);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [
-    filteredPokemon.length,
-    visiblePokemonCount
-  ]);
-
+  const requestedPage =
+    Number.parseInt(pageParam, 10);
+  const totalPages = Math.max(
+    1,
+    Math.ceil(
+      filteredPokemon.length /
+        POKEMON_PAGE_SIZE
+    )
+  );
+  const currentPage = Math.min(
+    Number.isInteger(requestedPage) &&
+      requestedPage > 0
+      ? requestedPage
+      : 1,
+    totalPages
+  );
+  const pageStart =
+    (currentPage - 1) *
+    POKEMON_PAGE_SIZE;
   const visiblePokemon = useMemo(
     () =>
       filteredPokemon.slice(
-        0,
-        visiblePokemonCount
+        pageStart,
+        pageStart + POKEMON_PAGE_SIZE
       ),
     [
       filteredPokemon,
-      visiblePokemonCount
+      pageStart
     ]
   );
+
+  function changePage(nextPage) {
+    setPageParam(String(nextPage));
+    requestAnimationFrame(() => {
+      gridRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+  }
+
+  function changeFilter(
+    paramName,
+    value,
+    defaultValue
+  ) {
+    setHomeSearchParams(
+      currentParams => {
+        const params =
+          new URLSearchParams(
+            currentParams
+          );
+
+        if (value === defaultValue) {
+          params.delete(paramName);
+        } else {
+          params.set(paramName, value);
+        }
+
+        params.delete("page");
+        return params;
+      },
+      { replace: true }
+    );
+  }
 
   //-----------------------------------------
   // Loading Screen
@@ -409,8 +383,10 @@ function HomePage() {
         <select
           value={selectedType}
           onChange={e =>
-            setSelectedType(
-              e.target.value
+            changeFilter(
+              "type",
+              e.target.value,
+              "all"
             )
           }
           style={{
@@ -448,8 +424,10 @@ function HomePage() {
         <select
           value={sortMode}
           onChange={e =>
-            setSortMode(
-              e.target.value
+            changeFilter(
+              "sort",
+              e.target.value,
+              "dex-asc"
             )
           }
           style={{
@@ -487,13 +465,21 @@ function HomePage() {
           textAlign: "center"
         }}
       >
-        Showing {filteredPokemon.length}{" "}
+        Showing{" "}
+        {filteredPokemon.length === 0
+          ? 0
+          : pageStart + 1}
+        -
+        {pageStart +
+          visiblePokemon.length}{" "}
+        of {filteredPokemon.length}{" "}
         Pokémon
       </div>
 
       {/* Pokémon Grid */}
 
       <div
+        ref={gridRef}
         style={{
           boxSizing: "border-box",
           display: "grid",
@@ -517,15 +503,69 @@ function HomePage() {
         )}
       </div>
 
-      {visiblePokemon.length <
-        filteredPokemon.length && (
+      {totalPages > 1 && (
         <div
-          ref={loadMoreRef}
-          aria-hidden="true"
           style={{
-            height: "1px"
+            alignItems: "center",
+            display: "flex",
+            gap: "1rem",
+            justifyContent: "center",
+            margin: "2rem 0"
           }}
-        />
+        >
+          <button
+            disabled={currentPage === 1}
+            onClick={() =>
+              changePage(currentPage - 1)
+            }
+            style={{
+              border: "1px solid #666",
+              borderRadius: "6px",
+              cursor:
+                currentPage === 1
+                  ? "default"
+                  : "pointer",
+              opacity:
+                currentPage === 1
+                  ? 0.45
+                  : 1,
+              padding: ".55rem .85rem"
+            }}
+            type="button"
+          >
+            Previous
+          </button>
+
+          <span>
+            Page {currentPage} of{" "}
+            {totalPages}
+          </span>
+
+          <button
+            disabled={
+              currentPage === totalPages
+            }
+            onClick={() =>
+              changePage(currentPage + 1)
+            }
+            style={{
+              border: "1px solid #666",
+              borderRadius: "6px",
+              cursor:
+                currentPage === totalPages
+                  ? "default"
+                  : "pointer",
+              opacity:
+                currentPage === totalPages
+                  ? 0.45
+                  : 1,
+              padding: ".55rem .85rem"
+            }}
+            type="button"
+          >
+            Next
+          </button>
+        </div>
       )}
     </div>
   );
