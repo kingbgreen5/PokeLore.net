@@ -1,12 +1,12 @@
 
 
 
-import { useState } from "react";
 import TypeBadge from "./TypeBadge";
 import { Link }
 from "react-router-dom";
 import CollapsibleSection from "./CollapsibleSection";
 import useSessionState from "../hooks/useSessionState";
+import useLocalStorageState from "../hooks/useLocalStorageState";
 import physicalBadge from "../assets/Physical Badge.png";
 import specialBadge from "../assets/Special Badge.png";
 import statusBadge from "../assets/Status Badge.png";
@@ -78,8 +78,19 @@ const versionGroups = [
   //  Default Selected Version
   //-----------------------------------------
 
-  const [selectedVersion, setSelectedVersion] =
-    useState(versionGroups[0]);
+  const [
+    preferredVersion,
+    setPreferredVersion
+  ] = useLocalStorageState(
+    "pokelore:learnset-version",
+    "all"
+  );
+  const selectedVersion =
+    versionGroups.includes(
+      preferredVersion
+    )
+      ? preferredVersion
+      : "all";
 
 
   //-----------------------------------------
@@ -156,11 +167,12 @@ const filteredMoves =
             }}
           >
             <select
+              aria-label="Learnset version"
               value={
                 selectedVersion
               }
               onChange={e =>
-                setSelectedVersion(
+                setPreferredVersion(
                   e.target.value
                 )
               }

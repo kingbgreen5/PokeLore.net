@@ -692,8 +692,6 @@ function formatWeightEnglish(weight) {
 
           border: "none",
 
-          color: "inherit",
-
           cursor: "pointer",
 
           textDecoration: "none"

@@ -6,6 +6,7 @@ import {
 import { Link } from "react-router-dom";
 import CollapsibleSection from "./CollapsibleSection";
 import useSessionState from "../hooks/useSessionState";
+import useLocalStorageState from "../hooks/useLocalStorageState";
 import { sortVersions } from "../constants/versionOrder";
 
 function capitalize(text) {
@@ -48,14 +49,18 @@ function WhereToFind({
   const [encounterData, setEncounterData] =
     useState(null);
 
-  const [selectedVersion, setSelectedVersion] =
-    useState("all");
+  const [
+    preferredVersion,
+    setPreferredVersion
+  ] = useLocalStorageState(
+    "pokelore:encounter-version",
+    "all"
+  );
 
   useEffect(() => {
     async function loadEncounters() {
       try {
         setEncounterData(null);
-        setSelectedVersion("all");
 
         const response = await fetch(
           `/data/pokemonEncounters/${pokemonId}.json`
@@ -99,6 +104,12 @@ function WhereToFind({
     ],
     [encounterData]
   );
+  const selectedVersion =
+    versionOptions.includes(
+      preferredVersion
+    )
+      ? preferredVersion
+      : "all";
 
   const visibleLocations = useMemo(
     () =>
@@ -164,9 +175,10 @@ function WhereToFind({
             }}
           >
             <select
+              aria-label="Encounter version"
               value={selectedVersion}
               onChange={event =>
-                setSelectedVersion(
+                setPreferredVersion(
                   event.target.value
                 )
               }
