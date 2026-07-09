@@ -308,7 +308,6 @@ function EvolutionDescription({
         style={{
           background: "none",
           border: "none",
-          color: "inherit",
           cursor: "pointer",
           font: "inherit",
           fontWeight: "bold",
