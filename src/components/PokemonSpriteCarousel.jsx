@@ -11,6 +11,10 @@ import {
   useLocation,
   useNavigate
 } from "react-router-dom";
+import {
+  advanceSpriteFallback,
+  getPokemonCardSources
+} from "../utils/pokemonSprites";
 
 //---------------------------FORMAT NAME---------------------------
 
@@ -170,6 +174,21 @@ function PokemonSpriteCarousel({
     pokemon,
     pokemonIndex
   ]);
+  const carouselPokemonIndex =
+    useMemo(
+      () =>
+        carouselPokemon
+          ? pokemonIndex.findIndex(
+              entry =>
+                entry.id ===
+                carouselPokemon.id
+            )
+          : -1,
+      [
+        carouselPokemon,
+        pokemonIndex
+      ]
+    );
 
   //---------------------------CENTER CURRENT POKEMON---------------------------
 
@@ -433,7 +452,7 @@ function PokemonSpriteCarousel({
             "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)"
         }}
       >
-        {pokemonIndex.map(entry => {
+        {pokemonIndex.map((entry, index) => {
           //---------------------------IS CURRENT---------------------------
 
           const isCurrent =
@@ -441,6 +460,13 @@ function PokemonSpriteCarousel({
 
           const pokemonNavigation =
             getPokemonNavigation(entry.name);
+          const carouselSources =
+            getPokemonCardSources(entry);
+          const shouldEagerLoad =
+            carouselPokemonIndex >= 0 &&
+            Math.abs(
+              index - carouselPokemonIndex
+            ) <= 4;
 
           return (
             //---------------------------POKEMON CARD---------------------------
@@ -538,10 +564,39 @@ function PokemonSpriteCarousel({
 
               {/* //---------------------------SPRITE--------------------------- */}
 
+              {/*
+                Previous remote carousel image, retained for quick rollback:
+
+                <img
+                  src={entry.sprite}
+                  alt={entry.name}
+                  loading="lazy"
+                  style={{
+                    height: isCurrent ? "150px" : "78px",
+                    objectFit: "contain",
+                    width: isCurrent ? "150px" : "78px"
+                  }}
+                />
+              */}
+
               <img
-                src={entry.sprite}
+                src={carouselSources[0]}
                 alt={entry.name}
-                loading="lazy"
+                decoding="async"
+                fetchPriority={
+                  isCurrent ? "high" : "auto"
+                }
+                loading={
+                  shouldEagerLoad
+                    ? "eager"
+                    : "lazy"
+                }
+                onError={event =>
+                  advanceSpriteFallback(
+                    event,
+                    carouselSources.slice(1)
+                  )
+                }
                 style={{
                   height: isCurrent
                     ? "150px"

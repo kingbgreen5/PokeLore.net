@@ -18,6 +18,7 @@ import EvolutionNode from "../components/EvolutionNode";
 import BaseStatsChart from "../components/BaseStatsChart";
 import OaksNotes from "../components/OaksNotes";
 import PokemonSummaryCard from "../components/PokemonSummaryCard.jsx";
+import PokemonDetailArtwork from "../components/PokemonDetailArtwork";
 import TypeBadge from "../components/TypeBadge";
 import WhereToFind from "../components/WhereToFind";
 import HeldItems from "../components/HeldItems";
@@ -32,10 +33,6 @@ import {
   formatPokemonDisplayName,
   getRegionalFormKey
 } from "../utils/pokemonNames";
-import {
-  advanceSpriteFallback,
-  getPokemonDetailSources
-} from "../utils/pokemonSprites";
 
 
 
@@ -574,9 +571,6 @@ function formatWeightEnglish(weight) {
 
 //----------------------------------------RETURN STATEMENT-----------------------------------------
 
-  const detailSources =
-    getPokemonDetailSources(pokemon);
-
   return (
 
 
@@ -605,21 +599,12 @@ function formatWeightEnglish(weight) {
         />
       */}
 
-      <img
-        key={`${pokemon.id}-${pokemon.name}-${detailSources[0]}`}
-        src={detailSources[0]}
+      <PokemonDetailArtwork
+        key={`${pokemon.id}-${pokemon.name}-${pokemon.sprite}`}
         alt={formatPokemonDisplayName(
           pokemon
         )}
-        onError={event =>
-          advanceSpriteFallback(
-            event,
-            detailSources.slice(1)
-          )
-        }
-        style={{
-          width: "250px"
-        }}
+        pokemon={pokemon}
       />
 
 

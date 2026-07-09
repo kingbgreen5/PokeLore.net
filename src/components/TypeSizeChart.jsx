@@ -1,11 +1,16 @@
 import {
   useEffect,
   useMemo,
+  useRef,
   useState
 } from "react";
 import { Link } from "react-router-dom";
 import { formatPokemonDisplayName }
 from "../utils/pokemonNames";
+import {
+  advanceSpriteFallback,
+  getPokemonCardSources
+} from "../utils/pokemonSprites";
 
 function heightToInches(height) {
   return Math.round((height / 10) * 39.3701);
@@ -52,6 +57,100 @@ function getSpriteSizing({
   };
 }
 
+function SizeChartPokemonImage({
+  pokemon,
+  rootRef,
+  sizing
+}) {
+  const imageRef = useRef(null);
+  const [shouldLoad, setShouldLoad] =
+    useState(
+      () =>
+        typeof IntersectionObserver ===
+        "undefined"
+    );
+  const sources = useMemo(
+    () => getPokemonCardSources(pokemon),
+    [pokemon]
+  );
+
+  useEffect(() => {
+    const image = imageRef.current;
+    const root = rootRef.current;
+
+    if (
+      !image ||
+      !root ||
+      typeof IntersectionObserver ===
+        "undefined"
+    ) {
+      return undefined;
+    }
+
+    const observer =
+      new IntersectionObserver(
+        entries => {
+          if (
+            entries.some(
+              entry => entry.isIntersecting
+            )
+          ) {
+            setShouldLoad(true);
+            observer.disconnect();
+          }
+        },
+        {
+          root,
+          rootMargin: "0px 320px"
+        }
+      );
+
+    observer.observe(image);
+    return () => observer.disconnect();
+  }, [rootRef]);
+
+  if (!shouldLoad) {
+    return (
+      <span
+        ref={imageRef}
+        aria-hidden="true"
+        style={{
+          display: "block",
+          height:
+            `${sizing.renderedHeight}px`,
+          width: "1px"
+        }}
+      />
+    );
+  }
+
+  return (
+    <img
+      ref={imageRef}
+      alt={formatPokemonDisplayName(
+        pokemon
+      )}
+      decoding="async"
+      onError={event =>
+        advanceSpriteFallback(
+          event,
+          sources.slice(1)
+        )
+      }
+      src={sources[0]}
+      style={{
+        height:
+          `${sizing.renderedHeight}px`,
+        maxWidth: "none",
+        objectFit: "contain",
+        transform:
+          `translateY(${sizing.floorOffset}px)`,
+        width: "auto"
+      }}
+    />
+  );
+}
+
 function TypeSizeChart({
   pokemon,
   typeName
@@ -64,6 +163,7 @@ function TypeSizeChart({
   ] = useState({});
   const [loading, setLoading] =
     useState(false);
+  const chartScrollRef = useRef(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -129,8 +229,6 @@ function TypeSizeChart({
 
     if (pokemon.length > 0) {
       loadDetails();
-    } else {
-      setPokemonDetails([]);
     }
 
     return () => {
@@ -218,6 +316,7 @@ function TypeSizeChart({
       </p>
 
       <div
+        ref={chartScrollRef}
         style={{
           overflowX: "auto",
           paddingBottom: ".75rem"
@@ -282,21 +381,10 @@ function TypeSizeChart({
                     width: "100%"
                   }}
                 >
-                  <img
-                    src={currentPokemon.sprite}
-                    alt={formatPokemonDisplayName(
-                      currentPokemon
-                    )}
-                    loading="lazy"
-                    style={{
-                      height:
-                        `${sizing.renderedHeight}px`,
-                      maxWidth: "none",
-                      objectFit: "contain",
-                      transform:
-                        `translateY(${sizing.floorOffset}px)`,
-                      width: "auto"
-                    }}
+                  <SizeChartPokemonImage
+                    pokemon={currentPokemon}
+                    rootRef={chartScrollRef}
+                    sizing={sizing}
                   />
                 </div>
 

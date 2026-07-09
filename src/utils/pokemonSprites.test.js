@@ -79,4 +79,23 @@ describe("pokemon sprite fallbacks", () => {
       pokemon.sprite
     ]);
   });
+
+  it("uses mirrored artwork for exceptional forms", () => {
+    const pokemon = {
+      id: 592,
+      sprite:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/female/592.svg",
+      spriteFallback:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/female/592.png"
+    };
+
+    expect(
+      getPokemonDetailSources(
+        pokemon
+      ).slice(0, 2)
+    ).toEqual([
+      "/images/pokemon/special/other/dream-world/female/592.svg",
+      "/images/pokemon/special/other/home/female/592.png"
+    ]);
+  });
 });

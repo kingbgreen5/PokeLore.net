@@ -15,6 +15,10 @@ import {
 } from "../data/sizeComparisonCharacters";
 import { formatPokemonDisplayName }
 from "../utils/pokemonNames";
+import {
+  advanceSpriteFallback,
+  getPokemonDetailSources
+} from "../utils/pokemonSprites";
 
 const LOCAL_CORRECTIONS_KEY =
   "pokemonSpriteManualCorrections";
@@ -176,6 +180,10 @@ function SizeComparison({
   );
   const [pokemonIndex, setPokemonIndex] =
     useState([]);
+  const pokemonSources = useMemo(
+    () => getPokemonDetailSources(pokemon),
+    [pokemon]
+  );
 
   useLayoutEffect(() => {
     if (
@@ -990,8 +998,14 @@ function SizeComparison({
 
     return (
       <img
-        src={pokemon.sprite}
+        src={pokemonSources[0]}
         alt={pokemon.name}
+        onError={event =>
+          advanceSpriteFallback(
+            event,
+            pokemonSources.slice(1)
+          )
+        }
         style={{
           height: `${metrics.pokemonSpriteSizing.renderedHeight}px`,
           maxWidth: "none",

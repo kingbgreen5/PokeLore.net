@@ -2,6 +2,8 @@ const SPRITE_ROOT =
   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
 const OFFICIAL_ARTWORK_PATTERN =
   /\/official-artwork\/(\d+)\.png(?:\?.*)?$/;
+const RAW_SPRITE_PREFIX =
+  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
 function getRetryUrl(url) {
   if (!url) {
@@ -64,6 +66,31 @@ export function getLocalPokemonArtwork(
   );
 }
 
+function getLocalSpecialArtwork(url) {
+  if (
+    !url?.startsWith(RAW_SPRITE_PREFIX) ||
+    url.includes("/official-artwork/")
+  ) {
+    return null;
+  }
+
+  const relativePath = url
+    .slice(RAW_SPRITE_PREFIX.length)
+    .split("?", 1)[0]
+    .split("/")
+    .map(segment =>
+      encodeURIComponent(
+        decodeURIComponent(segment)
+      )
+    )
+    .join("/");
+
+  return (
+    `/images/pokemon/special/` +
+    relativePath
+  );
+}
+
 function uniqueSources(sources) {
   return sources.filter(
     (source, index) =>
@@ -80,9 +107,15 @@ export function getPokemonCardSources(
       pokemon,
       "card"
     ),
+    getLocalSpecialArtwork(
+      pokemon?.sprite
+    ),
     getLocalPokemonArtwork(
       pokemon,
       "full"
+    ),
+    getLocalSpecialArtwork(
+      pokemon?.spriteFallback
     ),
     pokemon?.sprite,
     ...getPokemonSpriteFallbacks(pokemon)
@@ -96,6 +129,12 @@ export function getPokemonDetailSources(
     getLocalPokemonArtwork(
       pokemon,
       "full"
+    ),
+    getLocalSpecialArtwork(
+      pokemon?.sprite
+    ),
+    getLocalSpecialArtwork(
+      pokemon?.spriteFallback
     ),
     pokemon?.sprite,
     ...getPokemonSpriteFallbacks(pokemon)

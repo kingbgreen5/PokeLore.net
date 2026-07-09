@@ -6,6 +6,7 @@ import json
 import re
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -23,6 +24,13 @@ ARTWORK_ROOT = (
 )
 FULL_DIR = ARTWORK_ROOT / "full"
 CARD_DIR = ARTWORK_ROOT / "card"
+SPECIAL_DIR = (
+    REPO_ROOT
+    / "public"
+    / "images"
+    / "pokemon"
+    / "special"
+)
 MANIFEST_PATH = (
     REPO_ROOT
     / "public"
@@ -43,6 +51,10 @@ OFFICIAL_ARTWORK_PATTERN = re.compile(
 )
 TREE_ARTWORK_PATTERN = re.compile(
     r"^sprites/pokemon/other/official-artwork/(\d+)\.png$"
+)
+RAW_SPRITE_PREFIX = (
+    "https://raw.githubusercontent.com/PokeAPI/sprites/"
+    "master/sprites/pokemon/"
 )
 
 
@@ -110,6 +122,40 @@ def discover_referenced_ids():
     return artwork_ids
 
 
+def discover_special_urls():
+    sprite_urls = set()
+
+    for data_path in POKEMON_DATA_DIR.glob("*.json"):
+        data = json.loads(
+            data_path.read_text(encoding="utf-8")
+        )
+        candidates = [
+            data.get("sprite"),
+            data.get("spriteFallback"),
+        ]
+
+        for variety in data.get("varieties", []):
+            candidates.extend(
+                [
+                    variety.get("sprite"),
+                    variety.get("spriteFallback"),
+                ]
+            )
+
+        for sprite_url in candidates:
+            if (
+                sprite_url
+                and sprite_url.startswith(
+                    RAW_SPRITE_PREFIX
+                )
+                and "/official-artwork/"
+                not in sprite_url
+            ):
+                sprite_urls.add(sprite_url)
+
+    return sprite_urls
+
+
 def discover_repository_ids():
     tree = json.loads(
         request_bytes(TREE_URL).decode("utf-8")
@@ -124,6 +170,82 @@ def discover_repository_ids():
             artwork_ids.add(int(match.group(1)))
 
     return artwork_ids
+
+
+def special_destination(source_url):
+    relative_path = urllib.parse.unquote(
+        source_url.split(
+            RAW_SPRITE_PREFIX,
+            1,
+        )[1].split("?", 1)[0]
+    )
+    destination = (
+        SPECIAL_DIR / Path(relative_path)
+    ).resolve()
+
+    if SPECIAL_DIR.resolve() not in (
+        destination,
+        *destination.parents,
+    ):
+        raise ValueError(
+            f"Unsafe special artwork path: {source_url}"
+        )
+
+    return destination
+
+
+def validate_special_artwork(path):
+    if ".svg" in {
+        suffix.lower()
+        for suffix in path.suffixes
+    }:
+        try:
+            text = path.read_text(
+                encoding="utf-8"
+            )
+            return "<svg" in text
+        except (OSError, UnicodeDecodeError):
+            return False
+
+    return validate_png(path)
+
+
+def download_special_artwork(
+    source_url,
+    force=False,
+):
+    destination = special_destination(
+        source_url
+    )
+    destination.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    if (
+        not force
+        and destination.exists()
+        and validate_special_artwork(
+            destination
+        )
+    ):
+        return source_url, False
+
+    temp_path = destination.with_suffix(
+        destination.suffix + ".tmp"
+    )
+    temp_path.write_bytes(
+        request_bytes(source_url)
+    )
+
+    if not validate_special_artwork(temp_path):
+        temp_path.unlink(missing_ok=True)
+        raise ValueError(
+            f"Downloaded invalid special artwork: {source_url}"
+        )
+
+    temp_path.replace(destination)
+    return source_url, True
 
 
 def validate_png(path):
@@ -280,7 +402,11 @@ def run_parallel(items, worker, label, workers):
     return changed
 
 
-def write_manifest(artwork_ids, card_size):
+def write_manifest(
+    artwork_ids,
+    special_urls,
+    card_size,
+):
     entries = {
         str(artwork_id): {
             "full": (
@@ -298,6 +424,21 @@ def write_manifest(artwork_ids, card_size):
         "cardSize": card_size,
         "count": len(entries),
         "artwork": entries,
+        "special": {
+            source_url: (
+                "/"
+                + special_destination(
+                    source_url
+                )
+                .relative_to(
+                    REPO_ROOT / "public"
+                )
+                .as_posix()
+            )
+            for source_url in sorted(
+                special_urls
+            )
+        },
     }
     MANIFEST_PATH.write_text(
         json.dumps(
@@ -340,8 +481,13 @@ def main():
 
     FULL_DIR.mkdir(parents=True, exist_ok=True)
     CARD_DIR.mkdir(parents=True, exist_ok=True)
+    SPECIAL_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
     referenced_ids = discover_referenced_ids()
+    special_urls = discover_special_urls()
     repository_ids = discover_repository_ids()
     artwork_ids = sorted(
         referenced_ids | repository_ids
@@ -373,6 +519,16 @@ def main():
         "Downloading artwork",
         args.workers,
     )
+    downloaded_special = run_parallel(
+        sorted(special_urls),
+        lambda source_url:
+            download_special_artwork(
+                source_url,
+                force=args.force,
+            ),
+        "Downloading special artwork",
+        args.workers,
+    )
     generated = run_parallel(
         artwork_ids,
         lambda artwork_id: generate_card_artwork(
@@ -387,6 +543,7 @@ def main():
 
     write_manifest(
         artwork_ids,
+        special_urls,
         args.card_size,
     )
 
@@ -402,6 +559,10 @@ def main():
     print(
         f"Downloaded {downloaded} files; generated "
         f"{generated} card images."
+    )
+    print(
+        f"Downloaded {downloaded_special} special "
+        f"form assets."
     )
     print(
         f"Full artwork: {full_bytes / 1024 / 1024:.2f} MiB"
