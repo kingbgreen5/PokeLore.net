@@ -10,6 +10,7 @@ import {
 import CollapsibleSection from "../components/CollapsibleSection";
 import ItemLocationCards from "../components/ItemLocationCards";
 import OaksNotes from "../components/OaksNotes";
+import PokemonGoNotes from "../components/PokemonGoNotes";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
@@ -651,6 +652,10 @@ function LocationDetailPage() {
     useState(null);
   const [oaksNotes, setOaksNotes] =
     useState(null);
+  const [
+    pokemonGoNotes,
+    setPokemonGoNotes
+  ] = useState(null);
   const [loading, setLoading] =
     useState(true);
   const [
@@ -675,7 +680,8 @@ function LocationDetailPage() {
         const [
           data,
           itemData,
-          oaksNotesData
+          oaksNotesData,
+          pokemonGoNotesData
         ] = await Promise.all([
           readJsonFile(
             `/data/locations/${locationName}.json`,
@@ -688,12 +694,16 @@ function LocationDetailPage() {
           ),
           readJsonFile(
             `/data/oaksNotes/locations/${locationName}.json`
+          ),
+          readJsonFile(
+            `/data/pokemonGo/locations/${locationName}.json`
           )
         ]);
 
         setLocation(data);
         setLocationItems(itemData);
         setOaksNotes(oaksNotesData);
+        setPokemonGoNotes(pokemonGoNotesData);
       } catch (error) {
         console.error(
           "Failed to load location:",
@@ -702,6 +712,7 @@ function LocationDetailPage() {
         setLocation(null);
         setLocationItems(null);
         setOaksNotes(null);
+        setPokemonGoNotes(null);
       } finally {
         setLoading(false);
       }
@@ -806,6 +817,8 @@ function LocationDetailPage() {
       />
 
       <OaksNotes note={oaksNotes} />
+
+      <PokemonGoNotes note={pokemonGoNotes} />
 
       <CollapsibleSection
         title="Pokémon Encounters"

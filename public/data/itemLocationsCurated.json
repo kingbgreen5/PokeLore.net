@@ -3,6 +3,374 @@
   "description": "Canonical editable source for curated item acquisition/location data. Run node scripts/buildItemLocationsCurated.js to fan this out into public/data/itemLocationsCurated/*.json for the app.",
   "items": [
     {
+      "item": "ability-capsule",
+      "displayName": "Ability Capsule",
+      "source": "itemLocationsCurated.json",
+      "sourceTitle": "Curated Pokemon Scarlet/Violet item acquisition notes",
+      "schemaVersion": 1,
+      "acquisition": [
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "cascarrafa",
+            "displayName": "Cascarrafa"
+          },
+          "area": "Chansey Supply - bottom level, eastern row of buildings",
+          "method": "Purchase for 100,000 Pokedollars from Chansey Supply.",
+          "acquisitionType": "purchase",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Complete the main storyline"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "Cascarrafa - Chansey Supply",
+          "cost": {
+            "amount": 100000,
+            "currency": "Pokedollars"
+          }
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "levincia",
+            "displayName": "Levincia"
+          },
+          "area": "Chansey Supply - northeastern end of the city",
+          "method": "Purchase for 100,000 Pokedollars from Chansey Supply.",
+          "acquisitionType": "purchase",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Complete the main storyline"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "Levincia - Chansey Supply",
+          "cost": {
+            "amount": 100000,
+            "currency": "Pokedollars"
+          }
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "mesagoza",
+            "displayName": "Mesagoza"
+          },
+          "area": "Chansey Supply - southeast corner of Central Square",
+          "method": "Purchase for 100,000 Pokedollars from Chansey Supply.",
+          "acquisitionType": "purchase",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Complete the main storyline"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "Mesagoza - Chansey Supply (Central Square)",
+          "cost": {
+            "amount": 100000,
+            "currency": "Pokedollars"
+          }
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "mesagoza",
+            "displayName": "Mesagoza"
+          },
+          "area": "Chansey Supply - west of the Mesagoza (East) Pokemon Center",
+          "method": "Purchase for 100,000 Pokedollars from Chansey Supply.",
+          "acquisitionType": "purchase",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Complete the main storyline"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "Mesagoza - Chansey Supply (East)",
+          "cost": {
+            "amount": 100000,
+            "currency": "Pokedollars"
+          }
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "montenevera",
+            "displayName": "Montenevera"
+          },
+          "area": "Chansey Supply - southern entrance of town",
+          "method": "Purchase for 100,000 Pokedollars from Chansey Supply.",
+          "acquisitionType": "purchase",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Complete the main storyline"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "Montenevera - Chansey Supply",
+          "cost": {
+            "amount": 100000,
+            "currency": "Pokedollars"
+          }
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": "Tera Raid Battles",
+          "method": "Possible reward from 5-star, 6-star, and 7-star Tera Raid Battles.",
+          "acquisitionType": "raid-reward",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Unlock the relevant raid rank",
+            "7-star event raids must be active"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "kitakami-hall",
+            "displayName": "Kitakami Hall"
+          },
+          "area": "Kitakami Ogre Clan",
+          "method": "Receive three from Muramasa after defeating six Kitakami Ogre Clan members and returning to claim the sixth reward.",
+          "acquisitionType": "trainer-reward",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "The Teal Mask DLC",
+            "Defeat six Kitakami Ogre Clan members"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "Kitakami Hall"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "blueberry-academy",
+            "displayName": "Blueberry Academy"
+          },
+          "method": "Receive one as the Blueberry Pokédex reward for registering 90 Pokémon.",
+          "acquisitionType": "pokedex-reward",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "The Indigo Disk DLC",
+            "Register 90 Pokémon in the Blueberry Pokédex"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "Blueberry Academy"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "league-club-room",
+            "displayName": "League Club Room"
+          },
+          "area": "Item Printer",
+          "method": "Possible output from the Item Printer; listed as a Silver-tier result with a 0.3% item-table rate and a quantity of 1-3.",
+          "acquisitionType": "item-printer",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "The Indigo Disk DLC",
+            "Unlock the Item Printer"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "League Club Room"
+        }
+      ]
+    },
+    {
+      "item": "ability-patch",
+      "displayName": "Ability Patch",
+      "source": "itemLocationsCurated.json",
+      "sourceTitle": "Curated Pokemon Scarlet/Violet item acquisition notes",
+      "schemaVersion": 1,
+      "acquisition": [
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": "Tera Raid Battles",
+          "method": "Possible reward from 6-star and 7-star Tera Raid Battles.",
+          "acquisitionType": "raid-reward",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Unlock 6-star raids for regular 6-star sources",
+            "7-star event raids must be active"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "kitakami-hall",
+            "displayName": "Kitakami Hall"
+          },
+          "area": "Kitakami Ogre Clan",
+          "method": "Defeat all seven roaming members of the Kitakami Ogre Clan, then defeat Muramasa and claim the eighth reward.",
+          "acquisitionType": "trainer-reward",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "The Teal Mask DLC",
+            "Defeat all eight Kitakami Ogre Clan members"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "Kitakami Hall"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "blueberry-academy",
+            "displayName": "Blueberry Academy"
+          },
+          "method": "Receive one as the Blueberry Pokédex reward for registering 230 Pokémon.",
+          "acquisitionType": "pokedex-reward",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "The Indigo Disk DLC",
+            "Register 230 Pokémon in the Blueberry Pokédex"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "Blueberry Academy"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": "Terarium Core",
+          "area": "Top of the Terarium Core",
+          "method": "Collect the Ability Patch found at the top of the Terarium Core.",
+          "acquisitionType": "field-item",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "The Indigo Disk DLC",
+            "Reach the top of the Terarium Core"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "blueberry-academy",
+            "displayName": "Blueberry Academy"
+          },
+          "method": "Receive five from the guidance counselor after defeating every Trainer in all four Terarium biomes.",
+          "acquisitionType": "trainer-completion-reward",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "The Indigo Disk DLC",
+            "Defeat every Trainer in every Terarium biome"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "Blueberry Academy"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "league-club-room",
+            "displayName": "League Club Room"
+          },
+          "area": "Invited coach Rika",
+          "method": "Receive one after defeating invited coach Rika.",
+          "acquisitionType": "coach-reward",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "The Indigo Disk DLC",
+            "Invite and defeat Rika"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "League Club Room"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pokémon Scarlet",
+            "Pokémon Violet"
+          ],
+          "location": {
+            "name": "league-club-room",
+            "displayName": "League Club Room"
+          },
+          "area": "Item Printer",
+          "method": "Possible output from the Item Printer; listed as a Gold-tier result with a 0.5% item-table rate and a quantity of 1-2.",
+          "acquisitionType": "item-printer",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "The Indigo Disk DLC",
+            "Unlock the Item Printer"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "League Club Room"
+        }
+      ]
+    },
+    {
       "item": "air-mail",
       "displayName": "Air Mail",
       "source": "items/air-mail.json",
@@ -533,6 +901,72 @@
           "acquisitionType": "npc-gift",
           "repeatable": false,
           "requirements": []
+        }
+      ]
+    },
+    {
+      "item": "bitter-herba-mystica",
+      "displayName": "Bitter Herba Mystica",
+      "source": "itemLocationsCurated.json",
+      "sourceTitle": "Curated Pokemon Scarlet/Violet Herba Mystica guide",
+      "schemaVersion": 1,
+      "acquisition": [
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": "Tera Raid Battles",
+          "method": "Possible reward from eligible 5-star, 6-star, and selected 7-star Tera Raid Battles. Eligible raid bosses and flavor reward pools vary.",
+          "acquisitionType": "raid-reward",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Unlock eligible high-level Tera Raid Battles"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": "Ogre Oustin'",
+          "area": "Hard difficulty",
+          "method": "Possible random reward from hard-difficulty Ogre Oustin' in The Teal Mask. Herba Mystica rewards are random and not guaranteed.",
+          "acquisitionType": "minigame-reward",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "The Teal Mask DLC",
+            "Unlock Ogre Oustin' hard difficulty"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": {
+            "name": "league-club-room",
+            "displayName": "League Club Room"
+          },
+          "area": "Special coach Tyme",
+          "method": "Receive three after completing the relevant special coach interaction with Tyme.",
+          "acquisitionType": "coach-reward",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "The Indigo Disk DLC",
+            "Unlock the League Club special coach system",
+            "Complete the required coach interactions"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "League Club Room"
         }
       ]
     },
@@ -20881,6 +21315,72 @@
       ]
     },
     {
+      "item": "salty-herba-mystica",
+      "displayName": "Salty Herba Mystica",
+      "source": "itemLocationsCurated.json",
+      "sourceTitle": "Curated Pokemon Scarlet/Violet Herba Mystica guide",
+      "schemaVersion": 1,
+      "acquisition": [
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": "Tera Raid Battles",
+          "method": "Possible reward from eligible 5-star, 6-star, and selected 7-star Tera Raid Battles. Eligible raid bosses and flavor reward pools vary.",
+          "acquisitionType": "raid-reward",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Unlock eligible high-level Tera Raid Battles"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": "Ogre Oustin'",
+          "area": "Hard difficulty",
+          "method": "Possible random reward from hard-difficulty Ogre Oustin' in The Teal Mask. Herba Mystica rewards are random and not guaranteed.",
+          "acquisitionType": "minigame-reward",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "The Teal Mask DLC",
+            "Unlock Ogre Oustin' hard difficulty"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": {
+            "name": "league-club-room",
+            "displayName": "League Club Room"
+          },
+          "area": "Special coach Larry",
+          "method": "Receive three after completing the relevant special coach interaction with Larry.",
+          "acquisitionType": "coach-reward",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "The Indigo Disk DLC",
+            "Unlock the League Club special coach system",
+            "Complete the required coach interactions"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "League Club Room"
+        }
+      ]
+    },
+    {
       "item": "scroll-of-darkness",
       "displayName": "Scroll of Darkness",
       "source": "items/scroll-of-darkness.json",
@@ -22306,6 +22806,72 @@
       ]
     },
     {
+      "item": "sour-herba-mystica",
+      "displayName": "Sour Herba Mystica",
+      "source": "itemLocationsCurated.json",
+      "sourceTitle": "Curated Pokemon Scarlet/Violet Herba Mystica guide",
+      "schemaVersion": 1,
+      "acquisition": [
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": "Tera Raid Battles",
+          "method": "Possible reward from eligible 5-star, 6-star, and selected 7-star Tera Raid Battles. Eligible raid bosses and flavor reward pools vary.",
+          "acquisitionType": "raid-reward",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Unlock eligible high-level Tera Raid Battles"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": "Ogre Oustin'",
+          "area": "Hard difficulty",
+          "method": "Possible random reward from hard-difficulty Ogre Oustin' in The Teal Mask. Herba Mystica rewards are random and not guaranteed.",
+          "acquisitionType": "minigame-reward",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "The Teal Mask DLC",
+            "Unlock Ogre Oustin' hard difficulty"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": {
+            "name": "league-club-room",
+            "displayName": "League Club Room"
+          },
+          "area": "Special coach Saguaro",
+          "method": "Receive three after completing the relevant special coach interaction with Saguaro.",
+          "acquisitionType": "coach-reward",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "The Indigo Disk DLC",
+            "Unlock the League Club special coach system",
+            "Complete the required coach interactions"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "League Club Room"
+        }
+      ]
+    },
+    {
       "item": "space-mail",
       "displayName": "Space Mail",
       "source": "items/space-mail.json",
@@ -22334,6 +22900,72 @@
             "currency": "Pokedollars"
           },
           "originalLocationText": "Goldenrod City"
+        }
+      ]
+    },
+    {
+      "item": "spicy-herba-mystica",
+      "displayName": "Spicy Herba Mystica",
+      "source": "itemLocationsCurated.json",
+      "sourceTitle": "Curated Pokemon Scarlet/Violet Herba Mystica guide",
+      "schemaVersion": 1,
+      "acquisition": [
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": "Tera Raid Battles",
+          "method": "Possible reward from eligible 5-star, 6-star, and selected 7-star Tera Raid Battles. Eligible raid bosses and flavor reward pools vary.",
+          "acquisitionType": "raid-reward",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Unlock eligible high-level Tera Raid Battles"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": "Ogre Oustin'",
+          "area": "Hard difficulty",
+          "method": "Possible random reward from hard-difficulty Ogre Oustin' in The Teal Mask. Herba Mystica rewards are random and not guaranteed.",
+          "acquisitionType": "minigame-reward",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "The Teal Mask DLC",
+            "Unlock Ogre Oustin' hard difficulty"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": {
+            "name": "league-club-room",
+            "displayName": "League Club Room"
+          },
+          "area": "Special coach Kofu",
+          "method": "Receive three after completing the relevant special coach interaction with Kofu.",
+          "acquisitionType": "coach-reward",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "The Indigo Disk DLC",
+            "Unlock the League Club special coach system",
+            "Complete the required coach interactions"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "League Club Room"
         }
       ]
     },
@@ -23913,6 +24545,72 @@
             "The Teal Mask DLC"
           ],
           "locationMatchStatus": "unmatched"
+        }
+      ]
+    },
+    {
+      "item": "sweet-herba-mystica",
+      "displayName": "Sweet Herba Mystica",
+      "source": "itemLocationsCurated.json",
+      "sourceTitle": "Curated Pokemon Scarlet/Violet Herba Mystica guide",
+      "schemaVersion": 1,
+      "acquisition": [
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": "Tera Raid Battles",
+          "method": "Possible reward from eligible 5-star, 6-star, and selected 7-star Tera Raid Battles. Eligible raid bosses and flavor reward pools vary.",
+          "acquisitionType": "raid-reward",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "Unlock eligible high-level Tera Raid Battles"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": "Ogre Oustin'",
+          "area": "Hard difficulty",
+          "method": "Possible random reward from hard-difficulty Ogre Oustin' in The Teal Mask. Herba Mystica rewards are random and not guaranteed.",
+          "acquisitionType": "minigame-reward",
+          "repeatable": true,
+          "versionExclusive": false,
+          "requirements": [
+            "The Teal Mask DLC",
+            "Unlock Ogre Oustin' hard difficulty"
+          ],
+          "locationMatchStatus": "unmatched"
+        },
+        {
+          "generation": 9,
+          "games": [
+            "Pok?mon Scarlet",
+            "Pok?mon Violet"
+          ],
+          "location": {
+            "name": "league-club-room",
+            "displayName": "League Club Room"
+          },
+          "area": "Special coach Katy",
+          "method": "Receive three after completing the relevant special coach interaction with Katy.",
+          "acquisitionType": "coach-reward",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "The Indigo Disk DLC",
+            "Unlock the League Club special coach system",
+            "Complete the required coach interactions"
+          ],
+          "locationMatchStatus": "matched",
+          "originalLocationText": "League Club Room"
         }
       ]
     },

@@ -17,6 +17,7 @@ import TypeEffectivenessCard from "../components/TypeEffectivenessCard";
 import EvolutionNode from "../components/EvolutionNode";
 import BaseStatsChart from "../components/BaseStatsChart";
 import OaksNotes from "../components/OaksNotes";
+import PokemonGoNotes from "../components/PokemonGoNotes";
 import PokemonSummaryCard from "../components/PokemonSummaryCard.jsx";
 import PokemonDetailArtwork from "../components/PokemonDetailArtwork";
 import TypeBadge from "../components/TypeBadge";
@@ -149,6 +150,7 @@ const [evolutionData, setEvolutionData] = useState(null);
 const [evolutionMethodOverrides, setEvolutionMethodOverrides] = useState({});
 const [movesData, setMovesData] = useState({});
 const [oaksNotes, setOaksNotes] = useState(null);
+const [pokemonGoNotes, setPokemonGoNotes] = useState(null);
 const [learnsetLoading, setLearnsetLoading] = useState(false);
 const [evolutionLoading, setEvolutionLoading] = useState(false);
 //---------------------------------------------------------------------LOAD POKEMON USE EFFECT---------------------------------------------------------------------
@@ -167,6 +169,7 @@ useEffect(() => {
       setEvolutionMethodOverrides({});
       setMovesData({});
       setOaksNotes(null);
+      setPokemonGoNotes(null);
       setLearnsetLoading(false);
       setEvolutionLoading(false);
 
@@ -265,10 +268,17 @@ useEffect(() => {
           normalizedIdentifier
         );
 
-      const oaksNotesData =
-        await readJsonFile(
+      const [
+        oaksNotesData,
+        pokemonGoNotesData
+      ] = await Promise.all([
+        readJsonFile(
           `/data/oaksNotes/pokemon/${selectedPokemon.name}.json`
-        );
+        ),
+        readJsonFile(
+          `/data/pokemonGo/pokemon/${selectedPokemon.name}.json`
+        )
+      ]);
 
       if (!isActive) {
         return;
@@ -278,6 +288,7 @@ useEffect(() => {
         selectedPokemon
       );
       setOaksNotes(oaksNotesData);
+      setPokemonGoNotes(pokemonGoNotesData);
       setLoading(false);
       setEvolutionLoading(true);
 
@@ -861,6 +872,8 @@ function formatWeightEnglish(weight) {
 />
 
 <OaksNotes note={oaksNotes} />
+
+<PokemonGoNotes note={pokemonGoNotes} />
 
 <AdditionalImages
   pokemonId={pokemon.id}

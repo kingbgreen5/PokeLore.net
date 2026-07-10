@@ -11,7 +11,9 @@ import {
 import AcquisitionMethods from "../components/AcquisitionMethods";
 import TmMoveDetails from "../components/items/TmMoveDetails";
 import OaksNotes from "../components/OaksNotes";
+import PokemonGoNotes from "../components/PokemonGoNotes";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import RelatedLinks from "../components/RelatedLinks";
 import Seo from "../seo/Seo";
 import { itemSeo } from "../seo/seoConfig";
 import { readJsonFile } from "../utils/readJsonFile";
@@ -145,6 +147,12 @@ function ItemDetailPage() {
     useState([]);
   const [oaksNotes, setOaksNotes] =
     useState(null);
+  const [
+    pokemonGoNotes,
+    setPokemonGoNotes
+  ] = useState(null);
+  const [relatedLinks, setRelatedLinks] =
+    useState(null);
 
   const [loading, setLoading] =
     useState(true);
@@ -184,13 +192,17 @@ function ItemDetailPage() {
           setItem(null);
           setPokemonIndex([]);
           setOaksNotes(null);
+          setPokemonGoNotes(null);
+          setRelatedLinks(null);
           return;
         }
 
         const [
           pokemonIndexData,
           migratedLocationData,
-          oaksNotesData
+          oaksNotesData,
+          pokemonGoNotesData,
+          relatedLinksData
         ] = await Promise.all([
           readJsonFile(
             "/data/pokemonIndex.json"
@@ -200,6 +212,12 @@ function ItemDetailPage() {
           ),
           readJsonFile(
             `/data/oaksNotes/items/${itemData.name}.json`
+          ),
+          readJsonFile(
+            `/data/pokemonGo/items/${itemData.name}.json`
+          ),
+          readJsonFile(
+            `/data/relatedLinks/items/${itemData.name}.json`
           )
         ]);
 
@@ -215,6 +233,8 @@ function ItemDetailPage() {
             : []
         );
         setOaksNotes(oaksNotesData);
+        setPokemonGoNotes(pokemonGoNotesData);
+        setRelatedLinks(relatedLinksData);
       } catch (error) {
         console.error(
           "Failed to load item:",
@@ -222,6 +242,8 @@ function ItemDetailPage() {
         );
         setItem(null);
         setOaksNotes(null);
+        setPokemonGoNotes(null);
+        setRelatedLinks(null);
       } finally {
         setLoading(false);
       }
@@ -429,7 +451,11 @@ function ItemDetailPage() {
         storageKey={`item:${item.name}:acquisition-expanded`}
       />
 
+      <RelatedLinks data={relatedLinks} />
+
       <OaksNotes note={oaksNotes} />
+
+      <PokemonGoNotes note={pokemonGoNotes} />
 
       {wildPokemonHoldingItem.length >
         0 && (

@@ -1,0 +1,66 @@
+{
+  "item": "spicy-herba-mystica",
+  "displayName": "Spicy Herba Mystica",
+  "source": "itemLocationsCurated.json",
+  "sourceTitle": "Curated Pokemon Scarlet/Violet Herba Mystica guide",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Tera Raid Battles",
+      "method": "Possible reward from eligible 5-star, 6-star, and selected 7-star Tera Raid Battles. Eligible raid bosses and flavor reward pools vary.",
+      "acquisitionType": "raid-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Unlock eligible high-level Tera Raid Battles"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Ogre Oustin'",
+      "area": "Hard difficulty",
+      "method": "Possible random reward from hard-difficulty Ogre Oustin' in The Teal Mask. Herba Mystica rewards are random and not guaranteed.",
+      "acquisitionType": "minigame-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Teal Mask DLC",
+        "Unlock Ogre Oustin' hard difficulty"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "league-club-room",
+        "displayName": "League Club Room"
+      },
+      "area": "Special coach Kofu",
+      "method": "Receive three after completing the relevant special coach interaction with Kofu.",
+      "acquisitionType": "coach-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC",
+        "Unlock the League Club special coach system",
+        "Complete the required coach interactions"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "League Club Room"
+    }
+  ]
+}

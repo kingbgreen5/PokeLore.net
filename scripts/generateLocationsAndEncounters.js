@@ -12,6 +12,10 @@ const dataDir = path.join(rootDir, "public", "data");
 const pokemonDataDir = path.join(dataDir, "pokemonData");
 const locationsDir = path.join(dataDir, "locations");
 const regionsDir = path.join(dataDir, "regions");
+const curatedLocationsFile = path.join(
+  dataDir,
+  "locationsCurated.json"
+);
 const pokemonEncountersDir = path.join(
   dataDir,
   "pokemonEncounters"
@@ -527,7 +531,159 @@ function aliasVariants(location) {
     }
   }
 
+  for (const value of location.aliases ?? []) {
+    const alias = normalizeAlias(value);
+
+    if (alias) {
+      variants.add(alias);
+      variants.add(withoutPunctuation(alias));
+    }
+  }
+
   return [...variants].filter(Boolean);
+}
+
+async function loadCuratedLocations() {
+  try {
+    const curated = await readJson(
+      curatedLocationsFile
+    );
+
+    return Array.isArray(curated.locations)
+      ? curated.locations
+      : [];
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      return [];
+    }
+
+    throw error;
+  }
+}
+
+function locationSummaryFromFile(locationFile) {
+  const areas = locationFile.areas ?? [];
+
+  return {
+    id: locationFile.id,
+    name: locationFile.name,
+    displayName: locationFile.displayName,
+    region: locationFile.region?.name ?? "unknown",
+    regionDisplayName:
+      locationFile.region?.displayName ?? "Unknown",
+    areaCount: areas.length,
+    hasEncounters: areas.some(
+      area =>
+        area.pokemonEncounters?.length > 0
+    )
+  };
+}
+
+function addLocationToRegionMap(
+  regionMap,
+  locationFile,
+  locationSummary
+) {
+  const regionName =
+    locationFile.region?.name ?? "unknown";
+
+  if (!regionMap.has(regionName)) {
+    regionMap.set(regionName, {
+      id: locationFile.region?.id ?? null,
+      name: regionName,
+      displayName:
+        locationFile.region?.displayName ?? "Unknown",
+      mainGeneration:
+        locationFile.region?.mainGeneration ?? null,
+      pokedexes:
+        locationFile.region?.pokedexes ?? [],
+      versionGroups:
+        locationFile.region?.versionGroups ?? [],
+      locations: []
+    });
+  }
+
+  const regionEntry = regionMap.get(regionName);
+
+  if (
+    !regionEntry.locations.some(
+      location =>
+        location.name === locationSummary.name
+    )
+  ) {
+    regionEntry.locations.push({
+      id: locationSummary.id,
+      name: locationSummary.name,
+      displayName:
+        locationSummary.displayName,
+      hasEncounters:
+        locationSummary.hasEncounters
+    });
+  }
+}
+
+async function mergeCuratedLocations(
+  results,
+  regionMap
+) {
+  const curatedLocations =
+    await loadCuratedLocations();
+  const existingNames = new Set(
+    results.map(
+      result => result.locationFile.name
+    )
+  );
+
+  for (const curatedLocation of curatedLocations) {
+    if (
+      !curatedLocation.name ||
+      existingNames.has(curatedLocation.name)
+    ) {
+      continue;
+    }
+
+    const locationFile = {
+      id: curatedLocation.id ?? null,
+      name: curatedLocation.name,
+      displayName:
+        curatedLocation.displayName ??
+        formatName(curatedLocation.name),
+      region: {
+        name:
+          curatedLocation.region?.name ??
+          "unknown",
+        displayName:
+          curatedLocation.region?.displayName ??
+          "Unknown"
+      },
+      gameIndices:
+        curatedLocation.gameIndices ?? [],
+      areas: curatedLocation.areas ?? [],
+      aliases: curatedLocation.aliases ?? []
+    };
+    const locationSummary =
+      locationSummaryFromFile(locationFile);
+
+    await fs.writeFile(
+      path.join(
+        locationsDir,
+        `${locationFile.name}.json`
+      ),
+      JSON.stringify(locationFile, null, 2),
+      "utf8"
+    );
+
+    addLocationToRegionMap(
+      regionMap,
+      locationFile,
+      locationSummary
+    );
+    results.push({
+      locationFile,
+      locationSummary
+    });
+    existingNames.add(locationFile.name);
+  }
 }
 
 function buildAliases(locations) {
@@ -877,6 +1033,11 @@ async function main() {
       results.push(result);
     }
   }
+
+  await mergeCuratedLocations(
+    results,
+    regionMap
+  );
 
   const locationFiles = results
     .map(result => result.locationFile)

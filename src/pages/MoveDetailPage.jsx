@@ -12,6 +12,8 @@ import {
 
 import CollapsibleSection from "../components/CollapsibleSection";
 import MoveMachineItems from "../components/MoveMachineItems";
+import OaksNotes from "../components/OaksNotes";
+import PokemonGoNotes from "../components/PokemonGoNotes";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import useSessionState from "../hooks/useSessionState";
 import Seo from "../seo/Seo";
@@ -961,6 +963,12 @@ function MoveDetailPage({
     useState([]);
   const [generatedLearners, setGeneratedLearners] =
     useState(null);
+  const [oaksNotes, setOaksNotes] =
+    useState(null);
+  const [
+    pokemonGoNotes,
+    setPokemonGoNotes
+  ] = useState(null);
   const [
     generatedLearnerGroups,
     setGeneratedLearnerGroups
@@ -977,6 +985,8 @@ function MoveDetailPage({
         setMoveData(null);
         setGeneratedLearners(null);
         setGeneratedLearnerGroups(null);
+        setOaksNotes(null);
+        setPokemonGoNotes(null);
         setLearnsets([]);
         setPokemonIndex([]);
 
@@ -984,11 +994,24 @@ function MoveDetailPage({
         // MOVE DETAIL DATA
         //-----------------------------------------
 
-        const moveDetail =
-          await loadMoveDetail(moveName);
+        const [
+          moveDetail,
+          oaksNotesData,
+          pokemonGoNotesData
+        ] = await Promise.all([
+          loadMoveDetail(moveName),
+          readJsonUrl(
+            `/data/oaksNotes/moves/${moveName}.json`
+          ),
+          readJsonUrl(
+            `/data/pokemonGo/moves/${moveName}.json`
+          )
+        ]);
 
         if (!ignore) {
           setMoveData(moveDetail);
+          setOaksNotes(oaksNotesData);
+          setPokemonGoNotes(pokemonGoNotesData);
         }
 
         //-----------------------------------------
@@ -1037,6 +1060,8 @@ function MoveDetailPage({
           "Failed to load move:",
           error
         );
+        setOaksNotes(null);
+        setPokemonGoNotes(null);
       } finally {
         if (!ignore) {
           setLoading(false);
@@ -1250,6 +1275,10 @@ function MoveDetailPage({
       <DetailPillRow
         moveData={moveData}
       />
+
+      <OaksNotes note={oaksNotes} />
+
+      <PokemonGoNotes note={pokemonGoNotes} />
 
       <StatChangesSection
         statChanges={

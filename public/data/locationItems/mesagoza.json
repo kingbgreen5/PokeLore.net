@@ -1,7 +1,7 @@
 {
   "location": {
-    "name": "montenevera",
-    "displayName": "Montenevera"
+    "name": "mesagoza",
+    "displayName": "Mesagoza"
   },
   "items": [
     {
@@ -16,7 +16,19 @@
           "methods": [
             {
               "type": "purchase",
-              "area": "Chansey Supply - southern entrance of town",
+              "area": "Chansey Supply - southeast corner of Central Square",
+              "details": "Purchase for 100,000 Pokedollars from Chansey Supply.",
+              "notes": null,
+              "requirements": [
+                "Complete the main storyline"
+              ],
+              "relatedAbilities": [],
+              "repeatable": true,
+              "versionExclusive": false
+            },
+            {
+              "type": "purchase",
+              "area": "Chansey Supply - west of the Mesagoza (East) Pokemon Center",
               "details": "Purchase for 100,000 Pokedollars from Chansey Supply.",
               "notes": null,
               "requirements": [
@@ -33,7 +45,7 @@
           "methods": [
             {
               "type": "purchase",
-              "area": "Chansey Supply - southern entrance of town",
+              "area": "Chansey Supply - southeast corner of Central Square",
               "details": "Purchase for 100,000 Pokedollars from Chansey Supply.",
               "notes": null,
               "requirements": [
@@ -42,44 +54,17 @@
               "relatedAbilities": [],
               "repeatable": true,
               "versionExclusive": false
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "item": {
-        "name": "dusk-stone",
-        "displayName": "Dusk Stone",
-        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-stone.png"
-      },
-      "versions": [
-        {
-          "version": "Pokémon Scarlet",
-          "methods": [
+            },
             {
-              "type": "field-item",
-              "area": null,
-              "details": "Collect the fixed Dusk Stone.",
+              "type": "purchase",
+              "area": "Chansey Supply - west of the Mesagoza (East) Pokemon Center",
+              "details": "Purchase for 100,000 Pokedollars from Chansey Supply.",
               "notes": null,
-              "requirements": [],
+              "requirements": [
+                "Complete the main storyline"
+              ],
               "relatedAbilities": [],
-              "repeatable": false,
-              "versionExclusive": false
-            }
-          ]
-        },
-        {
-          "version": "Pokémon Violet",
-          "methods": [
-            {
-              "type": "field-item",
-              "area": null,
-              "details": "Collect the fixed Dusk Stone.",
-              "notes": null,
-              "requirements": [],
-              "relatedAbilities": [],
-              "repeatable": false,
+              "repeatable": true,
               "versionExclusive": false
             }
           ]

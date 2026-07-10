@@ -29,6 +29,67 @@ function NoteLink({
   );
 }
 
+function getParagraphText(paragraph) {
+  return typeof paragraph === "string"
+    ? paragraph
+    : paragraph?.text ?? "";
+}
+
+function InlineLinkedText({
+  paragraph
+}) {
+  const text = getParagraphText(paragraph);
+  const links = Array.isArray(paragraph?.links)
+    ? paragraph.links
+    : [];
+
+  if (links.length === 0) {
+    return normalizeDisplayText(text);
+  }
+
+  const parts = [];
+  let remaining = text;
+
+  while (remaining) {
+    const nextLink = links
+      .map(link => ({
+        ...link,
+        index: remaining.indexOf(link.label)
+      }))
+      .filter(link => link.index >= 0)
+      .sort((a, b) => a.index - b.index)[0];
+
+    if (!nextLink) {
+      parts.push(remaining);
+      break;
+    }
+
+    if (nextLink.index > 0) {
+      parts.push(remaining.slice(0, nextLink.index));
+    }
+
+    parts.push({
+      label: nextLink.label,
+      to: nextLink.to
+    });
+
+    remaining = remaining.slice(
+      nextLink.index + nextLink.label.length
+    );
+  }
+
+  return parts.map((part, index) =>
+    typeof part === "string" ? (
+      normalizeDisplayText(part)
+    ) : (
+      <NoteLink
+        key={`${part.to}-${part.label}-${index}`}
+        link={part}
+      />
+    )
+  );
+}
+
 function PokemonNoteLinks({
   links,
   pokemonByName
@@ -139,7 +200,9 @@ function KeyStats({
 }
 
 function OaksNotes({
-  note
+  defaultTitle = "Oak's Notes",
+  note,
+  warningLabel = defaultTitle
 }) {
   const [pokemonIndex, setPokemonIndex] =
     useState([]);
@@ -188,7 +251,7 @@ function OaksNotes({
     return () => {
       isActive = false;
     };
-  }, [note]);
+  }, [note, warningLabel]);
 
   const pokemonByName = useMemo(
     () =>
@@ -230,11 +293,11 @@ function OaksNotes({
         textAlign: "left"
       }}
     >
-      <h2>{note.title ?? "Oak's Notes"}</h2>
+      <h2>{note.title ?? defaultTitle}</h2>
 
       {body.map((paragraph, index) => (
-        <p key={`${paragraph}-${index}`}>
-          {normalizeDisplayText(paragraph)}
+        <p key={`${getParagraphText(paragraph)}-${index}`}>
+          <InlineLinkedText paragraph={paragraph} />
         </p>
       ))}
 
@@ -254,8 +317,8 @@ function OaksNotes({
           )}
 
           {(section.body ?? []).map((paragraph, bodyIndex) => (
-            <p key={`${paragraph}-${bodyIndex}`}>
-              {normalizeDisplayText(paragraph)}
+            <p key={`${getParagraphText(paragraph)}-${bodyIndex}`}>
+              <InlineLinkedText paragraph={paragraph} />
             </p>
           ))}
 

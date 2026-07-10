@@ -9,6 +9,7 @@ import { topicsSeo } from "../seo/seoConfig";
 import { staticTopics } from "../topics/topicRegistry";
 
 const subgroupLabels = {
+  guides: "Guides",
   biomes: "Biomes",
   "item-locations": "Item Locations",
   behavior: "Behavior",
@@ -70,6 +71,7 @@ function TopicsPage() {
   }, [topics]);
 
   const subgroupOrder = [
+    "guides",
     "item-locations",
     "biomes",
     "behavior",

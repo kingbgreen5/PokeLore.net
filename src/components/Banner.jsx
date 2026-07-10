@@ -11,7 +11,8 @@ function Banner() {
       to="/"
       style={{
         display: "block",
-        padding: ".5rem",
+
+        paddingTop: "1.25rem",
         cursor: "pointer",
         textAlign: "center",
         textDecoration: "none"
