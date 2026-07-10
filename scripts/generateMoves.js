@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { normalizeFlavorText } from "../src/utils/normalizeText.js";
 
 const __filename =
   fileURLToPath(import.meta.url);
@@ -42,10 +43,7 @@ function sleep(ms) {
 }
 
 function cleanText(text) {
-  return String(text ?? "")
-    .replace(/\f/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+  return normalizeFlavorText(text);
 }
 
 function displayName(slug) {

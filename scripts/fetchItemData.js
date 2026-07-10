@@ -4,6 +4,7 @@
 import axios from "axios";
 import fs from "fs";
 import path from "path";
+import { normalizeFlavorText } from "../src/utils/normalizeText.js";
 
 const BASE_URL =
   "https://pokeapi.co/api/v2";
@@ -36,12 +37,7 @@ function ensureDir(dir) {
 function cleanText(text) {
   if (!text) return null;
 
-  return text
-    .replace(/\f/g, " ")
-    .replace(/\n/g, " ")
-    .replace(/\r/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+  return normalizeFlavorText(text);
 }
 
 function getEnglishName(names, fallback) {

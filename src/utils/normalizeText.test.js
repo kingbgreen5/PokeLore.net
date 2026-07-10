@@ -5,7 +5,8 @@ import {
 } from "vitest";
 import {
   normalizeDisplayData,
-  normalizeDisplayText
+  normalizeDisplayText,
+  normalizeFlavorText
 } from "./normalizeText";
 
 describe("normalizeDisplayText", () => {
@@ -41,5 +42,15 @@ describe("normalizeDisplayText", () => {
         displayName: "Pokéathlon Dome"
       }
     });
+  });
+
+  it("removes soft-hyphen word-break artifacts", () => {
+    expect(
+      normalizeFlavorText(
+        "It can win by gnaw\u00ad ing, grow\u00ad ing, and search\u00ad es."
+      )
+    ).toBe(
+      "It can win by gnawing, growing, and searches."
+    );
   });
 });

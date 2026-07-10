@@ -3,6 +3,7 @@
 
 import axios from "axios";
 import fs from "fs";
+import { normalizeFlavorText } from "../src/utils/normalizeText.js";
 
 const BASE_URL = "https://pokeapi.co/api/v2";
 
@@ -59,10 +60,9 @@ const englishEntries = data.flavor_text_entries
   .filter(entry => entry.language.name === "en")
   .map(entry => ({
     version: entry.version.name,
-    text: entry.flavor_text
-      .replace(/\f/g, " ")
-      .replace(/\n/g, " ")
-      .trim()
+    text: normalizeFlavorText(
+      entry.flavor_text
+    )
   }));
 
 

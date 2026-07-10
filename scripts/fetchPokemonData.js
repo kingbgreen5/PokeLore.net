@@ -3,6 +3,7 @@
 
 import axios from "axios";
 import fs from "fs";
+import { normalizeFlavorText } from "../src/utils/normalizeText.js";
 
 const BASE_URL =
   "https://pokeapi.co/api/v2";
@@ -58,12 +59,9 @@ function condenseDexEntries(
       )
       .map(entry => ({
         version: entry.version.name,
-        text: entry.flavor_text
-          .replace(/\f/g, " ")
-          .replace(/\n/g, " ")
-          .replace(/\r/g, " ")
-          .replace(/\s+/g, " ")
-          .trim()
+        text: normalizeFlavorText(
+          entry.flavor_text
+        )
       }));
 
   const grouped = {};

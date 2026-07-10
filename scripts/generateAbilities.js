@@ -1,4 +1,5 @@
 import fs from "fs/promises";
+import { normalizeFlavorText } from "../src/utils/normalizeText.js";
 
 const TOTAL_ABILITIES = 400;
 
@@ -73,15 +74,15 @@ async function generateAbilities() {
         name: data.name,
 
         shortEffect:
-          englishFlavor?.flavor_text
-            ?.replace(/\n/g, " ")
-            ?.replace(/\f/g, " ")
+          normalizeFlavorText(
+            englishFlavor?.flavor_text
+          )
           || "No description.",
 
         effect:
-          englishEffect?.effect
-            ?.replace(/\n/g, " ")
-            ?.replace(/\f/g, " ")
+          normalizeFlavorText(
+            englishEffect?.effect
+          )
           || "No effect description.",
 
         generation:
