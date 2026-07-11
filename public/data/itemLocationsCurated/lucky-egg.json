@@ -1,0 +1,447 @@
+{
+  "item": "lucky-egg",
+  "displayName": "Lucky Egg",
+  "source": "items/lucky-egg.json",
+  "sourceTitle": "Curated multi-generation Lucky Egg acquisition notes",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 2,
+      "games": [
+        "Pokémon Gold",
+        "Pokémon Silver",
+        "Pokémon Crystal"
+      ],
+      "location": "Wild Chansey encounters",
+      "method": "Possible held item on wild Chansey, with a 2% chance.",
+      "acquisitionType": "wild-held-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Encounter and catch or steal the held item from a wild Chansey"
+      ],
+      "relatedPokemon": [
+        {
+          "name": "chansey",
+          "displayName": "Chansey"
+        }
+      ]
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokémon FireRed",
+        "Pokémon LeafGreen"
+      ],
+      "location": {
+        "name": "kanto-safari-zone",
+        "displayName": "Safari Zone"
+      },
+      "method": "Possible held item on wild Chansey, with a 5% chance.",
+      "acquisitionType": "wild-held-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Encounter and catch a wild Chansey in the Safari Zone"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "Safari Zone Chansey encounters",
+      "originalLocationText": "Safari Zone",
+      "relatedPokemon": [
+        {
+          "name": "chansey",
+          "displayName": "Chansey"
+        }
+      ]
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokémon Diamond",
+        "Pokémon Pearl",
+        "Pokémon Platinum",
+        "Pokémon HeartGold",
+        "Pokémon SoulSilver"
+      ],
+      "location": "Wild Chansey encounters",
+      "method": "Possible held item on wild Chansey, with a 5% chance.",
+      "acquisitionType": "wild-held-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Encounter and catch or steal the held item from a wild Chansey"
+      ],
+      "relatedPokemon": [
+        {
+          "name": "chansey",
+          "displayName": "Chansey"
+        }
+      ]
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "chargestone-cave",
+        "displayName": "Chargestone Cave"
+      },
+      "method": "Receive a Lucky Egg during the story in Chargestone Cave.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": null,
+      "originalLocationText": "Chargestone Cave"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black",
+        "Pokémon White"
+      ],
+      "location": {
+        "name": "unova-route-13",
+        "displayName": "Route 13"
+      },
+      "method": "Possible daily item from the treasure hunter.",
+      "acquisitionType": "daily-npc-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Speak to the Route 13 treasure hunter"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "Treasure hunter",
+      "originalLocationText": "Route 13"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon Black 2",
+        "Pokémon White 2"
+      ],
+      "location": {
+        "name": "celestial-tower",
+        "displayName": "Celestial Tower"
+      },
+      "method": "Obtain the Lucky Egg at Celestial Tower.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": null,
+      "originalLocationText": "Celestial Tower"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokémon White"
+      ],
+      "location": "Wild Happiny encounters",
+      "method": "Possible held item on wild Happiny, with a 5% chance.",
+      "acquisitionType": "wild-held-item",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Encounter and catch or steal the held item from a wild Happiny"
+      ],
+      "relatedPokemon": [
+        {
+          "name": "happiny",
+          "displayName": "Happiny"
+        }
+      ]
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon Omega Ruby",
+        "Pokémon Alpha Sapphire"
+      ],
+      "location": "Wild Pelipper and Happiny encounters",
+      "method": "Possible held item on wild Pelipper or Happiny, with a 5% chance for each species.",
+      "acquisitionType": "wild-held-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Encounter and catch or steal the held item from a wild Pelipper or Happiny"
+      ],
+      "relatedPokemon": [
+        {
+          "name": "happiny",
+          "displayName": "Happiny"
+        },
+        {
+          "name": "pelipper",
+          "displayName": "Pelipper"
+        }
+      ]
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": {
+        "name": "coumarine-city",
+        "displayName": "Coumarine City"
+      },
+      "method": "Receive the Lucky Egg in Coumarine City.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": null,
+      "originalLocationText": "Coumarine City"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokémon X",
+        "Pokémon Y"
+      ],
+      "location": "Wild Chansey encounters",
+      "method": "Possible held item on wild Chansey, with a 5% chance.",
+      "acquisitionType": "wild-held-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Encounter and catch or steal the held item from a wild Chansey"
+      ],
+      "relatedPokemon": [
+        {
+          "name": "chansey",
+          "displayName": "Chansey"
+        }
+      ]
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Sun",
+        "Pokémon Moon",
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": {
+        "name": "alola-route-1",
+        "displayName": "Route 1"
+      },
+      "method": "Find the Lucky Egg in the Hau'oli Outskirts section of Route 1.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": "Hau'oli Outskirts",
+      "originalLocationText": "Route 1, Hau'oli Outskirts"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokémon Ultra Sun",
+        "Pokémon Ultra Moon"
+      ],
+      "location": "Wild Blissey encounters",
+      "method": "Possible held item on wild Blissey, with a 5% chance.",
+      "acquisitionType": "wild-held-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Encounter and catch or steal the held item from a wild Blissey"
+      ],
+      "relatedPokemon": [
+        {
+          "name": "blissey",
+          "displayName": "Blissey"
+        }
+      ]
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": "Grand Underground, Icy Cave",
+      "method": "Find a Lucky Egg in an Icy Cave in the Grand Underground.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "unmatched",
+      "area": "Icy Cave",
+      "originalLocationText": "Grand Underground, Icy Cave"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Brilliant Diamond",
+        "Pokémon Shining Pearl"
+      ],
+      "location": {
+        "name": "battle-park",
+        "displayName": "Battle Park"
+      },
+      "method": "Purchase for 77 BP.",
+      "acquisitionType": "bp-purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach the Battle Park",
+        "Have 77 BP"
+      ],
+      "locationMatchStatus": "matched",
+      "area": null,
+      "originalLocationText": "Battle Park"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "hulbury",
+        "displayName": "Hulbury"
+      },
+      "method": "Obtain the Lucky Egg in Hulbury.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": null,
+      "originalLocationText": "Hulbury"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Isle of Armor Max Raid Battles",
+      "method": "Possible reward from 3-star, 4-star, and 5-star Chansey and Blissey Max Raid Battles.",
+      "acquisitionType": "raid-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor DLC"
+      ],
+      "relatedPokemon": [
+        {
+          "name": "chansey",
+          "displayName": "Chansey"
+        },
+        {
+          "name": "blissey",
+          "displayName": "Blissey"
+        }
+      ]
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": "Wild Blissey encounters",
+      "method": "Possible held item on wild Blissey, with a 5% chance.",
+      "acquisitionType": "wild-held-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor DLC"
+      ],
+      "relatedPokemon": [
+        {
+          "name": "blissey",
+          "displayName": "Blissey"
+        }
+      ]
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokémon Sword",
+        "Pokémon Shield"
+      ],
+      "location": {
+        "name": "snowslide-slope",
+        "displayName": "Snowslide Slope"
+      },
+      "method": "Possible highlight item from the Watt Trader for 5,980 Watts.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra DLC",
+        "Lucky Egg must appear as the highlight item"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "Watt Trader",
+      "originalLocationText": "Snowslide Slope"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Legends: Z-A"
+      ],
+      "location": "Vert District Pokémon Center",
+      "method": "Receive at the Pokémon Center for completing Side Mission 109, “Wondrous Self-Healing Pokémon.”",
+      "acquisitionType": "side-mission-reward",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Complete Side Mission 109"
+      ],
+      "locationMatchStatus": "unmatched",
+      "area": "Pokémon Center",
+      "originalLocationText": "Vert District Pokémon Center"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": "Jacq",
+      "method": "Receive from Jacq before challenging the sixth Gym.",
+      "acquisitionType": "story-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Progress to the point before challenging the sixth Gym"
+      ]
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokémon Scarlet",
+        "Pokémon Violet"
+      ],
+      "location": {
+        "name": "league-club-room",
+        "displayName": "League Club Room"
+      },
+      "method": "Possible output from the Item Printer.",
+      "acquisitionType": "item-printer",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Indigo Disk DLC",
+        "Unlock the Item Printer"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "Item Printer",
+      "originalLocationText": "League Club Room"
+    }
+  ]
+}

@@ -55,6 +55,11 @@ function methodDetails(method) {
       method.versionExclusive ?? null
   };
 
+  if (method.relatedPokemon?.length) {
+    details.relatedPokemon =
+      method.relatedPokemon;
+  }
+
   if (
     method.cost &&
     method.location?.name === "pokeathlon-dome"

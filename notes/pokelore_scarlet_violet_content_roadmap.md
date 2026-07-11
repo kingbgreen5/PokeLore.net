@@ -5,15 +5,15 @@ A working checklist of high-value Scarlet/Violet item pages, guides, and connect
 ## Priority Item Pages
 
 ### Tier 1 — Highest Priority
-- [ ] Ability Patch
-- [ ] Herba Mystica hub
-  - [ ] Salty Herba Mystica
-  - [ ] Sweet Herba Mystica
-  - [ ] Sour Herba Mystica
-  - [ ] Bitter Herba Mystica
-  - [ ] Spicy Herba Mystica
-- [ ] Amulet Coin
-- [ ] Lucky Egg
+- [x ] Ability Patch
+- [ x] Herba Mystica hub
+  - [x ] Salty Herba Mystica
+  - [ x] Sweet Herba Mystica
+  - [x ] Sour Herba Mystica
+  - [ x] Bitter Herba Mystica
+  - [ x] Spicy Herba Mystica
+- [x ] Amulet Coin
+- [x ] Lucky Egg
 - [ ] Auspicious Armor
 - [ ] Malicious Armor
 - [ ] Master Ball

@@ -157,6 +157,61 @@
     },
     {
       "item": {
+        "name": "lucky-egg",
+        "displayName": "Lucky Egg",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lucky-egg.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon FireRed",
+          "methods": [
+            {
+              "type": "wild-held-item",
+              "area": "Safari Zone Chansey encounters",
+              "details": "Possible held item on wild Chansey, with a 5% chance.",
+              "notes": null,
+              "requirements": [
+                "Encounter and catch a wild Chansey in the Safari Zone"
+              ],
+              "relatedAbilities": [],
+              "repeatable": true,
+              "versionExclusive": false,
+              "relatedPokemon": [
+                {
+                  "name": "chansey",
+                  "displayName": "Chansey"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "version": "Pokémon LeafGreen",
+          "methods": [
+            {
+              "type": "wild-held-item",
+              "area": "Safari Zone Chansey encounters",
+              "details": "Possible held item on wild Chansey, with a 5% chance.",
+              "notes": null,
+              "requirements": [
+                "Encounter and catch a wild Chansey in the Safari Zone"
+              ],
+              "relatedAbilities": [],
+              "repeatable": true,
+              "versionExclusive": false,
+              "relatedPokemon": [
+                {
+                  "name": "chansey",
+                  "displayName": "Chansey"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
         "name": "tm32",
         "displayName": "TM32",
         "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-normal.png"

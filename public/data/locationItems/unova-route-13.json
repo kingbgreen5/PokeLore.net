@@ -280,6 +280,49 @@
     },
     {
       "item": {
+        "name": "lucky-egg",
+        "displayName": "Lucky Egg",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lucky-egg.png"
+      },
+      "versions": [
+        {
+          "version": "Pokémon Black",
+          "methods": [
+            {
+              "type": "daily-npc-reward",
+              "area": "Treasure hunter",
+              "details": "Possible daily item from the treasure hunter.",
+              "notes": null,
+              "requirements": [
+                "Speak to the Route 13 treasure hunter"
+              ],
+              "relatedAbilities": [],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon White",
+          "methods": [
+            {
+              "type": "daily-npc-reward",
+              "area": "Treasure hunter",
+              "details": "Possible daily item from the treasure hunter.",
+              "notes": null,
+              "requirements": [
+                "Speak to the Route 13 treasure hunter"
+              ],
+              "relatedAbilities": [],
+              "repeatable": true,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
         "name": "magmarizer",
         "displayName": "Magmarizer",
         "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/magmarizer.png"

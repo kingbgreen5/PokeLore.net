@@ -210,6 +210,41 @@ function ItemLocationLink({
   );
 }
 
+function PokemonLink({
+  pokemon
+}) {
+  if (!pokemon) {
+    return null;
+  }
+
+  if (typeof pokemon === "string") {
+    return (
+      <span>
+        {normalizeDisplayText(pokemon)}
+      </span>
+    );
+  }
+
+  if (
+    pokemon.name &&
+    pokemon.displayName
+  ) {
+    return (
+      <Link to={`/pokemon/${pokemon.name}`}>
+        {normalizeDisplayText(pokemon.displayName)}
+      </Link>
+    );
+  }
+
+  return (
+    <span>
+      {normalizeDisplayText(
+        pokemon.displayName ?? pokemon.name
+      )}
+    </span>
+  );
+}
+
 function AbilityLink({
   ability
 }) {
@@ -245,6 +280,75 @@ function AbilityLink({
       )}
     </span>
   );
+}
+
+function escapeRegExp(text) {
+  return String(text).replace(
+    /[.*+?^${}()|[\]\\]/g,
+    "\\$&"
+  );
+}
+
+function renderTextWithPokemonLinks(
+  text,
+  relatedPokemon
+) {
+  const normalizedText =
+    normalizeDisplayText(text);
+  const pokemon =
+    relatedPokemon?.filter(Boolean) ?? [];
+
+  if (!normalizedText || pokemon.length === 0) {
+    return normalizedText;
+  }
+
+  const names = pokemon
+    .map(entry =>
+      normalizeDisplayText(
+        typeof entry === "string"
+          ? entry
+          : entry.displayName ?? entry.name
+      )
+    )
+    .filter(Boolean)
+    .sort((a, b) => b.length - a.length);
+
+  if (names.length === 0) {
+    return normalizedText;
+  }
+
+  const pattern = new RegExp(
+    `\\b(${names.map(escapeRegExp).join("|")})\\b`,
+    "gi"
+  );
+
+  return normalizedText
+    .split(pattern)
+    .map((part, index) => {
+      const pokemonEntry = pokemon.find(entry => {
+        const label = normalizeDisplayText(
+          typeof entry === "string"
+            ? entry
+            : entry.displayName ?? entry.name
+        );
+
+        return (
+          label.toLowerCase() ===
+          part.toLowerCase()
+        );
+      });
+
+      if (!pokemonEntry) {
+        return part;
+      }
+
+      return (
+        <PokemonLink
+          key={`${part}-${index}`}
+          pokemon={pokemonEntry}
+        />
+      );
+    });
 }
 
 function ItemLocationCards({
@@ -360,8 +464,9 @@ function ItemLocationCards({
                       </>
                     )}
 
-                    {normalizeDisplayText(
-                      method.area ?? ""
+                    {renderTextWithPokemonLinks(
+                      method.area ?? "",
+                      method.relatedPokemon
                     )}
                   </p>
 
@@ -373,8 +478,9 @@ function ItemLocationCards({
                         opacity: 0.85
                       }}
                     >
-                      {normalizeDisplayText(
-                        method.details
+                      {renderTextWithPokemonLinks(
+                        method.details,
+                        method.relatedPokemon
                       )}
                     </p>
                   )}
@@ -416,8 +522,9 @@ function ItemLocationCards({
                             <li
                               key={requirement}
                             >
-                              {normalizeDisplayText(
-                                requirement
+                              {renderTextWithPokemonLinks(
+                                requirement,
+                                method.relatedPokemon
                               )}
                             </li>
                           )

@@ -1,7 +1,7 @@
 {
   "location": {
-    "name": "kanto-route-16",
-    "displayName": "Route 16"
+    "name": "littleroot-town",
+    "displayName": "Littleroot Town"
   },
   "items": [
     {
@@ -12,15 +12,16 @@
       },
       "versions": [
         {
-          "version": "Pokémon FireRed",
+          "version": "Pokémon Alpha Sapphire",
           "methods": [
             {
-              "type": "pokedex-reward",
-              "area": "Route 16 gate 2F",
-              "details": "Receive from Professor Oak's aide on the second floor of the Route 16 gate after catching 40 different Pokémon.",
+              "type": "npc-gift",
+              "area": "Player's house",
+              "details": "Receive from the player's mother inside the player's house after defeating Norman and earning the Balance Badge.",
               "notes": null,
               "requirements": [
-                "Catch 40 different Pokémon"
+                "Defeat Norman",
+                "Earn the Balance Badge"
               ],
               "relatedAbilities": [],
               "repeatable": false,
@@ -29,41 +30,16 @@
           ]
         },
         {
-          "version": "Pokémon LeafGreen",
-          "methods": [
-            {
-              "type": "pokedex-reward",
-              "area": "Route 16 gate 2F",
-              "details": "Receive from Professor Oak's aide on the second floor of the Route 16 gate after catching 40 different Pokémon.",
-              "notes": null,
-              "requirements": [
-                "Catch 40 different Pokémon"
-              ],
-              "relatedAbilities": [],
-              "repeatable": false,
-              "versionExclusive": false
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "item": {
-        "name": "hm02",
-        "displayName": "HM02",
-        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/hm-normal.png"
-      },
-      "versions": [
-        {
-          "version": "Pokémon Blue",
+          "version": "Pokémon Emerald",
           "methods": [
             {
               "type": "npc-gift",
-              "area": "Route 16 - NPC house",
-              "details": "Cut a tree and talk to the NPC in the house.",
+              "area": "Player's house",
+              "details": "Receive from the player's mother inside the player's house after defeating Norman and earning the Balance Badge.",
               "notes": null,
               "requirements": [
-                "Cut"
+                "Defeat Norman",
+                "Earn the Balance Badge"
               ],
               "relatedAbilities": [],
               "repeatable": false,
@@ -72,15 +48,16 @@
           ]
         },
         {
-          "version": "Pokémon Red",
+          "version": "Pokémon Omega Ruby",
           "methods": [
             {
               "type": "npc-gift",
-              "area": "Route 16 - NPC house",
-              "details": "Cut a tree and talk to the NPC in the house.",
+              "area": "Player's house",
+              "details": "Receive from the player's mother inside the player's house after defeating Norman and earning the Balance Badge.",
               "notes": null,
               "requirements": [
-                "Cut"
+                "Defeat Norman",
+                "Earn the Balance Badge"
               ],
               "relatedAbilities": [],
               "repeatable": false,
@@ -89,15 +66,34 @@
           ]
         },
         {
-          "version": "Pokémon Yellow",
+          "version": "Pokémon Ruby",
           "methods": [
             {
               "type": "npc-gift",
-              "area": "Route 16 - NPC house",
-              "details": "Cut a tree and talk to the NPC in the house.",
+              "area": "Player's house",
+              "details": "Receive from the player's mother inside the player's house after defeating Norman and earning the Balance Badge.",
               "notes": null,
               "requirements": [
-                "Cut"
+                "Defeat Norman",
+                "Earn the Balance Badge"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        },
+        {
+          "version": "Pokémon Sapphire",
+          "methods": [
+            {
+              "type": "npc-gift",
+              "area": "Player's house",
+              "details": "Receive from the player's mother inside the player's house after defeating Norman and earning the Balance Badge.",
+              "notes": null,
+              "requirements": [
+                "Defeat Norman",
+                "Earn the Balance Badge"
               ],
               "relatedAbilities": [],
               "repeatable": false,

@@ -298,7 +298,7 @@ function HeroStatStack({
             letterSpacing: 0,
             lineHeight: 1.05,
             textTransform:
-              row.label === "Priority"
+              row.label === "PRIORITY"
                 ? "none"
                 : "uppercase"
           }}
@@ -1193,7 +1193,7 @@ function MoveDetailPage({
         <h1
           style={{
             fontSize:
-              "clamp(3.2rem, 8vw, 5.7rem)",
+              "clamp(3.2rem, 4vw, 5.7rem)",
             fontWeight: "500",
             lineHeight: 1,
             margin: "0 0 2rem"

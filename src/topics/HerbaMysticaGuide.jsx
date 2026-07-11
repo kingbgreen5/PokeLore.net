@@ -21,7 +21,7 @@ const flavors = [
       to: "/location/paldea-south-province-area-three"
     },
     role:
-      "Often used in recipes where a sweet flavor is specifically called for."
+      "Used in recipes that specifically call for Sweet Herba Mystica."
   },
   {
     slug: "salty-herba-mystica",
@@ -35,7 +35,7 @@ const flavors = [
       to: "/location/paldea-east-province-area-three"
     },
     role:
-      "A common high-value ingredient in many shiny sandwich recipe sets."
+      "Commonly appears in many popular shiny-hunting sandwich recipe sets."
   },
   {
     slug: "sour-herba-mystica",
@@ -58,7 +58,7 @@ const flavors = [
       to: "/location/asado-desert"
     },
     role:
-      "Useful when a recipe calls for sour flavor; do not assume it can replace every other Herba."
+      "Used in recipes that specifically call for Sour Herba Mystica."
   },
   {
     slug: "bitter-herba-mystica",
@@ -72,7 +72,7 @@ const flavors = [
       to: "/location/paldea-west-province-area-one"
     },
     role:
-      "Used in recipes that specifically need bitter flavor or flexible Herba slots."
+      "Used in recipes that specifically call for Bitter Herba Mystica."
   },
   {
     slug: "spicy-herba-mystica",
@@ -95,7 +95,7 @@ const flavors = [
       to: "/location/casseroya-lake"
     },
     role:
-      "Used when a recipe calls for spicy flavor; save it for recipes that need it."
+      "Used in recipes that specifically call for Spicy Herba Mystica."
   }
 ];
 
@@ -129,12 +129,12 @@ const faqs = [
   {
     question: "Which flavor is best?",
     answer:
-      "It depends on the recipe. Salty Herba Mystica is often convenient for popular sandwich recipes, but exact recipes may require different flavors."
+      "It depends on the recipe. Popular recipe sets may use different flavors, so match the Herba Mystica to the recipe you are making."
   },
   {
     question: "Are Herba Mystica repeatable?",
     answer:
-      "Raid rewards and hard-difficulty Ogre Oustin' rewards are repeatable. Special coach rewards are finite."
+      "Raid rewards and Hard difficulty Ogre Oustin' rewards are repeatable. Special coach rewards are finite."
   },
   {
     question: "Do I need DLC?",
@@ -169,9 +169,11 @@ function TitanLinks({
   titan
 }) {
   if (titan.links?.length > 0) {
+    const separator = titan.name?.includes(" and ") ? " and " : " or ";
+
     return titan.links.map((link, index) => (
       <span key={link.to}>
-        {index > 0 ? " or " : ""}
+        {index > 0 ? separator : ""}
         <TextLink to={link.to}>
           {link.label}
         </TextLink>
@@ -318,13 +320,15 @@ function HerbaMysticaGuide() {
       <section>
         <h2>How to Unlock Usable Herba Mystica</h2>
         <p>
-          Usable Herba Mystica become available primarily through
-          eligible high-level Tera Raid Battles, not directly from
-          the Titan storyline. Five-star raids begin appearing
-          after you complete the main story. Six-star raids are
-          unlocked later, after post-game progression such as the
-          Academy Ace Tournament and additional high-star raid
-          activity that leads to Jacq's warning call.
+          Usable Herba Mystica are obtained mainly from eligible
+          high-level Tera Raid Battles rather than from the Titan
+          storyline. Five-star raids begin appearing after the
+          ending credits. Six-star raids unlock after completing
+          the Academy Ace Tournament and then completing 10
+          four-star or five-star Tera Raids. Seven-star raids are
+          limited-time Poké Portal News events. Not every raid boss
+          can drop Herba Mystica, and different bosses have
+          different possible flavor rewards.
         </p>
       </section>
 
@@ -333,9 +337,10 @@ function HerbaMysticaGuide() {
         <p>
           Usable Herba Mystica can be possible rewards from
           eligible 5-star raids, 6-star raids, and selected
-          7-star event raids when those events are active. Not
-          every raid boss can drop Herba Mystica, and not every
-          eligible raid boss can drop every flavor.
+          7-star event raids. Seven-star raids are limited-time
+          event raids delivered through Poké Portal News. Not every
+          raid boss can drop Herba Mystica, and not every eligible
+          raid boss can drop every flavor.
         </p>
         <p>
           The important farming rule is to check the specific raid
@@ -351,11 +356,11 @@ function HerbaMysticaGuide() {
           <InfoCard>
             <h3>Hard-Difficulty Ogre Oustin'</h3>
             <p>
-              In The Teal Mask, hard-difficulty Ogre Oustin' can
-              reward Herba Mystica as a random repeatable reward.
-              The flavor is not guaranteed, so treat this as a
-              bonus farming route rather than a targeted flavor
-              source.
+              In The Teal Mask, completing Hard difficulty Ogre
+              Oustin' can award one of the five Herba Mystica as a
+              recurring random reward. The flavor is not guaranteed,
+              so treat this as a repeatable bonus farming route
+              rather than a targeted flavor source.
             </p>
           </InfoCard>
 

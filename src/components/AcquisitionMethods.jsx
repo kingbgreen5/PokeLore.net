@@ -32,15 +32,88 @@ function formatLocationKey(location) {
   );
 }
 
+function escapeRegExp(text) {
+  return String(text).replace(
+    /[.*+?^${}()|[\]\\]/g,
+    "\\$&"
+  );
+}
+
+function renderTextWithPokemonLinks(
+  text,
+  relatedPokemon
+) {
+  const normalizedText =
+    normalizeDisplayText(text);
+  const pokemon =
+    relatedPokemon?.filter(Boolean) ?? [];
+
+  if (!normalizedText || pokemon.length === 0) {
+    return normalizedText;
+  }
+
+  const names = pokemon
+    .map(entry =>
+      normalizeDisplayText(
+        typeof entry === "string"
+          ? entry
+          : entry.displayName ?? entry.name
+      )
+    )
+    .filter(Boolean)
+    .sort((a, b) => b.length - a.length);
+
+  if (names.length === 0) {
+    return normalizedText;
+  }
+
+  const pattern = new RegExp(
+    `\\b(${names.map(escapeRegExp).join("|")})\\b`,
+    "gi"
+  );
+
+  return normalizedText
+    .split(pattern)
+    .map((part, index) => {
+      const pokemonEntry = pokemon.find(entry => {
+        const label = normalizeDisplayText(
+          typeof entry === "string"
+            ? entry
+            : entry.displayName ?? entry.name
+        );
+
+        return (
+          label.toLowerCase() ===
+          part.toLowerCase()
+        );
+      });
+
+      if (!pokemonEntry) {
+        return part;
+      }
+
+      return (
+        <PokemonLink
+          key={`${part}-${index}`}
+          pokemon={pokemonEntry}
+        />
+      );
+    });
+}
+
 function ItemLocationLink({
-  location
+  location,
+  relatedPokemon
 }) {
   if (!location) return null;
 
   if (typeof location === "string") {
     return (
       <span>
-        {normalizeDisplayText(location)}
+        {renderTextWithPokemonLinks(
+          location,
+          relatedPokemon
+        )}
       </span>
     );
   }
@@ -412,6 +485,9 @@ function AcquisitionMethods({
                         location={
                           method.location
                         }
+                        relatedPokemon={
+                          method.relatedPokemon
+                        }
                       />
                     </p>
                   </div>
@@ -419,9 +495,10 @@ function AcquisitionMethods({
                   <div>
                     <strong>Method</strong>
                     <p>
-                      {normalizeDisplayText(
+                      {renderTextWithPokemonLinks(
                         method.method ??
-                          method.details
+                          method.details,
+                        method.relatedPokemon
                       )}
                     </p>
                   </div>
@@ -458,8 +535,9 @@ function AcquisitionMethods({
                                 requirement
                               }
                             >
-                              {normalizeDisplayText(
-                                requirement
+                              {renderTextWithPokemonLinks(
+                                requirement,
+                                method.relatedPokemon
                               )}
                             </li>
                           )
@@ -528,40 +606,6 @@ function AcquisitionMethods({
                             >
                               <AbilityLink
                                 ability={ability}
-                              />
-                            </li>
-                          )
-                        )}
-                      </ul>
-                    </div>
-                  )}
-
-                  {method.relatedPokemon
-                    ?.length > 0 && (
-                    <div>
-                      <strong>
-                        Related Pokemon
-                      </strong>
-                      <ul
-                        style={{
-                          margin:
-                            ".35rem 0 0",
-                          paddingLeft:
-                            "1.25rem"
-                        }}
-                      >
-                        {method.relatedPokemon.map(
-                          pokemon => (
-                            <li
-                              key={
-                                typeof pokemon ===
-                                "string"
-                                  ? pokemon
-                                  : pokemon.name
-                              }
-                            >
-                              <PokemonLink
-                                pokemon={pokemon}
                               />
                             </li>
                           )
