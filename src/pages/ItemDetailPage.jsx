@@ -158,6 +158,8 @@ function ItemDetailPage() {
     useState(true);
 
   useEffect(() => {
+    let isActive = true;
+
     async function loadItem() {
       try {
         setLoading(true);
@@ -189,6 +191,10 @@ function ItemDetailPage() {
           !itemData ||
           isItemHiddenFromUi(itemData)
         ) {
+          if (!isActive) {
+            return;
+          }
+
           setItem(null);
           setPokemonIndex([]);
           setOaksNotes(null);
@@ -221,6 +227,10 @@ function ItemDetailPage() {
           )
         ]);
 
+        if (!isActive) {
+          return;
+        }
+
         setItem({
           ...itemData,
           acquisition:
@@ -236,6 +246,10 @@ function ItemDetailPage() {
         setPokemonGoNotes(pokemonGoNotesData);
         setRelatedLinks(relatedLinksData);
       } catch (error) {
+        if (!isActive) {
+          return;
+        }
+
         console.error(
           "Failed to load item:",
           error
@@ -245,11 +259,17 @@ function ItemDetailPage() {
         setPokemonGoNotes(null);
         setRelatedLinks(null);
       } finally {
-        setLoading(false);
+        if (isActive) {
+          setLoading(false);
+        }
       }
     }
 
     loadItem();
+
+    return () => {
+      isActive = false;
+    };
   }, [
     normalizedItemName,
     rawItemName
@@ -313,8 +333,13 @@ function ItemDetailPage() {
   const showShortEffect =
     item?.shortEffect &&
     !machineItemDescription;
+  const loadedItemMatchesRoute =
+    item?.name === normalizedItemName;
 
-  if (loading) {
+  if (
+    loading ||
+    (item && !loadedItemMatchesRoute)
+  ) {
     return (
       <>
         <Seo {...itemSeo(normalizedItemName)} />
@@ -325,6 +350,7 @@ function ItemDetailPage() {
 
   if (
     item &&
+    loadedItemMatchesRoute &&
     itemName !== item.name
   ) {
     return (
