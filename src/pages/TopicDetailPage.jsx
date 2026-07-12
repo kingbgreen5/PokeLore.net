@@ -480,6 +480,32 @@ function PokedexTopicDetailPage() {
                     </section>
                   )}
 
+                  {result.curatedMatches
+                    ?.length > 0 && (
+                    <section
+                      style={{
+                        borderLeft:
+                          "3px solid #8ca0ff",
+                        paddingLeft: ".75rem"
+                      }}
+                    >
+                      {result.curatedMatches.map(
+                        (match, index) => (
+                          <p
+                            key={`${result.pokemon.id}-curated-${index}`}
+                            style={{
+                              lineHeight: 1.5,
+                              margin:
+                                "0 0 .35rem"
+                            }}
+                          >
+                            {match.reason}
+                          </p>
+                        )
+                      )}
+                    </section>
+                  )}
+
                   {result.entries.map(
                     (entry, index) => (
                       <section

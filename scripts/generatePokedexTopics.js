@@ -212,7 +212,7 @@ const topicDefinitions = [
   },
   {
     slug: "ancient-pokemon",
-    active: false,
+    active: true,
     subgroup: "lore",
     title: "Ancient Pokémon",
     shortDescription:
@@ -398,6 +398,7 @@ function addPokemonMatch({
       },
       entries: [],
       habitatMatches: [],
+      curatedMatches: [],
       seenText: new Set()
     });
   }
@@ -428,6 +429,40 @@ function buildExcludedPokemonSets(
   };
 }
 
+function normalizeCuratedPokemonValue(value) {
+  if (
+    value &&
+    typeof value === "object"
+  ) {
+    return value;
+  }
+
+  return {
+    id: Number(value),
+    name: String(value)
+  };
+}
+
+function getCuratedPokemon({
+  value,
+  pokemonByName,
+  pokemonById
+}) {
+  const normalized =
+    normalizeCuratedPokemonValue(value);
+  const id =
+    Number(normalized.id);
+
+  if (Number.isFinite(id)) {
+    return pokemonById.get(id);
+  }
+
+  return pokemonByName.get(
+    String(normalized.name ?? "")
+      .toLowerCase()
+  );
+}
+
 function isPokemonExcluded(
   pokemon,
   excludedPokemon
@@ -456,6 +491,7 @@ function buildTopic(
     );
   const {
     excludedPokemon: _excludedPokemon,
+    includedPokemon: _includedPokemon,
     ...topicOutput
   } = topic;
 
@@ -554,6 +590,46 @@ function buildTopic(
     });
   });
 
+  (topic.includedPokemon ?? []).forEach(value => {
+    const pokemon = getCuratedPokemon({
+      value,
+      pokemonByName,
+      pokemonById
+    });
+
+    if (
+      !pokemon ||
+      isPokemonExcluded(
+        pokemon,
+        excludedPokemon
+      )
+    ) {
+      return;
+    }
+
+    const match = addPokemonMatch({
+      pokemonMatches,
+      pokemon
+    });
+    const reason =
+      typeof value === "object"
+        ? value.reason
+        : null;
+
+    if (
+      !match.curatedMatches.some(
+        currentMatch =>
+          currentMatch.reason === reason
+      )
+    ) {
+      match.curatedMatches.push({
+        reason:
+          reason ??
+          "Curated topic inclusion"
+      });
+    }
+  });
+
   const results =
     [...pokemonMatches.values()]
       .sort(
@@ -564,7 +640,9 @@ function buildTopic(
         pokemon: match.pokemon,
         entries: match.entries,
         habitatMatches:
-          match.habitatMatches
+          match.habitatMatches,
+        curatedMatches:
+          match.curatedMatches
       }));
   const entryCount =
     results.reduce(
@@ -596,7 +674,8 @@ async function main() {
       readOptionalJson(
         "pokedexTopicCuration.json",
         {
-          excludedPokemonByTopic: {}
+          excludedPokemonByTopic: {},
+          includedPokemonByTopic: {}
         }
       ),
       readOptionalJson(
@@ -617,11 +696,16 @@ async function main() {
           topic.slug
         ] ?? []
       );
+    const includedPokemon =
+      curation.includedPokemonByTopic?.[
+        topic.slug
+      ] ?? [];
 
     return buildTopic(
       {
         ...topic,
-        excludedPokemon
+        excludedPokemon,
+        includedPokemon
       },
       entries,
       pokemonByName,

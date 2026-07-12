@@ -14,8 +14,8 @@ A working checklist of high-value Scarlet/Violet item pages, guides, and connect
   - [ x] Spicy Herba Mystica
 - [x ] Amulet Coin
 - [x ] Lucky Egg
-- [ ] Auspicious Armor
-- [ ] Malicious Armor
+- [ x] Auspicious Armor
+- [ x] Malicious Armor
 - [ ] Master Ball
 - [ ] Bottle Cap
 - [ ] Gold Bottle Cap
