@@ -22,6 +22,8 @@ import {
 
 const LOCAL_CORRECTIONS_KEY =
   "pokemonSpriteManualCorrections";
+const LOCAL_CHARACTER_CORRECTIONS_KEY =
+  "pokemonComparisonCharacterManualCorrections";
 const COMPARISON_CHARACTER_KEY =
   "pokemonSizeComparisonCharacter";
 
@@ -79,6 +81,25 @@ function readLocalCorrections() {
 function writeLocalCorrections(corrections) {
   localStorage.setItem(
     LOCAL_CORRECTIONS_KEY,
+    JSON.stringify(corrections)
+  );
+}
+
+function readLocalCharacterCorrections() {
+  try {
+    return JSON.parse(
+      localStorage.getItem(
+        LOCAL_CHARACTER_CORRECTIONS_KEY
+      ) ?? "{}"
+    );
+  } catch {
+    return {};
+  }
+}
+
+function writeLocalCharacterCorrections(corrections) {
+  localStorage.setItem(
+    LOCAL_CHARACTER_CORRECTIONS_KEY,
     JSON.stringify(corrections)
   );
 }
@@ -167,10 +188,20 @@ function SizeComparison({
     setBaseCorrectionsById
   ] = useState({});
   const [
+    baseCharacterCorrectionsById,
+    setBaseCharacterCorrectionsById
+  ] = useState({});
+  const [
     localCorrectionsById,
     setLocalCorrectionsById
   ] = useState(() =>
     readLocalCorrections()
+  );
+  const [
+    localCharacterCorrectionsById,
+    setLocalCharacterCorrectionsById
+  ] = useState(() =>
+    readLocalCharacterCorrections()
   );
   const [
     comparisonCharacterId,
@@ -294,6 +325,10 @@ function SizeComparison({
             setBaseCorrectionsById(
               correctionData.sprites ?? {}
             );
+            setBaseCharacterCorrectionsById(
+              correctionData.comparisonCharacters ??
+                {}
+            );
           }
         }
 
@@ -349,6 +384,36 @@ function SizeComparison({
     formatCharacterName(comparisonCharacter);
   const comparisonHeightInches =
     comparisonCharacter.heightInches;
+  const comparisonCharacterCorrectionData =
+    localCharacterCorrectionsById[
+      comparisonCharacter.id
+    ] ??
+    baseCharacterCorrectionsById[
+      comparisonCharacter.id
+    ] ??
+    null;
+  const parsedComparisonCharacterScale =
+    typeof comparisonCharacterCorrectionData ===
+    "number"
+      ? comparisonCharacterCorrectionData
+      : Number(
+          comparisonCharacterCorrectionData?.scale ??
+            1
+        );
+  const comparisonCharacterScale =
+    Number.isFinite(
+      parsedComparisonCharacterScale
+    )
+      ? parsedComparisonCharacterScale
+      : 1;
+  const hasLocalComparisonCharacterCorrection =
+    Object.prototype.hasOwnProperty.call(
+      localCharacterCorrectionsById,
+      comparisonCharacter.id
+    );
+  const effectiveComparisonHeightInches =
+    comparisonHeightInches *
+    comparisonCharacterScale;
   const listedHeightLabel =
     formatFeetInches(pokemonHeightInches);
   const listedMetricHeight =
@@ -470,13 +535,19 @@ function SizeComparison({
         sprites: {
           ...baseCorrectionsById,
           ...localCorrectionsById
+        },
+        comparisonCharacters: {
+          ...baseCharacterCorrectionsById,
+          ...localCharacterCorrectionsById
         }
       },
       null,
       2
     );
   }, [
+    baseCharacterCorrectionsById,
     baseCorrectionsById,
+    localCharacterCorrectionsById,
     localCorrectionsById
   ]);
 
@@ -609,6 +680,76 @@ function SizeComparison({
     writeComparisonCharacterId(nextCharacterId);
   }
 
+  function buildCharacterCorrectionEntry(
+    overrides = {}
+  ) {
+    const currentCorrection =
+      typeof comparisonCharacterCorrectionData ===
+      "number"
+        ? {
+            scale:
+              comparisonCharacterCorrectionData
+          }
+        : {
+            ...(
+              comparisonCharacterCorrectionData ??
+              {}
+            )
+          };
+
+    return {
+      ...currentCorrection,
+      id: comparisonCharacter.id,
+      name: comparisonCharacter.name,
+      scale: comparisonCharacterScale,
+      ...overrides
+    };
+  }
+
+  function updateComparisonCharacterScale(delta) {
+    const nextScale = Math.max(
+      0.5,
+      Math.min(
+        2,
+        Number(
+          (
+            comparisonCharacterScale + delta
+          ).toFixed(2)
+        )
+      )
+    );
+    const nextCorrections = {
+      ...localCharacterCorrectionsById,
+      [comparisonCharacter.id]:
+        buildCharacterCorrectionEntry({
+          scale: nextScale
+        })
+    };
+
+    setLocalCharacterCorrectionsById(
+      nextCorrections
+    );
+    writeLocalCharacterCorrections(
+      nextCorrections
+    );
+  }
+
+  function resetComparisonCharacterScale() {
+    const nextCorrections = {
+      ...localCharacterCorrectionsById
+    };
+
+    delete nextCorrections[
+      comparisonCharacter.id
+    ];
+    setLocalCharacterCorrectionsById(
+      nextCorrections
+    );
+    writeLocalCharacterCorrections(
+      nextCorrections
+    );
+  }
+
   function navigateToPokemon(nextPokemon) {
     if (!nextPokemon) return;
 
@@ -625,7 +766,7 @@ function SizeComparison({
   function getChartMetrics(chartHeightPx) {
     const tallestHeightInches = Math.max(
       effectivePokemonHeightInches,
-      comparisonHeightInches,
+      effectiveComparisonHeightInches,
       72
     );
     const rawChartMaxFeet = Math.ceil(
@@ -653,7 +794,7 @@ function SizeComparison({
       rulerMarks.push(feet);
     }
     const comparisonHeightPx =
-      (comparisonHeightInches /
+      (effectiveComparisonHeightInches /
         chartMaxInches) *
       chartHeightPx;
     const pokemonHeightPx =
@@ -1390,6 +1531,21 @@ function SizeComparison({
             .
           </p>
 
+          <p>
+            Comparison character{" "}
+            <strong>
+              {comparisonCharacterName}
+            </strong>
+            {" "}is displayed at{" "}
+            <strong>
+              {Math.round(
+                comparisonCharacterScale * 100
+              )}
+              %
+            </strong>
+            .
+          </p>
+
           <div
             style={{
               display: "flex",
@@ -1437,6 +1593,38 @@ function SizeComparison({
               onClick={resetManualCorrection}
             >
               Reset
+            </button>
+
+            <button
+              type="button"
+              onClick={() =>
+                updateComparisonCharacterScale(
+                  -0.05
+                )
+              }
+            >
+              Decrease Character
+            </button>
+
+            <button
+              type="button"
+              onClick={() =>
+                updateComparisonCharacterScale(
+                  0.05
+                )
+              }
+            >
+              Increase Character
+            </button>
+
+            <button
+              type="button"
+              onClick={resetComparisonCharacterScale}
+              disabled={
+                !hasLocalComparisonCharacterCorrection
+              }
+            >
+              Reset Character
             </button>
 
             <button
@@ -1525,7 +1713,9 @@ function SizeComparison({
             }}
           >
             Local edits are saved in this
-            browser. Copy this JSON into{" "}
+            browser. Pokemon and comparison
+            character corrections are included
+            below. Copy this JSON into{" "}
             <code>
               public/data/pokemonSpriteCorrections.json
             </code>
