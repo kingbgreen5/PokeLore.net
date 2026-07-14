@@ -9,6 +9,11 @@ import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { itemsSeo } from "../seo/seoConfig";
 import { isItemHiddenFromUi } from "../utils/itemVisibility";
+import { readJsonFile } from "../utils/readJsonFile";
+import {
+  applyTmMaterialFallback,
+  getTmMaterialDetail
+} from "../utils/tmMaterialDetails";
 
 function capitalize(text) {
   return text
@@ -48,15 +53,32 @@ function ItemsPage() {
   useEffect(() => {
     async function loadItems() {
       try {
-        const response =
-          await fetch(
-            "/data/itemsIndex.json"
-          );
+        const [
+          data,
+          tmMaterialDetails
+        ] = await Promise.all([
+          readJsonFile(
+            "/data/itemsIndex.json",
+            {
+              required: true
+            }
+          ),
+          readJsonFile(
+            "/data/tmMaterialDetails.json"
+          )
+        ]);
 
-        const data =
-          await response.json();
-
-        setItems(data);
+        setItems(
+          data.map(item =>
+            applyTmMaterialFallback(
+              item,
+              getTmMaterialDetail(
+                item,
+                tmMaterialDetails
+              )
+            )
+          )
+        );
       } catch (error) {
         console.error(
           "Failed to load items:",

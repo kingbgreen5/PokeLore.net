@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run normalize:entries && npm run build:item-locations && npm run generate:location-items && npm run generate:pokemon-held-items && npm run generate:type-abilities && npm run generate:pokemon-routes && npm run generate:team-coverage && npm run generate:topics && npm run generate:sitemap",
+    "prebuild": "npm run normalize:entries && npm run build:item-locations && npm run generate:tm-materials && npm run generate:location-items && npm run generate:pokemon-held-items && npm run generate:type-abilities && npm run generate:pokemon-routes && npm run generate:team-coverage && npm run generate:topics && npm run generate:sitemap",
     "build": "vite build",
     "generate:topics": "node scripts/generatePokedexTopics.js",
     "generate:pokemon-routes": "node scripts/generatePokemonRoutes.js",
     "generate:team-coverage": "node scripts/generateTeamCoverageIndex.js",
+    "generate:tm-materials": "node scripts/generateTmMaterialData.js",
     "normalize:entries": "node scripts/normalizeEntries.js",
     "generate:locations": "node scripts/generateLocationsAndEncounters.js",
     "generate:sprite-bounds": "node scripts/generatePokemonSpriteBounds.js",

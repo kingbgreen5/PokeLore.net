@@ -18,6 +18,11 @@ import Seo from "../seo/Seo";
 import { itemSeo } from "../seo/seoConfig";
 import { readJsonFile } from "../utils/readJsonFile";
 import { isItemHiddenFromUi } from "../utils/itemVisibility";
+import {
+  applyTmMaterialFallback,
+  getTmMaterialDetail,
+  isTmMaterialItem
+} from "../utils/tmMaterialDetails";
 
 function capitalize(text) {
   return String(text ?? "")
@@ -208,7 +213,8 @@ function ItemDetailPage() {
           migratedLocationData,
           oaksNotesData,
           pokemonGoNotesData,
-          relatedLinksData
+          relatedLinksData,
+          tmMaterialDetailsData
         ] = await Promise.all([
           readJsonFile(
             "/data/pokemonIndex.json"
@@ -224,19 +230,36 @@ function ItemDetailPage() {
           ),
           readJsonFile(
             `/data/relatedLinks/items/${itemData.name}.json`
-          )
+          ),
+          isTmMaterialItem(itemData)
+            ? readJsonFile(
+                "/data/tmMaterialDetails.json"
+              )
+            : Promise.resolve(null)
         ]);
 
         if (!isActive) {
           return;
         }
 
-        setItem({
+        const itemWithAcquisition = {
           ...itemData,
           acquisition:
             migratedLocationData?.acquisition ??
             itemData.acquisition
-        });
+        };
+        const tmMaterialDetail =
+          getTmMaterialDetail(
+            itemData,
+            tmMaterialDetailsData
+          );
+
+        setItem(
+          applyTmMaterialFallback(
+            itemWithAcquisition,
+            tmMaterialDetail
+          )
+        );
         setPokemonIndex(
           Array.isArray(pokemonIndexData)
             ? pokemonIndexData
@@ -312,6 +335,26 @@ function ItemDetailPage() {
           pokemonByName.get(
             heldPokemon.pokemon
           )
+        )
+        .filter(Boolean) ?? [],
+    [
+      item,
+      pokemonById,
+      pokemonByName
+    ]
+  );
+  const tmMaterialPokemon = useMemo(
+    () =>
+      item?.tmMaterialDetail?.relatedPokemon
+        ?.map(
+          pokemon =>
+            pokemonById.get(
+              pokemon.id
+            ) ??
+            pokemonByName.get(
+              pokemon.name
+            ) ??
+            pokemon
         )
         .filter(Boolean) ?? [],
     [
@@ -476,6 +519,43 @@ function ItemDetailPage() {
         acquisition={item.acquisition}
         storageKey={`item:${item.name}:acquisition-expanded`}
       />
+
+      {tmMaterialPokemon.length > 0 && (
+        <section
+          style={{
+            marginBottom: "2rem"
+          }}
+        >
+          <h2>Dropped By</h2>
+          <p
+            style={{
+              color: "#d1d5db",
+              margin: "0 auto 1rem",
+              maxWidth: "720px"
+            }}
+          >
+            This TM Material is associated with the matching Pokemon
+            evolutionary line in Pokemon Scarlet and Violet.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "1rem",
+              justifyContent: "center"
+            }}
+          >
+            {tmMaterialPokemon.map(pokemon => (
+              <PokemonSummaryCard
+                key={pokemon.id}
+                pokemon={pokemon}
+                variant="compact"
+              />
+            ))}
+          </div>
+        </section>
+      )}
 
       <RelatedLinks data={relatedLinks} />
 

@@ -11,6 +11,10 @@ import {
 import typeColors from "../constants/typeColors";
 import { isItemHiddenFromUi } from "../utils/itemVisibility";
 import { loadMovesMap } from "../utils/loadMovesData";
+import {
+  applyTmMaterialFallback,
+  getTmMaterialDetail
+} from "../utils/tmMaterialDetails";
 
 const RESULT_LIMIT = 12;
 
@@ -250,13 +254,15 @@ function GlobalSiteSearch() {
           movesResult,
           abilitiesResult,
           itemsResult,
-          locationsResult
+          locationsResult,
+          tmMaterialDetailsResult
         ] = await Promise.allSettled([
           fetchJson("/data/pokemonIndex.json"),
           loadMovesMap(),
           fetchJson("/data/abilities.json"),
           fetchJson("/data/itemsIndex.json"),
-          fetchJson("/data/locationsIndex.json")
+          fetchJson("/data/locationsIndex.json"),
+          fetchJson("/data/tmMaterialDetails.json")
         ]);
         const pokemonIndex =
           settledValue(
@@ -287,6 +293,12 @@ function GlobalSiteSearch() {
             locationsResult,
             [],
             "locations"
+          );
+        const tmMaterialDetails =
+          settledValue(
+            tmMaterialDetailsResult,
+            null,
+            "TM material details"
           );
 
         const nextRecords = [
@@ -383,24 +395,35 @@ function GlobalSiteSearch() {
             .filter(
               item => !isItemHiddenFromUi(item)
             )
-            .map(item =>
-              buildSearchRecord({
-                id: `item-${item.name}`,
+            .map(item => {
+              const enrichedItem =
+                applyTmMaterialFallback(
+                  item,
+                  getTmMaterialDetail(
+                    item,
+                    tmMaterialDetails
+                  )
+                );
+
+              return buildSearchRecord({
+                id: `item-${enrichedItem.name}`,
                 label:
-                  item.displayName ??
-                  capitalize(item.name),
+                  enrichedItem.displayName ??
+                  capitalize(
+                    enrichedItem.name
+                  ),
                 category: "Item",
-                route: `/item/${item.name}`,
+                route: `/item/${enrichedItem.name}`,
                 description:
-                  item.categoryDisplayName,
-                sprite: item.sprite,
+                  enrichedItem.categoryDisplayName,
+                sprite: enrichedItem.sprite,
                 keywords: [
-                  item.name,
-                  item.pocket,
-                  item.shortEffect
+                  enrichedItem.name,
+                  enrichedItem.pocket,
+                  enrichedItem.shortEffect
                 ]
-              })
-            ),
+              });
+            }),
           ...locations.map(location =>
             buildSearchRecord({
               id: `location-${location.name}`,

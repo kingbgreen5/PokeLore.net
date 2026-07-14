@@ -939,6 +939,20 @@ function TeamCoveragePage() {
 
       <h1>Team Coverage Calculator</h1>
 
+      <p
+        style={{
+          color: "#d1d5db",
+          fontSize: "1rem",
+          lineHeight: 1.45,
+          margin: "0 auto 1.25rem",
+          maxWidth: "760px"
+        }}
+      >
+        Use the Team Coverage Calculator to build a Pokémon party, choose a
+        game, and see which opposing types your team can hit for
+        super-effective damage with their Level-Up learnset.
+      </p>
+
       <div
         style={{
           alignItems: "center",

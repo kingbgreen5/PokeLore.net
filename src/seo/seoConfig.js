@@ -72,11 +72,53 @@ export function learnsetsSeo() {
 }
 
 export function teamCoverageSeo() {
+  const title =
+    `Team Coverage Calculator | ${SITE_NAME}`;
+  const description =
+    "Use the Team Coverage Calculator to build a Pokemon party, choose a game, and see which opposing types your team can hit for super-effective damage with their Level-Up learnset.";
+  const canonical = pageUrl(
+    "/team-coverage"
+  );
+  const calculatorId =
+    `${canonical}#team-coverage-calculator`;
+
   return {
-    title: `Team Coverage Calculator | ${SITE_NAME}`,
-    description:
-      "Build a Pokemon party and review which defensive types its level-up attacking moves can hit super effectively.",
-    canonical: pageUrl("/team-coverage")
+    title,
+    description,
+    canonical,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": `${canonical}#webpage`,
+          url: canonical,
+          name: title,
+          description,
+          mainEntity: {
+            "@id": calculatorId
+          }
+        },
+        {
+          "@type": "WebApplication",
+          "@id": calculatorId,
+          name: "Team Coverage Calculator",
+          url: canonical,
+          applicationCategory:
+            "GameApplication",
+          operatingSystem: "Any",
+          browserRequirements:
+            "Requires JavaScript",
+          description,
+          isAccessibleForFree: true,
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD"
+          }
+        }
+      ]
+    }
   };
 }
 
