@@ -26,6 +26,7 @@ import LocationsPage from "./pages/LocationsPage";
 import LocationDetailPage from "./pages/LocationDetailPage";
 import TopicsPage from "./pages/TopicsPage";
 import TopicDetailPage from "./pages/TopicDetailPage";
+import TeamCoveragePage from "./pages/TeamCoveragePage";
 import {
   OgItemPreview,
   OgMovePreview,
@@ -155,6 +156,11 @@ function App() {
 <Route
   path="/types"
   element={<TypesPage />}
+/>
+
+<Route
+  path="/team-coverage"
+  element={<TeamCoveragePage />}
 />
 
         <Route

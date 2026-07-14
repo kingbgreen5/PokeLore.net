@@ -45,6 +45,10 @@ const navItems = [
     matches: ["/type"]
   },
   {
+    to: "/team-coverage",
+    label: "Team Coverage"
+  },
+  {
     to: "/dex-entries",
     label: "Entries"
   }

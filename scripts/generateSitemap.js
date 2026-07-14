@@ -33,6 +33,7 @@ function staticRoutes() {
     "/",
     "/dex-entries",
     "/learnsets",
+    "/team-coverage",
     "/moves",
     "/abilities",
     "/items",

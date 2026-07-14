@@ -145,3 +145,41 @@ code {
   opacity: 1;
   overflow: visible;
 }
+
+.team-coverage-party-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 auto 1rem;
+  max-width: 940px;
+}
+
+.team-coverage-panels {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 1.25rem auto 0;
+  max-width: 940px;
+}
+
+.team-coverage-recommendation-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+}
+
+@media (max-width: 860px) {
+  .team-coverage-party-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .team-coverage-panels {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .team-coverage-party-grid {
+    grid-template-columns: 1fr;
+  }
+}

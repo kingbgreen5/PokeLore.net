@@ -71,6 +71,15 @@ export function learnsetsSeo() {
   };
 }
 
+export function teamCoverageSeo() {
+  return {
+    title: `Team Coverage Calculator | ${SITE_NAME}`,
+    description:
+      "Build a Pokemon party and review which defensive types its level-up attacking moves can hit super effectively.",
+    canonical: pageUrl("/team-coverage")
+  };
+}
+
 export function movesSeo() {
   return {
     title: `Pokémon Moves Database | ${SITE_NAME}`,
