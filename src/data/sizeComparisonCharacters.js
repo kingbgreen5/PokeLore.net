@@ -1,18 +1,22 @@
-import oakSprite from "../assets/OakSprite3.png";
-import redFrlg from "../assets/800px-FireRed_LeafGreen_Red.png";
-import leafFrlg from "../assets/800px-FireRed_LeafGreen_Leaf.png";
-import blueFrlg from "../assets/800px-FireRed_LeafGreen_Blue.png";
-import blueHgss from "../assets/800px-HeartGold_SoulSilver_Blue.png";
-import redSm from "../assets/800px-Sun_Moon_Red.png";
-import ethanHgss from "../assets/HeartGold_SoulSilver_Ethan.png";
-import lyraHgss from "../assets/HeartGold_SoulSilver_Lyra.png";
-import krisCrystal from "../assets/800px-Crystal_Kris.png";
-import brendanEmerald from "../assets/Emerald_Brendan.png";
-import mayOras from "../assets/320px-Omega_Ruby_Alpha_Sapphire_May.png";
-import lucasDp from "../assets/Diamond_Pearl_Lucas.png";
-import dawnPlatinum from "../assets/800px-Platinum_Dawn.png";
-import hilbertBw from "../assets/Black_White_Hilbert.png";
-import hildaBw from "../assets/Black_White_Hilda.png";
+import oakSprite from "../assets/size-comparison-characters/OakSprite3.png";
+import redFrlg from "../assets/size-comparison-characters/800px-FireRed_LeafGreen_Red.png";
+import leafFrlg from "../assets/size-comparison-characters/800px-FireRed_LeafGreen_Leaf.png";
+import blueFrlg from "../assets/size-comparison-characters/800px-FireRed_LeafGreen_Blue.png";
+import blueHgss from "../assets/size-comparison-characters/800px-HeartGold_SoulSilver_Blue.png";
+import redSm from "../assets/size-comparison-characters/800px-Sun_Moon_Red.png";
+import ethanHgss from "../assets/size-comparison-characters/HeartGold_SoulSilver_Ethan.png";
+import lyraHgss from "../assets/size-comparison-characters/HeartGold_SoulSilver_Lyra.png";
+import krisCrystal from "../assets/size-comparison-characters/800px-Crystal_Kris.png";
+import brendanEmerald from "../assets/size-comparison-characters/Emerald_Brendan.png";
+import mayOras from "../assets/size-comparison-characters/320px-Omega_Ruby_Alpha_Sapphire_May.png";
+import lucasDp from "../assets/size-comparison-characters/Diamond_Pearl_Lucas.png";
+import dawnPlatinum from "../assets/size-comparison-characters/800px-Platinum_Dawn.png";
+import hilbertBw from "../assets/size-comparison-characters/Black_White_Hilbert.png";
+import hildaBw from "../assets/size-comparison-characters/Black_White_Hilda.png";
+import calemXy from "../assets/size-comparison-characters/XY_Calem.png";
+import serenaXy from "../assets/size-comparison-characters/XY_Serena.png";
+import elioSm from "../assets/size-comparison-characters/800px-Sun_Moon_Elio.png";
+import seleneSm from "../assets/size-comparison-characters/800px-Sun_Moon_Selene.png";
 
 export const DEFAULT_SIZE_COMPARISON_CHARACTER_ID =
   "professor-oak";
@@ -150,6 +154,38 @@ export const sizeComparisonCharacters = [
     name: "Hilda",
     variant: "Black/White",
     sprite: hildaBw,
+    heightInches: 63,
+    heightSource: "fallback"
+  },
+  {
+    id: "calem-xy",
+    name: "Calem",
+    variant: "X/Y",
+    sprite: calemXy,
+    heightInches: 63,
+    heightSource: "fallback"
+  },
+  {
+    id: "serena-xy",
+    name: "Serena",
+    variant: "X/Y",
+    sprite: serenaXy,
+    heightInches: 63,
+    heightSource: "fallback"
+  },
+  {
+    id: "elio-sm",
+    name: "Elio",
+    variant: "Sun/Moon",
+    sprite: elioSm,
+    heightInches: 63,
+    heightSource: "fallback"
+  },
+  {
+    id: "selene-sm",
+    name: "Selene",
+    variant: "Sun/Moon",
+    sprite: seleneSm,
     heightInches: 63,
     heightSource: "fallback"
   }
