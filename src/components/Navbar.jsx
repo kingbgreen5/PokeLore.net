@@ -49,6 +49,10 @@ const navItems = [
     label: "Team Coverage"
   },
   {
+    to: "/single-type-coverage",
+    label: "Single Type Coverage"
+  },
+  {
     to: "/dex-entries",
     label: "Entries"
   }

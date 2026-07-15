@@ -22,6 +22,14 @@ export const ALL_POKEMON_TYPES = [
 ];
 
 const FAIRY_INTRO_VERSION_GROUP = "x-y";
+const LEARNSET_VERSION_GROUP_ALIASES = {
+  "the-isle-of-armor": "sword-shield",
+  "the-crown-tundra": "sword-shield",
+  "the-teal-mask": "scarlet-violet",
+  "the-indigo-disk": "scarlet-violet",
+  "brilliant-diamond-and-shining-pearl":
+    "brilliant-diamond-shining-pearl"
+};
 
 export function getTypesForVersionGroup(
   versionGroup
@@ -70,11 +78,15 @@ export function getLevelUpAttackTypes({
   const consideredTypeSet = new Set(
     consideredTypes
   );
+  const learnsetVersionGroup =
+    LEARNSET_VERSION_GROUP_ALIASES[
+      versionGroup
+    ] ?? versionGroup;
 
   for (const learnsetMove of learnset?.moves ?? []) {
     if (
       learnsetMove.method !== "level-up" ||
-      learnsetMove.versionGroup !== versionGroup
+      learnsetMove.versionGroup !== learnsetVersionGroup
     ) {
       continue;
     }

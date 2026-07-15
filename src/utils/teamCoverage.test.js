@@ -84,6 +84,32 @@ describe("team coverage helpers", () => {
     ).toEqual(["grass"]);
   });
 
+  it("uses base-game learnsets for DLC version groups", () => {
+    const learnset = {
+      moves: [
+        {
+          move: "torch-song",
+          method: "level-up",
+          versionGroup: "scarlet-violet"
+        }
+      ]
+    };
+    const movesByName = {
+      "torch-song": {
+        type: "fire",
+        category: "special"
+      }
+    };
+
+    expect(
+      getLevelUpAttackTypes({
+        learnset,
+        movesByName,
+        versionGroup: "the-teal-mask"
+      })
+    ).toEqual(["fire"]);
+  });
+
   it("turns attack types into super-effective defense coverage", () => {
     expect(
       getCoveredDefenseTypes({

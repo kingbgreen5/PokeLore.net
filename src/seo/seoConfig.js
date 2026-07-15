@@ -122,6 +122,57 @@ export function teamCoverageSeo() {
   };
 }
 
+export function singleTypeCoverageSeo() {
+  const title =
+    `Single Type Coverage Calculator | ${SITE_NAME}`;
+  const description =
+    "Use the Single Type Coverage Calculator to choose a Pokemon game and defensive type, then find available Pokemon with level-up moves that hit that type for super-effective damage.";
+  const canonical = pageUrl(
+    "/single-type-coverage"
+  );
+  const calculatorId =
+    `${canonical}#single-type-coverage-calculator`;
+
+  return {
+    title,
+    description,
+    canonical,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": `${canonical}#webpage`,
+          url: canonical,
+          name: title,
+          description,
+          mainEntity: {
+            "@id": calculatorId
+          }
+        },
+        {
+          "@type": "WebApplication",
+          "@id": calculatorId,
+          name: "Single Type Coverage Calculator",
+          url: canonical,
+          applicationCategory:
+            "GameApplication",
+          operatingSystem: "Any",
+          browserRequirements:
+            "Requires JavaScript",
+          description,
+          isAccessibleForFree: true,
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD"
+          }
+        }
+      ]
+    }
+  };
+}
+
 export function movesSeo() {
   return {
     title: `Pokémon Moves Database | ${SITE_NAME}`,

@@ -379,6 +379,8 @@ function validateSitemap() {
       "/learnsets",
       "/locations",
       "/moves",
+      "/single-type-coverage",
+      "/team-coverage",
       "/topics",
       "/types"
     ]);

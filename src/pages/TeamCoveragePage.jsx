@@ -3,6 +3,7 @@ import {
   useMemo,
   useState
 } from "react";
+import { useSearchParams } from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import TypeBadge from "../components/TypeBadge";
 import typeChart from "../constants/Types";
@@ -41,6 +42,65 @@ function normalizeParty(value) {
   return createEmptyParty().map(
     (_, index) => source[index] ?? null
   );
+}
+
+function partiesEqual(a, b) {
+  const left = normalizeParty(a);
+  const right = normalizeParty(b);
+
+  return left.every(
+    (value, index) => value === right[index]
+  );
+}
+
+function getValidVersionGroup(value) {
+  return VERSION_GROUP_ORDER.includes(value)
+    ? value
+    : null;
+}
+
+function normalizePartyParam(value) {
+  if (!value) {
+    return null;
+  }
+
+  const parsed = String(value)
+    .split(/[-,]/)
+    .slice(0, PARTY_SIZE)
+    .map(token => {
+      const id = Number(token);
+
+      return Number.isFinite(id) && id > 0
+        ? id
+        : null;
+    });
+
+  if (!parsed.some(Boolean)) {
+    return null;
+  }
+
+  return createEmptyParty().map(
+    (_, index) => parsed[index] ?? null
+  );
+}
+
+function serializePartyParam(value) {
+  const normalized = normalizeParty(value);
+  const lastFilledIndex =
+    normalized.reduce(
+      (lastIndex, id, index) =>
+        id ? index : lastIndex,
+      -1
+    );
+
+  if (lastFilledIndex === -1) {
+    return "";
+  }
+
+  return normalized
+    .slice(0, lastFilledIndex + 1)
+    .map(id => id ?? 0)
+    .join("-");
 }
 
 function isCosmeticPickerForm(name) {
@@ -582,27 +642,45 @@ function RecommendationCard({
 
 function TeamCoveragePage() {
   const [
+    searchParams,
+    setSearchParams
+  ] = useSearchParams();
+  const [
     preferredVersion,
     setPreferredVersion
   ] = useLocalStorageState(
     VERSION_STORAGE_KEY,
     DEFAULT_VERSION_GROUP
   );
+  const urlVersion =
+    searchParams.get("version") ??
+    searchParams.get("game");
   const selectedVersion =
-    VERSION_GROUP_ORDER.includes(
+    getValidVersionGroup(urlVersion) ??
+    getValidVersionGroup(
       preferredVersion
-    )
-      ? preferredVersion
-      : DEFAULT_VERSION_GROUP;
+    ) ??
+    DEFAULT_VERSION_GROUP;
   const [party, setParty] =
     useLocalStorageState(
       PARTY_STORAGE_KEY,
       createEmptyParty()
     );
-  const normalizedParty = useMemo(
+  const storageParty = useMemo(
     () => normalizeParty(party),
     [party]
   );
+  const urlParty = useMemo(
+    () =>
+      normalizePartyParam(
+        searchParams.get("team") ??
+          searchParams.get("party") ??
+          searchParams.get("pokemon")
+      ),
+    [searchParams]
+  );
+  const normalizedParty =
+    urlParty ?? storageParty;
   const selectedPartyIds = useMemo(
     () => [
       ...new Set(
@@ -638,6 +716,86 @@ function TeamCoveragePage() {
       ),
     [selectedVersion]
   );
+
+  useEffect(() => {
+    if (
+      selectedVersion !==
+      preferredVersion
+    ) {
+      setPreferredVersion(
+        selectedVersion
+      );
+    }
+  }, [
+    preferredVersion,
+    selectedVersion,
+    setPreferredVersion
+  ]);
+
+  useEffect(() => {
+    if (
+      urlParty &&
+      !partiesEqual(urlParty, storageParty)
+    ) {
+      setParty(urlParty);
+    }
+  }, [
+    setParty,
+    storageParty,
+    urlParty
+  ]);
+
+  useEffect(() => {
+    const serializedParty =
+      serializePartyParam(normalizedParty);
+    const urlHasSelectedVersion =
+      searchParams.get("version") ===
+      selectedVersion;
+    const urlHasSelectedParty =
+      (searchParams.get("team") ?? "") ===
+      serializedParty;
+    const hasLegacyParams =
+      searchParams.has("game") ||
+      searchParams.has("party") ||
+      searchParams.has("pokemon");
+
+    if (
+      urlHasSelectedVersion &&
+      urlHasSelectedParty &&
+      !hasLegacyParams
+    ) {
+      return;
+    }
+
+    const nextParams =
+      new URLSearchParams(searchParams);
+
+    nextParams.set(
+      "version",
+      selectedVersion
+    );
+    nextParams.delete("game");
+    nextParams.delete("party");
+    nextParams.delete("pokemon");
+
+    if (serializedParty) {
+      nextParams.set(
+        "team",
+        serializedParty
+      );
+    } else {
+      nextParams.delete("team");
+    }
+
+    setSearchParams(nextParams, {
+      replace: true
+    });
+  }, [
+    normalizedParty,
+    searchParams,
+    selectedVersion,
+    setSearchParams
+  ]);
 
   useEffect(() => {
     let isMounted = true;
@@ -911,12 +1069,34 @@ function TeamCoveragePage() {
 
   function updateSlot(slotIndex, value) {
     setRecommendationPage(1);
-    setParty(current => {
-      const next =
-        normalizeParty(current);
-      next[slotIndex] = value;
-      return next;
-    });
+    const next =
+      normalizeParty(normalizedParty);
+    next[slotIndex] = value;
+    setParty(next);
+
+    const nextParams =
+      new URLSearchParams(searchParams);
+    const serializedParty =
+      serializePartyParam(next);
+
+    nextParams.set(
+      "version",
+      selectedVersion
+    );
+    nextParams.delete("game");
+    nextParams.delete("party");
+    nextParams.delete("pokemon");
+
+    if (serializedParty) {
+      nextParams.set(
+        "team",
+        serializedParty
+      );
+    } else {
+      nextParams.delete("team");
+    }
+
+    setSearchParams(nextParams);
   }
 
   function handleSelectPokemon(option) {
@@ -977,9 +1157,16 @@ function TeamCoveragePage() {
           value={selectedVersion}
           onChange={event => {
             setRecommendationPage(1);
-            setPreferredVersion(
+            const nextParams =
+              new URLSearchParams(
+                searchParams
+              );
+            nextParams.set(
+              "version",
               event.target.value
             );
+            nextParams.delete("game");
+            setSearchParams(nextParams);
           }}
           style={{
             backgroundColor: "#2c2c2c",

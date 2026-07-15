@@ -19,6 +19,10 @@ const outputDir = path.join(
   dataDir,
   "teamCoverage"
 );
+const versionAvailabilityDir = path.join(
+  dataDir,
+  "versionAvailability"
+);
 
 const VERSION_TO_GROUP = {
   "red-japan": "red-green-japan",
@@ -83,6 +87,58 @@ async function readJsonIfExists(filePath) {
 
     throw error;
   }
+}
+
+async function readVersionAvailability() {
+  const availabilityByVersionGroup = new Map();
+
+  let files = [];
+
+  try {
+    files = await fs.readdir(versionAvailabilityDir);
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      return availabilityByVersionGroup;
+    }
+
+    throw error;
+  }
+
+  for (const file of files.filter(file =>
+    file.endsWith(".json")
+  )) {
+    const availability = await readJson(
+      path.join(versionAvailabilityDir, file)
+    );
+    const versionGroup =
+      availability.versionGroup ??
+      path.basename(file, ".json");
+    const ids = new Set(
+      (availability.pokemonIds ?? [])
+        .map(Number)
+        .filter(Number.isFinite)
+    );
+
+    if (!ids.size) {
+      continue;
+    }
+
+    if (!availabilityByVersionGroup.has(versionGroup)) {
+      availabilityByVersionGroup.set(
+        versionGroup,
+        new Set()
+      );
+    }
+
+    const target =
+      availabilityByVersionGroup.get(versionGroup);
+
+    for (const id of ids) {
+      target.add(id);
+    }
+  }
+
+  return availabilityByVersionGroup;
 }
 
 function isCosmeticPokemonName(name = "") {
@@ -225,6 +281,8 @@ async function main() {
         new Set()
       ])
     );
+  const curatedIdsByVersionGroup =
+    await readVersionAvailability();
   const pokemonCache = new Map();
   const evolutionCache = new Map();
 
@@ -281,7 +339,14 @@ async function main() {
     const consideredTypes =
       getTypesForVersionGroup(versionGroup);
     const availableIds = new Set(
-      directIdsByVersionGroup[versionGroup]
+      [
+        ...directIdsByVersionGroup[versionGroup],
+        ...(
+          curatedIdsByVersionGroup.get(
+            versionGroup
+          ) ?? []
+        )
+      ]
     );
 
     for (const id of [
