@@ -1198,8 +1198,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": "Tera Raid Battles",
           "method": "Possible reward from eligible 5-star, 6-star, and selected 7-star Tera Raid Battles. Eligible raid bosses and flavor reward pools vary.",
@@ -1214,8 +1214,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": "Ogre Oustin'",
           "area": "Hard difficulty",
@@ -1232,8 +1232,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": {
             "name": "league-club-room",
@@ -9014,6 +9014,82 @@
       ]
     },
     {
+      "item": "fishing-rod",
+      "displayName": "Fishing Rod",
+      "source": "itemLocationsCurated.json",
+      "sourceTitle": "Curated fishing rod acquisition notes across main-series Pokemon games",
+      "schemaVersion": 1,
+      "acquisition": [
+        {
+          "generation": 7,
+          "games": [
+            "Pokemon Sun",
+            "Pokemon Moon"
+          ],
+          "location": {
+            "name": "brooklet-hill",
+            "displayName": "Brooklet Hill"
+          },
+          "area": "Lana's trial site",
+          "method": "Receive from Lana after completing her trial at Brooklet Hill.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Complete Lana's trial at Brooklet Hill"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 7,
+          "games": [
+            "Pokemon Ultra Sun",
+            "Pokemon Ultra Moon"
+          ],
+          "location": {
+            "name": "brooklet-hill",
+            "displayName": "Brooklet Hill"
+          },
+          "area": "Lana's trial site",
+          "method": "Receive from Lana after completing her trial at Brooklet Hill.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Complete Lana's trial at Brooklet Hill"
+          ],
+          "locationMatchStatus": "matched"
+        }
+      ]
+    },
+    {
+      "item": "fishing-rod--galar",
+      "displayName": "Fishing Rod",
+      "source": "itemLocationsCurated.json",
+      "sourceTitle": "Curated fishing rod acquisition notes across main-series Pokemon games",
+      "schemaVersion": 1,
+      "acquisition": [
+        {
+          "generation": 8,
+          "games": [
+            "Pokemon Sword",
+            "Pokemon Shield"
+          ],
+          "location": {
+            "name": "postwick",
+            "displayName": "Postwick"
+          },
+          "area": "Player's house",
+          "method": "Already in the Bag from the player's house at the start of the adventure.",
+          "acquisitionType": "automatic-inventory",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [],
+          "locationMatchStatus": "matched"
+        }
+      ]
+    },
+    {
       "item": "flame-mail",
       "displayName": "Flame Mail",
       "source": "items/flame-mail.json",
@@ -9418,46 +9494,194 @@
       "item": "good-rod",
       "displayName": "Good Rod",
       "source": "itemLocationsCurated.json",
-      "sourceTitle": "PokéLore curated Gen 1 item acquisition notes",
+      "sourceTitle": "Curated fishing rod acquisition notes across main-series Pokemon games",
       "schemaVersion": 1,
       "acquisition": [
         {
           "generation": 1,
           "games": [
-            "Pokémon Red",
-            "Pokémon Blue",
-            "Pokémon Yellow"
+            "Pokemon Red",
+            "Pokemon Blue",
+            "Pokemon Yellow"
           ],
-          "versionExclusive": false,
-          "locationMatchStatus": "matched",
-          "matchConfidence": "high",
           "location": {
             "name": "fuchsia-city",
             "displayName": "Fuchsia City"
           },
-          "area": "Fuchsia City - southeastern house",
-          "method": "Receive as a gift from the Fishing Guru in the southeastern part of Fuchsia City.",
+          "area": "Southeastern house",
+          "method": "Receive as a gift from the Fuchsia Fishing Guru.",
           "acquisitionType": "npc-gift",
           "repeatable": false,
-          "requirements": []
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Fuchsia City"
+          ],
+          "locationMatchStatus": "matched"
         },
         {
-          "generation": 4,
+          "generation": 2,
           "games": [
-            "Pokémon HeartGold",
-            "Pokémon SoulSilver"
+            "Pokemon Gold",
+            "Pokemon Silver",
+            "Pokemon Crystal"
           ],
           "location": {
             "name": "olivine-city",
             "displayName": "Olivine City"
           },
-          "method": "Receive from a Fisherman in a house in Olivine City.",
+          "area": "House north of the Pokemon Center",
+          "method": "Receive from a Fisher in the house north of the Olivine Pokemon Center.",
           "acquisitionType": "npc-gift",
           "repeatable": false,
           "versionExclusive": false,
-          "requirements": [],
-          "locationMatchStatus": "matched",
-          "originalLocationText": "Olivine City"
+          "requirements": [
+            "Reach Olivine City"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 3,
+          "games": [
+            "Pokemon Ruby",
+            "Pokemon Sapphire",
+            "Pokemon Emerald"
+          ],
+          "location": {
+            "name": "hoenn-route-118",
+            "displayName": "Route 118"
+          },
+          "area": "Eastern beach",
+          "method": "Receive from a Fisherman on the eastern beach of Route 118.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach the eastern side of Route 118",
+            "Surf is required in practice"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 3,
+          "games": [
+            "Pokemon FireRed",
+            "Pokemon LeafGreen"
+          ],
+          "location": {
+            "name": "fuchsia-city",
+            "displayName": "Fuchsia City"
+          },
+          "area": "Fishing Guru house",
+          "method": "Receive as a gift from the Fuchsia Fishing Guru.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Fuchsia City"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 4,
+          "games": [
+            "Pokemon Diamond",
+            "Pokemon Pearl",
+            "Pokemon Platinum"
+          ],
+          "location": {
+            "name": "sinnoh-route-209",
+            "displayName": "Route 209"
+          },
+          "area": "Near the Hearthome City gate",
+          "method": "Receive from a Fisherman near the Hearthome City gate on Route 209.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Route 209 near Hearthome City"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 4,
+          "games": [
+            "Pokemon HeartGold",
+            "Pokemon SoulSilver"
+          ],
+          "location": {
+            "name": "olivine-city",
+            "displayName": "Olivine City"
+          },
+          "area": "House north of the Pokemon Center",
+          "method": "Receive from a Fisher in the house north of the Olivine Pokemon Center.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Olivine City"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 6,
+          "games": [
+            "Pokemon X",
+            "Pokemon Y"
+          ],
+          "location": {
+            "name": "coumarine-city",
+            "displayName": "Coumarine City"
+          },
+          "area": "Marina",
+          "method": "Receive from a Fisherman east of the Incense and Berry stalls on the marina.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Coumarine City"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 6,
+          "games": [
+            "Pokemon Omega Ruby",
+            "Pokemon Alpha Sapphire"
+          ],
+          "location": {
+            "name": "hoenn-route-118",
+            "displayName": "Route 118"
+          },
+          "area": "Eastern beach",
+          "method": "Receive from a Fisherman on the eastern beach of Route 118.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach the eastern side of Route 118",
+            "Surf is required in practice"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 8,
+          "games": [
+            "Pokemon Brilliant Diamond",
+            "Pokemon Shining Pearl"
+          ],
+          "location": {
+            "name": "sinnoh-route-209",
+            "displayName": "Route 209"
+          },
+          "area": "Near the Hearthome City gate",
+          "method": "Receive from a Fisher near the Hearthome City gate on Route 209.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Route 209 near Hearthome City"
+          ],
+          "locationMatchStatus": "matched"
         }
       ]
     },
@@ -9947,8 +10171,8 @@
         {
           "generation": 4,
           "games": [
-            "Pok\u00e9mon HeartGold",
-            "Pok\u00e9mon SoulSilver"
+            "Pokémon HeartGold",
+            "Pokémon SoulSilver"
           ],
           "location": {
             "name": "johto-route-32",
@@ -9968,8 +10192,8 @@
         {
           "generation": 4,
           "games": [
-            "Pok\u00e9mon HeartGold",
-            "Pok\u00e9mon SoulSilver"
+            "Pokémon HeartGold",
+            "Pokémon SoulSilver"
           ],
           "location": {
             "name": "vermilion-city",
@@ -9989,8 +10213,8 @@
         {
           "generation": 4,
           "games": [
-            "Pok\u00e9mon HeartGold",
-            "Pok\u00e9mon SoulSilver"
+            "Pokémon HeartGold",
+            "Pokémon SoulSilver"
           ],
           "location": {
             "displayName": "Eligible Rock Smash maps"
@@ -10010,18 +10234,18 @@
         {
           "generation": 4,
           "games": [
-            "Pok\u00e9mon HeartGold",
-            "Pok\u00e9mon SoulSilver"
+            "Pokémon HeartGold",
+            "Pokémon SoulSilver"
           ],
           "location": {
             "displayName": "Luvdisc swarms"
           },
-          "method": "Steal from wild Luvdisc during swarms after obtaining the National Pok\u00e9dex. Compound Eyes can improve held-item odds, and Thief can take the Heart Scale.",
+          "method": "Steal from wild Luvdisc during swarms after obtaining the National Pokédex. Compound Eyes can improve held-item odds, and Thief can take the Heart Scale.",
           "acquisitionType": "wild-held-item",
           "repeatable": true,
           "versionExclusive": false,
           "requirements": [
-            "National Pok\u00e9dex",
+            "National Pokédex",
             "Luvdisc swarm",
             "Thief recommended"
           ],
@@ -17588,47 +17812,192 @@
       "item": "old-rod",
       "displayName": "Old Rod",
       "source": "itemLocationsCurated.json",
-      "sourceTitle": "PokéLore curated Gen 1 item acquisition notes",
+      "sourceTitle": "Curated fishing rod acquisition notes across main-series Pokemon games",
       "schemaVersion": 1,
       "acquisition": [
         {
           "generation": 1,
           "games": [
-            "Pokémon Red",
-            "Pokémon Blue",
-            "Pokémon Yellow"
+            "Pokemon Red",
+            "Pokemon Blue",
+            "Pokemon Yellow"
           ],
-          "versionExclusive": false,
-          "locationMatchStatus": "matched",
-          "matchConfidence": "high",
           "location": {
             "name": "vermilion-city",
             "displayName": "Vermilion City"
           },
-          "area": "Vermilion City - northwest building",
-          "method": "Receive as a gift from the Fishing Guru in the northwest building.",
+          "area": "Northwest building",
+          "method": "Receive as a gift from the Vermilion Fishing Guru.",
           "acquisitionType": "npc-gift",
           "repeatable": false,
-          "requirements": []
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Vermilion City"
+          ],
+          "locationMatchStatus": "matched"
         },
         {
-          "generation": 4,
+          "generation": 2,
           "games": [
-            "Pokémon HeartGold",
-            "Pokémon SoulSilver"
+            "Pokemon Gold",
+            "Pokemon Silver",
+            "Pokemon Crystal"
           ],
           "location": {
             "name": "johto-route-32",
             "displayName": "Route 32"
           },
-          "method": "Receive from the Fisherman at the Pokémon Center on Route 32.",
+          "area": "Pokemon Center",
+          "method": "Receive from a Fisher inside the Route 32 Pokemon Center.",
           "acquisitionType": "npc-gift",
           "repeatable": false,
           "versionExclusive": false,
-          "requirements": [],
-          "locationMatchStatus": "matched",
-          "area": "Pokémon Center",
-          "originalLocationText": "Route 32"
+          "requirements": [
+            "Reach Route 32"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 3,
+          "games": [
+            "Pokemon Ruby",
+            "Pokemon Sapphire",
+            "Pokemon Emerald"
+          ],
+          "location": {
+            "name": "dewford-town",
+            "displayName": "Dewford Town"
+          },
+          "area": "East of Dewford Gym",
+          "method": "Receive from the Fisherman east of the Dewford Gym.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Dewford Town"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 3,
+          "games": [
+            "Pokemon FireRed",
+            "Pokemon LeafGreen"
+          ],
+          "location": {
+            "name": "vermilion-city",
+            "displayName": "Vermilion City"
+          },
+          "area": "Fishing Guru house",
+          "method": "Receive as a gift from the Vermilion Fishing Guru.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Vermilion City"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 4,
+          "games": [
+            "Pokemon Diamond",
+            "Pokemon Pearl",
+            "Pokemon Platinum"
+          ],
+          "location": {
+            "name": "jubilife-city",
+            "displayName": "Jubilife City"
+          },
+          "area": "Gate to Route 218",
+          "method": "Receive from a Fisherman in the gate connecting Jubilife City to Route 218.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Jubilife City"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 4,
+          "games": [
+            "Pokemon HeartGold",
+            "Pokemon SoulSilver"
+          ],
+          "location": {
+            "name": "johto-route-32",
+            "displayName": "Route 32"
+          },
+          "area": "Pokemon Center",
+          "method": "Receive from a Fisher inside the Route 32 Pokemon Center.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Route 32"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 6,
+          "games": [
+            "Pokemon X",
+            "Pokemon Y"
+          ],
+          "location": {
+            "name": "ambrette-town",
+            "displayName": "Ambrette Town"
+          },
+          "area": "Ambrette Aquarium",
+          "method": "Receive from the Fisherman next to the Magikarp statue in the Ambrette Aquarium.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Ambrette Town"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 6,
+          "games": [
+            "Pokemon Omega Ruby",
+            "Pokemon Alpha Sapphire"
+          ],
+          "location": {
+            "name": "dewford-town",
+            "displayName": "Dewford Town"
+          },
+          "area": "East of Dewford Gym",
+          "method": "Receive from the Fisherman east of the Dewford Gym.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Dewford Town"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 8,
+          "games": [
+            "Pokemon Brilliant Diamond",
+            "Pokemon Shining Pearl"
+          ],
+          "location": {
+            "name": "jubilife-city",
+            "displayName": "Jubilife City"
+          },
+          "area": "Gate to Route 218",
+          "method": "Receive from a Fisher in the gate connecting Jubilife City to Route 218.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Jubilife City"
+          ],
+          "locationMatchStatus": "matched"
         }
       ]
     },
@@ -22055,8 +22424,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": "Tera Raid Battles",
           "method": "Possible reward from eligible 5-star, 6-star, and selected 7-star Tera Raid Battles. Eligible raid bosses and flavor reward pools vary.",
@@ -22071,8 +22440,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": "Ogre Oustin'",
           "area": "Hard difficulty",
@@ -22089,8 +22458,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": {
             "name": "league-club-room",
@@ -23546,8 +23915,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": "Tera Raid Battles",
           "method": "Possible reward from eligible 5-star, 6-star, and selected 7-star Tera Raid Battles. Eligible raid bosses and flavor reward pools vary.",
@@ -23562,8 +23931,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": "Ogre Oustin'",
           "area": "Hard difficulty",
@@ -23580,8 +23949,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": {
             "name": "league-club-room",
@@ -23644,8 +24013,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": "Tera Raid Battles",
           "method": "Possible reward from eligible 5-star, 6-star, and selected 7-star Tera Raid Battles. Eligible raid bosses and flavor reward pools vary.",
@@ -23660,8 +24029,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": "Ogre Oustin'",
           "area": "Hard difficulty",
@@ -23678,8 +24047,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": {
             "name": "league-club-room",
@@ -25140,28 +25509,236 @@
       "item": "super-rod",
       "displayName": "Super Rod",
       "source": "itemLocationsCurated.json",
-      "sourceTitle": "PokéLore curated Gen 1 item acquisition notes",
+      "sourceTitle": "Curated fishing rod acquisition notes across main-series Pokemon games",
       "schemaVersion": 1,
       "acquisition": [
         {
           "generation": 1,
           "games": [
-            "Pokémon Red",
-            "Pokémon Blue",
-            "Pokémon Yellow"
+            "Pokemon Red",
+            "Pokemon Blue",
+            "Pokemon Yellow"
           ],
-          "versionExclusive": false,
-          "locationMatchStatus": "matched",
-          "matchConfidence": "high",
           "location": {
             "name": "kanto-route-12",
             "displayName": "Route 12"
           },
-          "area": "Route 12 - Fishing Guru house",
-          "method": "Receive as a gift from the Fishing Guru on Route 12.",
+          "area": "Fishing Guru house on Silence Bridge",
+          "method": "Receive as a gift from the Silence Bridge Fishing Guru on Route 12.",
           "acquisitionType": "npc-gift",
           "repeatable": false,
-          "requirements": []
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Route 12"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 2,
+          "games": [
+            "Pokemon Gold",
+            "Pokemon Silver",
+            "Pokemon Crystal"
+          ],
+          "location": {
+            "name": "kanto-route-12",
+            "displayName": "Route 12"
+          },
+          "area": "Fishing Guru house on Silence Bridge",
+          "method": "Receive from the Silence Bridge Fishing Guru on Route 12.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Kanto",
+            "Reach Route 12"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 3,
+          "games": [
+            "Pokemon Ruby",
+            "Pokemon Sapphire",
+            "Pokemon Emerald"
+          ],
+          "location": {
+            "name": "mossdeep-city",
+            "displayName": "Mossdeep City"
+          },
+          "area": "House east of the Gym",
+          "method": "Receive from the Fisherman in the house east of the Mossdeep Gym.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Mossdeep City"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 3,
+          "games": [
+            "Pokemon FireRed",
+            "Pokemon LeafGreen"
+          ],
+          "location": {
+            "name": "kanto-route-12",
+            "displayName": "Route 12"
+          },
+          "area": "Fishing Guru house on Silence Bridge",
+          "method": "Receive as a gift from the Silence Bridge Fishing Guru on Route 12.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Route 12"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 4,
+          "games": [
+            "Pokemon Diamond",
+            "Pokemon Pearl",
+            "Pokemon Platinum"
+          ],
+          "location": {
+            "name": "fight-area",
+            "displayName": "Fight Area"
+          },
+          "area": "Near the Route 225 gate",
+          "method": "Receive from a Fisherman near the Route 225 gate in the Fight Area.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Enter the post-game Battle Zone",
+            "Reach Fight Area"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 4,
+          "games": [
+            "Pokemon HeartGold",
+            "Pokemon SoulSilver"
+          ],
+          "location": {
+            "name": "kanto-route-12",
+            "displayName": "Route 12"
+          },
+          "area": "Fishing Guru house on Silence Bridge",
+          "method": "Receive from the Silence Bridge Fishing Guru on Route 12.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Kanto",
+            "Reach Route 12"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 5,
+          "games": [
+            "Pokemon Black",
+            "Pokemon White"
+          ],
+          "location": {
+            "name": "nuvema-town",
+            "displayName": "Nuvema Town"
+          },
+          "area": "Player's house",
+          "method": "Receive from Looker after defeating Team Plasma and Ghetsis.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Defeat Ghetsis"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 5,
+          "games": [
+            "Pokemon Black 2",
+            "Pokemon White 2"
+          ],
+          "location": {
+            "name": "nuvema-town",
+            "displayName": "Nuvema Town"
+          },
+          "area": "Juniper Pokemon Lab",
+          "method": "Receive from Cedric Juniper in the Juniper Pokemon Lab after entering the Hall of Fame.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Enter the Hall of Fame"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 6,
+          "games": [
+            "Pokemon X",
+            "Pokemon Y"
+          ],
+          "location": {
+            "name": "kalos-route-16",
+            "displayName": "Route 16"
+          },
+          "area": "Fishing Shack",
+          "method": "Receive from a Fisherman in the Fishing Shack on Route 16.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Route 16"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 6,
+          "games": [
+            "Pokemon Omega Ruby",
+            "Pokemon Alpha Sapphire"
+          ],
+          "location": {
+            "name": "mossdeep-city",
+            "displayName": "Mossdeep City"
+          },
+          "area": "House east of the Gym",
+          "method": "Receive from the Fisherman in the house east of the Mossdeep Gym.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Reach Mossdeep City"
+          ],
+          "locationMatchStatus": "matched"
+        },
+        {
+          "generation": 8,
+          "games": [
+            "Pokemon Brilliant Diamond",
+            "Pokemon Shining Pearl"
+          ],
+          "location": {
+            "name": "fight-area",
+            "displayName": "Fight Area"
+          },
+          "area": "Near the Route 225 gate",
+          "method": "Receive from a Fisher near the Route 225 gate in the Fight Area.",
+          "acquisitionType": "npc-gift",
+          "repeatable": false,
+          "versionExclusive": false,
+          "requirements": [
+            "Enter the post-game Battle Zone",
+            "Reach Fight Area"
+          ],
+          "locationMatchStatus": "matched"
         }
       ]
     },
@@ -25289,8 +25866,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": "Tera Raid Battles",
           "method": "Possible reward from eligible 5-star, 6-star, and selected 7-star Tera Raid Battles. Eligible raid bosses and flavor reward pools vary.",
@@ -25305,8 +25882,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": "Ogre Oustin'",
           "area": "Hard difficulty",
@@ -25323,8 +25900,8 @@
         {
           "generation": 9,
           "games": [
-            "Pok\u00e9mon Scarlet",
-            "Pok\u00e9mon Violet"
+            "Pokémon Scarlet",
+            "Pokémon Violet"
           ],
           "location": {
             "name": "league-club-room",

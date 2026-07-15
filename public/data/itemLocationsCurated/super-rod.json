@@ -2,28 +2,236 @@
   "item": "super-rod",
   "displayName": "Super Rod",
   "source": "itemLocationsCurated.json",
-  "sourceTitle": "PokéLore curated Gen 1 item acquisition notes",
+  "sourceTitle": "Curated fishing rod acquisition notes across main-series Pokemon games",
   "schemaVersion": 1,
   "acquisition": [
     {
       "generation": 1,
       "games": [
-        "Pokémon Red",
-        "Pokémon Blue",
-        "Pokémon Yellow"
+        "Pokemon Red",
+        "Pokemon Blue",
+        "Pokemon Yellow"
       ],
-      "versionExclusive": false,
-      "locationMatchStatus": "matched",
-      "matchConfidence": "high",
       "location": {
         "name": "kanto-route-12",
         "displayName": "Route 12"
       },
-      "area": "Route 12 - Fishing Guru house",
-      "method": "Receive as a gift from the Fishing Guru on Route 12.",
+      "area": "Fishing Guru house on Silence Bridge",
+      "method": "Receive as a gift from the Silence Bridge Fishing Guru on Route 12.",
       "acquisitionType": "npc-gift",
       "repeatable": false,
-      "requirements": []
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Route 12"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 2,
+      "games": [
+        "Pokemon Gold",
+        "Pokemon Silver",
+        "Pokemon Crystal"
+      ],
+      "location": {
+        "name": "kanto-route-12",
+        "displayName": "Route 12"
+      },
+      "area": "Fishing Guru house on Silence Bridge",
+      "method": "Receive from the Silence Bridge Fishing Guru on Route 12.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Kanto",
+        "Reach Route 12"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokemon Ruby",
+        "Pokemon Sapphire",
+        "Pokemon Emerald"
+      ],
+      "location": {
+        "name": "mossdeep-city",
+        "displayName": "Mossdeep City"
+      },
+      "area": "House east of the Gym",
+      "method": "Receive from the Fisherman in the house east of the Mossdeep Gym.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Mossdeep City"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokemon FireRed",
+        "Pokemon LeafGreen"
+      ],
+      "location": {
+        "name": "kanto-route-12",
+        "displayName": "Route 12"
+      },
+      "area": "Fishing Guru house on Silence Bridge",
+      "method": "Receive as a gift from the Silence Bridge Fishing Guru on Route 12.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Route 12"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokemon Diamond",
+        "Pokemon Pearl",
+        "Pokemon Platinum"
+      ],
+      "location": {
+        "name": "fight-area",
+        "displayName": "Fight Area"
+      },
+      "area": "Near the Route 225 gate",
+      "method": "Receive from a Fisherman near the Route 225 gate in the Fight Area.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Enter the post-game Battle Zone",
+        "Reach Fight Area"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokemon HeartGold",
+        "Pokemon SoulSilver"
+      ],
+      "location": {
+        "name": "kanto-route-12",
+        "displayName": "Route 12"
+      },
+      "area": "Fishing Guru house on Silence Bridge",
+      "method": "Receive from the Silence Bridge Fishing Guru on Route 12.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Kanto",
+        "Reach Route 12"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black",
+        "Pokemon White"
+      ],
+      "location": {
+        "name": "nuvema-town",
+        "displayName": "Nuvema Town"
+      },
+      "area": "Player's house",
+      "method": "Receive from Looker after defeating Team Plasma and Ghetsis.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat Ghetsis"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black 2",
+        "Pokemon White 2"
+      ],
+      "location": {
+        "name": "nuvema-town",
+        "displayName": "Nuvema Town"
+      },
+      "area": "Juniper Pokemon Lab",
+      "method": "Receive from Cedric Juniper in the Juniper Pokemon Lab after entering the Hall of Fame.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Enter the Hall of Fame"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon X",
+        "Pokemon Y"
+      ],
+      "location": {
+        "name": "kalos-route-16",
+        "displayName": "Route 16"
+      },
+      "area": "Fishing Shack",
+      "method": "Receive from a Fisherman in the Fishing Shack on Route 16.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Route 16"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon Omega Ruby",
+        "Pokemon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "mossdeep-city",
+        "displayName": "Mossdeep City"
+      },
+      "area": "House east of the Gym",
+      "method": "Receive from the Fisherman in the house east of the Mossdeep Gym.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Mossdeep City"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Brilliant Diamond",
+        "Pokemon Shining Pearl"
+      ],
+      "location": {
+        "name": "fight-area",
+        "displayName": "Fight Area"
+      },
+      "area": "Near the Route 225 gate",
+      "method": "Receive from a Fisher near the Route 225 gate in the Fight Area.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Enter the post-game Battle Zone",
+        "Reach Fight Area"
+      ],
+      "locationMatchStatus": "matched"
     }
   ]
 }

@@ -2,46 +2,194 @@
   "item": "good-rod",
   "displayName": "Good Rod",
   "source": "itemLocationsCurated.json",
-  "sourceTitle": "PokéLore curated Gen 1 item acquisition notes",
+  "sourceTitle": "Curated fishing rod acquisition notes across main-series Pokemon games",
   "schemaVersion": 1,
   "acquisition": [
     {
       "generation": 1,
       "games": [
-        "Pokémon Red",
-        "Pokémon Blue",
-        "Pokémon Yellow"
+        "Pokemon Red",
+        "Pokemon Blue",
+        "Pokemon Yellow"
       ],
-      "versionExclusive": false,
-      "locationMatchStatus": "matched",
-      "matchConfidence": "high",
       "location": {
         "name": "fuchsia-city",
         "displayName": "Fuchsia City"
       },
-      "area": "Fuchsia City - southeastern house",
-      "method": "Receive as a gift from the Fishing Guru in the southeastern part of Fuchsia City.",
+      "area": "Southeastern house",
+      "method": "Receive as a gift from the Fuchsia Fishing Guru.",
       "acquisitionType": "npc-gift",
       "repeatable": false,
-      "requirements": []
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Fuchsia City"
+      ],
+      "locationMatchStatus": "matched"
     },
     {
-      "generation": 4,
+      "generation": 2,
       "games": [
-        "Pokémon HeartGold",
-        "Pokémon SoulSilver"
+        "Pokemon Gold",
+        "Pokemon Silver",
+        "Pokemon Crystal"
       ],
       "location": {
         "name": "olivine-city",
         "displayName": "Olivine City"
       },
-      "method": "Receive from a Fisherman in a house in Olivine City.",
+      "area": "House north of the Pokemon Center",
+      "method": "Receive from a Fisher in the house north of the Olivine Pokemon Center.",
       "acquisitionType": "npc-gift",
       "repeatable": false,
       "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "matched",
-      "originalLocationText": "Olivine City"
+      "requirements": [
+        "Reach Olivine City"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokemon Ruby",
+        "Pokemon Sapphire",
+        "Pokemon Emerald"
+      ],
+      "location": {
+        "name": "hoenn-route-118",
+        "displayName": "Route 118"
+      },
+      "area": "Eastern beach",
+      "method": "Receive from a Fisherman on the eastern beach of Route 118.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach the eastern side of Route 118",
+        "Surf is required in practice"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokemon FireRed",
+        "Pokemon LeafGreen"
+      ],
+      "location": {
+        "name": "fuchsia-city",
+        "displayName": "Fuchsia City"
+      },
+      "area": "Fishing Guru house",
+      "method": "Receive as a gift from the Fuchsia Fishing Guru.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Fuchsia City"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokemon Diamond",
+        "Pokemon Pearl",
+        "Pokemon Platinum"
+      ],
+      "location": {
+        "name": "sinnoh-route-209",
+        "displayName": "Route 209"
+      },
+      "area": "Near the Hearthome City gate",
+      "method": "Receive from a Fisherman near the Hearthome City gate on Route 209.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Route 209 near Hearthome City"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokemon HeartGold",
+        "Pokemon SoulSilver"
+      ],
+      "location": {
+        "name": "olivine-city",
+        "displayName": "Olivine City"
+      },
+      "area": "House north of the Pokemon Center",
+      "method": "Receive from a Fisher in the house north of the Olivine Pokemon Center.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Olivine City"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon X",
+        "Pokemon Y"
+      ],
+      "location": {
+        "name": "coumarine-city",
+        "displayName": "Coumarine City"
+      },
+      "area": "Marina",
+      "method": "Receive from a Fisherman east of the Incense and Berry stalls on the marina.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Coumarine City"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon Omega Ruby",
+        "Pokemon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "hoenn-route-118",
+        "displayName": "Route 118"
+      },
+      "area": "Eastern beach",
+      "method": "Receive from a Fisherman on the eastern beach of Route 118.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach the eastern side of Route 118",
+        "Surf is required in practice"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Brilliant Diamond",
+        "Pokemon Shining Pearl"
+      ],
+      "location": {
+        "name": "sinnoh-route-209",
+        "displayName": "Route 209"
+      },
+      "area": "Near the Hearthome City gate",
+      "method": "Receive from a Fisher near the Hearthome City gate on Route 209.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Route 209 near Hearthome City"
+      ],
+      "locationMatchStatus": "matched"
     }
   ]
 }

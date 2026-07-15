@@ -2,47 +2,192 @@
   "item": "old-rod",
   "displayName": "Old Rod",
   "source": "itemLocationsCurated.json",
-  "sourceTitle": "PokéLore curated Gen 1 item acquisition notes",
+  "sourceTitle": "Curated fishing rod acquisition notes across main-series Pokemon games",
   "schemaVersion": 1,
   "acquisition": [
     {
       "generation": 1,
       "games": [
-        "Pokémon Red",
-        "Pokémon Blue",
-        "Pokémon Yellow"
+        "Pokemon Red",
+        "Pokemon Blue",
+        "Pokemon Yellow"
       ],
-      "versionExclusive": false,
-      "locationMatchStatus": "matched",
-      "matchConfidence": "high",
       "location": {
         "name": "vermilion-city",
         "displayName": "Vermilion City"
       },
-      "area": "Vermilion City - northwest building",
-      "method": "Receive as a gift from the Fishing Guru in the northwest building.",
+      "area": "Northwest building",
+      "method": "Receive as a gift from the Vermilion Fishing Guru.",
       "acquisitionType": "npc-gift",
       "repeatable": false,
-      "requirements": []
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Vermilion City"
+      ],
+      "locationMatchStatus": "matched"
     },
     {
-      "generation": 4,
+      "generation": 2,
       "games": [
-        "Pokémon HeartGold",
-        "Pokémon SoulSilver"
+        "Pokemon Gold",
+        "Pokemon Silver",
+        "Pokemon Crystal"
       ],
       "location": {
         "name": "johto-route-32",
         "displayName": "Route 32"
       },
-      "method": "Receive from the Fisherman at the Pokémon Center on Route 32.",
+      "area": "Pokemon Center",
+      "method": "Receive from a Fisher inside the Route 32 Pokemon Center.",
       "acquisitionType": "npc-gift",
       "repeatable": false,
       "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "matched",
-      "area": "Pokémon Center",
-      "originalLocationText": "Route 32"
+      "requirements": [
+        "Reach Route 32"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokemon Ruby",
+        "Pokemon Sapphire",
+        "Pokemon Emerald"
+      ],
+      "location": {
+        "name": "dewford-town",
+        "displayName": "Dewford Town"
+      },
+      "area": "East of Dewford Gym",
+      "method": "Receive from the Fisherman east of the Dewford Gym.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Dewford Town"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokemon FireRed",
+        "Pokemon LeafGreen"
+      ],
+      "location": {
+        "name": "vermilion-city",
+        "displayName": "Vermilion City"
+      },
+      "area": "Fishing Guru house",
+      "method": "Receive as a gift from the Vermilion Fishing Guru.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Vermilion City"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokemon Diamond",
+        "Pokemon Pearl",
+        "Pokemon Platinum"
+      ],
+      "location": {
+        "name": "jubilife-city",
+        "displayName": "Jubilife City"
+      },
+      "area": "Gate to Route 218",
+      "method": "Receive from a Fisherman in the gate connecting Jubilife City to Route 218.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Jubilife City"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokemon HeartGold",
+        "Pokemon SoulSilver"
+      ],
+      "location": {
+        "name": "johto-route-32",
+        "displayName": "Route 32"
+      },
+      "area": "Pokemon Center",
+      "method": "Receive from a Fisher inside the Route 32 Pokemon Center.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Route 32"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon X",
+        "Pokemon Y"
+      ],
+      "location": {
+        "name": "ambrette-town",
+        "displayName": "Ambrette Town"
+      },
+      "area": "Ambrette Aquarium",
+      "method": "Receive from the Fisherman next to the Magikarp statue in the Ambrette Aquarium.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Ambrette Town"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon Omega Ruby",
+        "Pokemon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "dewford-town",
+        "displayName": "Dewford Town"
+      },
+      "area": "East of Dewford Gym",
+      "method": "Receive from the Fisherman east of the Dewford Gym.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Dewford Town"
+      ],
+      "locationMatchStatus": "matched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Brilliant Diamond",
+        "Pokemon Shining Pearl"
+      ],
+      "location": {
+        "name": "jubilife-city",
+        "displayName": "Jubilife City"
+      },
+      "area": "Gate to Route 218",
+      "method": "Receive from a Fisher in the gate connecting Jubilife City to Route 218.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Reach Jubilife City"
+      ],
+      "locationMatchStatus": "matched"
     }
   ]
 }
