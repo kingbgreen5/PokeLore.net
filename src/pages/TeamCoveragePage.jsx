@@ -1493,6 +1493,17 @@ function TeamCoveragePage() {
           These available Pokemon have level-up attacking moves that cover at
           least one currently missing type.
         </p>
+        <p
+          style={{
+            color: "#9ca3af",
+            fontSize: ".85rem",
+            lineHeight: 1.35,
+            margin: "0 auto 1rem",
+            maxWidth: "720px"
+          }}
+        >
+          Sort by Highest stat, Most coverage, or Dex Number.
+        </p>
 
         <div
           style={{

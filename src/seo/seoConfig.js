@@ -110,6 +110,17 @@ export function teamCoverageSeo() {
           browserRequirements:
             "Requires JavaScript",
           description,
+          featureList: [
+            "Choose a Pokemon game version for level-up learnset coverage.",
+            "Build a six-Pokemon party and calculate overall super-effective type coverage.",
+            "Identify missing defensive types that the party cannot hit super-effectively.",
+            "Suggest available Pokemon that fill missing type coverage.",
+            "Sort suggestions by National Dex number.",
+            "Sort suggestions by most missing type coverage.",
+            "Prioritize suggestions that cover a selected missing type.",
+            "Sort suggestions by highest base stat total.",
+            "Sort suggestions by HP, Attack, Defense, Special Attack, Special Defense, or Speed."
+          ],
           isAccessibleForFree: true,
           offers: {
             "@type": "Offer",
@@ -161,6 +172,15 @@ export function singleTypeCoverageSeo() {
           browserRequirements:
             "Requires JavaScript",
           description,
+          featureList: [
+            "Choose a Pokemon game version and defensive type.",
+            "Find available Pokemon with level-up moves that hit the selected type super-effectively.",
+            "Sort suggestions by National Dex number.",
+            "Sort suggestions by broad type coverage.",
+            "Prioritize suggestions with direct selected-type coverage.",
+            "Sort suggestions by highest base stat total.",
+            "Sort suggestions by HP, Attack, Defense, Special Attack, Special Defense, or Speed."
+          ],
           isAccessibleForFree: true,
           offers: {
             "@type": "Offer",

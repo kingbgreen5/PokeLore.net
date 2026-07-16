@@ -465,38 +465,6 @@ function GlobalSiteSearch() {
   }
 
   useEffect(() => {
-    if (records.length > 0) {
-      return undefined;
-    }
-
-    if (
-      "requestIdleCallback" in window
-    ) {
-      const idleId =
-        window.requestIdleCallback(
-          requestSearchRecords,
-          {
-            timeout: 5000
-          }
-        );
-
-      return () => {
-        window.cancelIdleCallback(idleId);
-      };
-    }
-
-    const timeoutId =
-      window.setTimeout(
-        requestSearchRecords,
-        2500
-      );
-
-    return () => {
-      window.clearTimeout(timeoutId);
-    };
-  }, [records.length]);
-
-  useEffect(() => {
     function handleDocumentClick(event) {
       if (
         wrapperRef.current &&
