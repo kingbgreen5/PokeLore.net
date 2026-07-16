@@ -28,7 +28,25 @@ const PARTY_STORAGE_KEY =
   "pokelore:team-coverage-party";
 const VERSION_STORAGE_KEY =
   "pokelore:learnset-version";
+const SORT_STORAGE_KEY =
+  "pokelore:team-coverage-sort";
+const FOCUS_TYPE_STORAGE_KEY =
+  "pokelore:team-coverage-focus-type";
 const RECOMMENDATIONS_PER_PAGE = 25;
+const SORT_MODES = [
+  {
+    value: "national-dex",
+    label: "National Dex"
+  },
+  {
+    value: "most-coverage",
+    label: "Most Coverage"
+  },
+  {
+    value: "selected-type-first",
+    label: "Selected Type First"
+  }
+];
 
 function createEmptyParty() {
   return Array(PARTY_SIZE).fill(null);
@@ -101,6 +119,45 @@ function serializePartyParam(value) {
     .slice(0, lastFilledIndex + 1)
     .map(id => id ?? 0)
     .join("-");
+}
+
+function getValidSortMode(value) {
+  return SORT_MODES.some(
+    option => option.value === value
+  )
+    ? value
+    : SORT_MODES[0].value;
+}
+
+function compareByNationalDex(a, b) {
+  return a.id - b.id;
+}
+
+function compareByMostCoverage(a, b) {
+  return (
+    b.missingHits.length -
+      a.missingHits.length ||
+    b.coveredTypes.length -
+      a.coveredTypes.length ||
+    compareByNationalDex(a, b)
+  );
+}
+
+function compareBySelectedTypeFirst(
+  focusType
+) {
+  return (a, b) => {
+    const aHitsFocus =
+      a.missingHits.includes(focusType);
+    const bHitsFocus =
+      b.missingHits.includes(focusType);
+
+    return (
+      Number(bHitsFocus) -
+        Number(aHitsFocus) ||
+      compareByMostCoverage(a, b)
+    );
+  };
 }
 
 function isCosmeticPickerForm(name) {
@@ -709,6 +766,22 @@ function TeamCoveragePage() {
     recommendationPage,
     setRecommendationPage
   ] = useState(1);
+  const [
+    preferredSortMode,
+    setPreferredSortMode
+  ] = useLocalStorageState(
+    SORT_STORAGE_KEY,
+    SORT_MODES[0].value
+  );
+  const selectedSortMode =
+    getValidSortMode(preferredSortMode);
+  const [
+    preferredFocusType,
+    setPreferredFocusType
+  ] = useLocalStorageState(
+    FOCUS_TYPE_STORAGE_KEY,
+    "water"
+  );
   const consideredTypes = useMemo(
     () =>
       getTypesForVersionGroup(
@@ -997,6 +1070,30 @@ function TeamCoveragePage() {
       coveredTypes
     ]
   );
+  const selectedFocusType =
+    missingTypes.includes(
+      preferredFocusType
+    )
+      ? preferredFocusType
+      : missingTypes[0] ??
+        consideredTypes[0];
+
+  useEffect(() => {
+    if (
+      selectedFocusType &&
+      selectedFocusType !==
+        preferredFocusType
+    ) {
+      setPreferredFocusType(
+        selectedFocusType
+      );
+    }
+  }, [
+    preferredFocusType,
+    selectedFocusType,
+    setPreferredFocusType
+  ]);
+
   const recommendationCandidates =
     useMemo(() => {
       if (
@@ -1031,10 +1128,33 @@ function TeamCoveragePage() {
           pokemon =>
             pokemon.missingHits.length > 0
         )
-        .sort((a, b) => a.id - b.id);
+        .sort((a, b) => {
+          if (
+            selectedSortMode ===
+            "most-coverage"
+          ) {
+            return compareByMostCoverage(
+              a,
+              b
+            );
+          }
+
+          if (
+            selectedSortMode ===
+            "selected-type-first"
+          ) {
+            return compareBySelectedTypeFirst(
+              selectedFocusType
+            )(a, b);
+          }
+
+          return compareByNationalDex(a, b);
+        });
     }, [
       missingTypes,
       normalizedParty,
+      selectedFocusType,
+      selectedSortMode,
       selectedVersion,
       teamCoverageData
     ]);
@@ -1279,6 +1399,100 @@ function TeamCoveragePage() {
           These available Pokemon have level-up attacking moves that cover at
           least one currently missing type.
         </p>
+
+        <div
+          style={{
+            alignItems: "center",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: ".75rem",
+            justifyContent: "center",
+            margin: "0 0 1rem"
+          }}
+        >
+          <label
+            htmlFor="team-coverage-sort"
+            style={{
+              color: "#f3f4f6",
+              fontWeight: "bold"
+            }}
+          >
+            Sort
+          </label>
+          <select
+            id="team-coverage-sort"
+            value={selectedSortMode}
+            onChange={event => {
+              setRecommendationPage(1);
+              setPreferredSortMode(
+                event.target.value
+              );
+            }}
+            style={{
+              backgroundColor: "#2c2c2c",
+              border: "2px solid #555",
+              borderRadius: "8px",
+              color: "white",
+              fontSize: ".95rem",
+              maxWidth: "100%",
+              padding: ".55rem .75rem"
+            }}
+          >
+            {SORT_MODES.map(option => (
+              <option
+                key={option.value}
+                value={option.value}
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
+
+          {selectedSortMode ===
+            "selected-type-first" &&
+            missingTypes.length > 0 && (
+              <>
+                <label
+                  htmlFor="team-coverage-focus-type"
+                  style={{
+                    color: "#f3f4f6",
+                    fontWeight: "bold"
+                  }}
+                >
+                  Type
+                </label>
+                <select
+                  id="team-coverage-focus-type"
+                  value={selectedFocusType}
+                  onChange={event => {
+                    setRecommendationPage(1);
+                    setPreferredFocusType(
+                      event.target.value
+                    );
+                  }}
+                  style={{
+                    backgroundColor: "#2c2c2c",
+                    border: "2px solid #555",
+                    borderRadius: "8px",
+                    color: "white",
+                    fontSize: ".95rem",
+                    maxWidth: "100%",
+                    padding: ".55rem .75rem"
+                  }}
+                >
+                  {missingTypes.map(type => (
+                    <option
+                      key={type}
+                      value={type}
+                    >
+                      {type.charAt(0).toUpperCase() +
+                        type.slice(1)}
+                    </option>
+                  ))}
+                </select>
+              </>
+            )}
+        </div>
 
         {!selectedVersionCoverageLoaded ? (
           <p>Loading recommendations...</p>
