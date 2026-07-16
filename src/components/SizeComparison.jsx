@@ -17,7 +17,7 @@ import { formatPokemonDisplayName }
 from "../utils/pokemonNames";
 import {
   advanceSpriteFallback,
-  getPokemonDetailSources
+  getPokemonSizeComparisonSources
 } from "../utils/pokemonSprites";
 
 const LOCAL_CORRECTIONS_KEY =
@@ -212,7 +212,7 @@ function SizeComparison({
   const [pokemonIndex, setPokemonIndex] =
     useState([]);
   const pokemonSources = useMemo(
-    () => getPokemonDetailSources(pokemon),
+    () => getPokemonSizeComparisonSources(pokemon),
     [pokemon]
   );
 

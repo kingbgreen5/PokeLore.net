@@ -149,6 +149,33 @@ export function getPokemonDetailSources(
   ]);
 }
 
+export function getPokemonSizeComparisonSources(
+  pokemon
+) {
+  return uniqueSources([
+    getLocalPokemonArtwork(
+      pokemon,
+      "full"
+    ),
+    getLocalSpecialArtwork(
+      pokemon?.sprite
+    ),
+    getLocalSpecialArtwork(
+      pokemon?.spriteFallback
+    ),
+    pokemon?.sprite,
+    getLocalPokemonArtwork(
+      pokemon,
+      "detail"
+    ),
+    getLocalPokemonArtwork(
+      pokemon,
+      "card"
+    ),
+    ...getPokemonSpriteFallbacks(pokemon)
+  ]);
+}
+
 export function advanceSpriteFallback(
   event,
   fallbacks

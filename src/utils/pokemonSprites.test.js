@@ -7,6 +7,7 @@ import {
   advanceSpriteFallback,
   getPokemonCardSources,
   getPokemonDetailSources,
+  getPokemonSizeComparisonSources,
   getPokemonSpriteFallbacks,
 } from "./pokemonSprites";
 
@@ -77,6 +78,16 @@ describe("pokemon sprite fallbacks", () => {
     ).toEqual([
       "/images/pokemon/official/detail/25.webp",
       "/images/pokemon/official/full/25.png",
+    ]);
+
+    expect(
+      getPokemonSizeComparisonSources(
+        pokemon
+      ).slice(0, 3)
+    ).toEqual([
+      "/images/pokemon/official/full/25.png",
+      pokemon.sprite,
+      "/images/pokemon/official/detail/25.webp"
     ]);
   });
 

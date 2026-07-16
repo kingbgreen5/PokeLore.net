@@ -6,13 +6,13 @@ import {
 } from "react-router-dom";
 
 import {
-  useCallback,
   useEffect,
   useRef,
   useState
 } from "react";
 
 import LearnsetCard from "../components/LearnsetCard";
+import CollapsibleSection from "../components/CollapsibleSection";
 import DexEntryCard from "../components/DexEntryCard.jsx";
 import TypeEffectivenessCard from "../components/TypeEffectivenessCard";
 import EvolutionNode from "../components/EvolutionNode";
@@ -26,7 +26,6 @@ import WhereToFind from "../components/WhereToFind";
 import HeldItems from "../components/HeldItems";
 import SizeComparison from "../components/SizeComparison"
 import AdditionalImages from "../components/AdditionalImages";
-import DeferredSection from "../components/DeferredSection";
 import Seo from "../seo/Seo";
 import PokemonSpriteCarousel from "../components/PokemonSpriteCarousel.jsx"
 import { pokemonSeo } from "../seo/seoConfig";
@@ -135,6 +134,25 @@ function applySelectedVariety(
       selectedVariety.types ??
       pokemonData.types
   };
+}
+
+function LearnsetPlaceholder({
+  loading,
+  onReveal
+}) {
+  return (
+    <CollapsibleSection
+      title="Learnsets"
+      summary={
+        loading
+          ? "Loading moves"
+          : "Preparing moves"
+      }
+      expanded={false}
+      onToggle={onReveal}
+      seoVisible={false}
+    />
+  );
 }
 
 function PokemonDetailPage() {
@@ -420,6 +438,26 @@ try {
 ]);
 
 useEffect(() => {
+  if (!pokemon || deferredDetailsReady) {
+    return undefined;
+  }
+
+  const timeoutId = window.setTimeout(
+    () => {
+      setDeferredDetailsReady(true);
+    },
+    300
+  );
+
+  return () => {
+    window.clearTimeout(timeoutId);
+  };
+}, [
+  deferredDetailsReady,
+  pokemon
+]);
+
+useEffect(() => {
   if (!pokemon || !deferredDetailsReady) {
     return undefined;
   }
@@ -487,13 +525,6 @@ useEffect(() => {
   deferredDetailsReady,
   pokemon
 ]);
-
-const revealDeferredDetails = useCallback(
-  () => {
-    setDeferredDetailsReady(true);
-  },
-  []
-);
 
 
 
@@ -860,28 +891,22 @@ function formatWeightEnglish(weight) {
 </div>
 
 
-<DeferredSection
-  fallback={
-    <div
-      aria-hidden="true"
-      style={{
-        minHeight: "1px"
-      }}
-    />
-  }
-  onReveal={revealDeferredDetails}
-  rootMargin="150px 0px"
->
-  {learnsetLoading ? (
-    <p>Loading learnsets...</p>
-  ) : learnsetData ? (
+  {learnsetData ? (
     <LearnsetCard
       key={`learnset-${pokemon.id}`}
       pokemonData={learnsetData}
       movesData={movesData}
     />
   ) : (
-    <p>No learnset data loaded.</p>
+    <LearnsetPlaceholder
+      loading={
+        deferredDetailsReady ||
+        learnsetLoading
+      }
+      onReveal={() =>
+        setDeferredDetailsReady(true)
+      }
+    />
   )}
 
 
@@ -1007,7 +1032,6 @@ function formatWeightEnglish(weight) {
   <PokemonSpriteCarousel
     pokemon={pokemon}
   />
-</DeferredSection>
 
 
     </div>

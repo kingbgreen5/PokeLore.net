@@ -6,8 +6,10 @@ import {
 
 function DeferredSection({
   children,
+  delayMs = null,
   fallback = null,
   onReveal,
+  revealOnIntersect = true,
   rootMargin = "600px 0px"
 }) {
   const containerRef = useRef(null);
@@ -20,13 +22,22 @@ function DeferredSection({
     }
 
     const element = containerRef.current;
+    let timeoutId = null;
+
+    if (Number.isFinite(delayMs)) {
+      timeoutId = window.setTimeout(
+        () => setRevealed(true),
+        delayMs
+      );
+    }
 
     if (
       !element ||
+      !revealOnIntersect ||
       typeof IntersectionObserver ===
         "undefined"
     ) {
-      const timeoutId = window.setTimeout(
+      timeoutId ??= window.setTimeout(
         () => setRevealed(true),
         1200
       );
@@ -53,8 +64,16 @@ function DeferredSection({
 
     observer.observe(element);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+    };
   }, [
+    delayMs,
+    revealOnIntersect,
     revealed,
     rootMargin
   ]);
