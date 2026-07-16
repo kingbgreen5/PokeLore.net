@@ -24,6 +24,7 @@ ARTWORK_ROOT = (
 )
 FULL_DIR = ARTWORK_ROOT / "full"
 CARD_DIR = ARTWORK_ROOT / "card"
+DETAIL_DIR = ARTWORK_ROOT / "detail"
 SPECIAL_DIR = (
     REPO_ROOT
     / "public"
@@ -261,7 +262,7 @@ def validate_png(path):
         return False
 
 
-def validate_card_artwork(path, size):
+def validate_webp_artwork(path, size):
     try:
         with Image.open(path) as image:
             image.load()
@@ -314,7 +315,7 @@ def generate_card_artwork(
         and destination.exists()
         and destination.stat().st_mtime
         >= source.stat().st_mtime
-        and validate_card_artwork(
+        and validate_webp_artwork(
             destination,
             size,
         )
@@ -335,17 +336,69 @@ def generate_card_artwork(
             temp_path,
             "WEBP",
             quality=quality,
-            method=6,
+            method=4,
             exact=True,
         )
 
-    if not validate_card_artwork(
+    if not validate_webp_artwork(
         temp_path,
         size,
     ):
         temp_path.unlink(missing_ok=True)
         raise ValueError(
             f"Generated invalid WebP for {artwork_id}"
+        )
+
+    temp_path.replace(destination)
+    return True
+
+
+def generate_detail_artwork(
+    artwork_id,
+    size,
+    quality,
+    force=False,
+):
+    source = FULL_DIR / f"{artwork_id}.png"
+    destination = DETAIL_DIR / f"{artwork_id}.webp"
+
+    if (
+        not force
+        and destination.exists()
+        and destination.stat().st_mtime
+        >= source.stat().st_mtime
+        and validate_webp_artwork(
+            destination,
+            size,
+        )
+    ):
+        return False
+
+    temp_path = destination.with_suffix(
+        ".webp.tmp"
+    )
+
+    with Image.open(source) as image:
+        image = image.convert("RGBA")
+        image.thumbnail(
+            (size, size),
+            Image.Resampling.LANCZOS,
+        )
+        image.save(
+            temp_path,
+            "WEBP",
+            quality=quality,
+            method=4,
+            exact=True,
+        )
+
+    if not validate_webp_artwork(
+        temp_path,
+        size,
+    ):
+        temp_path.unlink(missing_ok=True)
+        raise ValueError(
+            f"Generated invalid detail WebP for {artwork_id}"
         )
 
     temp_path.replace(destination)
@@ -406,6 +459,7 @@ def write_manifest(
     artwork_ids,
     special_urls,
     card_size,
+    detail_size,
 ):
     entries = {
         str(artwork_id): {
@@ -417,11 +471,16 @@ def write_manifest(
                 f"/images/pokemon/official/card/"
                 f"{artwork_id}.webp"
             ),
+            "detail": (
+                f"/images/pokemon/official/detail/"
+                f"{artwork_id}.webp"
+            ),
         }
         for artwork_id in artwork_ids
     }
     manifest = {
         "cardSize": card_size,
+        "detailSize": detail_size,
         "count": len(entries),
         "artwork": entries,
         "special": {
@@ -455,13 +514,18 @@ def main():
     parser = argparse.ArgumentParser(
         description=(
             "Mirror official Pokémon artwork and generate "
-            "card-sized WebP assets."
+            "optimized WebP assets."
         )
     )
     parser.add_argument(
         "--card-size",
         type=int,
         default=384,
+    )
+    parser.add_argument(
+        "--detail-size",
+        type=int,
+        default=320,
     )
     parser.add_argument(
         "--quality",
@@ -481,6 +545,7 @@ def main():
 
     FULL_DIR.mkdir(parents=True, exist_ok=True)
     CARD_DIR.mkdir(parents=True, exist_ok=True)
+    DETAIL_DIR.mkdir(parents=True, exist_ok=True)
     SPECIAL_DIR.mkdir(
         parents=True,
         exist_ok=True,
@@ -540,11 +605,23 @@ def main():
         "Generating card artwork",
         args.workers,
     )
+    generated_detail = run_parallel(
+        artwork_ids,
+        lambda artwork_id: generate_detail_artwork(
+            artwork_id,
+            args.detail_size,
+            args.quality,
+            force=args.force,
+        ),
+        "Generating detail artwork",
+        args.workers,
+    )
 
     write_manifest(
         artwork_ids,
         special_urls,
         args.card_size,
+        args.detail_size,
     )
 
     full_bytes = sum(
@@ -555,10 +632,15 @@ def main():
         path.stat().st_size
         for path in CARD_DIR.glob("*.webp")
     )
+    detail_bytes = sum(
+        path.stat().st_size
+        for path in DETAIL_DIR.glob("*.webp")
+    )
 
     print(
         f"Downloaded {downloaded} files; generated "
-        f"{generated} card images."
+        f"{generated} card images and "
+        f"{generated_detail} detail images."
     )
     print(
         f"Downloaded {downloaded_special} special "
@@ -569,6 +651,9 @@ def main():
     )
     print(
         f"Card artwork: {card_bytes / 1024 / 1024:.2f} MiB"
+    )
+    print(
+        f"Detail artwork: {detail_bytes / 1024 / 1024:.2f} MiB"
     )
     print(f"Manifest: {MANIFEST_PATH}")
 

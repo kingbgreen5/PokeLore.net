@@ -22,7 +22,7 @@ function PokemonDetailArtwork({
     [pokemon]
   );
   const previewSource =
-    cardSources[0] ?? detailSources[0];
+    detailSources[0] ?? cardSources[0];
   const fullSource = detailSources[0];
   const [displayedSource, setDisplayedSource] =
     useState(previewSource);

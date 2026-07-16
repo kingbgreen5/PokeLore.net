@@ -57,8 +57,12 @@ export function getLocalPokemonArtwork(
   }
 
   const artworkId = match[1];
-  const extension =
-    variant === "card" ? "webp" : "png";
+  const extension = [
+    "card",
+    "detail"
+  ].includes(variant)
+    ? "webp"
+    : "png";
 
   return (
     `/images/pokemon/official/${variant}/` +
@@ -126,6 +130,10 @@ export function getPokemonDetailSources(
   pokemon
 ) {
   return uniqueSources([
+    getLocalPokemonArtwork(
+      pokemon,
+      "detail"
+    ),
     getLocalPokemonArtwork(
       pokemon,
       "full"

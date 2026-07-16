@@ -73,10 +73,10 @@ describe("pokemon sprite fallbacks", () => {
     expect(
       getPokemonDetailSources(
         pokemon
-      ).slice(0, 2)
+    ).slice(0, 2)
     ).toEqual([
+      "/images/pokemon/official/detail/25.webp",
       "/images/pokemon/official/full/25.png",
-      pokemon.sprite
     ]);
   });
 
