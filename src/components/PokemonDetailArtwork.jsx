@@ -84,6 +84,8 @@ function PokemonDetailArtwork({
       }
       src={displayedSource}
       style={{
+        color: "transparent",
+        fontSize: 0,
         height: "250px",
         objectFit: "contain",
         width: "250px"

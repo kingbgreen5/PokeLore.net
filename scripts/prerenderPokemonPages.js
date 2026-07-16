@@ -324,6 +324,8 @@ function buildCriticalCss() {
       }
 
       .prerender-hero-img {
+        color: transparent;
+        font-size: 0;
         height: 250px;
         object-fit: contain;
         width: 250px;
