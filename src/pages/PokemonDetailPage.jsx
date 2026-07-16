@@ -6,9 +6,10 @@ import {
 } from "react-router-dom";
 
 import {
+  useCallback,
   useEffect,
-  useState,
-  useRef
+  useRef,
+  useState
 } from "react";
 
 import LearnsetCard from "../components/LearnsetCard";
@@ -25,6 +26,7 @@ import WhereToFind from "../components/WhereToFind";
 import HeldItems from "../components/HeldItems";
 import SizeComparison from "../components/SizeComparison"
 import AdditionalImages from "../components/AdditionalImages";
+import DeferredSection from "../components/DeferredSection";
 import Seo from "../seo/Seo";
 import PokemonSpriteCarousel from "../components/PokemonSpriteCarousel.jsx"
 import { pokemonSeo } from "../seo/seoConfig";
@@ -153,6 +155,10 @@ const [oaksNotes, setOaksNotes] = useState(null);
 const [pokemonGoNotes, setPokemonGoNotes] = useState(null);
 const [learnsetLoading, setLearnsetLoading] = useState(false);
 const [evolutionLoading, setEvolutionLoading] = useState(false);
+const [
+  deferredDetailsReady,
+  setDeferredDetailsReady
+] = useState(false);
 //---------------------------------------------------------------------LOAD POKEMON USE EFFECT---------------------------------------------------------------------
 useEffect(() => {
   let isActive = true;
@@ -172,6 +178,7 @@ useEffect(() => {
       setPokemonGoNotes(null);
       setLearnsetLoading(false);
       setEvolutionLoading(false);
+      setDeferredDetailsReady(false);
 
       const normalizedIdentifier =
         normalizePokemonIdentifier(
@@ -306,69 +313,6 @@ useEffect(() => {
         );
 
       //-------------------------------------
-      // Learnsets + Moves
-      //-------------------------------------
-
-      setLearnsetLoading(true);
-
-      const learnsetResponsePromise =
-        fetch(
-          `/data/pokemonLearnsets/${pokemonId}.json`
-        );
-
-      void (async () => {
-      try {
-        const movesJson =
-          await loadMovesMap();
-
-        if (!isActive) {
-          return;
-        }
-
-        setMovesData(movesJson);
-
-        const learnsetResponse =
-          await learnsetResponsePromise;
-
-        if (!isActive) {
-          return;
-        }
-
-        if (!learnsetResponse.ok) {
-          throw new Error(
-            `Missing learnset for ${pokemonId}`
-          );
-        }
-
-        const learnsetJson =
-          await learnsetResponse.json();
-
-        if (!isActive) {
-          return;
-        }
-
-        setLearnsetData(
-          learnsetJson
-        );
-      } catch (error) {
-        if (!isActive) {
-          return;
-        }
-
-        console.warn(
-          "Failed to load learnset:",
-          error
-        );
-
-        setLearnsetData(null);
-      } finally {
-        if (isActive) {
-          setLearnsetLoading(false);
-        }
-      }
-      })();
-
-      //-------------------------------------
       //  Evolution Data
       //-------------------------------------
 
@@ -474,6 +418,82 @@ try {
   identifier,
   location.search
 ]);
+
+useEffect(() => {
+  if (!pokemon || !deferredDetailsReady) {
+    return undefined;
+  }
+
+  let isActive = true;
+
+  async function loadLearnset() {
+    try {
+      setLearnsetLoading(true);
+
+      const [
+        movesJson,
+        learnsetResponse
+      ] = await Promise.all([
+        loadMovesMap(),
+        fetch(
+          `/data/pokemonLearnsets/${pokemon.id}.json`
+        )
+      ]);
+
+      if (!isActive) {
+        return;
+      }
+
+      setMovesData(movesJson);
+
+      if (!learnsetResponse.ok) {
+        throw new Error(
+          `Missing learnset for ${pokemon.id}`
+        );
+      }
+
+      const learnsetJson =
+        await learnsetResponse.json();
+
+      if (!isActive) {
+        return;
+      }
+
+      setLearnsetData(learnsetJson);
+    } catch (error) {
+      if (!isActive) {
+        return;
+      }
+
+      console.warn(
+        "Failed to load learnset:",
+        error
+      );
+
+      setLearnsetData(null);
+    } finally {
+      if (isActive) {
+        setLearnsetLoading(false);
+      }
+    }
+  }
+
+  loadLearnset();
+
+  return () => {
+    isActive = false;
+  };
+}, [
+  deferredDetailsReady,
+  pokemon
+]);
+
+const revealDeferredDetails = useCallback(
+  () => {
+    setDeferredDetailsReady(true);
+  },
+  []
+);
 
 
 
@@ -840,52 +860,64 @@ function formatWeightEnglish(weight) {
 </div>
 
 
-{learnsetLoading ? (
-  <p>Loading learnsets...</p>
-) : learnsetData ? (
-  <LearnsetCard
-    key={`learnset-${pokemon.id}`}
-    pokemonData={learnsetData}
-    movesData={movesData}
-  />
-) : (
-  <p>No learnset data loaded.</p>
-)}
-
-
-
-
-
-<DexEntryCard
-  // entries={dexEntries}
-    entries={pokemon.dexEntries}
-/>
-
-<WhereToFind
-  key={`where-to-find-${pokemon.id}`}
-  pokemonId={pokemon.id}
-/>
-
-<HeldItems
-  key={`held-items-${pokemon.id}`}
-  pokemonId={pokemon.id}
-/>
-
-<OaksNotes note={oaksNotes} />
-
-<PokemonGoNotes note={pokemonGoNotes} />
-
-<AdditionalImages
-  pokemonId={pokemon.id}
-  pokemonName={formatPokemonDisplayName(
-    pokemon
-  )}
-/>
-
-<div 
+<DeferredSection
+  fallback={
+    <div
+      aria-hidden="true"
       style={{
-          marginBottom:"1rem"
-      }}>
+        minHeight: "1px"
+      }}
+    />
+  }
+  onReveal={revealDeferredDetails}
+  rootMargin="150px 0px"
+>
+  {learnsetLoading ? (
+    <p>Loading learnsets...</p>
+  ) : learnsetData ? (
+    <LearnsetCard
+      key={`learnset-${pokemon.id}`}
+      pokemonData={learnsetData}
+      movesData={movesData}
+    />
+  ) : (
+    <p>No learnset data loaded.</p>
+  )}
+
+
+
+
+
+  <DexEntryCard
+    // entries={dexEntries}
+      entries={pokemon.dexEntries}
+  />
+
+  <WhereToFind
+    key={`where-to-find-${pokemon.id}`}
+    pokemonId={pokemon.id}
+  />
+
+  <HeldItems
+    key={`held-items-${pokemon.id}`}
+    pokemonId={pokemon.id}
+  />
+
+  <OaksNotes note={oaksNotes} />
+
+  <PokemonGoNotes note={pokemonGoNotes} />
+
+  <AdditionalImages
+    pokemonId={pokemon.id}
+    pokemonName={formatPokemonDisplayName(
+      pokemon
+    )}
+  />
+
+  <div
+        style={{
+            marginBottom:"1rem"
+        }}>
 
 
 
@@ -955,26 +987,27 @@ function formatWeightEnglish(weight) {
       </p>
       
 
-      </div>
-<h2>Misc</h2>
-      <p>
-       Catch Rate: {pokemon.catchRate}
-      </p>
-      <p>
-       Base Experience: {pokemon.baseExperience} Exp
-      </p>
-            <p>
-       Hatch Counter: {pokemon.hatchCounter}
-      </p>
+        </div>
+  <h2>Misc</h2>
+        <p>
+         Catch Rate: {pokemon.catchRate}
+        </p>
+        <p>
+         Base Experience: {pokemon.baseExperience} Exp
+        </p>
+              <p>
+         Hatch Counter: {pokemon.hatchCounter}
+        </p>
 
-<SizeComparison
-  pokemon={pokemon}
-  reviewMode={sizeReviewMode}
-/>
+  <SizeComparison
+    pokemon={pokemon}
+    reviewMode={sizeReviewMode}
+  />
 
-<PokemonSpriteCarousel
-  pokemon={pokemon}
-/>
+  <PokemonSpriteCarousel
+    pokemon={pokemon}
+  />
+</DeferredSection>
 
 
     </div>

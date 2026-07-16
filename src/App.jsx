@@ -1,5 +1,9 @@
 
-import { useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useState
+} from "react";
 
 import {
   useLocation,
@@ -10,36 +14,100 @@ import {
 import Banner from "./components/Banner";
 import Navbar from "./components/Navbar";
 
-import DexEntriesPage from "./pages/DexEntriesPage";
-import LearnsetsPage from "./pages/LearnsetsPage";
-import HomePage from "./pages/HomePage";
-import MovesPage from "./pages/MovesPage";
-import MoveDetailPage from "./pages/MoveDetailPage";
-import PokemonDetailPage from "./pages/PokemonDetailPage";
-import AbilitiesPage from "./pages/AbilitiesPage";
-import AbilityDetailPage from "./pages/AbilityDetailPage";
-import TypeDetailPage from "./pages/TypeDetailPage";
-import TypesPage from "./pages/TypesPage";
-import ItemsPage from "./pages/ItemsPage";
-import ItemDetailPage from "./pages/ItemDetailPage";
-import LocationsPage from "./pages/LocationsPage";
-import LocationDetailPage from "./pages/LocationDetailPage";
-import TopicsPage from "./pages/TopicsPage";
-import TopicDetailPage from "./pages/TopicDetailPage";
-import TeamCoveragePage from "./pages/TeamCoveragePage";
-import SingleTypeCoveragePage from "./pages/SingleTypeCoveragePage";
-import {
-  OgItemPreview,
-  OgMovePreview,
-  OgPokemonPreview,
-  OgPreviewHome,
-  OgTopicPreview
-} from "./og/OgPreviewPage";
-
-
-
 import ScrollToTop from "./components/ScrollToTop";
 import "./App.css";
+
+const DexEntriesPage = lazy(() =>
+  import("./pages/DexEntriesPage")
+);
+const LearnsetsPage = lazy(() =>
+  import("./pages/LearnsetsPage")
+);
+const HomePage = lazy(() =>
+  import("./pages/HomePage")
+);
+const MovesPage = lazy(() =>
+  import("./pages/MovesPage")
+);
+const MoveDetailPage = lazy(() =>
+  import("./pages/MoveDetailPage")
+);
+const PokemonDetailPage = lazy(() =>
+  import("./pages/PokemonDetailPage")
+);
+const AbilitiesPage = lazy(() =>
+  import("./pages/AbilitiesPage")
+);
+const AbilityDetailPage = lazy(() =>
+  import("./pages/AbilityDetailPage")
+);
+const TypeDetailPage = lazy(() =>
+  import("./pages/TypeDetailPage")
+);
+const TypesPage = lazy(() =>
+  import("./pages/TypesPage")
+);
+const ItemsPage = lazy(() =>
+  import("./pages/ItemsPage")
+);
+const ItemDetailPage = lazy(() =>
+  import("./pages/ItemDetailPage")
+);
+const LocationsPage = lazy(() =>
+  import("./pages/LocationsPage")
+);
+const LocationDetailPage = lazy(() =>
+  import("./pages/LocationDetailPage")
+);
+const TopicsPage = lazy(() =>
+  import("./pages/TopicsPage")
+);
+const TopicDetailPage = lazy(() =>
+  import("./pages/TopicDetailPage")
+);
+const TeamCoveragePage = lazy(() =>
+  import("./pages/TeamCoveragePage")
+);
+const SingleTypeCoveragePage = lazy(() =>
+  import("./pages/SingleTypeCoveragePage")
+);
+const OgPreviewHome = lazy(() =>
+  import("./og/OgPreviewPage").then(module => ({
+    default: module.OgPreviewHome
+  }))
+);
+const OgPokemonPreview = lazy(() =>
+  import("./og/OgPreviewPage").then(module => ({
+    default: module.OgPokemonPreview
+  }))
+);
+const OgMovePreview = lazy(() =>
+  import("./og/OgPreviewPage").then(module => ({
+    default: module.OgMovePreview
+  }))
+);
+const OgTopicPreview = lazy(() =>
+  import("./og/OgPreviewPage").then(module => ({
+    default: module.OgTopicPreview
+  }))
+);
+const OgItemPreview = lazy(() =>
+  import("./og/OgPreviewPage").then(module => ({
+    default: module.OgItemPreview
+  }))
+);
+
+function RouteLoadingFallback() {
+  return (
+    <main
+      aria-label="Loading page"
+      style={{
+        minHeight: "55vh",
+        padding: "2rem 1rem"
+      }}
+    />
+  );
+}
 
 function App() {
   const location = useLocation();
@@ -68,6 +136,7 @@ function App() {
     <ScrollToTop />
   )}
 
+      <Suspense fallback={<RouteLoadingFallback />}>
       <Routes>
 
 
@@ -205,16 +274,19 @@ function App() {
         />
 
       </Routes>
+      </Suspense>
 
       {selectedMove ? (
-        <MoveDetailPage
-          moveName={
-            selectedMove
-          }
-          setSelectedMove={
-            setSelectedMove
-          }
-        />
+        <Suspense fallback={null}>
+          <MoveDetailPage
+            moveName={
+              selectedMove
+            }
+            setSelectedMove={
+              setSelectedMove
+            }
+          />
+        </Suspense>
       ) : (
         <div></div>
       )}
