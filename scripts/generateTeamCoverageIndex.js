@@ -253,6 +253,21 @@ function buildMoveMap(movesIndex) {
   );
 }
 
+function getBaseStatTotal(stats = {}) {
+  return [
+    "hp",
+    "attack",
+    "defense",
+    "specialAttack",
+    "specialDefense",
+    "speed"
+  ].reduce(
+    (total, statName) =>
+      total + (Number(stats[statName]) || 0),
+    0
+  );
+}
+
 async function main() {
   const movesIndex = await readJson(
     path.join(dataDir, "movesIndex.json")
@@ -424,6 +439,10 @@ async function main() {
         spriteFallback:
           pokemon.spriteFallback,
         types: pokemon.types ?? [],
+        stats: pokemon.stats ?? {},
+        baseStatTotal: getBaseStatTotal(
+          pokemon.stats
+        ),
         attackTypes,
         coveredTypes
       });

@@ -33,6 +33,43 @@ const SORT_STORAGE_KEY =
 const FOCUS_TYPE_STORAGE_KEY =
   "pokelore:team-coverage-focus-type";
 const RECOMMENDATIONS_PER_PAGE = 25;
+const STAT_SORT_MODES = [
+  {
+    value: "highest-bst",
+    label: "Highest BST",
+    stat: "baseStatTotal"
+  },
+  {
+    value: "highest-hp",
+    label: "Highest HP",
+    stat: "hp"
+  },
+  {
+    value: "highest-attack",
+    label: "Highest Attack",
+    stat: "attack"
+  },
+  {
+    value: "highest-defense",
+    label: "Highest Defense",
+    stat: "defense"
+  },
+  {
+    value: "highest-special-attack",
+    label: "Highest Sp. Atk",
+    stat: "specialAttack"
+  },
+  {
+    value: "highest-special-defense",
+    label: "Highest Sp. Def",
+    stat: "specialDefense"
+  },
+  {
+    value: "highest-speed",
+    label: "Highest Speed",
+    stat: "speed"
+  }
+];
 const SORT_MODES = [
   {
     value: "national-dex",
@@ -45,7 +82,13 @@ const SORT_MODES = [
   {
     value: "selected-type-first",
     label: "Selected Type First"
-  }
+  },
+  ...STAT_SORT_MODES.map(
+    ({ value, label }) => ({
+      value,
+      label
+    })
+  )
 ];
 
 function createEmptyParty() {
@@ -156,6 +199,47 @@ function compareBySelectedTypeFirst(
       Number(bHitsFocus) -
         Number(aHitsFocus) ||
       compareByMostCoverage(a, b)
+    );
+  };
+}
+
+function getStatSortMode(value) {
+  return STAT_SORT_MODES.find(
+    option => option.value === value
+  );
+}
+
+function getPokemonStatValue(pokemon, stat) {
+  if (stat === "baseStatTotal") {
+    return (
+      Number(pokemon?.baseStatTotal) || 0
+    );
+  }
+
+  return (
+    Number(pokemon?.stats?.[stat]) || 0
+  );
+}
+
+function compareByStat(sortMode) {
+  const statMode =
+    getStatSortMode(sortMode);
+
+  return (a, b) => {
+    if (!statMode) {
+      return compareByNationalDex(a, b);
+    }
+
+    return (
+      getPokemonStatValue(
+        b,
+        statMode.stat
+      ) -
+        getPokemonStatValue(
+          a,
+          statMode.stat
+        ) ||
+      compareByNationalDex(a, b)
     );
   };
 }
@@ -1145,6 +1229,16 @@ function TeamCoveragePage() {
           ) {
             return compareBySelectedTypeFirst(
               selectedFocusType
+            )(a, b);
+          }
+
+          if (
+            getStatSortMode(
+              selectedSortMode
+            )
+          ) {
+            return compareByStat(
+              selectedSortMode
             )(a, b);
           }
 

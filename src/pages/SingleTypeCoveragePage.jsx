@@ -6,6 +6,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import TypeBadge from "../components/TypeBadge";
+import typeChart from "../constants/Types";
 import { VERSION_GROUP_ORDER } from "../constants/versionOrder";
 import useLocalStorageState from "../hooks/useLocalStorageState";
 import Seo from "../seo/Seo";
@@ -22,7 +23,66 @@ const VERSION_STORAGE_KEY =
   "pokelore:learnset-version";
 const TYPE_STORAGE_KEY =
   "pokelore:single-type-coverage-type";
+const SORT_STORAGE_KEY =
+  "pokelore:single-type-coverage-sort";
 const RECOMMENDATIONS_PER_PAGE = 25;
+const STAT_SORT_MODES = [
+  {
+    value: "highest-bst",
+    label: "Highest BST",
+    stat: "baseStatTotal"
+  },
+  {
+    value: "highest-hp",
+    label: "Highest HP",
+    stat: "hp"
+  },
+  {
+    value: "highest-attack",
+    label: "Highest Attack",
+    stat: "attack"
+  },
+  {
+    value: "highest-defense",
+    label: "Highest Defense",
+    stat: "defense"
+  },
+  {
+    value: "highest-special-attack",
+    label: "Highest Sp. Atk",
+    stat: "specialAttack"
+  },
+  {
+    value: "highest-special-defense",
+    label: "Highest Sp. Def",
+    stat: "specialDefense"
+  },
+  {
+    value: "highest-speed",
+    label: "Highest Speed",
+    stat: "speed"
+  }
+];
+const SORT_MODES = [
+  {
+    value: "national-dex",
+    label: "National Dex"
+  },
+  {
+    value: "most-coverage",
+    label: "Most Coverage"
+  },
+  {
+    value: "selected-type-first",
+    label: "Selected Type First"
+  },
+  ...STAT_SORT_MODES.map(
+    ({ value, label }) => ({
+      value,
+      label
+    })
+  )
+];
 
 function normalizeTypeParam(value) {
   return String(value ?? "")
@@ -40,6 +100,88 @@ function getValidType(value, types) {
   return types.includes(value)
     ? value
     : null;
+}
+
+function getValidSortMode(value) {
+  return SORT_MODES.some(
+    option => option.value === value
+  )
+    ? value
+    : SORT_MODES[0].value;
+}
+
+function compareByNationalDex(a, b) {
+  return a.id - b.id;
+}
+
+function compareByMostCoverage(a, b) {
+  return (
+    b.coveredTypes.length -
+      a.coveredTypes.length ||
+    b.attackTypes.length -
+      a.attackTypes.length ||
+    compareByNationalDex(a, b)
+  );
+}
+
+function compareBySelectedTypeFirst(a, b) {
+  const aHasStab =
+    a.selectedTypeAttackTypes.some(type =>
+      a.types.includes(type)
+    );
+  const bHasStab =
+    b.selectedTypeAttackTypes.some(type =>
+      b.types.includes(type)
+    );
+
+  return (
+    Number(bHasStab) -
+      Number(aHasStab) ||
+    b.selectedTypeAttackTypes.length -
+      a.selectedTypeAttackTypes.length ||
+    compareByMostCoverage(a, b)
+  );
+}
+
+function getStatSortMode(value) {
+  return STAT_SORT_MODES.find(
+    option => option.value === value
+  );
+}
+
+function getPokemonStatValue(pokemon, stat) {
+  if (stat === "baseStatTotal") {
+    return (
+      Number(pokemon?.baseStatTotal) || 0
+    );
+  }
+
+  return (
+    Number(pokemon?.stats?.[stat]) || 0
+  );
+}
+
+function compareByStat(sortMode) {
+  const statMode =
+    getStatSortMode(sortMode);
+
+  return (a, b) => {
+    if (!statMode) {
+      return compareByNationalDex(a, b);
+    }
+
+    return (
+      getPokemonStatValue(
+        b,
+        statMode.stat
+      ) -
+        getPokemonStatValue(
+          a,
+          statMode.stat
+        ) ||
+      compareByNationalDex(a, b)
+    );
+  };
 }
 
 async function readJsonUrl(url) {
@@ -210,6 +352,22 @@ function SingleTypeCoveragePage() {
     recommendationPage,
     setRecommendationPage
   ] = useState(1);
+  const [
+    preferredSortMode,
+    setPreferredSortMode
+  ] = useLocalStorageState(
+    SORT_STORAGE_KEY,
+    SORT_MODES[0].value
+  );
+  const selectedSortMode =
+    getValidSortMode(preferredSortMode);
+  const [
+    statFilters,
+    setStatFilters
+  ] = useLocalStorageState(
+    STAT_FILTER_STORAGE_KEY,
+    normalizeStatFilters({})
+  );
 
   useEffect(() => {
     if (
@@ -323,14 +481,55 @@ function SingleTypeCoveragePage() {
             selectedType
           )
         )
-        .map(pokemon => ({
-          ...pokemon,
-          coverageHits: [selectedType]
-        }))
-        .sort((a, b) => a.id - b.id);
+        .map(pokemon => {
+          const selectedTypeAttackTypes =
+            pokemon.attackTypes.filter(
+              attackType =>
+                typeChart?.[attackType]?.[
+                  selectedType
+                ] === 2
+            );
+
+          return {
+            ...pokemon,
+            coverageHits: [selectedType],
+            selectedTypeAttackTypes
+          };
+        })
+        .filter(pokemon =>
+          pokemonPassesStatFilters(
+            pokemon,
+            statFilters
+          )
+        )
+        .sort((a, b) => {
+          if (
+            selectedSortMode ===
+            "most-coverage"
+          ) {
+            return compareByMostCoverage(
+              a,
+              b
+            );
+          }
+
+          if (
+            selectedSortMode ===
+            "selected-type-first"
+          ) {
+            return compareBySelectedTypeFirst(
+              a,
+              b
+            );
+          }
+
+          return compareByNationalDex(a, b);
+        });
     }, [
       selectedType,
+      selectedSortMode,
       selectedVersionCoverageLoaded,
+      statFilters,
       teamCoverageData
     ]);
   const recommendationPageCount =
@@ -367,6 +566,13 @@ function SingleTypeCoveragePage() {
     nextParams.set("type", type);
     nextParams.delete("game");
     setSearchParams(nextParams);
+  }
+
+  function handleStatFiltersChange(nextFilters) {
+    setRecommendationPage(1);
+    setStatFilters(
+      normalizeStatFilters(nextFilters)
+    );
   }
 
   return (
@@ -530,6 +736,60 @@ function SingleTypeCoveragePage() {
           </strong>{" "}
           for super-effective damage.
         </p>
+
+        <div
+          style={{
+            alignItems: "center",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: ".75rem",
+            justifyContent: "center",
+            margin: "0 0 1rem"
+          }}
+        >
+          <label
+            htmlFor="single-type-coverage-sort"
+            style={{
+              color: "#f3f4f6",
+              fontWeight: "bold"
+            }}
+          >
+            Sort
+          </label>
+          <select
+            id="single-type-coverage-sort"
+            value={selectedSortMode}
+            onChange={event => {
+              setRecommendationPage(1);
+              setPreferredSortMode(
+                event.target.value
+              );
+            }}
+            style={{
+              backgroundColor: "#2c2c2c",
+              border: "2px solid #555",
+              borderRadius: "8px",
+              color: "white",
+              fontSize: ".95rem",
+              maxWidth: "100%",
+              padding: ".55rem .75rem"
+            }}
+          >
+            {SORT_MODES.map(option => (
+              <option
+                key={option.value}
+                value={option.value}
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <StatFilterControls
+          filters={statFilters}
+          onChange={handleStatFiltersChange}
+        />
 
         {!selectedVersionCoverageLoaded ? (
           <p>Loading recommendations...</p>
