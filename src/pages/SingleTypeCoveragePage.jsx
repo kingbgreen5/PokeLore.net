@@ -361,13 +361,6 @@ function SingleTypeCoveragePage() {
   );
   const selectedSortMode =
     getValidSortMode(preferredSortMode);
-  const [
-    statFilters,
-    setStatFilters
-  ] = useLocalStorageState(
-    STAT_FILTER_STORAGE_KEY,
-    normalizeStatFilters({})
-  );
 
   useEffect(() => {
     if (
@@ -496,12 +489,6 @@ function SingleTypeCoveragePage() {
             selectedTypeAttackTypes
           };
         })
-        .filter(pokemon =>
-          pokemonPassesStatFilters(
-            pokemon,
-            statFilters
-          )
-        )
         .sort((a, b) => {
           if (
             selectedSortMode ===
@@ -523,13 +510,22 @@ function SingleTypeCoveragePage() {
             );
           }
 
+          if (
+            getStatSortMode(
+              selectedSortMode
+            )
+          ) {
+            return compareByStat(
+              selectedSortMode
+            )(a, b);
+          }
+
           return compareByNationalDex(a, b);
         });
     }, [
       selectedType,
       selectedSortMode,
       selectedVersionCoverageLoaded,
-      statFilters,
       teamCoverageData
     ]);
   const recommendationPageCount =
@@ -566,13 +562,6 @@ function SingleTypeCoveragePage() {
     nextParams.set("type", type);
     nextParams.delete("game");
     setSearchParams(nextParams);
-  }
-
-  function handleStatFiltersChange(nextFilters) {
-    setRecommendationPage(1);
-    setStatFilters(
-      normalizeStatFilters(nextFilters)
-    );
   }
 
   return (
@@ -785,11 +774,6 @@ function SingleTypeCoveragePage() {
             ))}
           </select>
         </div>
-
-        <StatFilterControls
-          filters={statFilters}
-          onChange={handleStatFiltersChange}
-        />
 
         {!selectedVersionCoverageLoaded ? (
           <p>Loading recommendations...</p>
