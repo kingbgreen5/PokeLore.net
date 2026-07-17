@@ -53,6 +53,7 @@ function groupVersionsByRarity(
 }
 
 function HeldItems({
+  enabled = true,
   pokemonId
 }) {
   const [expanded, setExpanded] =
@@ -62,12 +63,21 @@ function HeldItems({
     );
   const [heldItemData, setHeldItemData] =
     useState(null);
+  const [loaded, setLoaded] =
+    useState(false);
 
   useEffect(() => {
+    setHeldItemData(null);
+    setLoaded(false);
+
+    if (!enabled) {
+      return undefined;
+    }
+
+    let isActive = true;
+
     async function loadHeldItems() {
       try {
-        setHeldItemData(null);
-
         const response = await fetch(
           `/data/pokemonHeldItems/${pokemonId}.json`
         );
@@ -80,18 +90,31 @@ function HeldItems({
           await response.json();
 
         if (data.heldItems?.length) {
-          setHeldItemData(data);
+          if (isActive) {
+            setHeldItemData(data);
+          }
         }
       } catch (error) {
         console.warn(
           "Failed to load held item data:",
           error
         );
+      } finally {
+        if (isActive) {
+          setLoaded(true);
+        }
       }
     }
 
     loadHeldItems();
-  }, [pokemonId]);
+
+    return () => {
+      isActive = false;
+    };
+  }, [
+    enabled,
+    pokemonId
+  ]);
 
   const heldItems = useMemo(
     () =>
@@ -99,16 +122,24 @@ function HeldItems({
     [heldItemData]
   );
 
-  if (!heldItems.length) {
+  if (loaded && heldItems.length === 0) {
     return null;
   }
 
   return (
     <CollapsibleSection
       title="Held Items"
-      summary={`${heldItems.length} item${
-        heldItems.length === 1 ? "" : "s"
-      }`}
+      summary={
+        !loaded
+          ? "Loading held items"
+          : heldItems.length
+            ? `${heldItems.length} item${
+                heldItems.length === 1
+                  ? ""
+                  : "s"
+              }`
+            : "No known held items"
+      }
       expanded={expanded}
       onToggle={() =>
         setExpanded(!expanded)
@@ -123,6 +154,12 @@ function HeldItems({
         textAlign: "left"
       }}
     >
+      {!heldItems.length && (
+        <p>
+          No held item data is available yet.
+        </p>
+      )}
+
       {heldItems.map(heldItem => (
         <article
           key={heldItem.item.name}

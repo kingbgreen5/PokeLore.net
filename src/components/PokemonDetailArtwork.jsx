@@ -1,6 +1,7 @@
 import {
   useEffect,
   useMemo,
+  useRef,
   useState
 } from "react";
 import {
@@ -11,8 +12,11 @@ import {
 
 function PokemonDetailArtwork({
   alt,
+  onPriorityLoad,
   pokemon
 }) {
+  const priorityLoadNotified =
+    useRef(false);
   const cardSources = useMemo(
     () => getPokemonCardSources(pokemon),
     [pokemon]
@@ -26,6 +30,23 @@ function PokemonDetailArtwork({
   const fullSource = detailSources[0];
   const [displayedSource, setDisplayedSource] =
     useState(previewSource);
+
+  useEffect(() => {
+    priorityLoadNotified.current = false;
+  }, [
+    pokemon?.id,
+    pokemon?.name,
+    pokemon?.sprite
+  ]);
+
+  function notifyPriorityLoad() {
+    if (priorityLoadNotified.current) {
+      return;
+    }
+
+    priorityLoadNotified.current = true;
+    onPriorityLoad?.();
+  }
 
   useEffect(() => {
     if (
@@ -71,26 +92,39 @@ function PokemonDetailArtwork({
   );
 
   return (
-    <img
-      alt={alt}
-      decoding="async"
-      fetchPriority="high"
-      loading="eager"
-      onError={event =>
-        advanceSpriteFallback(
-          event,
-          fallbacks
-        )
-      }
-      src={displayedSource}
+    <span
+      aria-label={alt}
+      role="img"
       style={{
-        color: "transparent",
-        fontSize: 0,
+        display: "inline-block",
         height: "250px",
-        objectFit: "contain",
         width: "250px"
       }}
-    />
+    >
+      <img
+        alt=""
+        aria-hidden="true"
+        decoding="async"
+        fetchPriority="high"
+        height="250"
+        loading="eager"
+        onLoad={notifyPriorityLoad}
+        onError={event =>
+          advanceSpriteFallback(
+            event,
+            fallbacks
+          )
+        }
+        src={displayedSource}
+        width="250"
+        style={{
+          display: "block",
+          height: "250px",
+          objectFit: "contain",
+          width: "250px"
+        }}
+      />
+    </span>
   );
 }
 

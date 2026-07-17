@@ -23,6 +23,28 @@ import {
 } from "../constants/versionOrder";
 
 const ENCOUNTER_LIMIT = 80;
+const ITEM_LOCATIONS_SECTION_ID =
+  "item-locations";
+const POKEMON_ENCOUNTERS_SECTION_ID =
+  "pokemon-encounters";
+
+function JumpLink({
+  children,
+  targetId,
+  style
+}) {
+  return (
+    <p
+      style={{
+        margin: ".25rem 0 1rem",
+        ...style
+      }}
+    >
+      Jump to:{" "}
+      <a href={`#${targetId}`}>{children}</a>
+    </p>
+  );
+}
 
 function capitalize(text) {
   return String(text)
@@ -454,7 +476,8 @@ function EncounterDetails({
 function LocationItemsSection({
   expanded,
   locationItems,
-  onToggle
+  onToggle,
+  sectionId
 }) {
   const [
     selectedItemVersion,
@@ -516,6 +539,7 @@ function LocationItemsSection({
 
   return (
     <CollapsibleSection
+      id={sectionId}
       title={`Items Found in ${locationDisplayName}`}
       summary={`${locationItems.items.length} items`}
       expanded={expanded}
@@ -523,6 +547,7 @@ function LocationItemsSection({
       style={{
         boxSizing: "border-box",
         marginBottom: "2rem",
+        scrollMarginTop: "1rem",
         width: "100%"
       }}
       contentStyle={{
@@ -659,13 +684,13 @@ function LocationDetailPage() {
   const [loading, setLoading] =
     useState(true);
   const [
-    encountersExpanded,
-    setEncountersExpanded
-  ] = useState(false);
-  const [
-    itemsExpanded,
-    setItemsExpanded
-  ] = useState(false);
+    expandedSections,
+    setExpandedSections
+  ] = useState(() => ({
+    encounters: true,
+    items: true,
+    locationName
+  }));
   const [selectedVersion, setSelectedVersion] =
     useQueryParamState(
       "version",
@@ -758,6 +783,59 @@ function LocationDetailPage() {
         ).length,
       0
     ) ?? 0;
+  const hasLocationItems =
+    (locationItems?.items?.length ?? 0) > 0;
+  const currentExpandedSections =
+    expandedSections.locationName ===
+    locationName
+      ? expandedSections
+      : {
+          encounters: true,
+          items: true,
+          locationName
+        };
+  const itemsExpanded =
+    currentExpandedSections.items;
+  const encountersExpanded =
+    currentExpandedSections.encounters;
+
+  function toggleItemsExpanded() {
+    setExpandedSections(current => {
+      const isCurrentLocation =
+        current.locationName === locationName;
+
+      return {
+        encounters: isCurrentLocation
+          ? current.encounters
+          : true,
+        items: !(
+          isCurrentLocation
+            ? current.items
+            : true
+        ),
+        locationName
+      };
+    });
+  }
+
+  function toggleEncountersExpanded() {
+    setExpandedSections(current => {
+      const isCurrentLocation =
+        current.locationName === locationName;
+
+      return {
+        encounters: !(
+          isCurrentLocation
+            ? current.encounters
+            : true
+        ),
+        items: isCurrentLocation
+          ? current.items
+          : true,
+        locationName
+      };
+    });
+  }
 
   if (loading) {
     return (
@@ -806,31 +884,43 @@ function LocationDetailPage() {
         {location.areas.length} areas
       </p>
 
+      <JumpLink
+        targetId={POKEMON_ENCOUNTERS_SECTION_ID}
+      >
+        Pokemon Encounters
+      </JumpLink>
+
       <LocationItemsSection
         expanded={itemsExpanded}
         locationItems={locationItems}
-        onToggle={() =>
-          setItemsExpanded(
-            expanded => !expanded
-          )
-        }
+        onToggle={toggleItemsExpanded}
+        sectionId={ITEM_LOCATIONS_SECTION_ID}
       />
 
       <OaksNotes note={oaksNotes} />
 
       <PokemonGoNotes note={pokemonGoNotes} />
 
+      {hasLocationItems && (
+        <JumpLink
+          targetId={ITEM_LOCATIONS_SECTION_ID}
+          style={{
+            marginTop: 0
+          }}
+        >
+          Item Locations
+        </JumpLink>
+      )}
+
       <CollapsibleSection
+        id={POKEMON_ENCOUNTERS_SECTION_ID}
         title="Pokémon Encounters"
         summary={`${encounterCount} encounters`}
         expanded={encountersExpanded}
-        onToggle={() =>
-          setEncountersExpanded(
-            expanded => !expanded
-          )
-        }
+        onToggle={toggleEncountersExpanded}
         style={{
           boxSizing: "border-box",
+          scrollMarginTop: "1rem",
           width: "100%"
         }}
         contentStyle={{

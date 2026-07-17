@@ -150,6 +150,9 @@ function LearnsetPlaceholder({
       }
       expanded={false}
       onToggle={onReveal}
+      contentStyle={{
+        marginTop: "1rem"
+      }}
       seoVisible={false}
     />
   );
@@ -177,6 +180,10 @@ const [
   deferredDetailsReady,
   setDeferredDetailsReady
 ] = useState(false);
+const [
+  priorityArtworkReady,
+  setPriorityArtworkReady
+] = useState(false);
 //---------------------------------------------------------------------LOAD POKEMON USE EFFECT---------------------------------------------------------------------
 useEffect(() => {
   let isActive = true;
@@ -197,6 +204,7 @@ useEffect(() => {
       setLearnsetLoading(false);
       setEvolutionLoading(false);
       setDeferredDetailsReady(false);
+      setPriorityArtworkReady(false);
 
       const normalizedIdentifier =
         normalizePokemonIdentifier(
@@ -442,11 +450,29 @@ useEffect(() => {
     return undefined;
   }
 
+  if (!priorityArtworkReady) {
+    return undefined;
+  }
+
+  if ("requestIdleCallback" in window) {
+    const idleId =
+      window.requestIdleCallback(
+        () => {
+          setDeferredDetailsReady(true);
+        },
+        { timeout: 200 }
+      );
+
+    return () => {
+      window.cancelIdleCallback(idleId);
+    };
+  }
+
   const timeoutId = window.setTimeout(
     () => {
       setDeferredDetailsReady(true);
     },
-    300
+    0
   );
 
   return () => {
@@ -454,7 +480,28 @@ useEffect(() => {
   };
 }, [
   deferredDetailsReady,
-  pokemon
+  pokemon,
+  priorityArtworkReady
+]);
+
+useEffect(() => {
+  if (!pokemon || priorityArtworkReady) {
+    return undefined;
+  }
+
+  const timeoutId = window.setTimeout(
+    () => {
+      setPriorityArtworkReady(true);
+    },
+    1200
+  );
+
+  return () => {
+    window.clearTimeout(timeoutId);
+  };
+}, [
+  pokemon,
+  priorityArtworkReady
 ]);
 
 useEffect(() => {
@@ -666,6 +713,9 @@ function formatWeightEnglish(weight) {
         alt={formatPokemonDisplayName(
           pokemon
         )}
+        onPriorityLoad={() =>
+          setPriorityArtworkReady(true)
+        }
         pokemon={pokemon}
       />
 
@@ -919,11 +969,13 @@ function formatWeightEnglish(weight) {
   />
 
   <WhereToFind
+    enabled={deferredDetailsReady}
     key={`where-to-find-${pokemon.id}`}
     pokemonId={pokemon.id}
   />
 
   <HeldItems
+    enabled={deferredDetailsReady}
     key={`held-items-${pokemon.id}`}
     pokemonId={pokemon.id}
   />

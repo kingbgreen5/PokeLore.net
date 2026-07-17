@@ -1,6 +1,7 @@
 import { useId } from "react";
 
 function CollapsibleSection({
+  id,
   title,
   summary,
   expanded,
@@ -18,12 +19,17 @@ function CollapsibleSection({
 
   return (
     <section
+      id={id}
       className={className}
       style={{
         border: "2px solid #706363",
         borderRadius: "12px",
+        boxSizing: "border-box",
         marginBottom: "1rem",
+        maxWidth: "100%",
+        minWidth: 0,
         padding: ".35rem",
+        width: "100%",
         ...style
       }}
     >
@@ -42,6 +48,8 @@ function CollapsibleSection({
           font: "inherit",
           justifyContent:
             "space-between",
+          maxWidth: "100%",
+          minWidth: 0,
           padding: 0,
           textAlign: "left",
           width: "100%"
@@ -71,7 +79,13 @@ function CollapsibleSection({
             ? undefined
             : !expanded
         }
-        style={contentStyle}
+        style={{
+          boxSizing: "border-box",
+          maxWidth: "100%",
+          minWidth: 0,
+          width: "100%",
+          ...contentStyle
+        }}
       >
         {children}
       </div>

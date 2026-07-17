@@ -38,6 +38,7 @@ function formatLevelRange(encounter) {
 }
 
 function WhereToFind({
+  enabled = true,
   pokemonId
 }) {
   const [expanded, setExpanded] =
@@ -48,6 +49,8 @@ function WhereToFind({
 
   const [encounterData, setEncounterData] =
     useState(null);
+  const [loaded, setLoaded] =
+    useState(false);
 
   const [
     preferredVersion,
@@ -58,10 +61,17 @@ function WhereToFind({
   );
 
   useEffect(() => {
+    setEncounterData(null);
+    setLoaded(false);
+
+    if (!enabled) {
+      return undefined;
+    }
+
+    let isActive = true;
+
     async function loadEncounters() {
       try {
-        setEncounterData(null);
-
         const response = await fetch(
           `/data/pokemonEncounters/${pokemonId}.json`
         );
@@ -73,18 +83,31 @@ function WhereToFind({
         const data = await response.json();
 
         if (data.locations?.length) {
-          setEncounterData(data);
+          if (isActive) {
+            setEncounterData(data);
+          }
         }
       } catch (error) {
         console.warn(
           "Failed to load encounter data:",
           error
         );
+      } finally {
+        if (isActive) {
+          setLoaded(true);
+        }
       }
     }
 
     loadEncounters();
-  }, [pokemonId]);
+
+    return () => {
+      isActive = false;
+    };
+  }, [
+    enabled,
+    pokemonId
+  ]);
 
   const versionOptions = useMemo(
     () => [
@@ -143,18 +166,23 @@ function WhereToFind({
     ]
   );
 
-  if (!encounterData?.locations?.length) {
-    return null;
-  }
+  const hasEncounterData =
+    encounterData?.locations?.length > 0;
 
   return (
     <CollapsibleSection
       title="Where To Find"
-      summary={`${visibleLocations.length}${
-        selectedVersion === "all"
-          ? ""
-          : ` / ${encounterData.locations.length}`
-      } locations`}
+      summary={
+        !loaded
+          ? "Loading locations"
+          : hasEncounterData
+            ? `${visibleLocations.length}${
+                selectedVersion === "all"
+                  ? ""
+                  : ` / ${encounterData.locations.length}`
+              } locations`
+            : "No known locations"
+      }
       expanded={expanded}
       onToggle={() =>
         setExpanded(!expanded)
@@ -168,6 +196,15 @@ function WhereToFind({
         marginTop: "1rem"
       }}
     >
+          {!hasEncounterData && (
+            <p>
+              {loaded
+                ? "No encounter location data is available yet."
+                : "Loading encounter location data..."}
+            </p>
+          )}
+
+          {hasEncounterData && (
           <div
             style={{
               marginBottom: ".25rem",
@@ -200,15 +237,17 @@ function WhereToFind({
               ))}
             </select>
           </div>
+          )}
 
-          {visibleLocations.length === 0 && (
+          {hasEncounterData &&
+            visibleLocations.length === 0 && (
             <p>
               No encounter locations for this
               version.
             </p>
           )}
 
-          {visibleLocations.map(location => (
+          {hasEncounterData && visibleLocations.map(location => (
             <details
               key={location.location.name}
               style={{
