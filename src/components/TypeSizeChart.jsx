@@ -57,6 +57,43 @@ function getSpriteSizing({
   };
 }
 
+function getSpriteCorrectionFactor(
+  correctionsById,
+  pokemon
+) {
+  const correctionData =
+    correctionsById[pokemon.id];
+  const parsedCorrection =
+    typeof correctionData === "number"
+      ? correctionData
+      : Number(correctionData?.factor ?? 1);
+
+  return Number.isFinite(parsedCorrection) &&
+    parsedCorrection > 0
+    ? parsedCorrection
+    : 1;
+}
+
+function getVisualHeight(
+  correctionsById,
+  pokemon
+) {
+  return (
+    Number(pokemon.height) *
+    getSpriteCorrectionFactor(
+      correctionsById,
+      pokemon
+    )
+  );
+}
+
+function clampZoomMultiplier(value) {
+  return Math.min(
+    4,
+    Math.max(0.08, value)
+  );
+}
+
 function SizeChartPokemonImage({
   pokemon,
   rootRef,
@@ -161,9 +198,21 @@ function TypeSizeChart({
     spriteBoundsById,
     setSpriteBoundsById
   ] = useState({});
+  const [
+    spriteCorrectionsById,
+    setSpriteCorrectionsById
+  ] = useState({});
   const [loading, setLoading] =
     useState(false);
+  const [
+    zoomMultiplier,
+    setZoomMultiplier
+  ] = useState(null);
   const chartScrollRef = useRef(null);
+
+  useEffect(() => {
+    setZoomMultiplier(null);
+  }, [typeName]);
 
   useEffect(() => {
     let isMounted = true;
@@ -174,7 +223,8 @@ function TypeSizeChart({
 
         const [
           detailResults,
-          boundsResponse
+          boundsResponse,
+          correctionsResponse
         ] = await Promise.all([
           Promise.all(
             pokemon.map(async currentPokemon => {
@@ -195,6 +245,9 @@ function TypeSizeChart({
           ),
           fetch(
             "/data/pokemonSpriteBounds.json"
+          ),
+          fetch(
+            "/data/pokemonSpriteCorrections.json"
           )
         ]);
 
@@ -204,11 +257,20 @@ function TypeSizeChart({
             : {
                 sprites: {}
               };
+        const correctionData =
+          correctionsResponse.ok
+            ? await correctionsResponse.json()
+            : {
+                sprites: {}
+              };
 
         if (isMounted) {
           setPokemonDetails(detailResults);
           setSpriteBoundsById(
             boundsData.sprites ?? {}
+          );
+          setSpriteCorrectionsById(
+            correctionData.sprites ?? {}
           );
         }
       } catch (error) {
@@ -246,12 +308,29 @@ function TypeSizeChart({
             )
         )
         .sort(
-          (a, b) =>
-            Number(a.height) -
-              Number(b.height) ||
-            Number(a.id) - Number(b.id)
+          (a, b) => {
+            const visualHeightDifference =
+              getVisualHeight(
+                spriteCorrectionsById,
+                b
+              ) -
+              getVisualHeight(
+                spriteCorrectionsById,
+                a
+              );
+
+            return (
+              visualHeightDifference ||
+              Number(b.height) -
+                Number(a.height) ||
+              Number(a.id) - Number(b.id)
+            );
+          }
         ),
-    [pokemonDetails]
+    [
+      pokemonDetails,
+      spriteCorrectionsById
+    ]
   );
 
   const tallestPokemonHeight = useMemo(
@@ -259,11 +338,44 @@ function TypeSizeChart({
       Math.max(
         ...sortedPokemon.map(
           currentPokemon =>
-            Number(currentPokemon.height)
+            getVisualHeight(
+              spriteCorrectionsById,
+              currentPokemon
+            )
         ),
         1
       ),
-    [sortedPokemon]
+    [
+      sortedPokemon,
+      spriteCorrectionsById
+    ]
+  );
+
+  const shortestPokemonHeight = useMemo(
+    () => {
+      const visualHeights =
+        sortedPokemon
+          .map(currentPokemon =>
+            getVisualHeight(
+              spriteCorrectionsById,
+              currentPokemon
+            )
+          )
+          .filter(
+            visualHeight =>
+              Number.isFinite(
+                visualHeight
+              ) && visualHeight > 0
+          );
+
+      return visualHeights.length
+        ? Math.min(...visualHeights)
+        : 1;
+    },
+    [
+      sortedPokemon,
+      spriteCorrectionsById
+    ]
   );
 
   if (loading) {
@@ -288,8 +400,54 @@ function TypeSizeChart({
     return null;
   }
 
-  const chartHeightPx = 260;
-  const maxVisibleSpriteHeightPx = 210;
+  const chartHeightPx = 320;
+  const labelAreaHeightPx = 54;
+  const imageAreaHeightPx =
+    chartHeightPx - labelAreaHeightPx;
+  const maxVisibleSpriteHeightPx = 260;
+  const minVisibleSpriteHeightPx = 44;
+  const basePixelsPerHeightUnit =
+    shortestPokemonHeight > 0
+      ? minVisibleSpriteHeightPx /
+        shortestPokemonHeight
+      : minVisibleSpriteHeightPx;
+  const fitLargestZoomMultiplier =
+    tallestPokemonHeight > 0 &&
+    basePixelsPerHeightUnit > 0
+      ? maxVisibleSpriteHeightPx /
+        tallestPokemonHeight /
+        basePixelsPerHeightUnit
+      : 1;
+  const activeZoomMultiplier =
+    zoomMultiplier ??
+    clampZoomMultiplier(
+      fitLargestZoomMultiplier
+    );
+  const pixelsPerHeightUnit =
+    basePixelsPerHeightUnit *
+    activeZoomMultiplier;
+
+  function zoomIn() {
+    setZoomMultiplier(currentZoom =>
+      clampZoomMultiplier(
+        (currentZoom ??
+          activeZoomMultiplier) * 1.25
+      )
+    );
+  }
+
+  function zoomOut() {
+    setZoomMultiplier(currentZoom =>
+      clampZoomMultiplier(
+        (currentZoom ??
+          activeZoomMultiplier) / 1.25
+      )
+    );
+  }
+
+  function fitLargestPokemon() {
+    setZoomMultiplier(null);
+  }
 
   return (
     <section
@@ -311,14 +469,68 @@ function TypeSizeChart({
           opacity: 0.8
         }}
       >
-        Smallest Pokémon are on the left.
-        Largest Pokémon are on the right.
+        Largest Pokémon are on the left.
+        Smallest Pokémon are on the right.
       </p>
+
+      <div
+        style={{
+          alignItems: "center",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: ".5rem",
+          justifyContent: "center",
+          marginBottom: "1rem"
+        }}
+      >
+        <button
+          type="button"
+          onClick={zoomOut}
+          style={{
+            borderRadius: "8px",
+            padding: ".45rem .75rem"
+          }}
+        >
+          Zoom out
+        </button>
+
+        <button
+          type="button"
+          onClick={zoomIn}
+          style={{
+            borderRadius: "8px",
+            padding: ".45rem .75rem"
+          }}
+        >
+          Zoom in
+        </button>
+
+        <button
+          type="button"
+          onClick={fitLargestPokemon}
+          style={{
+            borderRadius: "8px",
+            padding: ".45rem .75rem"
+          }}
+        >
+          Reset
+        </button>
+
+        <span
+          style={{
+            fontSize: ".8rem",
+            opacity: 0.75
+          }}
+        >
+          One true scale at current zoom
+        </span>
+      </div>
 
       <div
         ref={chartScrollRef}
         style={{
           overflowX: "auto",
+          overflowY: "hidden",
           paddingBottom: ".75rem"
         }}
       >
@@ -326,21 +538,25 @@ function TypeSizeChart({
           style={{
             alignItems: "end",
             borderBottom: "2px solid #888",
+            boxSizing: "border-box",
             display: "flex",
             gap: "1.25rem",
-            minHeight: `${chartHeightPx}px`,
-            padding: "1rem 1rem 0"
+            height: `${chartHeightPx}px`,
+            overflowX: "visible",
+            overflowY: "hidden",
+            padding: "1rem 1rem 0",
+            width: "max-content"
           }}
         >
           {sortedPokemon.map(currentPokemon => {
-            const heightRatio =
-              Number(currentPokemon.height) /
-              tallestPokemonHeight;
-            const visibleHeightPx = Math.max(
-              18,
-              heightRatio *
-                maxVisibleSpriteHeightPx
-            );
+            const visualHeight =
+              getVisualHeight(
+                spriteCorrectionsById,
+                currentPokemon
+              );
+            const visibleHeightPx =
+              visualHeight *
+              pixelsPerHeightUnit;
             const sizing = getSpriteSizing({
               bounds:
                 spriteBoundsById[
@@ -364,8 +580,11 @@ function TypeSizeChart({
                   flex: "0 0 auto",
                   flexDirection: "column",
                   justifyContent: "end",
-                  minHeight:
+                  height:
                     `${chartHeightPx}px`,
+                  maxHeight:
+                    `${chartHeightPx}px`,
+                  overflow: "hidden",
                   textDecoration: "none",
                   width:
                     `${sizing.stageWidth}px`
@@ -375,7 +594,9 @@ function TypeSizeChart({
                   style={{
                     alignItems: "end",
                     display: "flex",
-                    flex: "1",
+                    flex: `0 0 ${imageAreaHeightPx}px`,
+                    height:
+                      `${imageAreaHeightPx}px`,
                     justifyContent: "center",
                     overflow: "hidden",
                     width: "100%"
@@ -390,6 +611,7 @@ function TypeSizeChart({
 
                 <strong
                   style={{
+                    flex: "0 0 auto",
                     fontSize: ".75rem",
                     lineHeight: 1.1,
                     marginTop: ".5rem",
@@ -403,6 +625,7 @@ function TypeSizeChart({
 
                 <span
                   style={{
+                    flex: "0 0 auto",
                     fontSize: ".68rem",
                     opacity: 0.75
                   }}

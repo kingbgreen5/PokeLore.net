@@ -10,6 +10,7 @@ import {
 import CollapsibleSection from "../components/CollapsibleSection";
 import MoveSummaryCard from "../components/MoveSummaryCard";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import TypeSizeChart from "../components/TypeSizeChart";
 import TypeBadgeImage from "../components/TypeBadge";
 import typeChart from "../constants/Types";
 import typeColors from "../constants/typeColors";
@@ -602,13 +603,6 @@ function TypeDetailPage() {
         />
       </div>
 
-
-      {/* this is not ready for prime time yet so I am commenting it out */}
-      {/* <TypeSizeChart
-        pokemon={pokemonOfType}
-        typeName={capitalize(type)}
-      /> */}
-
 {/*                                                                                                                         POKEMON OF THE TYPE */}
       <CollapsibleSection
         title={`${capitalize(type)} Pokémon`}
@@ -835,6 +829,11 @@ function TypeDetailPage() {
           )}
         </div>
       </CollapsibleSection>
+
+      <TypeSizeChart
+        pokemon={pokemonOfType}
+        typeName={capitalize(type)}
+      />
     </div>
   );
 }
