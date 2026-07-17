@@ -98,7 +98,8 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
         <Link
           to={`/pokemon/${pokemonName}`}
           style={{
-            color: "inherit",
+            color: "var(--link-unvisited)",
+            fontWeight: 700,
             textDecoration: "none"
           }}
         >

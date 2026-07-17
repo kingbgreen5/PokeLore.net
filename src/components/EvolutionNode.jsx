@@ -570,6 +570,18 @@ function EvolutionDescription({
             : ""}
         </span>
       ))}
+      {override?.note && (
+        <span
+          style={{
+            display: "block",
+            fontSize: ".72rem",
+            marginTop: ".25rem",
+            opacity: 0.8
+          }}
+        >
+          {override.note}
+        </span>
+      )}
     </>
   );
 }
@@ -694,7 +706,7 @@ function EvolutionNode({
     style={{
       fontSize: ".8rem",
       textAlign: "center",
-      width: "80px",
+      width: "clamp(80px, 12vw, 170px)",
      lineHeight: 1.1,
      marginBottom: "1rem",
      marginTop: "1rem",

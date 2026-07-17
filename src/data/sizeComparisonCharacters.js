@@ -17,6 +17,10 @@ import calemXy from "../assets/size-comparison-characters/XY_Calem.png";
 import serenaXy from "../assets/size-comparison-characters/XY_Serena.png";
 import elioSm from "../assets/size-comparison-characters/800px-Sun_Moon_Elio.png";
 import seleneSm from "../assets/size-comparison-characters/800px-Sun_Moon_Selene.png";
+import victorSwsh from "../assets/size-comparison-characters/800px-Sword_Shield_Victor.png";
+import gloriaSwsh from "../assets/size-comparison-characters/800px-Sword_Shield_Gloria.png";
+import victorCrownTundra from "../assets/size-comparison-characters/800px-Sword_Shield_Victor_Crown_Tundra.png";
+import gloriaIsleOfArmor from "../assets/size-comparison-characters/150px-Sword_Shield_Gloria_Isle_of_Armor.png";
 
 export const DEFAULT_SIZE_COMPARISON_CHARACTER_ID =
   "professor-oak";
@@ -186,6 +190,38 @@ export const sizeComparisonCharacters = [
     name: "Selene",
     variant: "Sun/Moon",
     sprite: seleneSm,
+    heightInches: 63,
+    heightSource: "fallback"
+  },
+  {
+    id: "victor-swsh",
+    name: "Victor",
+    variant: "Sword/Shield",
+    sprite: victorSwsh,
+    heightInches: 63,
+    heightSource: "fallback"
+  },
+  {
+    id: "gloria-swsh",
+    name: "Gloria",
+    variant: "Sword/Shield",
+    sprite: gloriaSwsh,
+    heightInches: 63,
+    heightSource: "fallback"
+  },
+  {
+    id: "victor-crown-tundra",
+    name: "Victor",
+    variant: "Crown Tundra",
+    sprite: victorCrownTundra,
+    heightInches: 63,
+    heightSource: "fallback"
+  },
+  {
+    id: "gloria-isle-of-armor",
+    name: "Gloria",
+    variant: "Isle of Armor",
+    sprite: gloriaIsleOfArmor,
     heightInches: 63,
     heightSource: "fallback"
   }
