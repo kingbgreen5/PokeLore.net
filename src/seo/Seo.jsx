@@ -90,6 +90,7 @@ function Seo({
   description,
   canonical,
   image,
+  robots,
   structuredData,
   type = "website"
 }) {
@@ -112,6 +113,11 @@ function Seo({
       "description",
       pageDescription
     );
+    if (robots) {
+      setMetaName("robots", robots);
+    } else {
+      removeMeta("name", "robots");
+    }
     setCanonical(pageCanonical);
 
     setMetaProperty("og:title", pageTitle);
@@ -146,6 +152,7 @@ function Seo({
     description,
     canonical,
     image,
+    robots,
     structuredData,
     type
   ]);

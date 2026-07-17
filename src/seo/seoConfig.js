@@ -1,5 +1,12 @@
 import { formatPokemonDisplayName }
 from "../utils/pokemonNames";
+import {
+  DYNAMAX_CRYSTAL_GUIDE_PATH,
+  formatDynamaxPokemonList,
+  getDynamaxCrystalData,
+  getDynamaxCrystalDisplayName,
+  isDynamaxCrystalItem
+} from "../utils/dynamaxCrystals";
 
 export const SITE_NAME = "PokéLore";
 export const SITE_URL = "https://pokelore.net";
@@ -251,6 +258,47 @@ export function itemSeo(item) {
     typeof item === "string"
       ? null
       : item?.shortEffect || item?.effect;
+  const crystalData =
+    getDynamaxCrystalData(item);
+  const isDynamaxCrystal =
+    typeof item === "string"
+      ? Boolean(crystalData) ||
+        item.startsWith("dynamax-crystal-")
+      : isDynamaxCrystalItem(item);
+
+  if (isDynamaxCrystal) {
+    const crystalName =
+      getDynamaxCrystalDisplayName(item) ||
+      name;
+    const image =
+      typeof item === "string"
+        ? undefined
+        : item?.sprite ?? undefined;
+
+    if (
+      crystalData?.releaseStatus === "released"
+    ) {
+      const pokemonList =
+        formatDynamaxPokemonList(
+          crystalData.raidPokemon
+        );
+
+      return {
+        title: `${crystalName} Dynamax Crystal Location and Raid | ${SITE_NAME}`,
+        description: `Learn what the ${crystalName} Dynamax Crystal does, how it was originally obtained, and how it activates a ${crystalData.raidType} Max Raid Battle featuring ${pokemonList} in Pokemon Sword and Shield.`,
+        canonical: pageUrl(`/item/${slug}`),
+        image
+      };
+    }
+
+    return {
+      title: `${crystalName} Dynamax Crystal - Unused Item Data | ${SITE_NAME}`,
+      description: `${crystalName} is an unused Dynamax Crystal found in Pokemon Sword and Shield's game data. It was never officially distributed and cannot be obtained normally.`,
+      canonical: pageUrl(`/item/${slug}`),
+      image,
+      robots: "noindex, follow"
+    };
+  }
 
   return {
     title: `${name} Item Guide | ${SITE_NAME}`,
@@ -262,6 +310,15 @@ export function itemSeo(item) {
       typeof item === "string"
         ? undefined
         : item?.sprite ?? undefined
+  };
+}
+
+export function dynamaxCrystalsGuideSeo() {
+  return {
+    title: `Dynamax Crystals Guide: All Released Crystal Raids | ${SITE_NAME}`,
+    description:
+      "Learn how Dynamax Crystals work in Pokemon Sword and Shield, how to use them at Watchtower Lair, and which 12 crystals were officially released.",
+    canonical: pageUrl(DYNAMAX_CRYSTAL_GUIDE_PATH)
   };
 }
 

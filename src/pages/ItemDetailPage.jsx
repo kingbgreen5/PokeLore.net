@@ -23,6 +23,16 @@ import {
   getTmMaterialDetail,
   isTmMaterialItem
 } from "../utils/tmMaterialDetails";
+import {
+  DYNAMAX_CRYSTAL_GUIDE_PATH,
+  formatDynamaxPokemonList,
+  formatDynamaxPokemonName,
+  getDynamaxCrystalData,
+  getDynamaxCrystalDisplayName,
+  isDynamaxCrystalItem,
+  isReleasedDynamaxCrystal,
+  isUsableFlavorText
+} from "../utils/dynamaxCrystals";
 
 function capitalize(text) {
   return String(text ?? "")
@@ -132,6 +142,234 @@ function DetailRow({
       <strong>{label}</strong>
       <p>{value}</p>
     </div>
+  );
+}
+
+function PokemonTextLinks({
+  pokemonSlugs
+}) {
+  return pokemonSlugs.map((slug, index) => {
+    const isLast =
+      index === pokemonSlugs.length - 1;
+    const separator =
+      pokemonSlugs.length === 2
+        ? isLast
+          ? ""
+          : " and "
+        : isLast
+          ? ""
+          : index === pokemonSlugs.length - 2
+            ? ", and "
+            : ", ";
+
+    return (
+      <span key={slug}>
+        <Link to={`/pokemon/${slug}`}>
+          {formatDynamaxPokemonName(slug)}
+        </Link>
+        {separator}
+      </span>
+    );
+  });
+}
+
+function StatusBadge({
+  children
+}) {
+  return (
+    <span
+      style={{
+        border: "1px solid #888",
+        borderRadius: "999px",
+        display: "inline-flex",
+        fontSize: ".85rem",
+        fontWeight: 700,
+        padding: ".35rem .75rem"
+      }}
+    >
+      {children}
+    </span>
+  );
+}
+
+function DynamaxCrystalDetails({
+  crystalData,
+  item
+}) {
+  const crystalName =
+    getDynamaxCrystalDisplayName(item);
+  const isReleased =
+    isReleasedDynamaxCrystal(item);
+  const raidPokemonList =
+    crystalData
+      ? formatDynamaxPokemonList(
+          crystalData.raidPokemon
+        )
+      : "";
+
+  return (
+    <>
+      <section
+        style={{
+          marginBottom: "2rem",
+          textAlign: "left"
+        }}
+      >
+        <h2>About Dynamax Crystals</h2>
+        <p>
+          Dynamax Crystals are special event items
+          introduced in Pokemon Sword and Shield.
+          They were designed to activate a specific
+          Max Raid Battle at Watchtower Lair in the
+          Watchtower Ruins area of the Wild Area.
+          After a usable crystal is selected from
+          the Bag, its associated Pokemon becomes
+          available at the den until midnight or
+          until it is caught.
+        </p>
+        <p>
+          Pokemon Sword and Shield contain data for
+          300 differently named Dynamax Crystals.
+          However, only 12 crystals were officially
+          distributed and made available to players.
+          The remaining 288 crystals are unused
+          game-data entries and cannot be obtained
+          through normal gameplay.
+        </p>
+        <p>
+          <Link to={DYNAMAX_CRYSTAL_GUIDE_PATH}>
+            View the Dynamax Crystals guide
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section
+        style={{
+          marginBottom: "2rem",
+          textAlign: "left"
+        }}
+      >
+        <h2>
+          How To Obtain And Use Dynamax Crystals
+        </h2>
+        <p>
+          Released Dynamax Crystals were obtained
+          through limited-time serial-code
+          promotions, game purchase bonuses,
+          magazines, guidebooks, or participating
+          retailers. They were not normally found
+          in the overworld or sold in Poke Marts.
+        </p>
+        <p>
+          After receiving a valid crystal through
+          Mystery Gift, travel to Watchtower Lair
+          in the Watchtower Ruins section of the
+          Wild Area. Open the Bag and use the
+          crystal while near the den. The crystal
+          activates its designated Max Raid Battle
+          for the remainder of the day.
+        </p>
+        <p>
+          Most original Dynamax Crystal
+          distributions have ended. Crystals marked
+          as unused were never officially
+          distributed and have no legitimate
+          acquisition method in normal gameplay.
+        </p>
+      </section>
+
+      <section
+        style={{
+          border: "1px solid #666",
+          borderRadius: "12px",
+          marginBottom: "2rem",
+          padding: "1rem",
+          textAlign: "left"
+        }}
+      >
+        <h2>About {crystalName}</h2>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: ".5rem",
+            marginBottom: "1rem"
+          }}
+        >
+          <StatusBadge>
+            {isReleased
+              ? "Officially Released"
+              : "Unused Game Data"}
+          </StatusBadge>
+          {crystalData && (
+            <StatusBadge>
+              {crystalData.raidType} Raid
+            </StatusBadge>
+          )}
+          {isReleased && (
+            <StatusBadge>
+              Original Distribution Ended
+            </StatusBadge>
+          )}
+        </div>
+
+        {isReleased && crystalData ? (
+          <>
+            <p>
+              {crystalName} is an officially
+              released Dynamax Crystal associated
+              with{" "}
+              <PokemonTextLinks
+                pokemonSlugs={
+                  crystalData.raidPokemon
+                }
+              />
+              . When used at Watchtower Lair, it
+              activates a {crystalData.raidType} Max
+              Raid Battle featuring {raidPokemonList}.
+            </p>
+
+            {crystalData.versionNotes && (
+              <p>{crystalData.versionNotes}</p>
+            )}
+
+            <p>
+              <strong>
+                Original acquisition:
+              </strong>{" "}
+              {crystalData.acquisitionSummary}
+            </p>
+
+            <p>
+              <strong>
+                Current availability:
+              </strong>{" "}
+              {crystalData.currentAvailability}
+            </p>
+          </>
+        ) : (
+          <>
+            <p>
+              {crystalName} is one of the unused
+              Dynamax Crystal variants present in
+              Pokemon Sword and Shield's game data.
+              Although Dynamax Crystals were
+              designed to activate Pokemon
+              encounters at Watchtower Lair, this
+              crystal was never officially
+              distributed.
+            </p>
+            <p>
+              It has no legitimate acquisition
+              method and cannot be used during
+              normal gameplay.
+            </p>
+          </>
+        )}
+      </section>
+    </>
   );
 }
 
@@ -371,11 +609,21 @@ function ItemDetailPage() {
         : null,
     [item]
   );
+  const isDynamaxCrystal =
+    isDynamaxCrystalItem(item);
+  const dynamaxCrystalData =
+    isDynamaxCrystal
+      ? getDynamaxCrystalData(item)
+      : null;
   const effectText =
     machineItemDescription ?? item?.effect;
   const showShortEffect =
     item?.shortEffect &&
     !machineItemDescription;
+  const usableFlavorTextEntries =
+    item?.flavorTextEntries?.filter(entry =>
+      isUsableFlavorText(entry.text)
+    ) ?? [];
   const loadedItemMatchesRoute =
     item?.name === normalizedItemName;
 
@@ -492,14 +740,23 @@ function ItemDetailPage() {
 {/* --------------------------------------------------------------------------effect */}
 
 
-      <section
-        style={{
-          marginBottom: "2rem"
-        }}
-      >
-        <h2>Effect</h2>
-        <p>{effectText}</p>
-      </section>
+      {effectText && (
+        <section
+          style={{
+            marginBottom: "2rem"
+          }}
+        >
+          <h2>Effect</h2>
+          <p>{effectText}</p>
+        </section>
+      )}
+
+      {isDynamaxCrystal && (
+        <DynamaxCrystalDetails
+          crystalData={dynamaxCrystalData}
+          item={item}
+        />
+      )}
 
       {showShortEffect && (
         <section
@@ -597,12 +854,12 @@ function ItemDetailPage() {
       )}
 
 
-      {item.flavorTextEntries?.length >
+      {usableFlavorTextEntries.length >
         0 && (
         <section>
           <h2>Flavor Text</h2>
 
-          {item.flavorTextEntries.map(
+          {usableFlavorTextEntries.map(
             (entry, index) => (
               <div
                 key={`${entry.text}-${index}`}
@@ -655,7 +912,11 @@ function ItemDetailPage() {
         >
           <DetailRow
             label="Cost"
-            value={`${item.cost}`}
+            value={
+              isDynamaxCrystal
+                ? null
+                : `${item.cost}`
+            }
           />
 
           <DetailRow

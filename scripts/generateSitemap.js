@@ -2,6 +2,12 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { itemLocationTopics } from "../src/topics/topicMetadata.js";
+import {
+  DYNAMAX_CRYSTAL_GUIDE_PATH,
+  isDynamaxCrystalItem,
+  isReleasedDynamaxCrystal,
+  validateReleasedDynamaxCrystals
+} from "../src/utils/dynamaxCrystals.js";
 
 const SITE_URL = "https://pokelore.net";
 const __filename = fileURLToPath(import.meta.url);
@@ -38,6 +44,7 @@ function staticRoutes() {
     "/moves",
     "/abilities",
     "/items",
+    DYNAMAX_CRYSTAL_GUIDE_PATH,
     "/locations",
     "/topics",
     "/types"
@@ -65,9 +72,15 @@ function abilityRoutes(abilities) {
 }
 
 function itemRoutes(itemsIndex) {
-  return itemsIndex.map(item =>
-    route(`/item/${item.name}`)
-  );
+  return itemsIndex
+    .filter(
+      item =>
+        !isDynamaxCrystalItem(item) ||
+        isReleasedDynamaxCrystal(item)
+    )
+    .map(item =>
+      route(`/item/${item.name}`)
+    );
 }
 
 function locationRoutes(locationsIndex) {
@@ -163,6 +176,8 @@ ${entries}
 }
 
 async function main() {
+  validateReleasedDynamaxCrystals();
+
   const urls = [...new Set(await buildRoutes())];
 
   await fs.writeFile(

@@ -50,6 +50,9 @@ const TypesPage = lazy(() =>
 const ItemsPage = lazy(() =>
   import("./pages/ItemsPage")
 );
+const DynamaxCrystalsGuidePage = lazy(() =>
+  import("./pages/DynamaxCrystalsGuidePage")
+);
 const ItemDetailPage = lazy(() =>
   import("./pages/ItemDetailPage")
 );
@@ -166,6 +169,11 @@ function App() {
 <Route
   path="/items"
   element={<ItemsPage />}
+/>
+
+<Route
+  path="/items/dynamax-crystals"
+  element={<DynamaxCrystalsGuidePage />}
 />
 
 <Route
