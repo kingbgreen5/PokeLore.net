@@ -7,6 +7,7 @@ import {
   getDynamaxCrystalDisplayName,
   isDynamaxCrystalItem
 } from "../utils/dynamaxCrystals";
+import { getFossilItemData } from "../data/fossilItems";
 
 export const SITE_NAME = "PokéLore";
 export const SITE_URL = "https://pokelore.net";
@@ -260,6 +261,8 @@ export function itemSeo(item) {
       : item?.shortEffect || item?.effect;
   const crystalData =
     getDynamaxCrystalData(item);
+  const fossilData =
+    getFossilItemData(slug);
   const isDynamaxCrystal =
     typeof item === "string"
       ? Boolean(crystalData) ||
@@ -297,6 +300,39 @@ export function itemSeo(item) {
       canonical: pageUrl(`/item/${slug}`),
       image,
       robots: "noindex, follow"
+    };
+  }
+
+  if (fossilData) {
+    const restoredPokemonNames =
+      fossilData.restoredPokemon
+        .map(pokemon => pokemon.displayName)
+        .join(", ");
+    const primaryRestoredPokemon =
+      fossilData.restoredPokemon[
+        fossilData.restoredPokemon.length - 1
+      ]?.displayName ??
+      fossilData.restoredPokemon[0]
+        ?.displayName;
+    const titleTarget =
+      fossilData.restoredPokemon.length > 1
+        ? primaryRestoredPokemon
+        : restoredPokemonNames;
+    const isGalarFossil =
+      slug?.startsWith("fossilized-");
+
+    return {
+      title: isGalarFossil
+        ? `${name} Location, Combinations & Galar Fossil Guide | ${SITE_NAME}`
+        : `${name} Location, Revival & ${titleTarget} Guide | ${SITE_NAME}`,
+      description: isGalarFossil
+        ? `Learn where to find ${name}, which Galar fossil Pokemon it can restore, and how it connects to ${restoredPokemonNames} in Pokemon Sword and Shield.`
+        : `Find every ${name} location, learn where to revive it, and see how it connects to ${restoredPokemonNames} across Pokemon games.`,
+      canonical: pageUrl(`/item/${slug}`),
+      image:
+        typeof item === "string"
+          ? undefined
+          : item?.sprite ?? undefined
     };
   }
 

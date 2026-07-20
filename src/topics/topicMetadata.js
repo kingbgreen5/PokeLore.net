@@ -1,5 +1,20 @@
 const itemLocationTopics = [
   {
+    slug: "fossil-pokemon-guide",
+    active: true,
+    subgroup: "guides",
+    title: "Fossil Pokemon Guide",
+    shortDescription:
+      "Compare fossil items, revived Pokemon, fossil choices, Galar combinations, and revival notes across Pokemon games.",
+    introText:
+      "Compare fossil items, revived Pokemon, fossil choices, Galar combinations, and revival notes across Pokemon games.",
+    seoTitle:
+      "Fossil Pokemon Guide: Locations, Revival & Choices | PokeLore",
+    seoDescription:
+      "Compare every fossil item, revived Pokemon, fossil choice, Galar fossil combination, and curated revival note across Pokemon games.",
+    countLabel: "Fossil item guide"
+  },
+  {
     slug: "herba-mystica",
     active: true,
     subgroup: "guides",
