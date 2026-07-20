@@ -1,0 +1,62 @@
+{
+  "location": {
+    "name": "mirage-tower",
+    "displayName": "Mirage Tower"
+  },
+  "items": [
+    {
+      "item": {
+        "name": "claw-fossil",
+        "displayName": "Claw Fossil",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/claw-fossil.png"
+      },
+      "versions": [
+        {
+          "version": "Pokemon Emerald",
+          "methods": [
+            {
+              "type": "choose-one",
+              "area": null,
+              "details": "Choose the Claw Fossil at Mirage Tower; only one fossil from this choice can be taken.",
+              "notes": null,
+              "requirements": [
+                "Go-Goggles",
+                "Mach Bike"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "item": {
+        "name": "root-fossil",
+        "displayName": "Root Fossil",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/root-fossil.png"
+      },
+      "versions": [
+        {
+          "version": "Pokemon Emerald",
+          "methods": [
+            {
+              "type": "choose-one",
+              "area": null,
+              "details": "Choose the Root Fossil at Mirage Tower; only one fossil from this choice can be taken.",
+              "notes": null,
+              "requirements": [
+                "Go-Goggles",
+                "Mach Bike"
+              ],
+              "relatedAbilities": [],
+              "repeatable": false,
+              "versionExclusive": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

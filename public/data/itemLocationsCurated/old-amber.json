@@ -2,66 +2,322 @@
   "item": "old-amber",
   "displayName": "Old Amber",
   "source": "itemLocationsCurated.json",
-  "sourceTitle": "PokéLore curated Gen 1 item acquisition notes",
+  "sourceTitle": "Curated fossil location and revival notes",
   "schemaVersion": 1,
   "acquisition": [
     {
       "generation": 1,
       "games": [
-        "Pokémon Red",
-        "Pokémon Blue",
-        "Pokémon Yellow"
+        "Pokemon Red",
+        "Pokemon Blue",
+        "Pokemon Yellow"
       ],
-      "versionExclusive": false,
-      "locationMatchStatus": "matched",
-      "matchConfidence": "high",
       "location": {
         "name": "pewter-city",
         "displayName": "Pewter City"
       },
-      "area": "Pewter Museum of Science - back room",
-      "method": "Cut the tree to access the back of the museum, then receive the Old Amber.",
+      "method": "Receive the Old Amber from an NPC at Pewter City Pewter Museum restricted annex.",
       "acquisitionType": "npc-gift",
       "repeatable": false,
+      "versionExclusive": false,
       "requirements": [
         "Cut"
-      ]
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Pewter City",
+      "area": "Pewter Museum restricted annex"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokemon FireRed",
+        "Pokemon LeafGreen"
+      ],
+      "location": {
+        "name": "pewter-city",
+        "displayName": "Pewter City"
+      },
+      "method": "Receive the Old Amber from an NPC at Pewter City Pewter Museum restricted annex.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Cut"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Pewter City",
+      "area": "Pewter Museum restricted annex"
     },
     {
       "generation": 4,
       "games": [
-        "Pokémon HeartGold",
-        "Pokémon SoulSilver"
+        "Pokemon Diamond",
+        "Pokemon Pearl"
+      ],
+      "location": "Sinnoh Underground",
+      "method": "Find the Old Amber while digging in Sinnoh Underground.",
+      "acquisitionType": "digging",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "National Pokedex"
+      ],
+      "locationMatchStatus": "unmatched",
+      "originalLocationText": "Sinnoh Underground"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokemon Platinum"
+      ],
+      "location": "Sinnoh Underground",
+      "method": "Find the Old Amber while digging in Sinnoh Underground.",
+      "acquisitionType": "digging",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "National Pokedex"
+      ],
+      "locationMatchStatus": "unmatched",
+      "originalLocationText": "Sinnoh Underground"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokemon HeartGold",
+        "Pokemon SoulSilver"
       ],
       "location": {
         "name": "ruins-of-alph",
         "displayName": "Ruins of Alph"
       },
-      "method": "Find by smashing rocks in the Ruins of Alph exterior.",
-      "acquisitionType": "rock-smash",
+      "method": "Possible random find from Rock Smash at Ruins of Alph exterior breakable rocks.",
+      "acquisitionType": "rock-smash-random",
       "repeatable": true,
       "versionExclusive": false,
       "requirements": [],
       "locationMatchStatus": "matched",
-      "originalLocationText": "Ruins of Alph"
+      "originalLocationText": "Ruins of Alph",
+      "area": "exterior breakable rocks"
     },
     {
-      "generation": 4,
+      "generation": 5,
       "games": [
-        "Pokémon HeartGold",
-        "Pokémon SoulSilver"
+        "Pokemon Black",
+        "Pokemon White"
       ],
       "location": {
-        "name": "ruins-of-alph",
-        "displayName": "Ruins of Alph"
+        "name": "twist-mountain",
+        "displayName": "Twist Mountain"
       },
-      "method": "Find by smashing a rock in Ruins of Alph using Rock Smash.",
-      "acquisitionType": "rock-smash",
+      "method": "Possible daily random fossil gift from an NPC at Twist Mountain.",
+      "acquisitionType": "daily-random-npc-gift",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat Ghetsis"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Twist Mountain"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black 2",
+        "Pokemon White 2"
+      ],
+      "location": {
+        "name": "twist-mountain",
+        "displayName": "Twist Mountain"
+      },
+      "method": "Possible daily random fossil gift from an NPC at Twist Mountain.",
+      "acquisitionType": "daily-random-npc-gift",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat Iris"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Twist Mountain"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black 2",
+        "Pokemon White 2"
+      ],
+      "location": {
+        "name": "entralink",
+        "displayName": "Entralink"
+      },
+      "method": "Possible reward from Entralink What is the Best Price? Funfest Mission.",
+      "acquisitionType": "mission-reward",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon Black 2 only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Entralink",
+      "area": "What is the Best Price? Funfest Mission"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black 2",
+        "Pokemon White 2"
+      ],
+      "location": {
+        "name": "entralink",
+        "displayName": "Entralink"
+      },
+      "method": "Possible reward from Entralink What is the Real Price? Funfest Mission.",
+      "acquisitionType": "mission-reward",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon White 2 only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Entralink",
+      "area": "What is the Real Price? Funfest Mission"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black 2",
+        "Pokemon White 2"
+      ],
+      "location": {
+        "name": "join-avenue",
+        "displayName": "Join Avenue"
+      },
+      "method": "Possible random reward from Join Avenue Antique Shop mystery boxes.",
+      "acquisitionType": "random-shop-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat Iris",
+        "Join Avenue Rank 15"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Join Avenue",
+      "area": "Antique Shop mystery boxes"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon X",
+        "Pokemon Y"
+      ],
+      "location": {
+        "name": "glittering-cave",
+        "displayName": "Glittering Cave"
+      },
+      "method": "Possible random find from Rock Smash at Glittering Cave rear breakable rocks.",
+      "acquisitionType": "rock-smash-random",
       "repeatable": true,
       "versionExclusive": false,
       "requirements": [],
       "locationMatchStatus": "matched",
-      "originalLocationText": "Ruins of Alph"
+      "originalLocationText": "Glittering Cave",
+      "area": "rear breakable rocks"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon Omega Ruby",
+        "Pokemon Alpha Sapphire"
+      ],
+      "location": "Mirage Spots",
+      "method": "Possible random find from Rock Smash at Mirage Spots.",
+      "acquisitionType": "rock-smash-random",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat or capture Groudon/Kyogre"
+      ],
+      "locationMatchStatus": "unmatched",
+      "originalLocationText": "Mirage Spots"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokemon: Let's Go, Pikachu!",
+        "Pokemon: Let's Go, Eevee!"
+      ],
+      "location": {
+        "name": "pewter-city",
+        "displayName": "Pewter City"
+      },
+      "method": "Receive the Old Amber from an NPC at Pewter City Pewter Museum restricted annex.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Chop Down"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Pewter City",
+      "area": "Pewter Museum restricted annex"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokemon: Let's Go, Pikachu!",
+        "Pokemon: Let's Go, Eevee!"
+      ],
+      "location": {
+        "name": "cerulean-cave",
+        "displayName": "Cerulean Cave"
+      },
+      "method": "Possible recurring random field item at Cerulean Cave 2F rare-item spawn points.",
+      "acquisitionType": "recurring-random-field-item",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Hall of Fame"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Cerulean Cave",
+      "area": "2F rare-item spawn points"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Brilliant Diamond",
+        "Pokemon Shining Pearl"
+      ],
+      "location": "Grand Underground",
+      "method": "Find the Old Amber while digging in Grand Underground.",
+      "acquisitionType": "digging",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat or capture Dialga/Palkia at Spear Pillar"
+      ],
+      "locationMatchStatus": "unmatched",
+      "originalLocationText": "Grand Underground"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokemon Legends: Z-A"
+      ],
+      "location": {
+        "name": "lumiose-city",
+        "displayName": "Lumiose City"
+      },
+      "method": "Purchase the Old Amber at Lumiose City Stone Emporium.",
+      "acquisitionType": "purchase",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Side Mission 027: Restored from a Fossil"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Lumiose City",
+      "area": "Stone Emporium"
     }
   ]
 }

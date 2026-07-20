@@ -605,7 +605,7 @@ function TypeDetailPage() {
 
 {/*                                                                                                                         POKEMON OF THE TYPE */}
       <CollapsibleSection
-        title={`${capitalize(type)} Pokémon`}
+        title={`${capitalize(type)} Pokémon sorted by stats`}
         summary={`${pokemonOfType.length} Pokémon`}
         expanded={pokemonSectionExpanded}
         onToggle={() =>

@@ -78,7 +78,7 @@ export const sizeComparisonCharacters = [
     name: "Red",
     variant: "Sun/Moon",
     sprite: redSm,
-    heightInches: 63,
+    heightInches: 70,
     heightSource: "listed",
     heightSourceUrl:
       "https://bulbapedia.bulbagarden.net/wiki/Red_(game)"

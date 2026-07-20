@@ -1,0 +1,87 @@
+{
+  "item": "sail-fossil",
+  "displayName": "Sail Fossil",
+  "source": "itemLocationsCurated.json",
+  "sourceTitle": "Curated fossil location and revival notes",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon X",
+        "Pokemon Y"
+      ],
+      "location": {
+        "name": "glittering-cave",
+        "displayName": "Glittering Cave"
+      },
+      "method": "Choose the Sail Fossil at Glittering Cave; only one fossil from this choice can be taken.",
+      "acquisitionType": "choose-one",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Glittering Cave"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokemon Ultra Sun",
+        "Pokemon Ultra Moon"
+      ],
+      "location": {
+        "name": "konikoni-city",
+        "displayName": "Konikoni City"
+      },
+      "method": "Purchase the Sail Fossil at Konikoni City Olivia's jewelry shop.",
+      "acquisitionType": "purchase",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon Ultra Moon only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Konikoni City",
+      "area": "Olivia's jewelry shop"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokemon Ultra Sun",
+        "Pokemon Ultra Moon"
+      ],
+      "location": {
+        "name": "poke-pelago",
+        "displayName": "Poké Pelago"
+      },
+      "method": "Possible random treasure from Poké Pelago Isle Aphun.",
+      "acquisitionType": "rare-treasure-hunting-random",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Poké Pelago",
+      "area": "Isle Aphun"
+    },
+    {
+      "generation": 9,
+      "games": [
+        "Pokemon Legends: Z-A"
+      ],
+      "location": {
+        "name": "lumiose-city",
+        "displayName": "Lumiose City"
+      },
+      "method": "Purchase the Sail Fossil at Lumiose City Stone Emporium.",
+      "acquisitionType": "purchase",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Side Mission 027: Restored from a Fossil"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Lumiose City",
+      "area": "Stone Emporium"
+    }
+  ]
+}

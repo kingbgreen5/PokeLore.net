@@ -1,30 +1,307 @@
 {
   "item": "root-fossil",
   "displayName": "Root Fossil",
-  "source": "items/root-fossil.json",
-  "sourceTitle": "HGSS guidebook item tables (user photos)",
+  "source": "itemLocationsCurated.json",
+  "sourceTitle": "Curated fossil location and revival notes",
   "schemaVersion": 1,
   "acquisition": [
     {
+      "generation": 3,
+      "games": [
+        "Pokemon Ruby",
+        "Pokemon Sapphire"
+      ],
+      "location": {
+        "name": "hoenn-route-111",
+        "displayName": "Route 111"
+      },
+      "method": "Choose the Root Fossil at Route 111 desert northeast corner; only one fossil from this choice can be taken.",
+      "acquisitionType": "choose-one",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Go-Goggles"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Route 111",
+      "area": "desert northeast corner",
+      "notes": "The other fossil sinks and is lost."
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokemon Emerald"
+      ],
+      "location": {
+        "name": "mirage-tower",
+        "displayName": "Mirage Tower"
+      },
+      "method": "Choose the Root Fossil at Mirage Tower; only one fossil from this choice can be taken.",
+      "acquisitionType": "choose-one",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Go-Goggles",
+        "Mach Bike"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Mirage Tower"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokemon Emerald"
+      ],
+      "location": {
+        "name": "desert-underpass",
+        "displayName": "Desert Underpass"
+      },
+      "method": "Recover the unchosen Root Fossil at Desert Underpass far end.",
+      "acquisitionType": "recover-unchosen-fossil",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Hall of Fame"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Desert Underpass",
+      "area": "far end"
+    },
+    {
       "generation": 4,
       "games": [
-        "Pokémon HeartGold",
-        "Pokémon SoulSilver"
+        "Pokemon Diamond",
+        "Pokemon Pearl"
+      ],
+      "location": "Sinnoh Underground",
+      "method": "Find the Root Fossil while digging in Sinnoh Underground.",
+      "acquisitionType": "digging",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "National Pokedex"
+      ],
+      "locationMatchStatus": "unmatched",
+      "originalLocationText": "Sinnoh Underground"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokemon Platinum"
+      ],
+      "location": "Sinnoh Underground",
+      "method": "Find the Root Fossil while digging in Sinnoh Underground.",
+      "acquisitionType": "digging",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "National Pokedex"
+      ],
+      "locationMatchStatus": "unmatched",
+      "originalLocationText": "Sinnoh Underground"
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokemon HeartGold",
+        "Pokemon SoulSilver"
       ],
       "location": {
         "name": "cliff-cave",
         "displayName": "Cliff Cave"
       },
-      "method": "Find by smashing rocks in Cliff Cave after receiving the National Pokédex.",
-      "acquisitionType": "rock-smash",
+      "method": "Possible random find from Rock Smash at Cliff Cave.",
+      "acquisitionType": "rock-smash-random",
       "repeatable": true,
       "versionExclusive": true,
       "requirements": [
-        "Pokémon SoulSilver only",
-        "Obtain the National Pokédex"
+        "Hall of Fame",
+        "Pokemon SoulSilver only"
       ],
       "locationMatchStatus": "matched",
       "originalLocationText": "Cliff Cave"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black",
+        "Pokemon White"
+      ],
+      "location": {
+        "name": "twist-mountain",
+        "displayName": "Twist Mountain"
+      },
+      "method": "Possible daily random fossil gift from an NPC at Twist Mountain.",
+      "acquisitionType": "daily-random-npc-gift",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat Ghetsis"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Twist Mountain"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black 2",
+        "Pokemon White 2"
+      ],
+      "location": {
+        "name": "twist-mountain",
+        "displayName": "Twist Mountain"
+      },
+      "method": "Possible daily random fossil gift from an NPC at Twist Mountain.",
+      "acquisitionType": "daily-random-npc-gift",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat Iris"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Twist Mountain"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black 2",
+        "Pokemon White 2"
+      ],
+      "location": {
+        "name": "entralink",
+        "displayName": "Entralink"
+      },
+      "method": "Possible reward from Entralink What is the Best Price? Funfest Mission.",
+      "acquisitionType": "mission-reward",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon Black 2 only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Entralink",
+      "area": "What is the Best Price? Funfest Mission"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black 2",
+        "Pokemon White 2"
+      ],
+      "location": {
+        "name": "join-avenue",
+        "displayName": "Join Avenue"
+      },
+      "method": "Possible random reward from Join Avenue Antique Shop mystery boxes.",
+      "acquisitionType": "random-shop-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat Iris",
+        "Join Avenue Rank 15"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Join Avenue",
+      "area": "Antique Shop mystery boxes"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon X",
+        "Pokemon Y"
+      ],
+      "location": {
+        "name": "glittering-cave",
+        "displayName": "Glittering Cave"
+      },
+      "method": "Possible random find from Rock Smash at Glittering Cave.",
+      "acquisitionType": "rock-smash-random",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Hall of Fame",
+        "Pokemon X only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Glittering Cave"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon Omega Ruby",
+        "Pokemon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "hoenn-route-111",
+        "displayName": "Route 111"
+      },
+      "method": "Choose the Root Fossil at Route 111 desert northeast corner; only one fossil from this choice can be taken.",
+      "acquisitionType": "choose-one",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Go-Goggles"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Route 111",
+      "area": "desert northeast corner"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokemon Ultra Sun",
+        "Pokemon Ultra Moon"
+      ],
+      "location": {
+        "name": "konikoni-city",
+        "displayName": "Konikoni City"
+      },
+      "method": "Purchase the Root Fossil at Konikoni City Olivia's jewelry shop.",
+      "acquisitionType": "purchase",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon Ultra Moon only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Konikoni City",
+      "area": "Olivia's jewelry shop"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokemon Ultra Sun",
+        "Pokemon Ultra Moon"
+      ],
+      "location": {
+        "name": "poke-pelago",
+        "displayName": "Poké Pelago"
+      },
+      "method": "Possible random treasure from Poké Pelago Isle Aphun.",
+      "acquisitionType": "rare-treasure-hunting-random",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Poké Pelago",
+      "area": "Isle Aphun"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Brilliant Diamond",
+        "Pokemon Shining Pearl"
+      ],
+      "location": "Grand Underground",
+      "method": "Find the Root Fossil while digging in Grand Underground.",
+      "acquisitionType": "digging",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat or capture Dialga/Palkia at Spear Pillar"
+      ],
+      "locationMatchStatus": "unmatched",
+      "originalLocationText": "Grand Underground"
     }
   ]
 }

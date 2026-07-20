@@ -1,0 +1,89 @@
+{
+  "item": "fossilized-dino",
+  "displayName": "Fossilized Dino",
+  "source": "itemLocationsCurated.json",
+  "sourceTitle": "Curated fossil location and revival notes",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Sword",
+        "Pokemon Shield"
+      ],
+      "location": {
+        "name": "galar-route-6",
+        "displayName": "Route 6"
+      },
+      "method": "Pick up the Fossilized Dino as a field item at Route 6.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon Sword only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Route 6"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Sword",
+        "Pokemon Shield"
+      ],
+      "location": {
+        "name": "bridge-field",
+        "displayName": "Bridge Field"
+      },
+      "method": "Possible repeatable digging reward at Bridge Field Digging Duo.",
+      "acquisitionType": "repeatable-digging",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Bridge Field",
+      "area": "Digging Duo"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Sword",
+        "Pokemon Shield"
+      ],
+      "location": {
+        "name": "dusty-bowl",
+        "displayName": "Dusty Bowl"
+      },
+      "method": "Possible recurring hidden item at Dusty Bowl.",
+      "acquisitionType": "recurring-hidden-item",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon Sword only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Dusty Bowl"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Sword",
+        "Pokemon Shield"
+      ],
+      "location": {
+        "name": "snowslide-slope",
+        "displayName": "Snowslide Slope"
+      },
+      "method": "Possible raid reward at Snowslide Slope Crown Tundra Max Raid rewards.",
+      "acquisitionType": "raid-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra DLC"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Snowslide Slope",
+      "area": "Crown Tundra Max Raid rewards"
+    }
+  ]
+}

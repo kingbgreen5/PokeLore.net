@@ -1,49 +1,10 @@
 {
-  "item": "helix-fossil",
-  "displayName": "Helix Fossil",
+  "item": "skull-fossil",
+  "displayName": "Skull Fossil",
   "source": "itemLocationsCurated.json",
   "sourceTitle": "Curated fossil location and revival notes",
   "schemaVersion": 1,
   "acquisition": [
-    {
-      "generation": 1,
-      "games": [
-        "Pokemon Red",
-        "Pokemon Blue",
-        "Pokemon Yellow"
-      ],
-      "location": {
-        "name": "mt-moon",
-        "displayName": "Mt. Moon"
-      },
-      "method": "Choose the Helix Fossil at Mt. Moon B2F; only one fossil from this choice can be taken.",
-      "acquisitionType": "choose-one",
-      "repeatable": false,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "matched",
-      "originalLocationText": "Mt. Moon",
-      "area": "B2F"
-    },
-    {
-      "generation": 3,
-      "games": [
-        "Pokemon FireRed",
-        "Pokemon LeafGreen"
-      ],
-      "location": {
-        "name": "mt-moon",
-        "displayName": "Mt. Moon"
-      },
-      "method": "Choose the Helix Fossil at Mt. Moon B2F; only one fossil from this choice can be taken.",
-      "acquisitionType": "choose-one",
-      "repeatable": false,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "matched",
-      "originalLocationText": "Mt. Moon",
-      "area": "B2F"
-    },
     {
       "generation": 4,
       "games": [
@@ -51,12 +12,12 @@
         "Pokemon Pearl"
       ],
       "location": "Sinnoh Underground",
-      "method": "Find the Helix Fossil while digging in Sinnoh Underground.",
+      "method": "Find the Skull Fossil while digging in Sinnoh Underground.",
       "acquisitionType": "digging",
       "repeatable": true,
-      "versionExclusive": false,
+      "versionExclusive": true,
       "requirements": [
-        "National Pokedex"
+        "Pokemon Diamond only"
       ],
       "locationMatchStatus": "unmatched",
       "originalLocationText": "Sinnoh Underground"
@@ -67,36 +28,15 @@
         "Pokemon Platinum"
       ],
       "location": "Sinnoh Underground",
-      "method": "Find the Helix Fossil while digging in Sinnoh Underground.",
+      "method": "Find the Skull Fossil while digging in Sinnoh Underground.",
       "acquisitionType": "digging",
       "repeatable": true,
       "versionExclusive": false,
       "requirements": [
-        "National Pokedex"
+        "Odd Trainer ID"
       ],
       "locationMatchStatus": "unmatched",
       "originalLocationText": "Sinnoh Underground"
-    },
-    {
-      "generation": 4,
-      "games": [
-        "Pokemon HeartGold",
-        "Pokemon SoulSilver"
-      ],
-      "location": {
-        "name": "ruins-of-alph",
-        "displayName": "Ruins of Alph"
-      },
-      "method": "Possible random find from Rock Smash at Ruins of Alph exterior breakable rocks.",
-      "acquisitionType": "rock-smash-random",
-      "repeatable": true,
-      "versionExclusive": true,
-      "requirements": [
-        "Pokemon HeartGold only"
-      ],
-      "locationMatchStatus": "matched",
-      "originalLocationText": "Ruins of Alph",
-      "area": "exterior breakable rocks"
     },
     {
       "generation": 5,
@@ -148,16 +88,16 @@
         "name": "entralink",
         "displayName": "Entralink"
       },
-      "method": "Possible reward from Entralink What is the Real Price? Funfest Mission.",
+      "method": "Possible reward from Entralink What is the Best Price? Funfest Mission.",
       "acquisitionType": "mission-reward",
       "repeatable": true,
       "versionExclusive": true,
       "requirements": [
-        "Pokemon White 2 only"
+        "Pokemon Black 2 only"
       ],
       "locationMatchStatus": "matched",
       "originalLocationText": "Entralink",
-      "area": "What is the Real Price? Funfest Mission"
+      "area": "What is the Best Price? Funfest Mission"
     },
     {
       "generation": 5,
@@ -194,10 +134,9 @@
       "method": "Possible random find from Rock Smash at Glittering Cave.",
       "acquisitionType": "rock-smash-random",
       "repeatable": true,
-      "versionExclusive": true,
+      "versionExclusive": false,
       "requirements": [
-        "Hall of Fame",
-        "Pokemon Y only"
+        "Hall of Fame"
       ],
       "locationMatchStatus": "matched",
       "originalLocationText": "Glittering Cave"
@@ -223,6 +162,27 @@
     {
       "generation": 7,
       "games": [
+        "Pokemon Sun",
+        "Pokemon Moon"
+      ],
+      "location": {
+        "name": "konikoni-city",
+        "displayName": "Konikoni City"
+      },
+      "method": "Purchase the Skull Fossil at Konikoni City Olivia's jewelry shop.",
+      "acquisitionType": "purchase",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon Sun only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Konikoni City",
+      "area": "Olivia's jewelry shop"
+    },
+    {
+      "generation": 7,
+      "games": [
         "Pokemon Ultra Sun",
         "Pokemon Ultra Moon"
       ],
@@ -230,7 +190,7 @@
         "name": "konikoni-city",
         "displayName": "Konikoni City"
       },
-      "method": "Purchase the Helix Fossil at Konikoni City Olivia's jewelry shop.",
+      "method": "Purchase the Skull Fossil at Konikoni City Olivia's jewelry shop.",
       "acquisitionType": "purchase",
       "repeatable": false,
       "versionExclusive": true,
@@ -261,58 +221,18 @@
       "area": "Isle Aphun"
     },
     {
-      "generation": 7,
-      "games": [
-        "Pokemon: Let's Go, Pikachu!",
-        "Pokemon: Let's Go, Eevee!"
-      ],
-      "location": {
-        "name": "mt-moon",
-        "displayName": "Mt. Moon"
-      },
-      "method": "Choose the Helix Fossil at Mt. Moon B2F; only one fossil from this choice can be taken.",
-      "acquisitionType": "choose-one",
-      "repeatable": false,
-      "versionExclusive": false,
-      "requirements": [],
-      "locationMatchStatus": "matched",
-      "originalLocationText": "Mt. Moon",
-      "area": "B2F"
-    },
-    {
-      "generation": 7,
-      "games": [
-        "Pokemon: Let's Go, Pikachu!",
-        "Pokemon: Let's Go, Eevee!"
-      ],
-      "location": {
-        "name": "cerulean-cave",
-        "displayName": "Cerulean Cave"
-      },
-      "method": "Possible recurring random field item at Cerulean Cave 2F rare-item spawn points.",
-      "acquisitionType": "recurring-random-field-item",
-      "repeatable": true,
-      "versionExclusive": false,
-      "requirements": [
-        "Hall of Fame"
-      ],
-      "locationMatchStatus": "matched",
-      "originalLocationText": "Cerulean Cave",
-      "area": "2F rare-item spawn points"
-    },
-    {
       "generation": 8,
       "games": [
         "Pokemon Brilliant Diamond",
         "Pokemon Shining Pearl"
       ],
       "location": "Grand Underground",
-      "method": "Find the Helix Fossil while digging in Grand Underground.",
+      "method": "Find the Skull Fossil while digging in Grand Underground.",
       "acquisitionType": "digging",
       "repeatable": true,
-      "versionExclusive": false,
+      "versionExclusive": true,
       "requirements": [
-        "Defeat or capture Dialga/Palkia at Spear Pillar"
+        "Pokemon Brilliant Diamond only"
       ],
       "locationMatchStatus": "unmatched",
       "originalLocationText": "Grand Underground"

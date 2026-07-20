@@ -1,0 +1,91 @@
+{
+  "item": "fossilized-bird",
+  "displayName": "Fossilized Bird",
+  "source": "itemLocationsCurated.json",
+  "sourceTitle": "Curated fossil location and revival notes",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Sword",
+        "Pokemon Shield"
+      ],
+      "location": {
+        "name": "stow-on-side",
+        "displayName": "Stow-on-Side"
+      },
+      "method": "Receive 2 Fossilized Bird from an NPC at Stow-on-Side man beside Pokemon Center.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon Sword only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Stow-on-Side",
+      "area": "man beside Pokemon Center",
+      "quantity": 2
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Sword",
+        "Pokemon Shield"
+      ],
+      "location": {
+        "name": "bridge-field",
+        "displayName": "Bridge Field"
+      },
+      "method": "Possible repeatable digging reward at Bridge Field Digging Duo.",
+      "acquisitionType": "repeatable-digging",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Bridge Field",
+      "area": "Digging Duo"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Sword",
+        "Pokemon Shield"
+      ],
+      "location": {
+        "name": "dusty-bowl",
+        "displayName": "Dusty Bowl"
+      },
+      "method": "Possible recurring hidden item at Dusty Bowl.",
+      "acquisitionType": "recurring-hidden-item",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon Sword only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Dusty Bowl"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Sword",
+        "Pokemon Shield"
+      ],
+      "location": {
+        "name": "snowslide-slope",
+        "displayName": "Snowslide Slope"
+      },
+      "method": "Possible raid reward at Snowslide Slope Crown Tundra Max Raid rewards.",
+      "acquisitionType": "raid-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Crown Tundra DLC"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Snowslide Slope",
+      "area": "Crown Tundra Max Raid rewards"
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "item": "plume-fossil",
+  "displayName": "Plume Fossil",
+  "source": "itemLocationsCurated.json",
+  "sourceTitle": "Curated fossil location and revival notes",
+  "schemaVersion": 1,
+  "acquisition": [
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black",
+        "Pokemon White"
+      ],
+      "location": {
+        "name": "relic-castle",
+        "displayName": "Relic Castle"
+      },
+      "method": "Choose the Plume Fossil at Relic Castle; only one fossil from this choice can be taken.",
+      "acquisitionType": "choose-one",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Relic Castle"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black 2",
+        "Pokemon White 2"
+      ],
+      "location": {
+        "name": "nacrene-city",
+        "displayName": "Nacrene City"
+      },
+      "method": "Receive the Plume Fossil from Lenora at Nacrene City Nacrene Museum; only one fossil from this choice can be taken.",
+      "acquisitionType": "choose-one-from-lenora",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Hall of Fame"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Nacrene City",
+      "area": "Nacrene Museum"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black 2",
+        "Pokemon White 2"
+      ],
+      "location": {
+        "name": "entralink",
+        "displayName": "Entralink"
+      },
+      "method": "Possible reward from Entralink What is the Real Price? Funfest Mission.",
+      "acquisitionType": "mission-reward",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon White 2 only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Entralink",
+      "area": "What is the Real Price? Funfest Mission"
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black 2",
+        "Pokemon White 2"
+      ],
+      "location": {
+        "name": "join-avenue",
+        "displayName": "Join Avenue"
+      },
+      "method": "Possible random reward from Join Avenue Antique Shop mystery boxes.",
+      "acquisitionType": "random-shop-reward",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat Iris",
+        "Join Avenue Rank 15"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Join Avenue",
+      "area": "Antique Shop mystery boxes"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon X",
+        "Pokemon Y"
+      ],
+      "location": {
+        "name": "glittering-cave",
+        "displayName": "Glittering Cave"
+      },
+      "method": "Possible random find from Rock Smash at Glittering Cave.",
+      "acquisitionType": "rock-smash-random",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "Hall of Fame"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Glittering Cave"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon Omega Ruby",
+        "Pokemon Alpha Sapphire"
+      ],
+      "location": "Mirage Spots",
+      "method": "Possible random find from Rock Smash at Mirage Spots.",
+      "acquisitionType": "rock-smash-random",
+      "repeatable": true,
+      "versionExclusive": true,
+      "requirements": [
+        "Defeat or capture Groudon",
+        "Pokemon Omega Ruby only"
+      ],
+      "locationMatchStatus": "unmatched",
+      "originalLocationText": "Mirage Spots"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokemon Sun",
+        "Pokemon Moon"
+      ],
+      "location": {
+        "name": "konikoni-city",
+        "displayName": "Konikoni City"
+      },
+      "method": "Purchase the Plume Fossil at Konikoni City Olivia's jewelry shop.",
+      "acquisitionType": "purchase",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon Moon only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Konikoni City",
+      "area": "Olivia's jewelry shop"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokemon Ultra Sun",
+        "Pokemon Ultra Moon"
+      ],
+      "location": {
+        "name": "konikoni-city",
+        "displayName": "Konikoni City"
+      },
+      "method": "Purchase the Plume Fossil at Konikoni City Olivia's jewelry shop.",
+      "acquisitionType": "purchase",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Pokemon Ultra Moon only"
+      ],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Konikoni City",
+      "area": "Olivia's jewelry shop"
+    },
+    {
+      "generation": 7,
+      "games": [
+        "Pokemon Ultra Sun",
+        "Pokemon Ultra Moon"
+      ],
+      "location": {
+        "name": "poke-pelago",
+        "displayName": "Poké Pelago"
+      },
+      "method": "Possible random treasure from Poké Pelago Isle Aphun.",
+      "acquisitionType": "rare-treasure-hunting-random",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "originalLocationText": "Poké Pelago",
+      "area": "Isle Aphun"
+    }
+  ]
+}
