@@ -6,6 +6,7 @@ import {
 import typeChart from "../constants/Types";
 import {
   getCoveredDefenseTypes,
+  getLevelUpAttackTypePowers,
   getLevelUpAttackTypes,
   getMissingDefenseTypes,
   getTypesForVersionGroup,
@@ -82,6 +83,104 @@ describe("team coverage helpers", () => {
         versionGroup: "red-blue"
       })
     ).toEqual(["grass"]);
+  });
+
+  it("ignores attacking moves below the selected power threshold", () => {
+    const learnset = {
+      moves: [
+        {
+          move: "tackle",
+          method: "level-up",
+          versionGroup: "red-blue"
+        },
+        {
+          move: "body-slam",
+          method: "level-up",
+          versionGroup: "red-blue"
+        },
+        {
+          move: "water-gun",
+          method: "level-up",
+          versionGroup: "red-blue"
+        }
+      ]
+    };
+    const movesByName = {
+      tackle: {
+        category: "physical",
+        power: 40,
+        type: "normal"
+      },
+      "body-slam": {
+        category: "physical",
+        power: 85,
+        type: "normal"
+      },
+      "water-gun": {
+        category: "special",
+        power: 40,
+        type: "water"
+      }
+    };
+
+    expect(
+      getLevelUpAttackTypes({
+        learnset,
+        minMovePower: 50,
+        movesByName,
+        versionGroup: "red-blue"
+      })
+    ).toEqual(["normal"]);
+  });
+
+  it("records the strongest level-up move power for each attack type", () => {
+    const learnset = {
+      moves: [
+        {
+          move: "ember",
+          method: "level-up",
+          versionGroup: "red-blue"
+        },
+        {
+          move: "flamethrower",
+          method: "level-up",
+          versionGroup: "red-blue"
+        },
+        {
+          move: "scratch",
+          method: "level-up",
+          versionGroup: "red-blue"
+        }
+      ]
+    };
+    const movesByName = {
+      ember: {
+        category: "special",
+        power: 40,
+        type: "fire"
+      },
+      flamethrower: {
+        category: "special",
+        power: 90,
+        type: "fire"
+      },
+      scratch: {
+        category: "physical",
+        power: 40,
+        type: "normal"
+      }
+    };
+
+    expect(
+      getLevelUpAttackTypePowers({
+        learnset,
+        movesByName,
+        versionGroup: "red-blue"
+      })
+    ).toEqual({
+      fire: 90,
+      normal: 40
+    });
   });
 
   it("uses base-game learnsets for DLC version groups", () => {

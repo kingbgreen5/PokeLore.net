@@ -336,6 +336,21 @@ export function itemSeo(item) {
     };
   }
 
+  if (
+    typeof item !== "string" &&
+    item?.acquisition?.length > 0
+  ) {
+    return {
+      title: `${name} Locations, Uses & Details | ${SITE_NAME}`,
+      description: `Find ${name} locations across Pokemon games, plus acquisition methods, requirements, repeatable sources, effects, uses, and game-specific details.`,
+      canonical: pageUrl(`/item/${slug}`),
+      image:
+        typeof item === "string"
+          ? undefined
+          : item?.sprite ?? undefined
+    };
+  }
+
   return {
     title: `${name} Item Guide | ${SITE_NAME}`,
     description:

@@ -3,7 +3,7 @@ import {
   useMemo,
   useState
 } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import TypeBadge from "../components/TypeBadge";
 import typeChart from "../constants/Types";
@@ -32,7 +32,45 @@ const SORT_STORAGE_KEY =
   "pokelore:team-coverage-sort";
 const FOCUS_TYPE_STORAGE_KEY =
   "pokelore:team-coverage-focus-type";
+const MOVE_POWER_THRESHOLD_STORAGE_KEY =
+  "pokelore:team-coverage-move-power-threshold";
+const RECOMMENDATION_MOVE_POWER_THRESHOLD_STORAGE_KEY =
+  "pokelore:team-coverage-recommendation-move-power-threshold";
 const RECOMMENDATIONS_PER_PAGE = 25;
+const MOVE_POWER_THRESHOLD_OPTIONS = [
+  {
+    value: 0,
+    label: "Any Power"
+  },
+  {
+    value: 40,
+    label: "40+"
+  },
+  {
+    value: 50,
+    label: "50+"
+  },
+  {
+    value: 60,
+    label: "60+"
+  },
+  {
+    value: 70,
+    label: "70+"
+  },
+  {
+    value: 80,
+    label: "80+"
+  },
+  {
+    value: 90,
+    label: "90+"
+  },
+  {
+    value: 100,
+    label: "100+"
+  }
+];
 const STAT_SORT_MODES = [
   {
     value: "highest-bst",
@@ -172,6 +210,18 @@ function getValidSortMode(value) {
     : SORT_MODES[0].value;
 }
 
+function getValidMovePowerThreshold(
+  value
+) {
+  const parsedValue = Number(value);
+
+  return MOVE_POWER_THRESHOLD_OPTIONS.some(
+    option => option.value === parsedValue
+  )
+    ? parsedValue
+    : MOVE_POWER_THRESHOLD_OPTIONS[0].value;
+}
+
 function compareByNationalDex(a, b) {
   return a.id - b.id;
 }
@@ -242,6 +292,28 @@ function compareByStat(sortMode) {
       compareByNationalDex(a, b)
     );
   };
+}
+
+function getThresholdedAttackTypes({
+  consideredTypes,
+  minMovePower,
+  pokemon
+}) {
+  if (minMovePower <= 0) {
+    return consideredTypes.filter(type =>
+      pokemon.attackTypes?.includes(type)
+    );
+  }
+
+  const attackTypePowers =
+    pokemon.attackTypePowers ?? {};
+
+  return consideredTypes.filter(
+    type =>
+      Number(
+        attackTypePowers[type]
+      ) >= minMovePower
+  );
 }
 
 function isCosmeticPickerForm(name) {
@@ -357,6 +429,7 @@ function CoveragePanel({
 function PartyTile({
   index,
   member,
+  minMovePower,
   onChoose,
   onRemove,
   selectedVersion
@@ -516,6 +589,9 @@ function PartyTile({
           }}
         >
           Level-Up attack types
+          {minMovePower > 0
+            ? ` (${minMovePower}+ power)`
+            : ""}
         </p>
         {isLoading ? (
           <span
@@ -528,7 +604,11 @@ function PartyTile({
           </span>
         ) : (
           <TypeBadgeList
-            emptyLabel={`No level-up attacks in ${formatVersionGroupName(
+            emptyLabel={`No level-up attacks${
+              minMovePower > 0
+                ? ` at ${minMovePower}+ power`
+                : ""
+            } in ${formatVersionGroupName(
               selectedVersion
             )}`}
             height="1.1rem"
@@ -720,6 +800,7 @@ function PokemonPicker({
 }
 
 function RecommendationCard({
+  minMovePower,
   recommendation
 }) {
   return (
@@ -768,6 +849,9 @@ function RecommendationCard({
           }}
         >
           Level-up attack types
+          {minMovePower > 0
+            ? ` (${minMovePower}+ power)`
+            : ""}
         </p>
         <TypeBadgeList
           emptyLabel="None"
@@ -866,6 +950,28 @@ function TeamCoveragePage() {
     FOCUS_TYPE_STORAGE_KEY,
     "water"
   );
+  const [
+    preferredMovePowerThreshold,
+    setPreferredMovePowerThreshold
+  ] = useLocalStorageState(
+    MOVE_POWER_THRESHOLD_STORAGE_KEY,
+    MOVE_POWER_THRESHOLD_OPTIONS[0].value
+  );
+  const selectedMovePowerThreshold =
+    getValidMovePowerThreshold(
+      preferredMovePowerThreshold
+    );
+  const [
+    preferredRecommendationMovePowerThreshold,
+    setPreferredRecommendationMovePowerThreshold
+  ] = useLocalStorageState(
+    RECOMMENDATION_MOVE_POWER_THRESHOLD_STORAGE_KEY,
+    MOVE_POWER_THRESHOLD_OPTIONS[0].value
+  );
+  const selectedRecommendationMovePowerThreshold =
+    getValidMovePowerThreshold(
+      preferredRecommendationMovePowerThreshold
+    );
   const consideredTypes = useMemo(
     () =>
       getTypesForVersionGroup(
@@ -1092,10 +1198,12 @@ function TeamCoveragePage() {
                 consideredTypes,
                 learnset:
                   record.learnset,
+                minMovePower:
+                  selectedMovePowerThreshold,
                 movesByName,
                 versionGroup:
                   selectedVersion
-              })
+            })
             : [];
         const coveredTypes =
           getCoveredDefenseTypes({
@@ -1114,6 +1222,7 @@ function TeamCoveragePage() {
       movesByName,
       normalizedParty,
       pokemonRecordsById,
+      selectedMovePowerThreshold,
       selectedVersion,
       consideredTypes
     ]
@@ -1198,16 +1307,33 @@ function TeamCoveragePage() {
           pokemon =>
             !selectedIds.has(pokemon.id)
         )
-        .map(pokemon => ({
-          ...pokemon,
-          missingHits:
-            pokemon.coveredTypes.filter(
-              type =>
+        .map(pokemon => {
+          const attackTypes =
+            getThresholdedAttackTypes({
+              consideredTypes,
+              minMovePower:
+                selectedRecommendationMovePowerThreshold,
+              pokemon
+            });
+          const coveredTypes =
+            getCoveredDefenseTypes({
+              attackTypes,
+              consideredTypes,
+              typeChart
+            });
+
+          return {
+            ...pokemon,
+            attackTypes,
+            coveredTypes,
+            missingHits:
+              coveredTypes.filter(type =>
                 missingTypes.includes(
                   type
                 )
-            )
-        }))
+              )
+          };
+        })
         .filter(
           pokemon =>
             pokemon.missingHits.length > 0
@@ -1245,9 +1371,11 @@ function TeamCoveragePage() {
           return compareByNationalDex(a, b);
         });
     }, [
+      consideredTypes,
       missingTypes,
       normalizedParty,
       selectedFocusType,
+      selectedRecommendationMovePowerThreshold,
       selectedSortMode,
       selectedVersion,
       teamCoverageData
@@ -1347,6 +1475,21 @@ function TeamCoveragePage() {
         super-effective damage with their Level-Up learnset.
       </p>
 
+      <p
+        style={{
+          color: "#9ca3af",
+          fontSize: ".9rem",
+          lineHeight: 1.4,
+          margin: "0 auto 1.25rem",
+          maxWidth: "760px"
+        }}
+      >
+        Just need to cover one type?{" "}
+        <Link to="/single-type-coverage">
+          Try our Single Coverage Calculator.
+        </Link>
+      </p>
+
       <div
         style={{
           alignItems: "center",
@@ -1417,6 +1560,64 @@ function TeamCoveragePage() {
         Select Pokemon to see level up learnset coverage.
       </p>
 
+      <div
+        style={{
+          alignItems: "center",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: ".6rem",
+          justifyContent: "center",
+          margin: "0 auto 1rem"
+        }}
+      >
+        <label
+          htmlFor="team-coverage-move-power-threshold"
+          style={{
+            color: "#f3f4f6",
+            fontSize: ".9rem",
+            fontWeight: "bold"
+          }}
+        >
+          Move Power
+        </label>
+        <select
+          id="team-coverage-move-power-threshold"
+          value={selectedMovePowerThreshold}
+          onChange={event =>
+            setPreferredMovePowerThreshold(
+              Number(event.target.value)
+            )
+          }
+          style={{
+            backgroundColor: "#2c2c2c",
+            border: "2px solid #555",
+            borderRadius: "8px",
+            color: "white",
+            fontSize: ".95rem",
+            padding: ".55rem .75rem"
+          }}
+        >
+          {MOVE_POWER_THRESHOLD_OPTIONS.map(
+            option => (
+              <option
+                key={option.value}
+                value={option.value}
+              >
+                {option.label}
+              </option>
+            )
+          )}
+        </select>
+        <span
+          style={{
+            color: "#9ca3af",
+            fontSize: ".8rem"
+          }}
+        >
+          Applies to selected party level-up moves.
+        </span>
+      </div>
+
       <section
         className="team-coverage-party-grid"
         aria-label="Party Pokemon"
@@ -1426,6 +1627,9 @@ function TeamCoveragePage() {
             key={index}
             index={index}
             member={partyMembers[index]}
+            minMovePower={
+              selectedMovePowerThreshold
+            }
             selectedVersion={
               selectedVersion
             }
@@ -1553,6 +1757,48 @@ function TeamCoveragePage() {
             ))}
           </select>
 
+          <label
+            htmlFor="team-coverage-recommendation-move-power-threshold"
+            style={{
+              color: "#f3f4f6",
+              fontWeight: "bold"
+            }}
+          >
+            Move Power
+          </label>
+          <select
+            id="team-coverage-recommendation-move-power-threshold"
+            value={
+              selectedRecommendationMovePowerThreshold
+            }
+            onChange={event => {
+              setRecommendationPage(1);
+              setPreferredRecommendationMovePowerThreshold(
+                Number(event.target.value)
+              );
+            }}
+            style={{
+              backgroundColor: "#2c2c2c",
+              border: "2px solid #555",
+              borderRadius: "8px",
+              color: "white",
+              fontSize: ".95rem",
+              maxWidth: "100%",
+              padding: ".55rem .75rem"
+            }}
+          >
+            {MOVE_POWER_THRESHOLD_OPTIONS.map(
+              option => (
+                <option
+                  key={option.value}
+                  value={option.value}
+                >
+                  {option.label}
+                </option>
+              )
+            )}
+          </select>
+
           {selectedSortMode ===
             "selected-type-first" &&
             missingTypes.length > 0 && (
@@ -1638,6 +1884,9 @@ function TeamCoveragePage() {
                 recommendation => (
                   <RecommendationCard
                     key={recommendation.id}
+                    minMovePower={
+                      selectedRecommendationMovePowerThreshold
+                    }
                     recommendation={
                       recommendation
                     }

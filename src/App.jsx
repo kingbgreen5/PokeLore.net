@@ -74,6 +74,9 @@ const TeamCoveragePage = lazy(() =>
 const SingleTypeCoveragePage = lazy(() =>
   import("./pages/SingleTypeCoveragePage")
 );
+const SeoReviewPage = lazy(() =>
+  import("./pages/SeoReviewPage")
+);
 const OgPreviewHome = lazy(() =>
   import("./og/OgPreviewPage").then(module => ({
     default: module.OgPreviewHome
@@ -244,6 +247,11 @@ function App() {
 <Route
   path="/single-type-coverage"
   element={<SingleTypeCoveragePage />}
+/>
+
+<Route
+  path="/seo-review"
+  element={<SeoReviewPage />}
 />
 
         <Route

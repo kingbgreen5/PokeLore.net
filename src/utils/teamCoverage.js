@@ -71,13 +71,34 @@ export function isDamagingMove(move) {
 export function getLevelUpAttackTypes({
   consideredTypes = ALL_POKEMON_TYPES,
   learnset,
+  minMovePower = 0,
   movesByName,
   versionGroup
 }) {
-  const attackTypes = new Set();
-  const consideredTypeSet = new Set(
-    consideredTypes
+  const attackTypePowers =
+    getLevelUpAttackTypePowers({
+      consideredTypes,
+      learnset,
+      minMovePower,
+      movesByName,
+      versionGroup
+    });
+
+  return consideredTypes.filter(type =>
+    Object.hasOwn(attackTypePowers, type)
   );
+}
+
+export function getLevelUpAttackTypePowers({
+  consideredTypes = ALL_POKEMON_TYPES,
+  learnset,
+  minMovePower = 0,
+  movesByName,
+  versionGroup
+}) {
+  const attackTypePowers = {};
+  const consideredTypeSet =
+    new Set(consideredTypes);
   const learnsetVersionGroup =
     LEARNSET_VERSION_GROUP_ALIASES[
       versionGroup
@@ -92,6 +113,8 @@ export function getLevelUpAttackTypes({
     }
 
     const move = movesByName?.[learnsetMove.move];
+    const movePower =
+      Number(move?.power) || 0;
 
     const moveType = String(
       move?.type ?? ""
@@ -99,18 +122,21 @@ export function getLevelUpAttackTypes({
 
     if (
       !isDamagingMove(move) ||
+      movePower < minMovePower ||
       !moveType ||
       !consideredTypeSet.has(moveType)
     ) {
       continue;
     }
 
-    attackTypes.add(moveType);
+    attackTypePowers[moveType] =
+      Math.max(
+        attackTypePowers[moveType] ?? 0,
+        movePower
+      );
   }
 
-  return consideredTypes.filter(type =>
-    attackTypes.has(type)
-  );
+  return attackTypePowers;
 }
 
 export function getCoveredDefenseTypes({
