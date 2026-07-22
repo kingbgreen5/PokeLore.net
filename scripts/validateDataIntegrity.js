@@ -376,6 +376,7 @@ function validateSitemap() {
       "/abilities",
       "/dex-entries",
       "/items",
+      "/items/dynamax-crystals",
       "/learnsets",
       "/locations",
       "/moves",

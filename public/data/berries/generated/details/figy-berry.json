@@ -1,0 +1,47 @@
+{
+  "item": {
+    "id": 136,
+    "name": "figy-berry",
+    "displayName": "Figy Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/figy-berry.png",
+    "category": "picky-healing",
+    "categoryDisplayName": "Picky healing",
+    "pocket": "berries",
+    "cost": 80,
+    "shortEffect": "Held: Consumed at 1/2 max HP to restore 1/8 max HP. Confuses Pokémon that dislike spicy flavor."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 11,
+    "berryName": "figy",
+    "itemName": "figy-berry",
+    "firmness": "soft",
+    "growthTime": 5,
+    "maxHarvest": 5,
+    "naturalGiftPower": 60,
+    "naturalGiftType": "bug",
+    "size": 100,
+    "smoothness": 25,
+    "soilDryness": 10,
+    "flavorPotencies": {
+      "spicy": 15,
+      "dry": 0,
+      "sweet": 0,
+      "bitter": 0,
+      "sour": 0
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "spicy",
+        "potency": 15
+      }
+    ],
+    "dominantFlavors": [
+      "spicy"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/11",
+    "itemUrl": "https://pokeapi.co/api/v2/item/136"
+  }
+}

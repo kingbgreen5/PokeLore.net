@@ -1,0 +1,47 @@
+{
+  "item": {
+    "id": 138,
+    "name": "mago-berry",
+    "displayName": "Mago Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/mago-berry.png",
+    "category": "picky-healing",
+    "categoryDisplayName": "Picky healing",
+    "pocket": "berries",
+    "cost": 80,
+    "shortEffect": "Held: Consumed at 1/2 max HP to restore 1/8 max HP. Confuses Pokémon that dislike sweet flavor."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 13,
+    "berryName": "mago",
+    "itemName": "mago-berry",
+    "firmness": "hard",
+    "growthTime": 5,
+    "maxHarvest": 5,
+    "naturalGiftPower": 60,
+    "naturalGiftType": "ghost",
+    "size": 126,
+    "smoothness": 25,
+    "soilDryness": 10,
+    "flavorPotencies": {
+      "spicy": 0,
+      "dry": 0,
+      "sweet": 15,
+      "bitter": 0,
+      "sour": 0
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "sweet",
+        "potency": 15
+      }
+    ],
+    "dominantFlavors": [
+      "sweet"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/13",
+    "itemUrl": "https://pokeapi.co/api/v2/item/138"
+  }
+}

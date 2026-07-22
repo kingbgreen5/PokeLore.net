@@ -1,0 +1,52 @@
+{
+  "item": {
+    "id": 145,
+    "name": "pinap-berry",
+    "displayName": "Pinap Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pinap-berry.png",
+    "category": "baking-only",
+    "categoryDisplayName": "Baking only",
+    "pocket": "berries",
+    "cost": 200,
+    "shortEffect": "Used for creating PokéBlocks and Poffins."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 20,
+    "berryName": "pinap",
+    "itemName": "pinap-berry",
+    "firmness": "hard",
+    "growthTime": 2,
+    "maxHarvest": 10,
+    "naturalGiftPower": 70,
+    "naturalGiftType": "grass",
+    "size": 80,
+    "smoothness": 20,
+    "soilDryness": 35,
+    "flavorPotencies": {
+      "spicy": 10,
+      "dry": 0,
+      "sweet": 0,
+      "bitter": 0,
+      "sour": 10
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "spicy",
+        "potency": 10
+      },
+      {
+        "flavor": "sour",
+        "potency": 10
+      }
+    ],
+    "dominantFlavors": [
+      "spicy",
+      "sour"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/20",
+    "itemUrl": "https://pokeapi.co/api/v2/item/145"
+  }
+}

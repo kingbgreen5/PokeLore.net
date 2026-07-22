@@ -1,0 +1,51 @@
+{
+  "item": {
+    "id": 155,
+    "name": "nomel-berry",
+    "displayName": "Nomel Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/nomel-berry.png",
+    "category": "baking-only",
+    "categoryDisplayName": "Baking only",
+    "pocket": "berries",
+    "cost": 20,
+    "shortEffect": "Used for creating PokéBlocks and Poffins."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 30,
+    "berryName": "nomel",
+    "itemName": "nomel-berry",
+    "firmness": "super-hard",
+    "growthTime": 6,
+    "maxHarvest": 10,
+    "naturalGiftPower": 70,
+    "naturalGiftType": "dragon",
+    "size": 285,
+    "smoothness": 30,
+    "soilDryness": 10,
+    "flavorPotencies": {
+      "spicy": 10,
+      "dry": 0,
+      "sweet": 0,
+      "bitter": 0,
+      "sour": 20
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "spicy",
+        "potency": 10
+      },
+      {
+        "flavor": "sour",
+        "potency": 20
+      }
+    ],
+    "dominantFlavors": [
+      "sour"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/30",
+    "itemUrl": "https://pokeapi.co/api/v2/item/155"
+  }
+}

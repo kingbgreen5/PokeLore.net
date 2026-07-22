@@ -1,0 +1,51 @@
+{
+  "item": {
+    "id": 152,
+    "name": "cornn-berry",
+    "displayName": "Cornn Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cornn-berry.png",
+    "category": "baking-only",
+    "categoryDisplayName": "Baking only",
+    "pocket": "berries",
+    "cost": 20,
+    "shortEffect": "Used for creating PokéBlocks and Poffins."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 27,
+    "berryName": "cornn",
+    "itemName": "cornn-berry",
+    "firmness": "hard",
+    "growthTime": 6,
+    "maxHarvest": 10,
+    "naturalGiftPower": 70,
+    "naturalGiftType": "bug",
+    "size": 75,
+    "smoothness": 30,
+    "soilDryness": 10,
+    "flavorPotencies": {
+      "spicy": 0,
+      "dry": 20,
+      "sweet": 10,
+      "bitter": 0,
+      "sour": 0
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "dry",
+        "potency": 20
+      },
+      {
+        "flavor": "sweet",
+        "potency": 10
+      }
+    ],
+    "dominantFlavors": [
+      "dry"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/27",
+    "itemUrl": "https://pokeapi.co/api/v2/item/152"
+  }
+}

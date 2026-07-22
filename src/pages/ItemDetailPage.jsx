@@ -145,6 +145,209 @@ function DetailRow({
   );
 }
 
+function BerryFlavorBars({
+  flavorPotencies
+}) {
+  const entries =
+    Object.entries(
+      flavorPotencies ?? {}
+    );
+
+  if (entries.length === 0) {
+    return null;
+  }
+
+  const maxPotency =
+    Math.max(
+      1,
+      ...entries.map(
+        ([, potency]) => potency
+      )
+    );
+
+  return (
+    <div
+      style={{
+        display: "grid",
+        gap: ".45rem",
+        marginTop: "1rem"
+      }}
+    >
+      {entries.map(
+        ([flavor, potency]) => (
+          <div
+            key={flavor}
+            style={{
+              alignItems: "center",
+              display: "grid",
+              gap: ".6rem",
+              gridTemplateColumns:
+                "80px minmax(0, 1fr) 40px",
+              textAlign: "left"
+            }}
+          >
+            <span>{capitalize(flavor)}</span>
+
+            <div
+              style={{
+                backgroundColor:
+                  "rgba(255, 255, 255, .08)",
+                borderRadius: "999px",
+                height: "8px",
+                overflow: "hidden"
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor:
+                    potency > 0
+                      ? "#84cc16"
+                      : "transparent",
+                  height: "100%",
+                  width: `${Math.round(
+                    (potency / maxPotency) *
+                      100
+                  )}%`
+                }}
+              />
+            </div>
+
+            <strong
+              style={{
+                color: "var(--text-h)",
+                textAlign: "right"
+              }}
+            >
+              {potency}
+            </strong>
+          </div>
+        )
+      )}
+    </div>
+  );
+}
+
+function BerryMechanicsDetails({
+  berryData
+}) {
+  if (!berryData) {
+    return null;
+  }
+
+  const mechanics =
+    berryData.mechanics;
+
+  if (!mechanics) {
+    return (
+      <section
+        style={{
+          border: "1px solid #666",
+          borderRadius: "12px",
+          marginBottom: "2rem",
+          padding: "1rem"
+        }}
+      >
+        <h2>Berry Data</h2>
+        <p>
+          This item is in the berry pocket, but
+          PokeAPI does not currently provide a
+          dedicated berry mechanics payload for it.
+        </p>
+      </section>
+    );
+  }
+
+  return (
+    <section
+      style={{
+        border: "1px solid #666",
+        borderRadius: "12px",
+        marginBottom: "2rem",
+        padding: "1rem"
+      }}
+    >
+      <h2>Berry Data</h2>
+
+      <div
+        style={{
+          display: "grid",
+          gap: "1rem",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(160px, 1fr))"
+        }}
+      >
+        <DetailRow
+          label="Firmness"
+          value={capitalize(
+            mechanics.firmness
+          )}
+        />
+        <DetailRow
+          label="Growth Time"
+          value={`${mechanics.growthTime} hours`}
+        />
+        <DetailRow
+          label="Max Harvest"
+          value={mechanics.maxHarvest}
+        />
+        <DetailRow
+          label="Soil Dryness"
+          value={mechanics.soilDryness}
+        />
+        <DetailRow
+          label="Size"
+          value={`${mechanics.size} mm`}
+        />
+        <DetailRow
+          label="Smoothness"
+          value={mechanics.smoothness}
+        />
+        <DetailRow
+          label="Natural Gift Type"
+          value={capitalize(
+            mechanics.naturalGiftType
+          )}
+        />
+        <DetailRow
+          label="Natural Gift Power"
+          value={mechanics.naturalGiftPower}
+        />
+        <DetailRow
+          label="Dominant Flavor"
+          value={
+            mechanics.dominantFlavors
+              ?.map(capitalize)
+              .join(" / ")
+          }
+        />
+      </div>
+
+      <div
+        style={{
+          marginTop: "1.25rem",
+          textAlign: "left"
+        }}
+      >
+        <h3
+          style={{
+            color: "var(--text-h)",
+            fontSize: "1.05rem",
+            margin: "0 0 .75rem"
+          }}
+        >
+          Flavor Potencies
+        </h3>
+
+        <BerryFlavorBars
+          flavorPotencies={
+            mechanics.flavorPotencies
+          }
+        />
+      </div>
+    </section>
+  );
+}
+
 function PokemonTextLinks({
   pokemonSlugs
 }) {
@@ -396,6 +599,8 @@ function ItemDetailPage() {
   ] = useState(null);
   const [relatedLinks, setRelatedLinks] =
     useState(null);
+  const [berryData, setBerryData] =
+    useState(null);
 
   const [loading, setLoading] =
     useState(true);
@@ -443,6 +648,7 @@ function ItemDetailPage() {
           setOaksNotes(null);
           setPokemonGoNotes(null);
           setRelatedLinks(null);
+          setBerryData(null);
           return;
         }
 
@@ -452,6 +658,7 @@ function ItemDetailPage() {
           oaksNotesData,
           pokemonGoNotesData,
           relatedLinksData,
+          berryDetailData,
           tmMaterialDetailsData
         ] = await Promise.all([
           readJsonFile(
@@ -469,6 +676,12 @@ function ItemDetailPage() {
           readJsonFile(
             `/data/relatedLinks/items/${itemData.name}.json`
           ),
+          itemData.category?.pocket ===
+          "berries"
+            ? readJsonFile(
+                `/data/berries/generated/details/${itemData.name}.json`
+              )
+            : Promise.resolve(null),
           isTmMaterialItem(itemData)
             ? readJsonFile(
                 "/data/tmMaterialDetails.json"
@@ -506,6 +719,7 @@ function ItemDetailPage() {
         setOaksNotes(oaksNotesData);
         setPokemonGoNotes(pokemonGoNotesData);
         setRelatedLinks(relatedLinksData);
+        setBerryData(berryDetailData);
       } catch (error) {
         if (!isActive) {
           return;
@@ -519,6 +733,7 @@ function ItemDetailPage() {
         setOaksNotes(null);
         setPokemonGoNotes(null);
         setRelatedLinks(null);
+        setBerryData(null);
       } finally {
         if (isActive) {
           setLoading(false);
@@ -770,6 +985,10 @@ function ItemDetailPage() {
       )}
 
       <TmMoveDetails item={item} />
+
+      <BerryMechanicsDetails
+        berryData={berryData}
+      />
 
       <AcquisitionMethods
         key={item.name}

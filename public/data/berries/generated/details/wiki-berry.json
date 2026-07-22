@@ -1,0 +1,47 @@
+{
+  "item": {
+    "id": 137,
+    "name": "wiki-berry",
+    "displayName": "Wiki Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/wiki-berry.png",
+    "category": "picky-healing",
+    "categoryDisplayName": "Picky healing",
+    "pocket": "berries",
+    "cost": 80,
+    "shortEffect": "Held: Consumed at 1/2 max HP to restore 1/8 max HP. Confuses Pokémon that dislike dry flavor."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 12,
+    "berryName": "wiki",
+    "itemName": "wiki-berry",
+    "firmness": "hard",
+    "growthTime": 5,
+    "maxHarvest": 5,
+    "naturalGiftPower": 60,
+    "naturalGiftType": "rock",
+    "size": 115,
+    "smoothness": 25,
+    "soilDryness": 10,
+    "flavorPotencies": {
+      "spicy": 0,
+      "dry": 15,
+      "sweet": 0,
+      "bitter": 0,
+      "sour": 0
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "dry",
+        "potency": 15
+      }
+    ],
+    "dominantFlavors": [
+      "dry"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/12",
+    "itemUrl": "https://pokeapi.co/api/v2/item/137"
+  }
+}

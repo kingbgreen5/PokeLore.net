@@ -1,0 +1,51 @@
+{
+  "item": {
+    "id": 151,
+    "name": "tamato-berry",
+    "displayName": "Tamato Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tamato-berry.png",
+    "category": "effort-drop",
+    "categoryDisplayName": "Effort drop",
+    "pocket": "berries",
+    "cost": 80,
+    "shortEffect": "Drops Speed Effort Values by 10 and raises happiness."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 26,
+    "berryName": "tamato",
+    "itemName": "tamato-berry",
+    "firmness": "soft",
+    "growthTime": 8,
+    "maxHarvest": 5,
+    "naturalGiftPower": 70,
+    "naturalGiftType": "psychic",
+    "size": 200,
+    "smoothness": 30,
+    "soilDryness": 8,
+    "flavorPotencies": {
+      "spicy": 20,
+      "dry": 10,
+      "sweet": 0,
+      "bitter": 0,
+      "sour": 0
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "spicy",
+        "potency": 20
+      },
+      {
+        "flavor": "dry",
+        "potency": 10
+      }
+    ],
+    "dominantFlavors": [
+      "spicy"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/26",
+    "itemUrl": "https://pokeapi.co/api/v2/item/151"
+  }
+}

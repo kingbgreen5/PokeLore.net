@@ -1,0 +1,51 @@
+{
+  "item": {
+    "id": 153,
+    "name": "magost-berry",
+    "displayName": "Magost Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/magost-berry.png",
+    "category": "baking-only",
+    "categoryDisplayName": "Baking only",
+    "pocket": "berries",
+    "cost": 20,
+    "shortEffect": "Used for creating PokéBlocks and Poffins."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 28,
+    "berryName": "magost",
+    "itemName": "magost-berry",
+    "firmness": "hard",
+    "growthTime": 6,
+    "maxHarvest": 10,
+    "naturalGiftPower": 70,
+    "naturalGiftType": "rock",
+    "size": 140,
+    "smoothness": 30,
+    "soilDryness": 10,
+    "flavorPotencies": {
+      "spicy": 0,
+      "dry": 0,
+      "sweet": 20,
+      "bitter": 10,
+      "sour": 0
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "sweet",
+        "potency": 20
+      },
+      {
+        "flavor": "bitter",
+        "potency": 10
+      }
+    ],
+    "dominantFlavors": [
+      "sweet"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/28",
+    "itemUrl": "https://pokeapi.co/api/v2/item/153"
+  }
+}

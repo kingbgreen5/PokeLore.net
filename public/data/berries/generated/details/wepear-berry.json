@@ -1,0 +1,52 @@
+{
+  "item": {
+    "id": 144,
+    "name": "wepear-berry",
+    "displayName": "Wepear Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/wepear-berry.png",
+    "category": "baking-only",
+    "categoryDisplayName": "Baking only",
+    "pocket": "berries",
+    "cost": 20,
+    "shortEffect": "Used for creating PokéBlocks and Poffins."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 19,
+    "berryName": "wepear",
+    "itemName": "wepear-berry",
+    "firmness": "super-hard",
+    "growthTime": 2,
+    "maxHarvest": 10,
+    "naturalGiftPower": 70,
+    "naturalGiftType": "electric",
+    "size": 74,
+    "smoothness": 20,
+    "soilDryness": 35,
+    "flavorPotencies": {
+      "spicy": 0,
+      "dry": 0,
+      "sweet": 0,
+      "bitter": 10,
+      "sour": 10
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "bitter",
+        "potency": 10
+      },
+      {
+        "flavor": "sour",
+        "potency": 10
+      }
+    ],
+    "dominantFlavors": [
+      "bitter",
+      "sour"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/19",
+    "itemUrl": "https://pokeapi.co/api/v2/item/144"
+  }
+}

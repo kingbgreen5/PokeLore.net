@@ -1,0 +1,57 @@
+{
+  "item": {
+    "id": 147,
+    "name": "kelpsy-berry",
+    "displayName": "Kelpsy Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kelpsy-berry.png",
+    "category": "effort-drop",
+    "categoryDisplayName": "Effort drop",
+    "pocket": "berries",
+    "cost": 80,
+    "shortEffect": "Drops Attack Effort Values by 10 and raises happiness."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 22,
+    "berryName": "kelpsy",
+    "itemName": "kelpsy-berry",
+    "firmness": "hard",
+    "growthTime": 8,
+    "maxHarvest": 5,
+    "naturalGiftPower": 70,
+    "naturalGiftType": "fighting",
+    "size": 150,
+    "smoothness": 20,
+    "soilDryness": 8,
+    "flavorPotencies": {
+      "spicy": 0,
+      "dry": 10,
+      "sweet": 0,
+      "bitter": 10,
+      "sour": 10
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "dry",
+        "potency": 10
+      },
+      {
+        "flavor": "bitter",
+        "potency": 10
+      },
+      {
+        "flavor": "sour",
+        "potency": 10
+      }
+    ],
+    "dominantFlavors": [
+      "dry",
+      "bitter",
+      "sour"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/22",
+    "itemUrl": "https://pokeapi.co/api/v2/item/147"
+  }
+}

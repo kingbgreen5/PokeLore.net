@@ -1,0 +1,51 @@
+{
+  "item": {
+    "id": 175,
+    "name": "colbur-berry",
+    "displayName": "Colbur Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/colbur-berry.png",
+    "category": "type-protection",
+    "categoryDisplayName": "Type protection",
+    "pocket": "berries",
+    "cost": 80,
+    "shortEffect": "Held: Consumed when struck by a super-effective Dark-type attack to halve the damage."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 50,
+    "berryName": "colbur",
+    "itemName": "colbur-berry",
+    "firmness": "super-hard",
+    "growthTime": 18,
+    "maxHarvest": 5,
+    "naturalGiftPower": 60,
+    "naturalGiftType": "dark",
+    "size": 39,
+    "smoothness": 35,
+    "soilDryness": 6,
+    "flavorPotencies": {
+      "spicy": 0,
+      "dry": 0,
+      "sweet": 0,
+      "bitter": 10,
+      "sour": 20
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "bitter",
+        "potency": 10
+      },
+      {
+        "flavor": "sour",
+        "potency": 20
+      }
+    ],
+    "dominantFlavors": [
+      "sour"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/50",
+    "itemUrl": "https://pokeapi.co/api/v2/item/175"
+  }
+}

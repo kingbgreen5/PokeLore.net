@@ -1,0 +1,51 @@
+{
+  "item": {
+    "id": 158,
+    "name": "watmel-berry",
+    "displayName": "Watmel Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/watmel-berry.png",
+    "category": "baking-only",
+    "categoryDisplayName": "Baking only",
+    "pocket": "berries",
+    "cost": 20,
+    "shortEffect": "Used for creating PokéBlocks and Poffins."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 33,
+    "berryName": "watmel",
+    "itemName": "watmel-berry",
+    "firmness": "soft",
+    "growthTime": 15,
+    "maxHarvest": 15,
+    "naturalGiftPower": 80,
+    "naturalGiftType": "fire",
+    "size": 250,
+    "smoothness": 35,
+    "soilDryness": 8,
+    "flavorPotencies": {
+      "spicy": 0,
+      "dry": 0,
+      "sweet": 30,
+      "bitter": 10,
+      "sour": 0
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "sweet",
+        "potency": 30
+      },
+      {
+        "flavor": "bitter",
+        "potency": 10
+      }
+    ],
+    "dominantFlavors": [
+      "sweet"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/33",
+    "itemUrl": "https://pokeapi.co/api/v2/item/158"
+  }
+}

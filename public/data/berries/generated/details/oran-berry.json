@@ -1,0 +1,62 @@
+{
+  "item": {
+    "id": 132,
+    "name": "oran-berry",
+    "displayName": "Oran Berry",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/oran-berry.png",
+    "category": "medicine",
+    "categoryDisplayName": "Medicine",
+    "pocket": "berries",
+    "cost": 80,
+    "shortEffect": "Held: Consumed at 1/2 max HP to recover 10 HP."
+  },
+  "mechanics": {
+    "pokeApiBerryId": 7,
+    "berryName": "oran",
+    "itemName": "oran-berry",
+    "firmness": "super-hard",
+    "growthTime": 4,
+    "maxHarvest": 5,
+    "naturalGiftPower": 60,
+    "naturalGiftType": "poison",
+    "size": 35,
+    "smoothness": 20,
+    "soilDryness": 15,
+    "flavorPotencies": {
+      "spicy": 10,
+      "dry": 10,
+      "sweet": 0,
+      "bitter": 10,
+      "sour": 10
+    },
+    "nonzeroFlavors": [
+      {
+        "flavor": "spicy",
+        "potency": 10
+      },
+      {
+        "flavor": "dry",
+        "potency": 10
+      },
+      {
+        "flavor": "bitter",
+        "potency": 10
+      },
+      {
+        "flavor": "sour",
+        "potency": 10
+      }
+    ],
+    "dominantFlavors": [
+      "spicy",
+      "dry",
+      "bitter",
+      "sour"
+    ]
+  },
+  "source": {
+    "generatedFrom": "pokeapi-berry",
+    "berryUrl": "https://pokeapi.co/api/v2/berry/7",
+    "itemUrl": "https://pokeapi.co/api/v2/item/132"
+  }
+}
