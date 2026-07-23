@@ -9,6 +9,7 @@ import {
   useParams
 } from "react-router-dom";
 import AcquisitionMethods from "../components/AcquisitionMethods";
+import BerryDetails from "../components/items/BerryDetails";
 import TmMoveDetails from "../components/items/TmMoveDetails";
 import OaksNotes from "../components/OaksNotes";
 import PokemonGoNotes from "../components/PokemonGoNotes";
@@ -142,209 +143,6 @@ function DetailRow({
       <strong>{label}</strong>
       <p>{value}</p>
     </div>
-  );
-}
-
-function BerryFlavorBars({
-  flavorPotencies
-}) {
-  const entries =
-    Object.entries(
-      flavorPotencies ?? {}
-    );
-
-  if (entries.length === 0) {
-    return null;
-  }
-
-  const maxPotency =
-    Math.max(
-      1,
-      ...entries.map(
-        ([, potency]) => potency
-      )
-    );
-
-  return (
-    <div
-      style={{
-        display: "grid",
-        gap: ".45rem",
-        marginTop: "1rem"
-      }}
-    >
-      {entries.map(
-        ([flavor, potency]) => (
-          <div
-            key={flavor}
-            style={{
-              alignItems: "center",
-              display: "grid",
-              gap: ".6rem",
-              gridTemplateColumns:
-                "80px minmax(0, 1fr) 40px",
-              textAlign: "left"
-            }}
-          >
-            <span>{capitalize(flavor)}</span>
-
-            <div
-              style={{
-                backgroundColor:
-                  "rgba(255, 255, 255, .08)",
-                borderRadius: "999px",
-                height: "8px",
-                overflow: "hidden"
-              }}
-            >
-              <div
-                style={{
-                  backgroundColor:
-                    potency > 0
-                      ? "#84cc16"
-                      : "transparent",
-                  height: "100%",
-                  width: `${Math.round(
-                    (potency / maxPotency) *
-                      100
-                  )}%`
-                }}
-              />
-            </div>
-
-            <strong
-              style={{
-                color: "var(--text-h)",
-                textAlign: "right"
-              }}
-            >
-              {potency}
-            </strong>
-          </div>
-        )
-      )}
-    </div>
-  );
-}
-
-function BerryMechanicsDetails({
-  berryData
-}) {
-  if (!berryData) {
-    return null;
-  }
-
-  const mechanics =
-    berryData.mechanics;
-
-  if (!mechanics) {
-    return (
-      <section
-        style={{
-          border: "1px solid #666",
-          borderRadius: "12px",
-          marginBottom: "2rem",
-          padding: "1rem"
-        }}
-      >
-        <h2>Berry Data</h2>
-        <p>
-          This item is in the berry pocket, but
-          PokeAPI does not currently provide a
-          dedicated berry mechanics payload for it.
-        </p>
-      </section>
-    );
-  }
-
-  return (
-    <section
-      style={{
-        border: "1px solid #666",
-        borderRadius: "12px",
-        marginBottom: "2rem",
-        padding: "1rem"
-      }}
-    >
-      <h2>Berry Data</h2>
-
-      <div
-        style={{
-          display: "grid",
-          gap: "1rem",
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(160px, 1fr))"
-        }}
-      >
-        <DetailRow
-          label="Firmness"
-          value={capitalize(
-            mechanics.firmness
-          )}
-        />
-        <DetailRow
-          label="Growth Time"
-          value={`${mechanics.growthTime} hours`}
-        />
-        <DetailRow
-          label="Max Harvest"
-          value={mechanics.maxHarvest}
-        />
-        <DetailRow
-          label="Soil Dryness"
-          value={mechanics.soilDryness}
-        />
-        <DetailRow
-          label="Size"
-          value={`${mechanics.size} mm`}
-        />
-        <DetailRow
-          label="Smoothness"
-          value={mechanics.smoothness}
-        />
-        <DetailRow
-          label="Natural Gift Type"
-          value={capitalize(
-            mechanics.naturalGiftType
-          )}
-        />
-        <DetailRow
-          label="Natural Gift Power"
-          value={mechanics.naturalGiftPower}
-        />
-        <DetailRow
-          label="Dominant Flavor"
-          value={
-            mechanics.dominantFlavors
-              ?.map(capitalize)
-              .join(" / ")
-          }
-        />
-      </div>
-
-      <div
-        style={{
-          marginTop: "1.25rem",
-          textAlign: "left"
-        }}
-      >
-        <h3
-          style={{
-            color: "var(--text-h)",
-            fontSize: "1.05rem",
-            margin: "0 0 .75rem"
-          }}
-        >
-          Flavor Potencies
-        </h3>
-
-        <BerryFlavorBars
-          flavorPotencies={
-            mechanics.flavorPotencies
-          }
-        />
-      </div>
-    </section>
   );
 }
 
@@ -830,11 +628,17 @@ function ItemDetailPage() {
     isDynamaxCrystal
       ? getDynamaxCrystalData(item)
       : null;
+  const isBerryItem =
+    item?.category?.pocket === "berries";
   const effectText =
     machineItemDescription ?? item?.effect;
+  const showEffect =
+    effectText &&
+    !isBerryItem;
   const showShortEffect =
     item?.shortEffect &&
-    !machineItemDescription;
+    !machineItemDescription &&
+    !isBerryItem;
   const usableFlavorTextEntries =
     item?.flavorTextEntries?.filter(entry =>
       isUsableFlavorText(entry.text)
@@ -942,12 +746,6 @@ function ItemDetailPage() {
           >
             {item.displayName}
           </h1>
-{/* 
-          <p>
-            
-            {item.category?.displayName ??
-              capitalize(item.name)}
-          </p> */}
         </div>
       </div>
 
@@ -955,7 +753,7 @@ function ItemDetailPage() {
 {/* --------------------------------------------------------------------------effect */}
 
 
-      {effectText && (
+      {showEffect && (
         <section
           style={{
             marginBottom: "2rem"
@@ -984,11 +782,14 @@ function ItemDetailPage() {
         </section>
       )}
 
-      <TmMoveDetails item={item} />
+      {isBerryItem && (
+        <BerryDetails
+          item={item}
+          berryData={berryData}
+        />
+      )}
 
-      <BerryMechanicsDetails
-        berryData={berryData}
-      />
+      <TmMoveDetails item={item} />
 
       <AcquisitionMethods
         key={item.name}
@@ -1073,7 +874,8 @@ function ItemDetailPage() {
       )}
 
 
-      {usableFlavorTextEntries.length >
+      {!isBerryItem &&
+        usableFlavorTextEntries.length >
         0 && (
         <section>
           <h2>Flavor Text</h2>
@@ -1111,7 +913,8 @@ function ItemDetailPage() {
 
 
 {/*------------------------------------------------------- overview */}
-      <section
+      {!isBerryItem && (
+        <section
         style={{
           border: "1px solid #666",
           borderRadius: "12px",
@@ -1162,13 +965,15 @@ function ItemDetailPage() {
           />
         </div>
       </section>
+      )}
 
 
 
 {/*                                                                    attributes */}
 
 
-      {item.attributes?.length > 0 && (
+      {!isBerryItem &&
+        item.attributes?.length > 0 && (
         <section
           style={{
             marginBottom: "2rem"
@@ -1205,6 +1010,48 @@ function ItemDetailPage() {
               )
             )}
           </div>
+        </section>
+      )}
+
+      {isBerryItem &&
+        usableFlavorTextEntries.length >
+        0 && (
+        <section
+          style={{
+            marginBottom: "3rem",
+            paddingBottom: "2rem"
+          }}
+        >
+          <h2>Game Descriptions</h2>
+
+          {usableFlavorTextEntries.map(
+            (entry, index) => (
+              <div
+                key={`${entry.text}-${index}`}
+                style={{
+                  borderBottom:
+                    "1px solid #444",
+                  marginBottom: "1rem",
+                  paddingBottom: "1rem",
+                  textAlign: "left"
+                }}
+              >
+                <p>{entry.text}</p>
+
+                <div
+                  style={{
+                    color: "#c9cdd6",
+                    fontSize: ".85rem",
+                    marginTop: ".35rem"
+                  }}
+                >
+                  {entry.versionGroups
+                    ?.map(capitalize)
+                    .join(" / ")}
+                </div>
+              </div>
+            )
+          )}
         </section>
       )}
 
