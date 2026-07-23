@@ -1,6 +1,14 @@
+import { Link } from "react-router-dom";
 import { normalizeDisplayText } from "../../utils/normalizeText";
 
 const FLAVOR_SCALE_MAX = 40;
+const BEAUTY_OAKS_NOTES_BERRIES = new Set([
+  "pamtre-berry",
+  "kelpsy-berry",
+  "hondew-berry",
+  "wiki-berry",
+  "cornn-berry"
+]);
 
 const CONTEST_CONDITION_BY_FLAVOR = {
   spicy: "Coolness",
@@ -12,6 +20,15 @@ const CONTEST_CONDITION_BY_FLAVOR = {
 
 const sectionStyle = {
   border: "1px solid #666",
+  borderRadius: "12px",
+  marginBottom: "2rem",
+  padding: "1rem",
+  textAlign: "left"
+};
+
+const oaksNotesStyle = {
+  backgroundColor: "rgba(56, 189, 248, .12)",
+  border: "1px solid rgba(56, 189, 248, .35)",
   borderRadius: "12px",
   marginBottom: "2rem",
   padding: "1rem",
@@ -263,37 +280,11 @@ function buildProcessingUses(mechanics) {
     mechanics.dominantFlavors
       ?.map(capitalize)
       .join(" / ");
-  const contestConditions =
-    flavorEntries
-      .filter(
-        ([, potency]) =>
-          Number(potency) > 0
-      )
-      .map(([flavor, potency]) => ({
-        flavor,
-        potency,
-        condition:
-          CONTEST_CONDITION_BY_FLAVOR[
-            flavor
-          ] ?? null
-      }))
-      .filter(
-        entry =>
-          entry.condition
-      );
-  const beautyPotency =
-    Number(
-      flavorPotencies.dry
-    ) || 0;
 
   return {
     flavorEntries,
     flavorProfile,
     maxPotency,
-    contestConditions,
-    beautyPotency,
-    raisesBeauty:
-      beautyPotency > 0,
     smoothness:
       mechanics.smoothness
   };
@@ -374,6 +365,35 @@ function WhatThisBerryDoes({
         </div>
       </div>
     </Section>
+  );
+}
+
+function BerryOaksNotes({
+  item
+}) {
+  if (
+    !BEAUTY_OAKS_NOTES_BERRIES.has(
+      item?.name
+    )
+  ) {
+    return null;
+  }
+
+  return (
+    <section style={oaksNotesStyle}>
+      <h2>Oak's Notes</h2>
+      <p>
+        This Berry has a strong Dry Flavor.
+        When used as an ingredient in Pokeblocks
+        and Poffins, it increases the Beauty Stat,
+        allowing Feebas to evolve into Milotic.
+        For more info, please see the{" "}
+        <Link to="/topic/evolving-feebas-into-milotic-via-beauty">
+          Evolving Feebas into Milotic via Beauty
+        </Link>{" "}
+        guide.
+      </p>
+    </section>
   );
 }
 
@@ -551,10 +571,21 @@ function FlavorBars({
               display: "grid",
               gap: ".6rem",
               gridTemplateColumns:
-                "80px minmax(0, 1fr) 40px"
+                "150px minmax(0, 1fr) 40px"
             }}
           >
-            <span>{capitalize(flavor)}</span>
+            <span>
+              {capitalize(flavor)}
+              {CONTEST_CONDITION_BY_FLAVOR[
+                flavor
+              ]
+                ? ` / ${
+                    CONTEST_CONDITION_BY_FLAVOR[
+                      flavor
+                    ]
+                  }`
+                : ""}
+            </span>
             <div
               aria-label={`${capitalize(flavor)} flavor potency`}
               aria-valuemin={0}
@@ -620,53 +651,10 @@ function ContestCookingCrafting({
         when those systems are present.
       </p>
 
-      {processingUses.raisesBeauty && (
-        <div
-          style={{
-            backgroundColor:
-              "rgba(56, 189, 248, .12)",
-            border:
-              "1px solid rgba(56, 189, 248, .35)",
-            borderRadius: "12px",
-            marginBottom: "1rem",
-            padding: ".85rem"
-          }}
-        >
-          <strong
-            style={{
-              color: "var(--text-h)",
-              display: "block",
-              marginBottom: ".35rem"
-            }}
-          >
-            Beauty and Feebas
-          </strong>
-          <p>
-            This Berry has Dry flavor, which is
-            associated with the Beauty condition.
-            In Ruby, Sapphire, and Emerald, raising
-            Feebas's Beauty with Dry Pokeblocks is
-            the contest-condition route toward
-            evolving it into Milotic.
-          </p>
-        </div>
-      )}
-
       <InfoGrid>
-        <DetailRow
-          label="Flavor Profile"
-          value={
-            processingUses.flavorProfile
-          }
-        />
-        <DetailRow
-          label="Beauty value"
-          value={
-            processingUses.raisesBeauty
-              ? `Dry ${processingUses.beautyPotency}`
-              : null
-          }
-        />
+        <div>
+          <strong>Flavor Profile</strong>
+        </div>
         <DetailRow
           label="Smoothness"
           value={
@@ -674,46 +662,6 @@ function ContestCookingCrafting({
           }
         />
       </InfoGrid>
-
-      {processingUses.contestConditions
-        .length > 0 && (
-        <div
-          style={{
-            marginTop: "1rem"
-          }}
-        >
-          <strong
-            style={{
-              display: "block",
-              marginBottom: ".5rem"
-            }}
-          >
-            Contest conditions affected
-          </strong>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: ".5rem"
-            }}
-          >
-            {processingUses.contestConditions.map(
-              entry => (
-                <Badge
-                  key={entry.flavor}
-                >
-                  {capitalize(
-                    entry.flavor
-                  )}
-                  {" -> "}
-                  {entry.condition}{" "}
-                  {entry.potency}
-                </Badge>
-              )
-            )}
-          </div>
-        </div>
-      )}
 
       <FlavorBars
         processingUses={processingUses}
@@ -923,13 +871,10 @@ function BerryDetails({
 
   return (
     <>
-      <BerrySummary
-        item={item}
-        presentation={presentation}
-      />
       <WhatThisBerryDoes
         presentation={presentation}
       />
+      <BerryOaksNotes item={item} />
       <BerryLocationsSection
         locationsByGame={
           presentation.locationsByGame

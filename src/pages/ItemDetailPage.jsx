@@ -782,13 +782,6 @@ function ItemDetailPage() {
         </section>
       )}
 
-      {isBerryItem && (
-        <BerryDetails
-          item={item}
-          berryData={berryData}
-        />
-      )}
-
       <TmMoveDetails item={item} />
 
       <AcquisitionMethods
@@ -796,6 +789,13 @@ function ItemDetailPage() {
         acquisition={item.acquisition}
         storageKey={`item:${item.name}:acquisition-expanded`}
       />
+
+      {isBerryItem && (
+        <BerryDetails
+          item={item}
+          berryData={berryData}
+        />
+      )}
 
       {tmMaterialPokemon.length > 0 && (
         <section

@@ -1,5 +1,21 @@
 const itemLocationTopics = [
   {
+    slug: "evolving-feebas-into-milotic-via-beauty",
+    active: true,
+    subgroup: "guides",
+    title:
+      "Evolving Feebas into Milotic via Beauty",
+    shortDescription:
+      "Learn how to evolve Feebas into Milotic with Beauty, Dry berries, Pokeblocks, Poffins, natures, and reset planning.",
+    introText:
+      "Learn how to evolve Feebas into Milotic with Beauty in games before Prism Scale evolution, including Dry berries, Pokeblocks, Poffins, helpful natures, and reset planning.",
+    seoTitle:
+      "Evolving Feebas into Milotic via Beauty | PokeLore",
+    seoDescription:
+      "Learn how to evolve Feebas into Milotic with Beauty, including Dry berries, Pokeblocks, Poffins, natures, Lilycove, Veilstone, and reset planning.",
+    countLabel: "Evolution guide"
+  },
+  {
     slug: "fossil-pokemon-guide",
     active: true,
     subgroup: "guides",
