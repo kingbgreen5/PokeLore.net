@@ -9,6 +9,9 @@ function CollapsibleSection({
   children,
   className,
   contentStyle,
+  summaryColor,
+  titleColor,
+  titleChevron = false,
   seoVisible = true,
   style
 }) {
@@ -55,10 +58,41 @@ function CollapsibleSection({
           width: "100%"
         }}
       >
-        <h2>{title}</h2>
+        <h2
+          style={{
+            alignItems: "center",
+            color: titleColor,
+            display: "inline-flex",
+            gap: ".5rem"
+          }}
+        >
+          {titleChevron && (
+            <span
+              aria-hidden="true"
+              style={{
+                borderColor: "currentColor",
+                borderStyle: "solid",
+                borderWidth: "0 2px 2px 0",
+                display: "inline-block",
+                height: ".45rem",
+                transform: expanded
+                  ? "rotate(-135deg)"
+                  : "rotate(45deg)",
+                width: ".45rem"
+              }}
+            />
+          )}
+          {title}
+        </h2>
 
         {summary && (
-          <p>{summary}</p>
+          <p
+            style={{
+              color: summaryColor
+            }}
+          >
+            {summary}
+          </p>
         )}
       </button>
 

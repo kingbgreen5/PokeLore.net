@@ -1,5 +1,10 @@
+import {
+  useEffect,
+  useState
+} from "react";
 import { Link } from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import SizeComparison from "../components/SizeComparison";
 import Seo from "../seo/Seo";
 import { topicSeo } from "../seo/seoConfig";
 import { itemLocationTopics } from "./topicMetadata";
@@ -358,9 +363,122 @@ function PrepChecklist() {
   );
 }
 
+function FeebasMiloticSizeSection() {
+  const [sizePokemon, setSizePokemon] =
+    useState([]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadPokemon() {
+      try {
+        const responses = await Promise.all([
+          fetch("/data/pokemonData/349.json"),
+          fetch("/data/pokemonData/350.json")
+        ]);
+        const data = await Promise.all(
+          responses.map(response =>
+            response.ok
+              ? response.json()
+              : null
+          )
+        );
+
+        if (!isMounted) {
+          return;
+        }
+
+        setSizePokemon(
+          data.filter(Boolean)
+        );
+      } catch (error) {
+        if (!isMounted) {
+          return;
+        }
+
+        console.warn(
+          "Failed to load Feebas/Milotic size chart data:",
+          error
+        );
+        setSizePokemon([]);
+      }
+    }
+
+    loadPokemon();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  return (
+    <section
+      aria-labelledby="feebas-milotic-size-heading"
+      style={{
+        margin: "0 auto 2rem",
+        maxWidth: "1000px"
+      }}
+    >
+      <h2 id="feebas-milotic-size-heading">
+        Feebas and Milotic Size Charts
+      </h2>
+
+      {sizePokemon.length === 0 ? (
+        <p>Loading size charts...</p>
+      ) : (
+        <div
+          style={{
+            display: "grid",
+            gap: "1.5rem"
+          }}
+        >
+          {sizePokemon.map(entry => (
+            <SizeComparison
+              key={entry.id}
+              pokemon={entry}
+              sectionId={`size-${entry.name}`}
+            />
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
 function FeebasBeautyEvolutionGuide() {
+  const [
+    useCompactPokemonCards,
+    setUseCompactPokemonCards
+  ] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(max-width: 640px)"
+    );
+
+    function updateCardSize() {
+      setUseCompactPokemonCards(
+        mediaQuery.matches
+      );
+    }
+
+    updateCardSize();
+    mediaQuery.addEventListener(
+      "change",
+      updateCardSize
+    );
+
+    return () => {
+      mediaQuery.removeEventListener(
+        "change",
+        updateCardSize
+      );
+    };
+  }, []);
+
   return (
     <main
+      className="feebas-beauty-guide"
       style={{
         margin: "0 auto",
         maxWidth: "980px",
@@ -409,6 +527,7 @@ function FeebasBeautyEvolutionGuide() {
       </p>
 
       <div
+        className="feebas-beauty-pokemon-grid"
         style={{
           display: "grid",
           gap: "1rem",
@@ -423,6 +542,9 @@ function FeebasBeautyEvolutionGuide() {
           <PokemonSummaryCard
             key={entry.name}
             pokemon={entry}
+            compact={
+              useCompactPokemonCards
+            }
           />
         ))}
       </div>
@@ -523,6 +645,7 @@ function FeebasBeautyEvolutionGuide() {
         </p>
 
         <div
+          className="feebas-beauty-item-grid"
           style={{
             display: "grid",
             gap: "1rem",
@@ -544,6 +667,7 @@ function FeebasBeautyEvolutionGuide() {
         <h2>Game Notes</h2>
 
         <div
+          className="feebas-beauty-game-notes"
           style={{
             display: "grid",
             gap: "1rem",
@@ -601,6 +725,8 @@ function FeebasBeautyEvolutionGuide() {
           </article>
         </div>
       </section>
+
+      <FeebasMiloticSizeSection />
     </main>
   );
 }

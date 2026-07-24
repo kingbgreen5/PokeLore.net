@@ -39,7 +39,9 @@ function formatLevelRange(encounter) {
 
 function WhereToFind({
   enabled = true,
-  pokemonId
+  pokemonId,
+  titleColor,
+  titleChevron = false
 }) {
   const [expanded, setExpanded] =
     useSessionState(
@@ -184,6 +186,8 @@ function WhereToFind({
             : "No known locations"
       }
       expanded={expanded}
+      titleColor={titleColor}
+      titleChevron={titleChevron}
       onToggle={() =>
         setExpanded(!expanded)
       }

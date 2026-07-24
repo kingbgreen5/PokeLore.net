@@ -93,7 +93,9 @@ function generationRank(generation) {
 
 function MoveMachineItems({
   machineItems,
-  storageKey = "move-machine-items-expanded"
+  storageKey = "move-machine-items-expanded",
+  titleColor,
+  titleChevron = false
 }) {
   const [expanded, setExpanded] =
     useSessionState(
@@ -125,6 +127,8 @@ function MoveMachineItems({
       title="TMs, HMs, and TRs"
       summary={`${items.length} entries`}
       expanded={expanded}
+      titleColor={titleColor}
+      titleChevron={titleChevron}
       onToggle={() =>
         setExpanded(!expanded)
       }

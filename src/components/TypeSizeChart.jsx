@@ -12,6 +12,9 @@ import {
   getPokemonCardSources
 } from "../utils/pokemonSprites";
 
+const pokemonDetailCache = new Map();
+const pokemonDetailFetchLimit = 24;
+
 function heightToInches(height) {
   return Math.round((height / 10) * 39.3701);
 }
@@ -92,6 +95,73 @@ function clampZoomMultiplier(value) {
     4,
     Math.max(0.08, value)
   );
+}
+
+async function mapWithConcurrency(
+  items,
+  limit,
+  mapper
+) {
+  const results = new Array(items.length);
+  let nextIndex = 0;
+
+  async function runWorker() {
+    while (nextIndex < items.length) {
+      const currentIndex = nextIndex;
+      nextIndex += 1;
+      results[currentIndex] = await mapper(
+        items[currentIndex]
+      );
+    }
+  }
+
+  await Promise.all(
+    Array.from(
+      {
+        length: Math.min(limit, items.length)
+      },
+      runWorker
+    )
+  );
+
+  return results;
+}
+
+async function loadPokemonDetail(
+  currentPokemon
+) {
+  const pokemonId = Number(
+    currentPokemon.id
+  );
+
+  if (!Number.isFinite(pokemonId)) {
+    return currentPokemon;
+  }
+
+  if (!pokemonDetailCache.has(pokemonId)) {
+    pokemonDetailCache.set(
+      pokemonId,
+      fetch(
+        `/data/pokemonData/${pokemonId}.json`
+      )
+        .then(response =>
+          response.ok
+            ? response.json()
+            : null
+        )
+        .catch(() => null)
+    );
+  }
+
+  const pokemonDetail =
+    await pokemonDetailCache.get(pokemonId);
+
+  return pokemonDetail
+    ? {
+        ...currentPokemon,
+        ...pokemonDetail
+      }
+    : currentPokemon;
 }
 
 function SizeChartPokemonImage({
@@ -190,7 +260,10 @@ function SizeChartPokemonImage({
 
 function TypeSizeChart({
   pokemon,
-  typeName
+  typeName,
+  title,
+  description,
+  sectionStyle
 }) {
   const [pokemonDetails, setPokemonDetails] =
     useState([]);
@@ -209,10 +282,15 @@ function TypeSizeChart({
     setZoomMultiplier
   ] = useState(null);
   const chartScrollRef = useRef(null);
-
-  useEffect(() => {
-    setZoomMultiplier(null);
-  }, [typeName]);
+  const chartKey =
+    title ?? typeName ?? "size-chart";
+  const activeZoomState =
+    zoomMultiplier?.key === chartKey
+      ? zoomMultiplier
+      : {
+          key: chartKey,
+          value: null
+        };
 
   useEffect(() => {
     let isMounted = true;
@@ -226,22 +304,10 @@ function TypeSizeChart({
           boundsResponse,
           correctionsResponse
         ] = await Promise.all([
-          Promise.all(
-            pokemon.map(async currentPokemon => {
-              try {
-                const response = await fetch(
-                  `/data/pokemonData/${currentPokemon.id}.json`
-                );
-
-                if (!response.ok) {
-                  return currentPokemon;
-                }
-
-                return response.json();
-              } catch {
-                return currentPokemon;
-              }
-            })
+          mapWithConcurrency(
+            pokemon,
+            pokemonDetailFetchLimit,
+            loadPokemonDetail
           ),
           fetch(
             "/data/pokemonSpriteBounds.json"
@@ -289,9 +355,15 @@ function TypeSizeChart({
       }
     }
 
-    if (pokemon.length > 0) {
-      loadDetails();
+    if (pokemon.length === 0) {
+      setPokemonDetails([]);
+      setLoading(false);
+      return () => {
+        isMounted = false;
+      };
     }
+
+    loadDetails();
 
     return () => {
       isMounted = false;
@@ -300,7 +372,11 @@ function TypeSizeChart({
 
   const sortedPokemon = useMemo(
     () =>
-      [...pokemonDetails]
+      [
+        ...(pokemon.length > 0
+          ? pokemonDetails
+          : [])
+      ]
         .filter(
           currentPokemon =>
             Number.isFinite(
@@ -328,6 +404,7 @@ function TypeSizeChart({
           }
         ),
     [
+      pokemon.length,
       pokemonDetails,
       spriteCorrectionsById
     ]
@@ -378,6 +455,17 @@ function TypeSizeChart({
     ]
   );
 
+  const chartTitle =
+    title ?? `${typeName} Pokémon by Size`;
+  const chartDescription =
+    description ??
+    `Largest Pokémon are on the left.
+        Smallest Pokémon are on the right.`;
+
+  if (pokemon.length === 0) {
+    return null;
+  }
+
   if (loading) {
     return (
       <section
@@ -389,7 +477,7 @@ function TypeSizeChart({
         }}
       >
         <h2>
-          {typeName} Size Chart
+          {chartTitle}
         </h2>
         <p>Loading size chart...</p>
       </section>
@@ -419,7 +507,7 @@ function TypeSizeChart({
         basePixelsPerHeightUnit
       : 1;
   const activeZoomMultiplier =
-    zoomMultiplier ??
+    activeZoomState.value ??
     clampZoomMultiplier(
       fitLargestZoomMultiplier
     );
@@ -429,24 +517,35 @@ function TypeSizeChart({
 
   function zoomIn() {
     setZoomMultiplier(currentZoom =>
-      clampZoomMultiplier(
-        (currentZoom ??
-          activeZoomMultiplier) * 1.25
-      )
+      ({
+        key: chartKey,
+        value: clampZoomMultiplier(
+          (currentZoom?.key === chartKey
+            ? currentZoom.value
+            : activeZoomMultiplier) * 1.25
+        )
+      })
     );
   }
 
   function zoomOut() {
     setZoomMultiplier(currentZoom =>
-      clampZoomMultiplier(
-        (currentZoom ??
-          activeZoomMultiplier) / 1.25
-      )
+      ({
+        key: chartKey,
+        value: clampZoomMultiplier(
+          (currentZoom?.key === chartKey
+            ? currentZoom.value
+            : activeZoomMultiplier) / 1.25
+        )
+      })
     );
   }
 
   function fitLargestPokemon() {
-    setZoomMultiplier(null);
+    setZoomMultiplier({
+      key: chartKey,
+      value: null
+    });
   }
 
   return (
@@ -454,12 +553,19 @@ function TypeSizeChart({
       style={{
         border: "1px solid #666",
         borderRadius: "12px",
+        boxSizing: "border-box",
+        contain: "inline-size layout paint",
         marginBottom: "3rem",
-        padding: "1rem"
+        maxWidth: "100%",
+        minWidth: 0,
+        overflow: "hidden",
+        padding: "1rem",
+        width: "100%",
+        ...sectionStyle
       }}
     >
       <h2>
-        {typeName} Pokémon by Size
+        {chartTitle}
       </h2>
 
       <p
@@ -469,8 +575,7 @@ function TypeSizeChart({
           opacity: 0.8
         }}
       >
-        Largest Pokémon are on the left.
-        Smallest Pokémon are on the right.
+        {chartDescription}
       </p>
 
       <div
@@ -529,9 +634,15 @@ function TypeSizeChart({
       <div
         ref={chartScrollRef}
         style={{
+          boxSizing: "border-box",
+          contain: "inline-size layout paint",
+          maxWidth: "100%",
+          minWidth: 0,
           overflowX: "auto",
           overflowY: "hidden",
-          paddingBottom: ".75rem"
+          overscrollBehaviorX: "contain",
+          paddingBottom: ".75rem",
+          WebkitOverflowScrolling: "touch"
         }}
       >
         <div
@@ -539,6 +650,7 @@ function TypeSizeChart({
             alignItems: "end",
             borderBottom: "2px solid #888",
             boxSizing: "border-box",
+            contain: "layout paint",
             display: "flex",
             gap: "1.25rem",
             height: `${chartHeightPx}px`,

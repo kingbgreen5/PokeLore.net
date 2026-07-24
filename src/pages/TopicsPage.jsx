@@ -13,7 +13,8 @@ const subgroupLabels = {
   biomes: "Biomes",
   "item-locations": "Item Locations",
   behavior: "Behavior",
-  lore: "Lore"
+  lore: "Lore",
+  miscellaneous: "Miscellaneous"
 };
 
 function TopicsPage() {
@@ -76,6 +77,7 @@ function TopicsPage() {
     "biomes",
     "behavior",
     "lore",
+    "miscellaneous",
     "other"
   ];
 
@@ -158,6 +160,8 @@ function TopicsPage() {
                     >
                       <h3
                         style={{
+                          color:
+                            "var(--link-unvisited)",
                           fontSize: "1.05rem",
                           margin: 0
                         }}

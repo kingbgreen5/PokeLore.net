@@ -27,6 +27,8 @@ const ITEM_LOCATIONS_SECTION_ID =
   "item-locations";
 const POKEMON_ENCOUNTERS_SECTION_ID =
   "pokemon-encounters";
+const EXPANDABLE_TITLE_COLOR =
+  "var(--link-unvisited)";
 
 function JumpLink({
   children,
@@ -543,6 +545,8 @@ function LocationItemsSection({
       title={`Items Found in ${locationDisplayName}`}
       summary={`${locationItems.items.length} items`}
       expanded={expanded}
+      titleColor={EXPANDABLE_TITLE_COLOR}
+      titleChevron={true}
       onToggle={onToggle}
       style={{
         boxSizing: "border-box",
@@ -917,6 +921,8 @@ function LocationDetailPage() {
         title="Pokémon Encounters"
         summary={`${encounterCount} encounters`}
         expanded={encountersExpanded}
+        titleColor={EXPANDABLE_TITLE_COLOR}
+        titleChevron={true}
         onToggle={toggleEncountersExpanded}
         style={{
           boxSizing: "border-box",

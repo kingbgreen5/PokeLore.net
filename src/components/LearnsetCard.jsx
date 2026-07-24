@@ -44,7 +44,9 @@ function getCategoryBadge(category) {
 
 function LearnsetCard({
   pokemonData,
-  movesData
+  movesData,
+  titleColor,
+  titleChevron = false
 }) {
   const [expanded, setExpanded] =
     useSessionState(
@@ -150,6 +152,8 @@ const filteredMoves =
     <CollapsibleSection
       title="Learnsets"
       summary={`${filteredMoves.length} moves`}
+      titleColor={titleColor}
+      titleChevron={titleChevron}
       expanded={expanded}
       onToggle={() =>
         setExpanded(!expanded)

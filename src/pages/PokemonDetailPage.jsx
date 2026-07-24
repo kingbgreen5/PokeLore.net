@@ -138,7 +138,9 @@ function applySelectedVariety(
 
 function LearnsetPlaceholder({
   loading,
-  onReveal
+  onReveal,
+  titleColor,
+  titleChevron = false
 }) {
   return (
     <CollapsibleSection
@@ -149,6 +151,8 @@ function LearnsetPlaceholder({
           : "Preparing moves"
       }
       expanded={false}
+      titleColor={titleColor}
+      titleChevron={titleChevron}
       onToggle={onReveal}
       contentStyle={{
         marginTop: "1rem"
@@ -644,6 +648,8 @@ const sizeReviewMode =
   searchParams.has("size-review") &&
   sizeReviewValue !== "0" &&
   sizeReviewValue !== "false";
+const expandableTitleColor =
+  "var(--link-unvisited)";
 
 
 
@@ -946,6 +952,8 @@ function formatWeightEnglish(weight) {
       key={`learnset-${pokemon.id}`}
       pokemonData={learnsetData}
       movesData={movesData}
+      titleColor={expandableTitleColor}
+      titleChevron={true}
     />
   ) : (
     <LearnsetPlaceholder
@@ -956,6 +964,8 @@ function formatWeightEnglish(weight) {
       onReveal={() =>
         setDeferredDetailsReady(true)
       }
+      titleColor={expandableTitleColor}
+      titleChevron={true}
     />
   )}
 
@@ -966,18 +976,24 @@ function formatWeightEnglish(weight) {
   <DexEntryCard
     // entries={dexEntries}
       entries={pokemon.dexEntries}
+      titleColor={expandableTitleColor}
+      titleChevron={true}
   />
 
   <WhereToFind
     enabled={deferredDetailsReady}
     key={`where-to-find-${pokemon.id}`}
     pokemonId={pokemon.id}
+    titleColor={expandableTitleColor}
+    titleChevron={true}
   />
 
   <HeldItems
     enabled={deferredDetailsReady}
     key={`held-items-${pokemon.id}`}
     pokemonId={pokemon.id}
+    titleColor={expandableTitleColor}
+    titleChevron={true}
   />
 
   <OaksNotes note={oaksNotes} />
@@ -989,6 +1005,8 @@ function formatWeightEnglish(weight) {
     pokemonName={formatPokemonDisplayName(
       pokemon
     )}
+    titleColor={expandableTitleColor}
+    titleChevron={true}
   />
 
   <div

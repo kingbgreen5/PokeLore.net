@@ -1,14 +1,7 @@
-import { Link } from "react-router-dom";
+import OaksNotes from "../OaksNotes";
 import { normalizeDisplayText } from "../../utils/normalizeText";
 
 const FLAVOR_SCALE_MAX = 40;
-const BEAUTY_OAKS_NOTES_BERRIES = new Set([
-  "pamtre-berry",
-  "kelpsy-berry",
-  "hondew-berry",
-  "wiki-berry",
-  "cornn-berry"
-]);
 
 const CONTEST_CONDITION_BY_FLAVOR = {
   spicy: "Coolness",
@@ -20,15 +13,6 @@ const CONTEST_CONDITION_BY_FLAVOR = {
 
 const sectionStyle = {
   border: "1px solid #666",
-  borderRadius: "12px",
-  marginBottom: "2rem",
-  padding: "1rem",
-  textAlign: "left"
-};
-
-const oaksNotesStyle = {
-  backgroundColor: "rgba(56, 189, 248, .12)",
-  border: "1px solid rgba(56, 189, 248, .35)",
   borderRadius: "12px",
   marginBottom: "2rem",
   padding: "1rem",
@@ -365,35 +349,6 @@ function WhatThisBerryDoes({
         </div>
       </div>
     </Section>
-  );
-}
-
-function BerryOaksNotes({
-  item
-}) {
-  if (
-    !BEAUTY_OAKS_NOTES_BERRIES.has(
-      item?.name
-    )
-  ) {
-    return null;
-  }
-
-  return (
-    <section style={oaksNotesStyle}>
-      <h2>Oak's Notes</h2>
-      <p>
-        This Berry has a strong Dry Flavor.
-        When used as an ingredient in Pokeblocks
-        and Poffins, it increases the Beauty Stat,
-        allowing Feebas to evolve into Milotic.
-        For more info, please see the{" "}
-        <Link to="/topic/evolving-feebas-into-milotic-via-beauty">
-          Evolving Feebas into Milotic via Beauty
-        </Link>{" "}
-        guide.
-      </p>
-    </section>
   );
 }
 
@@ -859,7 +814,8 @@ function buildBerryPresentation(
 
 function BerryDetails({
   item,
-  berryData
+  berryData,
+  oaksNotes
 }) {
   const presentation =
     buildBerryPresentation(
@@ -874,7 +830,7 @@ function BerryDetails({
       <WhatThisBerryDoes
         presentation={presentation}
       />
-      <BerryOaksNotes item={item} />
+      <OaksNotes note={oaksNotes} />
       <BerryLocationsSection
         locationsByGame={
           presentation.locationsByGame

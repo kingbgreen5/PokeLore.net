@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import {
+  Link,
+  useSearchParams
+} from "react-router-dom";
 import { capitalize } from "../utils/capitalize";
 import Seo from "../seo/Seo";
 import { dexEntriesSeo } from "../seo/seoConfig";
 
 function DexEntriesPage() {
   const [entries, setEntries] = useState([]);
-  const [search, setSearch] = useState("");
+  const [
+    searchParams,
+    setSearchParams
+  ] = useSearchParams();
+  const search =
+    searchParams.get("search") ?? "";
 
   useEffect(() => {
     async function loadData() {
@@ -18,6 +26,22 @@ function DexEntriesPage() {
 
     loadData();
   }, []);
+
+  function handleSearchChange(event) {
+    const nextSearch = event.target.value;
+    const nextParams =
+      new URLSearchParams(searchParams);
+
+    if (nextSearch.trim()) {
+      nextParams.set("search", nextSearch);
+    } else {
+      nextParams.delete("search");
+    }
+
+    setSearchParams(nextParams, {
+      replace: true
+    });
+  }
 
   // const filteredEntries = entries.filter(entry =>
   //   entry.text.toLowerCase().includes(search.toLowerCase())
@@ -61,7 +85,7 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
         type="text"
         placeholder=" Search entries... Ex: 'forest', 'cave', 'sea'..."
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={handleSearchChange}
         style={{
           backgroundColor: "#2c2c2c",
           border: "2px solid #555",

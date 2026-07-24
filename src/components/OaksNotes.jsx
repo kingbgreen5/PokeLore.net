@@ -209,7 +209,6 @@ function OaksNotes({
 
   useEffect(() => {
     if (!note) {
-      setPokemonIndex([]);
       return;
     }
 
@@ -219,7 +218,6 @@ function OaksNotes({
       );
 
     if (!hasPokemonLinks) {
-      setPokemonIndex([]);
       return;
     }
 
@@ -274,6 +272,15 @@ function OaksNotes({
   const body = Array.isArray(note.body)
     ? note.body
     : [];
+  const title =
+    note.title ?? defaultTitle;
+  const containerAccentStyle =
+    title === "Oak's Notes"
+      ? {
+          backgroundColor: "rgba(0, 202, 219, 0.1)",
+          border: "1px solid rgba(0, 202, 219, 0.45)"
+        }
+      : {};
 
   if (
     !note.title &&
@@ -290,10 +297,11 @@ function OaksNotes({
         borderRadius: "12px",
         marginBottom: "2rem",
         padding: "1rem",
-        textAlign: "left"
+        textAlign: "left",
+        ...containerAccentStyle
       }}
     >
-      <h2>{note.title ?? defaultTitle}</h2>
+      <h2>{title}</h2>
 
       {body.map((paragraph, index) => (
         <p key={`${getParagraphText(paragraph)}-${index}`}>

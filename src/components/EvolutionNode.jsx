@@ -369,6 +369,30 @@ function EvolutionDescription({
     );
   }
 
+  function topicLink(
+    topicSlug,
+    label = null
+  ) {
+    return (
+      <Link
+        to={`/topic/${topicSlug}`}
+        style={{
+          background: "none",
+          border: "none",
+          color: "var(--link-unvisited)",
+          cursor: "pointer",
+          font: "inherit",
+          fontWeight: "bold",
+          padding: 0,
+          textDecoration:
+            "underline"
+        }}
+      >
+        {label || capitalize(topicSlug)}
+      </Link>
+    );
+  }
+
   function renderLinkedSegment(
     segment,
     index
@@ -407,6 +431,17 @@ function EvolutionDescription({
       return (
         <span key={index}>
           {locationLink(
+            segment.slug,
+            segment.text
+          )}
+        </span>
+      );
+    }
+
+    if (segment.type === "topic") {
+      return (
+        <span key={index}>
+          {topicLink(
             segment.slug,
             segment.text
           )}

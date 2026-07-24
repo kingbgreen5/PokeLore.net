@@ -359,6 +359,8 @@ function AcquisitionMethods({
           isExpanded => !isExpanded
         )
       }
+      titleColor="#7dd3fc"
+      summaryColor="#7dd3fc"
       style={{
         marginBottom: "2rem"
       }}

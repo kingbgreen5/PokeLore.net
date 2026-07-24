@@ -169,7 +169,8 @@ function formatCharacterOption(character) {
 
 function SizeComparison({
   pokemon,
-  reviewMode = false
+  reviewMode = false,
+  sectionId = "size"
 }) {
   const navigate = useNavigate();
   const fallbackSpriteCorrectionFactor = 1.2;
@@ -453,6 +454,8 @@ function SizeComparison({
       : correctionReason
         ? `${pokemonDisplayName} is listed at ${listedHeightLabel} (${listedMetricHeight}); this chart uses a pose-adjusted visual scale because ${correctionReason.explanation}.`
         : `${pokemonDisplayName} is listed at ${listedHeightLabel} (${listedMetricHeight}); this chart uses a pose-adjusted visual scale.`;
+  const headingId = `${sectionId}-comparison-heading`;
+  const summaryId = `${sectionId}-comparison-summary`;
 
   useEffect(() => {
     setTopLayer(topLayerPreset);
@@ -1289,9 +1292,9 @@ function SizeComparison({
 
   return (
     <section
-      id="size"
-      aria-labelledby="size-comparison-heading"
-      aria-describedby="size-comparison-summary"
+      id={sectionId}
+      aria-labelledby={headingId}
+      aria-describedby={summaryId}
       style={{
         maxWidth: "1000px",
         margin: "2rem auto",
@@ -1304,7 +1307,7 @@ function SizeComparison({
       }}
     >
       <h2
-        id="size-comparison-heading"
+        id={headingId}
         style={{
           marginBottom: ".4rem",
           textTransform: "uppercase",
@@ -1314,7 +1317,7 @@ function SizeComparison({
         {pokemonDisplayName} Size Comparison: BETA
       </h2>
       <p
-        id="size-comparison-summary"
+        id={summaryId}
         style={{
           fontSize: ".9rem",
           margin: "0 auto 1.25rem",

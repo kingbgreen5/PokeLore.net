@@ -15,6 +15,7 @@ import MoveMachineItems from "../components/MoveMachineItems";
 import OaksNotes from "../components/OaksNotes";
 import PokemonGoNotes from "../components/PokemonGoNotes";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import TypeSizeChart from "../components/TypeSizeChart";
 import useSessionState from "../hooks/useSessionState";
 import Seo from "../seo/Seo";
 import { moveSeo } from "../seo/seoConfig";
@@ -577,7 +578,8 @@ function compactSectionStyle() {
 
 function PastValuesSection({
   moveName,
-  pastValues
+  pastValues,
+  titleColor
 }) {
   const [expanded, setExpanded] =
     useSessionState(
@@ -594,6 +596,8 @@ function PastValuesSection({
       title="Version History"
       summary={`${pastValues.length} changes`}
       expanded={expanded}
+      titleColor={titleColor}
+      titleChevron={true}
       onToggle={() => setExpanded(!expanded)}
       style={compactSectionStyle()}
       contentStyle={{
@@ -672,7 +676,8 @@ function PastValuesSection({
 
 function FlavorTextSection({
   moveName,
-  flavorTextEntries
+  flavorTextEntries,
+  titleColor
 }) {
   const [expanded, setExpanded] =
     useSessionState(
@@ -689,6 +694,8 @@ function FlavorTextSection({
       title="In-Game Descriptions"
       summary={`${flavorTextEntries.length} entries`}
       expanded={expanded}
+      titleColor={titleColor}
+      titleChevron={true}
       onToggle={() => setExpanded(!expanded)}
       style={compactSectionStyle()}
       contentStyle={{
@@ -738,6 +745,101 @@ const learnerMethodOrder = [
   "tutor",
   "other"
 ];
+
+const pokemonStatOptions = {
+  baseStatTotal: {
+    label: "BST",
+    displayName: "Base Stat Total"
+  },
+  hp: {
+    label: "HP",
+    displayName: "HP"
+  },
+  attack: {
+    label: "Atk",
+    displayName: "Attack"
+  },
+  defense: {
+    label: "Def",
+    displayName: "Defense"
+  },
+  specialAttack: {
+    label: "SpA",
+    displayName: "Sp. Atk"
+  },
+  specialDefense: {
+    label: "SpD",
+    displayName: "Sp. Def"
+  },
+  speed: {
+    label: "Spe",
+    displayName: "Speed"
+  }
+};
+
+function getPokemonStatValue(
+  pokemon,
+  statKey
+) {
+  if (statKey === "baseStatTotal") {
+    return pokemon.baseStatTotal;
+  }
+
+  return pokemon.stats?.[statKey];
+}
+
+function parseStatFilterValue(value) {
+  if (value === "") {
+    return null;
+  }
+
+  const numberValue = Number(value);
+
+  return Number.isFinite(numberValue)
+    ? numberValue
+    : null;
+}
+
+function mergePokemonIndexData(
+  pokemon,
+  pokemonById,
+  pokemonByName
+) {
+  const indexedPokemon =
+    pokemonById.get(Number(pokemon.id)) ??
+    pokemonByName.get(pokemon.name);
+
+  if (!indexedPokemon) {
+    return pokemon;
+  }
+
+  return {
+    ...indexedPokemon,
+    ...pokemon,
+    baseStatTotal:
+      pokemon.baseStatTotal ??
+      indexedPokemon.baseStatTotal,
+    stats:
+      pokemon.stats ?? indexedPokemon.stats,
+    types:
+      pokemon.types ?? indexedPokemon.types
+  };
+}
+
+function uniquePokemonById(pokemon) {
+  return Array.from(
+    pokemon
+      .reduce((pokemonById, currentPokemon) => {
+        pokemonById.set(
+          currentPokemon.id,
+          currentPokemon
+        );
+
+        return pokemonById;
+      }, new Map())
+      .values()
+  ).sort((a, b) => a.id - b.id);
+}
 
 function getLearnerMethodLabel(method) {
   if (method === "level-up") {
@@ -850,7 +952,8 @@ function normalizeLearnerGroups(
 function MoveLearnersSection({
   moveName,
   pokemonThatLearnMove,
-  methodGroups
+  methodGroups,
+  titleColor
 }) {
   const [
     pokemonLearnersExpanded,
@@ -859,17 +962,192 @@ function MoveLearnersSection({
     `move:${moveName}:pokemon-learners-expanded`,
     false
   );
-  const learnerGroups =
-    normalizeLearnerGroups(
+  const [pokemonStatFilter, setPokemonStatFilter] =
+    useState("default");
+  const [
+    pokemonStatSortDirection,
+    setPokemonStatSortDirection
+  ] = useState("desc");
+  const [minimumStatValue, setMinimumStatValue] =
+    useState("");
+  const [maximumStatValue, setMaximumStatValue] =
+    useState("");
+  const learnerGroups = useMemo(
+    () =>
+      normalizeLearnerGroups(
+        pokemonThatLearnMove,
+        methodGroups
+      ),
+    [
       pokemonThatLearnMove,
       methodGroups
+    ]
+  );
+  const selectedPokemonStatOption =
+    pokemonStatOptions[
+      pokemonStatFilter
+    ];
+  const parsedMinimumStatValue =
+    parseStatFilterValue(minimumStatValue);
+  const parsedMaximumStatValue =
+    parseStatFilterValue(maximumStatValue);
+  const hasStatFilter =
+    pokemonStatFilter !== "default";
+  const hasStatThreshold =
+    parsedMinimumStatValue !== null ||
+    parsedMaximumStatValue !== null;
+  const filteredLearnerGroups = useMemo(
+    () =>
+      learnerGroups
+        .map(group => {
+          let groupPokemon = group.pokemon;
+
+          if (hasStatFilter) {
+            groupPokemon = groupPokemon.filter(
+              pokemon => {
+                const statValue =
+                  getPokemonStatValue(
+                    pokemon,
+                    pokemonStatFilter
+                  );
+
+                if (
+                  hasStatThreshold &&
+                  (statValue === undefined ||
+                    statValue === null)
+                ) {
+                  return false;
+                }
+
+                if (
+                  parsedMinimumStatValue !==
+                    null &&
+                  statValue <
+                    parsedMinimumStatValue
+                ) {
+                  return false;
+                }
+
+                if (
+                  parsedMaximumStatValue !==
+                    null &&
+                  statValue >
+                    parsedMaximumStatValue
+                ) {
+                  return false;
+                }
+
+                return true;
+              }
+            );
+
+            groupPokemon = [
+              ...groupPokemon
+            ].sort((first, second) => {
+              const firstValue =
+                getPokemonStatValue(
+                  first,
+                  pokemonStatFilter
+                );
+              const secondValue =
+                getPokemonStatValue(
+                  second,
+                  pokemonStatFilter
+                );
+              const sortResult =
+                (secondValue ?? -1) -
+                  (firstValue ?? -1) ||
+                first.id - second.id;
+
+              return pokemonStatSortDirection ===
+                "asc"
+                ? sortResult * -1
+                : sortResult;
+            });
+          }
+
+          return {
+            ...group,
+            pokemon: groupPokemon
+          };
+        })
+        .filter(group => group.pokemon.length),
+    [
+      hasStatFilter,
+      hasStatThreshold,
+      learnerGroups,
+      parsedMaximumStatValue,
+      parsedMinimumStatValue,
+      pokemonStatFilter,
+      pokemonStatSortDirection
+    ]
+  );
+  const visibleLearnerPokemon = useMemo(
+    () =>
+      uniquePokemonById(
+        filteredLearnerGroups.flatMap(
+          group => group.pokemon
+        )
+      ),
+    [filteredLearnerGroups]
+  );
+  const totalLearnerPokemon = useMemo(
+    () =>
+      uniquePokemonById(
+        learnerGroups.flatMap(
+          group => group.pokemon
+        )
+      ),
+    [learnerGroups]
+  );
+  const isFilteringLearners =
+    hasStatFilter && hasStatThreshold;
+
+  function renderPokemonStatLabel(pokemon) {
+    if (!selectedPokemonStatOption) {
+      return null;
+    }
+
+    const value = getPokemonStatValue(
+      pokemon,
+      pokemonStatFilter
     );
+
+    if (
+      value === undefined ||
+      value === null
+    ) {
+      return null;
+    }
+
+    return (
+      <div
+        style={{
+          color: "#f3f3f3",
+          fontSize: ".85rem",
+          fontWeight: "700",
+          marginTop: ".35rem",
+          opacity: 0.9,
+          textAlign: "center"
+        }}
+      >
+        {selectedPokemonStatOption.label}
+        : {value}
+      </div>
+    );
+  }
 
   return (
     <CollapsibleSection
       title="Pokémon That Learn This Move"
-      summary={`${pokemonThatLearnMove.length} Pokémon`}
+      summary={
+        isFilteringLearners
+          ? `${visibleLearnerPokemon.length}/${totalLearnerPokemon.length} Pokémon`
+          : `${totalLearnerPokemon.length} Pokémon`
+      }
       expanded={pokemonLearnersExpanded}
+      titleColor={titleColor}
+      titleChevron={true}
       onToggle={() =>
         setPokemonLearnersExpanded(
           !pokemonLearnersExpanded
@@ -880,6 +1158,164 @@ function MoveLearnersSection({
         marginTop: "1rem"
       }}
     >
+      <div
+        data-section="move-learner-stat-filters"
+        style={{
+          alignItems: "center",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: ".75rem",
+          marginBottom: "1rem"
+        }}
+      >
+        <select
+          aria-label="Choose stat filter"
+          value={pokemonStatFilter}
+          onChange={event => {
+            setPokemonStatFilter(
+              event.target.value
+            );
+            setMinimumStatValue("");
+            setMaximumStatValue("");
+          }}
+          style={{
+            backgroundColor: "#2c2c2c",
+            border: "2px solid #555",
+            borderRadius: "12px",
+            color: "white",
+            fontSize: "1rem",
+            padding: ".7rem 1rem"
+          }}
+        >
+          <option value="default">
+            Nat. Dex. Number
+          </option>
+
+          {Object.entries(
+            pokemonStatOptions
+          ).map(([value, option]) => (
+            <option
+              key={value}
+              value={value}
+            >
+              {option.displayName}
+            </option>
+          ))}
+        </select>
+
+        <select
+          aria-label="Choose stat sort direction"
+          value={pokemonStatSortDirection}
+          onChange={event =>
+            setPokemonStatSortDirection(
+              event.target.value
+            )
+          }
+          disabled={!hasStatFilter}
+          style={{
+            backgroundColor: "#2c2c2c",
+            border: "2px solid #555",
+            borderRadius: "12px",
+            color: "white",
+            fontSize: "1rem",
+            opacity: hasStatFilter ? 1 : 0.55,
+            padding: ".7rem 1rem"
+          }}
+        >
+          <option value="desc">
+            Descending
+          </option>
+
+          <option value="asc">
+            Ascending
+          </option>
+        </select>
+
+        <input
+          aria-label="Minimum stat value"
+          disabled={!hasStatFilter}
+          inputMode="numeric"
+          min="0"
+          placeholder="Min"
+          type="number"
+          value={minimumStatValue}
+          onChange={event =>
+            setMinimumStatValue(
+              event.target.value
+            )
+          }
+          style={{
+            backgroundColor: "#2c2c2c",
+            border: "2px solid #555",
+            borderRadius: "12px",
+            color: "white",
+            fontSize: "1rem",
+            maxWidth: "7rem",
+            opacity: hasStatFilter ? 1 : 0.55,
+            padding: ".7rem 1rem"
+          }}
+        />
+
+        <input
+          aria-label="Maximum stat value"
+          disabled={!hasStatFilter}
+          inputMode="numeric"
+          min="0"
+          placeholder="Max"
+          type="number"
+          value={maximumStatValue}
+          onChange={event =>
+            setMaximumStatValue(
+              event.target.value
+            )
+          }
+          style={{
+            backgroundColor: "#2c2c2c",
+            border: "2px solid #555",
+            borderRadius: "12px",
+            color: "white",
+            fontSize: "1rem",
+            maxWidth: "7rem",
+            opacity: hasStatFilter ? 1 : 0.55,
+            padding: ".7rem 1rem"
+          }}
+        />
+
+        {hasStatFilter && (
+          <button
+            type="button"
+            onClick={() => {
+              setPokemonStatFilter(
+                "default"
+              );
+              setPokemonStatSortDirection(
+                "desc"
+              );
+              setMinimumStatValue("");
+              setMaximumStatValue("");
+            }}
+            style={{
+              borderRadius: "8px",
+              padding: ".55rem .85rem"
+            }}
+          >
+            Reset
+          </button>
+        )}
+      </div>
+
+      {filteredLearnerGroups.length === 0 && (
+        <p
+          style={{
+            color: "#ccc",
+            margin: "0 0 1rem"
+          }}
+        >
+          No Pokémon match the selected stat
+          range.
+        </p>
+      )}
+
       {/* ------------------------ MOVE LEARNER METHOD GROUPS ------------------------ */}
       <div
         data-section="move-learner-method-groups"
@@ -888,7 +1324,7 @@ function MoveLearnersSection({
           gap: "1.5rem"
         }}
       >
-        {learnerGroups.map(group => (
+        {filteredLearnerGroups.map(group => (
           <section
             key={group.method}
             data-section={`move-learner-group-${group.method}`}
@@ -932,11 +1368,22 @@ function MoveLearnersSection({
             >
               {group.pokemon.map(
                 pokemon => (
-                  <PokemonSummaryCard
+                  <div
                     key={`${group.method}-${pokemon.id}`}
-                    pokemon={pokemon}
-                    compact={true}
-                  />
+                    style={{
+                      alignItems: "center",
+                      display: "flex",
+                      flexDirection: "column"
+                    }}
+                  >
+                    <PokemonSummaryCard
+                      pokemon={pokemon}
+                      compact={true}
+                    />
+                    {renderPokemonStatLabel(
+                      pokemon
+                    )}
+                  </div>
                 )
               )}
             </div>
@@ -1024,6 +1471,11 @@ function MoveDetailPage({
           );
 
         if (generatedLearnerData?.pokemon) {
+          const pokemonIndexData =
+            await readJsonUrl(
+              "/data/pokemonIndex.json"
+            );
+
           if (!ignore) {
             setGeneratedLearners(
               generatedLearnerData.pokemon
@@ -1031,6 +1483,9 @@ function MoveDetailPage({
             setGeneratedLearnerGroups(
               generatedLearnerData.methodGroups ??
                 null
+            );
+            setPokemonIndex(
+              pokemonIndexData ?? []
             );
           }
 
@@ -1089,21 +1544,82 @@ function MoveDetailPage({
     [pokemonIndex]
   );
 
-  const pokemonThatLearnMove =
-    generatedLearners ??
-    learnsets
-      .filter(pokemon =>
-        pokemon.moves.some(
-          moveEntry =>
-            moveEntry.move === moveName
+  const pokemonById = useMemo(
+    () =>
+      new Map(
+        pokemonIndex.map(
+          pokemon => [
+            Number(pokemon.id),
+            pokemon
+          ]
         )
-      )
-      .map(pokemon =>
-        pokemonByName.get(
-          pokemon.pokemon
+      ),
+    [pokemonIndex]
+  );
+
+  const pokemonThatLearnMove = useMemo(
+    () => {
+      if (generatedLearners) {
+        return generatedLearners.map(
+          pokemon =>
+            mergePokemonIndexData(
+              pokemon,
+              pokemonById,
+              pokemonByName
+            )
+        );
+      }
+
+      return learnsets
+        .filter(pokemon =>
+          pokemon.moves.some(
+            moveEntry =>
+              moveEntry.move === moveName
+          )
         )
-      )
-      .filter(Boolean);
+        .map(pokemon =>
+          pokemonByName.get(
+            pokemon.pokemon
+          )
+        )
+        .filter(Boolean);
+    },
+    [
+      generatedLearners,
+      learnsets,
+      moveName,
+      pokemonById,
+      pokemonByName
+    ]
+  );
+
+  const mergedLearnerGroups = useMemo(
+    () =>
+      generatedLearnerGroups?.map(group => ({
+        ...group,
+        pokemon:
+          group.pokemon?.map(pokemon =>
+            mergePokemonIndexData(
+              pokemon,
+              pokemonById,
+              pokemonByName
+            )
+          ) ?? []
+      })) ?? null,
+    [
+      generatedLearnerGroups,
+      pokemonById,
+      pokemonByName
+    ]
+  );
+  const moveLearnerSizeChartPokemon =
+    useMemo(
+      () =>
+        uniquePokemonById(
+          pokemonThatLearnMove
+        ),
+      [pokemonThatLearnMove]
+    );
 
   if (loading) {
     return (
@@ -1133,8 +1649,10 @@ function MoveDetailPage({
     <div
       data-section="move-detail-page"
       style={{
+        boxSizing: "border-box",
         margin: "0 auto",
         maxWidth: "1120px",
+        overflowX: "clip",
         padding: "2rem 1rem 4rem"
       }}
     >
@@ -1302,7 +1820,7 @@ function MoveDetailPage({
             pokemonThatLearnMove
           }
           methodGroups={
-            generatedLearnerGroups
+            mergedLearnerGroups
           }
         />
       </div>
@@ -1326,6 +1844,18 @@ function MoveDetailPage({
         pastValues={
           moveData.pastValues
         }
+      />
+
+      {/* ------------------------ MOVE LEARNER SIZE CHART ------------------------ */}
+      <TypeSizeChart
+        pokemon={moveLearnerSizeChartPokemon}
+        title={`${moveDisplayName} Learners by Size`}
+        description="Largest Pokémon that can learn this move are on the left. Smallest Pokémon are on the right."
+        sectionStyle={{
+          ...compactSectionStyle(),
+          maxWidth:
+            "min(880px, calc(100vw - 2rem))"
+        }}
       />
     </div>
   );

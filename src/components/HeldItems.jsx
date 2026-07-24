@@ -54,7 +54,9 @@ function groupVersionsByRarity(
 
 function HeldItems({
   enabled = true,
-  pokemonId
+  pokemonId,
+  titleColor,
+  titleChevron = false
 }) {
   const [expanded, setExpanded] =
     useSessionState(
@@ -141,6 +143,8 @@ function HeldItems({
             : "No known held items"
       }
       expanded={expanded}
+      titleColor={titleColor}
+      titleChevron={titleChevron}
       onToggle={() =>
         setExpanded(!expanded)
       }

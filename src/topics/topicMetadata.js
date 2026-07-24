@@ -46,6 +46,21 @@ const itemLocationTopics = [
     countLabel: "Scarlet/Violet guide"
   },
   {
+    slug: "raticate-aquatic-pokemon",
+    active: true,
+    subgroup: "miscellaneous",
+    title: "Raticate: Aquatic Pokemon?",
+    shortDescription:
+      "Raticate has oddly aquatic Pokedex entries for a Normal-type Pokemon with almost no Water-type moves.",
+    introText:
+      "Raticate has oddly aquatic Pokedex entries for a Normal-type Pokemon with almost no Water-type moves.",
+    seoTitle:
+      "Raticate: Aquatic Pokemon? | PokeLore",
+    seoDescription:
+      "Explore Raticate's webbed-feet Pokedex entries, river and ocean swimming lore, learnset oddities, and size chart comparison.",
+    countLabel: "Lore article"
+  },
+  {
     slug: "pokemon-red-item-locations",
     active: true,
     subgroup: "item-locations",

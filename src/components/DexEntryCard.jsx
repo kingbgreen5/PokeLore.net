@@ -12,7 +12,11 @@ function capitalize(text) {
     .join(" ");
 }
 
-function DexEntryCard({ entries }) {
+function DexEntryCard({
+  entries,
+  titleColor,
+  titleChevron = false
+}) {
   const [expanded, setExpanded] =
     useState(false);
 
@@ -23,6 +27,8 @@ function DexEntryCard({ entries }) {
     <CollapsibleSection
       title="Pokédex Entries"
       summary={`${entries.length} entries`}
+      titleColor={titleColor}
+      titleChevron={titleChevron}
       expanded={expanded}
       onToggle={() =>
         setExpanded(!expanded)

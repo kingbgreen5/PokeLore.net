@@ -794,6 +794,7 @@ function ItemDetailPage() {
         <BerryDetails
           item={item}
           berryData={berryData}
+          oaksNotes={oaksNotes}
         />
       )}
 
@@ -836,7 +837,9 @@ function ItemDetailPage() {
 
       <RelatedLinks data={relatedLinks} />
 
-      <OaksNotes note={oaksNotes} />
+      {!isBerryItem && (
+        <OaksNotes note={oaksNotes} />
+      )}
 
       <PokemonGoNotes note={pokemonGoNotes} />
 

@@ -78,7 +78,9 @@ function uniqueImages(images) {
 
 function AdditionalImages({
   pokemonId,
-  pokemonName
+  pokemonName,
+  titleColor,
+  titleChevron = false
 }) {
   const [expanded, setExpanded] =
     useState(false);
@@ -155,6 +157,8 @@ function AdditionalImages({
           : "PokeAPI sprites"
       }
       expanded={expanded}
+      titleColor={titleColor}
+      titleChevron={titleChevron}
       onToggle={() =>
         setExpanded(!expanded)
       }
