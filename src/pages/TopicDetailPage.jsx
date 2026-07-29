@@ -9,6 +9,7 @@ import {
   useParams
 } from "react-router-dom";
 import TypeBadge from "../components/TypeBadge";
+import TopicArticlePage from "../components/topics/TopicArticlePage";
 import Seo from "../seo/Seo";
 import { topicSeo } from "../seo/seoConfig";
 import { formatPokemonDisplayName }
@@ -629,13 +630,71 @@ function PokedexTopicDetailPage() {
 
 function TopicDetailPage() {
   const { topicSlug } = useParams();
+  const [article, setArticle] =
+    useState(null);
+  const [articleChecked, setArticleChecked] =
+    useState(false);
   const StaticTopicComponent =
     itemLocationTopicComponents[
       topicSlug
     ];
 
+  useEffect(() => {
+    if (StaticTopicComponent) {
+      setArticle(null);
+      setArticleChecked(true);
+      return;
+    }
+
+    let isActive = true;
+    setArticle(null);
+    setArticleChecked(false);
+
+    fetch(
+      `/data/topics/articles/${topicSlug}.json`
+    )
+      .then(response =>
+        response.ok ? response.json() : null
+      )
+      .then(data => {
+        if (!isActive) return;
+        setArticle(
+          data?.contentType === "article" &&
+            (import.meta.env.DEV ||
+              data.active !== false)
+            ? data
+            : null
+        );
+      })
+      .catch(error => {
+        if (!isActive) return;
+        console.warn(
+          "Failed to load topic article:",
+          error
+        );
+        setArticle(null);
+      })
+      .finally(() => {
+        if (isActive) {
+          setArticleChecked(true);
+        }
+      });
+
+    return () => {
+      isActive = false;
+    };
+  }, [StaticTopicComponent, topicSlug]);
+
   if (StaticTopicComponent) {
     return <StaticTopicComponent />;
+  }
+
+  if (!articleChecked) {
+    return <p>Loading topic...</p>;
+  }
+
+  if (article) {
+    return <TopicArticlePage article={article} />;
   }
 
   return <PokedexTopicDetailPage />;

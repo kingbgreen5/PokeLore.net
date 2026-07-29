@@ -26,15 +26,26 @@ function TopicsPage() {
   useEffect(() => {
     async function loadTopics() {
       try {
-        const response = await fetch(
-          "/data/pokedexTopics.json"
-        );
+        const [pokedexResponse, articleResponse] =
+          await Promise.all([
+            fetch("/data/pokedexTopics.json"),
+            fetch("/data/topics/topicIndex.json")
+          ]);
         const data =
-          await response.json();
+          await pokedexResponse.json();
+        const articleIndex =
+          articleResponse.ok
+            ? await articleResponse.json()
+            : {
+                topics: []
+              };
 
         setTopics([
           ...staticTopics.filter(
             topic => topic.active
+          ),
+          ...(articleIndex.topics ?? []).filter(
+            topic => topic.active !== false
           ),
           ...(data.topics ?? []).filter(
             topic => topic.active

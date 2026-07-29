@@ -1,0 +1,253 @@
+.topic-article {
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 2rem;
+  text-align: left;
+}
+
+.topic-article *,
+.topic-article *::before,
+.topic-article *::after {
+  box-sizing: border-box;
+}
+
+.topic-article-breadcrumbs {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  gap: 0.45rem;
+  margin: 0 auto 1.25rem;
+  max-width: 780px;
+}
+
+.topic-article-header {
+  margin: 0 auto 1.5rem;
+  max-width: 780px;
+  text-align: center;
+}
+
+.topic-article-category {
+  color: #fab856;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.topic-article h1 {
+  letter-spacing: 0;
+  line-height: 1.05;
+  margin: 0 0 1rem;
+  overflow-wrap: anywhere;
+}
+
+.topic-article-subtitle {
+  color: var(--text-h);
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin: 0 auto 0.8rem;
+  max-width: 760px;
+}
+
+.topic-article-byline {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.topic-article-figure {
+  margin: 1.5rem auto;
+  max-width: 780px;
+}
+
+.topic-article-figure-small {
+  max-width: 320px;
+}
+
+.topic-article-figure-medium {
+  max-width: 520px;
+}
+
+.topic-article-figure-large {
+  max-width: 780px;
+}
+
+.topic-article-figure-wide {
+  max-width: 960px;
+}
+
+.topic-article-figure-full {
+  max-width: 100%;
+}
+
+.topic-article-figure-small {
+  max-width: 320px;
+}
+
+.topic-article-figure-medium {
+  max-width: 520px;
+}
+
+.topic-article-figure-large {
+  max-width: 780px;
+}
+
+.topic-article-figure img {
+  background: #202020;
+  border: 1px solid #444;
+  border-radius: 8px;
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.topic-article-figure figcaption {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  margin-top: 0.5rem;
+  opacity: 0.75;
+  text-align: center;
+}
+
+.topic-article-toc,
+.topic-article-sources,
+.topic-article-related,
+.topic-article-callout,
+.topic-article-oak-notes,
+.topic-article-comparison,
+.topic-article-unknown-block {
+  background: #202020;
+  border: 1px solid #555;
+  border-radius: 8px;
+  margin: 1.5rem auto;
+  max-width: 780px;
+  padding: 1rem;
+}
+
+.topic-article-toc ol,
+.topic-article-sources ol {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.topic-article-body {
+  margin: 0 auto;
+  max-width: 780px;
+}
+
+.topic-article-body p,
+.topic-article-body li,
+.topic-article-body td,
+.topic-article-body th {
+  line-height: 1.7;
+}
+
+.topic-article-body p,
+.topic-article-body ul,
+.topic-article-body ol {
+  margin: 0 0 1.1rem;
+}
+
+.topic-article-body h2,
+.topic-article-body h3,
+.topic-article-sources h2,
+.topic-article-related h2,
+.topic-article-toc h2,
+.topic-article-oak-notes h2 {
+  letter-spacing: 0;
+  margin-top: 2rem;
+}
+
+.topic-article-quote {
+  border-left: 4px solid #fab856;
+  margin: 1.5rem auto;
+  padding-left: 1rem;
+}
+
+.topic-article-quote blockquote {
+  color: var(--text-h);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.topic-article-quote figcaption {
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  opacity: 0.75;
+}
+
+.topic-article-image-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin: 1.5rem auto;
+  max-width: 960px;
+}
+
+.topic-article-image-grid .topic-article-figure {
+  margin: 0;
+}
+
+.topic-article-table-wrap {
+  margin: 1.5rem auto;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.topic-article-table-wrap table {
+  border-collapse: collapse;
+  min-width: 520px;
+  width: 100%;
+}
+
+.topic-article-table-wrap th,
+.topic-article-table-wrap td {
+  border: 1px solid #555;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+.topic-article-comparison > div {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.topic-article-comparison article {
+  border-left: 3px solid #00cadb;
+  padding-left: 0.75rem;
+}
+
+.topic-article-related > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.topic-article-link-card {
+  background: #202020;
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 0.85rem;
+}
+
+.topic-article-unknown-block {
+  border-color: #fab856;
+  color: #f7df7e;
+}
+
+@media (max-width: 640px) {
+  .topic-article {
+    padding: 1rem;
+  }
+
+  .topic-article h1 {
+    font-size: 2.1rem;
+  }
+}

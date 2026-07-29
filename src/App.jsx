@@ -68,6 +68,11 @@ const TopicsPage = lazy(() =>
 const TopicDetailPage = lazy(() =>
   import("./pages/TopicDetailPage")
 );
+const ArticleStudioPage = import.meta.env.DEV
+  ? lazy(() =>
+      import("./pages/ArticleStudioPage")
+    )
+  : null;
 const TeamCoveragePage = lazy(() =>
   import("./pages/TeamCoveragePage")
 );
@@ -76,6 +81,9 @@ const SingleTypeCoveragePage = lazy(() =>
 );
 const SeoReviewPage = lazy(() =>
   import("./pages/SeoReviewPage")
+);
+const NotFoundPage = lazy(() =>
+  import("./pages/NotFoundPage")
 );
 const OgPreviewHome = lazy(() =>
   import("./og/OgPreviewPage").then(module => ({
@@ -199,6 +207,13 @@ function App() {
   element={<TopicDetailPage />}
 />
 
+{ArticleStudioPage && (
+  <Route
+    path="/article-studio"
+    element={<ArticleStudioPage />}
+  />
+)}
+
 <Route
   path="/og-preview"
   element={<OgPreviewHome />}
@@ -287,6 +302,11 @@ function App() {
         <Route
            path="/move/:moveName"
             element={<MoveDetailPage />}
+        />
+
+        <Route
+          path="*"
+          element={<NotFoundPage />}
         />
 
       </Routes>

@@ -405,6 +405,7 @@ export function topicSeo(topic) {
     typeof topic === "string"
       ? "Explore Pokémon grouped by official Pokédex entry text."
       : topic?.seoDescription ??
+        topic?.excerpt ??
         topic?.shortDescription ??
         "Explore Pokémon grouped by official Pokédex entry text.";
 
