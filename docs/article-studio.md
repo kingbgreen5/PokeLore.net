@@ -48,6 +48,36 @@ Article images live here:
 public/images/topics/<slug>/
 ```
 
+## Internal Links
+
+Paragraphs, lists, quotes, comparison text, and Oak notes support simple markdown-style links:
+
+```text
+[Greninja](/pokemon/greninja)
+[Water Shuriken](/move/water-shuriken)
+[Poke Ball](/item/poke-ball)
+[Water type](/type/water)
+[Another article](/topic/another-article-slug)
+```
+
+Use internal paths for PokeLore pages. External `http` and `https` links also render, but should be used sparingly and backed by source entries when appropriate.
+
+## Pokemon Card Grids
+
+Use a `pokemon-card-grid` block to show Pokemon summary cards inside an article:
+
+```json
+{
+  "id": "block-related-starters",
+  "type": "pokemon-card-grid",
+  "title": "Related Pokemon",
+  "pokemonIds": [658, 94],
+  "cardSize": "compact"
+}
+```
+
+Supported card sizes are `compact`, `full`, and `subcompact`.
+
 ## Local API
 
 The write API is mounted by Vite middleware only during local development:

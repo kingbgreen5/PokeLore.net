@@ -87,6 +87,14 @@ function emptyBlock(type) {
         title: "",
         text: ""
       };
+    case "pokemon-card-grid":
+      return {
+        id,
+        type,
+        title: "",
+        pokemonIds: [],
+        cardSize: "compact"
+      };
     case "pokemon-link":
     case "topic-link":
       return {
@@ -149,6 +157,40 @@ function TextField({
         onChange={event =>
           onChange(event.target.value)
         }
+      />
+    </label>
+  );
+}
+
+function NumericListField({
+  label,
+  values,
+  onChange
+}) {
+  const normalizedValue = (values ?? []).join(", ");
+  const [draft, setDraft] =
+    useState(normalizedValue);
+
+  useEffect(() => {
+    setDraft(normalizedValue);
+  }, [normalizedValue]);
+
+  return (
+    <label className="article-studio-field">
+      <span>{label}</span>
+      <input
+        value={draft}
+        onChange={event => {
+          const nextDraft = event.target.value;
+          setDraft(nextDraft);
+          onChange(normalizeNumericList(nextDraft));
+        }}
+        onBlur={() =>
+          setDraft(
+            normalizeNumericList(draft).join(", ")
+          )
+        }
+        placeholder="658, 94, 25"
       />
     </label>
   );
@@ -635,12 +677,19 @@ function BlockEditor({
       {!collapsed && (
         <div className="article-studio-block-body">
           {block.type === "paragraph" && (
-            <TextField
-              label="Text"
-              multiline={true}
-              value={block.text}
-              onChange={text => update({ text })}
-            />
+            <>
+              <TextField
+                label="Text"
+                multiline={true}
+                value={block.text}
+                onChange={text => update({ text })}
+              />
+              <p className="article-studio-help-text">
+                Link format: [Greninja](/pokemon/greninja),
+                [Water Shuriken](/move/water-shuriken),
+                [Poke Ball](/item/poke-ball)
+              </p>
+            </>
           )}
 
           {block.type === "heading" && (
@@ -769,6 +818,44 @@ function BlockEditor({
                 value={block.text}
                 onChange={text => update({ text })}
               />
+              <p className="article-studio-help-text">
+                Links work here too:
+                [label](/pokemon/pikachu)
+              </p>
+            </>
+          )}
+
+          {block.type === "pokemon-card-grid" && (
+            <>
+              <TextField
+                label="Title"
+                value={block.title}
+                onChange={title => update({ title })}
+              />
+              <NumericListField
+                label="Pokemon IDs"
+                values={block.pokemonIds ?? []}
+                onChange={pokemonIds =>
+                  update({
+                    pokemonIds
+                  })
+                }
+              />
+              <label className="article-studio-field">
+                <span>Card size</span>
+                <select
+                  value={block.cardSize ?? "compact"}
+                  onChange={event =>
+                    update({
+                      cardSize: event.target.value
+                    })
+                  }
+                >
+                  <option value="compact">Compact</option>
+                  <option value="full">Full</option>
+                  <option value="subcompact">Subcompact</option>
+                </select>
+              </label>
             </>
           )}
 
@@ -1405,13 +1492,12 @@ function ArticleStudioPage() {
                 patchArticle({ updatedDate })
               }
             />
-            <TextField
+            <NumericListField
               label="Related Pokemon IDs"
-              value={(article.relatedPokemon ?? []).join(", ")}
+              values={article.relatedPokemon ?? []}
               onChange={relatedPokemon =>
                 patchArticle({
-                  relatedPokemon:
-                    normalizeNumericList(relatedPokemon)
+                  relatedPokemon
                 })
               }
             />

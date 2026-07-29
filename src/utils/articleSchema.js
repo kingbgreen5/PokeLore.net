@@ -10,6 +10,7 @@ export const ARTICLE_BLOCK_TYPES = [
   "comparison",
   "table",
   "callout",
+  "pokemon-card-grid",
   "pokemon-link",
   "topic-link",
   "oak-notes"

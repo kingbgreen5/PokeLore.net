@@ -43,6 +43,13 @@ function hasValidDisplaySize(value) {
   );
 }
 
+function hasValidCardSize(value) {
+  return (
+    !value ||
+    ["compact", "full", "subcompact"].includes(value)
+  );
+}
+
 export function validateArticle(article) {
   const errors = [];
   const warnings = [];
@@ -246,6 +253,31 @@ export function validateArticle(article) {
             );
           }
         });
+      }
+
+      if (block.type === "pokemon-card-grid") {
+        if (!Array.isArray(block.pokemonIds)) {
+          errors.push(
+            `${label} Pokemon card grid must use a Pokemon IDs array.`
+          );
+        } else {
+          block.pokemonIds.forEach(value => {
+            if (
+              !Number.isInteger(Number(value)) ||
+              Number(value) <= 0
+            ) {
+              errors.push(
+                `${label} Pokemon card grid IDs must be positive numbers.`
+              );
+            }
+          });
+        }
+
+        if (!hasValidCardSize(block.cardSize)) {
+          errors.push(
+            `${label} Pokemon card grid size is invalid.`
+          );
+        }
       }
     });
   }

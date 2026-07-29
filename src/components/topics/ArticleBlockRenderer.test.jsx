@@ -11,6 +11,29 @@ import { MemoryRouter } from "react-router-dom";
 import ArticleBlockRenderer from "./ArticleBlockRenderer";
 
 describe("ArticleBlockRenderer", () => {
+  it("renders internal markdown-style links", () => {
+    render(
+      <MemoryRouter>
+        <ArticleBlockRenderer
+          block={{
+            id: "block-1",
+            type: "paragraph",
+            text: "Read about [Greninja](/pokemon/greninja)."
+          }}
+        />
+      </MemoryRouter>
+    );
+
+    const link = screen.getByRole("link", {
+      name: "Greninja"
+    });
+
+    expect(link).toHaveAttribute(
+      "href",
+      "/pokemon/greninja"
+    );
+  });
+
   it("renders unknown block types safely", () => {
     render(
       <MemoryRouter>

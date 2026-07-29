@@ -129,4 +129,30 @@ describe("article validation", () => {
       "Block 1 image display size is invalid."
     );
   });
+
+  it("validates Pokemon card grid IDs and card size", () => {
+    const article = {
+      ...createEmptyArticle({
+        title: "Cards",
+        slug: "cards"
+      }),
+      excerpt: "Summary",
+      sections: [
+        {
+          id: "block-1",
+          type: "pokemon-card-grid",
+          pokemonIds: [25, "bad"],
+          cardSize: "huge"
+        }
+      ]
+    };
+    const result = validateArticle(article);
+
+    expect(result.errors).toContain(
+      "Block 1 Pokemon card grid IDs must be positive numbers."
+    );
+    expect(result.errors).toContain(
+      "Block 1 Pokemon card grid size is invalid."
+    );
+  });
 });

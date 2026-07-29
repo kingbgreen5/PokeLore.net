@@ -14,6 +14,8 @@ function collectTextFromBlock(block) {
       return block.items ?? [];
     case "callout":
       return [block.title, block.text];
+    case "pokemon-card-grid":
+      return [block.title];
     case "oak-notes":
       return [
         block.title,
