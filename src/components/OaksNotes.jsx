@@ -57,7 +57,11 @@ function InlineLinkedText({
         index: remaining.indexOf(link.label)
       }))
       .filter(link => link.index >= 0)
-      .sort((a, b) => a.index - b.index)[0];
+      .sort(
+        (a, b) =>
+          a.index - b.index ||
+          b.label.length - a.label.length
+      )[0];
 
     if (!nextLink) {
       parts.push(remaining);

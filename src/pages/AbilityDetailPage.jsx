@@ -8,8 +8,10 @@ import {
 } from "react";
 
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import OaksNotes from "../components/OaksNotes";
 import Seo from "../seo/Seo";
 import { abilitySeo } from "../seo/seoConfig";
+import { readJsonFile } from "../utils/readJsonFile";
 
 function capitalize(text) {
   return text
@@ -36,6 +38,9 @@ function AbilityDetailPage() {
   ] =
     useState([]);
 
+  const [oaksNotes, setOaksNotes] =
+    useState(null);
+
   const [loading, setLoading] =
     useState(true);
 
@@ -50,6 +55,7 @@ function AbilityDetailPage() {
         setLoading(true);
         setAbility(null);
         setPokemonWithAbility([]);
+        setOaksNotes(null);
 
         const [
           abilitiesResponse,
@@ -111,11 +117,17 @@ function AbilityDetailPage() {
               })
           );
 
+        const oaksNotesData =
+          await readJsonFile(
+            `/data/oaksNotes/abilities/${nextAbility.name}.json`
+          );
+
         if (isActive) {
           setAbility(nextAbility);
           setPokemonWithAbility(
             pokemonDetails.filter(Boolean)
           );
+          setOaksNotes(oaksNotesData);
         }
 
       } catch (error) {
@@ -216,6 +228,8 @@ function AbilityDetailPage() {
           {ability.effect}
         </p>
       </div>
+
+      <OaksNotes note={oaksNotes} />
 
       {/* Generation */}
 
