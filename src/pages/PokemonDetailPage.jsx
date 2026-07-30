@@ -15,7 +15,9 @@ import LearnsetCard from "../components/LearnsetCard";
 import CollapsibleSection from "../components/CollapsibleSection";
 import DexEntryCard from "../components/DexEntryCard.jsx";
 import TypeEffectivenessCard from "../components/TypeEffectivenessCard";
-import EvolutionNode from "../components/EvolutionNode";
+import EvolutionNode, {
+  FormEvolutionPaths
+} from "../components/EvolutionNode";
 import BaseStatsChart from "../components/BaseStatsChart";
 import OaksNotes from "../components/OaksNotes";
 import PokemonGoNotes from "../components/PokemonGoNotes";
@@ -650,6 +652,29 @@ const sizeReviewMode =
   sizeReviewValue !== "false";
 const expandableTitleColor =
   "var(--link-unvisited)";
+const familyEvolutionOverride =
+  evolutionData?.root?.pokemon?.name
+    ? evolutionMethodOverrides[
+        evolutionData.root.pokemon.name
+      ]
+    : null;
+const formEvolutionPaths =
+  familyEvolutionOverride
+    ?.formEvolutionPaths;
+const useFormEvolutionPaths =
+  Boolean(
+    familyEvolutionOverride
+      ?.replaceDefaultEvolutionDisplay &&
+    Array.isArray(formEvolutionPaths) &&
+    formEvolutionPaths.length > 0
+  );
+const visibleSpecialFormNotes =
+  (
+    familyEvolutionOverride
+      ?.specialFormNotes ?? []
+  ).filter(note =>
+    note.pokemon === pokemon.name
+  );
 
 
 
@@ -847,6 +872,7 @@ function formatWeightEnglish(weight) {
 
 <BaseStatsChart
   stats={pokemon.stats}
+  evYield={pokemon.evYield}
 />
 
 <TypeEffectivenessCard
@@ -884,7 +910,9 @@ function formatWeightEnglish(weight) {
 >
   <div
     style={{
-      width: "max-content",
+      width: useFormEvolutionPaths
+        ? "100%"
+        : "max-content",
       margin:'0 auto',
     }}
   >
@@ -893,15 +921,22 @@ function formatWeightEnglish(weight) {
     )}
 
     {!evolutionLoading && evolutionData?.root && (
-<EvolutionNode
-  node={evolutionData.root}
-   isRoot={true}
-  rootRef={rootNodeRef}
-  activeFormKey={activeFormKey}
-  currentPokemonName={pokemon.name}
-  evolutionMethodOverrides={evolutionMethodOverrides}
- 
-/>
+      useFormEvolutionPaths ? (
+        <FormEvolutionPaths
+          root={evolutionData.root}
+          paths={formEvolutionPaths}
+          currentPokemonName={pokemon.name}
+        />
+      ) : (
+        <EvolutionNode
+          node={evolutionData.root}
+          isRoot={true}
+          rootRef={rootNodeRef}
+          activeFormKey={activeFormKey}
+          currentPokemonName={pokemon.name}
+          evolutionMethodOverrides={evolutionMethodOverrides}
+        />
+      )
     )}
   </div>
 </div>
@@ -942,6 +977,20 @@ function formatWeightEnglish(weight) {
         )
       )}
     </div>
+    {visibleSpecialFormNotes.length > 0 && (
+      <div
+        className="form-special-notes"
+        aria-label="Special form evolution notes"
+      >
+        {visibleSpecialFormNotes.map(
+          note => (
+            <p key={note.pokemon}>
+              {note.note}
+            </p>
+          )
+        )}
+      </div>
+    )}
   </>
 )}
 </div>

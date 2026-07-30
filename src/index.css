@@ -205,6 +205,58 @@ code {
   overflow: visible;
 }
 
+.form-evolution-paths {
+  align-items: start;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  justify-items: center;
+  margin: 0 auto 1rem;
+  max-width: 760px;
+  width: 100%;
+}
+
+.form-evolution-path {
+  align-items: center;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  max-width: 190px;
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.form-evolution-condition {
+  align-items: center;
+  color: var(--text-h);
+  display: flex;
+  flex-direction: column;
+  font-size: .8rem;
+  gap: .25rem;
+  line-height: 1.2;
+  min-height: 4.6rem;
+  text-align: center;
+}
+
+.form-evolution-condition small,
+.form-special-notes {
+  color: var(--text);
+  font-size: .72rem;
+  line-height: 1.25;
+}
+
+.form-special-notes {
+  margin: -.35rem auto 1rem;
+  max-width: 520px;
+}
+
+@media (max-width: 640px) {
+  .form-evolution-paths {
+    grid-template-columns: 1fr;
+  }
+}
+
 .team-coverage-party-grid {
   display: grid;
   gap: 1rem;

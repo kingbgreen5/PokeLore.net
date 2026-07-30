@@ -172,3 +172,54 @@ export function getMissingDefenseTypes({
     type => !covered.has(type)
   );
 }
+
+export function getDefensiveCoverageTypes({
+  consideredTypes = ALL_POKEMON_TYPES,
+  defenseTypes,
+  typeChart
+}) {
+  const defendingTypes = (
+    defenseTypes ?? []
+  ).filter(type =>
+    consideredTypes.includes(type)
+  );
+
+  if (!defendingTypes.length) {
+    return [];
+  }
+
+  return consideredTypes.filter(attackType => {
+    const multiplier = defendingTypes.reduce(
+      (total, defenseType) =>
+        total *
+        (typeChart?.[attackType]?.[
+          defenseType
+        ] ?? 1),
+      1
+    );
+
+    return multiplier < 1;
+  });
+}
+
+export function getTeamDefensiveCoverageTypes({
+  consideredTypes = ALL_POKEMON_TYPES,
+  teamTypeSets,
+  typeChart
+}) {
+  const coveredTypes = new Set();
+
+  for (const defenseTypes of teamTypeSets ?? []) {
+    for (const attackType of getDefensiveCoverageTypes({
+      consideredTypes,
+      defenseTypes,
+      typeChart
+    })) {
+      coveredTypes.add(attackType);
+    }
+  }
+
+  return consideredTypes.filter(type =>
+    coveredTypes.has(type)
+  );
+}

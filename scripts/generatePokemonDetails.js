@@ -77,6 +77,43 @@ function buildStats(statsArray) {
   };
 }
 
+function buildEvYield(statsArray) {
+  return {
+    hp: statsArray.find(
+      s => s.stat.name === "hp"
+    )?.effort ?? 0,
+
+    attack: statsArray.find(
+      s =>
+        s.stat.name === "attack"
+    )?.effort ?? 0,
+
+    defense: statsArray.find(
+      s =>
+        s.stat.name === "defense"
+    )?.effort ?? 0,
+
+    specialAttack:
+      statsArray.find(
+        s =>
+          s.stat.name ===
+          "special-attack"
+      )?.effort ?? 0,
+
+    specialDefense:
+      statsArray.find(
+        s =>
+          s.stat.name ===
+          "special-defense"
+      )?.effort ?? 0,
+
+    speed: statsArray.find(
+      s =>
+        s.stat.name === "speed"
+    )?.effort ?? 0
+  };
+}
+
 //-----------------------------------------
 // Build Pokémon Files
 //-----------------------------------------
@@ -138,6 +175,10 @@ async function buildPokemonFiles() {
           species.capture_rate,
 
         stats: buildStats(
+          pokemon.stats
+        ),
+
+        evYield: buildEvYield(
           pokemon.stats
         )
       };

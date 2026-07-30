@@ -6,6 +6,7 @@ import {
   saveArticle
 } from "./articleFileService.js";
 import {
+  cleanupUnusedArticleImages,
   listArticleImages,
   saveArticleImage
 } from "./articleImageService.js";
@@ -148,6 +149,22 @@ async function handleArticleStudioRequest({
     ) {
       sendJson(res, 200, {
         images: await listArticleImages(paths, parts[1])
+      });
+      return true;
+    }
+
+    if (
+      req.method === "POST" &&
+      parts.length === 3 &&
+      parts[0] === "images" &&
+      parts[2] === "cleanup"
+    ) {
+      const body = await readRequestJson(req);
+      sendJson(res, 200, {
+        result: await cleanupUnusedArticleImages(paths, {
+          slug: parts[1],
+          article: body.article
+        })
       });
       return true;
     }

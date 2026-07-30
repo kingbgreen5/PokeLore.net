@@ -339,3 +339,131 @@ export async function listArticleImages(paths, slug) {
     throw error;
   }
 }
+
+function escapeRegExp(value) {
+  return String(value).replace(
+    /[.*+?^${}()|[\]\\]/g,
+    "\\$&"
+  );
+}
+
+export function collectReferencedArticleImageFilenames(
+  slug,
+  value,
+  filenames = new Set()
+) {
+  assertSafeSlug(slug);
+
+  if (typeof value === "string") {
+    const prefix = `/images/topics/${slug}/`;
+    const pattern = new RegExp(
+      `${escapeRegExp(prefix)}([^\\s"'?#)]+)`,
+      "g"
+    );
+    let match;
+
+    while ((match = pattern.exec(value))) {
+      if (
+        match[1] &&
+        !match[1].includes("/") &&
+        /\.(png|jpe?g|webp|gif)$/i.test(match[1])
+      ) {
+        filenames.add(match[1]);
+      }
+    }
+
+    return filenames;
+  }
+
+  if (Array.isArray(value)) {
+    value.forEach(entry =>
+      collectReferencedArticleImageFilenames(
+        slug,
+        entry,
+        filenames
+      )
+    );
+    return filenames;
+  }
+
+  if (value && typeof value === "object") {
+    Object.values(value).forEach(entry =>
+      collectReferencedArticleImageFilenames(
+        slug,
+        entry,
+        filenames
+      )
+    );
+  }
+
+  return filenames;
+}
+
+export async function cleanupUnusedArticleImages(paths, {
+  slug,
+  article
+}) {
+  assertSafeSlug(slug);
+
+  if (
+    article?.slug &&
+    article.slug !== slug
+  ) {
+    throw Object.assign(
+      new Error("Cleanup article slug must match the image folder slug."),
+      {
+        statusCode: 400
+      }
+    );
+  }
+
+  const articleImageDir = path.join(
+    paths.imageDir,
+    slug
+  );
+  const relativeDir = path.relative(
+    paths.imageDir,
+    articleImageDir
+  );
+
+  if (
+    relativeDir.startsWith("..") ||
+    path.isAbsolute(relativeDir)
+  ) {
+    throw Object.assign(
+      new Error("Image path escapes allowed directory."),
+      {
+        statusCode: 400
+      }
+    );
+  }
+
+  const usedFilenames =
+    collectReferencedArticleImageFilenames(
+      slug,
+      article ?? {}
+    );
+  const images = await listArticleImages(paths, slug);
+  const deleted = [];
+  const kept = [];
+
+  for (const image of images) {
+    if (usedFilenames.has(image.filename)) {
+      kept.push(image);
+      continue;
+    }
+
+    await fs.unlink(
+      path.join(articleImageDir, image.filename)
+    );
+    deleted.push(image);
+  }
+
+  return {
+    slug,
+    deleted,
+    kept,
+    deletedCount: deleted.length,
+    keptCount: kept.length
+  };
+}

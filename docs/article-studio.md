@@ -106,9 +106,12 @@ PUT    /api/article-studio/articles/:slug
 DELETE /api/article-studio/articles/:slug
 GET    /api/article-studio/images/:slug
 POST   /api/article-studio/images
+POST   /api/article-studio/images/:slug/cleanup
 ```
 
 The browser never writes files directly. The Node middleware validates input, rejects unsafe slugs and traversal paths, writes formatted JSON, updates the topic index, and creates backups before overwrites or deletes.
+
+The image cleanup endpoint deletes files in `public/images/topics/<slug>/` that are not referenced by the current editor draft sent in the request. It only affects the selected article image folder.
 
 ## Production Behavior
 

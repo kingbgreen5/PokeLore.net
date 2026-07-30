@@ -48,6 +48,13 @@ function getStat(pokemon, statName) {
   )?.base_stat ?? 0;
 }
 
+function getEvYield(pokemon, statName) {
+  return pokemon.stats.find(
+    stat =>
+      stat.stat.name === statName
+  )?.effort ?? 0;
+}
+
 function condenseDexEntries(
   flavorTextEntries
 ) {
@@ -221,6 +228,29 @@ function buildPokemonData({
         "special-defense"
       ),
       speed: getStat(
+        pokemon,
+        "speed"
+      )
+    },
+    evYield: {
+      hp: getEvYield(pokemon, "hp"),
+      attack: getEvYield(
+        pokemon,
+        "attack"
+      ),
+      defense: getEvYield(
+        pokemon,
+        "defense"
+      ),
+      specialAttack: getEvYield(
+        pokemon,
+        "special-attack"
+      ),
+      specialDefense: getEvYield(
+        pokemon,
+        "special-defense"
+      ),
+      speed: getEvYield(
         pokemon,
         "speed"
       )

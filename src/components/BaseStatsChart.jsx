@@ -13,6 +13,23 @@ function capitalizeStat(stat) {
   return labels[stat] || stat;
 }
 
+function formatEvYield(evYield) {
+  const entries = Object.entries(
+    evYield ?? {}
+  )
+    .filter(
+      ([, value]) => Number(value) > 0
+    )
+    .map(
+      ([stat, value]) =>
+        `${Number(value)} ${capitalizeStat(stat)}`
+    );
+
+  return entries.length
+    ? entries.join(", ")
+    : null;
+}
+
 function getStatColor(value) {
 
 
@@ -38,8 +55,13 @@ function getStatColor(value) {
   return "#974242";
 }
 
-function BaseStatsChart({ stats }) {
+function BaseStatsChart({
+  stats,
+  evYield
+}) {
   const maxStat = 255;
+  const evYieldText =
+    formatEvYield(evYield);
 
   const baseStatTotal =
     Object.values(stats).reduce(
@@ -73,6 +95,17 @@ function BaseStatsChart({ stats }) {
       >
         Total: {baseStatTotal}
       </div>
+
+      {evYieldText && (
+        <div
+          style={{
+            margin: ".2rem 0 .55rem",
+            fontSize: ".95rem"
+          }}
+        >
+          EV Yield: <strong>{evYieldText}</strong>
+        </div>
+      )}
 
       <div
         style={{

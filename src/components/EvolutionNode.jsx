@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
+import { formatPokemonDisplayName }
+from "../utils/pokemonNames";
 
 function capitalize(text) {
 
@@ -134,6 +136,17 @@ function findSourceOverrideName(
   }
 
   return null;
+}
+
+const NON_EVOLUTION_FORM_TOKENS =
+  new Set(["mega", "gmax"]);
+
+function isNonEvolutionFormName(name) {
+  return String(name ?? "")
+    .split("-")
+    .some(part =>
+      NON_EVOLUTION_FORM_TOKENS.has(part)
+    );
 }
 
 function getEvolutionDescription(node) {
@@ -635,7 +648,13 @@ function getDisplayedPokemon(
     );
 
   if (matchingCurrentVariety) {
-    return matchingCurrentVariety;
+    if (
+      !isNonEvolutionFormName(
+        matchingCurrentVariety.name
+      )
+    ) {
+      return matchingCurrentVariety;
+    }
   }
 
   if (!activeFormKey) {
@@ -818,6 +837,174 @@ function EvolutionNode({
 
   );
 
+}
+
+function collectPokemonSummaries(
+  node,
+  summaries = {}
+) {
+  if (!node) {
+    return summaries;
+  }
+
+  [
+    node.pokemon,
+    ...(node.varieties ?? [])
+  ]
+    .filter(Boolean)
+    .forEach(pokemon => {
+      if (pokemon.name) {
+        summaries[pokemon.name] = pokemon;
+      }
+    });
+
+  (node.evolvesTo ?? []).forEach(
+    child =>
+      collectPokemonSummaries(
+        child,
+        summaries
+      )
+  );
+
+  return summaries;
+}
+
+function getVersionNotes(path) {
+  const notes = [];
+
+  if (path.versionNote) {
+    notes.push(path.versionNote);
+  }
+
+  if (Array.isArray(path.versionNotes)) {
+    notes.push(...path.versionNotes);
+  }
+
+  if (path.versionException?.note) {
+    notes.push(path.versionException.note);
+  }
+
+  if (
+    Array.isArray(path.versionExceptions)
+  ) {
+    path.versionExceptions.forEach(
+      exception => {
+        if (exception.note) {
+          notes.push(exception.note);
+        }
+      }
+    );
+  }
+
+  return notes;
+}
+
+function getFallbackPokemonSummary(name) {
+  return {
+    id: 0,
+    name,
+    sprite: "",
+    types: []
+  };
+}
+
+function FormEvolutionPath({
+  path,
+  pokemonSummaries
+}) {
+  const basePokemon =
+    pokemonSummaries[path.basePokemon] ||
+    getFallbackPokemonSummary(
+      path.basePokemon
+    );
+  const evolvedPokemon =
+    pokemonSummaries[path.evolvesTo] ||
+    getFallbackPokemonSummary(
+      path.evolvesTo
+    );
+  const condition =
+    path.displayCondition ||
+    path.condition ||
+    "Evolution method varies";
+  const versionNotes =
+    getVersionNotes(path);
+  const accessibleLabel =
+    path.accessibleLabel ||
+    `${formatPokemonDisplayName(
+      basePokemon
+    )} evolves into ${formatPokemonDisplayName(
+      evolvedPokemon
+    )}. ${condition}.`;
+
+  return (
+    <section
+      aria-label={accessibleLabel}
+      className="form-evolution-path"
+    >
+      <PokemonSummaryCard
+        pokemon={basePokemon}
+        compact={true}
+      />
+
+      <div
+        className="form-evolution-condition"
+      >
+        <span>{condition}</span>
+        <span aria-hidden="true">
+          ↓
+        </span>
+        {versionNotes.map(
+          note => (
+            <small key={note}>
+              {note}
+            </small>
+          )
+        )}
+      </div>
+
+      <PokemonSummaryCard
+        pokemon={evolvedPokemon}
+        compact={true}
+      />
+    </section>
+  );
+}
+
+export function FormEvolutionPaths({
+  root,
+  paths,
+  currentPokemonName
+}) {
+  const pokemonSummaries =
+    collectPokemonSummaries(root);
+  const matchingPaths =
+    currentPokemonName
+      ? paths.filter(
+          path =>
+            path.basePokemon ===
+              currentPokemonName ||
+            path.evolvesTo ===
+              currentPokemonName
+        )
+      : paths;
+  const visiblePaths =
+    matchingPaths.length > 0
+      ? matchingPaths
+      : paths;
+
+  return (
+    <div className="form-evolution-paths">
+      {visiblePaths.map(path => (
+        <FormEvolutionPath
+          key={`${path.basePokemon}-${path.evolvesTo}`}
+          path={path}
+          pokemonSummaries={
+            pokemonSummaries
+          }
+        />
+      ))}
+    </div>
+  );
 }
 
 export default EvolutionNode;

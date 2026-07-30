@@ -135,6 +135,56 @@
     },
     "note": "Meltan cannot evolve in core-series Pokémon games; evolve it in Pokémon GO before transferring it through Pokémon HOME or another compatible game."
   },
+  "meowth": {
+    "replaceDefaultEvolutionDisplay": true,
+    "formEvolutionPaths": [
+      {
+        "basePokemon": "meowth",
+        "baseForm": "kanto",
+        "evolvesTo": "persian",
+        "evolvedForm": "kanto",
+        "trigger": "level-up",
+        "minimumLevel": 28,
+        "displayCondition": "Level up at level 28",
+        "accessibleLabel": "Meowth evolves into Persian at level 28."
+      },
+      {
+        "basePokemon": "meowth-alola",
+        "baseForm": "alola",
+        "evolvesTo": "persian-alola",
+        "evolvedForm": "alola",
+        "trigger": "level-up",
+        "minimumFriendship": "high",
+        "displayCondition": "Level up with high friendship",
+        "accessibleLabel": "Alolan Meowth evolves into Alolan Persian by leveling up with high friendship.",
+        "versionException": {
+          "versions": [
+            "lets-go-pikachu",
+            "lets-go-eevee"
+          ],
+          "minimumLevel": 28,
+          "displayCondition": "Level up at level 28",
+          "note": "In Pokémon: Let's Go, Pikachu! and Let's Go, Eevee!, Alolan Meowth evolves at level 28."
+        }
+      },
+      {
+        "basePokemon": "meowth-galar",
+        "baseForm": "galar",
+        "evolvesTo": "perrserker",
+        "evolvedForm": null,
+        "trigger": "level-up",
+        "minimumLevel": 28,
+        "displayCondition": "Level up at level 28",
+        "accessibleLabel": "Galarian Meowth evolves into Perrserker at level 28."
+      }
+    ],
+    "specialFormNotes": [
+      {
+        "pokemon": "meowth-gmax",
+        "note": "Meowth with the Gigantamax Factor cannot evolve."
+      }
+    ]
+  },
   "milotic": {
     "primaryMethod": {
       "segments": [

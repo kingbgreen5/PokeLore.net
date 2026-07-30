@@ -201,6 +201,68 @@ function validatePokemonRoutes() {
   return Object.keys(routes.byId).length;
 }
 
+function validatePokemonEvYields() {
+  const pokemonDataDir =
+    path.join(dataDir, "pokemonData");
+  const requiredStats = [
+    "hp",
+    "attack",
+    "defense",
+    "specialAttack",
+    "specialDefense",
+    "speed"
+  ];
+  const files = fs
+    .readdirSync(pokemonDataDir)
+    .filter(file => file.endsWith(".json"));
+
+  for (const file of files) {
+    const pokemon =
+      readJson(
+        path.join(pokemonDataDir, file)
+      );
+
+    if (!pokemon) {
+      continue;
+    }
+
+    if (
+      !pokemon.evYield ||
+      typeof pokemon.evYield !== "object" ||
+      Array.isArray(pokemon.evYield)
+    ) {
+      addError(
+        `Pokemon ${pokemon.name ?? file}: missing evYield object.`
+      );
+      continue;
+    }
+
+    let evYieldTotal = 0;
+
+    for (const stat of requiredStats) {
+      const value =
+        pokemon.evYield[stat];
+
+      if (!Number.isInteger(value) || value < 0) {
+        addError(
+          `Pokemon ${pokemon.name ?? file}: evYield.${stat} must be a non-negative integer.`
+        );
+        continue;
+      }
+
+      evYieldTotal += value;
+    }
+
+    if (evYieldTotal <= 0) {
+      addError(
+        `Pokemon ${pokemon.name ?? file}: evYield must include at least one awarded EV.`
+      );
+    }
+  }
+
+  return files.length;
+}
+
 function slugifyAbilityName(name) {
   return String(name ?? "")
     .trim()
@@ -492,6 +554,8 @@ const itemCount =
   validateItems();
 const pokemonRouteCount =
   validatePokemonRoutes();
+const pokemonEvYieldCount =
+  validatePokemonEvYields();
 const abilityCount =
   validateAbilityPokemonRosters();
 const locationCount =
@@ -527,6 +591,7 @@ console.log(
     `${parsedJsonCount} JSON files parsed,`,
     `${itemCount} items checked,`,
     `${pokemonRouteCount} Pokemon routes checked,`,
+    `${pokemonEvYieldCount} Pokemon EV yields checked,`,
     `${abilityCount} abilities checked,`,
     `${locationCount} locations checked,`,
     `${sitemapCount} sitemap URLs checked.`

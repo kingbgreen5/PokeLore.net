@@ -405,7 +405,8 @@ function SaveStatusPanel({
 function ImagePicker({
   article,
   image,
-  onChange
+  onChange,
+  refreshKey = 0
 }) {
   const [images, setImages] = useState([]);
   const [busy, setBusy] = useState(false);
@@ -416,7 +417,7 @@ function ImagePicker({
     apiJson(`/images/${article.slug}`)
       .then(data => setImages(data.images ?? []))
       .catch(() => setImages([]));
-  }, [article?.slug]);
+  }, [article?.slug, refreshKey]);
 
   async function upload(file) {
     if (!file) return;
@@ -508,7 +509,8 @@ function ImagePicker({
 function ImageGridEditor({
   article,
   images = [],
-  onChange
+  onChange,
+  imageRefreshKey
 }) {
   function updateImage(index, patch) {
     onChange(
@@ -594,6 +596,7 @@ function ImageGridEditor({
           <ImagePicker
             article={article}
             image={image}
+            refreshKey={imageRefreshKey}
             onChange={nextImage =>
               updateImage(index, nextImage)
             }
@@ -660,7 +663,8 @@ function BlockEditor({
   onMove,
   onDuplicate,
   onDelete,
-  onInsertAfter
+  onInsertAfter,
+  imageRefreshKey
 }) {
   const [collapsed, setCollapsed] =
     useState(false);
@@ -775,6 +779,7 @@ function BlockEditor({
               <ImagePicker
                 article={article}
                 image={block}
+                refreshKey={imageRefreshKey}
                 onChange={update}
               />
               <TextField
@@ -966,6 +971,7 @@ function BlockEditor({
             <ImageGridEditor
               article={article}
               images={block.images ?? []}
+              imageRefreshKey={imageRefreshKey}
               onChange={images => update({ images })}
             />
           )}
@@ -1137,6 +1143,8 @@ function ArticleStudioPage() {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
   const [mode, setMode] = useState("editor");
+  const [imageRefreshKey, setImageRefreshKey] =
+    useState(0);
 
   const validation = useMemo(
     () => validateArticle(article),
@@ -1394,6 +1402,40 @@ function ArticleStudioPage() {
     });
   }
 
+  async function cleanupUnusedImages() {
+    if (!article.slug) return;
+
+    if (
+      !window.confirm(
+        `Clean up unused images for "${article.slug}"?\n\nThis permanently deletes files in public/images/topics/${article.slug}/ that are not referenced by the current editor draft.`
+      )
+    ) {
+      return;
+    }
+
+    try {
+      const data = await apiJson(
+        `/images/${article.slug}/cleanup`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            article
+          })
+        }
+      );
+      const result = data.result ?? {};
+      const deletedCount =
+        result.deletedCount ?? 0;
+
+      setImageRefreshKey(value => value + 1);
+      setStatus(
+        `Image cleanup complete. Deleted ${deletedCount} unused image${deletedCount === 1 ? "" : "s"}; kept ${result.keptCount ?? 0}.`
+      );
+    } catch (error) {
+      setStatus(error.message);
+    }
+  }
+
   return (
     <main className="article-studio">
       <header className="article-studio-topbar">
@@ -1629,10 +1671,19 @@ function ArticleStudioPage() {
             <ImagePicker
               article={article}
               image={article.hero}
+              refreshKey={imageRefreshKey}
               onChange={hero =>
                 patchArticle({ hero })
               }
             />
+            <button
+              type="button"
+              className="article-studio-secondary-action"
+              disabled={!article.slug}
+              onClick={cleanupUnusedImages}
+            >
+              Clean Up Unused Images
+            </button>
             <button
               type="button"
               className="article-studio-danger article-studio-secondary-action"
@@ -1715,6 +1766,7 @@ function ArticleStudioPage() {
                   onDuplicate={duplicateBlock}
                   onDelete={deleteBlock}
                   onInsertAfter={insertBlockAfter}
+                  imageRefreshKey={imageRefreshKey}
                 />
               )
             )}

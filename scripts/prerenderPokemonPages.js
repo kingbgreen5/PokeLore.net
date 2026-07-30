@@ -253,6 +253,33 @@ function buildStats(stats = {}) {
     .join("");
 }
 
+function buildEvYield(evYield = {}) {
+  const statRows = [
+    ["HP", evYield.hp],
+    ["Attack", evYield.attack],
+    ["Defense", evYield.defense],
+    ["Sp. Atk", evYield.specialAttack],
+    ["Sp. Def", evYield.specialDefense],
+    ["Speed", evYield.speed]
+  ];
+
+  const entries = statRows
+    .filter(([, value]) => Number(value) > 0)
+    .map(
+      ([label, value]) =>
+        `${Number(value)} ${label}`
+    );
+
+  if (!entries.length) {
+    return "";
+  }
+
+  return `
+          <p class="prerender-ev-yield">
+            EV Yield: <strong>${escapeHtml(entries.join(", "))}</strong>
+          </p>`;
+}
+
 function getFirstDexEntry(pokemon) {
   return pokemon.dexEntries?.[0]?.text ?? "";
 }
@@ -413,6 +440,12 @@ function buildCriticalCss() {
         height: 100%;
       }
 
+      .prerender-ev-yield {
+        color: #f3f4f6;
+        font-size: 0.95rem;
+        margin: 0.15rem 0 0.55rem;
+      }
+
       .prerender-entry {
         font-size: 0.95rem;
         margin: 1rem auto 0;
@@ -480,6 +513,7 @@ function buildPokemonShell(
         <div class="prerender-abilities">${buildAbilities(pokemon.abilities)}</div>
         <section class="prerender-stats" aria-label="Base stats">
           <h2>Base Stats</h2>
+          ${buildEvYield(pokemon.evYield)}
           ${buildStats(pokemon.stats)}
         </section>
         ${

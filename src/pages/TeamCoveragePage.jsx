@@ -16,8 +16,10 @@ import { formatPokemonDisplayName } from "../utils/pokemonNames";
 import {
   formatVersionGroupName,
   getCoveredDefenseTypes,
+  getDefensiveCoverageTypes,
   getLevelUpAttackTypes,
   getMissingDefenseTypes,
+  getTeamDefensiveCoverageTypes,
   getTypesForVersionGroup
 } from "../utils/teamCoverage";
 
@@ -29,14 +31,21 @@ const PARTY_STORAGE_KEY =
 const VERSION_STORAGE_KEY =
   "pokelore:learnset-version";
 const SORT_STORAGE_KEY =
-  "pokelore:team-coverage-sort";
+  "pokelore:team-coverage-sort:v2";
+const COVERAGE_FILTER_STORAGE_KEY =
+  "pokelore:team-coverage-recommendation-coverage-filter:v2";
 const FOCUS_TYPE_STORAGE_KEY =
   "pokelore:team-coverage-focus-type";
 const MOVE_POWER_THRESHOLD_STORAGE_KEY =
   "pokelore:team-coverage-move-power-threshold";
 const RECOMMENDATION_MOVE_POWER_THRESHOLD_STORAGE_KEY =
-  "pokelore:team-coverage-recommendation-move-power-threshold";
+  "pokelore:team-coverage-recommendation-move-power-threshold:v2";
 const RECOMMENDATIONS_PER_PAGE = 25;
+const DEFAULT_RECOMMENDATION_SORT_MODE =
+  "most-coverage";
+const DEFAULT_RECOMMENDATION_COVERAGE_FILTER =
+  "both";
+const DEFAULT_RECOMMENDATION_MOVE_POWER_THRESHOLD = 60;
 const MOVE_POWER_THRESHOLD_OPTIONS = [
   {
     value: 0,
@@ -128,6 +137,24 @@ const SORT_MODES = [
     })
   )
 ];
+const COVERAGE_FILTER_OPTIONS = [
+  {
+    value: "offensive",
+    label: "Offensive"
+  },
+  {
+    value: "defensive",
+    label: "Defensive"
+  },
+  {
+    value: "either",
+    label: "Either"
+  },
+  {
+    value: "both",
+    label: "Both"
+  }
+];
 
 function createEmptyParty() {
   return Array(PARTY_SIZE).fill(null);
@@ -159,7 +186,7 @@ function getValidVersionGroup(value) {
 }
 
 function normalizePartyParam(value) {
-  if (!value) {
+  if (value == null) {
     return null;
   }
 
@@ -175,7 +202,7 @@ function normalizePartyParam(value) {
     });
 
   if (!parsed.some(Boolean)) {
-    return null;
+    return createEmptyParty();
   }
 
   return createEmptyParty().map(
@@ -207,7 +234,15 @@ function getValidSortMode(value) {
     option => option.value === value
   )
     ? value
-    : SORT_MODES[0].value;
+    : DEFAULT_RECOMMENDATION_SORT_MODE;
+}
+
+function getValidCoverageFilter(value) {
+  return COVERAGE_FILTER_OPTIONS.some(
+    option => option.value === value
+  )
+    ? value
+    : DEFAULT_RECOMMENDATION_COVERAGE_FILTER;
 }
 
 function getValidMovePowerThreshold(
@@ -226,12 +261,26 @@ function compareByNationalDex(a, b) {
   return a.id - b.id;
 }
 
+function getRecommendationCoverageScore(
+  recommendation
+) {
+  return (
+    Number(
+      recommendation?.coverageScore
+    ) || 0
+  );
+}
+
 function compareByMostCoverage(a, b) {
   return (
-    b.missingHits.length -
-      a.missingHits.length ||
-    b.coveredTypes.length -
-      a.coveredTypes.length ||
+    getRecommendationCoverageScore(b) -
+      getRecommendationCoverageScore(a) ||
+    (b.missingHits?.length ?? 0) -
+      (a.missingHits?.length ?? 0) ||
+    (b.missingDefensiveHits?.length ?? 0) -
+      (a.missingDefensiveHits?.length ?? 0) ||
+    (b.coveredTypes?.length ?? 0) -
+      (a.coveredTypes?.length ?? 0) ||
     compareByNationalDex(a, b)
   );
 }
@@ -241,9 +290,15 @@ function compareBySelectedTypeFirst(
 ) {
   return (a, b) => {
     const aHitsFocus =
-      a.missingHits.includes(focusType);
+      a.missingHits.includes(focusType) ||
+      a.missingDefensiveHits?.includes(
+        focusType
+      );
     const bHitsFocus =
-      b.missingHits.includes(focusType);
+      b.missingHits.includes(focusType) ||
+      b.missingDefensiveHits?.includes(
+        focusType
+      );
 
     return (
       Number(bHitsFocus) -
@@ -314,6 +369,57 @@ function getThresholdedAttackTypes({
         attackTypePowers[type]
       ) >= minMovePower
   );
+}
+
+function getCoverageFilterScore({
+  coverageFilter,
+  defensiveHits,
+  offensiveHits
+}) {
+  if (coverageFilter === "defensive") {
+    return defensiveHits.length;
+  }
+
+  if (coverageFilter === "either") {
+    return (
+      offensiveHits.length +
+      defensiveHits.length
+    );
+  }
+
+  if (coverageFilter === "both") {
+    return (
+      offensiveHits.length +
+      defensiveHits.length
+    );
+  }
+
+  return offensiveHits.length;
+}
+
+function matchesCoverageFilter({
+  coverageFilter,
+  defensiveHits,
+  offensiveHits
+}) {
+  const hasOffensive =
+    offensiveHits.length > 0;
+  const hasDefensive =
+    defensiveHits.length > 0;
+
+  if (coverageFilter === "defensive") {
+    return hasDefensive;
+  }
+
+  if (coverageFilter === "either") {
+    return hasOffensive || hasDefensive;
+  }
+
+  if (coverageFilter === "both") {
+    return hasOffensive && hasDefensive;
+  }
+
+  return hasOffensive;
 }
 
 function isCosmeticPickerForm(name) {
@@ -830,13 +936,33 @@ function RecommendationCard({
             margin: "0 0 .35rem"
           }}
         >
-          Helps Cover
+          Helps Offense
         </p>
         <TypeBadgeList
           emptyLabel="None"
           height="1.05rem"
           types={
             recommendation.missingHits
+          }
+        />
+      </div>
+      <div>
+        <p
+          style={{
+            color: "#f3f4f6",
+            fontSize: ".8rem",
+            fontWeight: "bold",
+            margin: "0 0 .35rem"
+          }}
+        >
+          Adds Defense
+        </p>
+        <TypeBadgeList
+          emptyLabel="None"
+          height="1.05rem"
+          types={
+            recommendation.missingDefensiveHits ??
+            []
           }
         />
       </div>
@@ -939,10 +1065,21 @@ function TeamCoveragePage() {
     setPreferredSortMode
   ] = useLocalStorageState(
     SORT_STORAGE_KEY,
-    SORT_MODES[0].value
+    DEFAULT_RECOMMENDATION_SORT_MODE
   );
   const selectedSortMode =
     getValidSortMode(preferredSortMode);
+  const [
+    preferredCoverageFilter,
+    setPreferredCoverageFilter
+  ] = useLocalStorageState(
+    COVERAGE_FILTER_STORAGE_KEY,
+    DEFAULT_RECOMMENDATION_COVERAGE_FILTER
+  );
+  const selectedCoverageFilter =
+    getValidCoverageFilter(
+      preferredCoverageFilter
+    );
   const [
     preferredFocusType,
     setPreferredFocusType
@@ -966,7 +1103,7 @@ function TeamCoveragePage() {
     setPreferredRecommendationMovePowerThreshold
   ] = useLocalStorageState(
     RECOMMENDATION_MOVE_POWER_THRESHOLD_STORAGE_KEY,
-    MOVE_POWER_THRESHOLD_OPTIONS[0].value
+    DEFAULT_RECOMMENDATION_MOVE_POWER_THRESHOLD
   );
   const selectedRecommendationMovePowerThreshold =
     getValidMovePowerThreshold(
@@ -1263,12 +1400,72 @@ function TeamCoveragePage() {
       coveredTypes
     ]
   );
+  const defensiveCoveredTypes = useMemo(
+    () =>
+      getTeamDefensiveCoverageTypes({
+        consideredTypes,
+        teamTypeSets: partyMembers
+          .map(
+            member =>
+              member?.pokemon?.types ?? []
+          )
+          .filter(types => types.length),
+        typeChart
+      }),
+    [
+      consideredTypes,
+      partyMembers
+    ]
+  );
+  const missingDefensiveTypes =
+    useMemo(
+      () =>
+        getMissingDefenseTypes({
+          consideredTypes,
+          coveredTypes:
+            defensiveCoveredTypes
+        }),
+      [
+        consideredTypes,
+        defensiveCoveredTypes
+      ]
+    );
+  const focusTypeOptions = useMemo(() => {
+    if (
+      selectedCoverageFilter ===
+      "defensive"
+    ) {
+      return missingDefensiveTypes;
+    }
+
+    if (
+      selectedCoverageFilter ===
+      "either" ||
+      selectedCoverageFilter === "both"
+    ) {
+      const focusTypes = new Set([
+        ...missingTypes,
+        ...missingDefensiveTypes
+      ]);
+
+      return consideredTypes.filter(type =>
+        focusTypes.has(type)
+      );
+    }
+
+    return missingTypes;
+  }, [
+    consideredTypes,
+    missingDefensiveTypes,
+    missingTypes,
+    selectedCoverageFilter
+  ]);
   const selectedFocusType =
-    missingTypes.includes(
+    focusTypeOptions.includes(
       preferredFocusType
     )
       ? preferredFocusType
-      : missingTypes[0] ??
+      : focusTypeOptions[0] ??
         consideredTypes[0];
 
   useEffect(() => {
@@ -1321,22 +1518,53 @@ function TeamCoveragePage() {
               consideredTypes,
               typeChart
             });
+          const defensiveCoverageTypes =
+            getDefensiveCoverageTypes({
+              consideredTypes,
+              defenseTypes:
+                pokemon.types ?? [],
+              typeChart
+            });
+          const missingHits =
+            coveredTypes.filter(type =>
+              missingTypes.includes(type)
+            );
+          const missingDefensiveHits =
+            defensiveCoverageTypes.filter(
+              type =>
+                missingDefensiveTypes.includes(
+                  type
+                )
+            );
 
           return {
             ...pokemon,
             attackTypes,
             coveredTypes,
-            missingHits:
-              coveredTypes.filter(type =>
-                missingTypes.includes(
-                  type
-                )
-              )
+            coverageScore:
+              getCoverageFilterScore({
+                coverageFilter:
+                  selectedCoverageFilter,
+                defensiveHits:
+                  missingDefensiveHits,
+                offensiveHits:
+                  missingHits
+              }),
+            defensiveCoverageTypes,
+            missingDefensiveHits,
+            missingHits
           };
         })
         .filter(
           pokemon =>
-            pokemon.missingHits.length > 0
+            matchesCoverageFilter({
+              coverageFilter:
+                selectedCoverageFilter,
+              defensiveHits:
+                pokemon.missingDefensiveHits,
+              offensiveHits:
+                pokemon.missingHits
+            })
         )
         .sort((a, b) => {
           if (
@@ -1372,8 +1600,10 @@ function TeamCoveragePage() {
         });
     }, [
       consideredTypes,
+      missingDefensiveTypes,
       missingTypes,
       normalizedParty,
+      selectedCoverageFilter,
       selectedFocusType,
       selectedRecommendationMovePowerThreshold,
       selectedSortMode,
@@ -1408,18 +1638,17 @@ function TeamCoveragePage() {
   const selectedVersionHasAvailability =
     (teamCoverageData?.availablePokemonCount ??
       0) > 0;
+  const hasSelectedParty =
+    normalizedParty.some(Boolean);
 
-  function updateSlot(slotIndex, value) {
-    setRecommendationPage(1);
-    const next =
-      normalizeParty(normalizedParty);
-    next[slotIndex] = value;
-    setParty(next);
-
+  function updatePartySearchParams(
+    nextParty,
+    options
+  ) {
     const nextParams =
       new URLSearchParams(searchParams);
     const serializedParty =
-      serializePartyParam(next);
+      serializePartyParam(nextParty);
 
     nextParams.set(
       "version",
@@ -1438,7 +1667,30 @@ function TeamCoveragePage() {
       nextParams.delete("team");
     }
 
-    setSearchParams(nextParams);
+    setSearchParams(nextParams, options);
+  }
+
+  function updateSlot(slotIndex, value) {
+    setRecommendationPage(1);
+    const next =
+      normalizeParty(normalizedParty);
+    next[slotIndex] = value;
+    setParty(next);
+
+    const serializedParty =
+      serializePartyParam(next);
+    updatePartySearchParams(next, {
+      replace: !serializedParty
+    });
+  }
+
+  function clearParty() {
+    setRecommendationPage(1);
+    const next = createEmptyParty();
+    setParty(next);
+    updatePartySearchParams(next, {
+      replace: true
+    });
   }
 
   function handleSelectPokemon(option) {
@@ -1616,6 +1868,27 @@ function TeamCoveragePage() {
         >
           Applies to selected party level-up moves.
         </span>
+        <button
+          type="button"
+          disabled={!hasSelectedParty}
+          onClick={clearParty}
+          style={{
+            backgroundColor: "transparent",
+            border: "1px solid #666",
+            borderRadius: "6px",
+            color: "#d1d5db",
+            cursor: hasSelectedParty
+              ? "pointer"
+              : "default",
+            fontSize: ".85rem",
+            opacity: hasSelectedParty
+              ? 1
+              : 0.45,
+            padding: ".45rem .7rem"
+          }}
+        >
+          Clear Team
+        </button>
       </div>
 
       <section
@@ -1647,14 +1920,24 @@ function TeamCoveragePage() {
         className="team-coverage-panels"
       >
         <CoveragePanel
-          title="Overall Type Coverage"
+          title="Offensive Coverage"
           description="Your team's level-up learnset has moves that hit these types for super effective damage."
           types={coveredTypes}
         />
         <CoveragePanel
-          title="Missing Coverage"
+          title="Missing Offensive Coverage"
           description="Your team's level-up learnset cannot hit these types for super effective damage."
           types={missingTypes}
+        />
+        <CoveragePanel
+          title="Defensive Coverage"
+          description="Your team has at least one Pokemon that resists or is immune to attacks of these types."
+          types={defensiveCoveredTypes}
+        />
+        <CoveragePanel
+          title="Missing Defensive Coverage"
+          description="Your team does not currently have a resistance or immunity to attacks of these types."
+          types={missingDefensiveTypes}
         />
       </div>
 
@@ -1685,18 +1968,6 @@ function TeamCoveragePage() {
         >
           Suggested Teammates
         </h2>
-        <p
-          style={{
-            color: "#9ca3af",
-            fontSize: ".85rem",
-            lineHeight: 1.35,
-            margin: "0 auto 1rem",
-            maxWidth: "720px"
-          }}
-        >
-          These available Pokemon have level-up attacking moves that cover at
-          least one currently missing type.
-        </p>
         <p
           style={{
             color: "#9ca3af",
@@ -1758,6 +2029,46 @@ function TeamCoveragePage() {
           </select>
 
           <label
+            htmlFor="team-coverage-need"
+            style={{
+              color: "#f3f4f6",
+              fontWeight: "bold"
+            }}
+          >
+            Need
+          </label>
+          <select
+            id="team-coverage-need"
+            value={selectedCoverageFilter}
+            onChange={event => {
+              setRecommendationPage(1);
+              setPreferredCoverageFilter(
+                event.target.value
+              );
+            }}
+            style={{
+              backgroundColor: "#2c2c2c",
+              border: "2px solid #555",
+              borderRadius: "8px",
+              color: "white",
+              fontSize: ".95rem",
+              maxWidth: "100%",
+              padding: ".55rem .75rem"
+            }}
+          >
+            {COVERAGE_FILTER_OPTIONS.map(
+              option => (
+                <option
+                  key={option.value}
+                  value={option.value}
+                >
+                  {option.label}
+                </option>
+              )
+            )}
+          </select>
+
+          <label
             htmlFor="team-coverage-recommendation-move-power-threshold"
             style={{
               color: "#f3f4f6",
@@ -1801,7 +2112,7 @@ function TeamCoveragePage() {
 
           {selectedSortMode ===
             "selected-type-first" &&
-            missingTypes.length > 0 && (
+            focusTypeOptions.length > 0 && (
               <>
                 <label
                   htmlFor="team-coverage-focus-type"
@@ -1831,7 +2142,7 @@ function TeamCoveragePage() {
                     padding: ".55rem .75rem"
                   }}
                 >
-                  {missingTypes.map(type => (
+                  {focusTypeOptions.map(type => (
                     <option
                       key={type}
                       value={type}
@@ -1863,7 +2174,7 @@ function TeamCoveragePage() {
               color: "#9ca3af"
             }}
           >
-            No available Pokemon fill the current missing coverage.
+            No available Pokemon fill the selected coverage need.
           </p>
         ) : (
           <>

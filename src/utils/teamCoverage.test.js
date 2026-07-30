@@ -6,9 +6,11 @@ import {
 import typeChart from "../constants/Types";
 import {
   getCoveredDefenseTypes,
+  getDefensiveCoverageTypes,
   getLevelUpAttackTypePowers,
   getLevelUpAttackTypes,
   getMissingDefenseTypes,
+  getTeamDefensiveCoverageTypes,
   getTypesForVersionGroup,
   isDamagingMove
 } from "./teamCoverage";
@@ -230,6 +232,54 @@ describe("team coverage helpers", () => {
         coveredTypes: []
       })
     ).toHaveLength(18);
+  });
+
+  it("finds attack types resisted or blocked by a Pokemon typing", () => {
+    expect(
+      getDefensiveCoverageTypes({
+        defenseTypes: ["ghost"],
+        typeChart
+      })
+    ).toEqual([
+      "normal",
+      "fighting",
+      "poison",
+      "bug"
+    ]);
+  });
+
+  it("does not count dual-type matchups that become neutral", () => {
+    expect(
+      getDefensiveCoverageTypes({
+        defenseTypes: [
+          "water",
+          "flying"
+        ],
+        typeChart
+      })
+    ).not.toContain("electric");
+  });
+
+  it("combines defensive coverage across team members", () => {
+    expect(
+      getTeamDefensiveCoverageTypes({
+        teamTypeSets: [
+          ["fire"],
+          ["ground"]
+        ],
+        typeChart
+      })
+    ).toEqual([
+      "fire",
+      "electric",
+      "grass",
+      "ice",
+      "poison",
+      "bug",
+      "rock",
+      "steel",
+      "fairy"
+    ]);
   });
 
   it("excludes Fairy before X/Y", () => {
