@@ -155,4 +155,30 @@ describe("article validation", () => {
       "Block 1 Pokemon card grid size is invalid."
     );
   });
+
+  it("validates item card grid slugs and card size", () => {
+    const article = {
+      ...createEmptyArticle({
+        title: "Item Cards",
+        slug: "item-cards"
+      }),
+      excerpt: "Summary",
+      sections: [
+        {
+          id: "block-1",
+          type: "item-card-grid",
+          itemSlugs: ["blue-scarf", "../bad"],
+          cardSize: "huge"
+        }
+      ]
+    };
+    const result = validateArticle(article);
+
+    expect(result.errors).toContain(
+      "Block 1 item card grid slugs must be URL-safe item names."
+    );
+    expect(result.errors).toContain(
+      "Block 1 item card grid size is invalid."
+    );
+  });
 });

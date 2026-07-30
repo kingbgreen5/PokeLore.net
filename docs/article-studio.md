@@ -78,6 +78,22 @@ Use a `pokemon-card-grid` block to show Pokemon summary cards inside an article:
 
 Supported card sizes are `compact`, `full`, and `subcompact`.
 
+## Item Card Grids
+
+Use an `item-card-grid` block to show item summary cards inside an article:
+
+```json
+{
+  "id": "block-related-items",
+  "type": "item-card-grid",
+  "title": "Related Items",
+  "itemSlugs": ["blue-scarf", "prism-scale"],
+  "cardSize": "compact"
+}
+```
+
+Use item URL slugs, such as `blue-scarf` from `/item/blue-scarf`. Supported card sizes are `compact`, `full`, and `subcompact`.
+
 ## Local API
 
 The write API is mounted by Vite middleware only during local development:

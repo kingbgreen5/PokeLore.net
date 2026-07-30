@@ -11,6 +11,7 @@ export const ARTICLE_BLOCK_TYPES = [
   "table",
   "callout",
   "pokemon-card-grid",
+  "item-card-grid",
   "pokemon-link",
   "topic-link",
   "oak-notes"

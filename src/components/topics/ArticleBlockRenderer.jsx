@@ -4,6 +4,7 @@ import {
   useState
 } from "react";
 import { Link } from "react-router-dom";
+import ItemSummaryCard from "../ItemSummaryCard";
 import PokemonSummaryCard from "../PokemonSummaryCard";
 import ArticleCallout from "./ArticleCallout";
 import ArticleImage from "./ArticleImage";
@@ -203,6 +204,73 @@ function PokemonCardGrid({
   );
 }
 
+function ItemCardGrid({
+  block
+}) {
+  const [itemsIndex, setItemsIndex] =
+    useState([]);
+
+  useEffect(() => {
+    let isActive = true;
+
+    fetch("/data/itemsIndex.json")
+      .then(response =>
+        response.ok ? response.json() : []
+      )
+      .then(data => {
+        if (!isActive) return;
+        setItemsIndex(
+          Array.isArray(data) ? data : []
+        );
+      })
+      .catch(error => {
+        if (!isActive) return;
+        console.warn(
+          "Failed to load item index for article cards:",
+          error
+        );
+        setItemsIndex([]);
+      });
+
+    return () => {
+      isActive = false;
+    };
+  }, []);
+
+  const itemsBySlug = useMemo(
+    () =>
+      new Map(
+        itemsIndex.map(item => [
+          item.slug ?? item.name,
+          item
+        ])
+      ),
+    [itemsIndex]
+  );
+  const items = (block.itemSlugs ?? [])
+    .map(slug => itemsBySlug.get(String(slug)))
+    .filter(Boolean);
+
+  if (items.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="topic-article-item-card-grid">
+      {block.title && <h2>{block.title}</h2>}
+      <div>
+        {items.map(item => (
+          <ItemSummaryCard
+            key={item.slug ?? item.name}
+            item={item}
+            variant={block.cardSize ?? "compact"}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function UnknownBlock({
   block
 }) {
@@ -283,9 +351,18 @@ function ArticleBlockRenderer({
     case "table":
       return <ArticleTable block={block} />;
     case "callout":
-      return <ArticleCallout block={block} />;
+      return (
+        <ArticleCallout
+          block={block}
+          renderText={text => (
+            <InlineArticleText text={text} />
+          )}
+        />
+      );
     case "pokemon-card-grid":
       return <PokemonCardGrid block={block} />;
+    case "item-card-grid":
+      return <ItemCardGrid block={block} />;
     case "pokemon-link":
       return (
         <p className="topic-article-link-card">

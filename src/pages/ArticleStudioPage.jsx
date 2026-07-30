@@ -95,6 +95,14 @@ function emptyBlock(type) {
         pokemonIds: [],
         cardSize: "compact"
       };
+    case "item-card-grid":
+      return {
+        id,
+        type,
+        title: "",
+        itemSlugs: [],
+        cardSize: "compact"
+      };
     case "pokemon-link":
     case "topic-link":
       return {
@@ -191,6 +199,41 @@ function NumericListField({
           )
         }
         placeholder="658, 94, 25"
+      />
+    </label>
+  );
+}
+
+function DelimitedListField({
+  label,
+  values,
+  onChange,
+  placeholder = ""
+}) {
+  const normalizedValue = (values ?? []).join(", ");
+  const [draft, setDraft] =
+    useState(normalizedValue);
+
+  useEffect(() => {
+    setDraft(normalizedValue);
+  }, [normalizedValue]);
+
+  return (
+    <label className="article-studio-field">
+      <span>{label}</span>
+      <input
+        value={draft}
+        onChange={event => {
+          const nextDraft = event.target.value;
+          setDraft(nextDraft);
+          onChange(normalizeDelimitedList(nextDraft));
+        }}
+        onBlur={() =>
+          setDraft(
+            normalizeDelimitedList(draft).join(", ")
+          )
+        }
+        placeholder={placeholder}
       />
     </label>
   );
@@ -859,6 +902,45 @@ function BlockEditor({
             </>
           )}
 
+          {block.type === "item-card-grid" && (
+            <>
+              <TextField
+                label="Title"
+                value={block.title}
+                onChange={title => update({ title })}
+              />
+              <DelimitedListField
+                label="Item slugs"
+                values={block.itemSlugs ?? []}
+                onChange={itemSlugs =>
+                  update({
+                    itemSlugs
+                  })
+                }
+                placeholder="blue-scarf, prism-scale, wiki-berry"
+              />
+              <p className="article-studio-help-text">
+                Use item URL slugs, like
+                prism-scale or blue-scarf.
+              </p>
+              <label className="article-studio-field">
+                <span>Card size</span>
+                <select
+                  value={block.cardSize ?? "compact"}
+                  onChange={event =>
+                    update({
+                      cardSize: event.target.value
+                    })
+                  }
+                >
+                  <option value="compact">Compact</option>
+                  <option value="full">Full</option>
+                  <option value="subcompact">Subcompact</option>
+                </select>
+              </label>
+            </>
+          )}
+
           {block.type === "pokemon-link" ||
           block.type === "topic-link" ? (
             <>
@@ -1177,11 +1259,24 @@ function ArticleStudioPage() {
 
   async function deleteCurrentArticle() {
     if (!savedSlug) return;
+
+    const title =
+      article.title || savedSlug;
+
     if (
       !window.confirm(
-        `Delete ${savedSlug}? A backup will be created and images will remain on disk.`
+        `Delete article "${title}"?\n\nThis removes it from Article Studio and the Topics index. A JSON backup will be created, and uploaded images will remain on disk.`
       )
     ) {
+      return;
+    }
+
+    const confirmation = window.prompt(
+      `Type the article slug to confirm deletion:\n\n${savedSlug}`
+    );
+
+    if (confirmation !== savedSlug) {
+      setStatus("Article deletion cancelled.");
       return;
     }
 
@@ -1287,6 +1382,18 @@ function ArticleStudioPage() {
     });
   }
 
+  function clearHeroImage() {
+    patchArticle({
+      hero: {
+        src: "",
+        alt: "",
+        caption: "",
+        width: null,
+        height: null
+      }
+    });
+  }
+
   return (
     <main className="article-studio">
       <header className="article-studio-topbar">
@@ -1323,7 +1430,7 @@ function ArticleStudioPage() {
             onClick={deleteCurrentArticle}
             disabled={!savedSlug}
           >
-            Delete
+            Delete Article
           </button>
         </div>
       </header>
@@ -1526,6 +1633,17 @@ function ArticleStudioPage() {
                 patchArticle({ hero })
               }
             />
+            <button
+              type="button"
+              className="article-studio-danger article-studio-secondary-action"
+              disabled={
+                !article.hero?.src &&
+                !article.hero?.thumbnail
+              }
+              onClick={clearHeroImage}
+            >
+              Remove Hero Image
+            </button>
             <TextField
               label="Hero path"
               value={article.hero?.src}

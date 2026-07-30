@@ -279,6 +279,28 @@ export function validateArticle(article) {
           );
         }
       }
+
+      if (block.type === "item-card-grid") {
+        if (!Array.isArray(block.itemSlugs)) {
+          errors.push(
+            `${label} item card grid must use an item slugs array.`
+          );
+        } else {
+          block.itemSlugs.forEach(value => {
+            if (!isSafeSlug(String(value))) {
+              errors.push(
+                `${label} item card grid slugs must be URL-safe item names.`
+              );
+            }
+          });
+        }
+
+        if (!hasValidCardSize(block.cardSize)) {
+          errors.push(
+            `${label} item card grid size is invalid.`
+          );
+        }
+      }
     });
   }
 
