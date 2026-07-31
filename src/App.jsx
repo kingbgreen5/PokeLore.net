@@ -73,6 +73,11 @@ const ArticleStudioPage = import.meta.env.DEV
       import("./pages/ArticleStudioPage")
     )
   : null;
+const FeebasTileEditorPage = import.meta.env.DEV
+  ? lazy(() =>
+      import("./pages/FeebasTileEditorPage")
+    )
+  : null;
 const TeamCoveragePage = lazy(() =>
   import("./pages/TeamCoveragePage")
 );
@@ -211,6 +216,13 @@ function App() {
   <Route
     path="/article-studio"
     element={<ArticleStudioPage />}
+  />
+)}
+
+{FeebasTileEditorPage && (
+  <Route
+    path="/dev/feebas-tile-editor"
+    element={<FeebasTileEditorPage />}
   />
 )}
 

@@ -273,6 +273,12 @@ code {
   max-width: 940px;
 }
 
+.team-coverage-filter-control {
+  align-items: center;
+  display: flex;
+  gap: .5rem;
+}
+
 .team-coverage-recommendation-grid {
   display: grid;
   gap: 1rem;
@@ -287,10 +293,36 @@ code {
   .team-coverage-panels {
     grid-template-columns: 1fr;
   }
+
+  .team-coverage-panel-covered {
+    order: 1;
+  }
+
+  .team-coverage-panel-missing {
+    order: 2;
+  }
 }
 
 @media (max-width: 540px) {
   .team-coverage-party-grid {
     grid-template-columns: 1fr;
+  }
+
+  .team-coverage-filter-controls {
+    align-items: stretch !important;
+    flex-direction: column;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 330px;
+  }
+
+  .team-coverage-filter-control {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .team-coverage-filter-control select {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 }

@@ -31,7 +31,7 @@ const PARTY_STORAGE_KEY =
 const VERSION_STORAGE_KEY =
   "pokelore:learnset-version";
 const SORT_STORAGE_KEY =
-  "pokelore:team-coverage-sort:v2";
+  "pokelore:team-coverage-sort:v3";
 const COVERAGE_FILTER_STORAGE_KEY =
   "pokelore:team-coverage-recommendation-coverage-filter:v2";
 const FOCUS_TYPE_STORAGE_KEY =
@@ -42,7 +42,7 @@ const RECOMMENDATION_MOVE_POWER_THRESHOLD_STORAGE_KEY =
   "pokelore:team-coverage-recommendation-move-power-threshold:v2";
 const RECOMMENDATIONS_PER_PAGE = 25;
 const DEFAULT_RECOMMENDATION_SORT_MODE =
-  "most-coverage";
+  "highest-bst";
 const DEFAULT_RECOMMENDATION_COVERAGE_FILTER =
   "both";
 const DEFAULT_RECOMMENDATION_MOVE_POWER_THRESHOLD = 60;
@@ -493,17 +493,35 @@ function TypeBadgeList({
 
 function CoveragePanel({
   description,
+  tone = "neutral",
   title,
   types
 }) {
+  const toneStyles = {
+    covered: {
+      backgroundColor: "rgba(74, 201, 122, 0.1)",
+      border: "1px solid rgba(74, 201, 122, 0.45)"
+    },
+    missing: {
+      backgroundColor: "rgba(248, 113, 113, 0.1)",
+      border: "1px solid rgba(248, 113, 113, 0.45)"
+    },
+    neutral: {
+      backgroundColor: "#202020",
+      border: "1px solid #4a4a4a"
+    }
+  };
+  const accentStyle =
+    toneStyles[tone] ?? toneStyles.neutral;
+
   return (
     <section
+      className={`team-coverage-panel team-coverage-panel-${tone}`}
       style={{
-        backgroundColor: "#202020",
-        border: "1px solid #4a4a4a",
         borderRadius: "8px",
         boxSizing: "border-box",
-        padding: "1rem"
+        padding: "1rem",
+        ...accentStyle
       }}
     >
       <h2
@@ -808,6 +826,7 @@ function PokemonPicker({
         }}
       >
         <div
+          className="team-coverage-filter-controls"
           style={{
             alignItems: "center",
             display: "flex",
@@ -1920,21 +1939,25 @@ function TeamCoveragePage() {
         className="team-coverage-panels"
       >
         <CoveragePanel
+          tone="covered"
           title="Offensive Coverage"
           description="Your team's level-up learnset has moves that hit these types for super effective damage."
           types={coveredTypes}
         />
         <CoveragePanel
+          tone="missing"
           title="Missing Offensive Coverage"
           description="Your team's level-up learnset cannot hit these types for super effective damage."
           types={missingTypes}
         />
         <CoveragePanel
+          tone="covered"
           title="Defensive Coverage"
           description="Your team has at least one Pokemon that resists or is immune to attacks of these types."
           types={defensiveCoveredTypes}
         />
         <CoveragePanel
+          tone="missing"
           title="Missing Defensive Coverage"
           description="Your team does not currently have a resistance or immunity to attacks of these types."
           types={missingDefensiveTypes}
@@ -1990,130 +2013,136 @@ function TeamCoveragePage() {
             margin: "0 0 1rem"
           }}
         >
-          <label
-            htmlFor="team-coverage-sort"
-            style={{
-              color: "#f3f4f6",
-              fontWeight: "bold"
-            }}
-          >
-            Sort
-          </label>
-          <select
-            id="team-coverage-sort"
-            value={selectedSortMode}
-            onChange={event => {
-              setRecommendationPage(1);
-              setPreferredSortMode(
-                event.target.value
-              );
-            }}
-            style={{
-              backgroundColor: "#2c2c2c",
-              border: "2px solid #555",
-              borderRadius: "8px",
-              color: "white",
-              fontSize: ".95rem",
-              maxWidth: "100%",
-              padding: ".55rem .75rem"
-            }}
-          >
-            {SORT_MODES.map(option => (
-              <option
-                key={option.value}
-                value={option.value}
-              >
-                {option.label}
-              </option>
-            ))}
-          </select>
-
-          <label
-            htmlFor="team-coverage-need"
-            style={{
-              color: "#f3f4f6",
-              fontWeight: "bold"
-            }}
-          >
-            Need
-          </label>
-          <select
-            id="team-coverage-need"
-            value={selectedCoverageFilter}
-            onChange={event => {
-              setRecommendationPage(1);
-              setPreferredCoverageFilter(
-                event.target.value
-              );
-            }}
-            style={{
-              backgroundColor: "#2c2c2c",
-              border: "2px solid #555",
-              borderRadius: "8px",
-              color: "white",
-              fontSize: ".95rem",
-              maxWidth: "100%",
-              padding: ".55rem .75rem"
-            }}
-          >
-            {COVERAGE_FILTER_OPTIONS.map(
-              option => (
+          <div className="team-coverage-filter-control">
+            <label
+              htmlFor="team-coverage-sort"
+              style={{
+                color: "#f3f4f6",
+                fontWeight: "bold"
+              }}
+            >
+              Sort
+            </label>
+            <select
+              id="team-coverage-sort"
+              value={selectedSortMode}
+              onChange={event => {
+                setRecommendationPage(1);
+                setPreferredSortMode(
+                  event.target.value
+                );
+              }}
+              style={{
+                backgroundColor: "#2c2c2c",
+                border: "2px solid #555",
+                borderRadius: "8px",
+                color: "white",
+                fontSize: ".95rem",
+                maxWidth: "100%",
+                padding: ".55rem .75rem"
+              }}
+            >
+              {SORT_MODES.map(option => (
                 <option
                   key={option.value}
                   value={option.value}
                 >
                   {option.label}
                 </option>
-              )
-            )}
-          </select>
+              ))}
+            </select>
+          </div>
 
-          <label
-            htmlFor="team-coverage-recommendation-move-power-threshold"
-            style={{
-              color: "#f3f4f6",
-              fontWeight: "bold"
-            }}
-          >
-            Move Power
-          </label>
-          <select
-            id="team-coverage-recommendation-move-power-threshold"
-            value={
-              selectedRecommendationMovePowerThreshold
-            }
-            onChange={event => {
-              setRecommendationPage(1);
-              setPreferredRecommendationMovePowerThreshold(
-                Number(event.target.value)
-              );
-            }}
-            style={{
-              backgroundColor: "#2c2c2c",
-              border: "2px solid #555",
-              borderRadius: "8px",
-              color: "white",
-              fontSize: ".95rem",
-              maxWidth: "100%",
-              padding: ".55rem .75rem"
-            }}
-          >
-            {MOVE_POWER_THRESHOLD_OPTIONS.map(
-              option => (
-                <option
-                  key={option.value}
-                  value={option.value}
-                >
-                  {option.label}
-                </option>
-              )
-            )}
-          </select>
+          <div className="team-coverage-filter-control">
+            <label
+              htmlFor="team-coverage-need"
+              style={{
+                color: "#f3f4f6",
+                fontWeight: "bold"
+              }}
+            >
+              Team Need
+            </label>
+            <select
+              id="team-coverage-need"
+              value={selectedCoverageFilter}
+              onChange={event => {
+                setRecommendationPage(1);
+                setPreferredCoverageFilter(
+                  event.target.value
+                );
+              }}
+              style={{
+                backgroundColor: "#2c2c2c",
+                border: "2px solid #555",
+                borderRadius: "8px",
+                color: "white",
+                fontSize: ".95rem",
+                maxWidth: "100%",
+                padding: ".55rem .75rem"
+              }}
+            >
+              {COVERAGE_FILTER_OPTIONS.map(
+                option => (
+                  <option
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+
+          <div className="team-coverage-filter-control">
+            <label
+              htmlFor="team-coverage-recommendation-move-power-threshold"
+              style={{
+                color: "#f3f4f6",
+                fontWeight: "bold"
+              }}
+            >
+              Move Power
+            </label>
+            <select
+              id="team-coverage-recommendation-move-power-threshold"
+              value={
+                selectedRecommendationMovePowerThreshold
+              }
+              onChange={event => {
+                setRecommendationPage(1);
+                setPreferredRecommendationMovePowerThreshold(
+                  Number(event.target.value)
+                );
+              }}
+              style={{
+                backgroundColor: "#2c2c2c",
+                border: "2px solid #555",
+                borderRadius: "8px",
+                color: "white",
+                fontSize: ".95rem",
+                maxWidth: "100%",
+                padding: ".55rem .75rem"
+              }}
+            >
+              {MOVE_POWER_THRESHOLD_OPTIONS.map(
+                option => (
+                  <option
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
 
           {selectedSortMode ===
             "selected-type-first" &&
             focusTypeOptions.length > 0 && (
-              <>
+              <div className="team-coverage-filter-control">
                 <label
                   htmlFor="team-coverage-focus-type"
                   style={{
@@ -2152,7 +2181,7 @@ function TeamCoveragePage() {
                     </option>
                   ))}
                 </select>
-              </>
+              </div>
             )}
         </div>
 
