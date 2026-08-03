@@ -4,6 +4,7 @@ import {
   useState
 } from "react";
 import { Link } from "react-router-dom";
+import FeebasGuideBreadcrumbs from "../components/feebas/FeebasGuideBreadcrumbs";
 import DpptFeebasMap from "../components/feebas/DpptFeebasMap";
 import Seo from "../seo/Seo";
 import {
@@ -194,13 +195,7 @@ function DpptFeebasPublicCalculatorPage() {
       />
 
       <header className="dppt-feebas-public-header">
-        <Link
-          className="dppt-feebas-back-link"
-          to="/topic/catching-feebas-in-pokemon-diamond-pearl-and-platinum"
-        >
-          <span aria-hidden="true">←</span>
-          Back to Catching Feebas in Pokemon Diamond, Pearl, and Platinum
-        </Link>
+        <FeebasGuideBreadcrumbs pageId="dppt-feebas-calculator" />
         <p>DPPt Feebas Calculator</p>
         <h1>
           Pokemon Diamond, Pearl, and Platinum Feebas Calculator

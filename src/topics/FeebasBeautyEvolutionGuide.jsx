@@ -3,6 +3,7 @@ import {
   useState
 } from "react";
 import { Link } from "react-router-dom";
+import FeebasGuideBreadcrumbs from "../components/feebas/FeebasGuideBreadcrumbs";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import SizeComparison from "../components/SizeComparison";
 import Seo from "../seo/Seo";
@@ -487,14 +488,7 @@ function FeebasBeautyEvolutionGuide() {
     >
       <Seo {...topicSeo(topic)} />
 
-      <Link
-        to="/topics"
-        style={{
-          color: "inherit"
-        }}
-      >
-        Back to topics
-      </Link>
+      <FeebasGuideBreadcrumbs pageId="evolving-feebas-into-milotic-via-beauty" />
 
       <h1>
         {topic?.title ??

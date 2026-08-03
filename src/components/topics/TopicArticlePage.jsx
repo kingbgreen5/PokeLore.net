@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import FeebasGuideBreadcrumbs from "../feebas/FeebasGuideBreadcrumbs";
+import { getFeebasGuideBreadcrumbs } from "../feebas/feebasGuideBreadcrumbData";
 import Seo from "../../seo/Seo";
 import { topicSeo } from "../../seo/seoConfig";
 import { calculateReadingTime } from "../../utils/articleReadingTime";
@@ -123,16 +125,22 @@ function TopicArticlePage({
   const updatedDiffers =
     article.updatedDate &&
     article.updatedDate !== article.publishedDate;
+  const feebasBreadcrumbs =
+    getFeebasGuideBreadcrumbs(article.slug);
 
   return (
     <main className="topic-article">
       {!preview && <Seo {...topicSeo(article)} />}
 
-      <nav className="topic-article-breadcrumbs">
-        <Link to="/topics">Topics</Link>
-        <span aria-hidden="true">/</span>
-        <span>{article.title}</span>
-      </nav>
+      {feebasBreadcrumbs ? (
+        <FeebasGuideBreadcrumbs pageId={article.slug} />
+      ) : (
+        <nav className="topic-article-breadcrumbs">
+          <Link to="/topics">Topics</Link>
+          <span aria-hidden="true">/</span>
+          <span>{article.title}</span>
+        </nav>
+      )}
 
       <header className="topic-article-header">
         {article.category && (
