@@ -174,9 +174,9 @@ export function getFeebasSearchArea(
     size = 9
   } = {}
 ) {
-  if (![9, 12].includes(size)) {
+  if (![9, 12, 16].includes(size)) {
     throw new RangeError(
-      `Feebas search area size must be 9 or 12; received ${size}.`
+      `Feebas search area size must be 9, 12, or 16; received ${size}.`
     );
   }
 
@@ -234,9 +234,9 @@ export function getFeebasOffsetSearchArea(
     seed = ""
   } = {}
 ) {
-  if (![9, 12].includes(size)) {
+  if (![9, 12, 16].includes(size)) {
     throw new RangeError(
-      `Feebas search area size must be 9 or 12; received ${size}.`
+      `Feebas search area size must be 9, 12, or 16; received ${size}.`
     );
   }
 

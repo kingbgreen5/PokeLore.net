@@ -437,6 +437,7 @@ function validateSitemap() {
       "/",
       "/abilities",
       "/dex-entries",
+      "/dppt-feebas-calculator",
       "/items",
       "/items/dynamax-crystals",
       "/learnsets",

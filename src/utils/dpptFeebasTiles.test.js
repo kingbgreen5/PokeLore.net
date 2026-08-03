@@ -128,22 +128,30 @@ describe("dpptFeebasTiles", () => {
     });
   });
 
-  it("builds stable 9-tile and 12-tile fishable search areas", () => {
+  it("builds stable fishable search areas", () => {
     const nineTileArea = getFeebasSearchArea(31, {
       size: 9
     });
     const twelveTileArea = getFeebasSearchArea(31, {
       size: 12
     });
+    const sixteenTileArea = getFeebasSearchArea(31, {
+      size: 16
+    });
 
     expect(nineTileArea.indexes).toHaveLength(9);
     expect(twelveTileArea.indexes).toHaveLength(12);
+    expect(sixteenTileArea.indexes).toHaveLength(16);
     expect(nineTileArea.indexes).toContain(31);
     expect(twelveTileArea.indexes).toEqual(
       expect.arrayContaining(nineTileArea.indexes)
     );
+    expect(sixteenTileArea.indexes).toEqual(
+      expect.arrayContaining(twelveTileArea.indexes)
+    );
     expect(new Set(twelveTileArea.indexes).size).toBe(12);
-    for (const index of twelveTileArea.indexes) {
+    expect(new Set(sixteenTileArea.indexes).size).toBe(16);
+    for (const index of sixteenTileArea.indexes) {
       expect(getFeebasTileByIndex(index).index).toBe(index);
     }
   });
@@ -157,13 +165,20 @@ describe("dpptFeebasTiles", () => {
       size: 12,
       seed: "public-area-test-12"
     });
+    const sixteenTileArea = getFeebasOffsetSearchArea(31, {
+      size: 16,
+      seed: "public-area-test-16"
+    });
 
     expect(nineTileArea.indexes).toHaveLength(9);
     expect(twelveTileArea.indexes).toHaveLength(12);
+    expect(sixteenTileArea.indexes).toHaveLength(16);
     expect(nineTileArea.indexes).toContain(31);
     expect(twelveTileArea.indexes).toContain(31);
+    expect(sixteenTileArea.indexes).toContain(31);
     expect(nineTileArea.displayCenterIndex).not.toBe(31);
     expect(twelveTileArea.displayCenterIndex).not.toBe(31);
+    expect(sixteenTileArea.displayCenterIndex).not.toBe(31);
   });
 
   it("rejects unsupported Feebas search area sizes", () => {
@@ -171,6 +186,6 @@ describe("dpptFeebasTiles", () => {
       getFeebasSearchArea(31, {
         size: 10
       })
-    ).toThrow("9 or 12");
+    ).toThrow("9, 12, or 16");
   });
 });
