@@ -212,7 +212,7 @@
   width: 100%;
 }
 
-.feebas-cell {
+.feebas-editor .feebas-cell {
   align-items: center;
   background: rgba(255, 255, 255, 0.01);
   border: 1px solid transparent;
@@ -236,11 +236,11 @@
   user-select: none;
 }
 
-.feebas-tile-grid.show-grid-lines .feebas-cell {
+.feebas-editor .feebas-tile-grid.show-grid-lines .feebas-cell {
   border-color: rgba(255, 255, 255, 0.34);
 }
 
-.feebas-tile-grid.dim-unselected .feebas-cell:not(.is-selected)::after {
+.feebas-editor .feebas-tile-grid.dim-unselected .feebas-cell:not(.is-selected)::after {
   background: rgba(0, 0, 0, 0.38);
   content: "";
   inset: 0;
@@ -248,7 +248,7 @@
   position: absolute;
 }
 
-.feebas-cell.is-selected {
+.feebas-editor .feebas-cell.is-selected {
   background:
     repeating-linear-gradient(
       135deg,

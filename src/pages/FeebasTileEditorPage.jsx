@@ -1,4 +1,5 @@
 import {
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -59,6 +60,17 @@ function selectedSetFromSaved(saved) {
   }
 
   return new Set();
+}
+
+function imageDataUrlFromSaved(saved) {
+  if (
+    typeof saved?.uploadedImageDataUrl === "string" &&
+    saved.uploadedImageDataUrl.startsWith("data:image/")
+  ) {
+    return saved.uploadedImageDataUrl;
+  }
+
+  return null;
 }
 
 function setToSnapshot(selectedKeys) {
@@ -187,10 +199,11 @@ function FeebasTileEditorPage() {
   const [editorZoom, setEditorZoom] = useState(
     Number(saved?.editorZoom) || 1
   );
-  const [imageSrc, setImageSrc] =
-    useState(DEFAULT_MAP_IMAGE);
-  const [objectUrl, setObjectUrl] =
-    useState(null);
+  const [uploadedImageDataUrl, setUploadedImageDataUrl] =
+    useState(() => imageDataUrlFromSaved(saved));
+  const [imageSrc, setImageSrc] = useState(
+    () => imageDataUrlFromSaved(saved) || DEFAULT_MAP_IMAGE
+  );
   const [undoStack, setUndoStack] = useState([]);
   const [redoStack, setRedoStack] = useState([]);
   const [status, setStatus] = useState("");
@@ -215,14 +228,6 @@ function FeebasTileEditorPage() {
   useEffect(() => {
     selectedKeysRef.current = selectedKeys;
   }, [selectedKeys]);
-
-  useEffect(() => {
-    return () => {
-      if (objectUrl) {
-        URL.revokeObjectURL(objectUrl);
-      }
-    };
-  }, [objectUrl]);
 
   const selectedTiles = useMemo(
     () => selectedSetToTiles(selectedKeys),
@@ -282,24 +287,60 @@ function FeebasTileEditorPage() {
       .includes(query);
   });
 
+  const createLocalSnapshot = useCallback(savedAt => {
+    return {
+      selectedKeys: setToSnapshot(
+        selectedKeysRef.current
+      ),
+      imageAlignment: alignment,
+      uploadedImageDataUrl,
+      displaySettings,
+      tool,
+      editorWidth,
+      editorZoom,
+      savedAt
+    };
+  }, [
+    alignment,
+    displaySettings,
+    editorWidth,
+    editorZoom,
+    tool,
+    uploadedImageDataUrl
+  ]);
+
+  const writeLocalSnapshot = useCallback(snapshot => {
+    try {
+      window.localStorage.setItem(
+        LOCAL_STORAGE_KEY,
+        JSON.stringify(snapshot)
+      );
+      return true;
+    } catch {
+      const fallbackSnapshot = {
+        ...snapshot,
+        uploadedImageDataUrl: null
+      };
+      window.localStorage.setItem(
+        LOCAL_STORAGE_KEY,
+        JSON.stringify(fallbackSnapshot)
+      );
+      setUploadedImageDataUrl(null);
+      setImageSrc(DEFAULT_MAP_IMAGE);
+      setStatus(
+        "Saved tiles locally, but the uploaded image was too large for browser storage."
+      );
+      return false;
+    }
+  }, []);
+
   function saveLocal(nextStatus = "Saved locally.") {
     const savedAt = new Date().toISOString();
-    window.localStorage.setItem(
-      LOCAL_STORAGE_KEY,
-      JSON.stringify({
-        selectedKeys: setToSnapshot(
-          selectedKeysRef.current
-        ),
-        imageAlignment: alignment,
-        displaySettings,
-        tool,
-        editorWidth,
-        editorZoom,
-        savedAt
-      })
+    const savedImage = writeLocalSnapshot(
+      createLocalSnapshot(savedAt)
     );
     setLastSavedAt(savedAt);
-    setStatus(nextStatus);
+    if (savedImage) setStatus(nextStatus);
   }
 
   useEffect(() => {
@@ -310,22 +351,11 @@ function FeebasTileEditorPage() {
 
     const timer = window.setTimeout(() => {
       const savedAt = new Date().toISOString();
-      window.localStorage.setItem(
-        LOCAL_STORAGE_KEY,
-        JSON.stringify({
-          selectedKeys: setToSnapshot(
-            selectedKeysRef.current
-          ),
-          imageAlignment: alignment,
-          displaySettings,
-          tool,
-          editorWidth,
-          editorZoom,
-          savedAt
-        })
+      const savedImage = writeLocalSnapshot(
+        createLocalSnapshot(savedAt)
       );
       setLastSavedAt(savedAt);
-      setStatus("Autosaved locally.");
+      if (savedImage) setStatus("Autosaved locally.");
     }, 350);
 
     return () => window.clearTimeout(timer);
@@ -334,8 +364,11 @@ function FeebasTileEditorPage() {
     displaySettings,
     editorWidth,
     editorZoom,
+    createLocalSnapshot,
     selectedKeys,
-    tool
+    tool,
+    uploadedImageDataUrl,
+    writeLocalSnapshot
   ]);
 
   function pushHistory(previousSet) {
@@ -637,14 +670,29 @@ function FeebasTileEditorPage() {
   function handleImageUpload(file) {
     if (!file) return;
 
-    const nextUrl = URL.createObjectURL(file);
-    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = String(reader.result ?? "");
+      if (!dataUrl.startsWith("data:image/")) {
+        setStatus("That file did not load as an image.");
+        return;
+      }
 
-    setObjectUrl(nextUrl);
-    setImageSrc(nextUrl);
-    setStatus(
-      "Temporary image loaded for this browser session."
-    );
+      setUploadedImageDataUrl(dataUrl);
+      setImageSrc(dataUrl);
+      setStatus(
+        "Uploaded image loaded and will be saved in this browser."
+      );
+    };
+    reader.onerror = () =>
+      setStatus("Could not read the selected image.");
+    reader.readAsDataURL(file);
+  }
+
+  function useDefaultImage() {
+    setUploadedImageDataUrl(null);
+    setImageSrc(DEFAULT_MAP_IMAGE);
+    setStatus("Using the default project map image.");
   }
 
   function selectRow(row, selected) {
@@ -815,6 +863,12 @@ function FeebasTileEditorPage() {
     setTool(nextSaved.tool || "select");
     setEditorWidth(Number(nextSaved.editorWidth) || 620);
     setEditorZoom(Number(nextSaved.editorZoom) || 1);
+    setUploadedImageDataUrl(
+      imageDataUrlFromSaved(nextSaved)
+    );
+    setImageSrc(
+      imageDataUrlFromSaved(nextSaved) || DEFAULT_MAP_IMAGE
+    );
     setLastSavedAt(nextSaved.savedAt || null);
   }
 
@@ -1275,6 +1329,11 @@ function FeebasTileEditorPage() {
                 }
               />
             </label>
+            <p className="feebas-help">
+              {uploadedImageDataUrl
+                ? "Uploaded image is saved in this browser and will reload with the editor."
+                : "Using the default project map image until an upload is saved locally."}
+            </p>
             <NumberControl
               label="Image X offset"
               value={alignment.offsetX}
@@ -1352,6 +1411,12 @@ function FeebasTileEditorPage() {
                 onClick={centerImage}
               >
                 Center Image
+              </button>
+              <button
+                type="button"
+                onClick={useDefaultImage}
+              >
+                Use Default Image
               </button>
             </div>
           </section>

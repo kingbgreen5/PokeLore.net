@@ -1,0 +1,250 @@
+.feebas-map-validator {
+  box-sizing: border-box;
+  margin-left: 50%;
+  padding: 1rem 1.25rem 2rem;
+  text-align: left;
+  transform: translateX(-50%);
+  width: min(calc(100vw - 2rem), 1540px);
+}
+
+.feebas-map-validator *,
+.feebas-map-validator *::before,
+.feebas-map-validator *::after {
+  box-sizing: border-box;
+}
+
+.feebas-map-validator h1,
+.feebas-map-validator h2 {
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.feebas-map-validator h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+}
+
+.feebas-validator-top {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.feebas-validator-top p {
+  margin-top: 0.45rem;
+  opacity: 0.86;
+}
+
+.feebas-validator-top a {
+  background: #24262f;
+  border: 1px solid #575b6c;
+  border-radius: 6px;
+  color: var(--text-h);
+  flex: 0 0 auto;
+  font-weight: 800;
+  padding: 0.55rem 0.7rem;
+  text-decoration: none;
+}
+
+.feebas-validator-layout {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(440px, 620px) minmax(420px, 1fr);
+}
+
+.feebas-validator-map-panel,
+.feebas-validator-controls {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.feebas-validator-panel {
+  background: #1d2028;
+  border: 1px solid #3d4250;
+  border-radius: 8px;
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.85rem;
+}
+
+.feebas-validator-panel h2 {
+  font-size: 1.05rem;
+}
+
+.feebas-map-validator button,
+.feebas-map-validator input {
+  border-radius: 6px;
+  font: inherit;
+}
+
+.feebas-map-validator button {
+  background: #24262f;
+  border: 1px solid #575b6c;
+  color: var(--text-h);
+  cursor: pointer;
+  font-weight: 800;
+  padding: 0.48rem 0.64rem;
+}
+
+.feebas-map-validator button:hover:not(:disabled),
+.feebas-validator-top a:hover {
+  border-color: #f4c95d;
+}
+
+.feebas-map-validator button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.feebas-map-validator input {
+  background: #11141b;
+  border: 1px solid #515768;
+  color: var(--text-h);
+  padding: 0.48rem;
+  width: 100%;
+}
+
+.feebas-result-grid {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.feebas-result-grid label,
+.feebas-validator-panel > label {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.feebas-result-grid span,
+.feebas-validator-panel label > span {
+  color: #eef2f8;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.feebas-result-grid small {
+  color: #cbd5e1;
+  font-size: 0.76rem;
+}
+
+.feebas-inspect-toggle {
+  align-items: center;
+  display: flex !important;
+  gap: 0.45rem;
+}
+
+.feebas-inspect-toggle input {
+  accent-color: #38bdf8;
+  height: 1rem;
+  width: 1rem;
+}
+
+.feebas-validator-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.feebas-inspection-list {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+}
+
+.feebas-inspection-list div {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+  padding-bottom: 0.35rem;
+}
+
+.feebas-inspection-list dt {
+  color: #d9e0ec;
+  font-weight: 800;
+}
+
+.feebas-inspection-list dd {
+  color: var(--text-h);
+  margin: 0;
+  text-align: right;
+}
+
+.feebas-validator-warnings,
+.feebas-validator-warning {
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.75);
+  border-radius: 8px;
+  color: #fde68a;
+  line-height: 1.35;
+  margin: 0;
+  padding: 0.65rem 0.85rem;
+}
+
+.feebas-validator-warnings {
+  padding-left: 1.8rem;
+}
+
+.feebas-validator-note {
+  color: #cbd5e1;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.feebas-test-case-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.feebas-test-case-list article {
+  border: 1px solid #3d4250;
+  border-radius: 8px;
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.7rem;
+}
+
+.feebas-test-case-list code {
+  justify-self: start;
+}
+
+.feebas-test-case-list p {
+  font-size: 0.84rem;
+  line-height: 1.35;
+  margin: 0;
+  opacity: 0.86;
+}
+
+.feebas-test-case-list button {
+  justify-self: start;
+}
+
+@media (max-width: 980px) {
+  .feebas-validator-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .feebas-map-validator {
+    margin-left: 0;
+    padding: 0.75rem;
+    transform: none;
+    width: 100%;
+  }
+
+  .feebas-validator-top {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .feebas-result-grid {
+    grid-template-columns: 1fr;
+  }
+}

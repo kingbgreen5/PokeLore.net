@@ -40,6 +40,7 @@ function staticRoutes() {
     "/dex-entries",
     "/learnsets",
     "/team-coverage",
+    "/dppt-feebas-calculator",
     "/single-type-coverage",
     "/moves",
     "/abilities",

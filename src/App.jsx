@@ -68,6 +68,11 @@ const TopicsPage = lazy(() =>
 const TopicDetailPage = lazy(() =>
   import("./pages/TopicDetailPage")
 );
+const DevToolsPage = import.meta.env.DEV
+  ? lazy(() =>
+      import("./pages/DevToolsPage")
+    )
+  : null;
 const ArticleStudioPage = import.meta.env.DEV
   ? lazy(() =>
       import("./pages/ArticleStudioPage")
@@ -78,6 +83,19 @@ const FeebasTileEditorPage = import.meta.env.DEV
       import("./pages/FeebasTileEditorPage")
     )
   : null;
+const FeebasMapValidatorPage = import.meta.env.DEV
+  ? lazy(() =>
+      import("./pages/FeebasMapValidatorPage")
+    )
+  : null;
+const DpptFeebasCalculatorPage = import.meta.env.DEV
+  ? lazy(() =>
+      import("./pages/DpptFeebasCalculatorPage")
+    )
+  : null;
+const DpptFeebasPublicCalculatorPage = lazy(() =>
+  import("./pages/DpptFeebasPublicCalculatorPage")
+);
 const TeamCoveragePage = lazy(() =>
   import("./pages/TeamCoveragePage")
 );
@@ -208,9 +226,21 @@ function App() {
 />
 
 <Route
+  path="/dppt-feebas-calculator"
+  element={<DpptFeebasPublicCalculatorPage />}
+/>
+
+<Route
   path="/topic/:topicSlug"
   element={<TopicDetailPage />}
 />
+
+{DevToolsPage && (
+  <Route
+    path="/dev"
+    element={<DevToolsPage />}
+  />
+)}
 
 {ArticleStudioPage && (
   <Route
@@ -223,6 +253,20 @@ function App() {
   <Route
     path="/dev/feebas-tile-editor"
     element={<FeebasTileEditorPage />}
+  />
+)}
+
+{FeebasMapValidatorPage && (
+  <Route
+    path="/dev/feebas-map-validator"
+    element={<FeebasMapValidatorPage />}
+  />
+)}
+
+{DpptFeebasCalculatorPage && (
+  <Route
+    path="/dev/dppt-feebas-calculator"
+    element={<DpptFeebasCalculatorPage />}
   />
 )}
 

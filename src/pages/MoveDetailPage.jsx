@@ -1341,7 +1341,9 @@ function MoveLearnersSection({
             >
               <h3
                 style={{
+                  color: "#fab856",
                   fontSize: "1.05rem",
+                  fontWeight: "800",
                   margin: 0
                 }}
               >
@@ -1350,7 +1352,7 @@ function MoveLearnersSection({
 
               <span
                 style={{
-                  color: "#aaa",
+                  color: "#fab856",
                   fontSize: ".9rem"
                 }}
               >
@@ -1645,6 +1647,9 @@ function MoveDetailPage({
   const moveDisplayName =
     moveData.displayName ??
     capitalize(moveName);
+  const expandableTitleColor =
+    "var(--link-unvisited)";
+
   return (
     <div
       data-section="move-detail-page"
@@ -1809,6 +1814,7 @@ function MoveDetailPage({
         flavorTextEntries={
           moveData.flavorTextEntries
         }
+        titleColor={expandableTitleColor}
       />
 
       {/* ------------------------ MOVE LEARNERS SECTION ------------------------ */}
@@ -1822,6 +1828,7 @@ function MoveDetailPage({
           methodGroups={
             mergedLearnerGroups
           }
+          titleColor={expandableTitleColor}
         />
       </div>
 
@@ -1836,6 +1843,8 @@ function MoveDetailPage({
           machineItems={
             moveData.machineItems
           }
+          titleColor={expandableTitleColor}
+          titleChevron={true}
         />
       </div>
 
@@ -1844,6 +1853,7 @@ function MoveDetailPage({
         pastValues={
           moveData.pastValues
         }
+        titleColor={expandableTitleColor}
       />
 
       {/* ------------------------ MOVE LEARNER SIZE CHART ------------------------ */}

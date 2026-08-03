@@ -1,0 +1,226 @@
+.dppt-feebas-public-page {
+  color: #eef6ff;
+  margin: 0 auto;
+  max-width: 1220px;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.dppt-feebas-public-header {
+  margin: 0 0 1rem;
+}
+
+.dppt-feebas-public-header p {
+  color: #7dd3fc;
+  font-size: 0.84rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.2rem;
+  text-transform: uppercase;
+}
+
+.dppt-feebas-public-header h1 {
+  font-size: clamp(1.85rem, 3vw, 2.7rem);
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.dppt-feebas-public-tool {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+}
+
+.dppt-feebas-public-controls {
+  background: #171c26;
+  border: 1px solid #3d4657;
+  border-radius: 8px;
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.dppt-feebas-public-controls h2 {
+  font-size: 1rem;
+  letter-spacing: 0;
+  margin: 0 0 0.75rem;
+}
+
+.dppt-feebas-public-inputs {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.dppt-feebas-public-inputs label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.dppt-feebas-public-inputs span {
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.dppt-feebas-public-inputs input {
+  background: #0d121b;
+  border: 1px solid #657184;
+  border-radius: 6px;
+  color: #ffffff;
+  font: inherit;
+  min-height: 2.35rem;
+  padding: 0.45rem 0.55rem;
+}
+
+.dppt-feebas-public-inputs small {
+  color: #fecaca;
+  line-height: 1.35;
+}
+
+.dppt-feebas-public-actions,
+.dppt-feebas-segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.dppt-feebas-public-actions {
+  margin-top: 0.8rem;
+}
+
+.dppt-feebas-public-actions button,
+.dppt-feebas-save-panel button,
+.dppt-feebas-segmented button {
+  background: #1f2937;
+  border: 1px solid #64748b;
+  border-radius: 6px;
+  color: #eef6ff;
+  cursor: pointer;
+  font-weight: 850;
+  padding: 0.55rem 0.75rem;
+}
+
+.dppt-feebas-public-actions button:first-child,
+.dppt-feebas-segmented button[aria-pressed="true"] {
+  background: #f59e0b;
+  border-color: #fde68a;
+  color: #111827;
+}
+
+.dppt-feebas-public-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.46;
+}
+
+.dppt-feebas-save-panel {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.dppt-feebas-save-panel label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.dppt-feebas-save-panel label span {
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.dppt-feebas-save-panel input[type="file"] {
+  background: #0d121b;
+  border: 1px solid #657184;
+  border-radius: 6px;
+  color: #eef6ff;
+  font: inherit;
+  padding: 0.45rem 0.55rem;
+  width: 100%;
+}
+
+.dppt-feebas-save-panel p {
+  color: #bae6fd;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.dppt-feebas-save-status.error {
+  color: #fecaca;
+}
+
+.dppt-feebas-save-status.success {
+  color: #bbf7d0;
+}
+
+.dppt-feebas-save-status.pending {
+  color: #fde68a;
+}
+
+.dppt-feebas-toggle {
+  align-items: center;
+  background: #0d121b;
+  border: 1px solid #3d4657;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  gap: 0.55rem;
+  padding: 0.65rem 0.7rem;
+  width: fit-content;
+}
+
+.dppt-feebas-toggle input {
+  accent-color: #f59e0b;
+  height: 1rem;
+  margin: 0;
+  width: 1rem;
+}
+
+.dppt-feebas-toggle span {
+  color: #eef6ff;
+  font-weight: 850;
+}
+
+.dppt-feebas-public-map-stack {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.dppt-feebas-public-result,
+.dppt-feebas-public-message {
+  background: #171c26;
+  border: 1px solid #3d4657;
+  border-radius: 8px;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 1rem;
+}
+
+.dppt-feebas-public-result {
+  justify-self: start;
+  max-width: 100%;
+  width: 474px;
+}
+
+.dppt-feebas-public-result .dppt-feebas-map {
+  max-width: 100%;
+  width: 100%;
+}
+
+.dppt-feebas-public-message {
+  line-height: 1.55;
+}
+
+.dppt-feebas-public-message p {
+  margin: 0;
+}
+
+.dppt-feebas-public-message {
+  border-color: #f87171;
+  color: #fecaca;
+}
+
+@media (max-width: 920px) {
+  .dppt-feebas-public-tool {
+    grid-template-columns: 1fr;
+  }
+}

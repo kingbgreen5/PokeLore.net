@@ -49,6 +49,10 @@ const navItems = [
     label: "Team Coverage"
   },
   {
+    to: "/dppt-feebas-calculator",
+    label: "Feebas Calculator"
+  },
+  {
     to: "/single-type-coverage",
     label: "Single Type Coverage"
   },
