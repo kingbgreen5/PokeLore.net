@@ -6,30 +6,20 @@ import {
 } from "react-router-dom";
 
 import {
+  lazy,
+  Suspense,
   useEffect,
   useRef,
   useState
 } from "react";
 
-import LearnsetCard from "../components/LearnsetCard";
 import CollapsibleSection from "../components/CollapsibleSection";
-import DexEntryCard from "../components/DexEntryCard.jsx";
 import TypeEffectivenessCard from "../components/TypeEffectivenessCard";
-import EvolutionNode, {
-  FormEvolutionPaths
-} from "../components/EvolutionNode";
 import BaseStatsChart from "../components/BaseStatsChart";
-import OaksNotes from "../components/OaksNotes";
-import PokemonGoNotes from "../components/PokemonGoNotes";
-import PokemonSummaryCard from "../components/PokemonSummaryCard.jsx";
 import PokemonDetailArtwork from "../components/PokemonDetailArtwork";
 import TypeBadge from "../components/TypeBadge";
-import WhereToFind from "../components/WhereToFind";
-import HeldItems from "../components/HeldItems";
-import SizeComparison from "../components/SizeComparison"
-import AdditionalImages from "../components/AdditionalImages";
+import DeferredSection from "../components/DeferredSection";
 import Seo from "../seo/Seo";
-import PokemonSpriteCarousel from "../components/PokemonSpriteCarousel.jsx"
 import { pokemonSeo } from "../seo/seoConfig";
 import { readJsonFile } from "../utils/readJsonFile";
 import { loadMovesMap } from "../utils/loadMovesData";
@@ -37,6 +27,51 @@ import {
   formatPokemonDisplayName,
   getRegionalFormKey
 } from "../utils/pokemonNames";
+
+const LearnsetCard = lazy(() =>
+  import("../components/LearnsetCard")
+);
+const DexEntryCard = lazy(() =>
+  import("../components/DexEntryCard.jsx")
+);
+const EvolutionNode = lazy(() =>
+  import("../components/EvolutionNode")
+);
+const FormEvolutionPaths = lazy(() =>
+  import("../components/EvolutionNode").then(
+    module => ({
+      default: module.FormEvolutionPaths
+    })
+  )
+);
+const OaksNotes = lazy(() =>
+  import("../components/OaksNotes")
+);
+const PokemonGoNotes = lazy(() =>
+  import("../components/PokemonGoNotes")
+);
+const PokemonSummaryCard = lazy(() =>
+  import("../components/PokemonSummaryCard.jsx")
+);
+const WhereToFind = lazy(() =>
+  import("../components/WhereToFind")
+);
+const HeldItems = lazy(() =>
+  import("../components/HeldItems")
+);
+const AdditionalImages = lazy(() =>
+  import("../components/AdditionalImages")
+);
+const SizeComparison = lazy(() =>
+  import("../components/SizeComparison")
+);
+const PokemonSpriteCarousel = lazy(() =>
+  import("../components/PokemonSpriteCarousel.jsx")
+);
+
+const POKEMON_DETAIL_DROPDOWN_STYLE = {
+  background: "rgba(14, 165, 233, 0.12)"
+};
 
 
 
@@ -142,7 +177,8 @@ function LearnsetPlaceholder({
   loading,
   onReveal,
   titleColor,
-  titleChevron = false
+  titleChevron = false,
+  style
 }) {
   return (
     <CollapsibleSection
@@ -156,6 +192,7 @@ function LearnsetPlaceholder({
       titleColor={titleColor}
       titleChevron={titleChevron}
       onToggle={onReveal}
+      style={style}
       contentStyle={{
         marginTop: "1rem"
       }}
@@ -186,10 +223,6 @@ const [
   deferredDetailsReady,
   setDeferredDetailsReady
 ] = useState(false);
-const [
-  priorityArtworkReady,
-  setPriorityArtworkReady
-] = useState(false);
 //---------------------------------------------------------------------LOAD POKEMON USE EFFECT---------------------------------------------------------------------
 useEffect(() => {
   let isActive = true;
@@ -210,7 +243,6 @@ useEffect(() => {
       setLearnsetLoading(false);
       setEvolutionLoading(false);
       setDeferredDetailsReady(false);
-      setPriorityArtworkReady(false);
 
       const normalizedIdentifier =
         normalizePokemonIdentifier(
@@ -307,119 +339,10 @@ useEffect(() => {
           normalizedIdentifier
         );
 
-      const [
-        oaksNotesData,
-        pokemonGoNotesData
-      ] = await Promise.all([
-        readJsonFile(
-          `/data/oaksNotes/pokemon/${selectedPokemon.name}.json`
-        ),
-        readJsonFile(
-          `/data/pokemonGo/pokemon/${selectedPokemon.name}.json`
-        )
-      ]);
-
-      if (!isActive) {
-        return;
-      }
-
       setPokemon(
         selectedPokemon
       );
-      setOaksNotes(oaksNotesData);
-      setPokemonGoNotes(pokemonGoNotesData);
       setLoading(false);
-      setEvolutionLoading(true);
-
-      const evolutionResponsePromise =
-        fetch(
-          `/data/evolutionChains/${pokemonData.evolutionChainId}.json`
-        );
-
-      const evolutionOverridesPromise =
-        readJsonFile(
-          "/data/evolutionMethodOverrides.json",
-          {
-            warn: true
-          }
-        );
-
-      //-------------------------------------
-      //  Evolution Data
-      //-------------------------------------
-
-
-
-// const evolutionResponse =
-//   await fetch(
-//     "/data/evolutions.json"
-//   );
-
-// const evolutions =
-//   await evolutionResponse.json();
-
-// setEvolutionData(
-//   evolutions[id]
-// );
-
-
-// console.log(
-//   "Evolution Data:",
-//   evolutions[id]
-// );
-
-try {
-  const [
-    evolutionResponse,
-    evolutionOverrides
-  ] = await Promise.all([
-    evolutionResponsePromise,
-    evolutionOverridesPromise
-  ]);
-
-  if (!evolutionResponse.ok) {
-    throw new Error(
-      `Missing evolution chain for ${pokemonData.evolutionChainId}`
-    );
-  }
-
-  const evolutionJson =
-    await evolutionResponse.json();
-
-  if (!isActive) {
-    return;
-  }
-
-  setEvolutionData(
-    evolutionJson
-  );
-
-  setEvolutionMethodOverrides(
-    evolutionOverrides ?? {}
-  );
-} catch (error) {
-  if (!isActive) {
-    return;
-  }
-
-  console.warn(
-    "Failed to load evolution data:",
-    error
-  );
-
-  setEvolutionData(null);
-  setEvolutionMethodOverrides({});
-} finally {
-  if (isActive) {
-    setEvolutionLoading(false);
-  }
-}
-
-
-
-
-
-
 
     } catch (error) {
       if (!isActive) {
@@ -452,62 +375,113 @@ try {
 ]);
 
 useEffect(() => {
-  if (!pokemon || deferredDetailsReady) {
+  if (!pokemon || !deferredDetailsReady) {
     return undefined;
   }
 
-  if (!priorityArtworkReady) {
-    return undefined;
+  let isActive = true;
+
+  async function loadSupplementalNotes() {
+    const [
+      oaksNotesData,
+      pokemonGoNotesData
+    ] = await Promise.all([
+      readJsonFile(
+        `/data/oaksNotes/pokemon/${pokemon.name}.json`
+      ),
+      readJsonFile(
+        `/data/pokemonGo/pokemon/${pokemon.name}.json`
+      )
+    ]);
+
+    if (!isActive) {
+      return;
+    }
+
+    setOaksNotes(oaksNotesData);
+    setPokemonGoNotes(pokemonGoNotesData);
   }
 
-  if ("requestIdleCallback" in window) {
-    const idleId =
-      window.requestIdleCallback(
-        () => {
-          setDeferredDetailsReady(true);
-        },
-        { timeout: 200 }
-      );
-
-    return () => {
-      window.cancelIdleCallback(idleId);
-    };
-  }
-
-  const timeoutId = window.setTimeout(
-    () => {
-      setDeferredDetailsReady(true);
-    },
-    0
-  );
+  loadSupplementalNotes();
 
   return () => {
-    window.clearTimeout(timeoutId);
+    isActive = false;
   };
 }, [
   deferredDetailsReady,
-  pokemon,
-  priorityArtworkReady
+  pokemon
 ]);
 
 useEffect(() => {
-  if (!pokemon || priorityArtworkReady) {
+  if (!pokemon || !deferredDetailsReady) {
     return undefined;
   }
 
-  const timeoutId = window.setTimeout(
-    () => {
-      setPriorityArtworkReady(true);
-    },
-    1200
-  );
+  let isActive = true;
+
+  async function loadEvolutionData() {
+    try {
+      setEvolutionLoading(true);
+
+      const [
+        evolutionResponse,
+        evolutionOverrides
+      ] = await Promise.all([
+        fetch(
+          `/data/evolutionChains/${pokemon.evolutionChainId}.json`
+        ),
+        readJsonFile(
+          "/data/evolutionMethodOverrides.json",
+          {
+            warn: true
+          }
+        )
+      ]);
+
+      if (!evolutionResponse.ok) {
+        throw new Error(
+          `Missing evolution chain for ${pokemon.evolutionChainId}`
+        );
+      }
+
+      const evolutionJson =
+        await evolutionResponse.json();
+
+      if (!isActive) {
+        return;
+      }
+
+      setEvolutionData(evolutionJson);
+      setEvolutionMethodOverrides(
+        evolutionOverrides ?? {}
+      );
+    } catch (error) {
+      if (!isActive) {
+        return;
+      }
+
+      console.warn(
+        "Failed to load evolution data:",
+        error
+      );
+
+      setEvolutionData(null);
+      setEvolutionMethodOverrides({});
+    } finally {
+      if (isActive) {
+        setEvolutionLoading(false);
+      }
+    }
+  }
+
+  loadEvolutionData();
 
   return () => {
-    window.clearTimeout(timeoutId);
+    isActive = false;
   };
 }, [
-  pokemon,
-  priorityArtworkReady
+  deferredDetailsReady,
+  pokemon
 ]);
 
 useEffect(() => {
@@ -744,9 +718,6 @@ function formatWeightEnglish(weight) {
         alt={formatPokemonDisplayName(
           pokemon
         )}
-        onPriorityLoad={() =>
-          setPriorityArtworkReady(true)
-        }
         pokemon={pokemon}
       />
 
@@ -889,6 +860,22 @@ function formatWeightEnglish(weight) {
 
 </div>
 
+<DeferredSection
+  fallback={
+    <div
+      aria-hidden="true"
+      style={{
+        minHeight: "1px"
+      }}
+    />
+  }
+  onReveal={() =>
+    setDeferredDetailsReady(true)
+  }
+  rootMargin="150px 0px"
+>
+  <Suspense fallback={null}>
+
 
             {/* ---------------------------------------------------------Evolution Line */}
 
@@ -997,13 +984,16 @@ function formatWeightEnglish(weight) {
 
 
   {learnsetData ? (
-    <LearnsetCard
-      key={`learnset-${pokemon.id}`}
-      pokemonData={learnsetData}
-      movesData={movesData}
-      titleColor={expandableTitleColor}
-      titleChevron={true}
-    />
+    <Suspense fallback={null}>
+      <LearnsetCard
+        key={`learnset-${pokemon.id}`}
+        pokemonData={learnsetData}
+        movesData={movesData}
+        titleColor={expandableTitleColor}
+        titleChevron={true}
+        style={POKEMON_DETAIL_DROPDOWN_STYLE}
+      />
+    </Suspense>
   ) : (
     <LearnsetPlaceholder
       loading={
@@ -1015,6 +1005,7 @@ function formatWeightEnglish(weight) {
       }
       titleColor={expandableTitleColor}
       titleChevron={true}
+      style={POKEMON_DETAIL_DROPDOWN_STYLE}
     />
   )}
 
@@ -1027,6 +1018,7 @@ function formatWeightEnglish(weight) {
       entries={pokemon.dexEntries}
       titleColor={expandableTitleColor}
       titleChevron={true}
+      style={POKEMON_DETAIL_DROPDOWN_STYLE}
   />
 
   <WhereToFind
@@ -1035,6 +1027,7 @@ function formatWeightEnglish(weight) {
     pokemonId={pokemon.id}
     titleColor={expandableTitleColor}
     titleChevron={true}
+    style={POKEMON_DETAIL_DROPDOWN_STYLE}
   />
 
   <HeldItems
@@ -1043,6 +1036,7 @@ function formatWeightEnglish(weight) {
     pokemonId={pokemon.id}
     titleColor={expandableTitleColor}
     titleChevron={true}
+    style={POKEMON_DETAIL_DROPDOWN_STYLE}
   />
 
   <OaksNotes note={oaksNotes} />
@@ -1056,6 +1050,7 @@ function formatWeightEnglish(weight) {
     )}
     titleColor={expandableTitleColor}
     titleChevron={true}
+    style={POKEMON_DETAIL_DROPDOWN_STYLE}
   />
 
   <div
@@ -1143,14 +1138,45 @@ function formatWeightEnglish(weight) {
          Hatch Counter: {pokemon.hatchCounter}
         </p>
 
-  <SizeComparison
-    pokemon={pokemon}
-    reviewMode={sizeReviewMode}
-  />
+  <DeferredSection
+    fallback={
+      <div
+        aria-hidden="true"
+        style={{
+          minHeight: "1px"
+        }}
+      />
+    }
+    rootMargin="300px 0px"
+  >
+    <Suspense fallback={null}>
+      <SizeComparison
+        pokemon={pokemon}
+        reviewMode={sizeReviewMode}
+      />
+    </Suspense>
+  </DeferredSection>
 
-  <PokemonSpriteCarousel
-    pokemon={pokemon}
-  />
+  <DeferredSection
+    fallback={
+      <div
+        aria-hidden="true"
+        style={{
+          minHeight: "1px"
+        }}
+      />
+    }
+    rootMargin="300px 0px"
+  >
+    <Suspense fallback={null}>
+      <PokemonSpriteCarousel
+        pokemon={pokemon}
+      />
+    </Suspense>
+  </DeferredSection>
+
+  </Suspense>
+</DeferredSection>
 
 
     </div>

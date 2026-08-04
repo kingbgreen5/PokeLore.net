@@ -6,6 +6,7 @@ import {
 import { Link } from "react-router-dom";
 import FeebasGuideBreadcrumbs from "../components/feebas/FeebasGuideBreadcrumbs";
 import DpptFeebasMap from "../components/feebas/DpptFeebasMap";
+import DpptGreatMarshResults from "../components/feebas/DpptGreatMarshResults";
 import Seo from "../seo/Seo";
 import {
   calculateDpptFeebasResults,
@@ -57,6 +58,16 @@ function getAreaHighlights(candidate, areaSize) {
   }));
 }
 
+function getCombinedAreaHighlights(candidates, areaSize) {
+  return candidates.flatMap(candidate =>
+    getAreaHighlights(candidate, areaSize)
+  );
+}
+
+function getCombinedIndexes(candidates) {
+  return candidates.flatMap(candidate => candidate.indexes);
+}
+
 function BackgroundImageSwitch({
   checked,
   onChange
@@ -84,6 +95,7 @@ function DpptFeebasPublicCalculatorPage() {
   const [mode, setMode] = useState(MAP_MODES.HINT);
   const [showMapImage, setShowMapImage] = useState(true);
   const [result, setResult] = useState(null);
+  const [detectedSaveGame, setDetectedSaveGame] = useState(null);
   const [saveFileStatus, setSaveFileStatus] = useState({
     type: "idle",
     message: ""
@@ -112,6 +124,7 @@ function DpptFeebasPublicCalculatorPage() {
   }
 
   function calculate() {
+    setDetectedSaveGame(null);
     setResult(
       calculateDpptFeebasResults(
         form.yesterdayLottery,
@@ -123,6 +136,7 @@ function DpptFeebasPublicCalculatorPage() {
   function reset() {
     setForm(DEFAULT_FORM);
     setResult(null);
+    setDetectedSaveGame(null);
   }
 
   function clearSaveFileResult() {
@@ -135,6 +149,7 @@ function DpptFeebasPublicCalculatorPage() {
       message: ""
     });
     setResult(null);
+    setDetectedSaveGame(null);
   }
 
   async function handleSaveFileChange(event) {
@@ -146,6 +161,7 @@ function DpptFeebasPublicCalculatorPage() {
         message: "Choose a .sav file first."
       });
       setResult(null);
+      setDetectedSaveGame(null);
       return;
     }
 
@@ -154,6 +170,7 @@ function DpptFeebasPublicCalculatorPage() {
       message: "Reading save file locally..."
     });
     setResult(null);
+    setDetectedSaveGame(null);
 
     try {
       const parsed = await parseDpptSaveFile(file);
@@ -171,6 +188,7 @@ function DpptFeebasPublicCalculatorPage() {
           parsed.feebasSeed
         )
       );
+      setDetectedSaveGame(parsed.game);
       setSaveFileStatus({
         type: "success",
         message: `${parsed.gameLabel} Version detected.`
@@ -404,26 +422,50 @@ function DpptFeebasPublicCalculatorPage() {
             </section>
           )}
 
-          {result?.candidates.map(candidate => {
+          {result?.candidates.length > 0 && (() => {
+            const [primaryCandidate, ...secondaryCandidates] =
+              result.candidates;
             const areaSize = MAP_MODE_AREA_SIZES[mode];
-            const highlightedAreas =
+            const highlightedAreas = areaSize
+              ? getAreaHighlights(primaryCandidate, areaSize)
+              : [];
+            const secondaryHighlightedAreas =
               areaSize
-                ? getAreaHighlights(candidate, areaSize)
+                ? getCombinedAreaHighlights(
+                    secondaryCandidates,
+                    areaSize
+                  )
                 : [];
+            const hasAmbiguousCandidates =
+              secondaryCandidates.length > 0;
 
             return (
               <section
-                key={candidate.groupSeedUnsigned}
+                key={primaryCandidate.groupSeedUnsigned}
                 className="dppt-feebas-public-result"
               >
+                {hasAmbiguousCandidates && (
+                  <p className="dppt-feebas-ambiguous-note">
+                    Occasionally, two different tile sets are possible
+                    options. Check both.
+                  </p>
+                )}
                 <DpptFeebasMap
                   blockedTileOpacity={blockedTileOpacity}
                   highlightedIndexes={
                     mode === MAP_MODES.EXACT
-                      ? candidate.indexes
+                      ? primaryCandidate.indexes
                       : []
                   }
                   highlightedAreas={highlightedAreas}
+                  secondaryHighlightedIndexes={
+                    mode === MAP_MODES.EXACT
+                      ? getCombinedIndexes(secondaryCandidates)
+                      : []
+                  }
+                  secondaryHighlightedAreas={
+                    secondaryHighlightedAreas
+                  }
                   showMapImage={showMapImage}
                   showGroupBoundaries={false}
                 />
@@ -433,8 +475,16 @@ function DpptFeebasPublicCalculatorPage() {
                 />
               </section>
             );
-          })}
+          })()}
+
         </div>
+
+        {result?.valid && result.candidates.length > 0 && (
+          <DpptGreatMarshResults
+            candidates={result.candidates}
+            preferredGame={detectedSaveGame}
+          />
+        )}
       </section>
 
       <aside className="dppt-feebas-oaks-note">

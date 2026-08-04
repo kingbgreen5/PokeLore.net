@@ -288,6 +288,11 @@
   min-width: 0;
 }
 
+.dppt-feebas-public-tool > .dppt-great-marsh-results {
+  grid-column: 1 / -1;
+  max-width: 820px;
+}
+
 .dppt-feebas-public-result,
 .dppt-feebas-public-message {
   background: #171c26;
@@ -302,6 +307,15 @@
   justify-self: start;
   max-width: 100%;
   width: 474px;
+}
+
+.dppt-feebas-ambiguous-note {
+  color: #dbeafe;
+  font-size: 0.86rem;
+  font-weight: 750;
+  line-height: 1.45;
+  margin: 0 0 0.75rem;
+  text-align: left;
 }
 
 .dppt-feebas-public-result .dppt-feebas-map {

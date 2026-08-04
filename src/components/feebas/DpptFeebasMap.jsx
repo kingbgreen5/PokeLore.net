@@ -13,7 +13,6 @@ import "./DpptFeebasMap.css";
 
 function normalizeIndexes(indexes) {
   return indexes
-    .slice(0, 4)
     .map(index => Number(index))
     .filter(Number.isInteger);
 }
@@ -27,9 +26,83 @@ function normalizeAreaIndexes(areas) {
   }));
 }
 
+function getAreaEntries(normalizedAreas) {
+  const byCoordinate = new Map();
+  const warnings = [];
+
+  for (const area of normalizedAreas) {
+    for (const index of area.indexes) {
+      try {
+        const tile = getFeebasTileByIndex(index);
+        const key = `${tile.x}:${tile.y}`;
+        const entry = byCoordinate.get(key) ?? {
+          tile,
+          areas: []
+        };
+
+        entry.areas.push({
+          areaNumber: area.areaNumber,
+          index
+        });
+        byCoordinate.set(key, entry);
+      } catch (error) {
+        warnings.push(error.message);
+      }
+    }
+  }
+
+  return {
+    entries: Array.from(byCoordinate.values()),
+    warnings
+  };
+}
+
+function getHighlightEntries(normalizedIndexes) {
+  const byCoordinate = new Map();
+  const warnings = [];
+
+  for (
+    let resultIndex = 0;
+    resultIndex < normalizedIndexes.length;
+    resultIndex += 1
+  ) {
+    const index = normalizedIndexes[resultIndex];
+    try {
+      const tile = getFeebasTileByIndex(index);
+      const key = `${tile.x}:${tile.y}`;
+      const entry = byCoordinate.get(key) ?? {
+        tile,
+        results: []
+      };
+      entry.results.push({
+        result: resultIndex + 1,
+        index
+      });
+      byCoordinate.set(key, entry);
+    } catch (error) {
+      warnings.push(error.message);
+    }
+  }
+
+  for (const entry of byCoordinate.values()) {
+    if (entry.results.length > 1) {
+      warnings.push(
+        `Multiple results share coordinate x ${entry.tile.x}, y ${entry.tile.y}.`
+      );
+    }
+  }
+
+  return {
+    entries: Array.from(byCoordinate.values()),
+    warnings
+  };
+}
+
 function DpptFeebasMap({
   highlightedIndexes = [],
   highlightedAreas = [],
+  secondaryHighlightedIndexes = [],
+  secondaryHighlightedAreas = [],
   mapImageSrc = DPPT_FEEBAS_MAP_IMAGE_SRC,
   mapImageAlignment,
   blockedTileOpacity = 1,
@@ -51,76 +124,30 @@ function DpptFeebasMap({
     () => normalizeAreaIndexes(highlightedAreas),
     [highlightedAreas]
   );
-  const areaEntries = useMemo(() => {
-    const byCoordinate = new Map();
-    const warnings = [];
-
-    for (const area of normalizedAreas) {
-      for (const index of area.indexes) {
-        try {
-          const tile = getFeebasTileByIndex(index);
-          const key = `${tile.x}:${tile.y}`;
-          const entry = byCoordinate.get(key) ?? {
-            tile,
-            areas: []
-          };
-
-          entry.areas.push({
-            areaNumber: area.areaNumber,
-            index
-          });
-          byCoordinate.set(key, entry);
-        } catch (error) {
-          warnings.push(error.message);
-        }
-      }
-    }
-
-    return {
-      entries: Array.from(byCoordinate.values()),
-      warnings
-    };
-  }, [normalizedAreas]);
-  const highlightEntries = useMemo(() => {
-    const byCoordinate = new Map();
-    const warnings = [];
-
-    for (
-      let resultIndex = 0;
-      resultIndex < normalizedIndexes.length;
-      resultIndex += 1
-    ) {
-      const index = normalizedIndexes[resultIndex];
-      try {
-        const tile = getFeebasTileByIndex(index);
-        const key = `${tile.x}:${tile.y}`;
-        const entry = byCoordinate.get(key) ?? {
-          tile,
-          results: []
-        };
-        entry.results.push({
-          result: resultIndex + 1,
-          index
-        });
-        byCoordinate.set(key, entry);
-      } catch (error) {
-        warnings.push(error.message);
-      }
-    }
-
-    for (const entry of byCoordinate.values()) {
-      if (entry.results.length > 1) {
-        warnings.push(
-          `Multiple results share coordinate x ${entry.tile.x}, y ${entry.tile.y}.`
-        );
-      }
-    }
-
-    return {
-      entries: Array.from(byCoordinate.values()),
-      warnings
-    };
-  }, [normalizedIndexes]);
+  const secondaryNormalizedIndexes = useMemo(
+    () => normalizeIndexes(secondaryHighlightedIndexes),
+    [secondaryHighlightedIndexes]
+  );
+  const secondaryNormalizedAreas = useMemo(
+    () => normalizeAreaIndexes(secondaryHighlightedAreas),
+    [secondaryHighlightedAreas]
+  );
+  const areaEntries = useMemo(
+    () => getAreaEntries(normalizedAreas),
+    [normalizedAreas]
+  );
+  const secondaryAreaEntries = useMemo(
+    () => getAreaEntries(secondaryNormalizedAreas),
+    [secondaryNormalizedAreas]
+  );
+  const highlightEntries = useMemo(
+    () => getHighlightEntries(normalizedIndexes),
+    [normalizedIndexes]
+  );
+  const secondaryHighlightEntries = useMemo(
+    () => getHighlightEntries(secondaryNormalizedIndexes),
+    [secondaryNormalizedIndexes]
+  );
   const visibleBlockedTileOpacity = Number.isFinite(
     blockedTileOpacity
   )
@@ -188,6 +215,26 @@ function DpptFeebasMap({
             <span className="dppt-feebas-grid-lines" />
           )}
 
+          {secondaryAreaEntries.entries.map(entry => {
+            const label = [
+              ...new Set(
+                entry.areas.map(area => area.areaNumber)
+              )
+            ].join("+");
+            const indexes = entry.areas
+              .map(area => area.index)
+              .join(", ");
+
+            return (
+              <span
+                key={`secondary-area-${entry.tile.x}:${entry.tile.y}`}
+                className="dppt-feebas-secondary-area-tile"
+                style={getFeebasTileStyle(entry.tile)}
+                title={`Alternate search area ${label}; Feebas index ${indexes}; Coordinate x ${entry.tile.x}, y ${entry.tile.y}`}
+              />
+            );
+          })}
+
           {areaEntries.entries.map(entry => {
             const label = [
               ...new Set(
@@ -249,18 +296,41 @@ function DpptFeebasMap({
               />
             );
           })}
+
+          {secondaryHighlightEntries.entries.map(entry => {
+            const label = entry.results
+              .map(result => result.result)
+              .join("+");
+            const indexes = entry.results
+              .map(result => result.index)
+              .join(", ");
+            return (
+              <span
+                key={`secondary-${entry.tile.x}:${entry.tile.y}`}
+                className="dppt-feebas-secondary-highlight-tile"
+                style={getFeebasTileStyle(entry.tile)}
+                title={`Alternate result ${label}; Feebas index ${indexes}; Coordinate x ${entry.tile.x}, y ${entry.tile.y}`}
+              />
+            );
+          })}
         </div>
       </div>
 
-      {[...areaEntries.warnings, ...highlightEntries.warnings]
-        .length > 0 && (
+      {[
+        ...areaEntries.warnings,
+        ...secondaryAreaEntries.warnings,
+        ...highlightEntries.warnings,
+        ...secondaryHighlightEntries.warnings
+      ].length > 0 && (
         <figcaption
           className="dppt-feebas-map-warning"
           role="alert"
         >
           {[
             ...areaEntries.warnings,
-            ...highlightEntries.warnings
+            ...secondaryAreaEntries.warnings,
+            ...highlightEntries.warnings,
+            ...secondaryHighlightEntries.warnings
           ].join(" ")}
         </figcaption>
       )}

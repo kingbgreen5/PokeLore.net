@@ -195,6 +195,35 @@ describe("dpptFeebasCalculator", () => {
     expect(candidate.indexes[3]).toBeLessThanOrEqual(527);
   });
 
+  it("returns both candidate tile sets for ambiguous lottery pairs", () => {
+    const result =
+      calculateDpptFeebasResults("61249", "33671");
+
+    expect(result.valid).toBe(true);
+    expect(result.candidateCount).toBe(2);
+    expect(
+      result.candidates.map(candidate => ({
+        candidateNumber: candidate.candidateNumber,
+        yesterdaySeedHex: candidate.yesterdaySeedHex,
+        seedHex: candidate.seedHex,
+        indexes: candidate.indexes
+      }))
+    ).toEqual([
+      {
+        candidateNumber: 1,
+        yesterdaySeedHex: "0x0BADF00D",
+        seedHex: "0xBD71AA22",
+        indexes: [57, 245, 302, 430]
+      },
+      {
+        candidateNumber: 2,
+        yesterdaySeedHex: "0x7A878021",
+        seedHex: "0x47EE3606",
+        indexes: [71, 238, 318, 402]
+      }
+    ]);
+  });
+
   it("resolves every produced index to exactly one coordinate", () => {
     const result =
       calculateDpptFeebasResults("02929", "14879");
