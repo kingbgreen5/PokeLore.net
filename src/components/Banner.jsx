@@ -28,10 +28,12 @@ function Banner() {
           />
           <img
             src={bannerFallback}
-            alt="Banner"
+            alt="PokéLore.net"
             width="900"
             height="224"
             decoding="async"
+            fetchPriority="high"
+            loading="eager"
             style={{
               width: "90%",
               height: "auto",

@@ -1,4 +1,8 @@
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useState
+} from "react";
 import {
   Link,
   useSearchParams
@@ -7,8 +11,15 @@ import { capitalize } from "../utils/capitalize";
 import Seo from "../seo/Seo";
 import { dexEntriesSeo } from "../seo/seoConfig";
 
+const INITIAL_VISIBLE_GROUPS = 30;
+const VISIBLE_GROUP_INCREMENT = 30;
+
 function DexEntriesPage() {
   const [entries, setEntries] = useState([]);
+  const [
+    visibleGroupCount,
+    setVisibleGroupCount
+  ] = useState(INITIAL_VISIBLE_GROUPS);
   const [
     searchParams,
     setSearchParams
@@ -21,11 +32,24 @@ function DexEntriesPage() {
       const response = await fetch("/data/condensedEntries.json");
       const data = await response.json();
 
-      setEntries(data);
+      setEntries(
+        data.map(entry => ({
+          ...entry,
+          searchableText:
+            entry.text.toLowerCase(),
+          displayVersions: entry.versions
+            .map(capitalize)
+            .join(" / ")
+        }))
+      );
     }
 
     loadData();
   }, []);
+
+  useEffect(() => {
+    setVisibleGroupCount(INITIAL_VISIBLE_GROUPS);
+  }, [search]);
 
   function handleSearchChange(event) {
     const nextSearch = event.target.value;
@@ -43,45 +67,74 @@ function DexEntriesPage() {
     });
   }
 
-  // const filteredEntries = entries.filter(entry =>
-  //   entry.text.toLowerCase().includes(search.toLowerCase())
-  // );
+  const normalizedSearch =
+    search.trim().toLowerCase();
 
+  const filteredEntries = useMemo(
+    () =>
+      normalizedSearch
+        ? entries.filter(entry =>
+            entry.searchableText.includes(
+              normalizedSearch
+            )
+          )
+        : entries,
+    [entries, normalizedSearch]
+  );
 
-const filteredEntries = entries.filter(entry =>
-  entry.text.toLowerCase().includes(search.toLowerCase())
-);
+  const groupedEntries = useMemo(() => {
+    const groups = new Map();
 
-const groupedEntries = filteredEntries.reduce((acc, entry) => {
-  if (!acc[entry.pokemon]) {
-    acc[entry.pokemon] = [];
-  }
+    filteredEntries.forEach(entry => {
+      if (!groups.has(entry.pokemon)) {
+        groups.set(entry.pokemon, []);
+      }
 
-  acc[entry.pokemon].push(entry);
+      groups.get(entry.pokemon).push(entry);
+    });
 
-  return acc;
-}, {});
+    return Array.from(groups.entries());
+  }, [filteredEntries]);
 
+  const visibleGroups = groupedEntries.slice(
+    0,
+    visibleGroupCount
+  );
+  const hiddenGroupCount = Math.max(
+    groupedEntries.length - visibleGroupCount,
+    0
+  );
 
-//-----------------------------------------------RETURN STATEMENT--------------------------------------------------
   return (
-  <div > 
+  <main
+    aria-labelledby="dex-entries-title"
+    style={{ padding: "1rem" }}
+  >
     <Seo {...dexEntriesSeo()} />
 
-    <div style={{ padding: "1rem" }} >
-
- 
-      <h4>
+      <h1
+        id="dex-entries-title"
+        style={{
+          fontSize: "1rem",
+          lineHeight: 1.35,
+          margin: "0 0 1rem"
+        }}
+      >
         Search every entry from
         every generation.
-      </h4>
-
-
-{/* 
-------------------------------------------------SEARCH BAR-------------------------------------------------- */}
-
-
+      </h1>
+      <label
+        htmlFor="dex-entry-search"
+        style={{
+          display: "block",
+          fontWeight: 700,
+          marginBottom: ".5rem"
+        }}
+      >
+        Search entries
+      </label>
       <input
+        id="dex-entry-search"
         type="text"
         placeholder=" Search entries... Ex: 'forest', 'cave', 'sea'..."
         value={search}
@@ -106,7 +159,7 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
       </p>
 
 
-{Object.entries(groupedEntries).map(
+{visibleGroups.map(
   ([pokemonName, pokemonEntries]) => (
     <div
       key={pokemonName}
@@ -140,25 +193,48 @@ const groupedEntries = filteredEntries.reduce((acc, entry) => {
             // borderBottom: "1px solid #eee"
           }}
         >
+          <p>{entry.text}</p>
 
-          <p><>{entry.text}</> </p>
-
-          <div style={{
-            fontSize: ".875rem",
-            color: "#5a5a5a",
-          }}
-          >{capitalize(
-            entry.versions
-             .map(capitalize)
-              .join(" / "))}</div>
+          <div
+            style={{
+              fontSize: ".875rem",
+              color: "#9ca3af",
+            }}
+          >
+            {entry.displayVersions}
+          </div>
   
         </div>
       ))}
     </div>
   )
 )}
-    </div>
-    </div>
+
+      {hiddenGroupCount > 0 && (
+        <button
+          type="button"
+          onClick={() => {
+            setVisibleGroupCount(count =>
+              count + VISIBLE_GROUP_INCREMENT
+            );
+          }}
+          style={{
+            backgroundColor: "#2c2c2c",
+            border: "2px solid #555",
+            borderRadius: "8px",
+            color: "white",
+            cursor: "pointer",
+            display: "block",
+            fontSize: "1rem",
+            fontWeight: 700,
+            margin: "0 auto 2rem",
+            padding: ".8rem 1rem"
+          }}
+        >
+          Show more Pokemon
+        </button>
+      )}
+    </main>
   );
 }
 
