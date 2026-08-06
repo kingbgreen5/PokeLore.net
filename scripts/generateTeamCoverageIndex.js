@@ -93,7 +93,7 @@ async function readJsonIfExists(filePath) {
 async function readVersionAvailability() {
   const availabilityByVersionGroup = new Map();
 
-  let files = [];
+  let files;
 
   try {
     files = await fs.readdir(versionAvailabilityDir);

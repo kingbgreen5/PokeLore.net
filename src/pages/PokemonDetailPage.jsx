@@ -69,14 +69,6 @@ const PokemonSpriteCarousel = lazy(() =>
   import("../components/PokemonSpriteCarousel.jsx")
 );
 
-const POKEMON_DETAIL_DROPDOWN_STYLE = {
-  background: "rgba(14, 165, 233, 0.12)"
-};
-
-
-
-
-
 function capitalize(text) {
   return String(text)
     .split("-")
@@ -177,8 +169,7 @@ function LearnsetPlaceholder({
   loading,
   onReveal,
   titleColor,
-  titleChevron = false,
-  style
+  titleChevron = false
 }) {
   return (
     <CollapsibleSection
@@ -192,7 +183,6 @@ function LearnsetPlaceholder({
       titleColor={titleColor}
       titleChevron={titleChevron}
       onToggle={onReveal}
-      style={style}
       contentStyle={{
         marginTop: "1rem"
       }}
@@ -991,7 +981,6 @@ function formatWeightEnglish(weight) {
         movesData={movesData}
         titleColor={expandableTitleColor}
         titleChevron={true}
-        style={POKEMON_DETAIL_DROPDOWN_STYLE}
       />
     </Suspense>
   ) : (
@@ -1005,7 +994,6 @@ function formatWeightEnglish(weight) {
       }
       titleColor={expandableTitleColor}
       titleChevron={true}
-      style={POKEMON_DETAIL_DROPDOWN_STYLE}
     />
   )}
 
@@ -1018,7 +1006,6 @@ function formatWeightEnglish(weight) {
       entries={pokemon.dexEntries}
       titleColor={expandableTitleColor}
       titleChevron={true}
-      style={POKEMON_DETAIL_DROPDOWN_STYLE}
   />
 
   <WhereToFind
@@ -1027,7 +1014,6 @@ function formatWeightEnglish(weight) {
     pokemonId={pokemon.id}
     titleColor={expandableTitleColor}
     titleChevron={true}
-    style={POKEMON_DETAIL_DROPDOWN_STYLE}
   />
 
   <HeldItems
@@ -1036,7 +1022,6 @@ function formatWeightEnglish(weight) {
     pokemonId={pokemon.id}
     titleColor={expandableTitleColor}
     titleChevron={true}
-    style={POKEMON_DETAIL_DROPDOWN_STYLE}
   />
 
   <OaksNotes note={oaksNotes} />
@@ -1050,7 +1035,6 @@ function formatWeightEnglish(weight) {
     )}
     titleColor={expandableTitleColor}
     titleChevron={true}
-    style={POKEMON_DETAIL_DROPDOWN_STYLE}
   />
 
   <div

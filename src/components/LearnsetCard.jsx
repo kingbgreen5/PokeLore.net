@@ -46,8 +46,7 @@ function LearnsetCard({
   pokemonData,
   movesData,
   titleColor,
-  titleChevron = false,
-  style
+  titleChevron = false
 }) {
   const [expanded, setExpanded] =
     useSessionState(
@@ -159,7 +158,6 @@ const filteredMoves =
       onToggle={() =>
         setExpanded(!expanded)
       }
-      style={style}
       contentStyle={{
         marginTop: "1rem"
       }}

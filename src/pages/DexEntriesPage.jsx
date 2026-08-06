@@ -116,12 +116,18 @@ function DexEntriesPage() {
         id="dex-entries-title"
         style={{
           fontSize: "1rem",
-          lineHeight: 1.35,
-          margin: "0 0 1rem"
+          letterSpacing: 0,
+          lineHeight: 1.5,
+          margin: "0 auto 1rem",
+          maxWidth: "72rem"
         }}
       >
-        Search every entry from
-        every generation.
+        Search every Pokémon Pokédex entry from every main series game in one place.
+        <span className="dex-entries-desktop-intro">
+          {" "}Find how each Pokémon has been described across generations, compare
+          version differences, and discover how official Pokédex lore has evolved
+          over time.
+        </span>
       </h1>
       <label
         htmlFor="dex-entry-search"

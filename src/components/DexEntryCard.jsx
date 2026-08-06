@@ -15,8 +15,7 @@ function capitalize(text) {
 function DexEntryCard({
   entries,
   titleColor,
-  titleChevron = false,
-  style
+  titleChevron = false
 }) {
   const [expanded, setExpanded] =
     useState(false);
@@ -35,8 +34,7 @@ function DexEntryCard({
         setExpanded(!expanded)
       }
       style={{
-        padding: ".4rem",
-        ...style
+        padding: ".4rem"
       }}
       contentStyle={{
         marginTop: "1rem"

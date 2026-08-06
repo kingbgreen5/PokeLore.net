@@ -80,8 +80,7 @@ function AdditionalImages({
   pokemonId,
   pokemonName,
   titleColor,
-  titleChevron = false,
-  style
+  titleChevron = false
 }) {
   const [expanded, setExpanded] =
     useState(false);
@@ -165,8 +164,7 @@ function AdditionalImages({
       }
       seoVisible={false}
       style={{
-        marginTop: "1rem",
-        ...style
+        marginTop: "1rem"
       }}
       contentStyle={{
         marginTop: "1rem"

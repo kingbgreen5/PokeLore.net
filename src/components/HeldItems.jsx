@@ -56,8 +56,7 @@ function HeldItems({
   enabled = true,
   pokemonId,
   titleColor,
-  titleChevron = false,
-  style
+  titleChevron = false
 }) {
   const [expanded, setExpanded] =
     useSessionState(
@@ -150,8 +149,7 @@ function HeldItems({
         setExpanded(!expanded)
       }
       style={{
-        marginTop: "1rem",
-        ...style
+        marginTop: "1rem"
       }}
       contentStyle={{
         display: "grid",

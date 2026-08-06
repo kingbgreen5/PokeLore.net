@@ -424,9 +424,12 @@ function SingleTypeCoveragePage() {
     setTeamCoverageData
   ] = useState(null);
   const [
-    recommendationPage,
-    setRecommendationPage
-  ] = useState(1);
+    recommendationPageState,
+    setRecommendationPageState
+  ] = useState({
+    key: "",
+    page: 1
+  });
   const [
     preferredSortMode,
     setPreferredSortMode
@@ -447,6 +450,12 @@ function SingleTypeCoveragePage() {
     getValidMovePowerThreshold(
       preferredMovePowerThreshold
     );
+  const recommendationPageKey = `${selectedVersion}:${selectedType}`;
+  const recommendationPage =
+    recommendationPageState.key ===
+    recommendationPageKey
+      ? recommendationPageState.page
+      : 1;
 
   useEffect(() => {
     if (
@@ -494,13 +503,6 @@ function SingleTypeCoveragePage() {
       isMounted = false;
     };
   }, [selectedVersion]);
-
-  useEffect(() => {
-    setRecommendationPage(1);
-  }, [
-    selectedType,
-    selectedVersion
-  ]);
 
   useEffect(() => {
     const urlHasSelectedVersion =
@@ -653,6 +655,27 @@ function SingleTypeCoveragePage() {
       recommendationStart +
         RECOMMENDATIONS_PER_PAGE
     );
+
+  function setRecommendationPage(nextPage) {
+    setRecommendationPageState(
+      currentState => {
+        const currentPage =
+          currentState.key ===
+          recommendationPageKey
+            ? currentState.page
+            : 1;
+        const page =
+          typeof nextPage === "function"
+            ? nextPage(currentPage)
+            : nextPage;
+
+        return {
+          key: recommendationPageKey,
+          page
+        };
+      }
+    );
+  }
 
   function updateShareableParams({
     type = selectedType,

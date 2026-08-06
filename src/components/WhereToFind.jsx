@@ -41,8 +41,7 @@ function WhereToFind({
   enabled = true,
   pokemonId,
   titleColor,
-  titleChevron = false,
-  style
+  titleChevron = false
 }) {
   const [expanded, setExpanded] =
     useSessionState(
@@ -193,8 +192,7 @@ function WhereToFind({
         setExpanded(!expanded)
       }
       style={{
-        marginTop: "1rem",
-        ...style
+        marginTop: "1rem"
       }}
       contentStyle={{
         display: "grid",
