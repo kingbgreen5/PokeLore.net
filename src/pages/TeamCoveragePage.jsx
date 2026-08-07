@@ -53,7 +53,7 @@ const TRADE_EVOLUTION_FILTER_STORAGE_KEY =
   "pokelore:team-coverage-trade-evolution-filter:v1";
 const RECOMMENDATIONS_PER_PAGE = 25;
 const DEFAULT_RECOMMENDATION_SORT_MODE =
-  "highest-bst";
+  "custom-score";
 const DEFAULT_RECOMMENDATION_COVERAGE_FILTER =
   "both";
 const DEFAULT_RECOMMENDATION_MOVE_POWER_THRESHOLD = 60;
