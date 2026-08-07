@@ -2,6 +2,7 @@ import {
   ARTICLE_BLOCK_TYPES,
   ARTICLE_CONTENT_TYPE,
   ARTICLE_IMAGE_DISPLAY_SIZES,
+  getYouTubeVideoId,
   isSafeSlug,
   slugify
 } from "./articleSchema";
@@ -253,6 +254,15 @@ export function validateArticle(article) {
             );
           }
         });
+      }
+
+      if (
+        block.type === "youtube" &&
+        !getYouTubeVideoId(block.url || block.videoId)
+      ) {
+        errors.push(
+          `${label} YouTube block needs a valid YouTube URL or video ID.`
+        );
       }
 
       if (block.type === "pokemon-card-grid") {

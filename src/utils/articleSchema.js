@@ -10,6 +10,7 @@ export const ARTICLE_BLOCK_TYPES = [
   "comparison",
   "table",
   "callout",
+  "youtube",
   "pokemon-card-grid",
   "item-card-grid",
   "pokemon-link",
@@ -61,6 +62,61 @@ export function createBlockId() {
 
 export function todayIsoDate() {
   return new Date().toISOString().slice(0, 10);
+}
+
+export function getYouTubeVideoId(value = "") {
+  const text = String(value ?? "").trim();
+
+  if (/^[a-zA-Z0-9_-]{11}$/.test(text)) {
+    return text;
+  }
+
+  try {
+    const url = new URL(text);
+    const hostname = url.hostname
+      .replace(/^www\./, "")
+      .toLowerCase();
+    const pathParts = url.pathname
+      .split("/")
+      .filter(Boolean);
+
+    if (hostname === "youtu.be") {
+      return /^[a-zA-Z0-9_-]{11}$/.test(pathParts[0])
+        ? pathParts[0]
+        : "";
+    }
+
+    if (
+      hostname === "youtube.com" ||
+      hostname === "m.youtube.com" ||
+      hostname === "music.youtube.com"
+    ) {
+      const watchId = url.searchParams.get("v");
+
+      if (/^[a-zA-Z0-9_-]{11}$/.test(watchId ?? "")) {
+        return watchId;
+      }
+
+      if (
+        ["embed", "shorts", "live"].includes(pathParts[0]) &&
+        /^[a-zA-Z0-9_-]{11}$/.test(pathParts[1] ?? "")
+      ) {
+        return pathParts[1];
+      }
+    }
+  } catch {
+    return "";
+  }
+
+  return "";
+}
+
+export function getYouTubeEmbedUrl(value = "") {
+  const videoId = getYouTubeVideoId(value);
+
+  return videoId
+    ? `https://www.youtube-nocookie.com/embed/${videoId}`
+    : "";
 }
 
 export function createEmptyArticle({

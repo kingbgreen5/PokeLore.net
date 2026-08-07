@@ -87,6 +87,14 @@ function emptyBlock(type) {
         title: "",
         text: ""
       };
+    case "youtube":
+      return {
+        id,
+        type,
+        url: "",
+        title: "",
+        caption: ""
+      };
     case "pokemon-card-grid":
       return {
         id,
@@ -170,6 +178,26 @@ function TextField({
   );
 }
 
+function useDraftValue(normalizedValue) {
+  const [draftState, setDraftState] = useState({
+    source: normalizedValue,
+    value: normalizedValue
+  });
+  const draft =
+    draftState.source === normalizedValue
+      ? draftState.value
+      : normalizedValue;
+
+  function setDraft(value) {
+    setDraftState({
+      source: normalizedValue,
+      value
+    });
+  }
+
+  return [draft, setDraft];
+}
+
 function NumericListField({
   label,
   values,
@@ -177,11 +205,7 @@ function NumericListField({
 }) {
   const normalizedValue = (values ?? []).join(", ");
   const [draft, setDraft] =
-    useState(normalizedValue);
-
-  useEffect(() => {
-    setDraft(normalizedValue);
-  }, [normalizedValue]);
+    useDraftValue(normalizedValue);
 
   return (
     <label className="article-studio-field">
@@ -212,11 +236,7 @@ function DelimitedListField({
 }) {
   const normalizedValue = (values ?? []).join(", ");
   const [draft, setDraft] =
-    useState(normalizedValue);
-
-  useEffect(() => {
-    setDraft(normalizedValue);
-  }, [normalizedValue]);
+    useDraftValue(normalizedValue);
 
   return (
     <label className="article-studio-field">
@@ -869,6 +889,32 @@ function BlockEditor({
               <p className="article-studio-help-text">
                 Links work here too:
                 [label](/pokemon/pikachu)
+              </p>
+            </>
+          )}
+
+          {block.type === "youtube" && (
+            <>
+              <TextField
+                label="YouTube URL or video ID"
+                value={block.url || block.videoId}
+                onChange={url => update({ url })}
+              />
+              <TextField
+                label="Accessible title"
+                value={block.title}
+                onChange={title => update({ title })}
+              />
+              <TextField
+                label="Caption"
+                value={block.caption}
+                onChange={caption =>
+                  update({ caption })
+                }
+              />
+              <p className="article-studio-help-text">
+                Paste a watch URL, youtu.be link, Shorts URL, embed URL, or the
+                11-character YouTube video ID.
               </p>
             </>
           )}

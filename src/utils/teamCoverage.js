@@ -21,6 +21,19 @@ export const ALL_POKEMON_TYPES = [
   "fairy"
 ];
 
+export const DEFAULT_TEAM_RECOMMENDATION_WEIGHTS = {
+  coverageType: 0.2,
+  regionalDex: 0.5,
+  notRegionalDex: -0.5,
+  tradeEvolution: -0.5,
+  sTier: 0.3,
+  aTier: 0.2,
+  lowBst: -0.3,
+  highBst: 0.3
+};
+export const TEAM_RECOMMENDATION_WEIGHTS_STORAGE_KEY =
+  "pokelore:team-coverage-recommendation-score-weights:v1";
+
 const FAIRY_INTRO_VERSION_GROUP = "x-y";
 const LEARNSET_VERSION_GROUP_ALIASES = {
   "the-isle-of-armor": "sword-shield",
@@ -178,6 +191,25 @@ export function getDefensiveCoverageTypes({
   defenseTypes,
   typeChart
 }) {
+  const breakdown =
+    getDefensiveCoverageBreakdown({
+      consideredTypes,
+      defenseTypes,
+      typeChart
+    });
+
+  return [
+    ...breakdown.immunities,
+    ...breakdown.fourTimesResistances,
+    ...breakdown.twoTimesResistances
+  ];
+}
+
+export function getDefensiveCoverageBreakdown({
+  consideredTypes = ALL_POKEMON_TYPES,
+  defenseTypes,
+  typeChart
+}) {
   const defendingTypes = (
     defenseTypes ?? []
   ).filter(type =>
@@ -185,21 +217,44 @@ export function getDefensiveCoverageTypes({
   );
 
   if (!defendingTypes.length) {
-    return [];
+    return {
+      immunities: [],
+      fourTimesResistances: [],
+      twoTimesResistances: []
+    };
   }
 
-  return consideredTypes.filter(attackType => {
-    const multiplier = defendingTypes.reduce(
-      (total, defenseType) =>
-        total *
-        (typeChart?.[attackType]?.[
-          defenseType
-        ] ?? 1),
-      1
-    );
+  return consideredTypes.reduce(
+    (groups, attackType) => {
+      const multiplier = defendingTypes.reduce(
+        (total, defenseType) =>
+          total *
+          (typeChart?.[attackType]?.[
+            defenseType
+          ] ?? 1),
+        1
+      );
 
-    return multiplier < 1;
-  });
+      if (multiplier === 0) {
+        groups.immunities.push(attackType);
+      } else if (multiplier <= 0.25) {
+        groups.fourTimesResistances.push(
+          attackType
+        );
+      } else if (multiplier < 1) {
+        groups.twoTimesResistances.push(
+          attackType
+        );
+      }
+
+      return groups;
+    },
+    {
+      immunities: [],
+      fourTimesResistances: [],
+      twoTimesResistances: []
+    }
+  );
 }
 
 export function getTeamDefensiveCoverageTypes({
@@ -222,4 +277,144 @@ export function getTeamDefensiveCoverageTypes({
   return consideredTypes.filter(type =>
     coveredTypes.has(type)
   );
+}
+
+export function normalizeRecommendationWeights(
+  value = {}
+) {
+  return Object.fromEntries(
+    Object.entries(
+      DEFAULT_TEAM_RECOMMENDATION_WEIGHTS
+    ).map(([key, defaultValue]) => {
+      const parsed = Number(value?.[key]);
+
+      return [
+        key,
+        Number.isFinite(parsed)
+          ? parsed
+          : defaultValue
+      ];
+    })
+  );
+}
+
+export function getBstScore({
+  baseStatTotal,
+  weights
+}) {
+  const bst = Number(baseStatTotal) || 0;
+
+  if (bst < 410) {
+    return weights.lowBst;
+  }
+
+  if (bst > 490) {
+    return weights.highBst;
+  }
+
+  return 0;
+}
+
+export function getTierScore({
+  tier,
+  weights
+}) {
+  const normalizedTier = String(
+    tier ?? ""
+  ).toUpperCase();
+
+  if (normalizedTier === "S") {
+    return weights.sTier;
+  }
+
+  if (normalizedTier === "A") {
+    return weights.aTier;
+  }
+
+  return 0;
+}
+
+export function getTeamRecommendationScore({
+  pokemon,
+  weights: rawWeights
+}) {
+  const weights =
+    normalizeRecommendationWeights(rawWeights);
+  const offensiveCoverageCount =
+    pokemon?.missingHits?.length ?? 0;
+  const defensiveCoverageCount =
+    pokemon?.missingDefensiveHits?.length ?? 0;
+  const coverageContribution =
+    (offensiveCoverageCount +
+      defensiveCoverageCount) *
+    weights.coverageType;
+  const generatedPlaythroughScore =
+    pokemon?.playthroughScore;
+  const generatedFlags =
+    generatedPlaythroughScore?.flags ?? {};
+  const rawFlags =
+    pokemon?.playthroughFlags ?? {};
+  const playthroughFlags = {
+    inRegionalDex:
+      typeof rawFlags.inRegionalDex ===
+      "boolean"
+        ? rawFlags.inRegionalDex
+        : generatedFlags.inRegionalDex ===
+          true,
+    tier:
+      rawFlags.tier ??
+      generatedFlags.tier ??
+      null,
+    tradeEvolution:
+      typeof rawFlags.tradeEvolution ===
+      "boolean"
+        ? rawFlags.tradeEvolution
+        : generatedFlags.tradeEvolution ===
+          true
+  };
+  const regionalDexContribution =
+    playthroughFlags.inRegionalDex
+      ? weights.regionalDex
+      : 0;
+  const notRegionalDexContribution =
+    playthroughFlags.inRegionalDex
+      ? 0
+      : weights.notRegionalDex;
+  const tradeEvolutionContribution =
+    playthroughFlags.tradeEvolution
+      ? weights.tradeEvolution
+      : 0;
+  const tierContribution = getTierScore({
+    tier: playthroughFlags.tier,
+    weights
+  });
+  const bstContribution = getBstScore({
+    baseStatTotal: pokemon?.baseStatTotal,
+    weights
+  });
+  const playthroughContribution =
+    regionalDexContribution +
+    notRegionalDexContribution +
+    tradeEvolutionContribution +
+    tierContribution +
+    bstContribution;
+  const total =
+    coverageContribution +
+    playthroughContribution;
+
+  return {
+    total,
+    parts: {
+      coverage: coverageContribution,
+      playthrough: playthroughContribution,
+      regionalDex: regionalDexContribution,
+      notRegionalDex:
+        notRegionalDexContribution,
+      tradeEvolution:
+        tradeEvolutionContribution,
+      tier: tierContribution,
+      bst: bstContribution
+    },
+    flags: playthroughFlags
+  };
 }

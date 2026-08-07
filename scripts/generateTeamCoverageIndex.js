@@ -1,5 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import {
+  setTimeout as delay
+} from "node:timers/promises";
 import { fileURLToPath } from "node:url";
 import typeChart from "../src/constants/Types.js";
 import {
@@ -23,6 +26,10 @@ const outputDir = path.join(
 const versionAvailabilityDir = path.join(
   dataDir,
   "versionAvailability"
+);
+const scoringDir = path.join(
+  dataDir,
+  "teamCoverageScoring"
 );
 
 const VERSION_TO_GROUP = {
@@ -71,6 +78,21 @@ const VERSION_TO_GROUP = {
   scarlet: "scarlet-violet",
   violet: "scarlet-violet"
 };
+const SCORING_VERSION_GROUP_ALIASES = {
+  "black2-white2": "black-2-white-2",
+  "brilliant-diamond-and-shining-pearl":
+    "brilliant-diamond-shining-pearl"
+};
+const SCORING_VERSION_GROUP_MEMBERS = {
+  "black-white": ["black", "white"],
+  "black-2-white-2": [
+    "black2",
+    "white2",
+    "black-2",
+    "white-2"
+  ],
+  "x-y": ["x", "y"]
+};
 
 async function readJson(filePath) {
   return JSON.parse(
@@ -87,6 +109,34 @@ async function readJsonIfExists(filePath) {
     }
 
     throw error;
+  }
+}
+
+async function writeGeneratedJson(
+  filePath,
+  value
+) {
+  const contents = `${JSON.stringify(value, null, 2)}\n`;
+  const retryableCodes = new Set([
+    "EBUSY",
+    "EPERM",
+    "UNKNOWN"
+  ]);
+
+  for (let attempt = 1; attempt <= 5; attempt += 1) {
+    try {
+      await fs.writeFile(filePath, contents);
+      return;
+    } catch (error) {
+      if (
+        attempt === 5 ||
+        !retryableCodes.has(error?.code)
+      ) {
+        throw error;
+      }
+
+      await delay(100 * attempt);
+    }
   }
 }
 
@@ -140,6 +190,195 @@ async function readVersionAvailability() {
   }
 
   return availabilityByVersionGroup;
+}
+
+async function readRegionalDexes() {
+  const data =
+    (await readJsonIfExists(
+      path.join(scoringDir, "regionalDexes.json")
+    )) ?? {};
+
+  return new Map(
+    Object.entries(data)
+      .filter(
+        ([versionGroup, ids]) =>
+          versionGroup !== "_metadata" &&
+          Array.isArray(ids)
+      )
+      .map(([versionGroup, ids]) => [
+        versionGroup,
+        new Set(
+          ids
+            .map(Number)
+            .filter(Number.isFinite)
+        )
+      ])
+  );
+}
+
+async function readTradeEvolutions() {
+  const data =
+    (await readJsonIfExists(
+      path.join(scoringDir, "tradeEvolutions.json")
+    )) ?? {
+      pokemon: {},
+      exceptions: {}
+    };
+
+  return {
+    pokemon: data.pokemon ?? {},
+    exceptions: data.exceptions ?? {}
+  };
+}
+
+async function readTierBonuses() {
+  return (
+    (await readJsonIfExists(
+      path.join(
+        scoringDir,
+        "playthroughTierLists.json"
+      )
+    )) ?? {}
+  );
+}
+
+async function readPlaythroughScores() {
+  return (
+    (await readJsonIfExists(
+      path.join(
+        scoringDir,
+        "playthroughScores.json"
+      )
+    )) ?? {
+      versionGroups: {}
+    }
+  );
+}
+
+function getScoringVersionGroup(versionGroup) {
+  return (
+    SCORING_VERSION_GROUP_ALIASES[
+      versionGroup
+    ] ?? versionGroup
+  );
+}
+
+function normalizeCuratedIdSet(value) {
+  if (Array.isArray(value)) {
+    return new Set(
+      value
+        .map(Number)
+        .filter(Number.isFinite)
+    );
+  }
+
+  if (value && typeof value === "object") {
+    return new Set(
+      Object.entries(value)
+        .filter(([, enabled]) => enabled)
+        .map(([id]) => Number(id))
+        .filter(Number.isFinite)
+    );
+  }
+
+  return new Set();
+}
+
+function getCuratedSetForVersion({
+  collection,
+  versionGroup
+}) {
+  const scoringVersionGroup =
+    getScoringVersionGroup(versionGroup);
+  const sets = [
+    collection?.global,
+    collection?.[scoringVersionGroup],
+    ...(
+      SCORING_VERSION_GROUP_MEMBERS[
+        scoringVersionGroup
+      ] ?? []
+    ).map(member => collection?.[member])
+  ].map(normalizeCuratedIdSet);
+
+  return new Set(
+    sets.flatMap(set => [...set])
+  );
+}
+
+function getTierForPokemon({
+  tierBonuses,
+  pokemonId,
+  versionGroup
+}) {
+  const scoringVersionGroup =
+    getScoringVersionGroup(versionGroup);
+
+  for (const tier of ["S", "A"]) {
+    const tierSet =
+      getCuratedSetForVersion({
+        collection: tierBonuses?.[tier],
+        versionGroup: scoringVersionGroup
+      });
+
+    if (tierSet.has(pokemonId)) {
+      return tier;
+    }
+  }
+
+  return null;
+}
+
+function getPlaythroughFlags({
+  pokemon,
+  regionalDexes,
+  tierBonuses,
+  tradeEvolutions,
+  versionGroup
+}) {
+  const scoringVersionGroup =
+    getScoringVersionGroup(versionGroup);
+  const regionalDexIds =
+    regionalDexes.get(scoringVersionGroup) ??
+    new Set();
+  const tradeEvolutionPokemon =
+    getCuratedSetForVersion({
+      collection: tradeEvolutions.pokemon,
+      versionGroup
+    });
+  const tradeEvolutionExceptions =
+    getCuratedSetForVersion({
+      collection: tradeEvolutions.exceptions,
+      versionGroup
+    });
+  const pokemonId = Number(pokemon.id);
+
+  return {
+    inRegionalDex:
+      regionalDexIds.has(pokemonId),
+    tier: getTierForPokemon({
+      tierBonuses,
+      pokemonId,
+      versionGroup
+    }),
+    tradeEvolution:
+      tradeEvolutionPokemon.has(pokemonId) &&
+      !tradeEvolutionExceptions.has(pokemonId)
+  };
+}
+
+function getGeneratedPlaythroughScore({
+  playthroughScores,
+  pokemonId,
+  versionGroup
+}) {
+  const scoringVersionGroup =
+    getScoringVersionGroup(versionGroup);
+
+  return (
+    playthroughScores.versionGroups?.[
+      scoringVersionGroup
+    ]?.pokemon?.[pokemonId] ?? null
+  );
 }
 
 function isCosmeticPokemonName(name = "") {
@@ -299,6 +538,14 @@ async function main() {
     );
   const curatedIdsByVersionGroup =
     await readVersionAvailability();
+  const regionalDexes =
+    await readRegionalDexes();
+  const tradeEvolutions =
+    await readTradeEvolutions();
+  const tierBonuses =
+    await readTierBonuses();
+  const playthroughScores =
+    await readPlaythroughScores();
   const pokemonCache = new Map();
   const evolutionCache = new Map();
 
@@ -372,7 +619,8 @@ async function main() {
 
       if (
         !pokemon ||
-        isCosmeticPokemonName(pokemon.name)
+        isCosmeticPokemonName(pokemon.name) ||
+        pokemon.isMythical
       ) {
         continue;
       }
@@ -397,7 +645,8 @@ async function main() {
 
       if (
         !pokemon ||
-        isCosmeticPokemonName(pokemon.name)
+        isCosmeticPokemonName(pokemon.name) ||
+        pokemon.isMythical
       ) {
         continue;
       }
@@ -451,6 +700,24 @@ async function main() {
         baseStatTotal: getBaseStatTotal(
           pokemon.stats
         ),
+        isLegendary:
+          pokemon.isLegendary === true,
+        isMythical:
+          pokemon.isMythical === true,
+        playthroughFlags:
+          getPlaythroughFlags({
+            pokemon,
+            regionalDexes,
+            tierBonuses,
+            tradeEvolutions,
+            versionGroup
+          }),
+        playthroughScore:
+          getGeneratedPlaythroughScore({
+            playthroughScores,
+            pokemonId: pokemon.id,
+            versionGroup
+          }),
         attackTypePowers,
         attackTypes,
         coveredTypes
@@ -476,18 +743,18 @@ async function main() {
       path: `/data/teamCoverage/${versionGroup}.json`
     };
 
-    await fs.writeFile(
+    await writeGeneratedJson(
       path.join(
         outputDir,
         `${versionGroup}.json`
       ),
-      `${JSON.stringify(versionGroupIndex, null, 2)}\n`
+      versionGroupIndex
     );
   }
 
-  await fs.writeFile(
+  await writeGeneratedJson(
     path.join(outputDir, "index.json"),
-    `${JSON.stringify(manifest, null, 2)}\n`
+    manifest
   );
 
   console.log(

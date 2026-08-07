@@ -181,4 +181,34 @@ describe("article validation", () => {
       "Block 1 item card grid size is invalid."
     );
   });
+
+  it("validates YouTube embed blocks", () => {
+    const article = {
+      ...createEmptyArticle({
+        title: "Videos",
+        slug: "videos"
+      }),
+      excerpt: "Summary",
+      sections: [
+        {
+          id: "block-1",
+          type: "youtube",
+          url: "https://example.com/video"
+        },
+        {
+          id: "block-2",
+          type: "youtube",
+          url: "https://youtu.be/dQw4w9WgXcQ"
+        }
+      ]
+    };
+    const result = validateArticle(article);
+
+    expect(result.errors).toContain(
+      "Block 1 YouTube block needs a valid YouTube URL or video ID."
+    );
+    expect(result.errors).not.toContain(
+      "Block 2 YouTube block needs a valid YouTube URL or video ID."
+    );
+  });
 });

@@ -5,11 +5,13 @@ import {
 } from "vitest";
 import typeChart from "../constants/Types";
 import {
+  DEFAULT_TEAM_RECOMMENDATION_WEIGHTS,
   getCoveredDefenseTypes,
   getDefensiveCoverageTypes,
   getLevelUpAttackTypePowers,
   getLevelUpAttackTypes,
   getMissingDefenseTypes,
+  getTeamRecommendationScore,
   getTeamDefensiveCoverageTypes,
   getTypesForVersionGroup,
   isDamagingMove
@@ -280,6 +282,93 @@ describe("team coverage helpers", () => {
       "steel",
       "fairy"
     ]);
+  });
+
+  it("scores custom team recommendations from coverage and playthrough flags", () => {
+    expect(
+      getTeamRecommendationScore({
+        weights:
+          DEFAULT_TEAM_RECOMMENDATION_WEIGHTS,
+        pokemon: {
+          baseStatTotal: 500,
+          missingHits: [
+            "water",
+            "ground"
+          ],
+          missingDefensiveHits: [
+            "electric"
+          ],
+          playthroughFlags: {
+            inRegionalDex: true,
+            tier: "A",
+            tradeEvolution: true
+          }
+        }
+      }).total
+    ).toBeCloseTo(1.1);
+  });
+
+  it("recomputes generated playthrough flags with current weights", () => {
+    expect(
+      getTeamRecommendationScore({
+        weights: {
+          ...DEFAULT_TEAM_RECOMMENDATION_WEIGHTS,
+          notRegionalDex: -1,
+          regionalDex: 2
+        },
+        pokemon: {
+          baseStatTotal: 400,
+          missingHits: [],
+          missingDefensiveHits: [],
+          playthroughScore: {
+            total: 0.2,
+            parts: {
+              regionalDex: 0.5,
+              notRegionalDex: 0,
+              tradeEvolution: 0,
+              tier: 0,
+              bst: -0.3
+            },
+            flags: {
+              inRegionalDex: false,
+              tier: null,
+              tradeEvolution: false
+            }
+          }
+        }
+      }).parts
+    ).toMatchObject({
+      bst: -0.3,
+      notRegionalDex: -1,
+      playthrough: -1.3,
+      regionalDex: 0
+    });
+  });
+
+  it("uses generated tier flags when local playthrough tier is empty", () => {
+    expect(
+      getTeamRecommendationScore({
+        weights:
+          DEFAULT_TEAM_RECOMMENDATION_WEIGHTS,
+        pokemon: {
+          baseStatTotal: 500,
+          missingHits: [],
+          missingDefensiveHits: [],
+          playthroughFlags: {
+            inRegionalDex: true,
+            tier: null,
+            tradeEvolution: false
+          },
+          playthroughScore: {
+            flags: {
+              inRegionalDex: true,
+              tier: "S",
+              tradeEvolution: false
+            }
+          }
+        }
+      }).parts.tier
+    ).toBeCloseTo(0.3);
   });
 
   it("excludes Fairy before X/Y", () => {

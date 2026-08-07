@@ -118,6 +118,7 @@
 .topic-article-callout,
 .topic-article-oak-notes,
 .topic-article-comparison,
+.topic-article-youtube,
 .topic-article-unknown-block {
   background: #202020;
   border: 1px solid #555;
@@ -196,6 +197,31 @@
 
 .topic-article-image-grid .topic-article-figure {
   margin: 0;
+}
+
+.topic-article-youtube {
+  max-width: 960px;
+}
+
+.topic-article-youtube-frame {
+  aspect-ratio: 16 / 9;
+  background: #111;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.topic-article-youtube-frame iframe {
+  border: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.topic-article-youtube figcaption {
+  font-size: 0.85rem;
+  margin-top: 0.65rem;
+  opacity: 0.75;
+  text-align: center;
 }
 
 .topic-article-table-wrap {

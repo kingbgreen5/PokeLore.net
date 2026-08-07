@@ -84,6 +84,48 @@ describe("ArticleBlockRenderer", () => {
     ).toBeInTheDocument();
   });
 
+  it("renders YouTube embed blocks from watch URLs", () => {
+    render(
+      <MemoryRouter>
+        <ArticleBlockRenderer
+          block={{
+            id: "block-1",
+            type: "youtube",
+            url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            title: "Battle demo",
+            caption: "A useful battle demo."
+          }}
+        />
+      </MemoryRouter>
+    );
+
+    const frame = screen.getByTitle("Battle demo");
+
+    expect(frame).toHaveAttribute(
+      "src",
+      "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+    );
+    expect(
+      screen.getByText("A useful battle demo.")
+    ).toBeInTheDocument();
+  });
+
+  it("does not render invalid YouTube embed blocks", () => {
+    const { container } = render(
+      <MemoryRouter>
+        <ArticleBlockRenderer
+          block={{
+            id: "block-1",
+            type: "youtube",
+            url: "https://example.com/video"
+          }}
+        />
+      </MemoryRouter>
+    );
+
+    expect(container).toBeEmptyDOMElement();
+  });
+
   it("renders item card grid blocks", async () => {
     vi.stubGlobal(
       "fetch",

@@ -1,12 +1,14 @@
 import {
   useEffect,
   useMemo,
+  useRef,
   useState
 } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import TypeBadge from "../components/TypeBadge";
 import typeChart from "../constants/Types";
+import typeColors from "../constants/typeColors";
 import { VERSION_GROUP_ORDER } from "../constants/versionOrder";
 import useLocalStorageState from "../hooks/useLocalStorageState";
 import Seo from "../seo/Seo";
@@ -14,13 +16,18 @@ import { teamCoverageSeo } from "../seo/seoConfig";
 import { loadMovesMap } from "../utils/loadMovesData";
 import { formatPokemonDisplayName } from "../utils/pokemonNames";
 import {
+  DEFAULT_TEAM_RECOMMENDATION_WEIGHTS,
+  TEAM_RECOMMENDATION_WEIGHTS_STORAGE_KEY,
   formatVersionGroupName,
   getCoveredDefenseTypes,
+  getDefensiveCoverageBreakdown,
   getDefensiveCoverageTypes,
   getLevelUpAttackTypes,
   getMissingDefenseTypes,
+  getTeamRecommendationScore,
   getTeamDefensiveCoverageTypes,
-  getTypesForVersionGroup
+  getTypesForVersionGroup,
+  normalizeRecommendationWeights
 } from "../utils/teamCoverage";
 
 const PARTY_SIZE = 6;
@@ -40,6 +47,10 @@ const MOVE_POWER_THRESHOLD_STORAGE_KEY =
   "pokelore:team-coverage-move-power-threshold";
 const RECOMMENDATION_MOVE_POWER_THRESHOLD_STORAGE_KEY =
   "pokelore:team-coverage-recommendation-move-power-threshold:v2";
+const LEGENDARY_FILTER_STORAGE_KEY =
+  "pokelore:team-coverage-legendary-filter:v1";
+const TRADE_EVOLUTION_FILTER_STORAGE_KEY =
+  "pokelore:team-coverage-trade-evolution-filter:v1";
 const RECOMMENDATIONS_PER_PAGE = 25;
 const DEFAULT_RECOMMENDATION_SORT_MODE =
   "highest-bst";
@@ -119,6 +130,10 @@ const STAT_SORT_MODES = [
 ];
 const SORT_MODES = [
   {
+    value: "custom-score",
+    label: "PokeLore Suggested"
+  },
+  {
     value: "national-dex",
     label: "National Dex"
   },
@@ -136,6 +151,40 @@ const SORT_MODES = [
       label
     })
   )
+];
+const LEGENDARY_FILTER_OPTIONS = [
+  {
+    value: "hide",
+    label: "Hide"
+  },
+  {
+    value: "show",
+    label: "Show"
+  }
+];
+const TRADE_EVOLUTION_FILTER_OPTIONS = [
+  {
+    value: "hide",
+    label: "Hide"
+  },
+  {
+    value: "show",
+    label: "Show"
+  }
+];
+const DEFENSIVE_COVERAGE_GROUPS = [
+  {
+    key: "immunities",
+    label: "Immune"
+  },
+  {
+    key: "fourTimesResistances",
+    label: "4x Resist"
+  },
+  {
+    key: "twoTimesResistances",
+    label: "2x Resist"
+  }
 ];
 const COVERAGE_FILTER_OPTIONS = [
   {
@@ -155,6 +204,66 @@ const COVERAGE_FILTER_OPTIONS = [
     label: "Both"
   }
 ];
+
+function hexToRgb(hexColor) {
+  const normalizedHex =
+    String(hexColor ?? "").replace("#", "");
+
+  if (normalizedHex.length !== 6) {
+    return null;
+  }
+
+  const value = Number.parseInt(
+    normalizedHex,
+    16
+  );
+
+  if (!Number.isFinite(value)) {
+    return null;
+  }
+
+  return {
+    r: (value >> 16) & 255,
+    g: (value >> 8) & 255,
+    b: value & 255
+  };
+}
+
+function rgbaFromHex(hexColor, alpha) {
+  const rgb = hexToRgb(hexColor);
+
+  return rgb
+    ? `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`
+    : `rgba(74, 74, 74, ${alpha})`;
+}
+
+function getPokemonTypeTileStyle(types = []) {
+  const colors = types
+    .map(type => typeColors[type])
+    .filter(Boolean);
+
+  if (!colors.length) {
+    return undefined;
+  }
+
+  const primaryColor = colors[0];
+  const secondaryColor =
+    colors[1] ?? colors[0];
+
+  return {
+    background: `linear-gradient(135deg, ${rgbaFromHex(
+      primaryColor,
+      0.11
+    )}, ${rgbaFromHex(
+      secondaryColor,
+      colors.length > 1 ? 0.11 : 0.05
+    )}), #202020`,
+    borderColor: rgbaFromHex(
+      primaryColor,
+      0.2
+    )
+  };
+}
 
 function createEmptyParty() {
   return Array(PARTY_SIZE).fill(null);
@@ -243,6 +352,22 @@ function getValidCoverageFilter(value) {
   )
     ? value
     : DEFAULT_RECOMMENDATION_COVERAGE_FILTER;
+}
+
+function getValidLegendaryFilter(value) {
+  return LEGENDARY_FILTER_OPTIONS.some(
+    option => option.value === value
+  )
+    ? value
+    : LEGENDARY_FILTER_OPTIONS[0].value;
+}
+
+function getValidTradeEvolutionFilter(value) {
+  return TRADE_EVOLUTION_FILTER_OPTIONS.some(
+    option => option.value === value
+  )
+    ? value
+    : TRADE_EVOLUTION_FILTER_OPTIONS[0].value;
 }
 
 function getValidMovePowerThreshold(
@@ -349,6 +474,15 @@ function compareByStat(sortMode) {
   };
 }
 
+function compareByCustomScore(a, b) {
+  return (
+    (b.playthroughScore?.total ?? 0) -
+      (a.playthroughScore?.total ?? 0) ||
+    compareByMostCoverage(a, b) ||
+    compareByStat("highest-bst")(a, b)
+  );
+}
+
 function getThresholdedAttackTypes({
   consideredTypes,
   minMovePower,
@@ -443,7 +577,13 @@ function normalizeSearchText(value) {
 }
 
 async function readJsonUrl(url) {
-  const response = await fetch(url);
+  const fetchUrl =
+    import.meta.env.DEV
+      ? `${url}${
+          url.includes("?") ? "&" : "?"
+        }t=${Date.now()}`
+      : url;
+  const response = await fetch(fetchUrl);
 
   if (!response.ok) {
     return null;
@@ -452,9 +592,18 @@ async function readJsonUrl(url) {
   return response.json();
 }
 
+function formatScore(value) {
+  const score = Number(value) || 0;
+
+  return score > 0
+    ? `+${score.toFixed(2)}`
+    : score.toFixed(2);
+}
+
 function TypeBadgeList({
   emptyLabel,
   height = "1.35rem",
+  justifyContent = "center",
   types
 }) {
   if (!types.length) {
@@ -477,7 +626,7 @@ function TypeBadgeList({
         display: "flex",
         flexWrap: "wrap",
         gap: ".35rem",
-        justifyContent: "center"
+        justifyContent
       }}
     >
       {types.map(type => (
@@ -550,17 +699,55 @@ function CoveragePanel({
   );
 }
 
+function DefensiveCoverageBadgeGroups({
+  groups
+}) {
+  const visibleGroups =
+    DEFENSIVE_COVERAGE_GROUPS.filter(
+      group => groups?.[group.key]?.length
+    );
+
+  if (!visibleGroups.length) {
+    return (
+      <span className="team-coverage-party-muted">
+        None
+      </span>
+    );
+  }
+
+  return (
+    <div className="team-coverage-defense-groups">
+      {visibleGroups.map(group => (
+        <div
+          key={group.key}
+          className="team-coverage-defense-group"
+        >
+          <span className="team-coverage-defense-group-label">
+            {group.label}
+          </span>
+          <TypeBadgeList
+            emptyLabel="None"
+            height="1.15rem"
+            justifyContent="center"
+            types={groups[group.key]}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function PartyTile({
-  index,
   member,
   minMovePower,
   onChoose,
-  onRemove,
-  selectedVersion
+  onRemove
 }) {
   const pokemon = member?.pokemon;
   const attackTypes =
     member?.attackTypes ?? [];
+  const defensiveCoverageGroups =
+    member?.defensiveCoverageGroups;
   const isLoading =
     member?.loading === true;
 
@@ -569,176 +756,76 @@ function PartyTile({
       <button
         type="button"
         onClick={onChoose}
-        className="team-coverage-party-tile"
-        style={{
-          alignItems: "center",
-          backgroundColor: "#2c2c2c",
-          border: "2px solid #555",
-          borderRadius: "8px",
-          boxSizing: "border-box",
-          color: "white",
-          cursor: "pointer",
-          display: "grid",
-          gap: ".65rem",
-          justifyItems: "center",
-          minHeight: "245px",
-          padding: ".75rem",
-          textAlign: "center"
-        }}
+        className="team-coverage-party-tile team-coverage-party-tile-empty"
       >
-        <span
-          style={{
-            color: "#9ca3af",
-            fontSize: ".8rem",
-            justifySelf: "start"
-          }}
-        >
-          Slot {index + 1}
-        </span>
         <div
           aria-hidden="true"
-          style={{
-            alignItems: "center",
-            border: "1px dashed #666",
-            borderRadius: "8px",
-            color: "#9ca3af",
-            display: "flex",
-            fontSize: "2rem",
-            height: "96px",
-            justifyContent: "center",
-            width: "96px"
-          }}
+          className="team-coverage-party-add-icon"
         >
           +
         </div>
         <strong
-          style={{
-            color: "#f3f4f6"
-          }}
+          className="team-coverage-party-add-label"
         >
           Add Pokemon
         </strong>
-        <TypeBadgeList
-          emptyLabel="No Pokemon selected"
-          height="1.1rem"
-          types={[]}
-        />
       </button>
     );
   }
 
   return (
     <div
-      className="team-coverage-party-tile"
-      style={{
-        alignItems: "center",
-        backgroundColor: "#2c2c2c",
-        border: "2px solid #555",
-        borderRadius: "8px",
-        boxSizing: "border-box",
-        color: "white",
-        display: "grid",
-        gap: ".65rem",
-        justifyItems: "center",
-        padding: ".75rem",
-        position: "relative",
-        textAlign: "center"
-      }}
+      className="team-coverage-party-tile team-coverage-party-tile-filled"
+      style={getPokemonTypeTileStyle(
+        pokemon.types ?? []
+      )}
     >
-      <span
-        style={{
-          color: "#9ca3af",
-          fontSize: ".8rem",
-          justifySelf: "start"
-        }}
-      >
-        Slot {index + 1}
-      </span>
-
       <PokemonSummaryCard
         pokemon={pokemon}
-        variant="compact"
+        variant="teamCoverage"
       />
 
-      <div
-        style={{
-          alignItems: "center",
-          display: "flex",
-          gap: ".4rem",
-          justifyContent: "center"
-        }}
-      >
+      <div className="team-coverage-party-actions">
         <button
           type="button"
           onClick={onChoose}
-          style={{
-            backgroundColor: "transparent",
-            border: "1px solid #666",
-            borderRadius: "6px",
-            color: "#d1d5db",
-            cursor: "pointer",
-            fontSize: ".75rem",
-            padding: ".15rem .45rem"
-          }}
         >
           Change
         </button>
         <button
           type="button"
           onClick={onRemove}
-          style={{
-            backgroundColor: "transparent",
-            border: "1px solid #666",
-            borderRadius: "6px",
-            color: "#d1d5db",
-            cursor: "pointer",
-            fontSize: ".75rem",
-            padding: ".15rem .45rem"
-          }}
+          className="team-coverage-party-clear-button"
         >
           Clear
         </button>
       </div>
 
-      <div
-        style={{
-          minHeight: "2.1rem"
-        }}
-      >
-        <p
-          style={{
-            color: "#9ca3af",
-            fontSize: ".75rem",
-            margin: "0 0 .35rem"
-          }}
-        >
-          Level-Up attack types
-          {minMovePower > 0
-            ? ` (${minMovePower}+ power)`
-            : ""}
-        </p>
+      <div className="team-coverage-party-section">
+        <h3>Offensive Coverage</h3>
         {isLoading ? (
-          <span
-            style={{
-              color: "#9ca3af",
-              fontSize: ".85rem"
-            }}
-          >
+          <span className="team-coverage-party-muted">
             Loading...
           </span>
         ) : (
           <TypeBadgeList
-            emptyLabel={`No level-up attacks${
+            emptyLabel={`None${
               minMovePower > 0
-                ? ` at ${minMovePower}+ power`
+                ? ` at ${minMovePower}+`
                 : ""
-            } in ${formatVersionGroupName(
-              selectedVersion
-            )}`}
-            height="1.1rem"
+            }`}
+            height="1.15rem"
+            justifyContent="center"
             types={attackTypes}
           />
         )}
+      </div>
+
+      <div className="team-coverage-party-section">
+        <h3>Defensive Coverage</h3>
+        <DefensiveCoverageBadgeGroups
+          groups={defensiveCoverageGroups}
+        />
       </div>
     </div>
   );
@@ -826,7 +913,6 @@ function PokemonPicker({
         }}
       >
         <div
-          className="team-coverage-filter-controls"
           style={{
             alignItems: "center",
             display: "flex",
@@ -926,7 +1012,8 @@ function PokemonPicker({
 
 function RecommendationCard({
   minMovePower,
-  recommendation
+  recommendation,
+  showScore
 }) {
   return (
     <div
@@ -946,6 +1033,62 @@ function RecommendationCard({
         pokemon={recommendation}
         variant="compact"
       />
+      {showScore && (
+        <div>
+          <p
+            style={{
+              color: "#f3f4f6",
+              fontSize: ".8rem",
+              fontWeight: "bold",
+              margin: "0 0 .35rem"
+            }}
+          >
+            Score{" "}
+            {formatScore(
+              recommendation.playthroughScore?.total
+            )}
+          </p>
+          <p
+            style={{
+              color: "#9ca3af",
+              fontSize: ".72rem",
+              lineHeight: 1.3,
+              margin: 0
+            }}
+          >
+            Cov{" "}
+            {formatScore(
+              recommendation.playthroughScore?.parts
+                ?.coverage
+            )}{" "}
+            · Dex{" "}
+            {formatScore(
+              recommendation.playthroughScore?.parts
+                ?.regionalDex
+            )}{" "}
+            / Not Dex{" "}
+            {formatScore(
+              recommendation.playthroughScore?.parts
+                ?.notRegionalDex
+            )}{" "}
+            · Trade{" "}
+            {formatScore(
+              recommendation.playthroughScore?.parts
+                ?.tradeEvolution
+            )}{" "}
+            · Tier{" "}
+            {formatScore(
+              recommendation.playthroughScore?.parts
+                ?.tier
+            )}{" "}
+            · BST{" "}
+            {formatScore(
+              recommendation.playthroughScore?.parts
+                ?.bst
+            )}
+          </p>
+        </div>
+      )}
       <div>
         <p
           style={{
@@ -955,7 +1098,7 @@ function RecommendationCard({
             margin: "0 0 .35rem"
           }}
         >
-          Helps Offense
+          Hits Offensively
         </p>
         <TypeBadgeList
           emptyLabel="None"
@@ -974,7 +1117,7 @@ function RecommendationCard({
             margin: "0 0 .35rem"
           }}
         >
-          Adds Defense
+          Defends Against
         </p>
         <TypeBadgeList
           emptyLabel="None"
@@ -1075,6 +1218,8 @@ function TeamCoveragePage() {
     teamCoverageData,
     setTeamCoverageData
   ] = useState(null);
+  const pendingLocalPartyParamRef =
+    useRef(null);
   const [
     recommendationPage,
     setRecommendationPage
@@ -1098,6 +1243,42 @@ function TeamCoveragePage() {
   const selectedCoverageFilter =
     getValidCoverageFilter(
       preferredCoverageFilter
+    );
+  const [
+    preferredLegendaryFilter,
+    setPreferredLegendaryFilter
+  ] = useLocalStorageState(
+    LEGENDARY_FILTER_STORAGE_KEY,
+    LEGENDARY_FILTER_OPTIONS[0].value
+  );
+  const selectedLegendaryFilter =
+    getValidLegendaryFilter(
+      preferredLegendaryFilter
+    );
+  const [
+    preferredTradeEvolutionFilter,
+    setPreferredTradeEvolutionFilter
+  ] = useLocalStorageState(
+    TRADE_EVOLUTION_FILTER_STORAGE_KEY,
+    TRADE_EVOLUTION_FILTER_OPTIONS[0].value
+  );
+  const selectedTradeEvolutionFilter =
+    getValidTradeEvolutionFilter(
+      preferredTradeEvolutionFilter
+    );
+  const [
+    preferredRecommendationWeights
+  ] = useLocalStorageState(
+    TEAM_RECOMMENDATION_WEIGHTS_STORAGE_KEY,
+    DEFAULT_TEAM_RECOMMENDATION_WEIGHTS
+  );
+  const selectedRecommendationWeights =
+    useMemo(
+      () =>
+        normalizeRecommendationWeights(
+          preferredRecommendationWeights
+        ),
+      [preferredRecommendationWeights]
     );
   const [
     preferredFocusType,
@@ -1152,6 +1333,26 @@ function TeamCoveragePage() {
   ]);
 
   useEffect(() => {
+    const pendingLocalPartyParam =
+      pendingLocalPartyParamRef.current;
+    const currentPartyParam =
+      searchParams.get("team") ??
+      searchParams.get("party") ??
+      searchParams.get("pokemon") ??
+      "";
+
+    if (pendingLocalPartyParam !== null) {
+      if (
+        currentPartyParam ===
+        pendingLocalPartyParam
+      ) {
+        pendingLocalPartyParamRef.current =
+          null;
+      }
+
+      return;
+    }
+
     if (
       urlParty &&
       !partiesEqual(urlParty, storageParty)
@@ -1160,6 +1361,7 @@ function TeamCoveragePage() {
     }
   }, [
     setParty,
+    searchParams,
     storageParty,
     urlParty
   ]);
@@ -1367,11 +1569,25 @@ function TeamCoveragePage() {
             consideredTypes,
             typeChart
           });
+        const defensiveCoverageGroups =
+          getDefensiveCoverageBreakdown({
+            consideredTypes,
+            defenseTypes:
+              record.pokemon?.types ?? [],
+            typeChart
+          });
+        const defensiveCoverageTypes = [
+          ...defensiveCoverageGroups.immunities,
+          ...defensiveCoverageGroups.fourTimesResistances,
+          ...defensiveCoverageGroups.twoTimesResistances
+        ];
 
         return {
           ...record,
           attackTypes,
-          coveredTypes
+          coveredTypes,
+          defensiveCoverageGroups,
+          defensiveCoverageTypes
         };
       }),
     [
@@ -1521,7 +1737,17 @@ function TeamCoveragePage() {
       )
         .filter(
           pokemon =>
-            !selectedIds.has(pokemon.id)
+            !selectedIds.has(pokemon.id) &&
+            pokemon.isMythical !== true &&
+            (selectedLegendaryFilter ===
+              "show" ||
+              pokemon.isLegendary !== true) &&
+            (selectedTradeEvolutionFilter ===
+              "show" ||
+              pokemon.playthroughScore?.flags
+                ?.tradeEvolution !== true &&
+                pokemon.playthroughFlags
+                  ?.tradeEvolution !== true)
         )
         .map(pokemon => {
           const attackTypes =
@@ -1556,7 +1782,7 @@ function TeamCoveragePage() {
                 )
             );
 
-          return {
+          const scoredPokemon = {
             ...pokemon,
             attackTypes,
             coveredTypes,
@@ -1573,6 +1799,16 @@ function TeamCoveragePage() {
             missingDefensiveHits,
             missingHits
           };
+
+          return {
+            ...scoredPokemon,
+            playthroughScore:
+              getTeamRecommendationScore({
+                pokemon: scoredPokemon,
+                weights:
+                  selectedRecommendationWeights
+              })
+          };
         })
         .filter(
           pokemon =>
@@ -1586,6 +1822,13 @@ function TeamCoveragePage() {
             })
         )
         .sort((a, b) => {
+          if (
+            selectedSortMode ===
+            "custom-score"
+          ) {
+            return compareByCustomScore(a, b);
+          }
+
           if (
             selectedSortMode ===
             "most-coverage"
@@ -1624,8 +1867,11 @@ function TeamCoveragePage() {
       normalizedParty,
       selectedCoverageFilter,
       selectedFocusType,
+      selectedLegendaryFilter,
       selectedRecommendationMovePowerThreshold,
+      selectedRecommendationWeights,
       selectedSortMode,
+      selectedTradeEvolutionFilter,
       selectedVersion,
       teamCoverageData
     ]);
@@ -1694,10 +1940,13 @@ function TeamCoveragePage() {
     const next =
       normalizeParty(normalizedParty);
     next[slotIndex] = value;
-    setParty(next);
-
     const serializedParty =
       serializePartyParam(next);
+
+    pendingLocalPartyParamRef.current =
+      serializedParty;
+    setParty(next);
+
     updatePartySearchParams(next, {
       replace: !serializedParty
     });
@@ -1706,6 +1955,7 @@ function TeamCoveragePage() {
   function clearParty() {
     setRecommendationPage(1);
     const next = createEmptyParty();
+    pendingLocalPartyParamRef.current = "";
     setParty(next);
     updatePartySearchParams(next, {
       replace: true
@@ -1917,13 +2167,9 @@ function TeamCoveragePage() {
         {normalizedParty.map((id, index) => (
           <PartyTile
             key={index}
-            index={index}
             member={partyMembers[index]}
             minMovePower={
               selectedMovePowerThreshold
-            }
-            selectedVersion={
-              selectedVersion
             }
             onChoose={() =>
               setActiveSlot(index)
@@ -2000,10 +2246,11 @@ function TeamCoveragePage() {
             maxWidth: "720px"
           }}
         >
-          Sort by Highest stat, Most coverage, or Dex Number.
+          Sort by PokeLore Suggested, Highest stat, Most coverage, or Dex Number.
         </p>
 
         <div
+          className="team-coverage-filter-controls"
           style={{
             alignItems: "center",
             display: "flex",
@@ -2139,6 +2386,90 @@ function TeamCoveragePage() {
             </select>
           </div>
 
+          <div className="team-coverage-filter-control">
+            <label
+              htmlFor="team-coverage-legendaries"
+              style={{
+                color: "#f3f4f6",
+                fontWeight: "bold"
+              }}
+            >
+              Legendaries
+            </label>
+            <select
+              id="team-coverage-legendaries"
+              value={selectedLegendaryFilter}
+              onChange={event => {
+                setRecommendationPage(1);
+                setPreferredLegendaryFilter(
+                  event.target.value
+                );
+              }}
+              style={{
+                backgroundColor: "#2c2c2c",
+                border: "2px solid #555",
+                borderRadius: "8px",
+                color: "white",
+                fontSize: ".95rem",
+                maxWidth: "100%",
+                padding: ".55rem .75rem"
+              }}
+            >
+              {LEGENDARY_FILTER_OPTIONS.map(
+                option => (
+                  <option
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+
+          <div className="team-coverage-filter-control">
+            <label
+              htmlFor="team-coverage-trade-evolutions"
+              style={{
+                color: "#f3f4f6",
+                fontWeight: "bold"
+              }}
+            >
+              Trade Evos
+            </label>
+            <select
+              id="team-coverage-trade-evolutions"
+              value={selectedTradeEvolutionFilter}
+              onChange={event => {
+                setRecommendationPage(1);
+                setPreferredTradeEvolutionFilter(
+                  event.target.value
+                );
+              }}
+              style={{
+                backgroundColor: "#2c2c2c",
+                border: "2px solid #555",
+                borderRadius: "8px",
+                color: "white",
+                fontSize: ".95rem",
+                maxWidth: "100%",
+                padding: ".55rem .75rem"
+              }}
+            >
+              {TRADE_EVOLUTION_FILTER_OPTIONS.map(
+                option => (
+                  <option
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+
           {selectedSortMode ===
             "selected-type-first" &&
             focusTypeOptions.length > 0 && (
@@ -2229,6 +2560,10 @@ function TeamCoveragePage() {
                     }
                     recommendation={
                       recommendation
+                    }
+                    showScore={
+                      selectedSortMode ===
+                      "custom-score"
                     }
                   />
                 )

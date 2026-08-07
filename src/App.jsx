@@ -93,6 +93,11 @@ const DpptFeebasCalculatorPage = import.meta.env.DEV
       import("./pages/DpptFeebasCalculatorPage")
     )
   : null;
+const TeamCoverageScoringDevPage = import.meta.env.DEV
+  ? lazy(() =>
+      import("./pages/TeamCoverageScoringDevPage")
+    )
+  : null;
 const DpptFeebasPublicCalculatorPage = lazy(() =>
   import("./pages/DpptFeebasPublicCalculatorPage")
 );
@@ -267,6 +272,13 @@ function App() {
   <Route
     path="/dev/dppt-feebas-calculator"
     element={<DpptFeebasCalculatorPage />}
+  />
+)}
+
+{TeamCoverageScoringDevPage && (
+  <Route
+    path="/dev/team-coverage-scoring"
+    element={<TeamCoverageScoringDevPage />}
   />
 )}
 

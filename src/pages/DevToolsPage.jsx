@@ -15,6 +15,17 @@ function isLocalHost() {
 
 const toolGroups = [
   {
+    title: "Calibration",
+    tools: [
+      {
+        label: "Team Coverage Scoring",
+        path: "/dev/team-coverage-scoring",
+        description:
+          "Tune suggested teammate scoring weights for coverage, availability, trade evolution, tier, and BST value."
+      }
+    ]
+  },
+  {
     title: "Authoring",
     tools: [
       {
@@ -241,8 +252,9 @@ function DevToolsPage() {
               ))}
             </div>
           </section>
-        ))}
+          ))}
       </div>
+
     </main>
   );
 }

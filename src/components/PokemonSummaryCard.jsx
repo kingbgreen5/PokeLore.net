@@ -42,7 +42,25 @@ const CARD_SIZES = {
     typeGap: ".5rem",
     typePadding: ".1rem .4rem",
     typeFontSize: ".4rem",
-    typeLetterSpacing: ".03rem"
+    typeLetterSpacing: ".03rem",
+    typeBadgeHeight: "1.15rem"
+  },
+  teamCoverage: {
+    width: "145px",
+    minHeight: "145px",
+    maxHeight: "210px",
+    maxWidth: "210px",
+    padding: ".1rem .15rem .25rem",
+    dexFontSize: ".85rem",
+    dexMarginBottom: "-.9rem",
+    spriteSize: "108px",
+    nameFontSize: ".8rem",
+    nameMargin: "0 0 .45rem 0",
+    typeGap: ".22rem",
+    typePadding: ".1rem .4rem",
+    typeFontSize: ".4rem",
+    typeLetterSpacing: ".03rem",
+    typeBadgeHeight: "1.15rem"
   },
   subcompact: {
     width: "75px",
@@ -58,7 +76,8 @@ const CARD_SIZES = {
     typeGap: ".025rem",
     typePadding: ".05rem .2rem",
     typeFontSize: ".25rem",
-    typeLetterSpacing: "0"
+    typeLetterSpacing: "0",
+    typeBadgeHeight: ".75rem"
   }
 };
 
@@ -236,11 +255,8 @@ function PokemonSummaryCard({
             <TypeBadge
               key={type}
               height={
-                sizeKey === "subcompact"
-                  ? ".75rem"
-                  : sizeKey === "compact"
-                    ? "1.15rem"
-                    : "1.45rem"
+                size.typeBadgeHeight ??
+                "1.45rem"
               }
               type={type}
             />

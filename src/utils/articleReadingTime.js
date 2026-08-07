@@ -14,6 +14,8 @@ function collectTextFromBlock(block) {
       return block.items ?? [];
     case "callout":
       return [block.title, block.text];
+    case "youtube":
+      return [block.title, block.caption];
     case "pokemon-card-grid":
     case "item-card-grid":
       return [block.title];

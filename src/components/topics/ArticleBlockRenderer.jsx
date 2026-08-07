@@ -6,6 +6,7 @@ import {
 import { Link } from "react-router-dom";
 import ItemSummaryCard from "../ItemSummaryCard";
 import PokemonSummaryCard from "../PokemonSummaryCard";
+import { getYouTubeEmbedUrl } from "../../utils/articleSchema";
 import ArticleCallout from "./ArticleCallout";
 import ArticleImage from "./ArticleImage";
 
@@ -271,6 +272,36 @@ function ItemCardGrid({
   );
 }
 
+function YouTubeEmbed({
+  block
+}) {
+  const embedUrl = getYouTubeEmbedUrl(
+    block.url || block.videoId
+  );
+
+  if (!embedUrl) {
+    return null;
+  }
+
+  return (
+    <figure className="topic-article-youtube">
+      <div className="topic-article-youtube-frame">
+        <iframe
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen={true}
+          loading="lazy"
+          referrerPolicy="strict-origin-when-cross-origin"
+          src={embedUrl}
+          title={block.title || "YouTube video"}
+        />
+      </div>
+      {block.caption && (
+        <figcaption>{block.caption}</figcaption>
+      )}
+    </figure>
+  );
+}
+
 function UnknownBlock({
   block
 }) {
@@ -359,6 +390,8 @@ function ArticleBlockRenderer({
           )}
         />
       );
+    case "youtube":
+      return <YouTubeEmbed block={block} />;
     case "pokemon-card-grid":
       return <PokemonCardGrid block={block} />;
     case "item-card-grid":
