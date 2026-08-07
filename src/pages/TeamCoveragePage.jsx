@@ -478,8 +478,15 @@ function compareByCustomScore(a, b) {
   return (
     (b.playthroughScore?.total ?? 0) -
       (a.playthroughScore?.total ?? 0) ||
-    compareByMostCoverage(a, b) ||
-    compareByStat("highest-bst")(a, b)
+    getPokemonStatValue(
+      b,
+      "baseStatTotal"
+    ) -
+      getPokemonStatValue(
+        a,
+        "baseStatTotal"
+      ) ||
+    compareByMostCoverage(a, b)
   );
 }
 
@@ -1804,6 +1811,9 @@ function TeamCoveragePage() {
             ...scoredPokemon,
             playthroughScore:
               getTeamRecommendationScore({
+                includeTradeEvolutionPenalty:
+                  selectedTradeEvolutionFilter !==
+                  "show",
                 pokemon: scoredPokemon,
                 weights:
                   selectedRecommendationWeights

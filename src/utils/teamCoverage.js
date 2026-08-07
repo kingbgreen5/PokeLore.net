@@ -335,6 +335,7 @@ export function getTierScore({
 }
 
 export function getTeamRecommendationScore({
+  includeTradeEvolutionPenalty = true,
   pokemon,
   weights: rawWeights
 }) {
@@ -381,6 +382,7 @@ export function getTeamRecommendationScore({
       ? 0
       : weights.notRegionalDex;
   const tradeEvolutionContribution =
+    includeTradeEvolutionPenalty &&
     playthroughFlags.tradeEvolution
       ? weights.tradeEvolution
       : 0;
