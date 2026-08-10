@@ -2,6 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { itemLocationTopics } from "../src/topics/topicMetadata.js";
+import {
+  isDynamaxCrystalItem,
+  isReleasedDynamaxCrystal
+} from "../src/utils/dynamaxCrystals.js";
 
 const __filename =
   fileURLToPath(import.meta.url);
@@ -386,15 +390,34 @@ function getTopicSlugs() {
     readJson(
       path.join(dataDir, "pokedexTopics.json")
     );
+  const articleTopicIndex =
+    readJson(
+      path.join(
+        dataDir,
+        "topics",
+        "topicIndex.json"
+      )
+    );
   const topics =
     Array.isArray(topicsData?.topics)
       ? topicsData.topics
       : [];
+  const articleTopics =
+    Array.isArray(articleTopicIndex?.topics)
+      ? articleTopicIndex.topics
+      : [];
 
   return new Set(
     [
-      ...itemLocationTopics,
-      ...topics
+      ...itemLocationTopics.filter(
+        topic => topic.active
+      ),
+      ...topics.filter(
+        topic => topic.active
+      ),
+      ...articleTopics.filter(
+        topic => topic.active !== false
+      )
     ]
       .map(topic => topic.slug)
       .filter(Boolean)
@@ -416,6 +439,13 @@ function validateSitemap() {
     fs.readFileSync(sitemapPath, "utf8");
   const urlMatches =
     [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)];
+  const sitemapPathnames = new Set(
+    urlMatches.map(match =>
+      normalizePathname(
+        new URL(match[1]).pathname
+      )
+    )
+  );
   const moves =
     readJson(
       path.join(dataDir, "moves.json")
@@ -430,6 +460,18 @@ function validateSitemap() {
     ) ?? {
       byName: {}
     };
+  const pokemonIndex =
+    readJson(
+      path.join(dataDir, "pokemonIndex.json")
+    ) ?? [];
+  const itemsIndex =
+    readJson(
+      path.join(dataDir, "itemsIndex.json")
+    ) ?? [];
+  const locationsIndex =
+    readJson(
+      path.join(dataDir, "locationsIndex.json")
+    ) ?? [];
   const topicSlugs =
     getTopicSlugs();
   const staticRoutes =
@@ -448,6 +490,104 @@ function validateSitemap() {
       "/topics",
       "/types"
     ]);
+
+  function assertSitemapPath(
+    pathname,
+    context
+  ) {
+    if (
+      !sitemapPathnames.has(
+        normalizePathname(pathname)
+      )
+    ) {
+      addError(
+        `${context}: missing from sitemap.`
+      );
+    }
+  }
+
+  for (const pathname of staticRoutes) {
+    assertSitemapPath(
+      pathname,
+      `Static route ${pathname}`
+    );
+  }
+
+  for (const pokemonName of Object.keys(
+    pokemonRoutes.byName ?? {}
+  )) {
+    assertSitemapPath(
+      `/pokemon/${pokemonName}`,
+      `Pokemon ${pokemonName}`
+    );
+  }
+
+  for (const moveName of Object.keys(moves)) {
+    assertSitemapPath(
+      `/move/${moveName}`,
+      `Move ${moveName}`
+    );
+  }
+
+  for (const abilityName of Object.keys(
+    abilities
+  )) {
+    assertSitemapPath(
+      `/ability/${abilityName}`,
+      `Ability ${abilityName}`
+    );
+  }
+
+  if (Array.isArray(itemsIndex)) {
+    for (const item of itemsIndex) {
+      if (
+        isDynamaxCrystalItem(item) &&
+        !isReleasedDynamaxCrystal(item)
+      ) {
+        continue;
+      }
+
+      if (!item?.name) continue;
+
+      assertSitemapPath(
+        `/item/${item.name}`,
+        `Item ${item.name}`
+      );
+    }
+  }
+
+  if (Array.isArray(locationsIndex)) {
+    for (const location of locationsIndex) {
+      if (!location?.name) continue;
+
+      assertSitemapPath(
+        `/location/${location.name}`,
+        `Location ${location.name}`
+      );
+    }
+  }
+
+  for (const topicSlug of topicSlugs) {
+    assertSitemapPath(
+      `/topic/${topicSlug}`,
+      `Topic ${topicSlug}`
+    );
+  }
+
+  if (Array.isArray(pokemonIndex)) {
+    const typeNames = new Set(
+      pokemonIndex.flatMap(
+        pokemon => pokemon.types ?? []
+      )
+    );
+
+    for (const typeName of typeNames) {
+      assertSitemapPath(
+        `/type/${typeName}`,
+        `Type ${typeName}`
+      );
+    }
+  }
 
   for (const match of urlMatches) {
     const loc = match[1];
@@ -531,7 +671,7 @@ function validateSitemap() {
     if (section === "topic") {
       if (!topicSlugs.has(slug)) {
         addError(
-          `Sitemap topic ${slug}: missing pokedexTopics entry.`
+          `Sitemap topic ${slug}: missing topic source entry.`
         );
       }
       continue;

@@ -90,12 +90,21 @@ function locationRoutes(locationsIndex) {
   );
 }
 
-function topicRoutes(pokedexTopics) {
+function topicRoutes(
+  pokedexTopics,
+  articleTopicIndex
+) {
   return [
-    ...itemLocationTopics,
-    ...(pokedexTopics.topics ?? [])
+    ...itemLocationTopics.filter(
+      topic => topic.active
+    ),
+    ...(pokedexTopics.topics ?? []).filter(
+      topic => topic.active
+    ),
+    ...(articleTopicIndex.topics ?? []).filter(
+      topic => topic.active !== false
+    )
   ]
-    .filter(topic => topic.active)
     .map(topic =>
       route(`/topic/${topic.slug}`)
     );
@@ -121,7 +130,8 @@ async function buildRoutes() {
     abilities,
     itemsIndex,
     locationsIndex,
-    pokedexTopics
+    pokedexTopics,
+    articleTopicIndex
   ] = await Promise.all([
     readJson(
       path.join(dataDir, "pokemonRoutes.json")
@@ -141,6 +151,13 @@ async function buildRoutes() {
     ),
     readJson(
       path.join(dataDir, "pokedexTopics.json")
+    ),
+    readJson(
+      path.join(
+        dataDir,
+        "topics",
+        "topicIndex.json"
+      )
     )
   ]);
 
@@ -151,7 +168,10 @@ async function buildRoutes() {
     abilityRoutes(abilities),
     itemRoutes(itemsIndex),
     locationRoutes(locationsIndex),
-    topicRoutes(pokedexTopics),
+    topicRoutes(
+      pokedexTopics,
+      articleTopicIndex
+    ),
     typeRoutes(pokemonIndex)
   ].flat();
 }
