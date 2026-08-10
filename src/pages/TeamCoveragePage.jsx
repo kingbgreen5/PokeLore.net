@@ -52,6 +52,7 @@ const LEGENDARY_FILTER_STORAGE_KEY =
 const TRADE_EVOLUTION_FILTER_STORAGE_KEY =
   "pokelore:team-coverage-trade-evolution-filter:v1";
 const RECOMMENDATIONS_PER_PAGE = 25;
+const SHOW_RECOMMENDATION_SCORE_DEBUG = false;
 const DEFAULT_RECOMMENDATION_SORT_MODE =
   "custom-score";
 const DEFAULT_RECOMMENDATION_COVERAGE_FILTER =
@@ -2572,6 +2573,7 @@ function TeamCoveragePage() {
                       recommendation
                     }
                     showScore={
+                      SHOW_RECOMMENDATION_SCORE_DEBUG &&
                       selectedSortMode ===
                       "custom-score"
                     }

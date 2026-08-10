@@ -104,7 +104,7 @@
 .article-studio-grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 280px minmax(500px, 0.95fr) minmax(560px, 1.25fr);
+  grid-template-columns: 250px minmax(620px, 1fr) minmax(480px, 0.9fr);
   align-items: start;
 }
 
@@ -115,6 +115,7 @@
   border: 1px solid #444;
   border-radius: 8px;
   max-height: calc(100svh - 150px);
+  min-width: 0;
   overflow: auto;
   padding: 0.75rem;
 }
@@ -132,6 +133,7 @@
   background: #16171d;
   border: 1px solid #555;
   color: var(--text-h);
+  min-width: 0;
   padding: 0.5rem;
   width: 100%;
 }
@@ -202,6 +204,7 @@
   border-radius: 8px;
   display: grid;
   gap: 0.75rem;
+  min-width: 0;
   padding: 0.75rem;
 }
 
@@ -320,30 +323,41 @@
   border-radius: 8px;
   display: grid;
   gap: 0.75rem;
+  min-width: 0;
   padding: 0.75rem;
 }
 
 .article-studio-block > header {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   gap: 0.75rem;
   justify-content: space-between;
+  min-width: 0;
 }
 
 .article-studio-block > header > div {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
+  justify-content: flex-end;
+  min-width: 0;
 }
 
 .article-studio-block-body {
   display: grid;
   gap: 0.65rem;
+  min-width: 0;
 }
 
 .article-studio-image-picker {
   display: grid;
   gap: 0.5rem;
+  min-width: 0;
+}
+
+.article-studio-image-picker input[type="file"] {
+  max-width: 100%;
+  min-width: 0;
 }
 
 .article-studio-image-grid-editor {
@@ -383,7 +397,7 @@
   margin-bottom: 0.75rem;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1450px) {
   .article-studio-grid {
     grid-template-columns: 240px minmax(0, 1fr);
   }
