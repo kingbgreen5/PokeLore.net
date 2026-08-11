@@ -4,8 +4,12 @@ import {
   useState
 } from "react";
 import CollapsibleSection from "./CollapsibleSection";
+import LinkedPokeloreText from "./LinkedPokeloreText";
 import useSessionState from "../hooks/useSessionState";
+import usePokeloreLinkTargets from "../hooks/usePokeloreLinkTargets";
 import { resolvePokeloreAnalysis } from "../utils/pokeloreAnalysis";
+import { getPokeloreLinePokemonLabels } from "../utils/pokeloreTextLinks";
+import { formatPokemonDisplayName } from "../utils/pokemonNames";
 
 function capitalize(text) {
   return String(text)
@@ -55,6 +59,10 @@ function PokemonBiologyData({
     loaded: false,
     analyses: []
   });
+  const linkTargets =
+    usePokeloreLinkTargets();
+  const pokemonName =
+    formatPokemonDisplayName(pokemon);
 
   useEffect(() => {
     let isActive = true;
@@ -91,12 +99,16 @@ function PokemonBiologyData({
     () =>
       resolvePokeloreAnalysis(
         loadState.analyses,
-        pokemon.id
+        pokemon
       ),
     [
       loadState.analyses,
-      pokemon.id
+      pokemon
     ]
+  );
+  const excludedPokemonLabels = useMemo(
+    () => getPokeloreLinePokemonLabels(analysis),
+    [analysis]
   );
 
   const biologicalFacts = [
@@ -135,14 +147,17 @@ function PokemonBiologyData({
       value: capitalize(pokemon.shape)
     }
   ];
+  const usedLinkRoutes = new Set();
 
   return (
     <CollapsibleSection
-      title="Biology and Behavior"
+      id={`pokemon-${pokemon.id}-biology-and-behavior`}
+      title={`${pokemonName} Biology and Behavior`}
       summary="Species, size, habitat, color, and behavior"
       expanded={expanded}
       titleColor={titleColor}
       titleChevron={titleChevron}
+      seoVisible={true}
       onToggle={() =>
         setExpanded(!expanded)
       }
@@ -166,51 +181,89 @@ function PokemonBiologyData({
             textAlign: "left"
           }}
         >
+          <h3
+            style={{
+              color: "#fab856",
+              letterSpacing: 0,
+              marginTop: 0
+            }}
+          >
+            {pokemonName} Biology and Behavior
+          </h3>
           <p
             style={{
               lineHeight: 1.65,
               margin: 0
             }}
           >
-            {analysis.biologyAndBehavior}
+            <LinkedPokeloreText
+              text={analysis.biologyAndBehavior}
+              linkTargets={linkTargets}
+              currentPokemon={pokemon}
+              excludedPokemonLabels={
+                excludedPokemonLabels
+              }
+              usedRoutes={usedLinkRoutes}
+            />
           </p>
         </article>
       )}
 
-      <div
+      <section
+        aria-labelledby={`pokemon-${pokemon.id}-biological-data-heading`}
         style={{
-          display: "grid",
-          gap: ".75rem",
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(170px, 1fr))",
+          backgroundColor: "#202020",
+          border: "1px solid #555",
+          borderRadius: "8px",
+          padding: "1rem",
           textAlign: "left"
         }}
       >
-        {biologicalFacts.map(fact => (
-          <div
-            key={fact.label}
-            style={{
-              backgroundColor: "#202020",
-              border: "1px solid #555",
-              borderRadius: "8px",
-              padding: ".85rem 1rem"
-            }}
-          >
+        <h3
+          id={`pokemon-${pokemon.id}-biological-data-heading`}
+          style={{
+            color: "#fab856",
+            letterSpacing: 0,
+            marginTop: 0
+          }}
+        >
+          {pokemonName} Biological Data
+        </h3>
+        <div
+          style={{
+            display: "grid",
+            gap: ".75rem",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(170px, 1fr))",
+            textAlign: "left"
+          }}
+        >
+          {biologicalFacts.map(fact => (
             <div
+              key={fact.label}
               style={{
-                color: "#fab856",
-                fontSize: ".8rem",
-                fontWeight: 700,
-                letterSpacing: 0,
-                marginBottom: ".25rem"
+                backgroundColor: "#17171d",
+                border: "1px solid #555",
+                borderRadius: "8px",
+                padding: ".85rem 1rem"
               }}
             >
-              {fact.label}
+              <div
+                style={{
+                  color: "#fab856",
+                  fontSize: ".8rem",
+                  fontWeight: 700,
+                  letterSpacing: 0,
+                  marginBottom: ".25rem"
+                }}
+              >
+                {fact.label}
+              </div>
+              <div>{fact.value}</div>
             </div>
-            <div>{fact.value}</div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </section>
     </CollapsibleSection>
   );
 }

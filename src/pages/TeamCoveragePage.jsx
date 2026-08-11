@@ -57,7 +57,7 @@ const LEGENDARY_FILTER_STORAGE_KEY =
 const TRADE_EVOLUTION_FILTER_STORAGE_KEY =
   "pokelore:team-coverage-trade-evolution-filter:v1";
 const RECOMMENDATIONS_PER_PAGE = 25;
-const SHOW_RECOMMENDATION_SCORE_DEBUG = false;
+const SHOW_RECOMMENDATION_SCORE_DEBUG = true;
 const DEFAULT_RECOMMENDATION_SORT_MODE =
   "custom-score";
 const DEFAULT_RECOMMENDATION_COVERAGE_FILTER =
@@ -610,11 +610,25 @@ function getCoverageFilterScore({
   return offensiveHits.length;
 }
 
+function isPureNormalType(pokemon) {
+  const types = pokemon?.types ?? [];
+
+  return (
+    types.length === 1 &&
+    types[0] === "normal"
+  );
+}
+
 function matchesCoverageFilter({
   coverageFilter,
   defensiveHits,
+  normalTypeQualifierEligible = false,
   offensiveHits
 }) {
+  if (normalTypeQualifierEligible) {
+    return true;
+  }
+
   const hasOffensive =
     offensiveHits.length > 0;
   const hasDefensive =
@@ -1778,6 +1792,14 @@ function TeamCoveragePage() {
         defensiveCoveredTypes
       ]
     );
+  const hasPureNormalPartyMember =
+    useMemo(
+      () =>
+        partyMembers.some(member =>
+          isPureNormalType(member?.pokemon)
+        ),
+      [partyMembers]
+    );
   const focusTypeOptions = useMemo(() => {
     if (
       selectedCoverageFilter ===
@@ -1863,6 +1885,9 @@ function TeamCoveragePage() {
                   ?.tradeEvolution !== true)
         )
         .map(pokemon => {
+          const normalTypeQualifierEligible =
+            !hasPureNormalPartyMember &&
+            isPureNormalType(pokemon);
           const attackTypes =
             getThresholdedAttackTypes({
               consideredTypes,
@@ -1912,7 +1937,8 @@ function TeamCoveragePage() {
               }),
             defensiveCoverageTypes,
             missingDefensiveHits,
-            missingHits
+            missingHits,
+            normalTypeQualifierEligible
           };
 
           return {
@@ -1935,6 +1961,8 @@ function TeamCoveragePage() {
                 selectedCoverageFilter,
               defensiveHits:
                 pokemon.missingDefensiveHits,
+              normalTypeQualifierEligible:
+                pokemon.normalTypeQualifierEligible,
               offensiveHits:
                 pokemon.missingHits
             })
@@ -1980,6 +2008,7 @@ function TeamCoveragePage() {
         });
     }, [
       consideredTypes,
+      hasPureNormalPartyMember,
       missingDefensiveTypes,
       missingTypes,
       normalizedParty,

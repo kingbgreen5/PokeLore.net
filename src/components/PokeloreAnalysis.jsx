@@ -4,38 +4,54 @@ import {
   useState
 } from "react";
 import CollapsibleSection from "./CollapsibleSection";
+import LinkedPokeloreText from "./LinkedPokeloreText";
 import useSessionState from "../hooks/useSessionState";
+import usePokeloreLinkTargets from "../hooks/usePokeloreLinkTargets";
 import { resolvePokeloreAnalysis } from "../utils/pokeloreAnalysis";
+import { getPokeloreLinePokemonLabels } from "../utils/pokeloreTextLinks";
+import { formatPokemonDisplayName } from "../utils/pokemonNames";
 
 const analysisSections = [
   {
     key: "playthrough",
-    title: "Playthrough"
+    title: pokemonName =>
+      `Using ${pokemonName} in a Playthrough`
   },
   {
     key: "competitive",
-    title: "Competitive"
+    title: pokemonName =>
+      `${pokemonName} in Competitive Pokemon`
   },
   {
     key: "nuzlocke",
-    title: "Nuzlocke"
+    title: pokemonName =>
+      `${pokemonName} in Nuzlockes`
   }
 ];
 
 function PokeloreAnalysis({
+  pokemon,
   pokemonId,
   titleColor,
   titleChevron = false
 }) {
+  const resolvedPokemonId = pokemon?.id ?? pokemonId;
   const [expanded, setExpanded] =
     useSessionState(
-      `pokemon:${pokemonId}:pokelore-analysis-expanded`,
+      `pokemon:${resolvedPokemonId}:pokelore-analysis-expanded`,
       false
     );
   const [loadState, setLoadState] = useState({
     loaded: false,
     analyses: []
   });
+  const linkTargets =
+    usePokeloreLinkTargets();
+  const pokemonName = formatPokemonDisplayName(
+    pokemon?.name
+      ? pokemon
+      : `Pokemon #${resolvedPokemonId}`
+  );
 
   useEffect(() => {
     let isActive = true;
@@ -72,21 +88,29 @@ function PokeloreAnalysis({
     () =>
       resolvePokeloreAnalysis(
         loadState.analyses,
-        pokemonId
+        pokemon ?? pokemonId
       ),
     [
       loadState.analyses,
+      pokemon,
       pokemonId
     ]
+  );
+  const excludedPokemonLabels = useMemo(
+    () => getPokeloreLinePokemonLabels(analysis),
+    [analysis]
   );
 
   if (loadState.loaded && !analysis) {
     return null;
   }
 
+  const usedLinkRoutes = new Set();
+
   return (
     <CollapsibleSection
-      title="Playthrough, Competitive, and Nuzlocke Usage"
+      id={`pokemon-${resolvedPokemonId}-usage-analysis`}
+      title={`${pokemonName} Playthrough, Competitive, and Nuzlocke Usage`}
       summary={
         loadState.loaded
           ? "Playthrough, competitive, and Nuzlocke"
@@ -95,6 +119,7 @@ function PokeloreAnalysis({
       expanded={expanded}
       titleColor={titleColor}
       titleChevron={titleChevron}
+      seoVisible={true}
       onToggle={() =>
         setExpanded(!expanded)
       }
@@ -127,7 +152,7 @@ function PokeloreAnalysis({
                 marginTop: 0
               }}
             >
-              {section.title}
+              {section.title(pokemonName)}
             </h3>
             <p
               style={{
@@ -135,7 +160,15 @@ function PokeloreAnalysis({
                 margin: 0
               }}
             >
-              {analysis[section.key]}
+              <LinkedPokeloreText
+                text={analysis[section.key]}
+                linkTargets={linkTargets}
+                currentPokemon={pokemon}
+                excludedPokemonLabels={
+                  excludedPokemonLabels
+                }
+                usedRoutes={usedLinkRoutes}
+              />
             </p>
           </article>
         ))}

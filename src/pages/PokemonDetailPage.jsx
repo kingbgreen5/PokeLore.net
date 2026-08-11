@@ -1091,6 +1091,7 @@ const visibleSpecialFormNotes =
 
   <PokeloreAnalysis
     key={`pokelore-analysis-${pokemon.id}`}
+    pokemon={pokemon}
     pokemonId={pokemon.id}
     titleColor={expandableTitleColor}
     titleChevron={true}

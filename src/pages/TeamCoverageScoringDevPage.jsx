@@ -14,6 +14,10 @@ const scoreWeightControls = [
     label: "Coverage Type"
   },
   {
+    key: "normalTypeQualifier",
+    label: "Normal Type Qualifier"
+  },
+  {
     key: "regionalDex",
     label: "Regional Dex"
   },

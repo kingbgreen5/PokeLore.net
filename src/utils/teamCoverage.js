@@ -45,6 +45,7 @@ export const LEVEL_UP_MOVE_LEVEL_THRESHOLDS = [
 
 export const DEFAULT_TEAM_RECOMMENDATION_WEIGHTS = {
   coverageType: 0.2,
+  normalTypeQualifier: 0.4,
   regionalDex: 0.5,
   notRegionalDex: -0.5,
   tradeEvolution: -0.5,
@@ -496,6 +497,10 @@ export function getTeamRecommendationScore({
     playthroughFlags.tradeEvolution
       ? weights.tradeEvolution
       : 0;
+  const normalTypeQualifierContribution =
+    pokemon?.normalTypeQualifierEligible
+      ? weights.normalTypeQualifier
+      : 0;
   const tierContribution = getTierScore({
     tier: playthroughFlags.tier,
     weights
@@ -508,6 +513,7 @@ export function getTeamRecommendationScore({
     regionalDexContribution +
     notRegionalDexContribution +
     tradeEvolutionContribution +
+    normalTypeQualifierContribution +
     tierContribution +
     bstContribution;
   const total =
@@ -524,6 +530,8 @@ export function getTeamRecommendationScore({
         notRegionalDexContribution,
       tradeEvolution:
         tradeEvolutionContribution,
+      normalTypeQualifier:
+        normalTypeQualifierContribution,
       tier: tierContribution,
       bst: bstContribution
     },

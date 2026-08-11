@@ -1,6 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolvePokeloreAnalysis } from "../src/utils/pokeloreAnalysis.js";
+import {
+  getPokeloreLinePokemonLabels,
+  linkifyPokeloreText
+} from "../src/utils/pokeloreTextLinks.js";
 
 const __dirname = path.dirname(
   fileURLToPath(import.meta.url)
@@ -19,6 +24,18 @@ const routesPath = path.join(
   "public",
   "data",
   "pokemonRoutes.json"
+);
+const pokeloreAnalysisPath = path.join(
+  repoRoot,
+  "public",
+  "data",
+  "PokeloreAnalysis.json"
+);
+const pokeloreLinkTargetsPath = path.join(
+  repoRoot,
+  "public",
+  "data",
+  "pokeloreLinkTargets.json"
 );
 const detailImageDir = path.join(
   repoRoot,
@@ -86,6 +103,35 @@ function formatPokemonDisplayName(pokemon) {
     pokemon.displayName ??
     pokemon.formDisplayName ??
     formatName(pokemon.name)
+  );
+}
+
+function formatHeightEnglish(height) {
+  const totalInches = Math.round(
+    (height / 10) * 39.3701
+  );
+  const feet = Math.floor(totalInches / 12);
+  const inches = totalInches % 12;
+
+  return `${feet}' ${inches}"`;
+}
+
+function formatHeightMetric(height) {
+  return `${(height / 10).toFixed(1)} m`;
+}
+
+function formatWeightEnglish(weight) {
+  const pounds = (weight / 10) * 2.20462;
+  return `${pounds.toFixed(1)} lbs`;
+}
+
+function formatWeightMetric(weight) {
+  return `${(weight / 10).toFixed(1)} kg`;
+}
+
+function formatFactValue(value) {
+  return escapeHtml(
+    value || "Currently Unknown"
   );
 }
 
@@ -280,6 +326,134 @@ function buildEvYield(evYield = {}) {
           </p>`;
 }
 
+function buildPrerenderArticle(
+  heading,
+  body,
+  linkTargets,
+  pokemon,
+  excludedPokemonLabels,
+  usedRoutes
+) {
+  if (!body) return "";
+
+  const linkedBody = linkifyPokeloreText(
+    body,
+    linkTargets,
+    pokemon,
+    {
+      excludedPokemonLabels,
+      usedRoutes
+    }
+  )
+    .map(part =>
+      part.href
+        ? `<a href="${escapeHtml(part.href)}">${escapeHtml(part.text)}</a>`
+        : escapeHtml(part.text)
+    )
+    .join("");
+
+  return `
+          <article class="prerender-analysis-card">
+            <h3>${escapeHtml(heading)}</h3>
+            <p>${linkedBody}</p>
+          </article>`;
+}
+
+function buildBiologicalFacts(pokemon) {
+  const facts = [
+    ["Species", pokemon.genus],
+    [
+      "Height",
+      `${formatHeightEnglish(pokemon.height)} (${formatHeightMetric(pokemon.height)})`
+    ],
+    [
+      "Weight",
+      `${formatWeightEnglish(pokemon.weight)} (${formatWeightMetric(pokemon.weight)})`
+    ],
+    [
+      "Habitat",
+      pokemon.habitat
+        ? formatName(pokemon.habitat)
+        : "Currently Unknown"
+    ],
+    ["Color", formatName(pokemon.color)],
+    ["Body Style", formatName(pokemon.shape)]
+  ];
+
+  return facts
+    .map(
+      ([label, value]) => `
+          <div class="prerender-biology-fact">
+            <strong>${escapeHtml(label)}</strong>
+            <span>${formatFactValue(value)}</span>
+          </div>`
+    )
+    .join("");
+}
+
+function buildPokeloreSections(
+  pokemon,
+  analysis,
+  linkTargets
+) {
+  if (!analysis) return "";
+
+  const displayName =
+    formatPokemonDisplayName(pokemon);
+  const excludedPokemonLabels =
+    getPokeloreLinePokemonLabels(analysis);
+  const usedLinkRoutes = new Set();
+  const usageContent = [
+    buildPrerenderArticle(
+      `Using ${displayName} in a Playthrough`,
+      analysis.playthrough,
+      linkTargets,
+      pokemon,
+      excludedPokemonLabels,
+      usedLinkRoutes
+    ),
+    buildPrerenderArticle(
+      `${displayName} in Competitive Pokemon`,
+      analysis.competitive,
+      linkTargets,
+      pokemon,
+      excludedPokemonLabels,
+      usedLinkRoutes
+    ),
+    buildPrerenderArticle(
+      `${displayName} in Nuzlockes`,
+      analysis.nuzlocke,
+      linkTargets,
+      pokemon,
+      excludedPokemonLabels,
+      usedLinkRoutes
+    )
+  ].join("");
+
+  return `
+        <details class="prerender-collapsible">
+          <summary>${escapeHtml(displayName)} Playthrough, Competitive, and Nuzlocke Usage</summary>
+          ${usageContent}
+        </details>
+        <details class="prerender-collapsible">
+          <summary>${escapeHtml(displayName)} Biology and Behavior</summary>
+          ${buildPrerenderArticle(
+            `${displayName} Biology and Behavior`,
+            analysis.biologyAndBehavior,
+            linkTargets,
+            pokemon,
+            excludedPokemonLabels,
+            usedLinkRoutes
+          )}
+          <section class="prerender-analysis-card">
+            <h3>${escapeHtml(displayName)} Biological Data</h3>
+            <div class="prerender-biology-grid">
+              ${buildBiologicalFacts(pokemon)}
+            </div>
+          </section>
+        </details>`;
+}
+
 function getFirstDexEntry(pokemon) {
   return pokemon.dexEntries?.[0]?.text ?? "";
 }
@@ -452,6 +626,70 @@ function buildCriticalCss() {
         max-width: 520px;
         opacity: 0.86;
       }
+
+      .prerender-collapsible {
+        border: 2px solid #706363;
+        border-radius: 12px;
+        box-sizing: border-box;
+        margin: 1rem auto 0;
+        max-width: 900px;
+        padding: 0.75rem;
+        text-align: left;
+        width: 100%;
+      }
+
+      .prerender-collapsible summary {
+        color: #f3f4f6;
+        cursor: pointer;
+        font-size: 1.35rem;
+        font-weight: 500;
+      }
+
+      .prerender-analysis-card {
+        background: #202020;
+        border: 1px solid #555;
+        border-radius: 8px;
+        margin-top: 1rem;
+        padding: 1rem;
+      }
+
+      .prerender-analysis-card h3 {
+        color: #fab856;
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin: 0 0 0.75rem;
+      }
+
+      .prerender-analysis-card p {
+        line-height: 1.65;
+        margin: 0;
+      }
+
+      .prerender-analysis-card a {
+        color: #00cadb;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .prerender-biology-grid {
+        display: grid;
+        gap: 0.75rem;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      }
+
+      .prerender-biology-fact {
+        background: #17171d;
+        border: 1px solid #555;
+        border-radius: 8px;
+        padding: 0.85rem 1rem;
+      }
+
+      .prerender-biology-fact strong {
+        color: #fab856;
+        display: block;
+        font-size: 0.8rem;
+        margin-bottom: 0.25rem;
+      }
     </style>`;
 }
 
@@ -487,7 +725,9 @@ function buildBannerMarkup(assets) {
 function buildPokemonShell(
   pokemon,
   routeName,
-  bannerAssets
+  bannerAssets,
+  pokeloreAnalyses,
+  pokeloreLinkTargets
 ) {
   const displayName =
     formatPokemonDisplayName(pokemon);
@@ -497,6 +737,11 @@ function buildPokemonShell(
     "0"
   );
   const dexEntry = getFirstDexEntry(pokemon);
+  const pokeloreAnalysis =
+    resolvePokeloreAnalysis(
+      pokeloreAnalyses,
+      pokemon
+    );
 
   return `
     <div class="prerender-shell">
@@ -521,6 +766,11 @@ function buildPokemonShell(
             ? `<p class="prerender-entry">${escapeHtml(dexEntry)}</p>`
             : ""
         }
+        ${buildPokeloreSections(
+          pokemon,
+          pokeloreAnalysis,
+          pokeloreLinkTargets
+        )}
       </main>
     </div>`;
 }
@@ -559,13 +809,17 @@ function writePokemonPage(
   template,
   routeName,
   pokemon,
-  bannerAssets
+  bannerAssets,
+  pokeloreAnalyses,
+  pokeloreLinkTargets
 ) {
   const heroImage = getHeroImage(pokemon);
   const shell = buildPokemonShell(
     pokemon,
     routeName,
-    bannerAssets
+    bannerAssets,
+    pokeloreAnalyses,
+    pokeloreLinkTargets
   );
   const html = injectHeadTags(
     template,
@@ -603,6 +857,12 @@ function main() {
     "utf8"
   );
   const routes = readJson(routesPath);
+  const pokeloreAnalyses = readJson(
+    pokeloreAnalysisPath
+  );
+  const pokeloreLinkTargets = readJson(
+    pokeloreLinkTargetsPath
+  );
   const bannerAssets = findBannerAssets();
 
   let written = 0;
@@ -630,7 +890,9 @@ function main() {
       template,
       routeName,
       pokemon,
-      bannerAssets
+      bannerAssets,
+      pokeloreAnalyses,
+      pokeloreLinkTargets
     );
     written++;
   }
