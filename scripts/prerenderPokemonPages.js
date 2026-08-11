@@ -135,6 +135,25 @@ function formatFactValue(value) {
   );
 }
 
+function renderLinkedTextHtml(parts) {
+  return parts
+    .flatMap(part =>
+      String(part.text)
+        .split(/(\n{2,})/)
+        .filter(Boolean)
+        .map(segment => {
+          if (/^\n{2,}$/.test(segment)) {
+            return "<br><br>";
+          }
+
+          return part.href
+            ? `<a href="${escapeHtml(part.href)}">${escapeHtml(segment)}</a>`
+            : escapeHtml(segment);
+        })
+    )
+    .join("");
+}
+
 function applySelectedVariety(
   pokemonData,
   routeName
@@ -344,18 +363,12 @@ function buildPrerenderArticle(
       excludedPokemonLabels,
       usedRoutes
     }
-  )
-    .map(part =>
-      part.href
-        ? `<a href="${escapeHtml(part.href)}">${escapeHtml(part.text)}</a>`
-        : escapeHtml(part.text)
-    )
-    .join("");
+  );
 
   return `
           <article class="prerender-analysis-card">
             <h3>${escapeHtml(heading)}</h3>
-            <p>${linkedBody}</p>
+            <p>${renderLinkedTextHtml(linkedBody)}</p>
           </article>`;
 }
 
