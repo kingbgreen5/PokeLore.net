@@ -8,6 +8,7 @@ import {
   DEFAULT_TEAM_RECOMMENDATION_WEIGHTS,
   getCoveredDefenseTypes,
   getDefensiveCoverageTypes,
+  getLevelUpAttackTypePowerLevels,
   getLevelUpAttackTypePowers,
   getLevelUpAttackTypes,
   getMissingDefenseTypes,
@@ -135,6 +136,113 @@ describe("team coverage helpers", () => {
         versionGroup: "red-blue"
       })
     ).toEqual(["normal"]);
+  });
+
+  it("ignores level-up attacking moves learned after the selected level cap", () => {
+    const learnset = {
+      moves: [
+        {
+          level: 16,
+          method: "level-up",
+          move: "water-gun",
+          versionGroup: "red-blue"
+        },
+        {
+          level: 52,
+          method: "level-up",
+          move: "hydro-pump",
+          versionGroup: "red-blue"
+        }
+      ]
+    };
+    const movesByName = {
+      "hydro-pump": {
+        category: "special",
+        power: 110,
+        type: "water"
+      },
+      "water-gun": {
+        category: "special",
+        power: 40,
+        type: "water"
+      }
+    };
+
+    expect(
+      getLevelUpAttackTypePowers({
+        learnset,
+        maxMoveLevel: 50,
+        movesByName,
+        versionGroup: "red-blue"
+      })
+    ).toEqual({
+      water: 40
+    });
+  });
+
+  it("records level-up move power improvements by attack type", () => {
+    const learnset = {
+      moves: [
+        {
+          level: 16,
+          method: "level-up",
+          move: "water-gun",
+          versionGroup: "red-blue"
+        },
+        {
+          level: 22,
+          method: "level-up",
+          move: "bubble-beam",
+          versionGroup: "red-blue"
+        },
+        {
+          level: 52,
+          method: "level-up",
+          move: "hydro-pump",
+          versionGroup: "red-blue"
+        }
+      ]
+    };
+    const movesByName = {
+      "bubble-beam": {
+        category: "special",
+        power: 65,
+        type: "water"
+      },
+      "hydro-pump": {
+        category: "special",
+        power: 110,
+        type: "water"
+      },
+      "water-gun": {
+        category: "special",
+        power: 40,
+        type: "water"
+      }
+    };
+
+    expect(
+      getLevelUpAttackTypePowerLevels({
+        learnset,
+        movesByName,
+        versionGroup: "red-blue"
+      })
+    ).toEqual({
+      water: [
+        {
+          level: 16,
+          power: 40
+        },
+        {
+          level: 22,
+          power: 65
+        },
+        {
+          level: 52,
+          power: 110
+        }
+      ]
+    });
   });
 
   it("records the strongest level-up move power for each attack type", () => {

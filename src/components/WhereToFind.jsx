@@ -63,9 +63,6 @@ function WhereToFind({
   );
 
   useEffect(() => {
-    setEncounterData(null);
-    setLoaded(false);
-
     if (!enabled) {
       return undefined;
     }

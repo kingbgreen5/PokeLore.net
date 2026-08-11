@@ -1,6 +1,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { assertSafeSlug } from "./articleFileService.js";
+import {
+  assertSafeSlug,
+  getContentPaths
+} from "./articleFileService.js";
 
 const maxUploadBytes = 8 * 1024 * 1024;
 const allowedTypes = new Map([
@@ -205,9 +208,18 @@ async function getSharp() {
 export async function saveArticleImage(paths, {
   slug,
   filename,
-  dataUrl
+  dataUrl,
+  contentType = "article"
 }) {
   assertSafeSlug(slug);
+  const contentPaths = getContentPaths(
+    paths,
+    contentType
+  );
+  const imageUrlPrefix =
+    contentPaths.contentType === "news"
+      ? "/images/news"
+      : "/images/topics";
 
   const {
     buffer,
@@ -216,11 +228,11 @@ export async function saveArticleImage(paths, {
   const safeBase =
     sanitizeImageFilename(filename);
   const articleImageDir = path.join(
-    paths.imageDir,
+    contentPaths.imageDir,
     slug
   );
   const relativeDir = path.relative(
-    paths.imageDir,
+    contentPaths.imageDir,
     articleImageDir
   );
 
@@ -288,14 +300,14 @@ export async function saveArticleImage(paths, {
       .toBuffer();
 
     await fs.writeFile(thumbnailPath, thumbnailBuffer);
-    thumbnail = `/images/topics/${slug}/${safeBase}-400${targetExt}`;
+    thumbnail = `${imageUrlPrefix}/${slug}/${safeBase}-400${targetExt}`;
     optimized = true;
   }
 
   await fs.writeFile(targetPath, outputBuffer);
 
   return {
-    src: `/images/topics/${slug}/${safeBase}${targetExt}`,
+    src: `${imageUrlPrefix}/${slug}/${safeBase}${targetExt}`,
     thumbnail,
     width: dimensions?.width ?? null,
     height: dimensions?.height ?? null,
@@ -306,11 +318,23 @@ export async function saveArticleImage(paths, {
   };
 }
 
-export async function listArticleImages(paths, slug) {
+export async function listArticleImages(
+  paths,
+  slug,
+  contentType = "article"
+) {
   assertSafeSlug(slug);
+  const contentPaths = getContentPaths(
+    paths,
+    contentType
+  );
+  const imageUrlPrefix =
+    contentPaths.contentType === "news"
+      ? "/images/news"
+      : "/images/topics";
 
   const articleImageDir = path.join(
-    paths.imageDir,
+    contentPaths.imageDir,
     slug
   );
 
@@ -325,7 +349,7 @@ export async function listArticleImages(paths, slug) {
         /\.(png|jpe?g|webp|gif)$/i.test(entry.name)
       )
       .map(entry => ({
-        src: `/images/topics/${slug}/${entry.name}`,
+        src: `${imageUrlPrefix}/${slug}/${entry.name}`,
         filename: entry.name
       }))
       .sort((a, b) =>
@@ -350,12 +374,16 @@ function escapeRegExp(value) {
 export function collectReferencedArticleImageFilenames(
   slug,
   value,
-  filenames = new Set()
+  filenames = new Set(),
+  contentType = "article"
 ) {
   assertSafeSlug(slug);
 
   if (typeof value === "string") {
-    const prefix = `/images/topics/${slug}/`;
+    const prefix =
+      contentType === "news"
+        ? `/images/news/${slug}/`
+        : `/images/topics/${slug}/`;
     const pattern = new RegExp(
       `${escapeRegExp(prefix)}([^\\s"'?#)]+)`,
       "g"
@@ -380,7 +408,8 @@ export function collectReferencedArticleImageFilenames(
       collectReferencedArticleImageFilenames(
         slug,
         entry,
-        filenames
+        filenames,
+        contentType
       )
     );
     return filenames;
@@ -391,7 +420,8 @@ export function collectReferencedArticleImageFilenames(
       collectReferencedArticleImageFilenames(
         slug,
         entry,
-        filenames
+        filenames,
+        contentType
       )
     );
   }
@@ -401,9 +431,14 @@ export function collectReferencedArticleImageFilenames(
 
 export async function cleanupUnusedArticleImages(paths, {
   slug,
-  article
+  article,
+  contentType = "article"
 }) {
   assertSafeSlug(slug);
+  const contentPaths = getContentPaths(
+    paths,
+    contentType
+  );
 
   if (
     article?.slug &&
@@ -418,11 +453,11 @@ export async function cleanupUnusedArticleImages(paths, {
   }
 
   const articleImageDir = path.join(
-    paths.imageDir,
+    contentPaths.imageDir,
     slug
   );
   const relativeDir = path.relative(
-    paths.imageDir,
+    contentPaths.imageDir,
     articleImageDir
   );
 
@@ -441,9 +476,15 @@ export async function cleanupUnusedArticleImages(paths, {
   const usedFilenames =
     collectReferencedArticleImageFilenames(
       slug,
-      article ?? {}
+      article ?? {},
+      new Set(),
+      contentPaths.contentType
     );
-  const images = await listArticleImages(paths, slug);
+  const images = await listArticleImages(
+    paths,
+    slug,
+    contentPaths.contentType
+  );
   const deleted = [];
   const kept = [];
 

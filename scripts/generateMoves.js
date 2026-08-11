@@ -506,7 +506,7 @@ function sortLearnerMethods(a, b) {
 async function buildMachineItemsByMove() {
   const byMove = new Map();
 
-  let files = [];
+  let files;
   try {
     files = await fs.readdir(itemsDir);
   } catch {
@@ -564,7 +564,7 @@ async function buildMachineItemsByMove() {
 async function buildExistingMoveFlagsByMove() {
   const byMove = new Map();
 
-  let files = [];
+  let files;
   try {
     files = await fs.readdir(movesDir);
   } catch {
@@ -693,7 +693,7 @@ async function getPokemonSummary(
 async function buildMoveLearners() {
   const learners = new Map();
 
-  let files = [];
+  let files;
   try {
     files = await fs.readdir(
       pokemonLearnsetsDir

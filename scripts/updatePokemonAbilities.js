@@ -137,11 +137,6 @@ async function updatePokemonAbilities() {
   );
 
   for (const fileName of files) {
-    let filePath = path.join(
-      pokemonDataDir,
-      fileName
-    );
-    let pokemon = null;
     let id = path.basename(
       fileName,
       ".json"
@@ -150,8 +145,8 @@ async function updatePokemonAbilities() {
     try {
       const fileData =
         await readPokemonFile(fileName);
-      filePath = fileData.filePath;
-      pokemon = fileData.pokemon;
+      const filePath = fileData.filePath;
+      const pokemon = fileData.pokemon;
       id = pokemon.id ?? id;
 
       if (!pokemon?.id) {

@@ -84,29 +84,6 @@ function InfoGrid({
   );
 }
 
-function Badge({
-  children
-}) {
-  if (!children) {
-    return null;
-  }
-
-  return (
-    <span
-      style={{
-        border: "1px solid #888",
-        borderRadius: "999px",
-        display: "inline-flex",
-        fontSize: ".85rem",
-        fontWeight: 700,
-        padding: ".3rem .7rem"
-      }}
-    >
-      {children}
-    </span>
-  );
-}
-
 function Section({
   title,
   children
@@ -274,43 +251,6 @@ function buildProcessingUses(mechanics) {
   };
 }
 
-function BerrySummary({
-  item,
-  presentation
-}) {
-  const summary =
-    presentation.primaryEffect.summary;
-
-  if (!summary) {
-    return null;
-  }
-
-  return (
-    <section
-      aria-label={`${item.displayName} summary`}
-      style={{
-        backgroundColor: "#202020",
-        border: "1px solid #555",
-        borderRadius: "12px",
-        margin: "0 auto 2rem",
-        maxWidth: "760px",
-        padding: "1rem",
-        textAlign: "left"
-      }}
-    >
-      <p
-        style={{
-          color: "#f3f4f6",
-          fontSize: "1.05rem",
-          lineHeight: 1.45
-        }}
-      >
-        {summary}
-      </p>
-    </section>
-  );
-}
-
 function WhatThisBerryDoes({
   presentation
 }) {
@@ -368,65 +308,6 @@ function BerryLocationsSection({
         {locationsByGame.map(group => (
           <article key={group.id}>
             <h3>{group.label}</h3>
-          </article>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function UsesByGame({
-  usesByGame
-}) {
-  if (usesByGame.length === 0) {
-    return null;
-  }
-
-  return (
-    <Section title="Uses by Game">
-      <div
-        style={{
-          display: "grid",
-          gap: ".85rem"
-        }}
-      >
-        {usesByGame.map(entry => (
-          <article
-            key={entry.id}
-            style={{
-              border: "1px solid #555",
-              borderRadius: "12px",
-              padding: ".85rem"
-            }}
-          >
-            <h3
-              style={{
-                color: "var(--text-h)",
-                fontSize: "1rem",
-                margin: "0 0 .5rem"
-              }}
-            >
-              {entry.versionGroups
-                .map(capitalize)
-                .join(" / ")}
-            </h3>
-
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: ".4rem",
-                marginBottom: ".65rem"
-              }}
-            >
-              {entry.uses.map(use => (
-                <Badge key={use}>
-                  {use}
-                </Badge>
-              ))}
-            </div>
-
-            <p>{entry.text}</p>
           </article>
         ))}
       </div>
@@ -701,9 +582,7 @@ function LegacyBattleMechanics({
 }
 
 function PhysicalData({
-  mechanics,
-  item,
-  berryData
+  mechanics
 }) {
   const hasPhysicalData =
     mechanics &&
@@ -861,8 +740,6 @@ function BerryDetails({
       />
       <PhysicalData
         mechanics={mechanics}
-        item={item}
-        berryData={berryData}
       />
       <ItemOnlyBerryNotice
         berryData={berryData}
@@ -870,10 +747,5 @@ function BerryDetails({
     </>
   );
 }
-
-export {
-  BerryLocationsSection,
-  buildBerryPresentation
-};
 
 export default BerryDetails;

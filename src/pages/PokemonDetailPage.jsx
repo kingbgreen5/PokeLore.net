@@ -28,46 +28,137 @@ import {
   getRegionalFormKey
 } from "../utils/pokemonNames";
 
-const LearnsetCard = lazy(() =>
-  import("../components/LearnsetCard")
-);
-const DexEntryCard = lazy(() =>
-  import("../components/DexEntryCard.jsx")
-);
-const EvolutionNode = lazy(() =>
-  import("../components/EvolutionNode")
-);
-const FormEvolutionPaths = lazy(() =>
-  import("../components/EvolutionNode").then(
+const DEFERRED_DETAILS_WARMUP_DELAY_MS = 1600;
+const DEFERRED_SECTION_ROOT_MARGIN = "1200px 0px";
+const DEEP_DEFERRED_SECTION_DELAY_MS = 2800;
+
+const loadLearnsetCard = () =>
+  import("../components/LearnsetCard");
+const loadDexEntryCard = () =>
+  import("../components/DexEntryCard.jsx");
+const loadEvolutionNode = () =>
+  import("../components/EvolutionNode");
+const loadFormEvolutionPaths = () =>
+  loadEvolutionNode().then(
     module => ({
       default: module.FormEvolutionPaths
     })
-  )
-);
-const OaksNotes = lazy(() =>
-  import("../components/OaksNotes")
-);
-const PokemonGoNotes = lazy(() =>
-  import("../components/PokemonGoNotes")
-);
-const PokemonSummaryCard = lazy(() =>
-  import("../components/PokemonSummaryCard.jsx")
-);
-const WhereToFind = lazy(() =>
-  import("../components/WhereToFind")
-);
-const HeldItems = lazy(() =>
-  import("../components/HeldItems")
-);
-const AdditionalImages = lazy(() =>
-  import("../components/AdditionalImages")
-);
-const SizeComparison = lazy(() =>
-  import("../components/SizeComparison")
-);
-const PokemonSpriteCarousel = lazy(() =>
-  import("../components/PokemonSpriteCarousel.jsx")
-);
+  );
+const loadOaksNotes = () =>
+  import("../components/OaksNotes");
+const loadPokemonGoNotes = () =>
+  import("../components/PokemonGoNotes");
+const loadPokemonSummaryCard = () =>
+  import("../components/PokemonSummaryCard.jsx");
+const loadWhereToFind = () =>
+  import("../components/WhereToFind");
+const loadPokeloreAnalysis = () =>
+  import("../components/PokeloreAnalysis");
+const loadPokemonBiologyData = () =>
+  import("../components/PokemonBiologyData");
+const loadHeldItems = () =>
+  import("../components/HeldItems");
+const loadAdditionalImages = () =>
+  import("../components/AdditionalImages");
+const loadSizeComparison = () =>
+  import("../components/SizeComparison");
+const loadPokemonSpriteCarousel = () =>
+  import("../components/PokemonSpriteCarousel.jsx");
+
+const LearnsetCard = lazy(loadLearnsetCard);
+const DexEntryCard = lazy(loadDexEntryCard);
+const EvolutionNode = lazy(loadEvolutionNode);
+const FormEvolutionPaths = lazy(loadFormEvolutionPaths);
+const OaksNotes = lazy(loadOaksNotes);
+const PokemonGoNotes = lazy(loadPokemonGoNotes);
+const PokemonSummaryCard = lazy(loadPokemonSummaryCard);
+const WhereToFind = lazy(loadWhereToFind);
+const PokeloreAnalysis = lazy(loadPokeloreAnalysis);
+const PokemonBiologyData = lazy(loadPokemonBiologyData);
+const HeldItems = lazy(loadHeldItems);
+const AdditionalImages = lazy(loadAdditionalImages);
+const SizeComparison = lazy(loadSizeComparison);
+const PokemonSpriteCarousel = lazy(loadPokemonSpriteCarousel);
+
+function warmPokemonDetailDeferredModules() {
+  return Promise.allSettled([
+    loadLearnsetCard(),
+    loadDexEntryCard(),
+    loadEvolutionNode(),
+    loadFormEvolutionPaths(),
+    loadOaksNotes(),
+    loadPokemonGoNotes(),
+    loadPokemonSummaryCard(),
+    loadWhereToFind(),
+    loadPokeloreAnalysis(),
+    loadPokemonBiologyData(),
+    loadHeldItems(),
+    loadAdditionalImages(),
+    loadSizeComparison(),
+    loadPokemonSpriteCarousel()
+  ]);
+}
+
+function schedulePokemonDetailWarmup(callback) {
+  let cancelled = false;
+  let timeoutId = null;
+  let idleId = null;
+
+  const queueWarmup = () => {
+    timeoutId = window.setTimeout(() => {
+      if (cancelled) {
+        return;
+      }
+
+      if ("requestIdleCallback" in window) {
+        idleId = window.requestIdleCallback(
+          () => {
+            if (!cancelled) {
+              callback();
+            }
+          },
+          {
+            timeout: 1200
+          }
+        );
+        return;
+      }
+
+      callback();
+    }, DEFERRED_DETAILS_WARMUP_DELAY_MS);
+  };
+
+  if (document.readyState === "complete") {
+    queueWarmup();
+  } else {
+    window.addEventListener(
+      "load",
+      queueWarmup,
+      {
+        once: true
+      }
+    );
+  }
+
+  return () => {
+    cancelled = true;
+    window.removeEventListener(
+      "load",
+      queueWarmup
+    );
+
+    if (timeoutId) {
+      window.clearTimeout(timeoutId);
+    }
+
+    if (
+      idleId &&
+      "cancelIdleCallback" in window
+    ) {
+      window.cancelIdleCallback(idleId);
+    }
+  };
+}
 
 function capitalize(text) {
   return String(text)
@@ -543,6 +634,20 @@ useEffect(() => {
   pokemon
 ]);
 
+useEffect(() => {
+  if (!pokemon || deferredDetailsReady) {
+    return undefined;
+  }
+
+  return schedulePokemonDetailWarmup(() => {
+    warmPokemonDetailDeferredModules();
+    setDeferredDetailsReady(true);
+  });
+}, [
+  deferredDetailsReady,
+  pokemon
+]);
+
 
 
 // 2. center scroll AFTER render
@@ -639,39 +744,6 @@ const visibleSpecialFormNotes =
   ).filter(note =>
     note.pokemon === pokemon.name
   );
-
-
-
-  const correctionFactor = 10
-const pokemonHeight = (pokemon.height / correctionFactor) +" m.";
- const meterToInches= 39.370079
- const pokemonHeightInches = (pokemon.height / correctionFactor)*meterToInches;
- // eslint-disable-next-line no-unused-vars
- const pokemonHeightEnglish = (pokemonHeightInches / 12)
-
-
-
-// eslint-disable-next-line no-unused-vars
-const weightCorrection= 10;
-const pokemonWeight = (pokemon.weight / correctionFactor) +" kg.";
-
-
-
-function formatHeightEnglish(height) {
-  const totalInches = Math.round((height / 10) * 39.3701);
-  const feet = Math.floor(totalInches / 12);
-  const inches = totalInches % 12;
-
-  return `${feet}' ${inches}"`;
-}
-
-function formatWeightEnglish(weight) {
-  const pounds = (weight / 10) * 2.20462;
-  return `${pounds.toFixed(1)} lbs`;
-}
-
-
-
 
 //----------------------------------------RETURN STATEMENT-----------------------------------------
 
@@ -862,7 +934,8 @@ function formatWeightEnglish(weight) {
   onReveal={() =>
     setDeferredDetailsReady(true)
   }
-  rootMargin="150px 0px"
+  delayMs={2800}
+  rootMargin={DEFERRED_SECTION_ROOT_MARGIN}
 >
   <Suspense fallback={null}>
 
@@ -1016,6 +1089,13 @@ function formatWeightEnglish(weight) {
     titleChevron={true}
   />
 
+  <PokeloreAnalysis
+    key={`pokelore-analysis-${pokemon.id}`}
+    pokemonId={pokemon.id}
+    titleColor={expandableTitleColor}
+    titleChevron={true}
+  />
+
   <HeldItems
     enabled={deferredDetailsReady}
     key={`held-items-${pokemon.id}`}
@@ -1037,80 +1117,13 @@ function formatWeightEnglish(weight) {
     titleChevron={true}
   />
 
-  <div
-        style={{
-            marginBottom:"1rem"
-        }}>
+  <PokemonBiologyData
+    key={`biology-and-behavior-${pokemon.id}`}
+    pokemon={pokemon}
+    titleColor={expandableTitleColor}
+    titleChevron={true}
+  />
 
-
-
-
-<h2
-
-
-
->Biological Data</h2>
-      <p>
-       Species: {pokemon.genus}
-      </p>
-      
-       <p>Height: {formatHeightEnglish(pokemon.height)} ({pokemonHeight})</p>
-
-
-
-<p>Weight: {formatWeightEnglish(pokemon.weight)} ({pokemonWeight})</p>
-
-           
-
-
-
-{pokemon.habitat != null ? (
- <p 
-            style={{
-              textTransform:'capitalize'
-            }}
-            >
-           Habitat: {pokemon.habitat}
-      </p>
-) : (
-
-
- <p 
-            style={{
-              textTransform:'capitalize'
-            }}
-            >
-           Habitat: Currently Unknown
-      </p>
-
-)}
-
-
-
-
-
-
-
-
-
-
-
-              <p
-                  style={{
-              textTransform:'capitalize'
-            }}>
-           Color: {pokemon.color}
-      </p>
-
-        <p
-            style={{
-              textTransform:'capitalize'
-            }}>
-           Body Style: {pokemon.shape}
-      </p>
-      
-
-        </div>
   <h2>Misc</h2>
         <p>
          Catch Rate: {pokemon.catchRate}
@@ -1131,7 +1144,8 @@ function formatWeightEnglish(weight) {
         }}
       />
     }
-    rootMargin="300px 0px"
+    delayMs={DEEP_DEFERRED_SECTION_DELAY_MS}
+    rootMargin={DEFERRED_SECTION_ROOT_MARGIN}
   >
     <Suspense fallback={null}>
       <SizeComparison
@@ -1150,7 +1164,8 @@ function formatWeightEnglish(weight) {
         }}
       />
     }
-    rootMargin="300px 0px"
+    delayMs={DEEP_DEFERRED_SECTION_DELAY_MS}
+    rootMargin={DEFERRED_SECTION_ROOT_MARGIN}
   >
     <Suspense fallback={null}>
       <PokemonSpriteCarousel

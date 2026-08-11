@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import TypeBadge from "../components/TypeBadge";
 import TopicArticlePage from "../components/topics/TopicArticlePage";
+import { getArticleContentType } from "../utils/articleSchema";
 import Seo from "../seo/Seo";
 import { topicSeo } from "../seo/seoConfig";
 import { formatPokemonDisplayName }
@@ -630,25 +631,33 @@ function PokedexTopicDetailPage() {
 
 function TopicDetailPage() {
   const { topicSlug } = useParams();
-  const [article, setArticle] =
-    useState(null);
-  const [articleChecked, setArticleChecked] =
-    useState(false);
+  const [
+    articleLoadState,
+    setArticleLoadState
+  ] = useState({
+    slug: "",
+    article: null,
+    checked: false
+  });
   const StaticTopicComponent =
     itemLocationTopicComponents[
       topicSlug
     ];
+  const currentArticleState =
+    articleLoadState.slug === topicSlug
+      ? articleLoadState
+      : {
+          slug: topicSlug,
+          article: null,
+          checked: false
+        };
 
   useEffect(() => {
     if (StaticTopicComponent) {
-      setArticle(null);
-      setArticleChecked(true);
       return;
     }
 
     let isActive = true;
-    setArticle(null);
-    setArticleChecked(false);
 
     fetch(
       `/data/topics/articles/${topicSlug}.json`
@@ -658,13 +667,17 @@ function TopicDetailPage() {
       )
       .then(data => {
         if (!isActive) return;
-        setArticle(
-          data?.contentType === "article" &&
+        setArticleLoadState({
+          slug: topicSlug,
+          article:
+            data &&
+            getArticleContentType(data) === "article" &&
             (import.meta.env.DEV ||
               data.active !== false)
-            ? data
-            : null
-        );
+              ? data
+              : null,
+          checked: true
+        });
       })
       .catch(error => {
         if (!isActive) return;
@@ -672,12 +685,11 @@ function TopicDetailPage() {
           "Failed to load topic article:",
           error
         );
-        setArticle(null);
-      })
-      .finally(() => {
-        if (isActive) {
-          setArticleChecked(true);
-        }
+        setArticleLoadState({
+          slug: topicSlug,
+          article: null,
+          checked: true
+        });
       });
 
     return () => {
@@ -689,12 +701,16 @@ function TopicDetailPage() {
     return <StaticTopicComponent />;
   }
 
-  if (!articleChecked) {
+  if (!currentArticleState.checked) {
     return <p>Loading topic...</p>;
   }
 
-  if (article) {
-    return <TopicArticlePage article={article} />;
+  if (currentArticleState.article) {
+    return (
+      <TopicArticlePage
+        article={currentArticleState.article}
+      />
+    );
   }
 
   return <PokedexTopicDetailPage />;

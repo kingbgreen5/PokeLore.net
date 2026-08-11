@@ -6,12 +6,20 @@ import {
 import TopicArticlePage from "../components/topics/TopicArticlePage";
 import {
   ARTICLE_BLOCK_TYPES,
+  ARTICLE_CONTENT_TYPE,
+  DEFAULT_NEWS_LABEL,
+  NEWS_CONTENT_TYPE,
+  NEWS_LABELS,
   cloneArticleWithNewBlockIds,
   createBlockId,
   createEmptyArticle,
+  getArticleContentType,
+  isoToLocalInputValue,
+  localInputValueToIso,
   normalizeDelimitedList,
   normalizeNumericList,
-  slugify
+  slugify,
+  toLocalIsoDateTime
 } from "../utils/articleSchema";
 import { validateArticle } from "../utils/articleValidation";
 import "./ArticleStudioPage.css";
@@ -153,6 +161,13 @@ async function apiJson(path, options = {}) {
   }
 
   return data;
+}
+
+function apiPath(path, contentType) {
+  if (!contentType) return path;
+
+  const separator = path.includes("?") ? "&" : "?";
+  return `${path}${separator}contentType=${encodeURIComponent(contentType)}`;
 }
 
 function TextField({
@@ -430,14 +445,18 @@ function ImagePicker({
 }) {
   const [images, setImages] = useState([]);
   const [busy, setBusy] = useState(false);
+  const imageContentType =
+    getArticleContentType(article);
 
   useEffect(() => {
     if (!article?.slug) return;
 
-    apiJson(`/images/${article.slug}`)
+    apiJson(
+      apiPath(`/images/${article.slug}`, imageContentType)
+    )
       .then(data => setImages(data.images ?? []))
       .catch(() => setImages([]));
-  }, [article?.slug, refreshKey]);
+  }, [article?.slug, imageContentType, refreshKey]);
 
   async function upload(file) {
     if (!file) return;
@@ -456,6 +475,7 @@ function ImagePicker({
         method: "POST",
         body: JSON.stringify({
           slug: article.slug,
+          contentType: imageContentType,
           filename: file.name,
           dataUrl
         })
@@ -1185,6 +1205,10 @@ function ArticleStudioPage() {
   );
   const [savedSlug, setSavedSlug] =
     useState(null);
+  const [
+    savedContentType,
+    setSavedContentType
+  ] = useState(ARTICLE_CONTENT_TYPE);
   const [dirty, setDirty] = useState(false);
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
@@ -1196,10 +1220,14 @@ function ArticleStudioPage() {
     () => validateArticle(article),
     [article]
   );
+  const articleContentType =
+    getArticleContentType(article);
+  const isNews =
+    articleContentType === NEWS_CONTENT_TYPE;
   const filteredArticles = useMemo(
     () =>
       articles.filter(entry =>
-        `${entry.title} ${entry.slug}`
+        `${entry.title} ${entry.slug} ${entry.contentType}`
           .toLowerCase()
           .includes(search.toLowerCase())
       ),
@@ -1256,7 +1284,10 @@ function ArticleStudioPage() {
     }
   }
 
-  async function openArticle(slug) {
+  async function openArticle(
+    slug,
+    contentType = ARTICLE_CONTENT_TYPE
+  ) {
     if (
       dirty &&
       !window.confirm(
@@ -1267,9 +1298,14 @@ function ArticleStudioPage() {
     }
 
     try {
-      const data = await apiJson(`/articles/${slug}`);
+      const data = await apiJson(
+        apiPath(`/articles/${slug}`, contentType)
+      );
       setArticle(data.article);
       setSavedSlug(data.article.slug);
+      setSavedContentType(
+        getArticleContentType(data.article)
+      );
       setDirty(false);
       setStatus(`Loaded ${data.article.slug}.`);
     } catch (error) {
@@ -1289,6 +1325,7 @@ function ArticleStudioPage() {
 
     setArticle(createEmptyArticle());
     setSavedSlug(null);
+    setSavedContentType(ARTICLE_CONTENT_TYPE);
     setDirty(true);
     setStatus("New draft created.");
   }
@@ -1305,6 +1342,7 @@ function ArticleStudioPage() {
         new Date().toISOString().slice(0, 10)
     });
     setSavedSlug(null);
+    setSavedContentType(getArticleContentType(article));
     setDirty(true);
     setStatus(
       "Duplicated as a draft. Image references still point to the original paths."
@@ -1319,7 +1357,7 @@ function ArticleStudioPage() {
 
     if (
       !window.confirm(
-        `Delete article "${title}"?\n\nThis removes it from Article Studio and the Topics index. A JSON backup will be created, and uploaded images will remain on disk.`
+        `Delete article "${title}"?\n\nThis removes it from Article Studio and its public index. A JSON backup will be created, and uploaded images will remain on disk.`
       )
     ) {
       return;
@@ -1335,12 +1373,16 @@ function ArticleStudioPage() {
     }
 
     try {
-      await apiJson(`/articles/${savedSlug}`, {
-        method: "DELETE"
-      });
+      await apiJson(
+        apiPath(`/articles/${savedSlug}`, savedContentType),
+        {
+          method: "DELETE"
+        }
+      );
       await reloadList();
       setArticle(createEmptyArticle());
       setSavedSlug(null);
+      setSavedContentType(ARTICLE_CONTENT_TYPE);
       setDirty(false);
       setStatus("Article deleted and backed up.");
     } catch (error) {
@@ -1355,7 +1397,10 @@ function ArticleStudioPage() {
     }
 
     const path = savedSlug
-      ? `/articles/${savedSlug}`
+      ? apiPath(
+          `/articles/${savedSlug}?expectedContentType=${encodeURIComponent(savedContentType)}`,
+          getArticleContentType(article)
+        )
       : "/articles";
     const method = savedSlug ? "PUT" : "POST";
     try {
@@ -1367,9 +1412,12 @@ function ArticleStudioPage() {
       });
       setArticle(data.article);
       setSavedSlug(data.article.slug);
+      setSavedContentType(
+        getArticleContentType(data.article)
+      );
       setDirty(false);
       await reloadList();
-      setStatus("Saved article and updated topic index.");
+      setStatus("Saved article and updated public index.");
     } catch (error) {
       setStatus(error.message);
     }
@@ -1448,12 +1496,61 @@ function ArticleStudioPage() {
     });
   }
 
+  function changeContentType(contentType) {
+    if (contentType === NEWS_CONTENT_TYPE) {
+      patchArticle({
+        contentType: NEWS_CONTENT_TYPE,
+        newsLabel:
+          article.newsLabel || DEFAULT_NEWS_LABEL,
+        featured: article.featured ?? false,
+        publishedAt: article.publishedAt || "",
+        updatedAt: article.updatedAt || ""
+      });
+      return;
+    }
+
+    patchArticle({
+      contentType: ARTICLE_CONTENT_TYPE,
+      publishedDate:
+        article.publishedDate ||
+        new Date().toISOString().slice(0, 10),
+      updatedDate:
+        article.updatedDate ||
+        new Date().toISOString().slice(0, 10)
+    });
+  }
+
+  function changeActive(active) {
+    if (
+      active &&
+      isNews &&
+      !article.publishedAt &&
+      window.confirm(
+        "Set Published At to the current local time?"
+      )
+    ) {
+      patchArticle({
+        active,
+        publishedAt: toLocalIsoDateTime()
+      });
+      return;
+    }
+
+    patchArticle({ active });
+  }
+
+  function markUpdatedNow() {
+    patchArticle({
+      updatedAt: toLocalIsoDateTime()
+    });
+  }
+
   async function cleanupUnusedImages() {
     if (!article.slug) return;
 
     if (
       !window.confirm(
-        `Clean up unused images for "${article.slug}"?\n\nThis permanently deletes files in public/images/topics/${article.slug}/ that are not referenced by the current editor draft.`
+        `Clean up unused images for "${article.slug}"?\n\nThis permanently deletes files in public/images/${isNews ? "news" : "topics"}/${article.slug}/ that are not referenced by the current editor draft.`
       )
     ) {
       return;
@@ -1461,7 +1558,10 @@ function ArticleStudioPage() {
 
     try {
       const data = await apiJson(
-        `/images/${article.slug}/cleanup`,
+        apiPath(
+          `/images/${article.slug}/cleanup`,
+          articleContentType
+        ),
         {
           method: "POST",
           body: JSON.stringify({
@@ -1506,7 +1606,10 @@ function ArticleStudioPage() {
           <button
             type="button"
             onClick={() =>
-              openArticle(savedSlug)
+              openArticle(
+                savedSlug,
+                savedContentType
+              )
             }
             disabled={!savedSlug}
           >
@@ -1568,15 +1671,19 @@ function ArticleStudioPage() {
           <div className="article-studio-list-items">
             {filteredArticles.map(entry => (
               <button
-                key={entry.slug}
+                key={`${entry.contentType}-${entry.slug}`}
                 type="button"
                 className={
-                  entry.slug === savedSlug
+                  entry.slug === savedSlug &&
+                  entry.contentType === savedContentType
                     ? "active"
                     : ""
                 }
                 onClick={() =>
-                  openArticle(entry.slug)
+                  openArticle(
+                    entry.slug,
+                    entry.contentType
+                  )
                 }
               >
                 <strong>{entry.title}</strong>
@@ -1590,6 +1697,11 @@ function ArticleStudioPage() {
                     }
                   >
                     {entry.active ? "Active" : "Draft"}
+                  </span>
+                  <span className="article-studio-list-badge">
+                    {entry.contentType === NEWS_CONTENT_TYPE
+                      ? "News"
+                      : "Topic"}
                   </span>
                   {entry.updatedDate ||
                     entry.modifiedTime}
@@ -1608,6 +1720,22 @@ function ArticleStudioPage() {
         >
           <section className="article-studio-editor-section">
             <h2>Metadata</h2>
+            <label className="article-studio-field">
+              <span>Content Type</span>
+              <select
+                value={articleContentType}
+                onChange={event =>
+                  changeContentType(event.target.value)
+                }
+              >
+                <option value={ARTICLE_CONTENT_TYPE}>
+                  Topic Article
+                </option>
+                <option value={NEWS_CONTENT_TYPE}>
+                  News Article
+                </option>
+              </select>
+            </label>
             <TextField
               label="Title"
               value={article.title}
@@ -1658,10 +1786,88 @@ function ArticleStudioPage() {
             />
             <PublishToggle
               active={article.active !== false}
-              onChange={active =>
-                patchArticle({ active })
-              }
+              onChange={changeActive}
             />
+            {isNews && (
+              <>
+                <label className="article-studio-field">
+                  <span>News Label</span>
+                  <select
+                    value={
+                      article.newsLabel ||
+                      DEFAULT_NEWS_LABEL
+                    }
+                    onChange={event =>
+                      patchArticle({
+                        newsLabel: event.target.value
+                      })
+                    }
+                  >
+                    {NEWS_LABELS.map(label => (
+                      <option
+                        key={label}
+                        value={label}
+                      >
+                        {label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="article-studio-inline">
+                  <input
+                    type="checkbox"
+                    checked={
+                      article.featured === true
+                    }
+                    onChange={event =>
+                      patchArticle({
+                        featured:
+                          event.target.checked
+                      })
+                    }
+                  />
+                  Featured News
+                </label>
+                <TextField
+                  label="Published At"
+                  type="datetime-local"
+                  value={isoToLocalInputValue(
+                    article.publishedAt
+                  )}
+                  onChange={publishedAt =>
+                    patchArticle({
+                      publishedAt:
+                        localInputValueToIso(
+                          publishedAt
+                        )
+                    })
+                  }
+                />
+                <div className="article-studio-actions">
+                  <TextField
+                    label="Updated At"
+                    type="datetime-local"
+                    value={isoToLocalInputValue(
+                      article.updatedAt
+                    )}
+                    onChange={updatedAt =>
+                      patchArticle({
+                        updatedAt:
+                          localInputValueToIso(
+                            updatedAt
+                          )
+                      })
+                    }
+                  />
+                  <button
+                    type="button"
+                    onClick={markUpdatedNow}
+                  >
+                    Mark updated now
+                  </button>
+                </div>
+              </>
+            )}
             <TextField
               label="Tags"
               value={(article.tags ?? []).join(", ")}
@@ -1671,22 +1877,26 @@ function ArticleStudioPage() {
                 })
               }
             />
-            <TextField
-              label="Published date"
-              type="date"
-              value={article.publishedDate}
-              onChange={publishedDate =>
-                patchArticle({ publishedDate })
-              }
-            />
-            <TextField
-              label="Updated date"
-              type="date"
-              value={article.updatedDate}
-              onChange={updatedDate =>
-                patchArticle({ updatedDate })
-              }
-            />
+            {!isNews && (
+              <>
+                <TextField
+                  label="Published date"
+                  type="date"
+                  value={article.publishedDate}
+                  onChange={publishedDate =>
+                    patchArticle({ publishedDate })
+                  }
+                />
+                <TextField
+                  label="Updated date"
+                  type="date"
+                  value={article.updatedDate}
+                  onChange={updatedDate =>
+                    patchArticle({ updatedDate })
+                  }
+                />
+              </>
+            )}
             <NumericListField
               label="Related Pokemon IDs"
               values={article.relatedPokemon ?? []}

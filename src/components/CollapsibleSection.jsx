@@ -70,15 +70,19 @@ function CollapsibleSection({
             <span
               aria-hidden="true"
               style={{
-                borderColor: "currentColor",
-                borderStyle: "solid",
-                borderWidth: "0 2px 2px 0",
+                borderLeft:
+                  ".38rem solid transparent",
+                borderRight:
+                  ".38rem solid transparent",
+                borderTop: expanded
+                  ? "none"
+                  : ".55rem solid currentColor",
+                borderBottom: expanded
+                  ? ".55rem solid currentColor"
+                  : "none",
                 display: "inline-block",
-                height: ".45rem",
-                transform: expanded
-                  ? "rotate(-135deg)"
-                  : "rotate(45deg)",
-                width: ".45rem"
+                height: 0,
+                width: 0
               }}
             />
           )}

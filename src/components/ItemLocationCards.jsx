@@ -582,8 +582,3 @@ function ItemLocationCards({
 }
 
 export default ItemLocationCards;
-export {
-  compareDisplayVersions,
-  formatVersionList,
-  groupItemRows
-};

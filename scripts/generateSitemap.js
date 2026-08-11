@@ -15,10 +15,27 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
 const dataDir = path.join(rootDir, "public", "data");
 const outputPath = path.join(rootDir, "public", "sitemap.xml");
+const newsSitemapOutputPath = path.join(
+  rootDir,
+  "public",
+  "news-sitemap.xml"
+);
 
 async function readJson(filePath) {
   const text = await fs.readFile(filePath, "utf8");
   return JSON.parse(text);
+}
+
+async function readJsonIfExists(filePath, fallback) {
+  try {
+    return await readJson(filePath);
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      return fallback;
+    }
+
+    throw error;
+  }
 }
 
 function escapeXml(value) {
@@ -47,6 +64,7 @@ function staticRoutes() {
     "/items",
     DYNAMAX_CRYSTAL_GUIDE_PATH,
     "/locations",
+    "/news",
     "/topics",
     "/types"
   ].map(route);
@@ -110,6 +128,18 @@ function topicRoutes(
     );
 }
 
+function newsRoutes(newsIndex) {
+  return (newsIndex.articles ?? [])
+    .filter(
+      article =>
+        article.contentType === "news" &&
+        article.active !== false
+    )
+    .map(article =>
+      route(`/news/${article.slug}`)
+    );
+}
+
 function typeRoutes(pokemonIndex) {
   const types = new Set(
     pokemonIndex.flatMap(
@@ -131,7 +161,8 @@ async function buildRoutes() {
     itemsIndex,
     locationsIndex,
     pokedexTopics,
-    articleTopicIndex
+    articleTopicIndex,
+    newsIndex
   ] = await Promise.all([
     readJson(
       path.join(dataDir, "pokemonRoutes.json")
@@ -158,6 +189,12 @@ async function buildRoutes() {
         "topics",
         "topicIndex.json"
       )
+    ),
+    readJsonIfExists(
+      path.join(dataDir, "news", "newsIndex.json"),
+      {
+        articles: []
+      }
     )
   ]);
 
@@ -172,8 +209,38 @@ async function buildRoutes() {
       pokedexTopics,
       articleTopicIndex
     ),
+    newsRoutes(newsIndex),
     typeRoutes(pokemonIndex)
   ].flat();
+}
+
+async function buildNewsSitemapArticles() {
+  const newsIndex = await readJsonIfExists(
+    path.join(dataDir, "news", "newsIndex.json"),
+    {
+      articles: []
+    }
+  );
+  const cutoff = Date.now() - 2 * 24 * 60 * 60 * 1000;
+
+  return (newsIndex.articles ?? []).filter(article => {
+    if (
+      article.contentType !== "news" ||
+      article.active === false ||
+      !article.publishedAt
+    ) {
+      return false;
+    }
+
+    const publishedTime = new Date(
+      article.publishedAt
+    ).getTime();
+
+    return (
+      !Number.isNaN(publishedTime) &&
+      publishedTime >= cutoff
+    );
+  });
 }
 
 function renderSitemap(urls) {
@@ -196,6 +263,31 @@ ${entries}
 `;
 }
 
+function renderNewsSitemap(articles) {
+  const entries = articles
+    .map(
+      article => `  <url>
+    <loc>${escapeXml(route(`/news/${article.slug}`))}</loc>
+    <news:news>
+      <news:publication>
+        <news:name>PokéLore</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>${escapeXml(article.publishedAt)}</news:publication_date>
+      <news:title>${escapeXml(article.title)}</news:title>
+    </news:news>
+  </url>`
+    )
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+${entries}
+</urlset>
+`;
+}
+
 async function main() {
   validateReleasedDynamaxCrystals();
 
@@ -207,8 +299,20 @@ async function main() {
     "utf8"
   );
 
+  const newsArticles =
+    await buildNewsSitemapArticles();
+
+  await fs.writeFile(
+    newsSitemapOutputPath,
+    renderNewsSitemap(newsArticles),
+    "utf8"
+  );
+
   console.log(
     `Generated sitemap with ${urls.length} URLs at ${outputPath}`
+  );
+  console.log(
+    `Generated news sitemap with ${newsArticles.length} URLs at ${newsSitemapOutputPath}`
   );
 }
 

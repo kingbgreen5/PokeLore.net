@@ -2,6 +2,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import {
   createArticleIndexEntry,
+  createNewsIndexEntry,
+  getArticleContentType,
   isSafeSlug
 } from "../src/utils/articleSchema.js";
 import {
@@ -35,11 +37,66 @@ export function createArticlePaths(rootDir) {
       "images",
       "topics"
     ),
+    newsArticlesDir: path.join(
+      rootDir,
+      "public",
+      "data",
+      "news",
+      "articles"
+    ),
+    newsIndexPath: path.join(
+      rootDir,
+      "public",
+      "data",
+      "news",
+      "newsIndex.json"
+    ),
+    newsImageDir: path.join(
+      rootDir,
+      "public",
+      "images",
+      "news"
+    ),
     backupRoot: path.join(
       rootDir,
       "backups",
       "article-studio"
     )
+  };
+}
+
+function resolveContentType(value) {
+  return value === "news" ? "news" : "article";
+}
+
+function getContentPaths(paths, contentType) {
+  const resolvedContentType =
+    resolveContentType(contentType);
+
+  if (resolvedContentType === "news") {
+    return {
+      contentType: "news",
+      articlesDir: paths.newsArticlesDir,
+      indexPath: paths.newsIndexPath,
+      imageDir: paths.newsImageDir,
+      indexKey: "articles",
+      backupRoot: path.join(paths.backupRoot, "news"),
+      indexBackupGroup: "news-index",
+      indexBackupSlug: "_news-index",
+      indexBackupName: "newsIndex.json"
+    };
+  }
+
+  return {
+    contentType: "article",
+    articlesDir: paths.articlesDir,
+    indexPath: paths.topicIndexPath,
+    imageDir: paths.imageDir,
+    indexKey: "topics",
+    backupRoot: paths.backupRoot,
+    indexBackupGroup: "topic-index",
+    indexBackupSlug: "_topic-index",
+    indexBackupName: "topicIndex.json"
   };
 }
 
@@ -73,13 +130,17 @@ function assertWithin(baseDir, targetPath) {
   }
 }
 
-function articlePath(paths, slug) {
+function articlePath(paths, slug, contentType = "article") {
   assertSafeSlug(slug);
+  const contentPaths = getContentPaths(
+    paths,
+    contentType
+  );
   const targetPath = path.join(
-    paths.articlesDir,
+    contentPaths.articlesDir,
     `${slug}.json`
   );
-  assertWithin(paths.articlesDir, targetPath);
+  assertWithin(contentPaths.articlesDir, targetPath);
   return targetPath;
 }
 
@@ -111,14 +172,22 @@ async function atomicWriteJson(filePath, data) {
   await fs.rename(tempPath, filePath);
 }
 
-export async function listArticles(paths) {
-  await fs.mkdir(paths.articlesDir, {
+async function listArticlesForContentType(paths, contentType) {
+  const contentPaths = getContentPaths(
+    paths,
+    contentType
+  );
+
+  await fs.mkdir(contentPaths.articlesDir, {
     recursive: true
   });
 
-  const entries = await fs.readdir(paths.articlesDir, {
-    withFileTypes: true
-  });
+  const entries = await fs.readdir(
+    contentPaths.articlesDir,
+    {
+      withFileTypes: true
+    }
+  );
   const articles = [];
 
   for (const entry of entries) {
@@ -130,7 +199,7 @@ export async function listArticles(paths) {
     }
 
     const filePath = path.join(
-      paths.articlesDir,
+      contentPaths.articlesDir,
       entry.name
     );
 
@@ -141,15 +210,20 @@ export async function listArticles(paths) {
         slug:
           article.slug ??
           entry.name.replace(/\.json$/, ""),
+        contentType: getArticleContentType(article),
         title: article.title ?? entry.name,
         active: article.active !== false,
-        updatedDate: article.updatedDate ?? "",
+        updatedDate:
+          article.updatedAt ??
+          article.updatedDate ??
+          "",
         modifiedTime: stat.mtime.toISOString(),
         excerpt: article.excerpt ?? ""
       });
     } catch (error) {
       articles.push({
         slug: entry.name.replace(/\.json$/, ""),
+        contentType: contentPaths.contentType,
         title: entry.name,
         parseError: error.message
       });
@@ -161,75 +235,125 @@ export async function listArticles(paths) {
   );
 }
 
-export async function readArticle(paths, slug) {
-  const filePath = articlePath(paths, slug);
+export async function listArticles(paths, contentType) {
+  if (contentType) {
+    return listArticlesForContentType(paths, contentType);
+  }
+
+  const [topicArticles, newsArticles] =
+    await Promise.all([
+      listArticlesForContentType(paths, "article"),
+      listArticlesForContentType(paths, "news")
+    ]);
+
+  return [...topicArticles, ...newsArticles].sort((a, b) =>
+    String(a.title).localeCompare(String(b.title))
+  );
+}
+
+export async function readArticle(paths, slug, contentType = "article") {
+  const filePath = articlePath(
+    paths,
+    slug,
+    contentType
+  );
   return readJsonFile(filePath);
 }
 
-async function readTopicIndex(paths) {
-  return readJsonFile(paths.topicIndexPath, {
-    topics: []
+async function readIndex(paths, contentType) {
+  const contentPaths = getContentPaths(
+    paths,
+    contentType
+  );
+
+  return readJsonFile(contentPaths.indexPath, {
+    [contentPaths.indexKey]: []
   });
 }
 
-async function writeTopicIndex(paths, index) {
+async function writeIndex(paths, contentType, index) {
+  const contentPaths = getContentPaths(
+    paths,
+    contentType
+  );
+
   await backupFile({
-    sourcePath: paths.topicIndexPath,
-    backupRoot: paths.backupRoot,
-    group: "topic-index",
-    slug: "_topic-index",
-    fallbackName: "topicIndex.json"
+    sourcePath: contentPaths.indexPath,
+    backupRoot: contentPaths.backupRoot,
+    group: contentPaths.indexBackupGroup,
+    slug: contentPaths.indexBackupSlug,
+    fallbackName: contentPaths.indexBackupName
   });
 
-  await atomicWriteJson(paths.topicIndexPath, index);
+  await atomicWriteJson(contentPaths.indexPath, index);
 }
 
-async function upsertTopicIndexEntry(paths, article) {
-  const index = await readTopicIndex(paths);
-  const topics = Array.isArray(index.topics)
-    ? [...index.topics]
+async function upsertIndexEntry(paths, article) {
+  const contentType = getArticleContentType(article);
+  const contentPaths = getContentPaths(paths, contentType);
+  const index = await readIndex(paths, contentType);
+  const entries = Array.isArray(index[contentPaths.indexKey])
+    ? [...index[contentPaths.indexKey]]
     : [];
-  const nextEntry = createArticleIndexEntry(article);
-  const existingIndex = topics.findIndex(
-    topic => topic.slug === article.slug
+  const nextEntry =
+    contentType === "news"
+      ? createNewsIndexEntry(article)
+      : createArticleIndexEntry(article);
+  const existingIndex = entries.findIndex(
+    entry => entry.slug === article.slug
   );
 
   if (existingIndex >= 0) {
-    topics[existingIndex] = {
-      ...topics[existingIndex],
+    entries[existingIndex] = {
+      ...entries[existingIndex],
       ...nextEntry
     };
   } else {
-    topics.push(nextEntry);
+    entries.push(nextEntry);
   }
 
-  await writeTopicIndex(paths, {
+  if (contentType === "news") {
+    entries.sort(
+      (a, b) =>
+        new Date(b.publishedAt || 0).getTime() -
+        new Date(a.publishedAt || 0).getTime()
+    );
+  }
+
+  await writeIndex(paths, contentType, {
     ...index,
-    topics
+    [contentPaths.indexKey]: entries
   });
 }
 
-async function removeTopicIndexEntry(paths, slug) {
-  const index = await readTopicIndex(paths);
-  const topics = Array.isArray(index.topics)
-    ? index.topics
+async function removeIndexEntry(paths, slug, contentType) {
+  const contentPaths = getContentPaths(
+    paths,
+    contentType
+  );
+  const index = await readIndex(paths, contentType);
+  const entries = Array.isArray(index[contentPaths.indexKey])
+    ? index[contentPaths.indexKey]
     : [];
-  const nextTopics = topics.filter(
-    topic => topic.slug !== slug
+  const nextEntries = entries.filter(
+    entry => entry.slug !== slug
   );
 
-  await writeTopicIndex(paths, {
+  await writeIndex(paths, contentType, {
     ...index,
-    topics: nextTopics
+    [contentPaths.indexKey]: nextEntries
   });
 }
 
 export async function saveArticle(paths, article, {
   expectedSlug,
+  expectedContentType,
   allowOverwrite = true
 } = {}) {
   assertValidArticle(article);
   assertSafeSlug(article.slug);
+  const contentType = getArticleContentType(article);
+  const contentPaths = getContentPaths(paths, contentType);
 
   if (expectedSlug && expectedSlug !== article.slug) {
     assertSafeSlug(expectedSlug);
@@ -237,7 +361,8 @@ export async function saveArticle(paths, article, {
 
   const destination = articlePath(
     paths,
-    article.slug
+    article.slug,
+    contentType
   );
   const existingTarget = await readJsonFile(
     destination,
@@ -255,9 +380,20 @@ export async function saveArticle(paths, article, {
 
   if (
     expectedSlug &&
-    expectedSlug !== article.slug
+    expectedContentType &&
+    resolveContentType(expectedContentType) !== contentType
   ) {
-    const oldPath = articlePath(paths, expectedSlug);
+    const oldContentType =
+      resolveContentType(expectedContentType);
+    const oldPath = articlePath(
+      paths,
+      expectedSlug,
+      oldContentType
+    );
+    const oldContentPaths = getContentPaths(
+      paths,
+      oldContentType
+    );
     const oldArticle = await readJsonFile(
       oldPath,
       null
@@ -266,19 +402,51 @@ export async function saveArticle(paths, article, {
     if (oldArticle) {
       await backupFile({
         sourcePath: oldPath,
-        backupRoot: paths.backupRoot,
+        backupRoot: oldContentPaths.backupRoot,
         group: "articles",
         slug: expectedSlug
       });
       await fs.unlink(oldPath);
-      await removeTopicIndexEntry(paths, expectedSlug);
+      await removeIndexEntry(
+        paths,
+        expectedSlug,
+        oldContentType
+      );
+    }
+  }
+
+  if (
+    expectedSlug &&
+    expectedSlug !== article.slug &&
+    (!expectedContentType ||
+      resolveContentType(expectedContentType) === contentType)
+  ) {
+    const oldPath = articlePath(
+      paths,
+      expectedSlug,
+      contentType
+    );
+    const oldArticle = await readJsonFile(
+      oldPath,
+      null
+    );
+
+    if (oldArticle) {
+      await backupFile({
+        sourcePath: oldPath,
+        backupRoot: contentPaths.backupRoot,
+        group: "articles",
+        slug: expectedSlug
+      });
+      await fs.unlink(oldPath);
+      await removeIndexEntry(paths, expectedSlug, contentType);
     }
   }
 
   if (existingTarget) {
     await backupFile({
       sourcePath: destination,
-      backupRoot: paths.backupRoot,
+      backupRoot: contentPaths.backupRoot,
       group: "articles",
       slug: article.slug
     });
@@ -287,11 +455,11 @@ export async function saveArticle(paths, article, {
   await atomicWriteJson(destination, article);
 
   try {
-    await upsertTopicIndexEntry(paths, article);
+    await upsertIndexEntry(paths, article);
   } catch (error) {
     await backupFile({
       sourcePath: destination,
-      backupRoot: paths.backupRoot,
+      backupRoot: contentPaths.backupRoot,
       group: "failed-index-updates",
       slug: article.slug
     });
@@ -301,17 +469,25 @@ export async function saveArticle(paths, article, {
   return article;
 }
 
-export async function deleteArticle(paths, slug) {
-  const filePath = articlePath(paths, slug);
+export async function deleteArticle(paths, slug, contentType = "article") {
+  const contentPaths = getContentPaths(
+    paths,
+    contentType
+  );
+  const filePath = articlePath(
+    paths,
+    slug,
+    contentType
+  );
 
   await backupFile({
     sourcePath: filePath,
-    backupRoot: paths.backupRoot,
+    backupRoot: contentPaths.backupRoot,
     group: "articles",
     slug
   });
   await fs.unlink(filePath);
-  await removeTopicIndexEntry(paths, slug);
+  await removeIndexEntry(paths, slug, contentType);
 
   return {
     slug
@@ -321,6 +497,8 @@ export async function deleteArticle(paths, slug) {
 export {
   articlePath,
   atomicWriteJson,
-  readTopicIndex,
-  upsertTopicIndexEntry
+  getContentPaths,
+  readIndex,
+  removeIndexEntry,
+  upsertIndexEntry
 };

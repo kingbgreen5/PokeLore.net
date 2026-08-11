@@ -489,11 +489,12 @@ function buildTopic(
     buildExcludedPokemonSets(
       topic.excludedPokemon
     );
-  const {
-    excludedPokemon: _excludedPokemon,
-    includedPokemon: _includedPokemon,
-    ...topicOutput
-  } = topic;
+  const topicOutput = {
+    ...topic
+  };
+
+  delete topicOutput.excludedPokemon;
+  delete topicOutput.includedPokemon;
 
   entries.forEach(entry => {
     const normalizedEntryText =

@@ -105,6 +105,10 @@ async function handleArticleStudioRequest({
     const {
       parts
     } = match;
+    const contentType =
+      match.url.searchParams.get("contentType") === "news"
+        ? "news"
+        : "article";
 
     if (
       req.method === "GET" &&
@@ -112,7 +116,10 @@ async function handleArticleStudioRequest({
       parts[0] === "articles"
     ) {
       sendJson(res, 200, {
-        articles: await listArticles(paths)
+        articles: await listArticles(
+          paths,
+          match.url.searchParams.get("contentType")
+        )
       });
       return true;
     }
@@ -123,7 +130,11 @@ async function handleArticleStudioRequest({
       parts[0] === "articles"
     ) {
       sendJson(res, 200, {
-        article: await readArticle(paths, parts[1])
+        article: await readArticle(
+          paths,
+          parts[1],
+          contentType
+        )
       });
       return true;
     }
@@ -148,7 +159,11 @@ async function handleArticleStudioRequest({
       parts[0] === "images"
     ) {
       sendJson(res, 200, {
-        images: await listArticleImages(paths, parts[1])
+        images: await listArticleImages(
+          paths,
+          parts[1],
+          contentType
+        )
       });
       return true;
     }
@@ -163,7 +178,8 @@ async function handleArticleStudioRequest({
       sendJson(res, 200, {
         result: await cleanupUnusedArticleImages(paths, {
           slug: parts[1],
-          article: body.article
+          article: body.article,
+          contentType
         })
       });
       return true;
@@ -178,6 +194,10 @@ async function handleArticleStudioRequest({
       sendJson(res, 200, {
         article: await saveArticle(paths, body.article, {
           expectedSlug: parts[1],
+          expectedContentType:
+            match.url.searchParams.get(
+              "expectedContentType"
+            ),
           allowOverwrite: true
         })
       });
@@ -190,7 +210,11 @@ async function handleArticleStudioRequest({
       parts[0] === "articles"
     ) {
       sendJson(res, 200, {
-        article: await deleteArticle(paths, parts[1])
+        article: await deleteArticle(
+          paths,
+          parts[1],
+          contentType
+        )
       });
       return true;
     }
@@ -202,7 +226,10 @@ async function handleArticleStudioRequest({
     ) {
       const body = await readRequestJson(req);
       sendJson(res, 201, {
-        image: await saveArticleImage(paths, body)
+        image: await saveArticleImage(paths, {
+          ...body,
+          contentType: body.contentType ?? contentType
+        })
       });
       return true;
     }

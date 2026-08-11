@@ -7,6 +7,7 @@ import {
 } from "react";
 import { useSearchParams }
 from "react-router-dom";
+import LatestNews from "../components/news/LatestNews";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import typeColors from "../constants/typeColors";
 import usePersistedScroll from "../hooks/usePersistedScroll";
@@ -303,6 +304,8 @@ function HomePage() {
       }}
     >
       <Seo {...homeSeo()} />
+
+      <LatestNews limit={4} />
 
       {/* Hero Section */}
 

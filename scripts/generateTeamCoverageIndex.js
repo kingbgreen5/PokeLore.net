@@ -10,6 +10,7 @@ import {
 } from "../src/constants/versionOrder.js";
 import {
   getCoveredDefenseTypes,
+  getLevelUpAttackTypePowerLevels,
   getLevelUpAttackTypePowers,
   getLevelUpAttackTypes,
   getTypesForVersionGroup
@@ -677,6 +678,13 @@ async function main() {
           movesByName,
           versionGroup
         });
+      const attackTypePowerLevels =
+        getLevelUpAttackTypePowerLevels({
+          consideredTypes,
+          learnset,
+          movesByName,
+          versionGroup
+        });
       const coveredTypes =
         getCoveredDefenseTypes({
           attackTypes,
@@ -718,6 +726,7 @@ async function main() {
             pokemonId: pokemon.id,
             versionGroup
           }),
+        attackTypePowerLevels,
         attackTypePowers,
         attackTypes,
         coveredTypes

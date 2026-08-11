@@ -355,15 +355,9 @@ function TypeSizeChart({
       }
     }
 
-    if (pokemon.length === 0) {
-      setPokemonDetails([]);
-      setLoading(false);
-      return () => {
-        isMounted = false;
-      };
+    if (pokemon.length > 0) {
+      loadDetails();
     }
-
-    loadDetails();
 
     return () => {
       isMounted = false;

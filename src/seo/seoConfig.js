@@ -24,6 +24,16 @@ function pageUrl(path = "/") {
   return `${SITE_URL}${path === "/" ? "" : path}`;
 }
 
+export function absoluteUrl(value = "") {
+  if (!value) return "";
+
+  try {
+    return new URL(value, SITE_URL).toString();
+  } catch {
+    return "";
+  }
+}
+
 function heightToInches(height) {
   return Math.round((height / 10) * 39.3701);
 }
@@ -388,6 +398,81 @@ export function topicsSeo() {
     description:
       "Explore curated Pokémon topics, item-location guides, habitats, behavior, rarity, danger, and Pokédex lore.",
     canonical: pageUrl("/topics")
+  };
+}
+
+export function newsArchiveSeo() {
+  return {
+    title: `Pokemon News | ${SITE_NAME}`,
+    description:
+      "Read the latest Pokemon news, official updates, analysis, and carefully labeled rumors from PokeLore.",
+    canonical: pageUrl("/news")
+  };
+}
+
+export function newsSeo(article) {
+  const canonical = pageUrl(`/news/${article?.slug}`);
+  const description =
+    article?.excerpt ||
+    article?.subtitle ||
+    "Read the latest Pokemon news on PokeLore.";
+  const image =
+    absoluteUrl(
+      article?.hero?.src ||
+        article?.thumbnail ||
+        article?.hero?.thumbnail
+    ) || undefined;
+  const keywords = Array.isArray(article?.tags)
+    ? article.tags
+    : [];
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: article?.title,
+    description,
+    image: image ? [image] : undefined,
+    datePublished: article?.publishedAt,
+    dateModified:
+      article?.updatedAt || article?.publishedAt,
+    author: article?.author
+      ? {
+          "@type": "Person",
+          name: article.author
+        }
+      : undefined,
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonical
+    },
+    articleSection:
+      article?.category || undefined,
+    keywords:
+      keywords.length > 0
+        ? keywords
+        : undefined
+  };
+
+  Object.keys(structuredData).forEach(key => {
+    if (structuredData[key] === undefined) {
+      delete structuredData[key];
+    }
+  });
+
+  return {
+    title: `${article?.title ?? "Pokemon News"} | ${SITE_NAME}`,
+    description,
+    canonical,
+    image,
+    type: "article",
+    articlePublishedTime: article?.publishedAt,
+    articleModifiedTime:
+      article?.updatedAt || article?.publishedAt,
+    structuredData
   };
 }
 

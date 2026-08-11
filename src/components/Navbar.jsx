@@ -40,6 +40,10 @@ const navItems = [
     matches: ["/topic"]
   },
   {
+    to: "/news",
+    label: "News"
+  },
+  {
     to: "/types",
     label: "Types",
     matches: ["/type"]

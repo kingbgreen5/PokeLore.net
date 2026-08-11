@@ -37,7 +37,8 @@ function DexEntryCard({
         padding: ".4rem"
       }}
       contentStyle={{
-        marginTop: "1rem"
+        marginTop: "1rem",
+        textAlign: "left"
       }}
     >
           {entries.map(
@@ -57,7 +58,8 @@ function DexEntryCard({
                     fontWeight:
                       "bold",
                     marginBottom:
-                      ".5rem"
+                      ".5rem",
+                    textAlign: "left"
                   }}
                 >
          {entry.versions
@@ -65,7 +67,11 @@ function DexEntryCard({
     .join(" / ")}
                 </div>
 
-                <div>
+                <div
+                  style={{
+                    textAlign: "left"
+                  }}
+                >
                   {entry.text}
                 </div>
               </div>

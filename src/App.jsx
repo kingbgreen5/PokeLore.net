@@ -68,6 +68,12 @@ const TopicsPage = lazy(() =>
 const TopicDetailPage = lazy(() =>
   import("./pages/TopicDetailPage")
 );
+const NewsArchivePage = lazy(() =>
+  import("./pages/NewsArchivePage")
+);
+const NewsDetailPage = lazy(() =>
+  import("./pages/NewsDetailPage")
+);
 const DevToolsPage = import.meta.env.DEV
   ? lazy(() =>
       import("./pages/DevToolsPage")
@@ -228,6 +234,16 @@ function App() {
 <Route
   path="/topics"
   element={<TopicsPage />}
+/>
+
+<Route
+  path="/news"
+  element={<NewsArchivePage />}
+/>
+
+<Route
+  path="/news/:newsSlug"
+  element={<NewsDetailPage />}
 />
 
 <Route

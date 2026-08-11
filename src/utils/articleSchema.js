@@ -1,4 +1,23 @@
 export const ARTICLE_CONTENT_TYPE = "article";
+export const NEWS_CONTENT_TYPE = "news";
+
+export const ARTICLE_CONTENT_TYPES = [
+  ARTICLE_CONTENT_TYPE,
+  NEWS_CONTENT_TYPE
+];
+
+export const NEWS_LABELS = [
+  "News",
+  "Leak / Rumor",
+  "Official",
+  "Update",
+  "Analysis"
+];
+
+export const DEFAULT_NEWS_LABEL = "News";
+
+export const LEAK_RUMOR_WARNING =
+  "This information has not been officially confirmed by The Pokemon Company or Game Freak. Details may change or prove inaccurate.";
 
 export const ARTICLE_BLOCK_TYPES = [
   "paragraph",
@@ -64,6 +83,59 @@ export function todayIsoDate() {
   return new Date().toISOString().slice(0, 10);
 }
 
+function padDatePart(value) {
+  return String(value).padStart(2, "0");
+}
+
+export function toLocalIsoDateTime(date = new Date()) {
+  const timezoneOffsetMinutes = -date.getTimezoneOffset();
+  const offsetSign =
+    timezoneOffsetMinutes >= 0 ? "+" : "-";
+  const absoluteOffset = Math.abs(
+    timezoneOffsetMinutes
+  );
+  const offsetHours = Math.floor(
+    absoluteOffset / 60
+  );
+  const offsetMinutes = absoluteOffset % 60;
+
+  return `${date.getFullYear()}-${padDatePart(date.getMonth() + 1)}-${padDatePart(date.getDate())}T${padDatePart(date.getHours())}:${padDatePart(date.getMinutes())}:00${offsetSign}${padDatePart(offsetHours)}:${padDatePart(offsetMinutes)}`;
+}
+
+export function isoToLocalInputValue(value = "") {
+  if (!value) return "";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  return `${date.getFullYear()}-${padDatePart(date.getMonth() + 1)}-${padDatePart(date.getDate())}T${padDatePart(date.getHours())}:${padDatePart(date.getMinutes())}`;
+}
+
+export function localInputValueToIso(value = "") {
+  if (!value) return "";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  return toLocalIsoDateTime(date);
+}
+
+export function getArticleContentType(article) {
+  return article?.contentType === NEWS_CONTENT_TYPE
+    ? NEWS_CONTENT_TYPE
+    : ARTICLE_CONTENT_TYPE;
+}
+
+export function isNewsArticle(article) {
+  return getArticleContentType(article) === NEWS_CONTENT_TYPE;
+}
+
 export function getYouTubeVideoId(value = "") {
   const text = String(value ?? "").trim();
 
@@ -121,7 +193,8 @@ export function getYouTubeEmbedUrl(value = "") {
 
 export function createEmptyArticle({
   title = "Untitled article",
-  slug
+  slug,
+  contentType = ARTICLE_CONTENT_TYPE
 } = {}) {
   const date = todayIsoDate();
   const safeSlug =
@@ -129,9 +202,13 @@ export function createEmptyArticle({
       ? slug
       : slugify(title) || "untitled-article";
 
-  return {
+  const resolvedContentType =
+    contentType === NEWS_CONTENT_TYPE
+      ? NEWS_CONTENT_TYPE
+      : ARTICLE_CONTENT_TYPE;
+  const article = {
     slug: safeSlug,
-    contentType: ARTICLE_CONTENT_TYPE,
+    contentType: resolvedContentType,
     title,
     subtitle: "",
     excerpt: "",
@@ -158,6 +235,18 @@ export function createEmptyArticle({
     sources: [],
     relatedTopics: []
   };
+
+  if (resolvedContentType === NEWS_CONTENT_TYPE) {
+    return {
+      ...article,
+      newsLabel: DEFAULT_NEWS_LABEL,
+      featured: false,
+      publishedAt: "",
+      updatedAt: ""
+    };
+  }
+
+  return article;
 }
 
 export function createArticleIndexEntry(article) {
@@ -185,6 +274,39 @@ export function createArticleIndexEntry(article) {
       : [],
     featured: article.featured ?? false,
     countLabel: "Article"
+  };
+}
+
+export function createNewsIndexEntry(article) {
+  const heroImage =
+    article.hero?.thumbnail ||
+    article.thumbnail ||
+    article.hero?.src ||
+    "";
+
+  return {
+    slug: article.slug,
+    contentType: NEWS_CONTENT_TYPE,
+    active: article.active ?? true,
+    title: article.title,
+    subtitle: article.subtitle || "",
+    excerpt: article.excerpt || "",
+    thumbnail: heroImage,
+    hero: article.hero?.src || "",
+    author: article.author || "",
+    category: article.category || "",
+    tags: Array.isArray(article.tags)
+      ? article.tags
+      : [],
+    publishedAt: article.publishedAt || "",
+    updatedAt: article.updatedAt || "",
+    relatedPokemon: Array.isArray(
+      article.relatedPokemon
+    )
+      ? article.relatedPokemon
+      : [],
+    featured: article.featured ?? false,
+    newsLabel: article.newsLabel || DEFAULT_NEWS_LABEL
   };
 }
 

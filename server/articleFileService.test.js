@@ -11,6 +11,7 @@ import {
 import {
   assertSafeSlug,
   createArticlePaths,
+  getContentPaths,
   readArticle,
   saveArticle
 } from "./articleFileService";
@@ -48,6 +49,20 @@ function testArticle(slug = "test-article") {
     ],
     sources: [],
     relatedTopics: []
+  };
+}
+
+function testNewsArticle(slug = "test-news") {
+  return {
+    ...testArticle(slug),
+    contentType: "news",
+    active: true,
+    newsLabel: "News",
+    featured: true,
+    publishedAt: "2026-08-10T10:42:00-05:00",
+    updatedAt: "",
+    publishedDate: undefined,
+    updatedDate: undefined
   };
 }
 
@@ -144,5 +159,36 @@ describe("article file service", () => {
 
     expect(articleBackups.length).toBeGreaterThan(0);
     expect(indexBackups.length).toBeGreaterThan(0);
+  });
+
+  it("saves News articles into the News storage and index only", async () => {
+    await saveArticle(paths, testNewsArticle());
+
+    const newsPaths = getContentPaths(paths, "news");
+    const saved = await readArticle(
+      paths,
+      "test-news",
+      "news"
+    );
+    const newsIndex = JSON.parse(
+      await fs.readFile(newsPaths.indexPath, "utf8")
+    );
+    const topicIndex = JSON.parse(
+      await fs.readFile(paths.topicIndexPath, "utf8")
+    );
+
+    expect(saved.contentType).toBe("news");
+    expect(newsIndex.articles).toHaveLength(1);
+    expect(newsIndex.articles[0]).toMatchObject({
+      slug: "test-news",
+      contentType: "news",
+      featured: true,
+      publishedAt: "2026-08-10T10:42:00-05:00"
+    });
+    expect(
+      topicIndex.topics.some(
+        topic => topic.slug === "test-news"
+      )
+    ).toBe(false);
   });
 });

@@ -69,9 +69,6 @@ function HeldItems({
     useState(false);
 
   useEffect(() => {
-    setHeldItemData(null);
-    setLoaded(false);
-
     if (!enabled) {
       return undefined;
     }

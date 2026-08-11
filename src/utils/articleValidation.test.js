@@ -211,4 +211,43 @@ describe("article validation", () => {
       "Block 2 YouTube block needs a valid YouTube URL or video ID."
     );
   });
+
+  it("validates News timestamps and labels", () => {
+    const article = {
+      ...createEmptyArticle({
+        title: "News",
+        slug: "news",
+        contentType: "news"
+      }),
+      active: true,
+      excerpt: "Short",
+      newsLabel: "Wrong",
+      publishedAt: "2026-08-10",
+      updatedAt: "2026-08-09T10:00:00-05:00"
+    };
+    const result = validateArticle(article);
+
+    expect(result.errors).toContain(
+      "News label is invalid."
+    );
+    expect(result.errors).toContain(
+      "Published At must be a full ISO-8601 date/time with timezone."
+    );
+    expect(result.warnings).toContain(
+      "News articles should include a hero image."
+    );
+  });
+
+  it("accepts missing content type as a Topic article", () => {
+    const article = {
+      ...createEmptyArticle({
+        title: "Legacy",
+        slug: "legacy"
+      }),
+      contentType: undefined,
+      excerpt: "Summary"
+    };
+
+    expect(validateArticle(article).errors).toEqual([]);
+  });
 });

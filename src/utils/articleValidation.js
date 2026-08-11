@@ -1,9 +1,13 @@
 import {
   ARTICLE_BLOCK_TYPES,
-  ARTICLE_CONTENT_TYPE,
+  ARTICLE_CONTENT_TYPES,
   ARTICLE_IMAGE_DISPLAY_SIZES,
+  DEFAULT_NEWS_LABEL,
   getYouTubeVideoId,
+  getArticleContentType,
   isSafeSlug,
+  NEWS_CONTENT_TYPE,
+  NEWS_LABELS,
   slugify
 } from "./articleSchema";
 
@@ -25,6 +29,20 @@ function isValidUrl(value) {
   } catch {
     return false;
   }
+}
+
+function isValidIsoDateTime(value) {
+  const text = String(value ?? "");
+
+  if (
+    !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2})?(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.test(
+      text
+    )
+  ) {
+    return false;
+  }
+
+  return !Number.isNaN(new Date(text).getTime());
 }
 
 function isValidAnchor(value) {
@@ -64,8 +82,16 @@ export function validateArticle(article) {
     };
   }
 
-  if (article.contentType !== ARTICLE_CONTENT_TYPE) {
-    errors.push("Content type must be article.");
+  const contentType = getArticleContentType(article);
+  const isNews = contentType === NEWS_CONTENT_TYPE;
+
+  if (
+    article.contentType &&
+    !ARTICLE_CONTENT_TYPES.includes(article.contentType)
+  ) {
+    errors.push(
+      "Content type must be article or news."
+    );
   }
 
   if (!String(article.title ?? "").trim()) {
@@ -91,12 +117,124 @@ export function validateArticle(article) {
     errors.push("Excerpt is required.");
   }
 
-  if (!isValidDate(article.publishedDate)) {
-    errors.push("Published date must be YYYY-MM-DD.");
-  }
+  if (isNews) {
+    const active = article.active !== false;
+    const hasPublishedAt = String(
+      article.publishedAt ?? ""
+    ).trim();
+    const hasUpdatedAt = String(
+      article.updatedAt ?? ""
+    ).trim();
 
-  if (!isValidDate(article.updatedDate)) {
-    errors.push("Updated date must be YYYY-MM-DD.");
+    if (
+      !NEWS_LABELS.includes(
+        article.newsLabel || DEFAULT_NEWS_LABEL
+      )
+    ) {
+      errors.push("News label is invalid.");
+    }
+
+    if (active && !hasPublishedAt) {
+      errors.push(
+        "Active News articles require publishedAt."
+      );
+    }
+
+    if (hasPublishedAt && !isValidIsoDateTime(article.publishedAt)) {
+      errors.push(
+        "Published At must be a full ISO-8601 date/time with timezone."
+      );
+    }
+
+    if (hasUpdatedAt && !isValidIsoDateTime(article.updatedAt)) {
+      errors.push(
+        "Updated At must be a full ISO-8601 date/time with timezone."
+      );
+    }
+
+    if (
+      hasPublishedAt &&
+      hasUpdatedAt &&
+      isValidIsoDateTime(article.publishedAt) &&
+      isValidIsoDateTime(article.updatedAt) &&
+      new Date(article.updatedAt).getTime() <
+        new Date(article.publishedAt).getTime()
+    ) {
+      errors.push(
+        "Updated At must not be earlier than Published At."
+      );
+    }
+
+    if (!article.hero?.src) {
+      warnings.push(
+        "News articles should include a hero image."
+      );
+    }
+
+    if (
+      article.hero?.src &&
+      !String(article.hero?.alt ?? "").trim()
+    ) {
+      warnings.push(
+        "News hero image should include alt text."
+      );
+    }
+
+    if (
+      article.hero?.src &&
+      Number.isFinite(Number(article.hero.width)) &&
+      Number(article.hero.width) < 1200
+    ) {
+      warnings.push(
+        "News hero image should be at least 1200px wide for sharing and search previews."
+      );
+    }
+
+    if (!String(article.author ?? "").trim()) {
+      warnings.push("News articles should include an author.");
+    }
+
+    if (!String(article.category ?? "").trim()) {
+      warnings.push("News articles should include a category.");
+    }
+
+    if (String(article.excerpt ?? "").trim().length < 80) {
+      warnings.push(
+        "News excerpt is unusually short."
+      );
+    }
+
+    if (
+      !Array.isArray(article.sources) ||
+      article.sources.length === 0
+    ) {
+      warnings.push(
+        "News articles should include sources when applicable."
+      );
+    }
+
+    if (
+      /leak|rumou?r/i.test(
+        `${article.title ?? ""} ${article.excerpt ?? ""} ${article.category ?? ""}`
+      ) &&
+      article.newsLabel !== "Leak / Rumor"
+    ) {
+      warnings.push(
+        "Possible leak or rumor story should use the Leak / Rumor label."
+      );
+    }
+  } else {
+    if (!isValidDate(article.publishedDate)) {
+      errors.push(
+        "Published date must be YYYY-MM-DD."
+      );
+    }
+
+    if (!isValidDate(article.updatedDate)) {
+      errors.push(
+        "Updated date must be YYYY-MM-DD."
+      );
+    }
   }
 
   if (
@@ -108,6 +246,7 @@ export function validateArticle(article) {
 
   if (
     article.hero?.src &&
+    !isNews &&
     !String(article.hero?.alt ?? "").trim()
   ) {
     errors.push("Hero image requires alt text.");

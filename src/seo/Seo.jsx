@@ -92,6 +92,8 @@ function Seo({
   image,
   robots,
   structuredData,
+  articlePublishedTime,
+  articleModifiedTime,
   type = "website"
 }) {
   useEffect(() => {
@@ -113,11 +115,6 @@ function Seo({
       "description",
       pageDescription
     );
-    if (robots) {
-      setMetaName("robots", robots);
-    } else {
-      removeMeta("name", "robots");
-    }
     setCanonical(pageCanonical);
 
     setMetaProperty("og:title", pageTitle);
@@ -127,6 +124,10 @@ function Seo({
     );
     setMetaProperty("og:url", pageCanonical);
     setMetaProperty("og:type", type);
+    setMetaName(
+      "robots",
+      robots || "max-image-preview:large"
+    );
 
     setMetaName(
       "twitter:card",
@@ -146,6 +147,30 @@ function Seo({
       removeMeta("name", "twitter:image");
     }
 
+    if (articlePublishedTime) {
+      setMetaProperty(
+        "article:published_time",
+        articlePublishedTime
+      );
+    } else {
+      removeMeta(
+        "property",
+        "article:published_time"
+      );
+    }
+
+    if (articleModifiedTime) {
+      setMetaProperty(
+        "article:modified_time",
+        articleModifiedTime
+      );
+    } else {
+      removeMeta(
+        "property",
+        "article:modified_time"
+      );
+    }
+
     setStructuredData(structuredData);
   }, [
     title,
@@ -154,6 +179,8 @@ function Seo({
     image,
     robots,
     structuredData,
+    articlePublishedTime,
+    articleModifiedTime,
     type
   ]);
 

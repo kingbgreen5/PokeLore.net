@@ -2,8 +2,17 @@ import { Link } from "react-router-dom";
 import FeebasGuideBreadcrumbs from "../feebas/FeebasGuideBreadcrumbs";
 import { getFeebasGuideBreadcrumbs } from "../feebas/feebasGuideBreadcrumbData";
 import Seo from "../../seo/Seo";
-import { topicSeo } from "../../seo/seoConfig";
+import {
+  newsSeo,
+  topicSeo
+} from "../../seo/seoConfig";
 import { calculateReadingTime } from "../../utils/articleReadingTime";
+import {
+  DEFAULT_NEWS_LABEL,
+  LEAK_RUMOR_WARNING,
+  NEWS_CONTENT_TYPE,
+  getArticleContentType
+} from "../../utils/articleSchema";
 import ArticleBlockRenderer from "./ArticleBlockRenderer";
 import ArticleImage from "./ArticleImage";
 import ArticleSources from "./ArticleSources";
@@ -16,6 +25,16 @@ function formatDate(value) {
   return new Intl.DateTimeFormat("en", {
     dateStyle: "medium"
   }).format(new Date(`${value}T00:00:00`));
+}
+
+function formatDateTime(value) {
+  if (!value) return "";
+
+  return new Intl.DateTimeFormat("en", {
+    dateStyle: "long",
+    timeStyle: "short",
+    timeZoneName: "short"
+  }).format(new Date(value));
 }
 
 function getTableOfContents(article) {
@@ -122,17 +141,32 @@ function TopicArticlePage({
   const toc = getTableOfContents(article);
   const readingTime =
     calculateReadingTime(article);
+  const isNews =
+    getArticleContentType(article) ===
+    NEWS_CONTENT_TYPE;
   const updatedDiffers =
-    article.updatedDate &&
-    article.updatedDate !== article.publishedDate;
+    isNews
+      ? article.updatedAt &&
+        article.updatedAt !== article.publishedAt
+      : article.updatedDate &&
+        article.updatedDate !== article.publishedDate;
   const feebasBreadcrumbs =
     getFeebasGuideBreadcrumbs(article.slug);
+  const seo = isNews
+    ? newsSeo(article)
+    : topicSeo(article);
 
   return (
     <main className="topic-article">
-      {!preview && <Seo {...topicSeo(article)} />}
+      {!preview && <Seo {...seo} />}
 
-      {feebasBreadcrumbs ? (
+      {isNews ? (
+        <nav className="topic-article-breadcrumbs">
+          <Link to="/news">News</Link>
+          <span aria-hidden="true">/</span>
+          <span>{article.title}</span>
+        </nav>
+      ) : feebasBreadcrumbs ? (
         <FeebasGuideBreadcrumbs pageId={article.slug} />
       ) : (
         <nav className="topic-article-breadcrumbs">
@@ -143,7 +177,13 @@ function TopicArticlePage({
       )}
 
       <header className="topic-article-header">
-        {article.category && (
+        {isNews && (
+          <p className="topic-article-category">
+            {article.newsLabel || DEFAULT_NEWS_LABEL}
+          </p>
+        )}
+
+        {!isNews && article.category && (
           <p className="topic-article-category">
             {article.category}
           </p>
@@ -157,14 +197,27 @@ function TopicArticlePage({
           </p>
         )}
 
-        <p className="topic-article-byline">
-          {article.author || "PokeLore"} ·{" "}
-          {formatDate(article.publishedDate)}
-          {updatedDiffers
-            ? ` · Updated ${formatDate(article.updatedDate)}`
-            : ""}{" "}
-          · {readingTime} min read
-        </p>
+        {isNews ? (
+          <p className="topic-article-byline">
+            {article.author
+              ? `By ${article.author}`
+              : "By PokeLore"}{" "}
+            - Published {formatDateTime(article.publishedAt)}
+            {updatedDiffers
+              ? ` - Updated ${formatDateTime(article.updatedAt)}`
+              : ""}{" "}
+            - {readingTime} min read
+          </p>
+        ) : (
+          <p className="topic-article-byline">
+            {article.author || "PokeLore"} ·{" "}
+            {formatDate(article.publishedDate)}
+            {updatedDiffers
+              ? ` · Updated ${formatDate(article.updatedDate)}`
+              : ""}{" "}
+            · {readingTime} min read
+          </p>
+        )}
       </header>
 
       <ArticleImage
@@ -174,6 +227,14 @@ function TopicArticlePage({
       />
 
       <ArticleTableOfContents headings={toc} />
+
+      {isNews &&
+        article.newsLabel === "Leak / Rumor" && (
+          <aside className="topic-article-callout topic-article-callout-warning">
+            <h3>Leak / Rumor</h3>
+            <p>{LEAK_RUMOR_WARNING}</p>
+          </aside>
+        )}
 
       <div className="topic-article-body">
         {(article.sections ?? []).map(block => (

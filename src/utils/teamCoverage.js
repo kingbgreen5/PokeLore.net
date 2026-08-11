@@ -21,6 +21,28 @@ export const ALL_POKEMON_TYPES = [
   "fairy"
 ];
 
+export const LEVEL_UP_MOVE_LEVEL_THRESHOLDS = [
+  10,
+  15,
+  20,
+  25,
+  30,
+  35,
+  40,
+  45,
+  50,
+  55,
+  60,
+  65,
+  70,
+  75,
+  80,
+  85,
+  90,
+  95,
+  100
+];
+
 export const DEFAULT_TEAM_RECOMMENDATION_WEIGHTS = {
   coverageType: 0.2,
   regionalDex: 0.5,
@@ -84,6 +106,7 @@ export function isDamagingMove(move) {
 export function getLevelUpAttackTypes({
   consideredTypes = ALL_POKEMON_TYPES,
   learnset,
+  maxMoveLevel = 0,
   minMovePower = 0,
   movesByName,
   versionGroup
@@ -92,6 +115,7 @@ export function getLevelUpAttackTypes({
     getLevelUpAttackTypePowers({
       consideredTypes,
       learnset,
+      maxMoveLevel,
       minMovePower,
       movesByName,
       versionGroup
@@ -105,11 +129,55 @@ export function getLevelUpAttackTypes({
 export function getLevelUpAttackTypePowers({
   consideredTypes = ALL_POKEMON_TYPES,
   learnset,
+  maxMoveLevel = 0,
   minMovePower = 0,
   movesByName,
   versionGroup
 }) {
   const attackTypePowers = {};
+  const attackTypePowerLevels =
+    getLevelUpAttackTypePowerLevels({
+      consideredTypes,
+      learnset,
+      minMovePower,
+      movesByName,
+      versionGroup
+    });
+  const levelCap =
+    Number(maxMoveLevel) || 0;
+
+  for (const [
+    attackType,
+    powerLevels
+  ] of Object.entries(attackTypePowerLevels)) {
+    const availablePowerLevels =
+      levelCap > 0
+        ? powerLevels.filter(
+            entry => entry.level <= levelCap
+          )
+        : powerLevels;
+    const strongestEntry =
+      availablePowerLevels[
+        availablePowerLevels.length - 1
+      ];
+
+    if (strongestEntry) {
+      attackTypePowers[attackType] =
+        strongestEntry.power;
+    }
+  }
+
+  return attackTypePowers;
+}
+
+export function getLevelUpAttackTypePowerLevels({
+  consideredTypes = ALL_POKEMON_TYPES,
+  learnset,
+  minMovePower = 0,
+  movesByName,
+  versionGroup
+}) {
+  const attackTypeLevels = {};
   const consideredTypeSet =
     new Set(consideredTypes);
   const learnsetVersionGroup =
@@ -124,6 +192,9 @@ export function getLevelUpAttackTypePowers({
     ) {
       continue;
     }
+
+    const learnedLevel =
+      Number(learnsetMove.level) || 0;
 
     const move = movesByName?.[learnsetMove.move];
     const movePower =
@@ -142,14 +213,53 @@ export function getLevelUpAttackTypePowers({
       continue;
     }
 
-    attackTypePowers[moveType] =
+    attackTypeLevels[moveType] ??= {};
+    attackTypeLevels[moveType][learnedLevel] =
       Math.max(
-        attackTypePowers[moveType] ?? 0,
+        attackTypeLevels[moveType][
+          learnedLevel
+        ] ?? 0,
         movePower
       );
   }
 
-  return attackTypePowers;
+  return Object.fromEntries(
+    Object.entries(attackTypeLevels).map(
+      ([attackType, levelPowers]) => {
+        let strongestPower = 0;
+        const powerLevels = Object.entries(
+          levelPowers
+        )
+          .map(([level, power]) => ({
+            level: Number(level),
+            power
+          }))
+          .sort((a, b) => a.level - b.level)
+          .reduce((entries, entry) => {
+            strongestPower = Math.max(
+              strongestPower,
+              entry.power
+            );
+
+            if (
+              !entries.length ||
+              strongestPower >
+                entries[entries.length - 1]
+                  .power
+            ) {
+              entries.push({
+                level: entry.level,
+                power: strongestPower
+              });
+            }
+
+            return entries;
+          }, []);
+
+        return [attackType, powerLevels];
+      }
+    )
+  );
 }
 
 export function getCoveredDefenseTypes({
