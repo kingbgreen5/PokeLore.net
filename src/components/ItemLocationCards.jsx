@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { compareVersions } from "../constants/versionOrder";
 import { normalizeDisplayText } from "../utils/normalizeText";
+import { getPokemonUrl } from "../utils/pokemonUrls";
 
 function capitalize(text) {
   return String(text ?? "")
@@ -229,8 +230,11 @@ function PokemonLink({
     pokemon.name &&
     pokemon.displayName
   ) {
+    const pokemonUrl =
+      getPokemonUrl(pokemon);
+
     return (
-      <Link to={`/pokemon/${pokemon.name}`}>
+      <Link to={pokemonUrl ?? "#"}>
         {normalizeDisplayText(pokemon.displayName)}
       </Link>
     );

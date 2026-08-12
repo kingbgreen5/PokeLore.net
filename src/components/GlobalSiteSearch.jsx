@@ -15,6 +15,7 @@ import {
   applyTmMaterialFallback,
   getTmMaterialDetail
 } from "../utils/tmMaterialDetails";
+import { getPokemonUrl } from "../utils/pokemonUrls";
 
 const RESULT_LIMIT = 12;
 
@@ -349,7 +350,7 @@ function GlobalSiteSearch() {
               id: `pokemon-${pokemon.id}`,
               label: capitalize(pokemon.name),
               category: "Pokémon",
-              route: `/pokemon/${pokemon.name}`,
+              route: getPokemonUrl(pokemon),
               description: `No. ${pokemon.id}`,
               sprite: pokemon.sprite,
               keywords: [

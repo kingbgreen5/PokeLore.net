@@ -27,6 +27,10 @@ import {
   formatPokemonDisplayName,
   getRegionalFormKey
 } from "../utils/pokemonNames";
+import {
+  getPokemonUrl,
+  resolvePokemonRouteIdentifier
+} from "../utils/pokemonUrls";
 
 const DEFERRED_DETAILS_WARMUP_DELAY_MS = 1600;
 const DEFERRED_SECTION_ROOT_MARGIN = "1200px 0px";
@@ -204,26 +208,6 @@ function isHiddenAbility(
   return index === 2;
 }
 
-function normalizePokemonIdentifier(
-  identifier
-) {
-  try {
-    return decodeURIComponent(
-      String(identifier ?? "")
-    )
-      .trim()
-      .toLowerCase();
-  } catch {
-    return String(identifier ?? "")
-      .trim()
-      .toLowerCase();
-  }
-}
-
-function isNumericIdentifier(identifier) {
-  return /^\d+$/.test(identifier);
-}
-
 function applySelectedVariety(
   pokemonData,
   normalizedIdentifier
@@ -282,6 +266,38 @@ function LearnsetPlaceholder({
   );
 }
 
+function PokemonDetailNotFound() {
+  return (
+    <main
+      style={{
+        margin: "0 auto",
+        maxWidth: "720px",
+        padding: "2rem 1rem",
+        textAlign: "center"
+      }}
+    >
+      <Seo
+        title="Pokemon Not Found | PokeLore"
+        description="We couldn't find a Pokemon matching this URL."
+        robots="noindex, follow"
+      />
+      <h1>Pokemon Not Found</h1>
+      <p>
+        We couldn't find a Pokemon matching this URL.
+      </p>
+      <p
+        style={{
+          marginTop: "1rem"
+        }}
+      >
+        <Link to="/">
+          Return to Pokedex
+        </Link>
+      </p>
+    </main>
+  );
+}
+
 function PokemonDetailPage() {
   const evolutionScrollRef = useRef(null);
 const rootNodeRef = useRef(null);
@@ -325,11 +341,6 @@ useEffect(() => {
       setEvolutionLoading(false);
       setDeferredDetailsReady(false);
 
-      const normalizedIdentifier =
-        normalizePokemonIdentifier(
-          identifier
-        );
-
       const routesResponse =
         await fetch(
           "/data/pokemonRoutes.json"
@@ -348,43 +359,29 @@ useEffect(() => {
         return;
       }
 
-      if (
-        isNumericIdentifier(
-          normalizedIdentifier
-        )
-      ) {
-        const canonicalName =
-          routes.byId?.[
-            normalizedIdentifier
-          ];
-
-        if (!canonicalName) {
-          setNotFound(true);
-          return;
-        }
-
-        setRedirectPath(
-          `/pokemon/${canonicalName}${location.search}`
+      const routeResolution =
+        resolvePokemonRouteIdentifier(
+          identifier,
+          routes
         );
-        return;
-      }
 
-      const pokemonId =
-        routes.byName?.[
-          normalizedIdentifier
-        ];
-
-      if (!pokemonId) {
+      if (
+        routeResolution.status ===
+        "not-found"
+      ) {
         setNotFound(true);
         return;
       }
 
       if (
-        normalizedIdentifier !==
-        identifier
+        routeResolution.status ===
+        "redirect"
       ) {
         setRedirectPath(
-          `/pokemon/${normalizedIdentifier}${location.search}`
+          getPokemonUrl(
+            routeResolution.slug,
+            location.search
+          )
         );
         return;
       }
@@ -395,7 +392,7 @@ useEffect(() => {
 
       const pokemonResponse =
         await fetch(
-          `/data/pokemonData/${pokemonId}.json`
+          `/data/pokemonData/${routeResolution.id}.json`
         );
 
       if (!isActive) {
@@ -417,7 +414,7 @@ useEffect(() => {
       const selectedPokemon =
         applySelectedVariety(
           pokemonData,
-          normalizedIdentifier
+          routeResolution.slug
         );
 
       setPokemon(
@@ -700,11 +697,7 @@ if (loading) {
 }
 
 if (notFound || !pokemon) {
-  return (
-    <p>
-      Pokémon not found.
-    </p>
-  );
+  return <PokemonDetailNotFound />;
 }
 
 const activeFormKey =

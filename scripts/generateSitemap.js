@@ -8,6 +8,8 @@ import {
   isReleasedDynamaxCrystal,
   validateReleasedDynamaxCrystals
 } from "../src/utils/dynamaxCrystals.js";
+import { getPokemonUrl }
+  from "../src/utils/pokemonUrls.js";
 
 const SITE_URL = "https://pokelore.net";
 const __filename = fileURLToPath(import.meta.url);
@@ -74,7 +76,7 @@ function pokemonRoutes(pokemonRouteLookup) {
   return Object.keys(
     pokemonRouteLookup.byName ?? {}
   ).map(pokemonName =>
-    route(`/pokemon/${pokemonName}`)
+    route(getPokemonUrl(pokemonName))
   );
 }
 
@@ -263,6 +265,27 @@ ${entries}
 `;
 }
 
+function validateSitemapUrls(urls) {
+  const numericPokemonUrls =
+    urls.filter(url =>
+      /\/pokemon\/[0-9]+(?:[/?#]|$)/.test(url)
+    );
+
+  if (numericPokemonUrls.length > 0) {
+    throw new Error(
+      [
+        "Sitemap contains numeric Pokemon URLs:",
+        ...numericPokemonUrls.slice(0, 10),
+        numericPokemonUrls.length > 10
+          ? `...and ${numericPokemonUrls.length - 10} more`
+          : null
+      ]
+        .filter(Boolean)
+        .join("\n")
+    );
+  }
+}
+
 function renderNewsSitemap(articles) {
   const entries = articles
     .map(
@@ -292,6 +315,8 @@ async function main() {
   validateReleasedDynamaxCrystals();
 
   const urls = [...new Set(await buildRoutes())];
+
+  validateSitemapUrls(urls);
 
   await fs.writeFile(
     outputPath,

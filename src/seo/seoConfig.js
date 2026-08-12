@@ -1,5 +1,7 @@
 import { formatPokemonDisplayName }
 from "../utils/pokemonNames";
+import { getPokemonUrl }
+from "../utils/pokemonUrls";
 import {
   DYNAMAX_CRYSTAL_GUIDE_PATH,
   formatDynamaxPokemonList,
@@ -527,7 +529,7 @@ export function pokemonSeo(pokemon) {
   const name =
     formatPokemonDisplayName(pokemon);
   const canonical =
-    pageUrl(`/pokemon/${pokemon?.name}`);
+    pageUrl(getPokemonUrl(pokemon) ?? "/");
   const dexNumber =
     pokemon?.id
       ? String(pokemon.id).padStart(3, "0")
@@ -567,9 +569,7 @@ export function pokemonSeo(pokemon) {
       ? ` ${name} is listed at ${heightEnglish} (${heightMetric}) with an in-chart visual size comparison.`
       : "";
   const description =
-    pokemon?.isDefaultForm && pokemon?.id
-      ? `Explore ${name}'s stats, moves, abilities, evolution details, type matchups, locations, National Pokédex number ${pokemon.id}, and size chart.${sizeDescription}`
-      : `Explore ${name}'s stats, moves, abilities, evolution details, type matchups, locations, and size chart.${sizeDescription}`;
+    `Explore ${name}'s stats, moves, abilities, evolution details, type matchups, locations, and size chart.${sizeDescription}`;
   const title =
     `${name} Stats, Moves, Abilities, Locations, and Size Chart | ${SITE_NAME}${dexSuffix}`;
   const pokemonId =

@@ -19,6 +19,7 @@ import {
   advanceSpriteFallback,
   getPokemonSizeComparisonSources
 } from "../utils/pokemonSprites";
+import { getPokemonUrl } from "../utils/pokemonUrls";
 
 const LOCAL_CORRECTIONS_KEY =
   "pokemonSpriteManualCorrections";
@@ -756,14 +757,22 @@ function SizeComparison({
   function navigateToPokemon(nextPokemon) {
     if (!nextPokemon) return;
 
-    navigate(
-      `/pokemon/${nextPokemon.name}?size-review=1`,
-      {
-        state: {
-          preserveScroll: true
+    const pokemonUrl =
+      getPokemonUrl(
+        nextPokemon,
+        "?size-review=1"
+      );
+
+    if (pokemonUrl) {
+      navigate(
+        pokemonUrl,
+        {
+          state: {
+            preserveScroll: true
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   function getChartMetrics(chartHeightPx) {

@@ -15,6 +15,8 @@ import Seo from "../seo/Seo";
 import { topicSeo } from "../seo/seoConfig";
 import { formatPokemonDisplayName }
 from "../utils/pokemonNames";
+import { getPokemonUrl }
+from "../utils/pokemonUrls";
 import { itemLocationTopicComponents } from "../topics/topicRegistry";
 
 const REVIEW_STORAGE_PREFIX =
@@ -376,7 +378,7 @@ function PokedexTopicDetailPage() {
               )}
 
               <Link
-                to={`/pokemon/${result.pokemon.name}`}
+                to={getPokemonUrl(result.pokemon) ?? "#"}
                 style={{
                   alignItems: "center",
                   color: "inherit",

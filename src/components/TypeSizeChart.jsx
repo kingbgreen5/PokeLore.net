@@ -11,6 +11,7 @@ import {
   advanceSpriteFallback,
   getPokemonCardSources
 } from "../utils/pokemonSprites";
+import { getPokemonUrl } from "../utils/pokemonUrls";
 
 const pokemonDetailCache = new Map();
 const pokemonDetailFetchLimit = 24;
@@ -674,11 +675,19 @@ function TypeSizeChart({
               heightToInches(
                 currentPokemon.height
               );
+            const currentPokemonUrl =
+              getPokemonUrl(currentPokemon);
 
             return (
               <Link
                 key={currentPokemon.id}
-                to={`/pokemon/${currentPokemon.name}`}
+                to={currentPokemonUrl ?? "#"}
+                aria-disabled={!currentPokemonUrl}
+                onClick={event => {
+                  if (!currentPokemonUrl) {
+                    event.preventDefault();
+                  }
+                }}
                 style={{
                   alignItems: "center",
                   color: "inherit",

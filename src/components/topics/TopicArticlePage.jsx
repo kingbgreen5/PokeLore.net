@@ -1,3 +1,7 @@
+import {
+  useEffect,
+  useState
+} from "react";
 import { Link } from "react-router-dom";
 import FeebasGuideBreadcrumbs from "../feebas/FeebasGuideBreadcrumbs";
 import { getFeebasGuideBreadcrumbs } from "../feebas/feebasGuideBreadcrumbData";
@@ -18,6 +22,7 @@ import ArticleImage from "./ArticleImage";
 import ArticleSources from "./ArticleSources";
 import ArticleTableOfContents from "./ArticleTableOfContents";
 import "./TopicArticlePage.css";
+import { getPokemonUrl } from "../../utils/pokemonUrls";
 
 function formatDate(value) {
   if (!value) return "";
@@ -74,6 +79,39 @@ function getTableOfContents(article) {
 function RelatedPokemon({
   ids = []
 }) {
+  const [pokemonRoutes, setPokemonRoutes] =
+    useState(null);
+
+  useEffect(() => {
+    if (ids.length === 0) {
+      return undefined;
+    }
+
+    let isActive = true;
+
+    fetch("/data/pokemonRoutes.json")
+      .then(response =>
+        response.ok ? response.json() : null
+      )
+      .then(routes => {
+        if (isActive) {
+          setPokemonRoutes(routes);
+        }
+      })
+      .catch(error => {
+        if (import.meta.env.DEV) {
+          console.warn(
+            "Failed to load Pokemon route lookup for related Pokemon:",
+            error
+          );
+        }
+      });
+
+    return () => {
+      isActive = false;
+    };
+  }, [ids.length]);
+
   if (ids.length === 0) {
     return null;
   }
@@ -82,14 +120,25 @@ function RelatedPokemon({
     <section className="topic-article-related">
       <h2>Related Pokemon</h2>
       <div>
-        {ids.map(id => (
-          <Link
-            key={id}
-            to={`/pokemon/${id}`}
-          >
-            #{String(id).padStart(3, "0")}
-          </Link>
-        ))}
+        {ids.map(id => {
+          const slug =
+            pokemonRoutes?.byId?.[String(id)];
+          const pokemonUrl =
+            getPokemonUrl(slug);
+          const label =
+            `#${String(id).padStart(3, "0")}`;
+
+          return pokemonUrl ? (
+            <Link
+              key={id}
+              to={pokemonUrl}
+            >
+              {label}
+            </Link>
+          ) : (
+            <span key={id}>{label}</span>
+          );
+        })}
       </div>
     </section>
   );

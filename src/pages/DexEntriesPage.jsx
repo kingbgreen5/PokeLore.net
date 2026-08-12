@@ -14,6 +14,7 @@ import {
 } from "../utils/dexEntrySearch";
 import Seo from "../seo/Seo";
 import { dexEntriesSeo } from "../seo/seoConfig";
+import { getPokemonUrl } from "../utils/pokemonUrls";
 
 const INITIAL_VISIBLE_GROUPS = 30;
 const VISIBLE_GROUP_INCREMENT = 30;
@@ -243,7 +244,7 @@ function DexEntriesPage() {
     >
       <h2>
         <Link
-          to={`/pokemon/${pokemonName}`}
+          to={getPokemonUrl(pokemonName) ?? "#"}
           style={{
             color: "var(--link-unvisited)",
             fontWeight: 700,

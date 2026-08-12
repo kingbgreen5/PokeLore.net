@@ -15,6 +15,7 @@ import {
   advanceSpriteFallback,
   getPokemonCardSources
 } from "../utils/pokemonSprites";
+import { getPokemonUrl } from "../utils/pokemonUrls";
 
 //---------------------------FORMAT NAME---------------------------
 
@@ -367,7 +368,10 @@ function PokemonSpriteCarousel({
         : "";
 
     return {
-      to: `/pokemon/${name}${sizeReviewSearch}`,
+      to: getPokemonUrl(
+        name,
+        sizeReviewSearch
+      ),
       state: {
         preserveScroll:
           isSizeReviewMode
@@ -381,10 +385,12 @@ function PokemonSpriteCarousel({
     const pokemonNavigation =
       getPokemonNavigation(name);
 
-    navigate(
-      pokemonNavigation.to,
-      { state: pokemonNavigation.state }
-    );
+    if (pokemonNavigation.to) {
+      navigate(
+        pokemonNavigation.to,
+        { state: pokemonNavigation.state }
+      );
+    }
   }
 
   function handleCardClick(event) {
@@ -473,8 +479,9 @@ function PokemonSpriteCarousel({
       
             <Link
               key={entry.id}
-              to={pokemonNavigation.to}
+              to={pokemonNavigation.to ?? "#"}
               state={pokemonNavigation.state}
+              aria-disabled={!pokemonNavigation.to}
               data-pokemon-name={entry.name}
               ref={element => {
                 if (element) {
@@ -489,9 +496,11 @@ function PokemonSpriteCarousel({
                 }
               }}
               onClick={event =>
-                handleCardClick(
-                  event
-                )
+                pokemonNavigation.to
+                  ? handleCardClick(
+                      event
+                    )
+                  : event.preventDefault()
               }
               style={{
                 alignItems: "center",

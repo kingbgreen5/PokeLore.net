@@ -10,6 +10,7 @@ import {
   DPPT_GREAT_MARSH_GAME_TABLES
 } from "../../utils/dpptGreatMarsh";
 import { formatPokemonDisplayName } from "../../utils/pokemonNames";
+import { getPokemonUrl } from "../../utils/pokemonUrls";
 import "./DpptGreatMarshResults.css";
 
 const GAME_ORDER = ["platinum", "diamondPearl"];
@@ -28,7 +29,7 @@ function getPokemonFallback(pokemonId) {
 }
 
 function getPokemonDetailPath(pokemon) {
-  return `/pokemon/${pokemon.name ?? pokemon.id}`;
+  return getPokemonUrl(pokemon);
 }
 
 function MarshPokemonCard({
@@ -45,7 +46,13 @@ function MarshPokemonCard({
   return (
     <Link
       className="dppt-great-marsh-card"
-      to={detailPath}
+      to={detailPath ?? "#"}
+      aria-disabled={!detailPath}
+      onClick={event => {
+        if (!detailPath) {
+          event.preventDefault();
+        }
+      }}
     >
       <span className="dppt-great-marsh-area">
         Area {entry.area}

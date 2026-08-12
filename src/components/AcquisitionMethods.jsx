@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import CollapsibleSection from "./CollapsibleSection";
 import useSessionState from "../hooks/useSessionState";
 import { normalizeDisplayText } from "../utils/normalizeText";
+import { getPokemonUrl } from "../utils/pokemonUrls";
 
 function formatAcquisitionType(type) {
   if (!type) return "Unknown";
@@ -225,8 +226,11 @@ function PokemonLink({
     pokemon.name &&
     pokemon.displayName
   ) {
+    const pokemonUrl =
+      getPokemonUrl(pokemon);
+
     return (
-      <Link to={`/pokemon/${pokemon.name}`}>
+      <Link to={pokemonUrl ?? "#"}>
         {normalizeDisplayText(pokemon.displayName)}
       </Link>
     );

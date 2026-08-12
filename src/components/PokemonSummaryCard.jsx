@@ -10,6 +10,7 @@ import {
   advanceSpriteFallback,
   getPokemonCardSources,
 } from "../utils/pokemonSprites";
+import { getPokemonUrl } from "../utils/pokemonUrls";
 
 const CARD_SIZES = {
   full: {
@@ -121,13 +122,24 @@ function PokemonSummaryCard({
     isSizeReviewMode
       ? "?size-review=1"
       : "";
+  const pokemonUrl =
+    getPokemonUrl(
+      pokemon,
+      sizeReviewSearch
+    );
   
   return (
     <Link
-      to={`/pokemon/${pokemon.name ?? pokemon.id}${sizeReviewSearch}`}
+      to={pokemonUrl ?? "#"}
       state={{
         preserveScroll:
           isSizeReviewMode
+      }}
+      aria-disabled={!pokemonUrl}
+      onClick={event => {
+        if (!pokemonUrl) {
+          event.preventDefault();
+        }
       }}
       style={{
         border: "2px solid #555",

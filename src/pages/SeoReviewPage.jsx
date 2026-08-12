@@ -28,6 +28,7 @@ import {
 } from "../seo/seoConfig";
 import { staticTopics } from "../topics/topicRegistry";
 import { readJsonFile } from "../utils/readJsonFile";
+import { getPokemonUrl } from "../utils/pokemonUrls";
 
 const TYPE_SLUGS = [
   "normal",
@@ -539,7 +540,7 @@ function SeoReviewPage() {
             entryFromSeo({
               group: "Pokemon",
               label: formatName(pokemon.name),
-              path: `/pokemon/${pokemon.name}`,
+              path: getPokemonUrl(pokemon),
               seo: pokemonSeo(pokemon)
             })
           ),

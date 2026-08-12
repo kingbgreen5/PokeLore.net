@@ -1,22 +1,35 @@
 import { Link } from "react-router-dom";
+import Seo from "../seo/Seo";
 
-function NotFoundPage() {
+function NotFoundPage({
+  title = "Page not found",
+  message = "This page is not available on PokeLore.",
+  returnTo = "/",
+  returnLabel = "Back to Pokedex"
+}) {
   return (
     <main
       style={{
         padding: "2rem"
       }}
     >
-      <h1>Page not found</h1>
+      <Seo
+        title={`${title} | PokeLore`}
+        description={message}
+        robots="noindex, follow"
+      />
+      <h1>{title}</h1>
       <p>
-        This page is not available on PokeLore.
+        {message}
       </p>
       <p
         style={{
           marginTop: "1rem"
         }}
       >
-        <Link to="/topics">Back to topics</Link>
+        <Link to={returnTo}>
+          {returnLabel}
+        </Link>
       </p>
     </main>
   );

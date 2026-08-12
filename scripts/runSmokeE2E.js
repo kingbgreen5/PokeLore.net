@@ -43,6 +43,34 @@ const routes = [
     heading: /pikachu/i
   },
   {
+    path: "/pokemon/turtonator",
+    heading: /turtonator/i
+  },
+  {
+    path: "/pokemon/natu",
+    heading: /natu/i
+  },
+  {
+    path: "/pokemon/776",
+    heading: /turtonator/i,
+    expectedPath: "/pokemon/turtonator"
+  },
+  {
+    path: "/pokemon/177",
+    heading: /natu/i,
+    expectedPath: "/pokemon/natu"
+  },
+  {
+    path: "/pokemon/25",
+    heading: /pikachu/i,
+    expectedPath: "/pokemon/pikachu"
+  },
+  {
+    path: "/pokemon/1",
+    heading: /bulbasaur/i,
+    expectedPath: "/pokemon/bulbasaur"
+  },
+  {
     path: "/move/thunderbolt",
     heading: /thunderbolt/i
   },
@@ -224,14 +252,19 @@ async function run() {
         "fire stone"
       );
 
+      const resultsPanel =
+        page.locator(
+          'input[type="search"] + div'
+        );
+
+      await resultsPanel
+        .getByText(/fire stone/i)
+        .waitFor({
+          timeout: 10000
+        });
+
       const resultText =
-        await page
-          .locator(
-            'input[type="search"] + div'
-          )
-          .innerText({
-            timeout: 5000
-          });
+        await resultsPanel.innerText();
 
       if (
         !/fire stone/i.test(resultText)
@@ -252,8 +285,20 @@ async function run() {
         ).toString();
 
       await page.goto(url, {
-        waitUntil: "networkidle"
+        waitUntil: "domcontentloaded"
       });
+
+      if (route.expectedPath) {
+        await page.waitForURL(
+          new URL(
+            route.expectedPath,
+            baseUrl
+          ).toString(),
+          {
+            timeout: 5000
+          }
+        );
+      }
 
       const bodyText =
         await page
@@ -288,6 +333,34 @@ async function run() {
       }
     }
 
+    for (const invalidPath of [
+      "/pokemon/999999",
+      "/pokemon/not-a-real-pokemon"
+    ]) {
+      await page.goto(
+        new URL(
+          invalidPath,
+          baseUrl
+        ).toString(),
+        {
+          waitUntil: "domcontentloaded"
+        }
+      );
+
+      const bodyText =
+        await page
+          .locator("body")
+          .innerText();
+
+      if (
+        !/pokemon not found/i.test(bodyText)
+      ) {
+        throw new Error(
+          `${invalidPath}: expected Pokemon Not Found page, got ${bodyText.slice(0, 160)}`
+        );
+      }
+    }
+
     if (browserErrors.length > 0) {
       throw new Error(
         `Browser console errors:\n${browserErrors.join("\n")}`
@@ -295,7 +368,7 @@ async function run() {
     }
 
     console.log(
-      `E2E smoke test passed for ${routes.length} routes.`
+      `E2E smoke test passed for ${routes.length} routes and 2 invalid Pokemon routes.`
     );
   } finally {
     await browser?.close();
