@@ -37,6 +37,10 @@ const pokeloreLinkTargetsPath = path.join(
   "data",
   "pokeloreLinkTargets.json"
 );
+const pokemonDistDir = path.join(
+  distDir,
+  "pokemon"
+);
 const detailImageDir = path.join(
   repoRoot,
   "public",
@@ -76,6 +80,95 @@ function readJson(filePath) {
   return JSON.parse(
     fs.readFileSync(filePath, "utf8")
   );
+}
+
+function isNumericPokemonRouteResource(entryName) {
+  return (
+    /^\d+$/.test(entryName) ||
+    /^\d+\.html$/.test(entryName)
+  );
+}
+
+function findNumericPokemonStaticRoutes() {
+  if (!fs.existsSync(pokemonDistDir)) {
+    return [];
+  }
+
+  return fs
+    .readdirSync(pokemonDistDir, {
+      withFileTypes: true
+    })
+    .filter(entry =>
+      isNumericPokemonRouteResource(entry.name)
+    )
+    .map(entry =>
+      path.join(pokemonDistDir, entry.name)
+    );
+}
+
+function removeNumericPokemonStaticRoutes() {
+  findNumericPokemonStaticRoutes().forEach(
+    routePath => {
+      fs.rmSync(routePath, {
+        force: true,
+        recursive: true
+      });
+    }
+  );
+}
+
+function assertNoNumericPokemonStaticRoutes() {
+  const numericRoutes =
+    findNumericPokemonStaticRoutes();
+
+  if (numericRoutes.length === 0) {
+    return;
+  }
+
+  throw new Error(
+    [
+      "Legacy numeric Pokemon static route detected:",
+      ...numericRoutes.map(routePath =>
+        path.relative(repoRoot, routePath)
+      ),
+      "",
+      "Pokemon static routes must use canonical name slugs."
+    ].join("\n")
+  );
+}
+
+function assertCanonicalPrerenderRoutes(routes) {
+  const pokemonRouteNames = Object.keys(
+    routes.byName ?? {}
+  );
+  const numericRouteNames =
+    pokemonRouteNames.filter(routeName =>
+      /^\d+$/.test(routeName)
+    );
+
+  if (numericRouteNames.length > 0) {
+    throw new Error(
+      [
+        "Numeric Pokemon prerender routes detected:",
+        ...numericRouteNames
+          .slice(0, 20)
+          .map(routeName => `/pokemon/${routeName}`),
+        numericRouteNames.length > 20
+          ? `...and ${numericRouteNames.length - 20} more`
+          : null,
+        "",
+        "Pokemon prerender routes must use canonical name slugs."
+      ]
+        .filter(Boolean)
+        .join("\n")
+    );
+  }
+
+  return {
+    total: pokemonRouteNames.length,
+    nameBased: pokemonRouteNames.length,
+    numeric: numericRouteNames.length
+  };
 }
 
 function escapeHtml(value) {
@@ -870,6 +963,8 @@ function main() {
     "utf8"
   );
   const routes = readJson(routesPath);
+  const routeAudit =
+    assertCanonicalPrerenderRoutes(routes);
   const pokeloreAnalyses = readJson(
     pokeloreAnalysisPath
   );
@@ -877,6 +972,8 @@ function main() {
     pokeloreLinkTargetsPath
   );
   const bannerAssets = findBannerAssets();
+
+  removeNumericPokemonStaticRoutes();
 
   let written = 0;
 
@@ -913,6 +1010,16 @@ function main() {
   console.log(
     `Prerendered ${written} Pokemon detail pages.`
   );
+  console.log(
+    [
+      "Pokemon prerender route audit:",
+      `total=${routeAudit.total}`,
+      `nameBased=${routeAudit.nameBased}`,
+      `numeric=${routeAudit.numeric}`
+    ].join(" ")
+  );
+
+  assertNoNumericPokemonStaticRoutes();
 }
 
 main();
