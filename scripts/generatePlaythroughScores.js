@@ -265,6 +265,8 @@ async function main() {
       DEFAULT_TEAM_RECOMMENDATION_WEIGHTS.notRegionalDex,
     tradeEvolution:
       DEFAULT_TEAM_RECOMMENDATION_WEIGHTS.tradeEvolution,
+    stabIceTypeBonus:
+      DEFAULT_TEAM_RECOMMENDATION_WEIGHTS.stabIceTypeBonus,
     sTier:
       DEFAULT_TEAM_RECOMMENDATION_WEIGHTS.sTier,
     aTier:

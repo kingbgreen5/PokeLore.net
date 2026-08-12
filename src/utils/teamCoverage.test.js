@@ -90,6 +90,44 @@ describe("team coverage helpers", () => {
     ).toEqual(["grass"]);
   });
 
+  it("can include machine attacking move types when requested", () => {
+    const learnset = {
+      moves: [
+        {
+          move: "water-gun",
+          method: "level-up",
+          versionGroup: "red-blue"
+        },
+        {
+          move: "ice-beam",
+          method: "machine",
+          versionGroup: "red-blue"
+        }
+      ]
+    };
+    const movesByName = {
+      "ice-beam": {
+        category: "special",
+        power: 95,
+        type: "ice"
+      },
+      "water-gun": {
+        category: "special",
+        power: 40,
+        type: "water"
+      }
+    };
+
+    expect(
+      getLevelUpAttackTypes({
+        includeMachineMoves: true,
+        learnset,
+        movesByName,
+        versionGroup: "red-blue"
+      })
+    ).toEqual(["water", "ice"]);
+  });
+
   it("ignores attacking moves below the selected power threshold", () => {
     const learnset = {
       moves: [
@@ -414,6 +452,31 @@ describe("team coverage helpers", () => {
         }
       }).total
     ).toBeCloseTo(1.1);
+  });
+
+  it("uses the selected coverage score when one is provided", () => {
+    expect(
+      getTeamRecommendationScore({
+        weights:
+          DEFAULT_TEAM_RECOMMENDATION_WEIGHTS,
+        pokemon: {
+          baseStatTotal: 500,
+          coverageScore: 1,
+          missingHits: [
+            "water",
+            "ground"
+          ],
+          missingDefensiveHits: [
+            "electric"
+          ],
+          playthroughFlags: {
+            inRegionalDex: true,
+            tier: "A",
+            tradeEvolution: true
+          }
+        }
+      }).parts.coverage
+    ).toBeCloseTo(0.2);
   });
 
   it("recomputes generated playthrough flags with current weights", () => {

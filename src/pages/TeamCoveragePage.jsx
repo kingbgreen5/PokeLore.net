@@ -48,10 +48,14 @@ const MOVE_POWER_THRESHOLD_STORAGE_KEY =
   "pokelore:team-coverage-move-power-threshold";
 const MOVE_LEVEL_THRESHOLD_STORAGE_KEY =
   "pokelore:team-coverage-move-level-threshold:v1";
+const PARTY_TM_LEARNSET_STORAGE_KEY =
+  "pokelore:team-coverage-tm-learnsets:v1";
 const RECOMMENDATION_MOVE_POWER_THRESHOLD_STORAGE_KEY =
   "pokelore:team-coverage-recommendation-move-power-threshold:v2";
 const RECOMMENDATION_MOVE_LEVEL_THRESHOLD_STORAGE_KEY =
   "pokelore:team-coverage-recommendation-move-level-threshold:v1";
+const RECOMMENDATION_TM_LEARNSET_STORAGE_KEY =
+  "pokelore:team-coverage-recommendation-tm-learnsets:v1";
 const LEGENDARY_FILTER_STORAGE_KEY =
   "pokelore:team-coverage-legendary-filter:v1";
 const TRADE_EVOLUTION_FILTER_STORAGE_KEY =
@@ -189,6 +193,16 @@ const TRADE_EVOLUTION_FILTER_OPTIONS = [
   {
     value: "show",
     label: "Show"
+  }
+];
+const TM_LEARNSET_OPTIONS = [
+  {
+    value: "exclude",
+    label: "Exclude"
+  },
+  {
+    value: "include",
+    label: "Include"
   }
 ];
 const DEFENSIVE_COVERAGE_GROUPS = [
@@ -413,6 +427,22 @@ function getValidMoveLevelThreshold(
     : DEFAULT_MOVE_LEVEL_THRESHOLD;
 }
 
+function getValidTmLearnsetMode(value) {
+  if (value === true) {
+    return "include";
+  }
+
+  if (value === false) {
+    return "exclude";
+  }
+
+  return TM_LEARNSET_OPTIONS.some(
+    option => option.value === value
+  )
+    ? value
+    : TM_LEARNSET_OPTIONS[0].value;
+}
+
 function compareByNationalDex(a, b) {
   return a.id - b.id;
 }
@@ -521,19 +551,34 @@ function compareByCustomScore(a, b) {
   );
 }
 
-function getThresholdedAttackTypes({
-  consideredTypes,
+function getAttackTypePowersForLevel({
+  includeMachineMoves = false,
   maxMoveLevel = 0,
-  minMovePower,
   pokemon
 }) {
   const levelCap =
     Number(maxMoveLevel) || 0;
+  const attackTypePowerLevels =
+    includeMachineMoves
+      ? pokemon.attackTypePowerLevelsWithMachineMoves ??
+        pokemon.attackTypePowerLevels
+      : pokemon.attackTypePowerLevels;
   const attackTypePowers =
-    pokemon.attackTypePowerLevels
+    includeMachineMoves
+      ? pokemon.attackTypePowersWithMachineMoves ??
+        pokemon.attackTypePowers
+      : pokemon.attackTypePowers;
+  const attackTypePowersByLevel =
+    includeMachineMoves
+      ? pokemon.attackTypePowersByLevelWithMachineMoves ??
+        pokemon.attackTypePowersByLevel
+      : pokemon.attackTypePowersByLevel;
+
+  return (
+    attackTypePowerLevels
       ? Object.fromEntries(
           Object.entries(
-            pokemon.attackTypePowerLevels
+            attackTypePowerLevels
           ).flatMap(
             ([attackType, powerLevels]) => {
               const availablePowerLevels =
@@ -563,12 +608,28 @@ function getThresholdedAttackTypes({
           )
         )
       : levelCap > 0
-        ? pokemon.attackTypePowersByLevel?.[
+        ? attackTypePowersByLevel?.[
             String(levelCap)
           ] ??
-          pokemon.attackTypePowers ??
+          attackTypePowers ??
           {}
-        : pokemon.attackTypePowers ?? {};
+        : attackTypePowers ?? {}
+  );
+}
+
+function getThresholdedAttackTypes({
+  consideredTypes,
+  includeMachineMoves = false,
+  maxMoveLevel = 0,
+  minMovePower,
+  pokemon
+}) {
+  const attackTypePowers =
+    getAttackTypePowersForLevel({
+      includeMachineMoves,
+      maxMoveLevel,
+      pokemon
+    });
 
   if (minMovePower <= 0) {
     return consideredTypes.filter(type =>
@@ -581,6 +642,23 @@ function getThresholdedAttackTypes({
       Number(
         attackTypePowers[type]
       ) >= minMovePower
+  );
+}
+
+function isStabIceTypeBonusEligible({
+  includeMachineMoves = false,
+  maxMoveLevel = 0,
+  pokemon
+}) {
+  return (
+    pokemon?.types?.includes("ice") &&
+    Number(
+      getAttackTypePowersForLevel({
+        includeMachineMoves,
+        maxMoveLevel,
+        pokemon
+      }).ice
+    ) > 60
   );
 }
 
@@ -1109,6 +1187,7 @@ function PokemonPicker({
 }
 
 function RecommendationCard({
+  includeMachineMoves,
   maxMoveLevel,
   minMovePower,
   recommendation,
@@ -1186,6 +1265,25 @@ function RecommendationCard({
                 ?.bst
             )}
           </p>
+          <p
+            style={{
+              color: "#9ca3af",
+              fontSize: ".72rem",
+              lineHeight: 1.3,
+              margin: ".25rem 0 0"
+            }}
+          >
+            Normal{" "}
+            {formatScore(
+              recommendation.playthroughScore?.parts
+                ?.normalTypeQualifier
+            )}{" "}
+            · STAB Ice{" "}
+            {formatScore(
+              recommendation.playthroughScore?.parts
+                ?.stabIceTypeBonus
+            )}
+          </p>
         </div>
       )}
       <div>
@@ -1235,7 +1333,9 @@ function RecommendationCard({
             margin: "0 0 .35rem"
           }}
         >
-          Level-up attack types
+          {includeMachineMoves
+            ? "Level-up + TM attack types"
+            : "Level-up attack types"}
           {minMovePower > 0
             ? ` (${minMovePower}+ power)`
             : ""}
@@ -1412,6 +1512,20 @@ function TeamCoveragePage() {
       preferredMoveLevelThreshold
     );
   const [
+    preferredPartyTmLearnsetMode,
+    setPreferredPartyTmLearnsetMode
+  ] = useLocalStorageState(
+    PARTY_TM_LEARNSET_STORAGE_KEY,
+    "exclude"
+  );
+  const selectedPartyTmLearnsetMode =
+    getValidTmLearnsetMode(
+      preferredPartyTmLearnsetMode
+    );
+  const includePartyTmLearnsets =
+    selectedPartyTmLearnsetMode ===
+    "include";
+  const [
     preferredRecommendationMovePowerThreshold,
     setPreferredRecommendationMovePowerThreshold
   ] = useLocalStorageState(
@@ -1433,6 +1547,20 @@ function TeamCoveragePage() {
     getValidMoveLevelThreshold(
       preferredRecommendationMoveLevelThreshold
     );
+  const [
+    preferredRecommendationTmLearnsetMode,
+    setPreferredRecommendationTmLearnsetMode
+  ] = useLocalStorageState(
+    RECOMMENDATION_TM_LEARNSET_STORAGE_KEY,
+    "exclude"
+  );
+  const selectedRecommendationTmLearnsetMode =
+    getValidTmLearnsetMode(
+      preferredRecommendationTmLearnsetMode
+    );
+  const includeRecommendationTmLearnsets =
+    selectedRecommendationTmLearnsetMode ===
+    "include";
   const consideredTypes = useMemo(
     () =>
       getTypesForVersionGroup(
@@ -1678,6 +1806,8 @@ function TeamCoveragePage() {
           record.learnset
             ? getLevelUpAttackTypes({
                 consideredTypes,
+                includeMachineMoves:
+                  includePartyTmLearnsets,
                 learnset:
                   record.learnset,
                 maxMoveLevel:
@@ -1717,6 +1847,7 @@ function TeamCoveragePage() {
         };
       }),
     [
+      includePartyTmLearnsets,
       movesByName,
       normalizedParty,
       pokemonRecordsById,
@@ -1888,9 +2019,19 @@ function TeamCoveragePage() {
           const normalTypeQualifierEligible =
             !hasPureNormalPartyMember &&
             isPureNormalType(pokemon);
+          const stabIceTypeBonusEligible =
+            isStabIceTypeBonusEligible({
+              includeMachineMoves:
+                includeRecommendationTmLearnsets,
+              maxMoveLevel:
+                selectedRecommendationMoveLevelThreshold,
+              pokemon
+            });
           const attackTypes =
             getThresholdedAttackTypes({
               consideredTypes,
+              includeMachineMoves:
+                includeRecommendationTmLearnsets,
               maxMoveLevel:
                 selectedRecommendationMoveLevelThreshold,
               minMovePower:
@@ -1938,7 +2079,8 @@ function TeamCoveragePage() {
             defensiveCoverageTypes,
             missingDefensiveHits,
             missingHits,
-            normalTypeQualifierEligible
+            normalTypeQualifierEligible,
+            stabIceTypeBonusEligible
           };
 
           return {
@@ -2009,6 +2151,7 @@ function TeamCoveragePage() {
     }, [
       consideredTypes,
       hasPureNormalPartyMember,
+      includeRecommendationTmLearnsets,
       missingDefensiveTypes,
       missingTypes,
       normalizedParty,
@@ -2226,7 +2369,7 @@ function TeamCoveragePage() {
           margin: "0 auto .75rem"
         }}
       >
-        Select Pokemon to see level up learnset coverage.
+        Select Pokemon to see learnset coverage.
       </p>
 
       <div
@@ -2285,7 +2428,7 @@ function TeamCoveragePage() {
             fontWeight: "bold"
           }}
         >
-          At LvL
+          Learned At
         </label>
         <select
           id="team-coverage-move-level-threshold"
@@ -2315,13 +2458,51 @@ function TeamCoveragePage() {
             )
           )}
         </select>
+        <label
+          htmlFor="team-coverage-tm-learnsets"
+          style={{
+            color: "#f3f4f6",
+            fontSize: ".9rem",
+            fontWeight: "bold"
+          }}
+        >
+          TM Learnsets
+        </label>
+        <select
+          id="team-coverage-tm-learnsets"
+          value={selectedPartyTmLearnsetMode}
+          onChange={event =>
+            setPreferredPartyTmLearnsetMode(
+              event.target.value
+            )
+          }
+          style={{
+            backgroundColor: "#2c2c2c",
+            border: "2px solid #555",
+            borderRadius: "8px",
+            color: "white",
+            fontSize: ".95rem",
+            padding: ".55rem .75rem"
+          }}
+        >
+          {TM_LEARNSET_OPTIONS.map(
+            option => (
+              <option
+                key={option.value}
+                value={option.value}
+              >
+                {option.label}
+              </option>
+            )
+          )}
+        </select>
         <span
           style={{
             color: "#9ca3af",
             fontSize: ".8rem"
           }}
         >
-          Applies to selected party level-up moves.
+          Applies to selected party coverage.
         </span>
         <button
           type="button"
@@ -2376,13 +2557,21 @@ function TeamCoveragePage() {
         <CoveragePanel
           tone="covered"
           title="Offensive Coverage"
-          description="Your team's level-up learnset has moves that hit these types for super effective damage."
+          description={`Your team's ${
+            includePartyTmLearnsets
+              ? "level-up and TM"
+              : "level-up"
+          } learnset has moves that hit these types for super effective damage.`}
           types={coveredTypes}
         />
         <CoveragePanel
           tone="missing"
           title="Missing Offensive Coverage"
-          description="Your team's level-up learnset cannot hit these types for super effective damage."
+          description={`Your team's ${
+            includePartyTmLearnsets
+              ? "level-up and TM"
+              : "level-up"
+          } learnset cannot hit these types for super effective damage.`}
           types={missingTypes}
         />
         <CoveragePanel
@@ -2583,7 +2772,7 @@ function TeamCoveragePage() {
                 fontWeight: "bold"
               }}
             >
-              At LvL
+              Learned At
             </label>
             <select
               id="team-coverage-recommendation-move-level-threshold"
@@ -2607,6 +2796,50 @@ function TeamCoveragePage() {
               }}
             >
               {MOVE_LEVEL_THRESHOLD_OPTIONS.map(
+                option => (
+                  <option
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.label}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+
+          <div className="team-coverage-filter-control">
+            <label
+              htmlFor="team-coverage-recommendation-tm-learnsets"
+              style={{
+                color: "#f3f4f6",
+                fontWeight: "bold"
+              }}
+            >
+              TM Learnsets
+            </label>
+            <select
+              id="team-coverage-recommendation-tm-learnsets"
+              value={
+                selectedRecommendationTmLearnsetMode
+              }
+              onChange={event => {
+                setRecommendationPage(1);
+                setPreferredRecommendationTmLearnsetMode(
+                  event.target.value
+                );
+              }}
+              style={{
+                backgroundColor: "#2c2c2c",
+                border: "2px solid #555",
+                borderRadius: "8px",
+                color: "white",
+                fontSize: ".95rem",
+                maxWidth: "100%",
+                padding: ".55rem .75rem"
+              }}
+            >
+              {TM_LEARNSET_OPTIONS.map(
                 option => (
                   <option
                     key={option.value}
@@ -2790,6 +3023,9 @@ function TeamCoveragePage() {
                     key={recommendation.id}
                     maxMoveLevel={
                       selectedRecommendationMoveLevelThreshold
+                    }
+                    includeMachineMoves={
+                      includeRecommendationTmLearnsets
                     }
                     minMovePower={
                       selectedRecommendationMovePowerThreshold

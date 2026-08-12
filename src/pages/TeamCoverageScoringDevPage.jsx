@@ -18,6 +18,10 @@ const scoreWeightControls = [
     label: "Normal Type Qualifier"
   },
   {
+    key: "stabIceTypeBonus",
+    label: "STAB Ice Type Bonus"
+  },
+  {
     key: "regionalDex",
     label: "Regional Dex"
   },

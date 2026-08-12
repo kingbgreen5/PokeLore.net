@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-11T19:42:21.979Z",
+  "generatedAt": "2026-08-12T17:34:26.384Z",
   "availabilityNote": "These Pokemon are technically available in the game. That does not necessarily mean they are available for a playthrough. It is meant to be overly broad, and also includes Pokemon that must be traded for.",
   "versionGroup": "colosseum",
   "availablePokemonCount": 79,
@@ -66,18 +66,69 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          },
+          {
+            "level": 31,
+            "power": 85
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 85,
         "grass": 120
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 85,
+        "grass": 120,
+        "steel": 100,
+        "fighting": 40
       },
       "attackTypes": [
         "normal",
         "grass"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "fighting",
+        "steel"
+      ],
       "coveredTypes": [
         "water",
         "ground",
         "rock"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "ice",
+        "ground",
+        "rock",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -141,18 +192,76 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 85,
         "grass": 120
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "grass": 120,
+        "ground": 100,
+        "steel": 100,
+        "fighting": 40
       },
       "attackTypes": [
         "normal",
         "grass"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "fighting",
+        "ground",
+        "steel"
+      ],
       "coveredTypes": [
         "water",
         "ground",
         "rock"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "ice",
+        "poison",
+        "ground",
+        "rock",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -220,18 +329,77 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 130
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 60,
         "fire": 90
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 80,
+        "fire": 130,
+        "ground": 80,
+        "fighting": 150,
+        "flying": 60
       },
       "attackTypes": [
         "normal",
         "fire"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "fighting",
+        "ground",
+        "flying"
+      ],
       "coveredTypes": [
         "grass",
         "ice",
         "bug",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "bug",
+        "rock",
+        "dark",
         "steel"
       ]
     },
@@ -300,18 +468,77 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 130
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 60,
         "fire": 90
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "fire": 130,
+        "ground": 100,
+        "fighting": 150,
+        "flying": 60
       },
       "attackTypes": [
         "normal",
         "fire"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "fighting",
+        "ground",
+        "flying"
+      ],
       "coveredTypes": [
         "grass",
         "ice",
         "bug",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "bug",
+        "rock",
+        "dark",
         "steel"
       ]
     },
@@ -382,15 +609,89 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "dark": [
+          {
+            "level": 21,
+            "power": 60
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          },
+          {
+            "level": 55,
+            "power": 110
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 70,
         "dark": 60,
         "water": 110
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 80,
+        "dark": 60,
+        "water": 110,
+        "ice": 110,
+        "ground": 80,
+        "steel": 100,
+        "fighting": 150,
+        "flying": 60
+      },
       "attackTypes": [
         "normal",
         "water",
         "dark"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "ice",
+        "fighting",
+        "ground",
+        "flying",
+        "dark",
+        "steel"
       ],
       "coveredTypes": [
         "fire",
@@ -398,6 +699,24 @@
         "psychic",
         "rock",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -467,15 +786,97 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "dark": [
+          {
+            "level": 21,
+            "power": 60
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          },
+          {
+            "level": 58,
+            "power": 110
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "dragon": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 70,
         "dark": 60,
         "water": 110
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "dark": 60,
+        "water": 110,
+        "ice": 110,
+        "ground": 100,
+        "steel": 100,
+        "fighting": 150,
+        "flying": 60,
+        "dragon": 80
+      },
       "attackTypes": [
         "normal",
         "water",
         "dark"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "ice",
+        "fighting",
+        "ground",
+        "flying",
+        "dragon",
+        "dark",
+        "steel"
       ],
       "coveredTypes": [
         "fire",
@@ -483,6 +884,24 @@
         "psychic",
         "rock",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -536,13 +955,125 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 80
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "fire": 90,
+        "water": 90,
+        "ice": 110,
+        "grass": 120,
+        "electric": 110,
+        "ground": 80,
+        "dark": 60,
+        "steel": 100,
+        "ghost": 80,
+        "fighting": 150
       },
       "attackTypes": [
         "normal"
       ],
-      "coveredTypes": []
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "ground",
+        "ghost",
+        "dark",
+        "steel"
+      ],
+      "coveredTypes": [],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
+        "steel"
+      ]
     },
     {
       "id": 164,
@@ -612,21 +1143,89 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "flying": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          },
+          {
+            "level": 57,
+            "power": 100
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 90,
         "flying": 35,
         "psychic": 100
+      },
+      "attackTypePowersWithMachineMoves": {
+        "flying": 90,
+        "normal": 150,
+        "psychic": 100,
+        "dark": 60,
+        "steel": 70,
+        "ghost": 80
       },
       "attackTypes": [
         "normal",
         "flying",
         "psychic"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "flying",
+        "psychic",
+        "ghost",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "grass",
         "fighting",
         "poison",
         "bug"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost"
       ]
     },
     {
@@ -685,13 +1284,84 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 120
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "grass": 120,
+        "ground": 80,
+        "dark": 60,
+        "fighting": 150,
+        "flying": 60
       },
       "attackTypes": [
         "normal"
       ],
-      "coveredTypes": []
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "fighting",
+        "ground",
+        "flying",
+        "dark"
+      ],
+      "coveredTypes": [],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
+      ]
     },
     {
       "id": 168,
@@ -769,12 +1439,72 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "poison": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ghost": [
+          {
+            "level": 17,
+            "power": 0
+          }
+        ],
+        "bug": [
+          {
+            "level": 25,
+            "power": 80
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "poison": 15,
         "psychic": 90,
         "ghost": 0,
         "normal": 18,
         "bug": 80
+      },
+      "attackTypePowersWithMachineMoves": {
+        "poison": 90,
+        "normal": 150,
+        "grass": 120,
+        "ground": 80,
+        "psychic": 90,
+        "ghost": 0,
+        "bug": 80,
+        "dark": 60
       },
       "attackTypes": [
         "normal",
@@ -783,6 +1513,16 @@
         "bug",
         "ghost"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "poison",
+        "ground",
+        "psychic",
+        "bug",
+        "ghost",
+        "dark"
+      ],
       "coveredTypes": [
         "grass",
         "fighting",
@@ -790,6 +1530,20 @@
         "psychic",
         "ghost",
         "dark"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "fighting",
+        "poison",
+        "ground",
+        "psychic",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -839,13 +1593,104 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          },
+          {
+            "level": 41,
+            "power": 120
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 120
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 120,
+        "fire": 110,
+        "grass": 120,
+        "psychic": 90,
+        "ghost": 80,
+        "fighting": 40,
+        "electric": 60,
+        "water": 60
       },
       "attackTypes": [
         "normal"
       ],
-      "coveredTypes": []
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "fighting",
+        "psychic",
+        "ghost"
+      ],
+      "coveredTypes": [],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
+      ]
     },
     {
       "id": 176,
@@ -895,13 +1740,116 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "flying": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 120
+      },
+      "attackTypePowersWithMachineMoves": {
+        "flying": 90,
+        "normal": 150,
+        "fire": 110,
+        "grass": 120,
+        "psychic": 90,
+        "steel": 70,
+        "ghost": 80,
+        "fighting": 150,
+        "electric": 60,
+        "water": 60
       },
       "attackTypes": [
         "normal"
       ],
-      "coveredTypes": []
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "fighting",
+        "flying",
+        "psychic",
+        "ghost",
+        "steel"
+      ],
+      "coveredTypes": [],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
+      ]
     },
     {
       "id": 179,
@@ -960,17 +1908,53 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 40,
         "electric": 110
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 70,
+        "electric": 110,
+        "steel": 100
       },
       "attackTypes": [
         "normal",
         "electric"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "electric",
+        "steel"
+      ],
       "coveredTypes": [
         "water",
         "flying"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "water",
+        "ice",
+        "flying",
+        "rock"
       ]
     },
     {
@@ -1030,17 +2014,64 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 40,
         "electric": 110
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 80,
+        "electric": 110,
+        "steel": 100,
+        "fighting": 150
       },
       "attackTypes": [
         "normal",
         "electric"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "electric",
+        "fighting",
+        "steel"
+      ],
       "coveredTypes": [
         "water",
         "flying"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "ice",
+        "flying",
+        "rock",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -1104,17 +2135,64 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ]
+      },
       "attackTypePowers": {
         "electric": 110,
         "normal": 40
+      },
+      "attackTypePowersWithMachineMoves": {
+        "electric": 110,
+        "normal": 150,
+        "steel": 100,
+        "fighting": 150
       },
       "attackTypes": [
         "normal",
         "electric"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "electric",
+        "fighting",
+        "steel"
+      ],
       "coveredTypes": [
         "water",
         "flying"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "ice",
+        "flying",
+        "rock",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -1194,10 +2272,57 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          },
+          {
+            "level": 57,
+            "power": 120
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          },
+          {
+            "level": 25,
+            "power": 75
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 120,
         "fighting": 0,
         "rock": 75,
+        "dark": 60
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 120,
+        "fighting": 150,
+        "rock": 75,
+        "ground": 100,
         "dark": 60
       },
       "attackTypes": [
@@ -1206,10 +2331,31 @@
         "rock",
         "dark"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fighting",
+        "ground",
+        "rock",
+        "dark"
+      ],
       "coveredTypes": [
         "normal",
         "fire",
         "ice",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "ice",
+        "poison",
         "flying",
         "psychic",
         "bug",
@@ -1273,17 +2419,55 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 40,
         "grass": 40
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 70,
+        "grass": 120,
+        "flying": 60
       },
       "attackTypes": [
         "normal",
         "grass"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "flying"
+      ],
       "coveredTypes": [
         "water",
         "ground",
+        "rock"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "water",
+        "grass",
+        "fighting",
+        "ground",
+        "bug",
         "rock"
       ]
     },
@@ -1341,17 +2525,55 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 40,
         "grass": 40
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "grass": 120,
+        "flying": 60
       },
       "attackTypes": [
         "normal",
         "grass"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "flying"
+      ],
       "coveredTypes": [
         "water",
         "ground",
+        "rock"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "water",
+        "grass",
+        "fighting",
+        "ground",
+        "bug",
         "rock"
       ]
     },
@@ -1412,17 +2634,121 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 60,
         "ghost": 30
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 80,
+        "grass": 120,
+        "electric": 110,
+        "ground": 80,
+        "dark": 60,
+        "steel": 100,
+        "ghost": 80,
+        "fighting": 150,
+        "flying": 60,
+        "water": 60
       },
       "attackTypes": [
         "normal",
         "ghost"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "electric",
+        "grass",
+        "fighting",
+        "ground",
+        "flying",
+        "ghost",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "psychic",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -1486,16 +2812,52 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "poison": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 40,
         "grass": 120
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "grass": 120,
+        "poison": 90
       },
       "attackTypes": [
         "normal",
         "grass"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "poison"
+      ],
       "coveredTypes": [
         "water",
+        "ground",
+        "rock"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "water",
+        "grass",
         "ground",
         "rock"
       ]
@@ -1558,18 +2920,96 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          },
+          {
+            "level": 37,
+            "power": 90
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ]
+      },
       "attackTypePowers": {
         "flying": 60,
         "normal": 90
+      },
+      "attackTypePowersWithMachineMoves": {
+        "flying": 60,
+        "normal": 90,
+        "grass": 120,
+        "psychic": 90,
+        "dark": 60,
+        "steel": 70,
+        "ghost": 80
       },
       "attackTypes": [
         "normal",
         "flying"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "flying",
+        "psychic",
+        "ghost",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "grass",
         "fighting",
         "bug"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "water",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost"
       ]
     },
     {
@@ -1636,15 +3076,85 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "poison": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 80,
         "water": 40,
         "ground": 100
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "water": 90,
+        "ice": 110,
+        "ground": 100,
+        "poison": 90,
+        "steel": 100,
+        "fighting": 150,
+        "rock": 60
+      },
       "attackTypes": [
         "normal",
         "water",
         "ground"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "rock",
+        "steel"
       ],
       "coveredTypes": [
         "fire",
@@ -1652,6 +3162,21 @@
         "poison",
         "ground",
         "rock",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "poison",
+        "ground",
+        "flying",
+        "bug",
+        "rock",
+        "dragon",
+        "dark",
         "steel"
       ]
     },
@@ -1720,17 +3245,74 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 60,
         "psychic": 90
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "psychic": 90,
+        "ground": 80,
+        "steel": 100,
+        "ghost": 80
       },
       "attackTypes": [
         "normal",
         "psychic"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "ground",
+        "psychic",
+        "ghost",
+        "steel"
+      ],
       "coveredTypes": [
         "fighting",
         "poison"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "fire",
+        "electric",
+        "ice",
+        "fighting",
+        "poison",
+        "psychic",
+        "rock",
+        "ghost",
+        "steel"
       ]
     },
     {
@@ -1790,17 +3372,86 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "dark": [
+          {
+            "level": 16,
+            "power": 40
+          },
+          {
+            "level": 36,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 40,
         "dark": 60
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "ground": 80,
+        "psychic": 90,
+        "dark": 60,
+        "steel": 100,
+        "ghost": 80
       },
       "attackTypes": [
         "normal",
         "dark"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "ground",
+        "psychic",
+        "ghost",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "psychic",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "fire",
+        "electric",
+        "ice",
+        "fighting",
+        "poison",
+        "psychic",
+        "rock",
+        "ghost",
+        "steel"
       ]
     },
     {
@@ -1867,21 +3518,76 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "flying": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ]
+      },
       "attackTypePowers": {
         "flying": 35,
         "ghost": 30,
         "dark": 60
+      },
+      "attackTypePowersWithMachineMoves": {
+        "flying": 90,
+        "ghost": 80,
+        "dark": 60,
+        "steel": 70,
+        "normal": 70
       },
       "attackTypes": [
         "flying",
         "ghost",
         "dark"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "flying",
+        "ghost",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "grass",
         "fighting",
         "psychic",
         "bug",
+        "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "grass",
+        "ice",
+        "fighting",
+        "psychic",
+        "bug",
+        "rock",
         "ghost"
       ]
     },
@@ -1942,18 +3648,82 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "psychic": 65,
         "ghost": 30
+      },
+      "attackTypePowersWithMachineMoves": {
+        "psychic": 90,
+        "electric": 110,
+        "dark": 60,
+        "normal": 70,
+        "ghost": 80,
+        "flying": 60
       },
       "attackTypes": [
         "psychic",
         "ghost"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "electric",
+        "flying",
+        "psychic",
+        "ghost",
+        "dark"
+      ],
       "coveredTypes": [
         "fighting",
         "poison",
         "psychic",
+        "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "water",
+        "grass",
+        "fighting",
+        "poison",
+        "flying",
+        "psychic",
+        "bug",
         "ghost"
       ]
     },
@@ -2009,13 +3779,71 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          },
+          {
+            "level": 1,
+            "power": 200
+          },
+          {
+            "level": 39,
+            "power": 250
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 250
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 250,
+        "grass": 120,
+        "ground": 100,
+        "fighting": 40
       },
       "attackTypes": [
         "normal"
       ],
-      "coveredTypes": []
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "fighting",
+        "ground"
+      ],
+      "coveredTypes": [],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "ice",
+        "poison",
+        "ground",
+        "rock",
+        "dark",
+        "steel"
+      ]
     },
     {
       "id": 206,
@@ -2074,17 +3902,141 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          },
+          {
+            "level": 34,
+            "power": 90
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 90,
         "dark": 40
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 90,
+        "fire": 110,
+        "ice": 110,
+        "grass": 120,
+        "electric": 110,
+        "ground": 100,
+        "dark": 60,
+        "steel": 100,
+        "ghost": 80,
+        "fighting": 40,
+        "rock": 60,
+        "water": 60
       },
       "attackTypes": [
         "normal",
         "dark"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "ground",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "psychic",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -2151,20 +4103,106 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "poison": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 70,
         "poison": 15,
         "dark": 60
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 80,
+        "poison": 90,
+        "ground": 100,
+        "dark": 60,
+        "steel": 100,
+        "fighting": 40,
+        "rock": 60,
+        "flying": 60
       },
       "attackTypes": [
         "normal",
         "poison",
         "dark"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "rock",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "grass",
         "psychic",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -2234,19 +4272,142 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          },
+          {
+            "level": 61,
+            "power": 80
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 130
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "poison": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 90,
         "dark": 80,
         "ghost": 30
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "dark": 80,
+        "fire": 130,
+        "grass": 120,
+        "electric": 110,
+        "ground": 100,
+        "ghost": 80,
+        "poison": 90,
+        "steel": 100,
+        "fighting": 150,
+        "rock": 60,
+        "water": 60
       },
       "attackTypes": [
         "normal",
         "ghost",
         "dark"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "fighting",
+        "poison",
+        "ground",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "psychic",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -2323,11 +4484,72 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          },
+          {
+            "level": 37,
+            "power": 90
+          }
+        ],
+        "poison": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "bug": [
+          {
+            "level": 28,
+            "power": 25
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          },
+          {
+            "level": 46,
+            "power": 110
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 90,
         "poison": 15,
         "bug": 25,
         "water": 110
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 90,
+        "poison": 90,
+        "bug": 25,
+        "water": 110,
+        "ice": 110,
+        "ghost": 80,
+        "electric": 60
       },
       "attackTypes": [
         "normal",
@@ -2335,12 +4557,33 @@
         "poison",
         "bug"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "electric",
+        "ice",
+        "poison",
+        "bug",
+        "ghost"
+      ],
       "coveredTypes": [
         "fire",
         "grass",
         "ground",
         "psychic",
         "rock",
+        "dark"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "fire",
+        "water",
+        "grass",
+        "ground",
+        "flying",
+        "psychic",
+        "rock",
+        "ghost",
+        "dragon",
         "dark"
       ]
     },
@@ -2414,14 +4657,68 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "bug": [
+          {
+            "level": 46,
+            "power": 40
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 70,
         "bug": 40,
         "dark": 40,
         "steel": 50
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "dark": 60,
+        "bug": 40,
+        "steel": 70,
+        "fighting": 40,
+        "flying": 60
+      },
       "attackTypes": [
         "normal",
+        "bug",
+        "dark",
+        "steel"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fighting",
+        "flying",
         "bug",
         "dark",
         "steel"
@@ -2433,6 +4730,18 @@
         "rock",
         "ghost",
         "dark"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "ice",
+        "fighting",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -2487,13 +4796,72 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "poison": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 15
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 80,
+        "ground": 100,
+        "poison": 90,
+        "fighting": 40,
+        "rock": 60
       },
       "attackTypes": [
         "normal"
       ],
-      "coveredTypes": []
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fighting",
+        "poison",
+        "ground",
+        "rock"
+      ],
+      "coveredTypes": [],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "poison",
+        "flying",
+        "bug",
+        "rock",
+        "dark",
+        "steel"
+      ]
     },
     {
       "id": 214,
@@ -2563,15 +4931,69 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "bug": [
+          {
+            "level": 53,
+            "power": 120
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 90,
         "fighting": 75,
         "bug": 120
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "fighting": 150,
+        "ground": 100,
+        "dark": 60,
+        "bug": 120,
+        "rock": 60
+      },
       "attackTypes": [
         "normal",
         "fighting",
         "bug"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fighting",
+        "ground",
+        "bug",
+        "rock",
+        "dark"
       ],
       "coveredTypes": [
         "normal",
@@ -2579,6 +5001,21 @@
         "ice",
         "psychic",
         "rock",
+        "dark",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "poison",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
         "dark",
         "steel"
       ]
@@ -2653,15 +5090,93 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 70,
         "dark": 60,
         "ice": 55,
         "steel": 50
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 80,
+        "water": 90,
+        "ice": 110,
+        "ground": 80,
+        "dark": 60,
+        "steel": 100,
+        "ghost": 80,
+        "fighting": 150,
+        "flying": 60
+      },
       "attackTypes": [
         "normal",
         "ice",
+        "dark",
+        "steel"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "ice",
+        "fighting",
+        "ground",
+        "flying",
+        "ghost",
         "dark",
         "steel"
       ],
@@ -2674,6 +5189,24 @@
         "rock",
         "ghost",
         "dragon"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -2743,19 +5276,97 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "ghost": [
+          {
+            "level": 1,
+            "power": 30
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 120,
         "ghost": 30,
         "dark": 60
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "ground": 100,
+        "ghost": 30,
+        "dark": 60,
+        "fighting": 150,
+        "rock": 60,
+        "flying": 60
       },
       "attackTypes": [
         "normal",
         "ghost",
         "dark"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fighting",
+        "ground",
+        "flying",
+        "rock",
+        "ghost",
+        "dark"
+      ],
       "coveredTypes": [
         "psychic",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -2831,15 +5442,69 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          },
+          {
+            "level": 50,
+            "power": 85
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 130
+          }
+        ],
+        "rock": [
+          {
+            "level": 15,
+            "power": 50
+          },
+          {
+            "level": 43,
+            "power": 75
+          }
+        ],
+        "poison": [
+          {
+            "level": 1,
+            "power": 30
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 85,
         "fire": 90,
         "rock": 75,
         "poison": 30
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 85,
+        "fire": 130,
+        "rock": 75,
+        "poison": 30,
+        "fighting": 40
+      },
       "attackTypes": [
         "normal",
         "fire",
+        "poison",
+        "rock"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "fighting",
         "poison",
         "rock"
       ],
@@ -2849,6 +5514,17 @@
         "ice",
         "flying",
         "bug",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "grass",
+        "ice",
+        "flying",
+        "bug",
+        "rock",
+        "dark",
         "steel"
       ]
     },
@@ -2926,16 +5602,74 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 130
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          },
+          {
+            "level": 48,
+            "power": 75
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "poison": [
+          {
+            "level": 1,
+            "power": 30
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 85,
         "fire": 90,
         "rock": 75,
         "poison": 30
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "fire": 130,
+        "rock": 75,
+        "ground": 100,
+        "poison": 30,
+        "fighting": 40
+      },
       "attackTypes": [
         "normal",
         "fire",
         "poison",
+        "rock"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "fighting",
+        "poison",
+        "ground",
         "rock"
       ],
       "coveredTypes": [
@@ -2944,6 +5678,19 @@
         "ice",
         "flying",
         "bug",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "poison",
+        "flying",
+        "bug",
+        "rock",
+        "dark",
         "steel"
       ]
     },
@@ -3009,19 +5756,80 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 90,
         "ice": 110
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "ice": 110,
+        "ground": 100,
+        "fighting": 40,
+        "rock": 60
+      },
       "attackTypes": [
         "normal",
         "ice"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "ice",
+        "fighting",
+        "ground",
+        "rock"
       ],
       "coveredTypes": [
         "grass",
         "ground",
         "flying",
         "dragon"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "poison",
+        "ground",
+        "flying",
+        "bug",
+        "rock",
+        "dragon",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -3097,17 +5905,71 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "fire": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "water": 65,
         "ice": 90,
         "psychic": 65,
         "normal": 150
       },
+      "attackTypePowersWithMachineMoves": {
+        "fire": 110,
+        "water": 90,
+        "ice": 110,
+        "psychic": 90,
+        "normal": 150,
+        "dark": 60
+      },
       "attackTypes": [
         "normal",
         "water",
         "ice",
         "psychic"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "ice",
+        "psychic",
+        "dark"
       ],
       "coveredTypes": [
         "fire",
@@ -3118,6 +5980,21 @@
         "flying",
         "rock",
         "dragon"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "fire",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "steel"
       ]
     },
     {
@@ -3197,17 +6074,87 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "fire": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "poison": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 25
+          }
+        ]
+      },
       "attackTypePowers": {
         "water": 65,
         "ice": 90,
         "psychic": 65,
         "normal": 150
       },
+      "attackTypePowersWithMachineMoves": {
+        "fire": 110,
+        "water": 90,
+        "ice": 110,
+        "psychic": 90,
+        "normal": 150,
+        "dark": 60,
+        "poison": 90,
+        "grass": 25
+      },
       "attackTypes": [
         "normal",
         "water",
         "ice",
         "psychic"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "grass",
+        "ice",
+        "poison",
+        "psychic",
+        "dark"
       ],
       "coveredTypes": [
         "fire",
@@ -3218,6 +6165,22 @@
         "flying",
         "rock",
         "dragon"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "fire",
+        "water",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "steel"
       ]
     },
     {
@@ -3268,13 +6231,83 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "flying": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 0
+      },
+      "attackTypePowersWithMachineMoves": {
+        "flying": 90,
+        "ice": 110,
+        "dark": 60,
+        "normal": 70,
+        "fighting": 150,
+        "water": 60
       },
       "attackTypes": [
         "normal"
       ],
-      "coveredTypes": []
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "ice",
+        "fighting",
+        "flying",
+        "dark"
+      ],
+      "coveredTypes": [],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "grass",
+        "ice",
+        "fighting",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
+        "steel"
+      ]
     },
     {
       "id": 226,
@@ -3344,14 +6377,64 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          },
+          {
+            "level": 22,
+            "power": 90
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ]
+      },
       "attackTypePowers": {
         "flying": 60,
         "normal": 90,
         "water": 65
       },
+      "attackTypePowersWithMachineMoves": {
+        "flying": 60,
+        "normal": 90,
+        "water": 90,
+        "ice": 110,
+        "ground": 100
+      },
       "attackTypes": [
         "normal",
         "water",
+        "flying"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "ice",
+        "ground",
         "flying"
       ],
       "coveredTypes": [
@@ -3361,6 +6444,19 @@
         "ground",
         "bug",
         "rock"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "fire",
+        "electric",
+        "grass",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "bug",
+        "rock",
+        "dragon",
+        "steel"
       ]
     },
     {
@@ -3427,14 +6523,60 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 60,
         "flying": 60,
         "steel": 70
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 70,
+        "flying": 90,
+        "dark": 60,
+        "steel": 70,
+        "fighting": 40
+      },
       "attackTypes": [
         "normal",
         "flying",
+        "steel"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fighting",
+        "flying",
+        "dark",
         "steel"
       ],
       "coveredTypes": [
@@ -3443,6 +6585,18 @@
         "fighting",
         "bug",
         "rock"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "ice",
+        "fighting",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -3513,15 +6667,89 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          },
+          {
+            "level": 59,
+            "power": 80
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 130
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "poison": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ]
+      },
       "attackTypePowers": {
         "dark": 80,
         "fire": 90,
         "poison": 30
       },
+      "attackTypePowersWithMachineMoves": {
+        "dark": 80,
+        "fire": 130,
+        "normal": 150,
+        "grass": 120,
+        "poison": 90,
+        "steel": 100,
+        "ghost": 80,
+        "fighting": 40
+      },
       "attackTypes": [
         "fire",
         "poison",
         "dark"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "grass",
+        "fighting",
+        "poison",
+        "ghost",
+        "dark",
+        "steel"
       ],
       "coveredTypes": [
         "grass",
@@ -3529,6 +6757,19 @@
         "psychic",
         "bug",
         "ghost",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "grass",
+        "ice",
+        "ground",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
         "steel"
       ]
     },
@@ -3593,17 +6834,105 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          },
+          {
+            "level": 37,
+            "power": 90
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 90,
         "ghost": 30
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 90,
+        "grass": 120,
+        "electric": 110,
+        "ground": 100,
+        "psychic": 90,
+        "dark": 60,
+        "steel": 100,
+        "ghost": 80
       },
       "attackTypes": [
         "normal",
         "ghost"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "electric",
+        "grass",
+        "ground",
+        "psychic",
+        "ghost",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "psychic",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "fire",
+        "water",
+        "electric",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "rock",
+        "ghost",
+        "steel"
       ]
     },
     {
@@ -3669,19 +6998,69 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "fighting": [
+          {
+            "level": 0,
+            "power": 75
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "fighting": 60,
         "normal": 50,
         "dark": 40
+      },
+      "attackTypePowersWithMachineMoves": {
+        "fighting": 75,
+        "normal": 80,
+        "ground": 100,
+        "dark": 60
       },
       "attackTypes": [
         "normal",
         "fighting",
         "dark"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fighting",
+        "ground",
+        "dark"
+      ],
       "coveredTypes": [
         "normal",
         "ice",
+        "psychic",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "ice",
+        "poison",
         "psychic",
         "rock",
         "ghost",
@@ -3750,19 +7129,123 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 85,
         "rock": 30
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "water": 90,
+        "ice": 110,
+        "grass": 120,
+        "electric": 110,
+        "ground": 100,
+        "rock": 60,
+        "steel": 100,
+        "ghost": 80,
+        "fighting": 150
+      },
       "attackTypes": [
         "normal",
         "rock"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "ground",
+        "rock",
+        "ghost",
+        "steel"
       ],
       "coveredTypes": [
         "fire",
         "ice",
         "flying",
         "bug"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -3836,21 +7319,93 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "dark": [
+          {
+            "level": 1,
+            "power": 60
+          },
+          {
+            "level": 61,
+            "power": 80
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ]
+      },
       "attackTypePowers": {
         "dark": 80,
         "electric": 110,
         "normal": 40
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "dark": 80,
+        "electric": 110,
+        "ground": 80,
+        "steel": 100,
+        "fighting": 40
       },
       "attackTypes": [
         "normal",
         "electric",
         "dark"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "electric",
+        "fighting",
+        "ground",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "water",
         "flying",
         "psychic",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "ice",
+        "poison",
+        "flying",
+        "psychic",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -3920,15 +7475,77 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "dark": [
+          {
+            "level": 1,
+            "power": 60
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 65,
         "dark": 60,
         "fire": 110
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "dark": 60,
+        "fire": 110,
+        "grass": 120,
+        "ground": 80,
+        "steel": 100,
+        "fighting": 40
+      },
       "attackTypes": [
         "normal",
         "fire",
         "dark"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "grass",
+        "fighting",
+        "ground",
+        "dark",
+        "steel"
       ],
       "coveredTypes": [
         "grass",
@@ -3936,6 +7553,22 @@
         "psychic",
         "bug",
         "ghost",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "poison",
+        "ground",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
         "steel"
       ]
     },
@@ -4014,6 +7647,66 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "flying": [
+          {
+            "level": 31,
+            "power": 40
+          }
+        ],
+        "dark": [
+          {
+            "level": 1,
+            "power": 60
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          },
+          {
+            "level": 71,
+            "power": 110
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "psychic": [
+          {
+            "level": 61,
+            "power": 0
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ]
+      },
       "attackTypePowers": {
         "flying": 40,
         "dark": 60,
@@ -4021,12 +7714,34 @@
         "ice": 65,
         "psychic": 0
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "flying": 40,
+        "dark": 60,
+        "water": 110,
+        "ice": 110,
+        "ground": 80,
+        "steel": 100,
+        "psychic": 0,
+        "fighting": 40
+      },
       "attackTypes": [
         "water",
         "ice",
         "flying",
         "psychic",
         "dark"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "ice",
+        "fighting",
+        "ground",
+        "flying",
+        "psychic",
+        "dark",
+        "steel"
       ],
       "coveredTypes": [
         "fire",
@@ -4040,6 +7755,24 @@
         "rock",
         "ghost",
         "dragon"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -4116,17 +7849,127 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "dark": [
+          {
+            "level": 1,
+            "power": 60
+          },
+          {
+            "level": 47,
+            "power": 80
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          },
+          {
+            "level": 22,
+            "power": 75
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "dragon": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 150,
         "dark": 80,
         "ground": 100,
         "rock": 75
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "dark": 80,
+        "fire": 110,
+        "water": 90,
+        "ice": 110,
+        "electric": 110,
+        "ground": 100,
+        "rock": 75,
+        "steel": 100,
+        "fighting": 150,
+        "flying": 60,
+        "dragon": 80
+      },
       "attackTypes": [
         "normal",
         "ground",
         "rock",
         "dark"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "ice",
+        "fighting",
+        "ground",
+        "flying",
+        "rock",
+        "dragon",
+        "dark",
+        "steel"
       ],
       "coveredTypes": [
         "fire",
@@ -4138,6 +7981,25 @@
         "bug",
         "rock",
         "ghost",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
         "steel"
       ]
     },
@@ -4213,6 +8075,78 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "flying": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 130
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          },
+          {
+            "level": 99,
+            "power": 120
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "rock": [
+          {
+            "level": 88,
+            "power": 60
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ]
+      },
       "attackTypePowers": {
         "flying": 40,
         "fire": 110,
@@ -4220,12 +8154,38 @@
         "rock": 60,
         "psychic": 120
       },
+      "attackTypePowersWithMachineMoves": {
+        "flying": 90,
+        "fire": 130,
+        "normal": 150,
+        "grass": 120,
+        "electric": 110,
+        "ground": 100,
+        "psychic": 120,
+        "steel": 70,
+        "rock": 60,
+        "ghost": 80,
+        "fighting": 40
+      },
       "attackTypes": [
         "normal",
         "fire",
         "flying",
         "psychic",
         "rock"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "fighting",
+        "ground",
+        "flying",
+        "psychic",
+        "rock",
+        "ghost",
+        "steel"
       ],
       "coveredTypes": [
         "fire",
@@ -4235,6 +8195,24 @@
         "poison",
         "flying",
         "bug",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
         "steel"
       ]
     },
@@ -4305,20 +8283,89 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "dark": [
+          {
+            "level": 28,
+            "power": 65
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 70,
         "fighting": 70,
         "dark": 65
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 80,
+        "water": 90,
+        "fighting": 150,
+        "ground": 100,
+        "dark": 65,
+        "rock": 60
       },
       "attackTypes": [
         "normal",
         "fighting",
         "dark"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "fighting",
+        "ground",
+        "rock",
+        "dark"
+      ],
       "coveredTypes": [
         "normal",
         "ice",
         "psychic",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "ice",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
         "rock",
         "ghost",
         "dark",
@@ -4392,20 +8439,89 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "dark": [
+          {
+            "level": 29,
+            "power": 65
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 70,
         "fighting": 70,
         "dark": 65
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "water": 90,
+        "fighting": 150,
+        "ground": 100,
+        "dark": 65,
+        "rock": 60
       },
       "attackTypes": [
         "normal",
         "fighting",
         "dark"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "water",
+        "fighting",
+        "ground",
+        "rock",
+        "dark"
+      ],
       "coveredTypes": [
         "normal",
         "ice",
         "psychic",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "ice",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
         "rock",
         "ghost",
         "dark",
@@ -4476,15 +8592,61 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "psychic": 50,
         "normal": 60,
         "fighting": 130
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 80,
+        "psychic": 90,
+        "fighting": 150,
+        "ghost": 80,
+        "rock": 60
+      },
       "attackTypes": [
         "normal",
         "fighting",
         "psychic"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fighting",
+        "psychic",
+        "rock",
+        "ghost"
       ],
       "coveredTypes": [
         "normal",
@@ -4492,6 +8654,20 @@
         "fighting",
         "poison",
         "rock",
+        "dark",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "ice",
+        "fighting",
+        "poison",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
         "dark",
         "steel"
       ]
@@ -4578,6 +8754,56 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "fire": [
+          {
+            "level": 1,
+            "power": 75
+          }
+        ],
+        "ice": [
+          {
+            "level": 1,
+            "power": 75
+          }
+        ],
+        "electric": [
+          {
+            "level": 1,
+            "power": 75
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "fire": 75,
         "ice": 75,
@@ -4586,6 +8812,16 @@
         "normal": 60,
         "fighting": 130
       },
+      "attackTypePowersWithMachineMoves": {
+        "fire": 75,
+        "ice": 75,
+        "electric": 75,
+        "normal": 150,
+        "psychic": 90,
+        "fighting": 150,
+        "ghost": 80,
+        "rock": 60
+      },
       "attackTypes": [
         "normal",
         "fire",
@@ -4593,6 +8829,16 @@
         "ice",
         "fighting",
         "psychic"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "ice",
+        "fighting",
+        "psychic",
+        "rock",
+        "ghost"
       ],
       "coveredTypes": [
         "normal",
@@ -4605,6 +8851,24 @@
         "flying",
         "bug",
         "rock",
+        "dragon",
+        "dark",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
         "dragon",
         "dark",
         "steel"
@@ -4667,17 +8931,53 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ]
+      },
       "attackTypePowers": {
         "electric": 110,
         "normal": 40
+      },
+      "attackTypePowersWithMachineMoves": {
+        "electric": 110,
+        "normal": 70,
+        "steel": 100
       },
       "attackTypes": [
         "normal",
         "electric"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "electric",
+        "steel"
+      ],
       "coveredTypes": [
         "water",
         "flying"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "water",
+        "ice",
+        "flying",
+        "rock"
       ]
     },
     {
@@ -4750,17 +9050,99 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "flying": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "dark": [
+          {
+            "level": 1,
+            "power": 60
+          },
+          {
+            "level": 33,
+            "power": 80
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "dragon": [
+          {
+            "level": 35,
+            "power": 60
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "dark": 80,
         "normal": 150,
         "dragon": 60,
         "ground": 35
       },
+      "attackTypePowersWithMachineMoves": {
+        "flying": 90,
+        "dark": 80,
+        "normal": 150,
+        "grass": 120,
+        "ground": 100,
+        "steel": 70,
+        "dragon": 60,
+        "fighting": 40,
+        "rock": 60
+      },
       "attackTypes": [
         "normal",
         "ground",
         "dragon",
         "dark"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "fighting",
+        "ground",
+        "flying",
+        "rock",
+        "dragon",
+        "dark",
+        "steel"
       ],
       "coveredTypes": [
         "fire",
@@ -4770,6 +9152,25 @@
         "rock",
         "ghost",
         "dragon",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
         "steel"
       ]
     },
@@ -4843,17 +9244,107 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "flying": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "dark": [
+          {
+            "level": 1,
+            "power": 60
+          },
+          {
+            "level": 33,
+            "power": 80
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "dragon": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "dark": 80,
         "normal": 150,
         "dragon": 60,
         "ground": 35
       },
+      "attackTypePowersWithMachineMoves": {
+        "flying": 90,
+        "dark": 80,
+        "fire": 110,
+        "normal": 150,
+        "grass": 120,
+        "ground": 100,
+        "steel": 100,
+        "dragon": 80,
+        "fighting": 40,
+        "rock": 60
+      },
       "attackTypes": [
         "normal",
         "ground",
         "dragon",
         "dark"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "grass",
+        "fighting",
+        "ground",
+        "flying",
+        "rock",
+        "dragon",
+        "dark",
+        "steel"
       ],
       "coveredTypes": [
         "fire",
@@ -4863,6 +9354,25 @@
         "rock",
         "ghost",
         "dragon",
+        "steel"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
         "steel"
       ]
     },
@@ -4930,9 +9440,66 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "flying": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 70
+          },
+          {
+            "level": 31,
+            "power": 90
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "ghost": [
+          {
+            "level": 8,
+            "power": 30
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 90,
         "flying": 35,
+        "ghost": 30
+      },
+      "attackTypePowersWithMachineMoves": {
+        "flying": 90,
+        "normal": 90,
+        "ice": 90,
+        "grass": 120,
+        "dark": 60,
+        "steel": 70,
         "ghost": 30
       },
       "attackTypes": [
@@ -4940,12 +9507,34 @@
         "flying",
         "ghost"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "ice",
+        "flying",
+        "ghost",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "grass",
         "fighting",
         "psychic",
         "bug",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "water",
+        "grass",
+        "ice",
+        "fighting",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon"
       ]
     },
     {
@@ -5022,10 +9611,95 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "flying": [
+          {
+            "level": 0,
+            "power": 90
+          },
+          {
+            "level": 59,
+            "power": 140
+          }
+        ],
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "dragon": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ],
+        "ghost": [
+          {
+            "level": 1,
+            "power": 30
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 90,
         "flying": 140,
         "dragon": 60,
+        "ghost": 30
+      },
+      "attackTypePowersWithMachineMoves": {
+        "flying": 140,
+        "normal": 150,
+        "fire": 110,
+        "ice": 90,
+        "grass": 120,
+        "ground": 100,
+        "dark": 60,
+        "steel": 100,
+        "dragon": 80,
+        "fighting": 40,
         "ghost": 30
       },
       "attackTypes": [
@@ -5034,6 +9708,19 @@
         "ghost",
         "dragon"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "grass",
+        "ice",
+        "fighting",
+        "ground",
+        "flying",
+        "ghost",
+        "dragon",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "grass",
         "fighting",
@@ -5041,6 +9728,25 @@
         "bug",
         "ghost",
         "dragon"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -5115,15 +9821,69 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "grass": [
+          {
+            "level": 0,
+            "power": 120
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 70
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ]
+      },
       "attackTypePowers": {
         "flying": 40,
         "normal": 85,
         "grass": 120
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "flying": 90,
+        "grass": 120,
+        "ground": 100,
+        "steel": 70,
+        "fighting": 40
+      },
       "attackTypes": [
         "normal",
         "grass",
         "flying"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "grass",
+        "fighting",
+        "ground",
+        "flying",
+        "steel"
       ],
       "coveredTypes": [
         "water",
@@ -5132,6 +9892,21 @@
         "ground",
         "bug",
         "rock"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "bug",
+        "rock",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -5197,21 +9972,133 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "dark": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "fire": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "ice": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "electric": [
+          {
+            "level": 0,
+            "power": 110
+          }
+        ],
+        "steel": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "psychic": [
+          {
+            "level": 41,
+            "power": 120
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 40
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "water": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 80,
         "dark": 60,
         "psychic": 120
+      },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "dark": 60,
+        "fire": 110,
+        "ice": 110,
+        "electric": 110,
+        "steel": 100,
+        "ghost": 80,
+        "psychic": 120,
+        "fighting": 40,
+        "flying": 60,
+        "water": 60
       },
       "attackTypes": [
         "normal",
         "psychic",
         "dark"
       ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "electric",
+        "ice",
+        "fighting",
+        "flying",
+        "psychic",
+        "ghost",
+        "dark",
+        "steel"
+      ],
       "coveredTypes": [
         "fighting",
         "poison",
         "psychic",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "water",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dragon",
+        "dark",
+        "steel"
       ]
     },
     {
@@ -5292,15 +10179,105 @@
           }
         ]
       },
+      "attackTypePowerLevelsWithMachineMoves": {
+        "normal": [
+          {
+            "level": 0,
+            "power": 150
+          }
+        ],
+        "ground": [
+          {
+            "level": 0,
+            "power": 100
+          }
+        ],
+        "psychic": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "poison": [
+          {
+            "level": 0,
+            "power": 90
+          }
+        ],
+        "dark": [
+          {
+            "level": 32,
+            "power": 40
+          }
+        ],
+        "steel": [
+          {
+            "level": 1,
+            "power": 50
+          },
+          {
+            "level": 55,
+            "power": 90
+          }
+        ],
+        "ghost": [
+          {
+            "level": 0,
+            "power": 80
+          }
+        ],
+        "fighting": [
+          {
+            "level": 0,
+            "power": 75
+          }
+        ],
+        "rock": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ],
+        "flying": [
+          {
+            "level": 0,
+            "power": 60
+          }
+        ]
+      },
       "attackTypePowers": {
         "normal": 150,
         "psychic": 90,
         "dark": 40,
         "steel": 90
       },
+      "attackTypePowersWithMachineMoves": {
+        "normal": 150,
+        "ground": 100,
+        "psychic": 90,
+        "poison": 90,
+        "dark": 40,
+        "steel": 90,
+        "ghost": 80,
+        "fighting": 75,
+        "rock": 60,
+        "flying": 60
+      },
       "attackTypes": [
         "normal",
         "psychic",
+        "dark",
+        "steel"
+      ],
+      "attackTypesWithMachineMoves": [
+        "normal",
+        "fighting",
+        "poison",
+        "ground",
+        "flying",
+        "psychic",
+        "rock",
+        "ghost",
         "dark",
         "steel"
       ],
@@ -5311,6 +10288,22 @@
         "psychic",
         "rock",
         "ghost"
+      ],
+      "coveredTypesWithMachineMoves": [
+        "normal",
+        "fire",
+        "electric",
+        "grass",
+        "ice",
+        "fighting",
+        "poison",
+        "flying",
+        "psychic",
+        "bug",
+        "rock",
+        "ghost",
+        "dark",
+        "steel"
       ]
     }
   ]

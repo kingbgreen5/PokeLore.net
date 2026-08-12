@@ -685,9 +685,40 @@ async function main() {
           movesByName,
           versionGroup
         });
+      const attackTypesWithMachineMoves =
+        getLevelUpAttackTypes({
+          consideredTypes,
+          includeMachineMoves: true,
+          learnset,
+          movesByName,
+          versionGroup
+        });
+      const attackTypePowersWithMachineMoves =
+        getLevelUpAttackTypePowers({
+          consideredTypes,
+          includeMachineMoves: true,
+          learnset,
+          movesByName,
+          versionGroup
+        });
+      const attackTypePowerLevelsWithMachineMoves =
+        getLevelUpAttackTypePowerLevels({
+          consideredTypes,
+          includeMachineMoves: true,
+          learnset,
+          movesByName,
+          versionGroup
+        });
       const coveredTypes =
         getCoveredDefenseTypes({
           attackTypes,
+          consideredTypes,
+          typeChart
+        });
+      const coveredTypesWithMachineMoves =
+        getCoveredDefenseTypes({
+          attackTypes:
+            attackTypesWithMachineMoves,
           consideredTypes,
           typeChart
         });
@@ -727,9 +758,13 @@ async function main() {
             versionGroup
           }),
         attackTypePowerLevels,
+        attackTypePowerLevelsWithMachineMoves,
         attackTypePowers,
+        attackTypePowersWithMachineMoves,
         attackTypes,
-        coveredTypes
+        attackTypesWithMachineMoves,
+        coveredTypes,
+        coveredTypesWithMachineMoves
       });
     }
 

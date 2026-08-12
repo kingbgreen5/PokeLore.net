@@ -46,6 +46,7 @@ export const LEVEL_UP_MOVE_LEVEL_THRESHOLDS = [
 export const DEFAULT_TEAM_RECOMMENDATION_WEIGHTS = {
   coverageType: 0.2,
   normalTypeQualifier: 0.4,
+  stabIceTypeBonus: 0.3,
   regionalDex: 0.5,
   notRegionalDex: -0.5,
   tradeEvolution: -0.5,
@@ -106,6 +107,7 @@ export function isDamagingMove(move) {
 
 export function getLevelUpAttackTypes({
   consideredTypes = ALL_POKEMON_TYPES,
+  includeMachineMoves = false,
   learnset,
   maxMoveLevel = 0,
   minMovePower = 0,
@@ -115,6 +117,7 @@ export function getLevelUpAttackTypes({
   const attackTypePowers =
     getLevelUpAttackTypePowers({
       consideredTypes,
+      includeMachineMoves,
       learnset,
       maxMoveLevel,
       minMovePower,
@@ -129,6 +132,7 @@ export function getLevelUpAttackTypes({
 
 export function getLevelUpAttackTypePowers({
   consideredTypes = ALL_POKEMON_TYPES,
+  includeMachineMoves = false,
   learnset,
   maxMoveLevel = 0,
   minMovePower = 0,
@@ -139,6 +143,7 @@ export function getLevelUpAttackTypePowers({
   const attackTypePowerLevels =
     getLevelUpAttackTypePowerLevels({
       consideredTypes,
+      includeMachineMoves,
       learnset,
       minMovePower,
       movesByName,
@@ -173,6 +178,7 @@ export function getLevelUpAttackTypePowers({
 
 export function getLevelUpAttackTypePowerLevels({
   consideredTypes = ALL_POKEMON_TYPES,
+  includeMachineMoves = false,
   learnset,
   minMovePower = 0,
   movesByName,
@@ -187,8 +193,13 @@ export function getLevelUpAttackTypePowerLevels({
     ] ?? versionGroup;
 
   for (const learnsetMove of learnset?.moves ?? []) {
+    const isIncludedMethod =
+      learnsetMove.method === "level-up" ||
+      (includeMachineMoves &&
+        learnsetMove.method === "machine");
+
     if (
-      learnsetMove.method !== "level-up" ||
+      !isIncludedMethod ||
       learnsetMove.versionGroup !== learnsetVersionGroup
     ) {
       continue;
@@ -452,13 +463,17 @@ export function getTeamRecommendationScore({
 }) {
   const weights =
     normalizeRecommendationWeights(rawWeights);
+  const selectedCoverageScore =
+    Number(pokemon?.coverageScore);
   const offensiveCoverageCount =
     pokemon?.missingHits?.length ?? 0;
   const defensiveCoverageCount =
     pokemon?.missingDefensiveHits?.length ?? 0;
   const coverageContribution =
-    (offensiveCoverageCount +
-      defensiveCoverageCount) *
+    (Number.isFinite(selectedCoverageScore)
+      ? selectedCoverageScore
+      : offensiveCoverageCount +
+        defensiveCoverageCount) *
     weights.coverageType;
   const generatedPlaythroughScore =
     pokemon?.playthroughScore;
@@ -501,6 +516,10 @@ export function getTeamRecommendationScore({
     pokemon?.normalTypeQualifierEligible
       ? weights.normalTypeQualifier
       : 0;
+  const stabIceTypeBonusContribution =
+    pokemon?.stabIceTypeBonusEligible
+      ? weights.stabIceTypeBonus
+      : 0;
   const tierContribution = getTierScore({
     tier: playthroughFlags.tier,
     weights
@@ -514,6 +533,7 @@ export function getTeamRecommendationScore({
     notRegionalDexContribution +
     tradeEvolutionContribution +
     normalTypeQualifierContribution +
+    stabIceTypeBonusContribution +
     tierContribution +
     bstContribution;
   const total =
@@ -532,6 +552,8 @@ export function getTeamRecommendationScore({
         tradeEvolutionContribution,
       normalTypeQualifier:
         normalTypeQualifierContribution,
+      stabIceTypeBonus:
+        stabIceTypeBonusContribution,
       tier: tierContribution,
       bst: bstContribution
     },
