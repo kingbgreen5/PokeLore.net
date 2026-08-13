@@ -76,17 +76,67 @@ function rangesOverlap(first, second) {
   );
 }
 
+function findTargetTextRanges(text, target) {
+  const ranges = [];
+  const label = target.label;
+  let searchIndex = 0;
+
+  while (searchIndex < text.length) {
+    const index = text
+      .toLowerCase()
+      .indexOf(
+        label.toLowerCase(),
+        searchIndex
+      );
+
+    if (index === -1) break;
+
+    const endIndex = index + label.length;
+    const matchedText = text.slice(
+      index,
+      endIndex
+    );
+
+    if (
+      isBoundary(text, index - 1) &&
+      isBoundary(text, endIndex) &&
+      hasVisibleCapital(matchedText)
+    ) {
+      ranges.push({
+        start: index,
+        end: endIndex
+      });
+    }
+
+    searchIndex = index + 1;
+  }
+
+  return ranges;
+}
+
+function addProtectedTargetRanges(
+  protectedRanges,
+  text,
+  target
+) {
+  protectedRanges.push(
+    ...findTargetTextRanges(text, target)
+  );
+}
+
 function findProtectedRanges(
   text,
   targets,
   currentPokemon,
   excludedPokemonRoutes,
-  excludedPokemonLabels
+  excludedPokemonLabels,
+  usedRoutes
 ) {
   const protectedRanges = [];
 
   for (const target of targets) {
     if (
+      !usedRoutes.has(target.route) &&
       !shouldSkipPokemonTarget(
         target,
         currentPokemon,
@@ -97,38 +147,11 @@ function findProtectedRanges(
       continue;
     }
 
-    const label = target.label;
-    let searchIndex = 0;
-
-    while (searchIndex < text.length) {
-      const index = text
-        .toLowerCase()
-        .indexOf(
-          label.toLowerCase(),
-          searchIndex
-        );
-
-      if (index === -1) break;
-
-      const endIndex = index + label.length;
-      const matchedText = text.slice(
-        index,
-        endIndex
-      );
-
-      if (
-        isBoundary(text, index - 1) &&
-        isBoundary(text, endIndex) &&
-        hasVisibleCapital(matchedText)
-      ) {
-        protectedRanges.push({
-          start: index,
-          end: endIndex
-        });
-      }
-
-      searchIndex = index + 1;
-    }
+    addProtectedTargetRanges(
+      protectedRanges,
+      text,
+      target
+    );
   }
 
   return protectedRanges;
@@ -234,18 +257,19 @@ export function linkifyPokeloreText(
       second.label.length - first.label.length ||
       first.label.localeCompare(second.label)
   );
+  const usedRoutes =
+    options.usedRoutes instanceof Set
+      ? options.usedRoutes
+      : new Set(options.usedRoutes ?? []);
   const protectedRanges = findProtectedRanges(
     source,
     sortedTargets,
     currentPokemon,
     excludedPokemonRoutes,
-    excludedPokemonLabels
+    excludedPokemonLabels,
+    usedRoutes
   );
   const parts = [];
-  const usedRoutes =
-    options.usedRoutes instanceof Set
-      ? options.usedRoutes
-      : new Set(options.usedRoutes ?? []);
   let cursor = 0;
 
   while (cursor < source.length) {
@@ -279,6 +303,15 @@ export function linkifyPokeloreText(
       category: match.category
     });
     usedRoutes.add(match.route);
+    sortedTargets
+      .filter(target => target.route === match.route)
+      .forEach(target =>
+        addProtectedTargetRanges(
+          protectedRanges,
+          source,
+          target
+        )
+      );
 
     cursor = match.endIndex;
   }
