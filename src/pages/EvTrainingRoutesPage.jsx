@@ -4,6 +4,7 @@ import {
   useState
 } from "react";
 import { Link } from "react-router-dom";
+import CollapsibleSection from "../components/CollapsibleSection";
 import LinkedPokeloreText from "../components/LinkedPokeloreText";
 import useQueryParamState from "../hooks/useQueryParamState";
 import usePokeloreLinkTargets from "../hooks/usePokeloreLinkTargets";
@@ -131,13 +132,18 @@ function SelectField({
 }) {
   return (
     <div
+      className="ev-training-filter-field"
       style={{
+        alignItems: "center",
         display: "grid",
-        gap: ".4rem",
+        gap: ".6rem",
+        gridTemplateColumns:
+          "max-content minmax(130px, 180px)",
         textAlign: "left"
       }}
     >
       <span
+        className="ev-training-filter-label"
         id={`${id}-label`}
         style={{
           color: "var(--text-h)",
@@ -148,6 +154,7 @@ function SelectField({
       </span>
 
       <select
+        className="ev-training-filter-select"
         id={id}
         aria-labelledby={`${id}-label`}
         value={value}
@@ -159,9 +166,10 @@ function SelectField({
           border: "1px solid #4b5563",
           borderRadius: "8px",
           color: "white",
-          fontSize: "1rem",
-          minWidth: "220px",
-          padding: ".7rem .8rem"
+          fontSize: ".95rem",
+          minWidth: 0,
+          padding: ".55rem .7rem",
+          width: "100%"
         }}
       >
         {children}
@@ -200,6 +208,7 @@ function EncounterStatsPanel({
 
   return (
     <aside
+      className="ev-training-route-stats"
       aria-label={`${route.locationDisplayName} encounter stats`}
       style={{
         display: "grid",
@@ -215,6 +224,7 @@ function EncounterStatsPanel({
     >
       {rows.map(([label, value]) => (
         <div
+          className="ev-training-stat-row"
           key={label}
           style={{
             alignItems: "baseline",
@@ -253,6 +263,8 @@ function EncounterStatsPanel({
 }
 
 function HowToUseSection() {
+  const [expanded, setExpanded] =
+    useState(false);
   const terms = [
     {
       term: "Stat chance",
@@ -277,37 +289,55 @@ function HowToUseSection() {
   ];
 
   return (
-    <section
-      aria-labelledby="ev-training-how-to-use"
+    <CollapsibleSection
+      id="ev-training-how-to-use"
+      title="How To Use This Tool"
+      expanded={expanded}
+      titleColor="var(--link-unvisited)"
+      titleChevron={true}
+      onToggle={() =>
+        setExpanded(current => !current)
+      }
       style={{
         backgroundColor: "#1b1c23",
         border: "1px solid #343844",
         borderRadius: "8px",
+        marginBottom: 0,
+        padding: ".6rem"
+      }}
+      contentStyle={{
         display: "grid",
         gap: "1rem",
-        padding: "1rem"
+        marginTop: ".75rem"
       }}
     >
-      <div>
-        <h2
-          id="ev-training-how-to-use"
-          style={{
-            letterSpacing: 0,
-            marginBottom: ".5rem"
-          }}
-        >
-          How To Use This Tool
-        </h2>
+      <div
+        itemScope
+        itemType="https://schema.org/Question"
+      >
+        <meta
+          itemProp="name"
+          content="How do you use the EV training locations calculator?"
+        />
         <p>
-          Pick the EV stat you want to train, then pick
-          your game. The tool compares Pokemon EV yields
-          against repeatable wild encounter tables and
-          shows the top ten training locations. Gen I-II
-          games use the older stat experience system
-          instead of modern EV training. Enable Macho
-          Brace or Pokerus if your Pokemon has those EV
-          multipliers active, or to see how they would
-          affect your training.
+          <span
+            itemProp="acceptedAnswer"
+            itemScope
+            itemType="https://schema.org/Answer"
+          >
+            <span itemProp="text">
+              Pick the EV stat you want to train, then
+              pick your game. The tool compares Pokemon
+              EV yields against repeatable wild encounter
+              tables and shows the top ten training
+              locations. Gen I-II games use the older
+              stat experience system instead of modern EV
+              training. Enable Macho Brace or Pokerus if
+              your Pokemon has those EV multipliers
+              active, or to see how they would affect
+              your training.
+            </span>
+          </span>
         </p>
       </div>
 
@@ -348,7 +378,7 @@ function HowToUseSection() {
           </div>
         ))}
       </div>
-    </section>
+    </CollapsibleSection>
   );
 }
 
@@ -833,6 +863,7 @@ function RouteCard({
 
   return (
     <article
+      className="ev-training-route-card"
       style={{
         backgroundColor: "#202129",
         border: "1px solid #3f4350",
@@ -844,6 +875,7 @@ function RouteCard({
       }}
     >
       <div
+        className="ev-training-route-card-top"
         style={{
           alignItems: "start",
           display: "grid",
@@ -853,6 +885,7 @@ function RouteCard({
         }}
       >
         <div
+          className="ev-training-route-heading"
           style={{
             alignItems: "start",
             display: "grid",
@@ -1081,6 +1114,7 @@ function EvTrainingRoutesPage() {
         <h1
           style={{
             letterSpacing: 0,
+            lineHeight: 1.18,
             marginBottom: ".75rem",
             textAlign: "center"
           }}
@@ -1100,6 +1134,7 @@ function EvTrainingRoutesPage() {
       </header>
 
       <section
+        className="ev-training-filter-panel"
         aria-label="EV training filters"
         style={{
           alignItems: "end",

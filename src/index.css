@@ -506,3 +506,53 @@ code {
     justify-self: start;
   }
 }
+
+@media (max-width: 720px) {
+  #ev-training-routes-tool {
+    padding: 1rem !important;
+  }
+
+  .ev-training-filter-panel {
+    align-items: stretch !important;
+    flex-direction: column;
+    gap: .75rem !important;
+  }
+
+  .ev-training-filter-field {
+    grid-template-columns: 95px minmax(0, 1fr) !important;
+    width: 100%;
+  }
+
+  .ev-training-filter-label {
+    align-self: center;
+  }
+
+  .ev-training-route-card {
+    padding: .85rem !important;
+  }
+
+  .ev-training-route-card-top {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .ev-training-route-heading {
+    grid-template-columns: auto minmax(0, 1fr) !important;
+  }
+
+  .ev-training-route-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    justify-self: stretch !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .ev-training-stat-row {
+    gap: .45rem !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .ev-training-route-stats {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
