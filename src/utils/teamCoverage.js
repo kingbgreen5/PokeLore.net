@@ -52,6 +52,7 @@ export const DEFAULT_TEAM_RECOMMENDATION_WEIGHTS = {
   tradeEvolution: -0.5,
   sTier: 0.3,
   aTier: 0.2,
+  veryLowBst: -1.5,
   lowBst: -0.3,
   highBst: 0.3
 };
@@ -425,6 +426,10 @@ export function getBstScore({
   weights
 }) {
   const bst = Number(baseStatTotal) || 0;
+
+  if (bst < 380) {
+    return weights.veryLowBst;
+  }
 
   if (bst < 410) {
     return weights.lowBst;

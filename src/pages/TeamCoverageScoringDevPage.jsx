@@ -42,6 +42,10 @@ const scoreWeightControls = [
     label: "A Tier"
   },
   {
+    key: "veryLowBst",
+    label: "BST < 380"
+  },
+  {
     key: "lowBst",
     label: "BST < 410"
   },

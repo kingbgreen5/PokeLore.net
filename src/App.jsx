@@ -110,8 +110,14 @@ const DpptFeebasPublicCalculatorPage = lazy(() =>
 const TeamCoveragePage = lazy(() =>
   import("./pages/TeamCoveragePage")
 );
+const EvTrainingRoutesPage = lazy(() =>
+  import("./pages/EvTrainingRoutesPage")
+);
 const SingleTypeCoveragePage = lazy(() =>
   import("./pages/SingleTypeCoveragePage")
+);
+const ToolsPage = lazy(() =>
+  import("./pages/ToolsPage")
 );
 const SeoReviewPage = lazy(() =>
   import("./pages/SeoReviewPage")
@@ -339,8 +345,18 @@ function App() {
 />
 
 <Route
+  path="/tools"
+  element={<ToolsPage />}
+/>
+
+<Route
   path="/team-coverage"
   element={<TeamCoveragePage />}
+/>
+
+<Route
+  path="/ev-training-routes"
+  element={<EvTrainingRoutesPage />}
 />
 
 <Route

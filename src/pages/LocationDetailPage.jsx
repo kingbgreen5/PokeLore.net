@@ -29,6 +29,17 @@ const POKEMON_ENCOUNTERS_SECTION_ID =
   "pokemon-encounters";
 const EXPANDABLE_TITLE_COLOR =
   "var(--link-unvisited)";
+const FRIEND_SAFARI_LOCATION_NAME =
+  "friend-safari";
+const FRIEND_SAFARI_SLOTS = [
+  "friend-safari-slot-1",
+  "friend-safari-slot-2",
+  "friend-safari-slot-3"
+];
+const FRIEND_SAFARI_HEADER_BACKGROUND =
+  "#fab856";
+const FRIEND_SAFARI_HEADER_COLOR =
+  "#181818";
 
 function JumpLink({
   children,
@@ -475,6 +486,285 @@ function EncounterDetails({
   );
 }
 
+function friendSafariAreaType(area) {
+  return capitalize(
+    String(area.name ?? "")
+      .replace(/^friend-safari-/, "") ||
+      area.displayName
+  );
+}
+
+function friendSafariSlot(encounter) {
+  return encounter.conditions?.find(condition =>
+    FRIEND_SAFARI_SLOTS.includes(condition)
+  );
+}
+
+function abilitySlug(abilityName) {
+  return String(abilityName ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function friendSafariRowsForSlot({
+  area,
+  selectedVersion,
+  slot
+}) {
+  return area.pokemonEncounters
+    .map(encounter => {
+      const versions = filterVersions(
+        encounter.versions,
+        selectedVersion
+      );
+      const slotEncounter = versions
+        .flatMap(version =>
+          version.encounters.map(detail => ({
+            ...detail,
+            version: version.version
+          }))
+        )
+        .find(
+          detail =>
+            friendSafariSlot(detail) === slot
+        );
+
+      if (!slotEncounter) {
+        return null;
+      }
+
+      return {
+        encounter: slotEncounter,
+        pokemon: encounter.pokemon
+      };
+    })
+    .filter(Boolean)
+    .sort(
+      (first, second) =>
+        first.pokemon.id - second.pokemon.id
+    );
+}
+
+function FriendSafariPokemonRow({
+  detailsById,
+  row
+}) {
+  const pokemon =
+    detailsById[row.pokemon.id] ?? row.pokemon;
+  const abilities =
+    pokemon.abilities ?? [];
+
+  return (
+    <tr>
+      <td
+        style={{
+          padding: ".45rem",
+          textAlign: "center",
+          width: "86px"
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            justifyItems: "center"
+          }}
+        >
+          <PokemonSummaryCard
+            pokemon={pokemon}
+            variant="friendSafari"
+          />
+          <small
+            style={{
+              color: "var(--text-muted)",
+              display: "block",
+              marginTop: ".25rem"
+            }}
+          >
+            {formatLevelRange(row.encounter)}
+          </small>
+        </div>
+      </td>
+      <td
+        style={{
+          padding: ".45rem"
+        }}
+      >
+        {abilities.length > 0
+          ? abilities.map((ability, index) => (
+              <span key={ability.name}>
+                {index > 0 && ", "}
+                <Link
+                  to={`/ability/${abilitySlug(
+                    ability.name
+                  )}`}
+                >
+                  {ability.name}
+                </Link>
+              </span>
+            ))
+          : "-"}
+      </td>
+    </tr>
+  );
+}
+
+function FriendSafariSlotTable({
+  area,
+  detailsById,
+  selectedVersion,
+  slot,
+  slotNumber
+}) {
+  const rows = friendSafariRowsForSlot({
+    area,
+    selectedVersion,
+    slot
+  });
+
+  return (
+    <section
+      style={{
+        minWidth: 0
+      }}
+    >
+      <h3
+        style={{
+          backgroundColor:
+            FRIEND_SAFARI_HEADER_BACKGROUND,
+          borderRadius: "4px",
+          color: FRIEND_SAFARI_HEADER_COLOR,
+          fontSize: "1rem",
+          margin: "0 0 .35rem",
+          padding: ".35rem",
+          textAlign: "center"
+        }}
+      >
+        Slot {slotNumber}
+      </h3>
+
+      <div
+        style={{
+          overflowX: "auto"
+        }}
+      >
+        <table
+          style={{
+            borderCollapse: "collapse",
+            fontSize: ".9rem",
+            minWidth: "260px",
+            tableLayout: "fixed",
+            width: "100%"
+          }}
+        >
+          <thead>
+            <tr>
+              {[
+                "Pokemon",
+                "Abilities"
+              ].map(label => (
+                <th
+                  key={label}
+                  style={{
+                    backgroundColor:
+                      FRIEND_SAFARI_HEADER_BACKGROUND,
+                    color:
+                      FRIEND_SAFARI_HEADER_COLOR,
+                    padding: ".4rem",
+                    textAlign: "center"
+                  }}
+                >
+                  {label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(row => (
+              <FriendSafariPokemonRow
+                key={row.pokemon.id}
+                detailsById={detailsById}
+                row={row}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
+function FriendSafariEncounters({
+  detailsById,
+  location,
+  selectedVersion
+}) {
+  return (
+    <div
+      style={{
+        display: "grid",
+        gap: "1.5rem"
+      }}
+    >
+      <p
+        style={{
+          color: "var(--text-muted)",
+          lineHeight: 1.5,
+          margin: 0
+        }}
+      >
+        Friend Safari encounters are grouped by
+        safari type and slot. A real Friend Safari
+        has one Pokemon from each slot, so this view
+        separates the possible slot pools instead of
+        mixing them into one normal encounter table.
+      </p>
+
+      {location.areas.map(area => (
+        <section key={area.name}>
+          <h2
+            style={{
+              backgroundColor:
+                FRIEND_SAFARI_HEADER_BACKGROUND,
+              borderRadius: "4px",
+              color: FRIEND_SAFARI_HEADER_COLOR,
+              fontSize: "1.1rem",
+              margin: "0 0 .45rem",
+              padding: ".45rem",
+              textAlign: "center"
+            }}
+          >
+            {friendSafariAreaType(area)}
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gap: ".75rem",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(300px, 1fr))"
+            }}
+          >
+            {FRIEND_SAFARI_SLOTS.map(
+              (slot, index) => (
+                <FriendSafariSlotTable
+                  key={slot}
+                  area={area}
+                  detailsById={detailsById}
+                  selectedVersion={selectedVersion}
+                  slot={slot}
+                  slotNumber={index + 1}
+                />
+              )
+            )}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}
+
 function LocationItemsSection({
   expanded,
   locationItems,
@@ -679,6 +969,10 @@ function LocationDetailPage() {
     useState(null);
   const [locationItems, setLocationItems] =
     useState(null);
+  const [
+    pokemonDetailsById,
+    setPokemonDetailsById
+  ] = useState({});
   const [oaksNotes, setOaksNotes] =
     useState(null);
   const [
@@ -729,8 +1023,44 @@ function LocationDetailPage() {
           )
         ]);
 
+        let nextPokemonDetailsById = {};
+
+        if (
+          data?.name === FRIEND_SAFARI_LOCATION_NAME
+        ) {
+          const pokemonIds = Array.from(
+            new Set(
+              data.areas.flatMap(area =>
+                area.pokemonEncounters.map(
+                  encounter =>
+                    encounter.pokemon.id
+                )
+              )
+            )
+          );
+          const pokemonDetails =
+            await Promise.all(
+              pokemonIds.map(async id => [
+                id,
+                await readJsonFile(
+                  `/data/pokemonData/${id}.json`
+                )
+              ])
+            );
+
+          nextPokemonDetailsById =
+            Object.fromEntries(
+              pokemonDetails.filter(
+                ([, pokemon]) => pokemon
+              )
+            );
+        }
+
         setLocation(data);
         setLocationItems(itemData);
+        setPokemonDetailsById(
+          nextPokemonDetailsById
+        );
         setOaksNotes(oaksNotesData);
         setPokemonGoNotes(pokemonGoNotesData);
       } catch (error) {
@@ -740,6 +1070,7 @@ function LocationDetailPage() {
         );
         setLocation(null);
         setLocationItems(null);
+        setPokemonDetailsById({});
         setOaksNotes(null);
         setPokemonGoNotes(null);
       } finally {
@@ -988,7 +1319,14 @@ function LocationDetailPage() {
           </div>
         )}
 
-        {location.areas.length === 0 ? (
+        {location.name ===
+        FRIEND_SAFARI_LOCATION_NAME ? (
+          <FriendSafariEncounters
+            detailsById={pokemonDetailsById}
+            location={location}
+            selectedVersion={activeVersion}
+          />
+        ) : location.areas.length === 0 ? (
           <p>No location areas found.</p>
         ) : (
           location.areas.map(area => {

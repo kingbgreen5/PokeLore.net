@@ -57,14 +57,40 @@ async function readJsonIfExists(filePath) {
   }
 }
 
+function delay(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
+}
+
 async function writeJson(filePath, value) {
+  const contents = `${JSON.stringify(value, null, 2)}\n`;
+  const retryableCodes = new Set([
+    "EBUSY",
+    "EACCES",
+    "EPERM",
+    "UNKNOWN"
+  ]);
+
   await fs.mkdir(path.dirname(filePath), {
     recursive: true
   });
-  await fs.writeFile(
-    filePath,
-    `${JSON.stringify(value, null, 2)}\n`
-  );
+
+  for (let attempt = 1; attempt <= 8; attempt += 1) {
+    try {
+      await fs.writeFile(filePath, contents);
+      return;
+    } catch (error) {
+      if (
+        attempt === 8 ||
+        !retryableCodes.has(error?.code)
+      ) {
+        throw error;
+      }
+
+      await delay(150 * attempt);
+    }
+  }
 }
 
 function getScoringVersionGroup(versionGroup) {
@@ -271,6 +297,8 @@ async function main() {
       DEFAULT_TEAM_RECOMMENDATION_WEIGHTS.sTier,
     aTier:
       DEFAULT_TEAM_RECOMMENDATION_WEIGHTS.aTier,
+    veryLowBst:
+      DEFAULT_TEAM_RECOMMENDATION_WEIGHTS.veryLowBst,
     lowBst:
       DEFAULT_TEAM_RECOMMENDATION_WEIGHTS.lowBst,
     highBst:

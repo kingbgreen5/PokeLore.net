@@ -2,14 +2,111 @@
   "item": "macho-brace",
   "displayName": "Macho Brace",
   "source": "items/macho-brace.json",
-  "sourceTitle": "HGSS guidebook item tables (user photos)",
+  "sourceTitle": "Curated multi-generation Macho Brace acquisition notes",
   "schemaVersion": 1,
   "acquisition": [
     {
+      "generation": 3,
+      "games": [
+        "Pokemon Ruby",
+        "Pokemon Sapphire",
+        "Pokemon Emerald"
+      ],
+      "location": {
+        "name": "hoenn-route-111",
+        "displayName": "Route 111"
+      },
+      "method": "Defeat all four members of the Winstrate family, then enter their house and speak to Victoria to receive the Macho Brace.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat all four Winstrate family members"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "Winstrate family house",
+      "originalLocationText": "Route 111"
+    },
+    {
+      "generation": 3,
+      "games": [
+        "Pokemon FireRed",
+        "Pokemon LeafGreen"
+      ],
+      "location": {
+        "name": "viridian-city",
+        "displayName": "Viridian City"
+      },
+      "method": "After defeating Giovanni, use the Itemfinder on the exact spot where Giovanni was standing to find the hidden Macho Brace. Defeating Giovanni alone does not put it in your Bag.",
+      "acquisitionType": "hidden-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat Giovanni at Viridian Gym",
+        "Use the Itemfinder on the exact tile where Giovanni was standing"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "Viridian Gym",
+      "originalLocationText": "Viridian Gym"
+    },
+    {
       "generation": 4,
       "games": [
-        "Pokémon HeartGold",
-        "Pokémon SoulSilver"
+        "Pokemon Diamond",
+        "Pokemon Pearl"
+      ],
+      "location": {
+        "name": "pastoria-city",
+        "displayName": "Pastoria City"
+      },
+      "method": "Show all three forms of Burmy to the boy in the house north of the Poke Mart.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Show Plant Cloak, Sandy Cloak, and Trash Cloak Burmy"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "House north of the Poke Mart",
+      "originalLocationText": "Pastoria City",
+      "relatedPokemon": [
+        {
+          "name": "burmy",
+          "displayName": "Burmy"
+        }
+      ]
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokemon Platinum"
+      ],
+      "location": {
+        "name": "pastoria-city",
+        "displayName": "Pastoria City"
+      },
+      "method": "Show a male and female Combee to the boy in the house north of the Poke Mart.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": true,
+      "requirements": [
+        "Show male and female Combee"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "House north of the Poke Mart",
+      "originalLocationText": "Pastoria City",
+      "relatedPokemon": [
+        {
+          "name": "combee",
+          "displayName": "Combee"
+        }
+      ]
+    },
+    {
+      "generation": 4,
+      "games": [
+        "Pokemon HeartGold",
+        "Pokemon SoulSilver"
       ],
       "location": {
         "name": "goldenrod-city",
@@ -19,10 +116,155 @@
       "acquisitionType": "in-game-trade-held-item",
       "repeatable": false,
       "versionExclusive": false,
-      "requirements": [],
+      "requirements": [
+        "Trade a Drowzee for the Machop at Goldenrod City Department Store 5F"
+      ],
       "locationMatchStatus": "matched",
       "area": "Goldenrod City Department Store 5F",
-      "originalLocationText": "Goldenrod City"
+      "originalLocationText": "Goldenrod City",
+      "relatedPokemon": [
+        {
+          "name": "machop",
+          "displayName": "Machop"
+        },
+        {
+          "name": "drowzee",
+          "displayName": "Drowzee"
+        }
+      ]
+    },
+    {
+      "generation": 5,
+      "games": [
+        "Pokemon Black",
+        "Pokemon White",
+        "Pokemon Black 2",
+        "Pokemon White 2"
+      ],
+      "location": {
+        "name": "nimbasa-city",
+        "displayName": "Nimbasa City"
+      },
+      "method": "Receive from a man in the gate between Nimbasa City and Route 16.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [],
+      "locationMatchStatus": "matched",
+      "area": "Gate to Route 16",
+      "originalLocationText": "Nimbasa City",
+      "notes": "Some sources classify this location as Route 16; it is the same eastern Nimbasa gate."
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon X",
+        "Pokemon Y"
+      ],
+      "location": {
+        "name": "kalos-route-15",
+        "displayName": "Route 15"
+      },
+      "method": "Find behind a cracked wall east of the eastern bridge. Use Rock Smash there; this is on Route 15 itself, not inside the Lost Hotel.",
+      "acquisitionType": "field-item",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Rock Smash"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "East of the eastern bridge",
+      "originalLocationText": "Route 15"
+    },
+    {
+      "generation": 6,
+      "games": [
+        "Pokemon Omega Ruby",
+        "Pokemon Alpha Sapphire"
+      ],
+      "location": {
+        "name": "hoenn-route-111",
+        "displayName": "Route 111"
+      },
+      "method": "Defeat all four members of the Winstrate family, then enter their house and speak to Victoria to receive the Macho Brace.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Defeat all four Winstrate family members"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "Winstrate family house",
+      "originalLocationText": "Route 111"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Sword",
+        "Pokemon Shield"
+      ],
+      "location": {
+        "name": "hammerlocke",
+        "displayName": "Hammerlocke"
+      },
+      "method": "Purchase for 10 BP from the BP Shop in the southern Pokemon Center.",
+      "acquisitionType": "purchase",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "10 BP"
+      ],
+      "cost": {
+        "amount": 10,
+        "currency": "BP"
+      },
+      "locationMatchStatus": "matched",
+      "area": "Southern Pokemon Center BP Shop",
+      "originalLocationText": "Hammerlocke"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Sword",
+        "Pokemon Shield"
+      ],
+      "location": "The Isle of Armor - Cram-o-matic",
+      "method": "Produce it with a Fighting-type Cram-o-matic recipe totaling 72-80 points.",
+      "acquisitionType": "random-item-pool",
+      "repeatable": true,
+      "versionExclusive": false,
+      "requirements": [
+        "The Isle of Armor DLC",
+        "Fighting-type Cram-o-matic recipe worth 72-80 points"
+      ],
+      "locationMatchStatus": "unmatched"
+    },
+    {
+      "generation": 8,
+      "games": [
+        "Pokemon Brilliant Diamond",
+        "Pokemon Shining Pearl"
+      ],
+      "location": {
+        "name": "pastoria-city",
+        "displayName": "Pastoria City"
+      },
+      "method": "Show all three forms of Burmy to the boy in the house north of the Poke Mart.",
+      "acquisitionType": "npc-gift",
+      "repeatable": false,
+      "versionExclusive": false,
+      "requirements": [
+        "Show Plant Cloak, Sandy Cloak, and Trash Cloak Burmy"
+      ],
+      "locationMatchStatus": "matched",
+      "area": "House north of the Poke Mart",
+      "originalLocationText": "Pastoria City",
+      "relatedPokemon": [
+        {
+          "name": "burmy",
+          "displayName": "Burmy"
+        }
+      ]
     }
   ]
 }

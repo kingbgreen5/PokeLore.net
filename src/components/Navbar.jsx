@@ -49,16 +49,14 @@ const navItems = [
     matches: ["/type"]
   },
   {
-    to: "/team-coverage",
-    label: "Team Coverage"
-  },
-  {
-    to: "/dppt-feebas-calculator",
-    label: "Feebas Calculator"
-  },
-  {
-    to: "/single-type-coverage",
-    label: "Single Type Coverage"
+    to: "/tools",
+    label: "Tools",
+    matches: [
+      "/team-coverage",
+      "/ev-training-routes",
+      "/dppt-feebas-calculator",
+      "/single-type-coverage"
+    ]
   },
   {
     to: "/dex-entries",

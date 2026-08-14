@@ -153,6 +153,73 @@ export function teamCoverageSeo() {
   };
 }
 
+export function toolsSeo() {
+  return {
+    title: `Pokemon Tools and Calculators | ${SITE_NAME}`,
+    description:
+      "Use Pokemon tools for team coverage, EV training routes, Feebas tiles, and single type coverage planning.",
+    canonical: pageUrl("/tools")
+  };
+}
+
+export function evTrainingRoutesSeo() {
+  const title =
+    "Pokémon EV Training Locations & Best Routes by Game | PokéLore";
+  const description =
+    "Find the best EV training locations in every Pokémon game. Compare routes for HP, Attack, Defense, Sp. Atk, Sp. Def, and Speed EVs, plus Power Item tips.";
+  const canonical = pageUrl(
+    "/ev-training-routes"
+  );
+  const toolId =
+    `${canonical}#ev-training-routes-tool`;
+
+  return {
+    title,
+    description,
+    canonical,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": `${canonical}#webpage`,
+          url: canonical,
+          name: title,
+          description,
+          mainEntity: {
+            "@id": toolId
+          }
+        },
+        {
+          "@type": "WebApplication",
+          "@id": toolId,
+          name: "Best EV Training Locations Calculator",
+          url: canonical,
+          applicationCategory:
+            "GameApplication",
+          operatingSystem: "Any",
+          browserRequirements:
+            "Requires JavaScript",
+          description,
+          featureList: [
+            "Choose a Pokemon stat to train.",
+            "Choose a Pokemon game version.",
+            "Show the top ten wild encounter locations for the selected EV stat.",
+            "Compare matching encounter chance, clean target-only chance, and expected EV per encounter.",
+            "List the wild Pokemon contributing to each route score."
+          ],
+          isAccessibleForFree: true,
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD"
+          }
+        }
+      ]
+    }
+  };
+}
+
 export function singleTypeCoverageSeo() {
   const title =
     `Single Type Coverage Calculator | ${SITE_NAME}`;

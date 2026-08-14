@@ -909,6 +909,7 @@ function DefensiveCoverageBadgeGroups({
 }
 
 function PartyTile({
+  includeMachineMoves,
   maxMoveLevel,
   member,
   minMovePower,
@@ -918,6 +919,8 @@ function PartyTile({
   const pokemon = member?.pokemon;
   const attackTypes =
     member?.attackTypes ?? [];
+  const coveredTypes =
+    member?.coveredTypes ?? [];
   const defensiveCoverageGroups =
     member?.defensiveCoverageGroups;
   const isLoading =
@@ -974,7 +977,19 @@ function PartyTile({
       </div>
 
       <div className="team-coverage-party-section">
-        <h3>Offensive Coverage</h3>
+        <h3>
+          {includeMachineMoves
+            ? "Lv-Up + TM Atk Types"
+            : "Lv-Up Atk Types"}
+        </h3>
+        <p className="team-coverage-party-muted">
+          {minMovePower > 0
+            ? `(${minMovePower}+ Pwr)`
+            : "(Any Pwr)"}
+          {maxMoveLevel > 0
+            ? ` by Lv. ${maxMoveLevel}`
+            : ""}
+        </p>
         {isLoading ? (
           <span className="team-coverage-party-muted">
             Loading...
@@ -998,7 +1013,23 @@ function PartyTile({
       </div>
 
       <div className="team-coverage-party-section">
-        <h3>Defensive Coverage</h3>
+        <h3>Hits Offensively</h3>
+        {isLoading ? (
+          <span className="team-coverage-party-muted">
+            Loading...
+          </span>
+        ) : (
+          <TypeBadgeList
+            emptyLabel="None"
+            height="1.15rem"
+            justifyContent="center"
+            types={coveredTypes}
+          />
+        )}
+      </div>
+
+      <div className="team-coverage-party-section">
+        <h3>Defends Against</h3>
         <DefensiveCoverageBadgeGroups
           groups={defensiveCoverageGroups}
         />
@@ -1193,6 +1224,11 @@ function RecommendationCard({
   recommendation,
   showScore
 }) {
+  const [
+    isScoringVisible,
+    setIsScoringVisible
+  ] = useState(false);
+
   return (
     <div
       style={{
@@ -1212,7 +1248,31 @@ function RecommendationCard({
         variant="compact"
       />
       {showScore && (
-        <div>
+        <>
+          <button
+            type="button"
+            onClick={() =>
+              setIsScoringVisible(
+                value => !value
+              )
+            }
+            style={{
+              backgroundColor: "transparent",
+              border: "1px solid #555",
+              borderRadius: "999px",
+              color: "#cbd5e1",
+              cursor: "pointer",
+              fontSize: ".68rem",
+              lineHeight: 1,
+              padding: ".3rem .5rem"
+            }}
+          >
+            {isScoringVisible
+              ? "Hide Scoring"
+              : "Show Scoring"}
+          </button>
+          {isScoringVisible && (
+            <div>
           <p
             style={{
               color: "#f3f4f6",
@@ -1284,7 +1344,9 @@ function RecommendationCard({
                 ?.stabIceTypeBonus
             )}
           </p>
-        </div>
+            </div>
+          )}
+        </>
       )}
       <div>
         <p
@@ -2534,6 +2596,9 @@ function TeamCoveragePage() {
         {normalizedParty.map((id, index) => (
           <PartyTile
             key={index}
+            includeMachineMoves={
+              includePartyTmLearnsets
+            }
             maxMoveLevel={
               selectedMoveLevelThreshold
             }

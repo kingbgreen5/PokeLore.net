@@ -1161,32 +1161,56 @@
       },
       "versions": [
         {
-          "version": "Pokémon HeartGold",
+          "version": "Pokemon HeartGold",
           "methods": [
             {
               "type": "in-game-trade-held-item",
               "area": "Goldenrod City Department Store 5F",
               "details": "Receive held by the Machop traded for a Drowzee at Goldenrod City Department Store 5F.",
               "notes": null,
-              "requirements": [],
+              "requirements": [
+                "Trade a Drowzee for the Machop at Goldenrod City Department Store 5F"
+              ],
               "relatedAbilities": [],
               "repeatable": false,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "relatedPokemon": [
+                {
+                  "name": "machop",
+                  "displayName": "Machop"
+                },
+                {
+                  "name": "drowzee",
+                  "displayName": "Drowzee"
+                }
+              ]
             }
           ]
         },
         {
-          "version": "Pokémon SoulSilver",
+          "version": "Pokemon SoulSilver",
           "methods": [
             {
               "type": "in-game-trade-held-item",
               "area": "Goldenrod City Department Store 5F",
               "details": "Receive held by the Machop traded for a Drowzee at Goldenrod City Department Store 5F.",
               "notes": null,
-              "requirements": [],
+              "requirements": [
+                "Trade a Drowzee for the Machop at Goldenrod City Department Store 5F"
+              ],
               "relatedAbilities": [],
               "repeatable": false,
-              "versionExclusive": false
+              "versionExclusive": false,
+              "relatedPokemon": [
+                {
+                  "name": "machop",
+                  "displayName": "Machop"
+                },
+                {
+                  "name": "drowzee",
+                  "displayName": "Drowzee"
+                }
+              ]
             }
           ]
         }

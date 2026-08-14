@@ -339,6 +339,35 @@ function GlobalSiteSearch() {
             description: "Location database"
           }),
           buildSearchRecord({
+            id: "tools-page",
+            label: "Tools",
+            category: "Page",
+            route: "/tools",
+            description:
+              "Pokemon calculators and planning tools",
+            keywords: [
+              "team builder",
+              "team coverage",
+              "feebas calculator",
+              "ev training",
+              "single type coverage"
+            ]
+          }),
+          buildSearchRecord({
+            id: "ev-training-routes-page",
+            label:
+              "Best EV Training Locations Calculator",
+            category: "Page",
+            route: "/ev-training-routes",
+            description:
+              "Top EV training locations by game and stat",
+            keywords: [
+              "effort values",
+              "ev yields",
+              "wild encounters"
+            ]
+          }),
+          buildSearchRecord({
             id: "types-page",
             label: "Types",
             category: "Page",
@@ -574,7 +603,7 @@ function GlobalSiteSearch() {
       <input
         type="search"
         value={query}
-        placeholder="Search Pokémon, items, moves, locations..."
+        placeholder="Search Pokémon, items, moves, tools..."
         onChange={event => {
           requestSearchRecords();
           setQuery(event.target.value);

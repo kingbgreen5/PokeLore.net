@@ -79,6 +79,24 @@ const CARD_SIZES = {
     typeFontSize: ".25rem",
     typeLetterSpacing: "0",
     typeBadgeHeight: ".75rem"
+  },
+  friendSafari: {
+    width: "86px",
+    minHeight: "100px",
+    maxHeight: "100px",
+    maxWidth: "100px",
+    padding: ".1rem",
+    dexFontSize: ".48rem",
+    dexMarginBottom: "-.6rem",
+    spriteSize: "46px",
+    spriteMarginTop: "-.2rem",
+    nameFontSize: ".5rem",
+    nameMargin: "-.05rem 0 .14rem 0",
+    typeGap: ".08rem",
+    typePadding: ".05rem .2rem",
+    typeFontSize: ".25rem",
+    typeLetterSpacing: "0",
+    typeBadgeHeight: ".7rem"
   }
 };
 
@@ -224,6 +242,7 @@ function PokemonSummaryCard({
         style={{
           width: size.spriteSize,
           height: size.spriteSize,
+          marginTop: size.spriteMarginTop,
           objectFit: "contain",
 
 

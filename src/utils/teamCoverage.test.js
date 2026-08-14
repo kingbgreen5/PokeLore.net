@@ -479,6 +479,44 @@ describe("team coverage helpers", () => {
     ).toBeCloseTo(0.2);
   });
 
+  it("uses the stronger BST penalty below 380", () => {
+    expect(
+      getTeamRecommendationScore({
+        weights:
+          DEFAULT_TEAM_RECOMMENDATION_WEIGHTS,
+        pokemon: {
+          baseStatTotal: 379,
+          missingHits: [],
+          missingDefensiveHits: [],
+          playthroughFlags: {
+            inRegionalDex: true,
+            tier: null,
+            tradeEvolution: false
+          }
+        }
+      }).parts.bst
+    ).toBeCloseTo(-1.5);
+  });
+
+  it("keeps the regular low BST penalty from 380 through 409", () => {
+    expect(
+      getTeamRecommendationScore({
+        weights:
+          DEFAULT_TEAM_RECOMMENDATION_WEIGHTS,
+        pokemon: {
+          baseStatTotal: 400,
+          missingHits: [],
+          missingDefensiveHits: [],
+          playthroughFlags: {
+            inRegionalDex: true,
+            tier: null,
+            tradeEvolution: false
+          }
+        }
+      }).parts.bst
+    ).toBeCloseTo(-0.3);
+  });
+
   it("recomputes generated playthrough flags with current weights", () => {
     expect(
       getTeamRecommendationScore({
