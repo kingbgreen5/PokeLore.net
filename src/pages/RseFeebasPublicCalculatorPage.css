@@ -1,0 +1,531 @@
+.rse-feebas-public-page {
+  color: #eef6ff;
+  margin: 0 auto;
+  max-width: 1220px;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.rse-feebas-public-header {
+  margin: 0 0 1rem;
+}
+
+.rse-feebas-public-header > p {
+  color: #7dd3fc;
+  font-size: 0.84rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.2rem;
+  text-transform: uppercase;
+}
+
+.rse-feebas-public-header h1 {
+  font-size: clamp(1.85rem, 3vw, 2.7rem);
+  letter-spacing: 0;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.rse-feebas-public-header > span {
+  color: #dbeafe;
+  display: block;
+  line-height: 1.5;
+  margin-top: 0.6rem;
+  max-width: 760px;
+}
+
+.rse-feebas-public-tool {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
+}
+
+.rse-feebas-public-controls,
+.rse-feebas-result-card {
+  background: #171c26;
+  border: 1px solid #3d4657;
+  border-radius: 8px;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 1rem;
+}
+
+.rse-feebas-public-controls {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.rse-feebas-public-controls > section + section {
+  padding-top: 1.15rem;
+}
+
+.rse-feebas-public-controls h2,
+.rse-feebas-result-card h2 {
+  font-size: clamp(1.25rem, 2.4vw, 1.45rem);
+  font-weight: 850;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+.rse-feebas-public-controls h3,
+.rse-feebas-result-card h3 {
+  color: #bae6fd;
+  font-size: 1rem;
+  letter-spacing: 0;
+  margin: 0 0 0.45rem;
+}
+
+.rse-feebas-public-controls p,
+.rse-feebas-result-card p {
+  line-height: 1.45;
+  margin: 0 0 0.75rem;
+}
+
+.rse-feebas-game-grid {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rse-feebas-game-grid button,
+.rse-feebas-tabs button,
+.rse-feebas-segmented button,
+.rse-feebas-map-controls button,
+.rse-feebas-panel > button,
+.rse-feebas-start-over,
+.rse-feebas-recommendations button {
+  background: #1f2937;
+  border: 1px solid #64748b;
+  border-radius: 6px;
+  color: #eef6ff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 850;
+  min-height: 2.45rem;
+  min-width: 0;
+  padding: 0.55rem 0.75rem;
+}
+
+.rse-feebas-game-grid button[aria-pressed="true"],
+.rse-feebas-segmented button[aria-pressed="true"],
+.rse-feebas-panel > button {
+  background: #f59e0b;
+  border-color: #fde68a;
+  color: #111827;
+}
+
+.rse-feebas-panel > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.rse-feebas-tabs {
+  background: #0d121b;
+  border: 1px solid #3d4657;
+  border-radius: 8px 8px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  overflow: hidden;
+}
+
+.rse-feebas-tabs button {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  color: #cbd5e1;
+}
+
+.rse-feebas-tabs button[aria-selected="true"] {
+  background: #171c26;
+  border-bottom-color: #f59e0b;
+  color: #ffffff;
+}
+
+.rse-feebas-panel {
+  background: #171c26;
+  border: 1px solid #3d4657;
+  border-radius: 0 0 8px 8px;
+  border-top: 0;
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0.85rem;
+}
+
+.rse-feebas-public-inputs {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.rse-feebas-public-inputs label,
+.rse-feebas-panel label,
+.rse-feebas-priority-controls label {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.rse-feebas-public-inputs span,
+.rse-feebas-panel label span,
+.rse-feebas-priority-controls span {
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.rse-feebas-public-inputs input,
+.rse-feebas-panel input[type="file"],
+.rse-feebas-priority-controls select {
+  background: #0d121b;
+  border: 1px solid #657184;
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #ffffff;
+  font: inherit;
+  max-width: 100%;
+  min-height: 2.35rem;
+  min-width: 0;
+  padding: 0.45rem 0.55rem;
+  width: 100%;
+}
+
+.rse-feebas-public-inputs small,
+.rse-feebas-panel details,
+.rse-feebas-note {
+  color: #bae6fd;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.rse-feebas-battery {
+  border: 1px solid #3d4657;
+  border-radius: 8px;
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0.85rem;
+}
+
+.rse-feebas-battery legend {
+  color: #ffffff;
+  font-weight: 850;
+  padding: 0 0.35rem;
+}
+
+.rse-feebas-battery label {
+  align-items: center;
+  display: flex;
+  gap: 0.45rem;
+}
+
+.rse-feebas-status {
+  border-radius: 6px;
+  font-size: 0.86rem;
+  font-weight: 750;
+  line-height: 1.4;
+  margin: 0.75rem 0 0;
+  padding: 0.6rem 0.7rem;
+}
+
+.rse-feebas-status.error {
+  background: rgba(248, 113, 113, 0.14);
+  color: #fecaca;
+}
+
+.rse-feebas-status.success {
+  background: rgba(34, 197, 94, 0.12);
+  color: #bbf7d0;
+}
+
+.rse-feebas-status.pending {
+  background: rgba(245, 158, 11, 0.14);
+  color: #fde68a;
+}
+
+.rse-feebas-start-over {
+  margin-top: 0.75rem;
+  width: 100%;
+}
+
+.rse-feebas-public-map-stack {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.rse-feebas-public-map-stack .rse-route119-map-scroll {
+  max-height: min(88vh, 1180px);
+  padding: 1.5rem;
+}
+
+.rse-feebas-section-heading {
+  align-items: start;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.rse-feebas-section-heading p {
+  color: #dbeafe;
+  margin-bottom: 0;
+}
+
+.rse-feebas-section-heading strong {
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(125, 211, 252, 0.55);
+  border-radius: 6px;
+  color: #bae6fd;
+  flex: 0 0 auto;
+  padding: 0.45rem 0.6rem;
+}
+
+.rse-feebas-map-controls,
+.rse-feebas-segmented,
+.rse-feebas-priority-controls,
+.rse-feebas-priority-stats,
+.rse-feebas-priority-legend,
+.rse-feebas-more-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.rse-feebas-map-controls {
+  align-items: center;
+  margin: 1rem 0 0.75rem;
+}
+
+.rse-feebas-map-controls span {
+  color: #bae6fd;
+  font-weight: 850;
+}
+
+.rse-feebas-priority-controls {
+  align-items: end;
+  margin: 1rem 0;
+}
+
+.rse-feebas-priority-controls label {
+  min-width: 190px;
+}
+
+.rse-feebas-priority-stats span,
+.rse-feebas-priority-legend span {
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 850;
+  padding: 0.4rem 0.6rem;
+}
+
+.rse-feebas-priority-stats span {
+  background: #0d121b;
+  border: 1px solid #3d4657;
+}
+
+.rse-feebas-priority-legend .high {
+  background: rgba(239, 68, 68, 0.28);
+  border: 1px solid rgba(252, 165, 165, 0.72);
+}
+
+.rse-feebas-priority-legend .medium {
+  background: rgba(245, 158, 11, 0.24);
+  border: 1px solid rgba(253, 230, 138, 0.72);
+}
+
+.rse-feebas-priority-legend .low {
+  background: rgba(14, 165, 233, 0.22);
+  border: 1px solid rgba(125, 211, 252, 0.72);
+}
+
+.rse-feebas-priority-legend .heat {
+  background: linear-gradient(90deg, #155e75, #f59e0b, #ef4444);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+}
+
+.rse-feebas-recommendations {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.rse-feebas-recommendations h3 {
+  margin: 0;
+}
+
+.rse-feebas-recommendations button {
+  align-items: start;
+  background: #0d121b;
+  display: grid;
+  gap: 0.2rem;
+  justify-items: start;
+  text-align: left;
+}
+
+.rse-feebas-recommendations button.selected {
+  border-color: #7dd3fc;
+  box-shadow: 0 0 0 2px rgba(125, 211, 252, 0.25);
+}
+
+.rse-feebas-recommendations small {
+  color: #bae6fd;
+}
+
+.rse-feebas-set-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  margin-top: 1rem;
+}
+
+.rse-feebas-set-card {
+  background: #0d121b;
+  border: 1px solid #3d4657;
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.rse-feebas-set-card p {
+  color: #dbeafe;
+  margin: 0;
+}
+
+.rse-feebas-advanced {
+  background: #0d121b;
+  border: 1px solid #3d4657;
+  border-radius: 8px;
+  margin-top: 1rem;
+  padding: 0.75rem;
+}
+
+.rse-feebas-advanced summary {
+  color: #bae6fd;
+  cursor: pointer;
+  font-weight: 850;
+}
+
+.rse-feebas-advanced dl {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0.75rem 0 0;
+}
+
+.rse-feebas-advanced div {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.rse-feebas-advanced dt {
+  color: #93c5fd;
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.rse-feebas-advanced dd {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.rse-feebas-save-nudge {
+  background: rgba(245, 158, 11, 0.13);
+  border: 1px solid rgba(253, 230, 138, 0.62);
+  border-radius: 8px;
+  color: #fde68a;
+  font-weight: 850;
+  margin-top: 1rem;
+  padding: 0.75rem;
+}
+
+.rse-feebas-error {
+  border-color: #f87171;
+  color: #fecaca;
+}
+
+.rse-feebas-more-tools {
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(125, 211, 252, 0.58);
+  border-radius: 8px;
+  margin-top: 1.25rem;
+  max-width: 820px;
+  padding: 1rem;
+}
+
+.rse-feebas-more-tools h2 {
+  flex-basis: 100%;
+  font-size: 1.2rem;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.rse-feebas-more-tools a {
+  color: #7dd3fc;
+  font-weight: 850;
+}
+
+.rse-feebas-public-guide {
+  color: #dbeafe;
+  line-height: 1.65;
+  margin-top: 2.5rem;
+  max-width: 820px;
+  text-align: left;
+}
+
+.rse-feebas-public-guide h2 {
+  color: #ffffff;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin: 2rem 0 0.75rem;
+}
+
+.rse-feebas-public-guide h2:first-child {
+  margin-top: 0;
+}
+
+.rse-feebas-public-guide h3 {
+  color: #bae6fd;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  letter-spacing: 0;
+  line-height: 1.25;
+  margin: 1.5rem 0 0.55rem;
+}
+
+.rse-feebas-public-guide p {
+  margin: 0 0 0.9rem;
+}
+
+@media (max-width: 920px) {
+  .rse-feebas-public-tool {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .rse-feebas-public-page {
+    padding-inline: 0.75rem;
+  }
+
+  .rse-feebas-section-heading {
+    display: grid;
+  }
+
+  .rse-feebas-section-heading strong {
+    justify-self: start;
+  }
+
+  .rse-feebas-game-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rse-feebas-public-controls,
+  .rse-feebas-result-card {
+    padding: 0.75rem;
+  }
+
+  .rse-feebas-public-map-stack .rse-route119-map-scroll {
+    max-height: 82vh;
+    padding: 1rem;
+  }
+}

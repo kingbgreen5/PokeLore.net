@@ -388,6 +388,31 @@ code {
   text-transform: uppercase;
 }
 
+.team-coverage-matchup-badge-list {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem .55rem;
+  justify-content: center;
+}
+
+.team-coverage-matchup-badge {
+  align-items: center;
+  display: inline-flex;
+  gap: .25rem;
+}
+
+.team-coverage-matchup-score {
+  color: #f3f4f6;
+  font-size: .82rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+  min-width: 2rem;
+  text-align: right;
+  text-transform: uppercase;
+}
+
 .team-coverage-panels {
   display: grid;
   gap: 1rem;

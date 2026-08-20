@@ -22,6 +22,12 @@ const tools = [
       "Calculate possible Feebas tiles in Diamond, Pearl, and Platinum."
   },
   {
+    title: "RSE Feebas Calculator",
+    path: "/rse-feebas-calculator",
+    description:
+      "Find Route 119 Feebas tiles in Ruby, Sapphire, and Emerald from a save file or game information."
+  },
+  {
     title: "Single Type Coverage",
     path: "/single-type-coverage",
     description:

@@ -62,6 +62,7 @@ function staticRoutes() {
     "/team-coverage",
     "/ev-training-routes",
     "/dppt-feebas-calculator",
+    "/rse-feebas-calculator",
     "/single-type-coverage",
     "/moves",
     "/abilities",

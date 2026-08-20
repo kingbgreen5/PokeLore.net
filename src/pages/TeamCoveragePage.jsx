@@ -811,11 +811,194 @@ function TypeBadgeList({
   );
 }
 
+function formatMatchupScore(value) {
+  const numericValue = Number(value) || 0;
+
+  return Number.isInteger(numericValue)
+    ? String(numericValue)
+    : numericValue.toFixed(1);
+}
+
+function getDefenseMultiplier({
+  attackType,
+  defenseTypes,
+  typeChart
+}) {
+  return (defenseTypes ?? []).reduce(
+    (total, defenseType) =>
+      total *
+      (typeChart?.[attackType]?.[
+        defenseType
+      ] ?? 1),
+    1
+  );
+}
+
+function sortMatchupEntries(
+  entries,
+  consideredTypes
+) {
+  const typeOrder = new Map(
+    consideredTypes.map((type, index) => [
+      type,
+      index
+    ])
+  );
+
+  return entries.sort(
+    (a, b) =>
+      b.sortValue - a.sortValue ||
+      (typeOrder.get(a.type) ?? 0) -
+        (typeOrder.get(b.type) ?? 0)
+  );
+}
+
+function getTeamResistanceEntries({
+  consideredTypes,
+  teamTypeSets,
+  typeChart
+}) {
+  const entries = [];
+
+  for (const attackType of consideredTypes) {
+    let immunityCount = 0;
+    let resistanceScore = 0;
+
+    for (const defenseTypes of teamTypeSets) {
+      const multiplier = getDefenseMultiplier({
+        attackType,
+        defenseTypes,
+        typeChart
+      });
+
+      if (multiplier === 0) {
+        immunityCount += 1;
+      } else if (multiplier < 1) {
+        resistanceScore += 1 / multiplier;
+      }
+    }
+
+    if (
+      immunityCount > 0 ||
+      resistanceScore > 0
+    ) {
+      const resistanceLabel =
+        resistanceScore > 0
+          ? `${formatMatchupScore(
+              resistanceScore
+            )}X`
+          : "";
+      const immunityLabel =
+        immunityCount > 0
+          ? immunityCount > 1
+            ? `${immunityCount} IMM`
+            : "IMM"
+          : "";
+
+      entries.push({
+        label:
+          immunityLabel && resistanceLabel
+            ? `${immunityLabel}+${resistanceLabel}`
+            : immunityLabel || resistanceLabel,
+        sortValue:
+          resistanceScore +
+          immunityCount * 4,
+        type: attackType
+      });
+    }
+  }
+
+  return sortMatchupEntries(
+    entries,
+    consideredTypes
+  );
+}
+
+function getTeamWeaknessEntries({
+  consideredTypes,
+  teamTypeSets,
+  typeChart
+}) {
+  const entries = [];
+
+  for (const attackType of consideredTypes) {
+    const weaknessScore = teamTypeSets.reduce(
+      (total, defenseTypes) => {
+        const multiplier =
+          getDefenseMultiplier({
+            attackType,
+            defenseTypes,
+            typeChart
+          });
+
+        return multiplier > 1
+          ? total + multiplier
+          : total;
+      },
+      0
+    );
+
+    if (weaknessScore > 0) {
+      entries.push({
+        label: `${formatMatchupScore(
+          weaknessScore
+        )}X`,
+        sortValue: weaknessScore,
+        type: attackType
+      });
+    }
+  }
+
+  return sortMatchupEntries(
+    entries,
+    consideredTypes
+  );
+}
+
+function MatchupBadgeList({
+  emptyLabel,
+  entries,
+  height = "1.35rem"
+}) {
+  if (!entries.length) {
+    return (
+      <span
+        style={{
+          color: "#9ca3af",
+          fontSize: ".9rem"
+        }}
+      >
+        {emptyLabel}
+      </span>
+    );
+  }
+
+  return (
+    <div className="team-coverage-matchup-badge-list">
+      {entries.map(entry => (
+        <span
+          key={`${entry.type}-${entry.label}`}
+          className="team-coverage-matchup-badge"
+        >
+          <span className="team-coverage-matchup-score">
+            {entry.label}
+          </span>
+          <TypeBadge
+            type={entry.type}
+            height={height}
+          />
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function CoveragePanel({
+  children,
   description,
   tone = "neutral",
   title,
-  types
+  types = []
 }) {
   const toneStyles = {
     covered: {
@@ -861,11 +1044,13 @@ function CoveragePanel({
       >
         {description}
       </p>
-      <TypeBadgeList
-        emptyLabel="None"
-        height="1.45rem"
-        types={types}
-      />
+      {children ?? (
+        <TypeBadgeList
+          emptyLabel="None"
+          height="1.45rem"
+          types={types}
+        />
+      )}
     </section>
   );
 }
@@ -1955,21 +2140,51 @@ function TeamCoveragePage() {
       coveredTypes
     ]
   );
+  const teamTypeSets = useMemo(
+    () =>
+      partyMembers
+        .map(
+          member =>
+            member?.pokemon?.types ?? []
+        )
+        .filter(types => types.length),
+    [partyMembers]
+  );
   const defensiveCoveredTypes = useMemo(
     () =>
       getTeamDefensiveCoverageTypes({
         consideredTypes,
-        teamTypeSets: partyMembers
-          .map(
-            member =>
-              member?.pokemon?.types ?? []
-          )
-          .filter(types => types.length),
+        teamTypeSets,
         typeChart
       }),
     [
       consideredTypes,
-      partyMembers
+      teamTypeSets
+    ]
+  );
+  const defensiveCoverageEntries =
+    useMemo(
+      () =>
+        getTeamResistanceEntries({
+          consideredTypes,
+          teamTypeSets,
+          typeChart
+        }),
+      [
+        consideredTypes,
+        teamTypeSets
+      ]
+    );
+  const weaknessEntries = useMemo(
+    () =>
+      getTeamWeaknessEntries({
+        consideredTypes,
+        teamTypeSets,
+        typeChart
+      }),
+    [
+      consideredTypes,
+      teamTypeSets
     ]
   );
   const missingDefensiveTypes =
@@ -2643,14 +2858,32 @@ function TeamCoveragePage() {
           tone="covered"
           title="Defensive Coverage"
           description="Your team has at least one Pokemon that resists or is immune to attacks of these types."
-          types={defensiveCoveredTypes}
-        />
+        >
+          <MatchupBadgeList
+            emptyLabel="None"
+            entries={
+              defensiveCoverageEntries
+            }
+            height="1.45rem"
+          />
+        </CoveragePanel>
         <CoveragePanel
           tone="missing"
           title="Missing Defensive Coverage"
           description="Your team does not currently have a resistance or immunity to attacks of these types."
           types={missingDefensiveTypes}
         />
+        <CoveragePanel
+          tone="missing"
+          title="Weaknesses"
+          description="Your team has Pokemon weak to attacks of these types. Stacked totals add together across the team."
+        >
+          <MatchupBadgeList
+            emptyLabel="None"
+            entries={weaknessEntries}
+            height="1.45rem"
+          />
+        </CoveragePanel>
       </div>
 
       <section

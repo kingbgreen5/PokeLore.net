@@ -89,6 +89,31 @@ const FeebasTileEditorPage = import.meta.env.DEV
       import("./pages/FeebasTileEditorPage")
     )
   : null;
+const RseFeebasTileEditorPage = import.meta.env.DEV
+  ? lazy(() =>
+      import("./pages/RseFeebasTileEditorPage")
+    )
+  : null;
+const RseFeebasAlgorithmValidatorPage = import.meta.env.DEV
+  ? lazy(() =>
+      import("./pages/RseFeebasAlgorithmValidatorPage")
+    )
+  : null;
+const EmeraldFeebasRecoveryValidatorPage = import.meta.env.DEV
+  ? lazy(() =>
+      import("./pages/EmeraldFeebasRecoveryValidatorPage")
+    )
+  : null;
+const EmeraldFeebasSaveValidatorPage = import.meta.env.DEV
+  ? lazy(() =>
+      import("./pages/EmeraldFeebasSaveValidatorPage")
+    )
+  : null;
+const RsFeebasRecoveryValidatorPage = import.meta.env.DEV
+  ? lazy(() =>
+      import("./pages/RsFeebasRecoveryValidatorPage")
+    )
+  : null;
 const FeebasMapValidatorPage = import.meta.env.DEV
   ? lazy(() =>
       import("./pages/FeebasMapValidatorPage")
@@ -106,6 +131,9 @@ const TeamCoverageScoringDevPage = import.meta.env.DEV
   : null;
 const DpptFeebasPublicCalculatorPage = lazy(() =>
   import("./pages/DpptFeebasPublicCalculatorPage")
+);
+const RseFeebasPublicCalculatorPage = lazy(() =>
+  import("./pages/RseFeebasPublicCalculatorPage")
 );
 const TeamCoveragePage = lazy(() =>
   import("./pages/TeamCoveragePage")
@@ -258,6 +286,11 @@ function App() {
 />
 
 <Route
+  path="/rse-feebas-calculator"
+  element={<RseFeebasPublicCalculatorPage />}
+/>
+
+<Route
   path="/topic/:topicSlug"
   element={<TopicDetailPage />}
 />
@@ -280,6 +313,41 @@ function App() {
   <Route
     path="/dev/feebas-tile-editor"
     element={<FeebasTileEditorPage />}
+  />
+)}
+
+{RseFeebasTileEditorPage && (
+  <Route
+    path="/dev/rse-feebas-tile-editor"
+    element={<RseFeebasTileEditorPage />}
+  />
+)}
+
+{RseFeebasAlgorithmValidatorPage && (
+  <Route
+    path="/dev/rse-feebas-algorithm-validator"
+    element={<RseFeebasAlgorithmValidatorPage />}
+  />
+)}
+
+{EmeraldFeebasRecoveryValidatorPage && (
+  <Route
+    path="/dev/emerald-feebas-recovery-validator"
+    element={<EmeraldFeebasRecoveryValidatorPage />}
+  />
+)}
+
+{EmeraldFeebasSaveValidatorPage && (
+  <Route
+    path="/dev/emerald-feebas-save-validator"
+    element={<EmeraldFeebasSaveValidatorPage />}
+  />
+)}
+
+{RsFeebasRecoveryValidatorPage && (
+  <Route
+    path="/dev/rs-feebas-recovery-validator"
+    element={<RsFeebasRecoveryValidatorPage />}
   />
 )}
 

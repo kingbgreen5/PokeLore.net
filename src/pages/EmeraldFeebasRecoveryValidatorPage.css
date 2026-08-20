@@ -1,0 +1,318 @@
+.emerald-feebas-recovery {
+  box-sizing: border-box;
+  margin-left: 50%;
+  padding: 1rem 1.25rem 2.5rem;
+  text-align: left;
+  transform: translateX(-50%);
+  width: min(calc(100vw - 2rem), 1840px);
+}
+
+.emerald-feebas-recovery *,
+.emerald-feebas-recovery *::before,
+.emerald-feebas-recovery *::after {
+  box-sizing: border-box;
+}
+
+.emerald-feebas-recovery h1,
+.emerald-feebas-recovery h2,
+.emerald-feebas-recovery h3 {
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.emerald-feebas-recovery h1 {
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  line-height: 1.08;
+}
+
+.emerald-feebas-recovery h2 {
+  font-size: 1.08rem;
+}
+
+.emerald-feebas-recovery h3 {
+  font-size: 0.94rem;
+}
+
+.emerald-feebas-recovery button,
+.emerald-feebas-recovery input,
+.emerald-feebas-recovery select,
+.emerald-feebas-recovery textarea {
+  border-radius: 6px;
+  font: inherit;
+}
+
+.emerald-feebas-recovery button {
+  background: #252831;
+  border: 1px solid #596071;
+  color: var(--text-h);
+  cursor: pointer;
+  font-weight: 800;
+  padding: 0.5rem 0.68rem;
+}
+
+.emerald-feebas-recovery button:hover:not(:disabled),
+.emerald-feebas-recovery button.active {
+  border-color: #f7c948;
+}
+
+.emerald-feebas-recovery button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.emerald-feebas-recovery button.is-danger {
+  border-color: #f87171;
+}
+
+.emerald-recovery-header {
+  align-items: stretch;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.emerald-recovery-header p,
+.emerald-section-header p,
+.emerald-diagnostics-card p,
+.emerald-candidates-card p,
+.emerald-current-card p {
+  color: #c9d3df;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.emerald-progress-card,
+.emerald-current-card,
+.emerald-controls-card,
+.emerald-diagnostics-card,
+.emerald-candidates-card,
+.emerald-map-card,
+.emerald-table-card,
+.emerald-alert,
+.emerald-phrase-notice {
+  background: #1d2028;
+  border: 1px solid #3f4656;
+  border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  padding: 0.9rem;
+}
+
+.emerald-progress-card {
+  flex: 0 0 330px;
+}
+
+.emerald-recovery-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: minmax(240px, 0.65fr) minmax(330px, 1fr) minmax(330px, 1fr);
+  margin-bottom: 0.9rem;
+}
+
+.emerald-secondary-grid {
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+}
+
+.emerald-current-card,
+.emerald-controls-card,
+.emerald-diagnostics-card,
+.emerald-candidates-card,
+.emerald-map-card,
+.emerald-table-card {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.emerald-current-card > span {
+  color: #c9d3df;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.emerald-current-card strong {
+  color: #f7c948;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.emerald-button-row,
+.emerald-section-header,
+.emerald-phrase-notice {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.emerald-section-header {
+  justify-content: space-between;
+}
+
+.emerald-alert {
+  border-color: #fbbf24;
+  color: #fde68a;
+  margin-bottom: 0.9rem;
+}
+
+.emerald-phrase-notice {
+  border-color: #38bdf8;
+  margin-bottom: 0.9rem;
+}
+
+.emerald-phrase-notice strong {
+  color: #7dd3fc;
+}
+
+.emerald-field {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.emerald-field > span,
+.emerald-toggle {
+  color: #eef3f8;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.emerald-field input,
+.emerald-field select,
+.emerald-field textarea {
+  background: #11141b;
+  border: 1px solid #535a6a;
+  color: var(--text-h);
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.emerald-toggle {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.4rem;
+}
+
+.emerald-progress-card dl,
+.emerald-diagnostics-card dl,
+.emerald-diagnostics-table dl {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+}
+
+.emerald-progress-card dl div,
+.emerald-diagnostics-card dl div,
+.emerald-diagnostics-table dl div {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+  padding-bottom: 0.3rem;
+}
+
+.emerald-progress-card dt,
+.emerald-diagnostics-card dt,
+.emerald-diagnostics-table dt {
+  color: #dfe7f2;
+  font-weight: 800;
+}
+
+.emerald-progress-card dd,
+.emerald-diagnostics-card dd,
+.emerald-diagnostics-table dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+.emerald-feedback {
+  color: #7dd3fc;
+  min-height: 1.35rem;
+}
+
+.emerald-candidate-list {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.emerald-candidate {
+  align-items: start;
+  display: grid;
+  gap: 0.25rem;
+  min-height: 96px;
+  text-align: left;
+}
+
+.emerald-candidate span,
+.emerald-candidate small {
+  color: #c9d3df;
+}
+
+.emerald-candidate strong {
+  color: #f7c948;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 1.6rem;
+  letter-spacing: 0;
+}
+
+.emerald-diagnostics-table {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.emerald-diagnostics-table article {
+  background: #151923;
+  border: 1px solid #343b49;
+  border-radius: 8px;
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.75rem;
+}
+
+.emerald-map-card .rse-route119-map {
+  margin: 0;
+}
+
+.emerald-preset-table {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.emerald-preset-table button {
+  display: grid;
+  gap: 0.25rem;
+  min-height: 88px;
+  text-align: left;
+}
+
+.emerald-preset-table span {
+  color: #f7c948;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 1.25rem;
+}
+
+.emerald-preset-table small {
+  color: #d1d5db;
+}
+
+.emerald-preset-table b {
+  color: #eef3f8;
+}
+
+@media (max-width: 1100px) {
+  .emerald-recovery-header,
+  .emerald-recovery-grid,
+  .emerald-secondary-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .emerald-progress-card {
+    flex-basis: auto;
+  }
+}

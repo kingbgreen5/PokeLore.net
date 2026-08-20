@@ -52,6 +52,16 @@ const FEEBAS_GUIDE_BREADCRUMBS = {
     {
       label: "Feebas Tile Calculator for Diamond/Pearl/Platinum"
     }
+  ],
+  "rse-feebas-calculator": [
+    FEEBAS_ULTIMATE_GUIDE,
+    {
+      label: "Catching Feebas in Pokemon Emerald",
+      to: "/topic/catching-feebas-in-pokemon-emerald"
+    },
+    {
+      label: "Feebas Tile Calculator for Ruby/Sapphire/Emerald"
+    }
   ]
 };
 

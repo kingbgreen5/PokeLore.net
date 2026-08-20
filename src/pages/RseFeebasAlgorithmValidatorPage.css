@@ -1,0 +1,357 @@
+.rse-feebas-validator {
+  box-sizing: border-box;
+  margin-left: 50%;
+  padding: 1rem 1.25rem 2.5rem;
+  text-align: left;
+  transform: translateX(-50%);
+  width: min(calc(100vw - 2rem), 1840px);
+}
+
+.rse-feebas-validator *,
+.rse-feebas-validator *::before,
+.rse-feebas-validator *::after {
+  box-sizing: border-box;
+}
+
+.rse-feebas-validator h1,
+.rse-feebas-validator h2,
+.rse-feebas-validator h3 {
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.rse-feebas-validator h1 {
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  line-height: 1.08;
+}
+
+.rse-feebas-validator h2 {
+  font-size: 1.05rem;
+}
+
+.rse-feebas-validator h3 {
+  font-size: 0.94rem;
+}
+
+.rse-feebas-validator button,
+.rse-feebas-validator input,
+.rse-feebas-validator select,
+.rse-feebas-validator textarea {
+  border-radius: 6px;
+  font: inherit;
+}
+
+.rse-feebas-validator button {
+  background: #252831;
+  border: 1px solid #596071;
+  color: var(--text-h);
+  cursor: pointer;
+  font-weight: 800;
+  padding: 0.5rem 0.68rem;
+}
+
+.rse-feebas-validator button:hover:not(:disabled),
+.rse-feebas-validator button.active {
+  border-color: #f7c948;
+}
+
+.rse-feebas-validator button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.rse-feebas-validator button.is-danger {
+  border-color: #f87171;
+}
+
+.rse-feebas-validator-header {
+  align-items: stretch;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.rse-feebas-validator-header p {
+  color: #c9d3df;
+  margin: 0.45rem 0 0;
+}
+
+.rse-feebas-current-card,
+.rse-feebas-controls-card,
+.rse-feebas-comparison-card,
+.rse-feebas-map-card,
+.rse-feebas-results-card,
+.rse-feebas-validation-table-card,
+.rse-feebas-progress-card,
+.rse-feebas-alert {
+  background: #1d2028;
+  border: 1px solid #3f4656;
+  border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  padding: 0.9rem;
+}
+
+.rse-feebas-progress-card {
+  flex: 0 0 360px;
+}
+
+.rse-feebas-progress-card dl,
+.rse-feebas-summary-list {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0.75rem 0 0;
+}
+
+.rse-feebas-progress-card dl div,
+.rse-feebas-summary-list div {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.3rem;
+}
+
+.rse-feebas-progress-card dt,
+.rse-feebas-summary-list dt {
+  color: #dfe7f2;
+  font-weight: 800;
+}
+
+.rse-feebas-progress-card dd,
+.rse-feebas-summary-list dd {
+  color: var(--text-h);
+  margin: 0;
+}
+
+.rse-feebas-feedback {
+  min-height: 1.35rem;
+}
+
+.rse-feebas-alert {
+  border-color: #fbbf24;
+  color: #fde68a;
+  margin-bottom: 1rem;
+}
+
+.rse-feebas-workflow {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: minmax(260px, 0.75fr) minmax(330px, 1fr) minmax(330px, 1fr);
+  margin-bottom: 0.9rem;
+}
+
+.rse-feebas-current-card {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.rse-feebas-current-card > span {
+  color: #c9d3df;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.rse-feebas-current-card strong {
+  color: #f7c948;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.rse-feebas-current-card p,
+.rse-feebas-comparison-card li,
+.rse-feebas-results-card p {
+  line-height: 1.4;
+  margin: 0;
+}
+
+.rse-feebas-controls-card,
+.rse-feebas-comparison-card,
+.rse-feebas-results-card {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.rse-feebas-test-nav,
+.rse-feebas-actions,
+.rse-feebas-table-header,
+.rse-feebas-map-card-header,
+.rse-feebas-segmented {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rse-feebas-test-nav {
+  justify-content: space-between;
+}
+
+.rse-feebas-field {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.rse-feebas-field > span,
+.rse-feebas-toggle {
+  color: #eef3f8;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.rse-feebas-field input,
+.rse-feebas-field select,
+.rse-feebas-field textarea {
+  background: #11141b;
+  border: 1px solid #535a6a;
+  color: var(--text-h);
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.rse-feebas-custom-row {
+  align-items: end;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: minmax(170px, 1fr) auto;
+}
+
+.rse-feebas-toggle {
+  align-items: center;
+  display: flex;
+  gap: 0.45rem;
+}
+
+.rse-feebas-toggle input {
+  accent-color: #22d3ee;
+  height: 1rem;
+  width: 1rem;
+}
+
+.rse-feebas-warning {
+  color: #fbbf24;
+}
+
+.rse-feebas-main-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: minmax(620px, 1.2fr) minmax(390px, 0.8fr);
+}
+
+.rse-feebas-main-grid.has-mismatch .rse-feebas-results-card {
+  border-color: #f87171;
+  box-shadow:
+    0 0 0 1px rgba(248, 113, 113, 0.45),
+    0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.rse-feebas-map-card {
+  min-width: 0;
+}
+
+.rse-feebas-map-card-header {
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.rse-feebas-result-list {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rse-feebas-result-list article {
+  border: 1px solid #475569;
+  border-radius: 8px;
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.65rem;
+}
+
+.rse-feebas-rng-table-wrap,
+.rse-feebas-validation-table-wrap {
+  border: 1px solid #3f4656;
+  border-radius: 8px;
+  max-height: 420px;
+  overflow: auto;
+}
+
+.rse-feebas-rng-table,
+.rse-feebas-validation-table {
+  border-collapse: collapse;
+  min-width: 100%;
+}
+
+.rse-feebas-rng-table th,
+.rse-feebas-rng-table td,
+.rse-feebas-validation-table th,
+.rse-feebas-validation-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.48rem 0.55rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.rse-feebas-rng-table th,
+.rse-feebas-validation-table th {
+  background: #11141b;
+  color: #dfe7f2;
+  font-weight: 900;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.rse-feebas-rng-table tr.is-rejected td {
+  color: #fbbf24;
+}
+
+.rse-feebas-validation-table-card {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.rse-feebas-table-header {
+  justify-content: space-between;
+}
+
+.rse-feebas-validation-table tbody tr {
+  cursor: pointer;
+}
+
+.rse-feebas-validation-table tbody tr:hover,
+.rse-feebas-validation-table tbody tr.active {
+  background: rgba(250, 204, 21, 0.12);
+}
+
+@media (max-width: 1220px) {
+  .rse-feebas-workflow,
+  .rse-feebas-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rse-feebas-progress-card {
+    flex-basis: auto;
+  }
+}
+
+@media (max-width: 820px) {
+  .rse-feebas-validator {
+    margin-left: 0;
+    padding: 0.75rem;
+    transform: none;
+    width: 100%;
+  }
+
+  .rse-feebas-validator-header {
+    flex-direction: column;
+  }
+
+  .rse-feebas-custom-row,
+  .rse-feebas-result-list {
+    grid-template-columns: 1fr;
+  }
+}

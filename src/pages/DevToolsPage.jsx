@@ -41,6 +41,36 @@ const toolGroups = [
           "Mt. Coronet Feebas fishing tile grid editor with local save and JSON import/export."
       },
       {
+        label: "RSE Route 119 Feebas Tile Editor",
+        path: "/dev/rse-feebas-tile-editor",
+        description:
+          "Route 119 fishing spot mapping editor with 140-row grid, section validation, local save, and JSON import/export."
+      },
+      {
+        label: "RSE Feebas Algorithm Validator",
+        path: "/dev/rse-feebas-algorithm-validator",
+        description:
+          "Route 119 custom Feebas value validator with RNG diagnostics, map highlights, and Muck comparison tracking."
+      },
+      {
+        label: "Emerald Feebas Recovery Validator",
+        path: "/dev/emerald-feebas-recovery-validator",
+        description:
+          "Emerald Trainer ID and Dewford Trend recovery validator for candidate Feebas values."
+      },
+      {
+        label: "Emerald .sav Exact Feebas Validator",
+        path: "/dev/emerald-feebas-save-validator",
+        description:
+          "Read-only local Emerald save parser that extracts the stored Feebas value and renders exact Route 119 tiles."
+      },
+      {
+        label: "Ruby/Sapphire Feebas Recovery Validator",
+        path: "/dev/rs-feebas-recovery-validator",
+        description:
+          "Developer Ruby/Sapphire Feebas save extraction, dead-RTC prediction, and working-battery state search."
+      },
+      {
         label: "Feebas Map Validator",
         path: "/dev/feebas-map-validator",
         description:

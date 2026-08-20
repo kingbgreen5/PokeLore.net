@@ -1,6 +1,8 @@
-
-
-
+import {
+  useCallback,
+  useEffect,
+  useMemo
+} from "react";
 import TypeBadge from "./TypeBadge";
 import { Link }
 from "react-router-dom";
@@ -11,6 +13,9 @@ import physicalBadge from "../assets/Physical Badge.png";
 import specialBadge from "../assets/Special Badge.png";
 import statusBadge from "../assets/Status Badge.png";
 import { sortVersionGroups } from "../constants/versionOrder";
+
+const LEARNSET_VERSION_STORAGE_KEY =
+  "pokelore:learnset-version";
 
 function capitalize(text) {
   return text
@@ -65,16 +70,19 @@ function LearnsetCard({
   //   )
   // ];
 
-const versionGroups = [
-  "all",
-  ...sortVersionGroups(
-    new Set(
-      pokemonData.moves.map(
-        move => move.versionGroup
+const versionGroups = useMemo(
+  () => [
+    "all",
+    ...sortVersionGroups(
+      new Set(
+        pokemonData.moves.map(
+          move => move.versionGroup
+        )
       )
     )
-  )
-];
+  ],
+  [pokemonData.moves]
+);
 
   //-----------------------------------------
   //  Default Selected Version
@@ -84,7 +92,7 @@ const versionGroups = [
     preferredVersion,
     setPreferredVersion
   ] = useLocalStorageState(
-    "pokelore:learnset-version",
+    LEARNSET_VERSION_STORAGE_KEY,
     "all"
   );
   const selectedVersion =
@@ -93,6 +101,37 @@ const versionGroups = [
     )
       ? preferredVersion
       : "all";
+
+  const updatePreferredVersion =
+    useCallback(
+      nextVersion => {
+        try {
+          localStorage.setItem(
+            LEARNSET_VERSION_STORAGE_KEY,
+            JSON.stringify(nextVersion)
+          );
+        } catch {
+          // Local storage can fail in private browsing or strict browser settings.
+        }
+
+        setPreferredVersion(nextVersion);
+      },
+      [setPreferredVersion]
+    );
+
+  useEffect(() => {
+    if (
+      !versionGroups.includes(
+        preferredVersion
+      )
+    ) {
+      updatePreferredVersion("all");
+    }
+  }, [
+    preferredVersion,
+    updatePreferredVersion,
+    versionGroups
+  ]);
 
 
   //-----------------------------------------
@@ -176,7 +215,7 @@ const filteredMoves =
                 selectedVersion
               }
               onChange={e =>
-                setPreferredVersion(
+                updatePreferredVersion(
                   e.target.value
                 )
               }
