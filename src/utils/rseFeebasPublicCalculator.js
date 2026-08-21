@@ -1,11 +1,11 @@
 import {
-  calculateRseFeebasFromValue,
-  getRoute119FeebasCoordinateForSpotId
+  calculateRseFeebasFromValue
 } from "./rseFeebasCalculator";
 import {
   buildTileOverlapSummary,
   filterPriorityTiles
 } from "./feebasPriorityMap";
+import { getPlayerFacingLocationsForSpotId } from "./rseFeebasDisplayRules";
 
 function coordinateKey(tile) {
   return `${tile.x}:${tile.y}`;
@@ -14,12 +14,13 @@ function coordinateKey(tile) {
 export function getUniqueReachableTiles(result) {
   const byCoordinate = new Map();
   const inaccessible = [];
+  const underBridge = [];
 
   result.generatedSpotIds.forEach((spotId, index) => {
-    const tile =
-      getRoute119FeebasCoordinateForSpotId(spotId);
+    const locations =
+      getPlayerFacingLocationsForSpotId(spotId);
 
-    if (!tile || tile.feebasSelectable === false) {
+    if (locations.length === 0) {
       inaccessible.push({
         resultNumber: index + 1,
         spotId
@@ -27,21 +28,36 @@ export function getUniqueReachableTiles(result) {
       return;
     }
 
-    const key = coordinateKey(tile);
-    const entry = byCoordinate.get(key) ?? {
-      ...tile,
-      resultNumbers: [],
-      spotIds: []
-    };
+    if (
+      locations.some(
+        location => location.displayRule === "underBridge"
+      )
+    ) {
+      underBridge.push({
+        resultNumber: index + 1,
+        spotId,
+        locationCount: locations.length
+      });
+    }
 
-    entry.resultNumbers.push(index + 1);
-    entry.spotIds.push(spotId);
-    byCoordinate.set(key, entry);
+    locations.forEach(location => {
+      const key = coordinateKey(location);
+      const entry = byCoordinate.get(key) ?? {
+        ...location,
+        resultNumbers: [],
+        spotIds: []
+      };
+
+      entry.resultNumbers.push(index + 1);
+      entry.spotIds.push(spotId);
+      byCoordinate.set(key, entry);
+    });
   });
 
   return {
     tiles: [...byCoordinate.values()],
-    inaccessible
+    inaccessible,
+    underBridge
   };
 }
 
@@ -54,7 +70,8 @@ export function buildPublicTileSet(value, index = 0) {
     value: result.feebasValue,
     result,
     reachableTiles: reachable.tiles,
-    inaccessible: reachable.inaccessible
+    inaccessible: reachable.inaccessible,
+    underBridge: reachable.underBridge
   };
 }
 
@@ -139,10 +156,13 @@ export function buildRecommendedTileSequence(tileSets) {
 export function buildPossibleTileSetResult(values) {
   const uniqueValues = [...new Set(values)];
   const tileSets = uniqueValues.map(buildPublicTileSet);
+  const prioritySummary =
+    buildTileOverlapSummary(uniqueValues);
 
   return {
     values: uniqueValues,
     tileSets,
+    priorityTiles: prioritySummary.tiles,
     recommendedTiles:
       buildRecommendedTileSequence(tileSets)
   };

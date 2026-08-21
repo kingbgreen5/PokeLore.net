@@ -1,12 +1,23 @@
 .rse-feebas-public-page {
+  box-sizing: border-box;
   color: #eef6ff;
   margin: 0 auto;
   max-width: 1220px;
   padding: 1.5rem 1rem 3rem;
+  overflow-x: clip;
+  width: 100%;
+}
+
+.rse-feebas-public-page *,
+.rse-feebas-public-page *::before,
+.rse-feebas-public-page *::after {
+  box-sizing: border-box;
 }
 
 .rse-feebas-public-header {
   margin: 0 0 1rem;
+  min-width: 0;
+  text-align: center;
 }
 
 .rse-feebas-public-header > p {
@@ -23,14 +34,18 @@
   letter-spacing: 0;
   line-height: 1.15;
   margin: 0;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .rse-feebas-public-header > span {
   color: #dbeafe;
   display: block;
   line-height: 1.5;
-  margin-top: 0.6rem;
+  margin: 0.6rem auto 0;
   max-width: 760px;
+  overflow-wrap: break-word;
+  text-align: center;
 }
 
 .rse-feebas-public-tool {
@@ -38,6 +53,8 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
+  min-width: 0;
+  width: 100%;
 }
 
 .rse-feebas-public-controls,
@@ -48,6 +65,7 @@
   box-sizing: border-box;
   min-width: 0;
   padding: 1rem;
+  width: 100%;
 }
 
 .rse-feebas-public-controls {
@@ -80,12 +98,14 @@
 .rse-feebas-result-card p {
   line-height: 1.45;
   margin: 0 0 0.75rem;
+  overflow-wrap: break-word;
 }
 
 .rse-feebas-game-grid {
   display: grid;
   gap: 0.55rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
 }
 
 .rse-feebas-game-grid button,
@@ -93,8 +113,7 @@
 .rse-feebas-segmented button,
 .rse-feebas-map-controls button,
 .rse-feebas-panel > button,
-.rse-feebas-start-over,
-.rse-feebas-recommendations button {
+.rse-feebas-start-over {
   background: #1f2937;
   border: 1px solid #64748b;
   border-radius: 6px;
@@ -104,7 +123,9 @@
   font-weight: 850;
   min-height: 2.45rem;
   min-width: 0;
+  overflow-wrap: anywhere;
   padding: 0.55rem 0.75rem;
+  white-space: normal;
 }
 
 .rse-feebas-game-grid button[aria-pressed="true"],
@@ -113,6 +134,37 @@
   background: #f59e0b;
   border-color: #fde68a;
   color: #111827;
+}
+
+.rse-feebas-game-grid
+  .rse-feebas-game-button--ruby-sapphire[aria-pressed="true"] {
+  background: linear-gradient(
+    115deg,
+    #ce051c 0%,
+     #3a1e21 25%,
+    #771928 49%,
+    #f2e3fa 50%,
+    #013ea8 51%,
+      #091427 75%,
+    #1860fc 100%
+  );
+  border-color: #dbeafe;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.36),
+    0 0 0 1px rgba(17, 24, 39, 0.24);
+  color: #ffffff;
+  text-shadow: 0 2px 2px rgba(17, 24, 39, 0.72);
+}
+
+.rse-feebas-game-grid
+  .rse-feebas-game-button--emerald[aria-pressed="true"] {
+  background: linear-gradient(17deg, #91d3bb 0%, #123127 48%, #0d906a 100%);
+  border-color: #a7f3d0;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    0 0 0 1px rgba(6, 95, 70, 0.42);
+  color: #ecfdf5;
+  text-shadow: 0 2px 2px rgba(6, 78, 59, 0.72);
 }
 
 .rse-feebas-panel > button:disabled {
@@ -126,7 +178,9 @@
   border-radius: 8px 8px 0 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
   overflow: hidden;
+  width: 100%;
 }
 
 .rse-feebas-tabs button {
@@ -152,6 +206,7 @@
   gap: 0.75rem;
   min-width: 0;
   padding: 0.85rem;
+  width: 100%;
 }
 
 .rse-feebas-public-inputs {
@@ -188,6 +243,10 @@
   min-width: 0;
   padding: 0.45rem 0.55rem;
   width: 100%;
+}
+
+.rse-feebas-panel input[type="file"] {
+  overflow: hidden;
 }
 
 .rse-feebas-public-inputs small,
@@ -252,9 +311,21 @@
   display: grid;
   gap: 1rem;
   min-width: 0;
+  width: 100%;
+}
+
+.rse-feebas-pokemon-summary {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
+  justify-content: center;
+  margin: 1.25rem auto 0;
+  max-width: 680px;
+  width: 100%;
 }
 
 .rse-feebas-public-map-stack .rse-route119-map-scroll {
+  max-width: 100%;
   max-height: min(88vh, 1180px);
   padding: 1.5rem;
 }
@@ -264,6 +335,7 @@
   display: flex;
   gap: 1rem;
   justify-content: space-between;
+  min-width: 0;
 }
 
 .rse-feebas-section-heading p {
@@ -277,6 +349,8 @@
   border-radius: 6px;
   color: #bae6fd;
   flex: 0 0 auto;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   padding: 0.45rem 0.6rem;
 }
 
@@ -284,16 +358,52 @@
 .rse-feebas-segmented,
 .rse-feebas-priority-controls,
 .rse-feebas-priority-stats,
-.rse-feebas-priority-legend,
-.rse-feebas-more-tools {
+.rse-feebas-priority-legend {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
+  min-width: 0;
 }
 
 .rse-feebas-map-controls {
   align-items: center;
-  margin: 1rem 0 0.75rem;
+  justify-content: center;
+  margin: 0.75rem 0 0;
+}
+
+.rse-feebas-map-controls button {
+  font-size: 0.9rem;
+  min-height: 2rem;
+  padding: 0.35rem 0.6rem;
+}
+
+.rse-feebas-map-mode {
+  display: grid;
+  gap: 0.6rem;
+  justify-items: center;
+  margin: 1rem 0 0.85rem;
+}
+
+.rse-feebas-map-mode .rse-feebas-segmented {
+  justify-content: center;
+  max-width: 100%;
+}
+
+.rse-feebas-map-mode .rse-feebas-segmented button {
+  font-size: 1.08rem;
+  min-height: 3rem;
+  min-width: 7rem;
+  padding: 0.7rem 1.15rem;
+}
+
+.rse-feebas-mode-help {
+  color: #dbeafe;
+  font-size: 0.86rem;
+  font-weight: 750;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 100%;
+  text-align: center;
 }
 
 .rse-feebas-map-controls span {
@@ -307,7 +417,7 @@
 }
 
 .rse-feebas-priority-controls label {
-  min-width: 190px;
+  min-width: min(190px, 100%);
 }
 
 .rse-feebas-priority-stats span,
@@ -344,38 +454,10 @@
   color: #ffffff;
 }
 
-.rse-feebas-recommendations {
-  display: grid;
-  gap: 0.6rem;
-  margin-top: 1rem;
-}
-
-.rse-feebas-recommendations h3 {
-  margin: 0;
-}
-
-.rse-feebas-recommendations button {
-  align-items: start;
-  background: #0d121b;
-  display: grid;
-  gap: 0.2rem;
-  justify-items: start;
-  text-align: left;
-}
-
-.rse-feebas-recommendations button.selected {
-  border-color: #7dd3fc;
-  box-shadow: 0 0 0 2px rgba(125, 211, 252, 0.25);
-}
-
-.rse-feebas-recommendations small {
-  color: #bae6fd;
-}
-
 .rse-feebas-set-grid {
   display: grid;
   gap: 0.75rem;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr));
   margin-top: 1rem;
 }
 
@@ -443,25 +525,47 @@
   color: #fecaca;
 }
 
-.rse-feebas-more-tools {
+.rse-feebas-guide-note,
+.rse-feebas-beauty-note {
   background: rgba(14, 165, 233, 0.12);
   border: 1px solid rgba(125, 211, 252, 0.58);
   border-radius: 8px;
-  margin-top: 1.25rem;
+  box-shadow: inset 0 0 0 1px rgba(14, 165, 233, 0.08);
+  color: #dbeafe;
+  line-height: 1.55;
+  margin: 1.25rem auto 0;
   max-width: 820px;
   padding: 1rem;
+  text-align: left;
+  width: 100%;
 }
 
-.rse-feebas-more-tools h2 {
-  flex-basis: 100%;
-  font-size: 1.2rem;
+.rse-feebas-guide-note {
+  font-weight: 850;
+}
+
+.rse-feebas-beauty-note h2 {
+  color: #bae6fd;
+  font-size: clamp(1.12rem, 2vw, 1.35rem);
   letter-spacing: 0;
+  line-height: 1.2;
+  margin: 0 0 0.45rem;
+}
+
+.rse-feebas-guide-note p,
+.rse-feebas-beauty-note p {
   margin: 0;
 }
 
-.rse-feebas-more-tools a {
+.rse-feebas-guide-note a,
+.rse-feebas-beauty-note a {
   color: #7dd3fc;
   font-weight: 850;
+}
+
+.rse-feebas-guide-note a:hover,
+.rse-feebas-beauty-note a:hover {
+  color: #ffffff;
 }
 
 .rse-feebas-public-guide {
@@ -469,12 +573,15 @@
   line-height: 1.65;
   margin-top: 2.5rem;
   max-width: 820px;
+  overflow-wrap: break-word;
   text-align: left;
+  width: 100%;
 }
 
 .rse-feebas-public-guide h2 {
   color: #ffffff;
   font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 850;
   letter-spacing: 0;
   line-height: 1.2;
   margin: 2rem 0 0.75rem;
@@ -487,6 +594,7 @@
 .rse-feebas-public-guide h3 {
   color: #bae6fd;
   font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 850;
   letter-spacing: 0;
   line-height: 1.25;
   margin: 1.5rem 0 0.55rem;
@@ -496,19 +604,57 @@
   margin: 0 0 0.9rem;
 }
 
+.rse-feebas-public-guide a {
+  color: #7dd3fc;
+  font-weight: 850;
+}
+
+.rse-feebas-public-guide a:hover {
+  color: #ffffff;
+}
+
 @media (max-width: 920px) {
   .rse-feebas-public-tool {
     grid-template-columns: 1fr;
+  }
+
+  .rse-feebas-public-controls {
+    order: 1;
+  }
+
+  .rse-feebas-public-map-stack {
+    order: 2;
   }
 }
 
 @media (max-width: 640px) {
   .rse-feebas-public-page {
-    padding-inline: 0.75rem;
+    padding: 1rem 0.5rem 2.25rem;
+  }
+
+  .rse-feebas-public-header {
+    margin-bottom: 0.8rem;
+  }
+
+  .rse-feebas-public-header > p {
+    font-size: 0.72rem;
+    line-height: 1.25;
+  }
+
+  .rse-feebas-public-header h1 {
+    font-size: 2rem;
+    line-height: 1.12;
+  }
+
+  .rse-feebas-public-header > span {
+    font-size: 0.98rem;
+    line-height: 1.45;
+    max-width: 100%;
   }
 
   .rse-feebas-section-heading {
     display: grid;
+    gap: 0.65rem;
   }
 
   .rse-feebas-section-heading strong {
@@ -521,11 +667,87 @@
 
   .rse-feebas-public-controls,
   .rse-feebas-result-card {
-    padding: 0.75rem;
+    border-radius: 7px;
+    padding: 0.65rem;
+  }
+
+  .rse-feebas-tabs button {
+    font-size: 0.95rem;
+    padding: 0.55rem 0.35rem;
+  }
+
+  .rse-feebas-panel {
+    padding: 0.65rem;
+  }
+
+  .rse-feebas-panel input[type="file"] {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+
+  .rse-feebas-map-mode .rse-feebas-segmented {
+    width: 100%;
+  }
+
+  .rse-feebas-map-mode .rse-feebas-segmented button {
+    flex: 1 1 0;
+    font-size: 1rem;
+    min-width: 0;
+  }
+
+  .rse-feebas-map-controls button {
+    flex: 1 1 auto;
+    font-size: 0.82rem;
+    min-width: min(7rem, 100%);
+  }
+
+  .rse-feebas-priority-controls {
+    align-items: stretch;
+    display: grid;
+  }
+
+  .rse-feebas-priority-controls label {
+    min-width: 0;
+  }
+
+  .rse-feebas-pokemon-summary {
+    grid-template-columns: minmax(0, 320px);
+    max-width: 100%;
   }
 
   .rse-feebas-public-map-stack .rse-route119-map-scroll {
     max-height: 82vh;
-    padding: 1rem;
+    padding: 0.75rem;
+  }
+
+  .rse-feebas-guide-note,
+  .rse-feebas-beauty-note,
+  .rse-feebas-public-guide {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .rse-feebas-public-header h1 {
+    font-size: 1.65rem;
+  }
+
+  .rse-feebas-public-header > span {
+    font-size: 0.94rem;
+  }
+
+  .rse-feebas-map-mode .rse-feebas-segmented button {
+    min-height: 2.65rem;
+    padding: 0.55rem 0.6rem;
+  }
+
+  .rse-feebas-map-controls {
+    gap: 0.4rem;
+  }
+
+  .rse-feebas-map-controls button {
+    font-size: 0.76rem;
+    min-height: 1.9rem;
+    padding: 0.3rem 0.45rem;
   }
 }

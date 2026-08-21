@@ -6,6 +6,7 @@ import {
 import { Link } from "react-router-dom";
 import FeebasGuideBreadcrumbs from "../components/feebas/FeebasGuideBreadcrumbs";
 import RseRoute119FeebasMap from "../components/feebas/RseRoute119FeebasMap";
+import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import {
   EMERALD_EASY_CHAT_CONDITIONS,
   EMERALD_EASY_CHAT_SECOND_GROUPS
@@ -26,6 +27,9 @@ import {
   buildPublicTileSet
 } from "../utils/rseFeebasPublicCalculator";
 import {
+  route119FeebasTiles
+} from "../utils/rseFeebasCalculator";
+import {
   findRsDeadBatteryCandidates,
   findRsWorkingBatteryCandidates
 } from "../utils/rsFeebasRecovery";
@@ -42,10 +46,21 @@ const BATTERY_MODES = {
   UNSURE: "unsure"
 };
 
+const DEFAULT_GAME = "emerald";
+
 const PRIORITY_DISPLAY_MODES = {
   TIERED: "tiered",
   HEATMAP: "heatmap"
 };
+
+const MAP_MODES = {
+  HINT: "hint",
+  EXACT: "exact"
+};
+
+const RSE_HINT_AREA_SIZE = 4;
+const RSE_HINT_TILE_COUNT =
+  RSE_HINT_AREA_SIZE * RSE_HINT_AREA_SIZE;
 
 const DESKTOP_MAP_ZOOM = 0.56;
 const MOBILE_MAP_ZOOM = 0.2375;
@@ -63,6 +78,25 @@ const GAME_OPTIONS = [
   }
 ];
 
+const FEEBAS_EVOLUTION_POKEMON = [
+  {
+    id: 349,
+    name: "feebas",
+    species: "feebas",
+    types: ["water"],
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/349.png"
+  },
+  {
+    id: 350,
+    name: "milotic",
+    species: "milotic",
+    types: ["water"],
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/350.png"
+  }
+];
+
 const PRIORITY_FILTERS = [
   ["all", "All possible tiles"],
   ["top10", "Top 10"],
@@ -73,6 +107,124 @@ const PRIORITY_FILTERS = [
 
 function getGameOption(game) {
   return GAME_OPTIONS.find(option => option.id === game);
+}
+
+function hashSearchAreaSeed(seed) {
+  const seedText = String(seed ?? "");
+  let hash = 0x811c9dc5;
+
+  for (let index = 0; index < seedText.length; index += 1) {
+    hash ^= seedText.charCodeAt(index);
+    hash = Math.imul(hash, 0x01000193) >>> 0;
+  }
+
+  return hash;
+}
+
+function coordinateKey(tile) {
+  return `${tile.x}:${tile.y}`;
+}
+
+function getHintDistanceScore(tile, exactTile) {
+  const deltaX = Math.abs(tile.x - exactTile.x);
+  const deltaY = Math.abs(tile.y - exactTile.y);
+
+  return {
+    chebyshev: Math.max(deltaX, deltaY),
+    manhattan: deltaX + deltaY,
+    squared: deltaX * deltaX + deltaY * deltaY
+  };
+}
+
+function getFishableHintTiles(location, seed) {
+  const exactTile = {
+    x: Number(location.x),
+    y: Number(location.y)
+  };
+  const fishableByCoordinate = new Map();
+
+  route119FeebasTiles
+    .filter(tile => tile.feebasSelectable !== false)
+    .forEach(tile => {
+      fishableByCoordinate.set(coordinateKey(tile), tile);
+    });
+  fishableByCoordinate.set(coordinateKey(exactTile), {
+    ...location,
+    ...exactTile
+  });
+
+  return [...fishableByCoordinate.values()]
+    .sort((left, right) => {
+      const leftScore = getHintDistanceScore(
+        left,
+        exactTile
+      );
+      const rightScore = getHintDistanceScore(
+        right,
+        exactTile
+      );
+
+      return (
+        leftScore.chebyshev - rightScore.chebyshev ||
+        leftScore.manhattan - rightScore.manhattan ||
+        leftScore.squared - rightScore.squared ||
+        (hashSearchAreaSeed(
+          `${seed}:${coordinateKey(left)}`
+        ) %
+          7) -
+          (hashSearchAreaSeed(
+            `${seed}:${coordinateKey(right)}`
+          ) %
+            7) ||
+        left.y - right.y ||
+        left.x - right.x
+      );
+    })
+    .slice(0, RSE_HINT_TILE_COUNT)
+    .map(tile => ({
+      x: tile.x,
+      y: tile.y,
+      sourceSpotId:
+        location.sourceSpotId ??
+        location.spotId ??
+        location.spotIds?.[0]
+    }));
+}
+
+function getRseHintAreaForLocation(location, seed, index = 0) {
+  return {
+    areaNumber:
+      location.resultNumbers?.[0] ??
+      location.resultNumber ??
+      index + 1,
+    sourceSpotId:
+      location.sourceSpotId ??
+      location.spotId ??
+      location.spotIds?.[0],
+    exactCoordinate: {
+      x: Number(location.x),
+      y: Number(location.y)
+    },
+    tiles: getFishableHintTiles(location, seed)
+  };
+}
+
+function getRseHintAreasForLocations(locations, seedPrefix) {
+  return locations.map((location, index) =>
+    getRseHintAreaForLocation(
+      location,
+      [
+        seedPrefix,
+        index,
+        location.sourceSpotId ??
+          location.spotId ??
+          location.spotIds?.join(","),
+        location.x,
+        location.y
+      ].join(":"),
+      index
+    )
+  );
 }
 
 function sortEasyChatWordsByText(words) {
@@ -101,7 +253,7 @@ function getSecondWordOptions() {
       .flatMap(([group, words]) =>
       words.map(word => ({
         ...word,
-        value: `${word.text} (${group})`,
+        value: word.text,
         group,
         groupLabel:
           group === "lifestyle" ? "Lifestyle" : "Hobbies"
@@ -128,10 +280,6 @@ function findSecondWord(input, options) {
         text ||
       word.text === text
   );
-}
-
-function formatTileLabel(tile) {
-  return `Map marker #${tile.rank}`;
 }
 
 function getDefaultMapZoom() {
@@ -177,7 +325,42 @@ function MapControls({
       >
         Reset View
       </button>
-      <span>{Math.round(zoom * 100)}%</span>
+      {/* <span>{Math.round(zoom * 100)}%</span> */}
+    </div>
+  );
+}
+
+function MapModeControls({
+  mode,
+  onModeChange
+}) {
+  return (
+    <div className="rse-feebas-map-mode">
+      <div
+        className="rse-feebas-segmented"
+        role="group"
+        aria-label="Map mode"
+      >
+        <button
+          type="button"
+          aria-pressed={mode === MAP_MODES.HINT}
+          onClick={() => onModeChange(MAP_MODES.HINT)}
+        >
+          Hint
+        </button>
+        <button
+          type="button"
+          aria-pressed={mode === MAP_MODES.EXACT}
+          onClick={() => onModeChange(MAP_MODES.EXACT)}
+        >
+          Exact
+        </button>
+      </div>
+      <p className="rse-feebas-mode-help">
+        {mode === MAP_MODES.EXACT
+          ? "Show the exact fishing locations."
+          : "Show a 16 tile approximate location for each possible Feebas spot."}
+      </p>
     </div>
   );
 }
@@ -208,7 +391,7 @@ function WordInputs({
           inputMode="numeric"
           maxLength={5}
           value={trainerId}
-          placeholder="22279"
+          placeholder="00000"
           onChange={event =>
             onTrainerIdChange(event.target.value)
           }
@@ -219,12 +402,12 @@ function WordInputs({
       </label>
 
       <label>
-        <span>Current Dewford Trend: first word</span>
+        <span>Current Dewford Trend</span>
         <input
           type="text"
           list="rse-feebas-conditions"
           value={firstWord}
-          placeholder="TIRED"
+          placeholder="First word"
           onChange={event =>
             onFirstWordChange(event.target.value)
           }
@@ -240,12 +423,12 @@ function WordInputs({
       </label>
 
       <label>
-        <span>Current Dewford Trend: second word</span>
+     
         <input
           type="text"
           list="rse-feebas-second-words"
           value={secondWord}
-          placeholder="DIET (hobbies)"
+          placeholder="Second word"
           onChange={event =>
             onSecondWordChange(event.target.value)
           }
@@ -255,12 +438,14 @@ function WordInputs({
             <option
               key={`${word.group}:${word.index}`}
               value={word.value}
-            >
-              {word.groupLabel}
-            </option>
+            />
           ))}
         </datalist>
       </label>
+      <p>
+        Use the trendy phrase currently being discussed in{" "}
+        <Link to="/location/dewford-town">Dewford Town</Link>.
+      </p>
     </div>
   );
 }
@@ -290,6 +475,14 @@ function AdvancedDetails({
           <div>
             <dt>Unique reachable locations shown</dt>
             <dd>{result.tileSet.reachableTiles.length}</dd>
+          </div>
+          <div>
+            <dt>Inaccessible internal results</dt>
+            <dd>{result.tileSet.inaccessible.length}</dd>
+          </div>
+          <div>
+            <dt>Under-bridge internal results</dt>
+            <dd>{result.tileSet.underBridge.length}</dd>
           </div>
           {result.parseResult && (
             <>
@@ -366,12 +559,21 @@ function AdvancedDetails({
 function ExactResult({
   result,
   zoom,
+  mapMode,
+  onMapModeChange,
   onZoomChange
 }) {
   const shownCount =
     result.tileSet.reachableTiles.length;
   const generatedCount =
     result.tileSet.result.generatedSpotIds.length;
+  const hintAreas =
+    mapMode === MAP_MODES.HINT
+      ? getRseHintAreasForLocations(
+          result.tileSet.reachableTiles,
+          result.tileSet.value
+        )
+      : [];
 
   return (
     <section className="rse-feebas-result-card">
@@ -380,34 +582,44 @@ function ExactResult({
           <h2>Your Feebas Tiles</h2>
           <p>
             We found the exact Feebas value stored in your
-            save. Fish on any highlighted reachable tile
-            below.
+            save. Fish on any highlighted location below.
           </p>
         </div>
-        <strong>
-          {shownCount} reachable Feebas tile
-          {shownCount === 1 ? "" : "s"} found
-        </strong>
+        {/* <strong>
+          {shownCount} highlighted Feebas location
+          {shownCount === 1 ? "" : "s"}
+        </strong> */}
       </div>
+      <MapModeControls
+        mode={mapMode}
+        onModeChange={onMapModeChange}
+      />
+      <RseRoute119FeebasMap
+        displayLocations={
+          mapMode === MAP_MODES.EXACT
+            ? result.tileSet.reachableTiles
+            : []
+        }
+        highlightedAreas={hintAreas}
+        showGrid
+        showMapImage
+        zoom={zoom}
+        fitHeightToMapImage
+        showHighlightLabels={false}
+      />
       <MapControls
         zoom={zoom}
         defaultZoom={getDefaultMapZoom()}
         onZoomChange={onZoomChange}
       />
-      <RseRoute119FeebasMap
-        spotIds={result.tileSet.result.generatedSpotIds}
-        showGrid
-        showMapImage
-        zoom={zoom}
-      />
       {shownCount !== generatedCount && (
         <p className="rse-feebas-note">
-          {generatedCount} locations were generated
-          internally; {shownCount} reachable physical
+          {generatedCount} internal Feebas spots were
+          generated; {shownCount} player-facing fishing
           locations are shown.
         </p>
       )}
-      <AdvancedDetails result={result} />
+      {/* <AdvancedDetails result={result} /> */}
     </section>
   );
 }
@@ -415,19 +627,33 @@ function ExactResult({
 function PossibleSetsResult({
   result,
   zoom,
-  selectedTileKey,
-  onZoomChange,
-  onRecommendedTileClick
+  mapMode,
+  onMapModeChange,
+  onZoomChange
 }) {
+  const [onlyTileSet] = result.sets.tileSets;
+  const showSingleSixTileSet =
+    result.sets.tileSets.length === 1 &&
+    onlyTileSet.reachableTiles.length === 6;
+  const hintAreas =
+    mapMode === MAP_MODES.HINT
+      ? result.sets.tileSets.flatMap(tileSet =>
+          getRseHintAreasForLocations(
+            tileSet.reachableTiles,
+            tileSet.value
+          )
+        )
+      : [];
+
   return (
     <section className="rse-feebas-result-card">
       <div className="rse-feebas-section-heading">
         <div>
           <h2>Where to Check First</h2>
           <p>
-            Fish each recommended marker once or twice,
-            then move to the next one. Stop as soon as
-            Feebas appears.
+            {mapMode === MAP_MODES.EXACT
+              ? "Higher numbers mean more possible Feebas patterns overlap on that tile. Start with the highest numbers first."
+              : "Each highlighted block is a 16 tile search area around a possible Feebas location."}
           </p>
         </div>
         <strong>
@@ -437,53 +663,41 @@ function PossibleSetsResult({
       </div>
 
       <p className="rse-feebas-note">
-        Feebas does not appear on every fishing encounter
-        even on the correct tile. No Feebas yet after one
-        pass? Make another pass through the same
-        recommended tiles.
+        {mapMode === MAP_MODES.EXACT
+          ? "Feebas does not appear on every fishing encounter even on the correct tile. No Feebas yet after one pass? Make another pass through the highest-overlap tiles."
+          : "Feebas does not appear on every fishing encounter even in the correct area. Try each candidate area more than once before moving on."}
       </p>
 
+      <MapModeControls
+        mode={mapMode}
+        onModeChange={onMapModeChange}
+      />
+      <RseRoute119FeebasMap
+        displayLocations={
+          mapMode === MAP_MODES.EXACT &&
+          showSingleSixTileSet
+            ? onlyTileSet.reachableTiles
+            : []
+        }
+        highlightedAreas={hintAreas}
+        priorityTiles={
+          mapMode === MAP_MODES.EXACT &&
+          !showSingleSixTileSet
+            ? result.sets.priorityTiles
+            : []
+        }
+        priorityDisplayMode={PRIORITY_DISPLAY_MODES.TIERED}
+        showGrid
+        showMapImage
+        zoom={zoom}
+        fitHeightToMapImage
+        showHighlightLabels={false}
+      />
       <MapControls
         zoom={zoom}
         defaultZoom={getDefaultMapZoom()}
         onZoomChange={onZoomChange}
       />
-      <RseRoute119FeebasMap
-        recommendedTiles={result.sets.recommendedTiles}
-        selectedRecommendedTileKey={selectedTileKey}
-        onRecommendedTileClick={onRecommendedTileClick}
-        showGrid
-        showMapImage
-        zoom={zoom}
-      />
-
-      <div className="rse-feebas-recommendations">
-        <h3>Recommended Search Order</h3>
-        {result.sets.recommendedTiles.map(tile => (
-          <button
-            key={`${tile.x}:${tile.y}`}
-            type="button"
-            className={
-              selectedTileKey === `${tile.x}:${tile.y}`
-                ? "selected"
-                : ""
-            }
-            onClick={() => onRecommendedTileClick(tile)}
-          >
-            <strong>{formatTileLabel(tile)}</strong>
-            <span>
-              Covers possible set
-              {tile.setNumbers.length === 1 ? "" : "s"}{" "}
-              {tile.setNumbers.join(", ")}
-            </span>
-            <small>
-              Appears in {tile.overlapCount} possible
-              pattern
-              {tile.overlapCount === 1 ? "" : "s"}
-            </small>
-          </button>
-        ))}
-      </div>
 
       <div className="rse-feebas-set-grid">
         {result.sets.tileSets.map(tileSet => (
@@ -506,7 +720,7 @@ function PossibleSetsResult({
         ))}
       </div>
 
-      <AdvancedDetails result={result} />
+      {/* <AdvancedDetails result={result} /> */}
     </section>
   );
 }
@@ -516,11 +730,9 @@ function PriorityResult({
   priorityMode,
   priorityFilter,
   zoom,
-  selectedTileKey,
   onPriorityModeChange,
   onPriorityFilterChange,
-  onZoomChange,
-  onRecommendedTileClick
+  onZoomChange
 }) {
   const publicPriority = buildPublicPriorityResult(
     result.priority.summary.candidateValues,
@@ -535,7 +747,8 @@ function PriorityResult({
           <h2>Priority Map</h2>
           <p>
             Your save has many possible Feebas patterns.
-            Start with the highest-priority tiles.
+            Start with the tiles showing the highest overlap
+            counts.
           </p>
         </div>
         <strong>
@@ -547,8 +760,8 @@ function PriorityResult({
       <p className="rse-feebas-note">
         Higher-priority tiles appear in more of the
         possible Feebas patterns that match your
-        information. This is a search-priority map, not a
-        true probability model.
+        information. The number on each tile is the count of
+        matching Feebas patterns that include that tile.
       </p>
 
       <div className="rse-feebas-priority-stats">
@@ -635,55 +848,31 @@ function PriorityResult({
         )}
       </div>
 
+      <RseRoute119FeebasMap
+        priorityTiles={publicPriority.visibleTiles}
+        priorityDisplayMode={priorityMode}
+        showGrid
+        showMapImage
+        zoom={zoom}
+        fitHeightToMapImage
+      />
       <MapControls
         zoom={zoom}
         defaultZoom={getDefaultMapZoom()}
         onZoomChange={onZoomChange}
       />
-      <RseRoute119FeebasMap
-        priorityTiles={publicPriority.visibleTiles}
-        priorityDisplayMode={priorityMode}
-        recommendedTiles={publicPriority.recommendedTiles}
-        selectedRecommendedTileKey={selectedTileKey}
-        onRecommendedTileClick={onRecommendedTileClick}
-        showGrid
-        showMapImage
-        zoom={zoom}
-      />
-
-      <div className="rse-feebas-recommendations">
-        <h3>Best Tiles to Check First</h3>
-        {publicPriority.recommendedTiles.map(tile => (
-          <button
-            key={`${tile.x}:${tile.y}`}
-            type="button"
-            className={
-              selectedTileKey === `${tile.x}:${tile.y}`
-                ? "selected"
-                : ""
-            }
-            onClick={() => onRecommendedTileClick(tile)}
-          >
-            <strong>{formatTileLabel(tile)}</strong>
-            <span>
-              Appears in {tile.count} possible Feebas
-              pattern
-              {tile.count === 1 ? "" : "s"}
-            </span>
-          </button>
-        ))}
-      </div>
 
       <p className="rse-feebas-save-nudge">
         Want exact results? Upload your .sav file.
       </p>
-      <AdvancedDetails result={result} />
+      {/* <AdvancedDetails result={result} /> */}
     </section>
   );
 }
 
 function RseFeebasPublicCalculatorPage() {
-  const [selectedGame, setSelectedGame] = useState(null);
+  const [selectedGame, setSelectedGame] =
+    useState(DEFAULT_GAME);
   const [method, setMethod] = useState(METHODS.SAVE);
   const [batteryMode, setBatteryMode] =
     useState(BATTERY_MODES.WORKING);
@@ -697,15 +886,12 @@ function RseFeebasPublicCalculatorPage() {
   const [result, setResult] = useState(null);
   const [calculating, setCalculating] = useState(false);
   const [zoom, setZoom] = useState(() => getDefaultMapZoom());
+  const [mapMode, setMapMode] = useState(MAP_MODES.EXACT);
   const [priorityMode, setPriorityMode] = useState(
     PRIORITY_DISPLAY_MODES.TIERED
   );
   const [priorityFilter, setPriorityFilter] =
     useState("all");
-  const [
-    selectedRecommendedTileKey,
-    setSelectedRecommendedTileKey
-  ] = useState("");
   const saveInputRef = useRef(null);
   const workerRef = useRef(null);
   const secondWordOptions = useMemo(
@@ -720,7 +906,7 @@ function RseFeebasPublicCalculatorPage() {
     if (saveInputRef.current) {
       saveInputRef.current.value = "";
     }
-    setSelectedGame(null);
+    setSelectedGame(DEFAULT_GAME);
     setMethod(METHODS.SAVE);
     setBatteryMode(BATTERY_MODES.WORKING);
     setTrainerId("");
@@ -733,13 +919,9 @@ function RseFeebasPublicCalculatorPage() {
     setResult(null);
     setCalculating(false);
     setZoom(getDefaultMapZoom());
+    setMapMode(MAP_MODES.EXACT);
     setPriorityMode(PRIORITY_DISPLAY_MODES.TIERED);
     setPriorityFilter("all");
-    setSelectedRecommendedTileKey("");
-  }
-
-  function setSelectedTile(tile) {
-    setSelectedRecommendedTileKey(`${tile.x}:${tile.y}`);
   }
 
   function getPhraseSignatureOrError() {
@@ -777,7 +959,6 @@ function RseFeebasPublicCalculatorPage() {
   async function handleSaveChange(event) {
     const file = event.target.files?.[0];
     setResult(null);
-    setSelectedRecommendedTileKey("");
 
     if (!selectedGame) {
       setStatus({
@@ -948,7 +1129,6 @@ function RseFeebasPublicCalculatorPage() {
 
   function calculateFromGameInfo() {
     setResult(null);
-    setSelectedRecommendedTileKey("");
     const input = getPhraseSignatureOrError();
 
     if (input.error) {
@@ -1038,8 +1218,7 @@ function RseFeebasPublicCalculatorPage() {
           Calculator
         </h1>
         <span>
-          Find the Route 119 tiles where Feebas can appear.
-          Upload your save file for exact results, or use
+          Upload your save file for best results, or use
           your Trainer ID and Dewford trendy phrase to
           narrow down where to fish.
         </span>
@@ -1048,12 +1227,13 @@ function RseFeebasPublicCalculatorPage() {
       <section className="rse-feebas-public-tool">
         <div className="rse-feebas-public-controls">
           <section>
-            <h2>Which game are you playing?</h2>
+            {/* <h2>Version Selection</h2> */}
             <div className="rse-feebas-game-grid">
               {GAME_OPTIONS.map(option => (
                 <button
                   key={option.id}
                   type="button"
+                  className={`rse-feebas-game-button rse-feebas-game-button--${option.id}`}
                   aria-pressed={
                     selectedGame === option.id
                   }
@@ -1074,7 +1254,7 @@ function RseFeebasPublicCalculatorPage() {
 
           {selectedGame && (
             <section>
-              <h2>How would you like to find Feebas?</h2>
+              {/* <h2>Input Method</h2> */}
               <div
                 className="rse-feebas-tabs"
                 role="tablist"
@@ -1093,7 +1273,7 @@ function RseFeebasPublicCalculatorPage() {
                     });
                   }}
                 >
-                  Exact Save File
+                  Upload Save
                 </button>
                 <button
                   type="button"
@@ -1111,22 +1291,20 @@ function RseFeebasPublicCalculatorPage() {
                     }
                   }}
                 >
-                  No Save File
+                  Manual
                 </button>
               </div>
 
               {method === METHODS.SAVE && (
                 <div className="rse-feebas-panel">
-                  <h3>Exact Results</h3>
+              
                   <p>
-                    Upload your .sav file and PokeLore can
-                    read the Feebas value currently stored
-                    in your game.
+                    Upload your .sav file to find the current Feebas tiles in your game.
                   </p>
                   <label>
-                    <span>
+                    {/* <span>
                       {gameOption.fullLabel} .sav file
-                    </span>
+                    </span> */}
                     <input
                       ref={saveInputRef}
                       type="file"
@@ -1134,14 +1312,11 @@ function RseFeebasPublicCalculatorPage() {
                       onChange={handleSaveChange}
                     />
                   </label>
-                  <strong>Your save stays on your device.</strong>
+          
                   <details>
-                    <summary>Privacy details</summary>
+                    <summary>Privacy</summary>
                     <p>
-                      PokeLore reads the save directly in
-                      your browser to find the stored Feebas
-                      value. The save itself is not uploaded
-                      or stored.
+                  The save is read directly in your browser, it is not uploaded or stored.
                     </p>
                   </details>
                 </div>
@@ -1151,14 +1326,12 @@ function RseFeebasPublicCalculatorPage() {
                 <div className="rse-feebas-panel">
                   {selectedGame !== "emerald" && (
                     <fieldset className="rse-feebas-battery">
-                      <legend>
-                        Was the internal battery working
-                        when this save was first created?
-                      </legend>
+                      {/* <legend>
+                      Is your battery working, or does your emulator support RTC?
+                      </legend> */}
                       <p>
-                        This means when the save was
-                        originally started, not whether the
-                        battery works today.
+                 When you started the game, did you receive a warning such as 
+                        "The internal battery has run dry. Clock based events will no longer occur."?
                       </p>
                       <label>
                         <input
@@ -1174,7 +1347,7 @@ function RseFeebasPublicCalculatorPage() {
                             )
                           }
                         />
-                        Yes / Working
+                        NO 
                       </label>
                       <label>
                         <input
@@ -1190,9 +1363,9 @@ function RseFeebasPublicCalculatorPage() {
                             )
                           }
                         />
-                        No / Dead or invalid
+                        YES 
                       </label>
-                      <label>
+                      {/* <label>
                         <input
                           type="radio"
                           name="rse-feebas-battery"
@@ -1207,7 +1380,16 @@ function RseFeebasPublicCalculatorPage() {
                           }
                         />
                         Not sure
-                      </label>
+                      </label> */}
+
+
+                      <details>
+                    <summary>Playing on an emulator? </summary>
+                    <p>
+             If the game did not show the “internal battery has run dry” message when this save was first created, choose NO. 
+             Most modern emulators such as mGBA emulate the clock normally. If the game showed the dry-battery warning when the save was created, choose YES.
+                    </p>
+                  </details>
                     </fieldset>
                   )}
 
@@ -1231,23 +1413,15 @@ function RseFeebasPublicCalculatorPage() {
                     onSecondWordChange={setSecondWord}
                   />
 
-                  {selectedGame === "emerald" && (
-                    <details className="rse-feebas-help">
-                      <summary>
-                        Has your Dewford phrase been
-                        changed?
-                      </summary>
-                      <p>
-                        This method works best with the
-                        phrase originally generated for the
-                        save. Changing the Dewford trendy
-                        phrase or receiving trends through
-                        record mixing can break the
-                        connection between the visible
-                        phrase and your Feebas value.
-                      </p>
-                    </details>
-                  )}
+                  <details className="rse-feebas-help">
+                    <summary>
+                      Has your Dewford phrase been changed?
+                    </summary>
+                    <p>
+              Naturally changing trends are fine. However, manually submitted phrases will not display the correct results. 
+              You must wait until a game generated phrase resurfaces, or upload your .sav file.
+                    </p>
+                  </details>
 
                   <button
                     type="button"
@@ -1279,13 +1453,13 @@ function RseFeebasPublicCalculatorPage() {
                 </p>
               )}
 
-              <button
+              {/* <button
                 type="button"
                 className="rse-feebas-start-over"
                 onClick={resetPublicState}
               >
                 Start Over
-              </button>
+              </button> */}
             </section>
           )}
         </div>
@@ -1295,23 +1469,23 @@ function RseFeebasPublicCalculatorPage() {
             <section className="rse-feebas-result-card">
               <div className="rse-feebas-section-heading">
                 <div>
-                  <h2>Route 119 Map</h2>
-                  <p>
+                  {/* <h2>Route 119</h2> */}
+                  {/* <p>
                     Your highlighted Feebas tiles will appear
                     here after you upload a save or calculate
                     from game information.
-                  </p>
+                  </p> */}
                 </div>
               </div>
-              <MapControls
-                zoom={zoom}
-                defaultZoom={getDefaultMapZoom()}
-                onZoomChange={setZoom}
-              />
               <RseRoute119FeebasMap
                 showGrid
                 showMapImage
                 zoom={zoom}
+              />
+              <MapControls
+                zoom={zoom}
+                defaultZoom={getDefaultMapZoom()}
+                onZoomChange={setZoom}
               />
             </section>
           )}
@@ -1342,6 +1516,8 @@ function RseFeebasPublicCalculatorPage() {
             <ExactResult
               result={result}
               zoom={zoom}
+              mapMode={mapMode}
+              onMapModeChange={setMapMode}
               onZoomChange={setZoom}
             />
           )}
@@ -1350,9 +1526,9 @@ function RseFeebasPublicCalculatorPage() {
             <PossibleSetsResult
               result={result}
               zoom={zoom}
-              selectedTileKey={selectedRecommendedTileKey}
+              mapMode={mapMode}
+              onMapModeChange={setMapMode}
               onZoomChange={setZoom}
-              onRecommendedTileClick={setSelectedTile}
             />
           )}
 
@@ -1362,91 +1538,289 @@ function RseFeebasPublicCalculatorPage() {
               priorityMode={priorityMode}
               priorityFilter={priorityFilter}
               zoom={zoom}
-              selectedTileKey={selectedRecommendedTileKey}
               onPriorityModeChange={setPriorityMode}
               onPriorityFilterChange={setPriorityFilter}
               onZoomChange={setZoom}
-              onRecommendedTileClick={setSelectedTile}
             />
           )}
         </div>
       </section>
 
-      <aside className="rse-feebas-more-tools">
-        <h2>More Feebas Tools</h2>
-        <Link to="/dppt-feebas-calculator">
-          Diamond, Pearl, and Platinum Feebas Calculator
-        </Link>
-        <Link to="/topic/evolving-feebas-into-milotic-via-beauty">
-          Evolving Feebas into Milotic
-        </Link>
+      <section
+        className="rse-feebas-pokemon-summary"
+        aria-label="Feebas and Milotic"
+      >
+        {FEEBAS_EVOLUTION_POKEMON.map(pokemon => (
+          <PokemonSummaryCard
+            key={pokemon.name}
+            pokemon={pokemon}
+          />
+        ))}
+      </section>
+
+      <aside className="rse-feebas-guide-note">
+        <p>
+          For more info, see our guide:{" "}
+          <Link to="/topic/catching-feebas-in-pokemon-emerald">
+            Catching Feebas in Pokemon Emerald
+          </Link>
+          .
+        </p>
+      </aside>
+
+      <aside className="rse-feebas-beauty-note">
+        <h2>Beauty and the &apos;Bas</h2>
+        <p>
+          Once you have caught Feebas, please see our guide{" "}
+          <Link to="/topic/evolving-feebas-into-milotic-via-beauty">
+            Evolving Feebas to Milotic Via Beauty
+          </Link>
+          .
+        </p>
       </aside>
 
       <article className="rse-feebas-public-guide">
         <h2>
-          How Feebas Tiles Work in Ruby, Sapphire & Emerald
+          How to Find Feebas in Pokémon Ruby, Sapphire,
+          and Emerald
         </h2>
         <p>
-          Feebas is tied to a small set of Route 119 fishing
-          spots. The game stores a value in the save file,
-          and that value determines which spots can produce
-          Feebas.
+          Feebas is found by fishing on{" "}
+          <Link to="/location/hoenn-route-119">Route 119</Link>{" "}
+          in Pokémon Ruby, Pokémon Sapphire, and Pokémon
+          Emerald, but it does not appear throughout the
+          river normally. Instead, each save has a small set
+          of specific Feebas fishing tiles, making Feebas
+          notoriously difficult to find by searching{" "}
+          <Link to="/location/hoenn-route-119">Route 119</Link>{" "}
+          manually.
         </p>
         <p>
-          A correct tile does not guarantee every encounter
-          will be Feebas. Once you catch Feebas on a tile,
-          that tile is confirmed, so keep fishing there.
-        </p>
-
-        <h2>Why Does Ruby/Sapphire Ask About the Battery?</h2>
-        <p>
-          Ruby and Sapphire use RTC-dependent initialization.
-          A dead or invalid battery when the save was first
-          created makes the initial search much more
-          predictable. Emerald uses a different method here,
-          so this calculator does not ask about battery
-          status for Emerald.
-        </p>
-
-        <h2>Why Does Save Upload Give Exact Results?</h2>
-        <p>
-          The save directly contains the value the game uses
-          for Feebas. Uploading a compatible save lets the
-          calculator skip prediction and show the current
-          Route 119 tiles immediately. The file is processed
-          locally in your browser.
+          The Feebas Tile Calculator above can use
+          information from your game to determine or narrow
+          down those locations. If you can upload a
+          compatible .sav file, PokéLore can read the Feebas
+          value stored in the save and show your exact{" "}
+          <Link to="/location/hoenn-route-119">Route 119</Link>{" "}
+          Feebas locations. If you don&apos;t have access
+          to your save file, your Trainer ID and{" "}
+          <Link to="/location/dewford-town">Dewford Town</Link>{" "}
+          trendy phrase can still be used to narrow the
+          search.
         </p>
 
         <h2>
-          Why Are There So Many Possible Tiles in Ruby and
-          Sapphire?
+          How Feebas Tiles Work in Ruby, Sapphire, and
+          Emerald
         </h2>
         <p>
-          If the battery was working when a Ruby or Sapphire
-          save was created, the Trainer ID and current
-          Dewford phrase may still match many possible
-          Feebas patterns. PokeLore combines those patterns
-          into a priority map so the best tiles to try first
-          are easy to see.
+          The game generates six internal Feebas fishing
+          spots on{" "}
+          <Link to="/location/hoenn-route-119">Route 119</Link>{" "}
+          from a value stored in your
+          save. Most correspond to individual places where
+          you can fish, although a few possible results are
+          inaccessible because of{" "}
+          <Link to="/location/hoenn-route-119">Route 119</Link>
+          &apos;s map layout,
+          and one special result corresponds to fishable
+          water beneath a bridge. Feebas is not guaranteed
+          on every encounter even when you are fishing the
+          correct location, so try a valid tile more than
+          once before moving on.
+        </p>
+        <p>
+          Any fishing rod can catch Feebas on a valid tile.
+          Because you are trying to check locations quickly
+          rather than catch high-level Pokémon, the{" "}
+          <Link to="/item/old-rod">Old Rod</Link>{" "}
+          is often the fastest choice for searching. The rod
+          you use does not determine which{" "}
+          <Link to="/location/hoenn-route-119">Route 119</Link>{" "}
+          tiles
+          are Feebas tiles.
         </p>
 
-        <h2>Frequently Asked Questions</h2>
-        <h3>Does the battery matter in Emerald?</h3>
-        <p>Not for this Feebas calculation.</p>
-        <h3>Do I need a save file?</h3>
+        <h2>Why Does the Dewford Trendy Phrase Matter?</h2>
         <p>
-          No, but a save file gives exact results and is the
-          fastest method.
+          The trendy phrase in{" "}
+          <Link to="/location/dewford-town">Dewford Town</Link>{" "}
+          is connected to
+          the data used for your Feebas locations. However,
+          simply copying another player&apos;s trendy phrase
+          will not give you their Feebas tiles; the phrase
+          alone does not uniquely determine the locations.
+          Additional information, such as your Trainer ID,
+          is needed to recover useful possible results.
         </p>
-        <h3>What if I do not find Feebas on the first try?</h3>
         <p>
-          Keep trying. A correct Feebas tile does not make
-          every fishing encounter Feebas.
+          For best results, use the naturally generated
+          trendy phrase from your save. If the phrase has
+          been manually changed or affected by record
+          mixing, the visible phrase may no longer provide
+          enough information to predict the original Feebas
+          value. In that situation, save-file upload is the
+          most reliable method because it reads the value
+          used by the game directly.
         </p>
-        <h3>Once I catch Feebas, should I move?</h3>
+
+        <h2>
+          Ruby and Sapphire: Working Battery vs. Dead
+          Battery
+        </h2>
         <p>
-          No. Once you have confirmed a Feebas tile, keep
-          fishing that tile.
+          Pokémon Ruby and Sapphire behave differently
+          depending on whether the cartridge&apos;s internal
+          clock was working when the save was originally
+          created. A save started with a dead or invalid
+          battery is much easier to narrow down from its
+          Trainer ID and Dewford phrase, while a save
+          created with a working clock can have many more
+          possible Feebas patterns.
+        </p>
+        <p>
+          For working-battery saves, PokéLore combines all
+          matching patterns into a priority map instead of
+          overwhelming you with dozens of separate
+          possibilities. Tiles that occur in more matching
+          patterns are highlighted as higher priority,
+          giving you the best places to search first.
+        </p>
+        <p>
+          Uploading a save file bypasses this uncertainty
+          entirely. If the exact value can be read from your
+          save, it does not matter whether the battery was
+          working or dead when the game was created.
+        </p>
+
+        <h2>Does the Battery Matter in Pokémon Emerald?</h2>
+        <p>
+          No, not for this Feebas calculation. Pokémon
+          Emerald initializes the relevant random data
+          differently from Ruby and Sapphire, so you do not
+          need to know whether Emerald&apos;s internal battery
+          was working when your save was created.
+        </p>
+        <p>
+          A dead battery can still affect other clock-based
+          features in Emerald, but it does not require a
+          separate dead-battery Feebas calculation.
+        </p>
+
+        <h2>
+          Playing Pokémon Ruby, Sapphire, or Emerald on an
+          Emulator?
+        </h2>
+        <p>
+          An emulator does not automatically count as having
+          a dead battery. Modern emulators such as mGBA can
+          emulate the Game Boy Advance real-time clock, so a
+          Ruby or Sapphire save created normally with a
+          functioning emulated clock should be treated like a
+          working-battery save.
+        </p>
+        <p>
+          A useful rule is to remember what happened when
+          the save was first created: if Ruby or Sapphire
+          displayed the &quot;internal battery has run
+          dry&quot; warning at that time, choose the
+          dead-battery option. If the game did not show that
+          warning, choose working battery.
+        </p>
+        <p>
+          If you have access to the emulator&apos;s .sav
+          file, use the save upload option instead; the
+          calculator can determine your exact Feebas
+          locations without requiring you to answer the
+          battery question.
+        </p>
+
+        <h2>
+          Will This Feebas Calculator Work With Pokémon
+          Emerald on Nintendo Switch?
+        </h2>
+        <p>
+          As of August 20, 2026, Pokémon Ruby, Sapphire,
+          and Emerald have not been officially announced for
+          Nintendo Switch. Recent reports claim that Switch
+          versions of the three Hoenn games may be planned
+          for late September or October 2026, following the
+          February 27, 2026 releases of Pokémon FireRed and
+          LeafGreen, but Nintendo and The Pokémon Company
+          have not confirmed those reports.
+        </p>
+        <p>
+          If Pokémon Emerald, Ruby, or Sapphire are released
+          on Switch using the original Game Boy Advance
+          mechanics, PokéLore will test the new versions as
+          soon as they are available and update this
+          calculator with confirmed compatibility. Bookmark
+          this page if you&apos;re planning to catch Feebas
+          in Pokémon Emerald on Switch.
+        </p>
+
+        <h2>What Should I Do Once I Find a Feebas Tile?</h2>
+        <p>
+          Once you catch Feebas from one of the highlighted
+          locations, you have found a working tile and do not
+          need to continue searching the rest of{" "}
+          <Link to="/location/hoenn-route-119">Route 119</Link>.
+          You can keep fishing at that same location if you
+          want additional Feebas with different stats or
+          Natures.
+        </p>
+        <p>
+          Catching Feebas is only half of the challenge in
+          Generation III:{" "}
+          <Link to="/topic/evolving-feebas-into-milotic-via-beauty">
+            evolving it into Milotic requires raising its
+            Beauty and then leveling it up
+          </Link>
+          .
+        </p>
+
+        <h2>FAQ</h2>
+        <h3>Where is Feebas in Pokémon Emerald?</h3>
+        <p>
+          Feebas is found by fishing on{" "}
+          <Link to="/location/hoenn-route-119">Route 119</Link>,
+          but only
+          at a small set of fishing locations determined by
+          your save. Use the Emerald Feebas calculator above
+          to narrow down the locations rather than checking
+          the entire river manually.
+        </p>
+        <h3>Where is Feebas in Pokémon Ruby and Sapphire?</h3>
+        <p>
+          Like Emerald, Feebas is found by fishing at
+          specific locations on{" "}
+          <Link to="/location/hoenn-route-119">Route 119</Link>.
+          Ruby and
+          Sapphire calculations can also depend on whether
+          the internal battery or RTC was working when the
+          save was originally created.
+        </p>
+        <h3>How many Feebas tiles are there in Emerald?</h3>
+        <p>
+          The game generates six internal Feebas spots,
+          although map quirks mean not every generated
+          result necessarily corresponds to a normally
+          accessible fishing tile.
+        </p>
+        <h3>What is the best fishing rod for Feebas?</h3>
+        <p>
+          Any rod can encounter Feebas on a valid tile. The
+          <Link to="/item/old-rod">Old Rod</Link> is
+          convenient for searching because
+          encounters can be checked quickly.
+        </p>
+
+        <h3>Can I find my exact Feebas tiles from a save file?</h3>
+        <p>
+          Yes. If you have a compatible Ruby, Sapphire, or
+          Emerald .sav, the calculator can read the value
+          stored by the game and use it to identify your
+          exact player-accessible Feebas locations.
         </p>
       </article>
     </main>

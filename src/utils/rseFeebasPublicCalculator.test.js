@@ -71,4 +71,28 @@ describe("rseFeebasPublicCalculator", () => {
       result.visibleTiles.length
     );
   });
+
+  it("resolves special internal IDs before public exact display", () => {
+    const underBridge = buildPossibleTileSetResult(["0062"]);
+    const inaccessible = buildPossibleTileSetResult(["0150"]);
+
+    expect(
+      underBridge.tileSets[0].reachableTiles.filter(
+        tile => tile.sourceSpotId === 132
+      )
+    ).toHaveLength(10);
+    expect(
+      underBridge.tileSets[0].reachableTiles.some(
+        tile => tile.x === 23 && tile.y === 30
+      )
+    ).toBe(false);
+    expect(
+      inaccessible.tileSets[0].reachableTiles.some(
+        tile => tile.sourceSpotId === 119
+      )
+    ).toBe(false);
+    expect(inaccessible.tileSets[0].inaccessible).toContainEqual(
+      expect.objectContaining({ spotId: 119 })
+    );
+  });
 });

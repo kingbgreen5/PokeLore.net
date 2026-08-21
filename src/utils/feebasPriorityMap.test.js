@@ -10,6 +10,7 @@ import {
   filterPriorityTiles,
   rankPriorityTiles
 } from "./feebasPriorityMap";
+import { RSE_UNDER_BRIDGE_DISPLAY_COORDINATES } from "./rseFeebasDisplayRules";
 
 describe("feebasPriorityMap", () => {
   it("returns a valid empty summary", () => {
@@ -196,5 +197,30 @@ describe("feebasPriorityMap", () => {
         .map(tile => tile.spotId)
         .sort((left, right) => left - right)
     );
+  });
+
+  it("uses player-facing display rules for priority overlap", () => {
+    const underBridgeSummary =
+      buildTileOverlapSummary(["0062"]);
+    const unreachableSummary =
+      buildTileOverlapSummary(["0150"]);
+
+    const underBridgeKeys = new Set(
+      underBridgeSummary.tiles.map(tile => `${tile.x}:${tile.y}`)
+    );
+
+    RSE_UNDER_BRIDGE_DISPLAY_COORDINATES.forEach(
+      coordinate => {
+        expect(
+          underBridgeKeys.has(`${coordinate.x}:${coordinate.y}`)
+        ).toBe(true);
+      }
+    );
+    expect(underBridgeKeys.has("23:30")).toBe(false);
+    expect(
+      unreachableSummary.tiles.some(
+        tile => tile.x === 20 && tile.y === 29
+      )
+    ).toBe(false);
   });
 });

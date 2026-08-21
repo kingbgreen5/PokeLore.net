@@ -26,10 +26,10 @@ const DEFAULT_ALIGNMENT =
 
 function getTileStyle(tile) {
   return {
-    left: `${(tile.x / RSE_FEEBAS_GRID_WIDTH) * 100}%`,
-    top: `${(tile.y / RSE_FEEBAS_GRID_HEIGHT) * 100}%`,
-    width: `${100 / RSE_FEEBAS_GRID_WIDTH}%`,
-    height: `${100 / RSE_FEEBAS_GRID_HEIGHT}%`
+    left: `${tile.x * DEFAULT_CELL_SIZE}px`,
+    top: `${tile.y * DEFAULT_CELL_SIZE}px`,
+    width: `${DEFAULT_CELL_SIZE}px`,
+    height: `${DEFAULT_CELL_SIZE}px`
   };
 }
 
@@ -61,6 +61,68 @@ function buildHighlightEntries(spotIds) {
     entries: Array.from(byCoordinate.values()),
     warnings
   };
+}
+
+function buildHighlightEntriesFromLocations(locations) {
+  const byCoordinate = new Map();
+
+  locations.forEach((location, index) => {
+    const key = `${location.x}:${location.y}`;
+    const entry = byCoordinate.get(key) ?? {
+      tile: location,
+      results: []
+    };
+
+    const resultNumbers =
+      location.resultNumbers ??
+      [location.resultNumber ?? index + 1];
+    const spotIds =
+      location.spotIds ??
+      [location.sourceSpotId ?? location.spotId].filter(
+        Boolean
+      );
+
+    resultNumbers.forEach(resultNumber => {
+      entry.results.push({
+        resultNumber,
+        spotId: spotIds.join(","),
+        displayRule: location.displayRule
+      });
+    });
+    byCoordinate.set(key, entry);
+  });
+
+  return {
+    entries: Array.from(byCoordinate.values()),
+    warnings: []
+  };
+}
+
+function buildAreaEntries(areas) {
+  const byCoordinate = new Map();
+
+  areas.forEach((area, areaIndex) => {
+    const areaNumber = area.areaNumber ?? areaIndex + 1;
+    const tiles = Array.isArray(area.tiles)
+      ? area.tiles
+      : [];
+
+    tiles.forEach(tile => {
+      const key = `${tile.x}:${tile.y}`;
+      const entry = byCoordinate.get(key) ?? {
+        tile,
+        areas: []
+      };
+
+      entry.areas.push({
+        areaNumber,
+        sourceSpotId: area.sourceSpotId ?? tile.sourceSpotId
+      });
+      byCoordinate.set(key, entry);
+    });
+  });
+
+  return Array.from(byCoordinate.values());
 }
 
 function getPriorityTitle(tile) {
@@ -97,6 +159,8 @@ function getPriorityStyle(tile) {
 
 function RseRoute119FeebasMap({
   spotIds = [],
+  displayLocations = [],
+  highlightedAreas = [],
   priorityTiles = [],
   priorityDisplayMode = "tiered",
   recommendedTiles = [],
@@ -108,18 +172,38 @@ function RseRoute119FeebasMap({
   mapImageSrc = RSE_ROUTE_119_MAP_IMAGE_SRC,
   imageAlignment = DEFAULT_ALIGNMENT,
   zoom = 1,
+  fitHeightToMapImage = false,
+  showHighlightLabels = true,
   className = ""
 }) {
   const [imageFailed, setImageFailed] =
     useState(false);
   const highlightEntries = useMemo(
-    () => buildHighlightEntries(spotIds),
-    [spotIds]
+    () =>
+      displayLocations.length > 0
+        ? buildHighlightEntriesFromLocations(
+            displayLocations
+          )
+        : buildHighlightEntries(spotIds),
+    [displayLocations, spotIds]
+  );
+  const areaEntries = useMemo(
+    () => buildAreaEntries(highlightedAreas),
+    [highlightedAreas]
   );
   const displayWidth =
     RSE_FEEBAS_GRID_WIDTH * DEFAULT_CELL_SIZE;
-  const displayHeight =
+  const fullGridHeight =
     RSE_FEEBAS_GRID_HEIGHT * DEFAULT_CELL_SIZE;
+  const imageDisplayBottom =
+    imageAlignment.offsetY +
+    ROUTE_119_IMAGE_NATIVE_HEIGHT * imageAlignment.scaleY;
+  const displayHeight = fitHeightToMapImage
+    ? Math.max(
+        DEFAULT_CELL_SIZE,
+        Math.ceil(imageDisplayBottom)
+      )
+    : fullGridHeight;
   const safeZoom = Math.max(
     0.2,
     Math.min(3, Number(zoom) || 1)
@@ -200,6 +284,30 @@ function RseRoute119FeebasMap({
                   />
                 ))}
 
+              {areaEntries.map(entry => {
+                const areaLabel = [
+                  ...new Set(
+                    entry.areas.map(area => area.areaNumber)
+                  )
+                ].join(",");
+                const sourceSpotLabel = [
+                  ...new Set(
+                    entry.areas
+                      .map(area => area.sourceSpotId)
+                      .filter(Boolean)
+                  )
+                ].join(",");
+
+                return (
+                  <span
+                    key={`area-${entry.tile.x}:${entry.tile.y}`}
+                    className="rse-route119-area-tile"
+                    style={getTileStyle(entry.tile)}
+                    title={`Search area ${areaLabel}${sourceSpotLabel ? `; Spot ID ${sourceSpotLabel}` : ""}; Coordinate x ${entry.tile.x}, y ${entry.tile.y}`}
+                  />
+                );
+              })}
+
               {priorityTiles.map(tile => (
                 <button
                   key={`priority-${tile.x}:${tile.y}`}
@@ -250,7 +358,7 @@ function RseRoute119FeebasMap({
                     title={`Result ${resultLabel}; Spot ID ${spotLabel}; Coordinate x ${entry.tile.x}, y ${entry.tile.y}`}
                     aria-label={`Result ${resultLabel}; Spot ID ${spotLabel}; Coordinate x ${entry.tile.x}, y ${entry.tile.y}`}
                   >
-                    {resultLabel}
+                    {showHighlightLabels ? resultLabel : ""}
                   </button>
                 );
               })}

@@ -1,4 +1,5 @@
 import { calculateRseFeebasFromValue } from "./rseFeebasCalculator";
+import { getPlayerFacingLocationsForSpotId } from "./rseFeebasDisplayRules";
 
 export const PRIORITY_TIER_HIGH = "high";
 export const PRIORITY_TIER_MEDIUM = "medium";
@@ -160,24 +161,36 @@ export function buildTileOverlapSummary(candidateValues) {
 
   uniqueValues.forEach((value, candidateIndex) => {
     const result = calculateRseFeebasFromValue(value);
+    const candidateCoordinateKeys = new Set();
 
-    result.coordinates.forEach(tile => {
-      const key = coordinateKey(tile);
-      const existing = tilesByCoordinate.get(key) ?? {
-        x: tile.x,
-        y: tile.y,
-        count: 0,
-        candidateIndexes: [],
-        candidateValues: [],
-        spotIds: []
-      };
+    result.generatedSpotIds
+      .flatMap(spotId =>
+        getPlayerFacingLocationsForSpotId(spotId)
+      )
+      .forEach(tile => {
+        const key = coordinateKey(tile);
+        if (candidateCoordinateKeys.has(key)) return;
+        candidateCoordinateKeys.add(key);
 
-      existing.count += 1;
-      existing.candidateIndexes.push(candidateIndex);
-      existing.candidateValues.push(value);
-      existing.spotIds.push(tile.spotId);
-      tilesByCoordinate.set(key, existing);
-    });
+        const existing = tilesByCoordinate.get(key) ?? {
+          x: tile.x,
+          y: tile.y,
+          count: 0,
+          candidateIndexes: [],
+          candidateValues: [],
+          spotIds: [],
+          displayRules: []
+        };
+
+        existing.count += 1;
+        existing.candidateIndexes.push(candidateIndex);
+        existing.candidateValues.push(value);
+        existing.spotIds.push(tile.sourceSpotId ?? tile.spotId);
+        existing.displayRules.push(
+          tile.displayRule ?? "canonical"
+        );
+        tilesByCoordinate.set(key, existing);
+      });
   });
 
   const summary = summarizeTiles(
