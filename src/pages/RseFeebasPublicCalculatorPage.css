@@ -468,9 +468,45 @@
   padding: 0.75rem;
 }
 
+.rse-feebas-set-card.is-hidden {
+  opacity: 0.52;
+}
+
+.rse-feebas-search-note {
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(125, 211, 252, 0.55);
+  border-radius: 8px;
+  color: #dbeafe;
+  font-weight: 750;
+  line-height: 1.45;
+  margin: 0.85rem 0;
+  padding: 0.75rem;
+}
+
+.rse-feebas-set-card label {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 0.45rem;
+}
+
+.rse-feebas-set-card input {
+  accent-color: #f59e0b;
+  flex: 0 0 auto;
+}
+
+.rse-feebas-set-card span {
+  color: #bae6fd;
+  font-weight: 850;
+}
+
+.rse-feebas-set-card.is-hidden span {
+  color: #94a3b8;
+}
+
 .rse-feebas-set-card p {
   color: #dbeafe;
-  margin: 0;
+  margin: 0.35rem 0 0;
 }
 
 .rse-feebas-advanced {

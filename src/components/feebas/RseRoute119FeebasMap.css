@@ -135,7 +135,7 @@
   color: #111827;
   cursor: help;
   display: flex;
-  font-size: 0.64rem;
+  font-size: 1.1rem;
   font-weight: 900;
   justify-content: center;
   line-height: 1;
@@ -199,8 +199,36 @@
 
 .rse-route119-priority-tile.heatmap {
   background: rgba(249, 115, 22, var(--priority-intensity));
+    background: rgb(247, 149, 3);
   border-color: rgba(255, 237, 213, 0.92);
   box-shadow: 0 0 calc(4px + 12px * var(--priority-intensity)) rgba(249, 115, 22, 0.72);
+}
+
+.rse-route119-priority-label {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.03rem;
+  justify-content: center;
+  line-height: 0.86;
+  max-width: 100%;
+}
+
+.rse-route119-set-number,
+.rse-route119-set-number-more {
+  color: var(--set-number-color, #ffffff);
+  display: inline-block;
+  font-weight: 950;
+  text-shadow:
+    -1px -1px 0 rgba(17, 24, 39, 0.96),
+    1px -1px 0 rgba(17, 24, 39, 0.96),
+    -1px 1px 0 rgba(17, 24, 39, 0.96),
+    1px 1px 0 rgba(17, 24, 39, 0.96),
+    0 0 4px rgba(17, 24, 39, 0.82);
+}
+
+.rse-route119-set-number-more {
+  color: #ffffff;
 }
 
 .rse-route119-highlight:focus-visible {

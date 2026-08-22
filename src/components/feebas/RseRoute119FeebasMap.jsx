@@ -23,6 +23,18 @@ const DEFAULT_ALIGNMENT =
     scaleY: 1,
     opacity: 1
   };
+const SET_NUMBER_COLORS = [
+  "#ffffff",
+  "#38bdf8",
+  "#facc15",
+  "#fb7185",
+  "#4ade80",
+  "#c084fc",
+  "#f97316",
+  "#2dd4bf",
+  "#f472b6",
+  "#a3e635"
+];
 
 function getTileStyle(tile) {
   return {
@@ -126,6 +138,8 @@ function buildAreaEntries(areas) {
 }
 
 function getPriorityTitle(tile) {
+  if (tile.title) return tile.title;
+
   const values = tile.candidateValues ?? [];
   const visibleValues = values.slice(0, 12);
   const remaining =
@@ -155,6 +169,44 @@ function getPriorityStyle(tile) {
     ...getTileStyle(tile),
     "--priority-intensity": intensity
   };
+}
+
+function getSetNumberColor(setNumber) {
+  const normalized = Math.max(1, Number(setNumber) || 1);
+
+  return SET_NUMBER_COLORS[
+    (normalized - 1) % SET_NUMBER_COLORS.length
+  ];
+}
+
+function SetNumberLabel({
+  tile
+}) {
+  const setNumbers = tile.setNumbers ?? [];
+  const visibleSetNumbers = setNumbers.slice(0, 4);
+  const hasMore = setNumbers.length > visibleSetNumbers.length;
+
+  return (
+    <span className="rse-route119-priority-label">
+      {visibleSetNumbers.map((setNumber, index) => (
+        <span
+          key={`${tile.x}:${tile.y}:${setNumber}:${index}`}
+          className="rse-route119-set-number"
+          style={{
+            "--set-number-color":
+              getSetNumberColor(setNumber)
+          }}
+        >
+          {setNumber}
+        </span>
+      ))}
+      {hasMore && (
+        <span className="rse-route119-set-number-more">
+          +
+        </span>
+      )}
+    </span>
+  );
 }
 
 function RseRoute119FeebasMap({
@@ -315,9 +367,17 @@ function RseRoute119FeebasMap({
                   className={`rse-route119-priority-tile ${priorityDisplayMode} ${tile.priorityTier ?? "low"}`}
                   style={getPriorityStyle(tile)}
                   title={getPriorityTitle(tile)}
-                  aria-label={`Tile x ${tile.x}, y ${tile.y}; overlap count ${tile.count}`}
+                  aria-label={
+                    tile.setNumbers
+                      ? `Tile x ${tile.x}, y ${tile.y}; possible set${tile.setNumbers.length === 1 ? "" : "s"} ${tile.setNumbers.join(", ")}; overlap strength ${tile.count}`
+                      : `Tile x ${tile.x}, y ${tile.y}; overlap count ${tile.count}`
+                  }
                 >
-                  {tile.displayLabel ?? tile.count}
+                  {tile.setNumbers ? (
+                    <SetNumberLabel tile={tile} />
+                  ) : (
+                    tile.displayLabel ?? tile.count
+                  )}
                 </button>
               ))}
 

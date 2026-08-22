@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useMemo,
   useRef,
   useState
@@ -225,6 +226,75 @@ function getRseHintAreasForLocations(locations, seedPrefix) {
       index
     )
   );
+}
+
+function buildSetNumberDisplayTiles(priorityTiles) {
+  return priorityTiles.map(tile => {
+    const setNumbers = [
+      ...new Set(
+        tile.setNumbers ??
+          (tile.candidateIndexes ?? []).map(
+            candidateIndex => candidateIndex + 1
+          )
+      )
+    ];
+    const visibleSetNumbers = setNumbers.slice(0, 4);
+    const remainingCount =
+      setNumbers.length - visibleSetNumbers.length;
+    const displayLabel = `${visibleSetNumbers.join(",")}${remainingCount > 0 ? "+" : ""}`;
+
+    return {
+      ...tile,
+      displayLabel,
+      setNumbers,
+      title: [
+        `Possible set${setNumbers.length === 1 ? "" : "s"} ${setNumbers.join(", ")}`,
+        `Overlap strength: ${tile.count} possible pattern${tile.count === 1 ? "" : "s"}`,
+        `Tile x${tile.x}, y${tile.y}`
+      ].join("\n")
+    };
+  });
+}
+
+function buildSetCoverageTiles(tileSets) {
+  const tilesByCoordinate = new Map();
+
+  tileSets.forEach(tileSet => {
+    const seenCoordinates = new Set();
+
+    tileSet.reachableTiles.forEach(tile => {
+      const key = coordinateKey(tile);
+      if (seenCoordinates.has(key)) return;
+      seenCoordinates.add(key);
+
+      const existing = tilesByCoordinate.get(key) ?? {
+        ...tile,
+        count: 0,
+        setNumbers: [],
+        candidateValues: [],
+        spotIds: []
+      };
+
+      existing.count += 1;
+      existing.setNumbers.push(tileSet.setNumber);
+      existing.candidateValues.push(tileSet.value);
+      existing.spotIds.push(...(tile.spotIds ?? []));
+      tilesByCoordinate.set(key, existing);
+    });
+  });
+
+  const tiles = [...tilesByCoordinate.values()];
+  const maxOverlap = tiles.reduce(
+    (max, tile) => Math.max(max, tile.count),
+    0
+  );
+
+  return tiles.map(tile => ({
+    ...tile,
+    overlapCount: tile.count,
+    displayIntensity:
+      maxOverlap === 0 ? 0 : tile.count / maxOverlap
+  }));
 }
 
 function sortEasyChatWordsByText(words) {
@@ -627,66 +697,65 @@ function ExactResult({
 function PossibleSetsResult({
   result,
   zoom,
-  mapMode,
-  onMapModeChange,
   onZoomChange
 }) {
+  const resultKey = result.sets.values.join("|");
+  const [hiddenSetNumbers, setHiddenSetNumbers] = useState(
+    () => new Set()
+  );
+
+  useEffect(() => {
+    setHiddenSetNumbers(new Set());
+  }, [resultKey]);
+
   const [onlyTileSet] = result.sets.tileSets;
   const showSingleSixTileSet =
     result.sets.tileSets.length === 1 &&
     onlyTileSet.reachableTiles.length === 6;
-  const hintAreas =
-    mapMode === MAP_MODES.HINT
-      ? result.sets.tileSets.flatMap(tileSet =>
-          getRseHintAreasForLocations(
-            tileSet.reachableTiles,
-            tileSet.value
-          )
-        )
-      : [];
+  const visibleTileSets = result.sets.tileSets.filter(
+    tileSet => !hiddenSetNumbers.has(tileSet.setNumber)
+  );
+  const setNumberDisplayTiles = buildSetNumberDisplayTiles(
+    buildSetCoverageTiles(visibleTileSets)
+  );
 
   return (
     <section className="rse-feebas-result-card">
       <div className="rse-feebas-section-heading">
         <div>
-          <h2>Where to Check First</h2>
+          <h2>Possible Feebas Tile Layouts</h2>
           <p>
-            {mapMode === MAP_MODES.EXACT
-              ? "Higher numbers mean more possible Feebas patterns overlap on that tile. Start with the highest numbers first."
-              : "Each highlighted block is a 16 tile search area around a possible Feebas location."}
+            There are {result.sets.tileSets.length} possible
+            Feebas Tile Layouts revealed by your game info.
+            All tiles within a set have the same number on
+            the map below.
           </p>
         </div>
-        <strong>
-          {result.sets.tileSets.length} possible tile set
-          {result.sets.tileSets.length === 1 ? "" : "s"}
-        </strong>
       </div>
 
-      <p className="rse-feebas-note">
-        {mapMode === MAP_MODES.EXACT
-          ? "Feebas does not appear on every fishing encounter even on the correct tile. No Feebas yet after one pass? Make another pass through the highest-overlap tiles."
-          : "Feebas does not appear on every fishing encounter even in the correct area. Try each candidate area more than once before moving on."}
-      </p>
+      {visibleTileSets.length > 1 && (
+        <p className="rse-feebas-search-note">
+          Fish one encounter on each tile number once, then
+          repeat through again if you have not found Feebas.
+          Each number represents one possible Feebas tile
+          layout. So checking each number once checks as
+          many sets as possible as quickly as possible.
+        </p>
+      )}
 
-      <MapModeControls
-        mode={mapMode}
-        onModeChange={onMapModeChange}
-      />
       <RseRoute119FeebasMap
         displayLocations={
-          mapMode === MAP_MODES.EXACT &&
-          showSingleSixTileSet
+          showSingleSixTileSet &&
+          visibleTileSets.length === 1
             ? onlyTileSet.reachableTiles
             : []
         }
-        highlightedAreas={hintAreas}
         priorityTiles={
-          mapMode === MAP_MODES.EXACT &&
           !showSingleSixTileSet
-            ? result.sets.priorityTiles
+            ? setNumberDisplayTiles
             : []
         }
-        priorityDisplayMode={PRIORITY_DISPLAY_MODES.TIERED}
+        priorityDisplayMode={PRIORITY_DISPLAY_MODES.HEATMAP}
         showGrid
         showMapImage
         zoom={zoom}
@@ -700,24 +769,42 @@ function PossibleSetsResult({
       />
 
       <div className="rse-feebas-set-grid">
-        {result.sets.tileSets.map(tileSet => (
-          <article
-            key={tileSet.value}
-            className="rse-feebas-set-card"
-          >
-            <h3>
-              Possible Tile Set {tileSet.setNumber}
-            </h3>
-            <p>
-              {tileSet.reachableTiles.length} reachable
-              tile
-              {tileSet.reachableTiles.length === 1
-                ? ""
-                : "s"}
-              .
-            </p>
-          </article>
-        ))}
+        {result.sets.tileSets.map(tileSet => {
+          const isVisible = !hiddenSetNumbers.has(
+            tileSet.setNumber
+          );
+
+          return (
+            <article
+              key={tileSet.value}
+              className={`rse-feebas-set-card ${isVisible ? "" : "is-hidden"}`}
+            >
+              <h3>
+                Possible Tile Set {tileSet.setNumber}
+              </h3>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={!isVisible}
+                  onChange={() => {
+                    setHiddenSetNumbers(current => {
+                      const next = new Set(current);
+
+                      if (next.has(tileSet.setNumber)) {
+                        next.delete(tileSet.setNumber);
+                      } else {
+                        next.add(tileSet.setNumber);
+                      }
+
+                      return next;
+                    });
+                  }}
+                />
+                <span>Hide Set</span>
+              </label>
+            </article>
+          );
+        })}
       </div>
 
       {/* <AdvancedDetails result={result} /> */}
@@ -1526,8 +1613,6 @@ function RseFeebasPublicCalculatorPage() {
             <PossibleSetsResult
               result={result}
               zoom={zoom}
-              mapMode={mapMode}
-              onMapModeChange={setMapMode}
               onZoomChange={setZoom}
             />
           )}
