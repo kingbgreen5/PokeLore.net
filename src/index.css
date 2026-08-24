@@ -473,6 +473,40 @@ code {
   grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
 }
 
+.team-coverage-explainer {
+  border-top: 1px solid var(--border);
+  color: #d1d5db;
+  line-height: 1.65;
+  margin: 2rem auto 0;
+  max-width: 820px;
+  padding-top: 1.5rem;
+  text-align: left;
+}
+
+.team-coverage-explainer h2,
+.team-coverage-explainer h3 {
+  line-height: 1.22;
+  text-align: center;
+}
+
+.team-coverage-explainer h2 {
+  font-size: 1.55rem;
+  margin: 0 0 1rem;
+}
+
+.team-coverage-explainer h3 {
+  font-size: 1.05rem;
+  margin: 1.5rem 0 .6rem;
+}
+
+.team-coverage-explainer p {
+  margin: 0 0 .85rem;
+}
+
+.team-coverage-explainer strong {
+  color: #f3f4f6;
+}
+
 @media (max-width: 1180px) {
   .team-coverage-party-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));

@@ -93,9 +93,9 @@ export function learnsetsSeo() {
 
 export function teamCoverageSeo() {
   const title =
-    `Team Coverage Calculator | ${SITE_NAME}`;
+    `Pokémon Team Builder & Type Coverage Calculator | ${SITE_NAME}`;
   const description =
-    "Use the Team Coverage Calculator to build a Pokemon party, choose a game, and see which opposing types your team can hit for super-effective damage with their Level-Up learnset.";
+    "Build a Pokémon playthrough team for any game. Check offensive coverage, weaknesses, resistances, learnset levels and TM moves, then find suggested teammates that fill your team's gaps.";
   const canonical = pageUrl(
     "/team-coverage"
   );
@@ -122,7 +122,7 @@ export function teamCoverageSeo() {
         {
           "@type": "WebApplication",
           "@id": calculatorId,
-          name: "Team Coverage Calculator",
+          name: "Pokémon Team Builder & Type Coverage Calculator",
           url: canonical,
           applicationCategory:
             "GameApplication",
@@ -131,15 +131,14 @@ export function teamCoverageSeo() {
             "Requires JavaScript",
           description,
           featureList: [
-            "Choose a Pokemon game version for level-up learnset coverage.",
-            "Build a six-Pokemon party and calculate overall super-effective type coverage.",
-            "Identify missing defensive types that the party cannot hit super-effectively.",
-            "Suggest available Pokemon that fill missing type coverage.",
-            "Sort suggestions by National Dex number.",
-            "Sort suggestions by most missing type coverage.",
-            "Prioritize suggestions that cover a selected missing type.",
-            "Sort suggestions by highest base stat total.",
-            "Sort suggestions by HP, Attack, Defense, Special Attack, Special Defense, or Speed."
+            "Choose a Pokémon game version for playthrough team building.",
+            "Build a six-Pokémon party and calculate offensive type coverage.",
+            "Check team weaknesses, resistances, and immunities.",
+            "Filter learnset coverage by move power, learned level, and TM moves.",
+            "Identify missing offensive and defensive coverage.",
+            "Suggest available teammates that fill the team's gaps.",
+            "Sort suggestions with PokeLore Suggested, coverage, stats, or National Dex number.",
+            "Filter suggested teammates by legendary and trade evolution availability."
           ],
           isAccessibleForFree: true,
           offers: {
