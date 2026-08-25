@@ -64,7 +64,6 @@ const DESKTOP_RECOMMENDATIONS_PER_PAGE = 20;
 const MOBILE_RECOMMENDATIONS_PER_PAGE = 12;
 const MOBILE_RECOMMENDATIONS_MEDIA_QUERY =
   "(max-width: 540px)";
-const SHOW_RECOMMENDATION_SCORE_DEBUG = true;
 const DEFAULT_RECOMMENDATION_SORT_MODE =
   "custom-score";
 const DEFAULT_RECOMMENDATION_COVERAGE_FILTER =
@@ -775,14 +774,6 @@ async function readJsonUrl(url) {
   return response.json();
 }
 
-function formatScore(value) {
-  const score = Number(value) || 0;
-
-  return score > 0
-    ? `+${score.toFixed(2)}`
-    : score.toFixed(2);
-}
-
 function TypeBadgeList({
   emptyLabel,
   height = "1.35rem",
@@ -1415,17 +1406,13 @@ function PokemonPicker({
 }
 
 function RecommendationCard({
+  canAddToTeam,
   includeMachineMoves,
   maxMoveLevel,
   minMovePower,
-  recommendation,
-  showScore
+  onAddToTeam,
+  recommendation
 }) {
-  const [
-    isScoringVisible,
-    setIsScoringVisible
-  ] = useState(false);
-
   return (
     <div
       style={{
@@ -1444,107 +1431,38 @@ function RecommendationCard({
         pokemon={recommendation}
         variant="compact"
       />
-      {showScore && (
-        <>
-          <button
-            type="button"
-            onClick={() =>
-              setIsScoringVisible(
-                value => !value
-              )
-            }
-            style={{
-              backgroundColor: "transparent",
-              border: "1px solid #555",
-              borderRadius: "999px",
-              color: "#cbd5e1",
-              cursor: "pointer",
-              fontSize: ".68rem",
-              lineHeight: 1,
-              padding: ".3rem .5rem"
-            }}
-          >
-            {isScoringVisible
-              ? "Hide Scoring"
-              : "Show Scoring"}
-          </button>
-          {isScoringVisible && (
-            <div>
-          <p
-            style={{
-              color: "#f3f4f6",
-              fontSize: ".8rem",
-              fontWeight: "bold",
-              margin: "0 0 .35rem"
-            }}
-          >
-            Score{" "}
-            {formatScore(
-              recommendation.playthroughScore?.total
-            )}
-          </p>
-          <p
-            style={{
-              color: "#9ca3af",
-              fontSize: ".72rem",
-              lineHeight: 1.3,
-              margin: 0
-            }}
-          >
-            Cov{" "}
-            {formatScore(
-              recommendation.playthroughScore?.parts
-                ?.coverage
-            )}{" "}
-            · Dex{" "}
-            {formatScore(
-              recommendation.playthroughScore?.parts
-                ?.regionalDex
-            )}{" "}
-            / Not Dex{" "}
-            {formatScore(
-              recommendation.playthroughScore?.parts
-                ?.notRegionalDex
-            )}{" "}
-            · Trade{" "}
-            {formatScore(
-              recommendation.playthroughScore?.parts
-                ?.tradeEvolution
-            )}{" "}
-            · Tier{" "}
-            {formatScore(
-              recommendation.playthroughScore?.parts
-                ?.tier
-            )}{" "}
-            · BST{" "}
-            {formatScore(
-              recommendation.playthroughScore?.parts
-                ?.bst
-            )}
-          </p>
-          <p
-            style={{
-              color: "#9ca3af",
-              fontSize: ".72rem",
-              lineHeight: 1.3,
-              margin: ".25rem 0 0"
-            }}
-          >
-            Normal{" "}
-            {formatScore(
-              recommendation.playthroughScore?.parts
-                ?.normalTypeQualifier
-            )}{" "}
-            · STAB Ice{" "}
-            {formatScore(
-              recommendation.playthroughScore?.parts
-                ?.stabIceTypeBonus
-            )}
-          </p>
-            </div>
-          )}
-        </>
-      )}
+      <button
+        type="button"
+        disabled={!canAddToTeam}
+        onClick={onAddToTeam}
+        style={{
+          backgroundColor: canAddToTeam
+            ? "rgba(34, 197, 94, 0.18)"
+            : "transparent",
+          border: canAddToTeam
+            ? "1px solid rgba(74, 222, 128, 0.65)"
+            : "1px solid #555",
+          borderRadius: "999px",
+          color: canAddToTeam
+            ? "#bbf7d0"
+            : "#9ca3af",
+          cursor: canAddToTeam
+            ? "pointer"
+            : "default",
+          fontSize: ".68rem",
+          fontWeight: 700,
+          lineHeight: 1,
+          opacity: canAddToTeam ? 1 : 0.55,
+          padding: ".35rem .6rem"
+        }}
+        title={
+          canAddToTeam
+            ? "Add this Pokemon to the first open team slot."
+            : "Your team is full."
+        }
+      >
+        Add to Team
+      </button>
       <div>
         <p
           style={{
@@ -2505,6 +2423,17 @@ function TeamCoveragePage() {
     setPreferredFocusType
   ]);
 
+  const hasActiveRecommendationNeed =
+    selectedCoverageFilter === "defensive"
+      ? missingDefensiveTypes.length > 0
+      : selectedCoverageFilter === "both" ||
+        selectedCoverageFilter === "either"
+        ? missingTypes.length > 0 ||
+          missingDefensiveTypes.length > 0
+        : missingTypes.length > 0;
+  const hasOpenPartySlot =
+    normalizedParty.some(id => !id);
+
   const recommendationCandidates =
     useMemo(() => {
       if (
@@ -2618,6 +2547,8 @@ function TeamCoveragePage() {
         })
         .filter(
           pokemon =>
+            !hasOpenPartySlot ||
+            !hasActiveRecommendationNeed ||
             matchesCoverageFilter({
               coverageFilter:
                 selectedCoverageFilter,
@@ -2670,6 +2601,8 @@ function TeamCoveragePage() {
         });
     }, [
       consideredTypes,
+      hasActiveRecommendationNeed,
+      hasOpenPartySlot,
       hasPureNormalPartyMember,
       includeRecommendationTmLearnsets,
       missingDefensiveTypes,
@@ -2778,6 +2711,20 @@ function TeamCoveragePage() {
     updatePartySearchParams(next, {
       replace: true
     });
+  }
+
+  function addRecommendationToTeam(recommendation) {
+    const openSlotIndex =
+      normalizedParty.findIndex(id => !id);
+
+    if (openSlotIndex === -1) {
+      return;
+    }
+
+    updateSlot(
+      openSlotIndex,
+      recommendation.id
+    );
   }
 
   function handleSelectPokemon(option) {
@@ -3579,6 +3526,9 @@ function TeamCoveragePage() {
                 recommendation => (
                   <RecommendationCard
                     key={recommendation.id}
+                    canAddToTeam={
+                      hasOpenPartySlot
+                    }
                     maxMoveLevel={
                       selectedRecommendationMoveLevelThreshold
                     }
@@ -3588,13 +3538,13 @@ function TeamCoveragePage() {
                     minMovePower={
                       selectedRecommendationMovePowerThreshold
                     }
+                    onAddToTeam={() =>
+                      addRecommendationToTeam(
+                        recommendation
+                      )
+                    }
                     recommendation={
                       recommendation
-                    }
-                    showScore={
-                      SHOW_RECOMMENDATION_SCORE_DEBUG &&
-                      selectedSortMode ===
-                      "custom-score"
                     }
                   />
                 )
