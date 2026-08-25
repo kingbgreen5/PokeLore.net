@@ -2,9 +2,17 @@ import { useEffect } from "react";
 import { defaultSeo } from "./seoConfig";
 
 function getOrCreateMeta(attribute, key) {
-  let element =
-    document.head.querySelector(
+  const elements = Array.from(
+    document.head.querySelectorAll(
       `meta[${attribute}="${key}"]`
+    )
+  );
+  let element = elements[0];
+
+  elements
+    .slice(1)
+    .forEach(duplicate =>
+      duplicate.remove()
     );
 
   if (!element) {
@@ -46,9 +54,17 @@ function removeMeta(attribute, key) {
 function setCanonical(href) {
   if (!href) return;
 
-  let element =
-    document.head.querySelector(
+  const elements = Array.from(
+    document.head.querySelectorAll(
       'link[rel="canonical"]'
+    )
+  );
+  let element = elements[0];
+
+  elements
+    .slice(1)
+    .forEach(duplicate =>
+      duplicate.remove()
     );
 
   if (!element) {
@@ -58,6 +74,14 @@ function setCanonical(href) {
   }
 
   element.setAttribute("href", href);
+}
+
+function removeCanonical() {
+  document.head
+    .querySelectorAll('link[rel="canonical"]')
+    .forEach(element =>
+      element.remove()
+    );
 }
 
 function setStructuredData(data) {
@@ -89,6 +113,7 @@ function Seo({
   title,
   description,
   canonical,
+  canonicalAction = "set",
   image,
   robots,
   structuredData,
@@ -107,7 +132,9 @@ function Seo({
     const pageDescription =
       description || fallback.description;
     const pageCanonical =
-      canonical || fallback.canonical;
+      canonicalAction === "set"
+        ? canonical || fallback.canonical
+        : null;
 
     document.title = pageTitle;
 
@@ -115,7 +142,11 @@ function Seo({
       "description",
       pageDescription
     );
-    setCanonical(pageCanonical);
+    if (canonicalAction === "remove") {
+      removeCanonical();
+    } else if (canonicalAction === "set") {
+      setCanonical(pageCanonical);
+    }
 
     setMetaProperty("og:title", pageTitle);
     setMetaProperty(
@@ -176,6 +207,7 @@ function Seo({
     title,
     description,
     canonical,
+    canonicalAction,
     image,
     robots,
     structuredData,

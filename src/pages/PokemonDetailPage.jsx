@@ -279,6 +279,7 @@ function PokemonDetailNotFound() {
       <Seo
         title="Pokemon Not Found | PokeLore"
         description="We couldn't find a Pokemon matching this URL."
+        canonicalAction="remove"
         robots="noindex, follow"
       />
       <h1>Pokemon Not Found</h1>
@@ -298,6 +299,53 @@ function PokemonDetailNotFound() {
   );
 }
 
+function PokemonDetailLoading() {
+  return (
+    <main
+      aria-label="Loading Pokemon"
+      style={{
+        margin: "0 auto",
+        maxWidth: "720px",
+        padding: "2rem 1rem",
+        textAlign: "center"
+      }}
+    >
+      <Seo
+        title="Loading Pokemon | PokeLore"
+        description="Loading Pokemon details."
+        canonicalAction="remove"
+        robots="max-image-preview:large"
+      />
+      <p>Loading...</p>
+    </main>
+  );
+}
+
+function PokemonDetailUnavailable() {
+  return (
+    <main
+      aria-label="Pokemon temporarily unavailable"
+      style={{
+        margin: "0 auto",
+        maxWidth: "720px",
+        padding: "2rem 1rem",
+        textAlign: "center"
+      }}
+    >
+      <Seo
+        title="Pokemon Temporarily Unavailable | PokeLore"
+        description="Pokemon details are temporarily unavailable."
+        canonicalAction="remove"
+        robots="max-image-preview:large"
+      />
+      <h1>Pokemon Temporarily Unavailable</h1>
+      <p>
+        Pokemon details are temporarily unavailable.
+      </p>
+    </main>
+  );
+}
+
 function PokemonDetailPage() {
   const evolutionScrollRef = useRef(null);
 const rootNodeRef = useRef(null);
@@ -308,6 +356,7 @@ const [pokemon, setPokemon] = useState(null);
 const [learnsetData, setLearnsetData] = useState(null);
 const [loading, setLoading] = useState(true);
 const [notFound, setNotFound] = useState(false);
+const [loadError, setLoadError] = useState(null);
 const [redirectPath, setRedirectPath] = useState(null);
 const [evolutionData, setEvolutionData] = useState(null);
 const [evolutionMethodOverrides, setEvolutionMethodOverrides] = useState({});
@@ -329,6 +378,7 @@ useEffect(() => {
 
       setLoading(true);
       setNotFound(false);
+      setLoadError(null);
       setRedirectPath(null);
       setPokemon(null);
       setLearnsetData(null);
@@ -400,8 +450,9 @@ useEffect(() => {
       }
 
       if (!pokemonResponse.ok) {
-        setNotFound(true);
-        return;
+        throw new Error(
+          `Failed to load Pokémon data for ${routeResolution.slug}`
+        );
       }
 
       const pokemonData =
@@ -431,7 +482,7 @@ useEffect(() => {
         "Failed to load Pokémon:",
         error
       );
-      setNotFound(true);
+      setLoadError(error);
 
     } finally {
       if (isActive) {
@@ -693,11 +744,15 @@ if (redirectPath) {
 }
 
 if (loading) {
-  return <p>Loading...</p>;
+  return <PokemonDetailLoading />;
 }
 
-if (notFound || !pokemon) {
+if (notFound) {
   return <PokemonDetailNotFound />;
+}
+
+if (loadError || !pokemon) {
+  return <PokemonDetailUnavailable />;
 }
 
 const activeFormKey =
