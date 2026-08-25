@@ -562,6 +562,34 @@ function compareByCustomScore(a, b) {
   );
 }
 
+function sortRecommendationCandidates(
+  candidates,
+  sortMode,
+  focusType
+) {
+  return [...candidates].sort((a, b) => {
+    if (sortMode === "custom-score") {
+      return compareByCustomScore(a, b);
+    }
+
+    if (sortMode === "most-coverage") {
+      return compareByMostCoverage(a, b);
+    }
+
+    if (sortMode === "selected-type-first") {
+      return compareBySelectedTypeFirst(
+        focusType
+      )(a, b);
+    }
+
+    if (getStatSortMode(sortMode)) {
+      return compareByStat(sortMode)(a, b);
+    }
+
+    return compareByNationalDex(a, b);
+  });
+}
+
 function getAttackTypePowersForLevel({
   includeMachineMoves = false,
   maxMoveLevel = 0,
@@ -2434,20 +2462,23 @@ function TeamCoveragePage() {
   const hasOpenPartySlot =
     normalizedParty.some(id => !id);
 
-  const recommendationCandidates =
+  const recommendationResult =
     useMemo(() => {
       if (
         teamCoverageData?.versionGroup !==
         selectedVersion
       ) {
-        return [];
+        return {
+          candidates: [],
+          fallbackMode: null
+        };
       }
 
       const selectedIds = new Set(
         normalizedParty.filter(Boolean)
       );
 
-      return (
+      const scoredCandidates = (
         teamCoverageData?.pokemon ?? []
       )
         .filter(
@@ -2542,16 +2573,56 @@ function TeamCoveragePage() {
                 pokemon: scoredPokemon,
                 weights:
                   selectedRecommendationWeights
-              })
+            })
           };
-        })
-        .filter(
-          pokemon =>
-            !hasOpenPartySlot ||
-            !hasActiveRecommendationNeed ||
+        });
+
+      const strictCandidates =
+        scoredCandidates.filter(pokemon =>
+          !hasOpenPartySlot ||
+          !hasActiveRecommendationNeed ||
+          matchesCoverageFilter({
+            coverageFilter:
+              selectedCoverageFilter,
+            defensiveHits:
+              pokemon.missingDefensiveHits,
+            normalTypeQualifierEligible:
+              pokemon.normalTypeQualifierEligible,
+            offensiveHits:
+              pokemon.missingHits
+          })
+        );
+
+      const sortedStrictCandidates =
+        sortRecommendationCandidates(
+          strictCandidates,
+          selectedSortMode,
+          selectedFocusType
+        );
+
+      if (sortedStrictCandidates.length > 0) {
+        return {
+          candidates: sortedStrictCandidates,
+          fallbackMode: null
+        };
+      }
+
+      if (
+        selectedCoverageFilter !== "both" ||
+        !hasOpenPartySlot ||
+        !hasActiveRecommendationNeed
+      ) {
+        return {
+          candidates: sortedStrictCandidates,
+          fallbackMode: null
+        };
+      }
+
+      const eitherCandidates =
+        sortRecommendationCandidates(
+          scoredCandidates.filter(pokemon =>
             matchesCoverageFilter({
-              coverageFilter:
-                selectedCoverageFilter,
+              coverageFilter: "either",
               defensiveHits:
                 pokemon.missingDefensiveHits,
               normalTypeQualifierEligible:
@@ -2559,46 +2630,27 @@ function TeamCoveragePage() {
               offensiveHits:
                 pokemon.missingHits
             })
-        )
-        .sort((a, b) => {
-          if (
-            selectedSortMode ===
-            "custom-score"
-          ) {
-            return compareByCustomScore(a, b);
-          }
+          ),
+          selectedSortMode,
+          selectedFocusType
+        ).slice(0, 5);
 
-          if (
-            selectedSortMode ===
-            "most-coverage"
-          ) {
-            return compareByMostCoverage(
-              a,
-              b
-            );
-          }
+      if (eitherCandidates.length > 0) {
+        return {
+          candidates: eitherCandidates,
+          fallbackMode: "either"
+        };
+      }
 
-          if (
-            selectedSortMode ===
-            "selected-type-first"
-          ) {
-            return compareBySelectedTypeFirst(
-              selectedFocusType
-            )(a, b);
-          }
-
-          if (
-            getStatSortMode(
-              selectedSortMode
-            )
-          ) {
-            return compareByStat(
-              selectedSortMode
-            )(a, b);
-          }
-
-          return compareByNationalDex(a, b);
-        });
+      return {
+        candidates:
+          sortRecommendationCandidates(
+            scoredCandidates,
+            "highest-bst",
+            selectedFocusType
+          ).slice(0, 5),
+        fallbackMode: "bst"
+      };
     }, [
       consideredTypes,
       hasActiveRecommendationNeed,
@@ -2619,6 +2671,10 @@ function TeamCoveragePage() {
       selectedVersion,
       teamCoverageData
     ]);
+  const recommendationCandidates =
+    recommendationResult.candidates;
+  const recommendationFallbackMode =
+    recommendationResult.fallbackMode;
   const recommendationPageCount =
     Math.max(
       1,
@@ -3521,6 +3577,22 @@ function TeamCoveragePage() {
                 visibleRecommendations.length}{" "}
               of {recommendationCandidates.length} matches.
             </p>
+            {recommendationFallbackMode && (
+              <p
+                style={{
+                  color: "#cbd5e1",
+                  fontSize: ".82rem",
+                  lineHeight: 1.35,
+                  margin: "0 auto .85rem",
+                  maxWidth: "680px"
+                }}
+              >
+                {recommendationFallbackMode ===
+                "either"
+                  ? "No available Pokemon matched both offensive and defensive needs, so showing the top 5 that match either need."
+                  : "No available Pokemon matched the selected coverage need, so showing the top 5 highest-BST options."}
+              </p>
+            )}
             <div className="team-coverage-recommendation-grid">
               {visibleRecommendations.map(
                 recommendation => (
