@@ -35,6 +35,7 @@ const fallbackRules = [
 ];
 
 const representativePokemon = {
+  2: "ivysaur",
   25: "pikachu",
   131: "lapras"
 };
@@ -82,11 +83,13 @@ function parseArgs(argv) {
     confirm: false,
     dryRun: true,
     includeIds: [],
+    inspectLiveShape: false,
     limit: null,
     outputPath: defaultOutputPath,
     routesPath: defaultRoutesPath,
     strategy: STRATEGY_EXPLICIT,
-    sync: false
+    sync: false,
+    verifyLive: false
   };
 
   argv.forEach(arg => {
@@ -107,6 +110,16 @@ function parseArgs(argv) {
 
     if (arg === "--confirm") {
       options.confirm = true;
+      return;
+    }
+
+    if (arg === "--verify-live") {
+      options.verifyLive = true;
+      return;
+    }
+
+    if (arg === "--inspect-live-shape") {
+      options.inspectLiveShape = true;
       return;
     }
 
@@ -733,7 +746,7 @@ function normalizeRenderRoutes(routes) {
   return routes.map(normalizeRenderRoute);
 }
 
-function extractRenderRoutes(responseBody) {
+function extractRouteItems(responseBody) {
   if (Array.isArray(responseBody)) {
     return responseBody;
   }
@@ -745,6 +758,54 @@ function extractRenderRoutes(responseBody) {
   throw new Error(
     "Render routes response did not contain a route array."
   );
+}
+
+function unwrapRenderRouteItem(item) {
+  if (item?.route && typeof item.route === "object") {
+    return item.route;
+  }
+
+  return item;
+}
+
+function normalizeFetchedRenderRoutes(routeItems) {
+  return routeItems.map(item =>
+    normalizeRenderRoute(unwrapRenderRouteItem(item))
+  );
+}
+
+function getLastCursor(routeItems) {
+  if (routeItems.length === 0) {
+    return null;
+  }
+
+  const lastItem = routeItems[routeItems.length - 1];
+
+  return typeof lastItem?.cursor === "string"
+    ? lastItem.cursor
+    : null;
+}
+
+function getSafeRouteShapeSample(routeItems) {
+  return routeItems.slice(0, 2).map(item => {
+    const route = unwrapRenderRouteItem(item);
+
+    return {
+      topLevelKeys: Object.keys(item ?? {}),
+      cursorType: typeof item?.cursor,
+      routeKeys:
+        item?.route && typeof item.route === "object"
+          ? Object.keys(item.route)
+          : [],
+      routeSample: {
+        id: route?.id ? "<redacted-route-id>" : undefined,
+        type: route?.type,
+        source: route?.source,
+        destination: route?.destination,
+        priority: route?.priority
+      }
+    };
+  });
 }
 
 function findRouteDiff(expectedRoutes, actualRoutes) {
@@ -830,32 +891,52 @@ function assertSyncModeAllowed(options) {
       "Live Render sync requires --confirm together with --sync --no-dry-run."
     );
   }
+
+  if (
+    options.sync &&
+    (options.verifyLive || options.inspectLiveShape)
+  ) {
+    throw new Error(
+      "--sync cannot be combined with --verify-live or --inspect-live-shape."
+    );
+  }
 }
 
 function assertRenderCredentials({ serviceId, token }) {
   if (!token) {
     throw new Error(
-      "RENDER_API_TOKEN is required to sync Render routes."
+      "RENDER_API_TOKEN is required to access Render routes."
     );
   }
 
   if (!serviceId) {
     throw new Error(
-      "RENDER_SERVICE_ID is required to sync Render routes."
+      "RENDER_SERVICE_ID is required to access Render routes."
     );
   }
 }
 
-async function fetchRenderRoutes({ serviceId, token }) {
-  const response = await fetch(
-    `https://api.render.com/v1/services/${encodeURIComponent(serviceId)}/routes`,
-    {
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`
-      }
-    }
+async function fetchRenderRoutePage({
+  cursor,
+  serviceId,
+  token
+}) {
+  const url = new URL(
+    `https://api.render.com/v1/services/${encodeURIComponent(serviceId)}/routes`
   );
+
+  url.searchParams.set("limit", "100");
+
+  if (cursor) {
+    url.searchParams.set("cursor", cursor);
+  }
+
+  const response = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`
+    }
+  });
 
   if (!response.ok) {
     const body = await response.text();
@@ -864,7 +945,41 @@ async function fetchRenderRoutes({ serviceId, token }) {
     );
   }
 
-  return extractRenderRoutes(await response.json());
+  return extractRouteItems(await response.json());
+}
+
+async function fetchRenderRoutes(credentials) {
+  const rawItems = [];
+  let cursor = null;
+  let pageCount = 0;
+
+  for (;;) {
+    const pageItems = await fetchRenderRoutePage({
+      ...credentials,
+      cursor
+    });
+
+    pageCount += 1;
+    rawItems.push(...pageItems);
+
+    if (pageItems.length < 100) {
+      break;
+    }
+
+    const nextCursor = getLastCursor(pageItems);
+
+    if (!nextCursor || nextCursor === cursor) {
+      break;
+    }
+
+    cursor = nextCursor;
+  }
+
+  return {
+    pageCount,
+    rawItems,
+    routes: normalizeFetchedRenderRoutes(rawItems)
+  };
 }
 
 async function backupRenderRoutes(routes, options) {
@@ -909,14 +1024,14 @@ async function putRenderRoutes(renderRoutes, { serviceId, token }) {
 }
 
 function printSyncSummary(
-  currentRoutes,
+  currentRouteSnapshot,
   generation,
   options,
   backupPath
 ) {
   console.log(
     [
-      `Current live Render route count: ${currentRoutes.length}`,
+      `Current live Render route count: ${currentRouteSnapshot.routes.length}`,
       `Proposed live Render route count: ${generation.renderRoutes.length}`,
       `Numeric redirects: ${generation.numericRedirects.length}`,
       `Canonical slug rewrites: ${generation.explicitRewrites.length}`,
@@ -939,7 +1054,7 @@ async function syncRenderRoutes(generation, options) {
   );
   const currentRoutes = await fetchRenderRoutes(credentials);
   const backupPath = await backupRenderRoutes(
-    currentRoutes,
+    currentRoutes.rawItems,
     options
   );
 
@@ -960,7 +1075,7 @@ async function syncRenderRoutes(generation, options) {
   try {
     validateSyncedRoutes(
       generation.renderRoutes,
-      postSyncRoutes,
+      postSyncRoutes.routes,
       generation
     );
   } catch (error) {
@@ -975,6 +1090,53 @@ async function syncRenderRoutes(generation, options) {
   }
 
   return postSyncRoutes;
+}
+
+async function inspectLiveRouteShape() {
+  const credentials = getRenderCredentials();
+
+  assertRenderCredentials(credentials);
+
+  const liveSnapshot = await fetchRenderRoutes(credentials);
+
+  console.log(
+    [
+      "Render live route response shape inspection complete.",
+      `Pages fetched: ${liveSnapshot.pageCount}`,
+      `Wrapped route items fetched: ${liveSnapshot.rawItems.length}`,
+      "First route item samples:",
+      JSON.stringify(
+        getSafeRouteShapeSample(liveSnapshot.rawItems),
+        null,
+        2
+      )
+    ].join("\n")
+  );
+}
+
+async function verifyLiveRoutes(generation) {
+  const credentials = getRenderCredentials();
+
+  assertRenderCredentials(credentials);
+
+  const liveSnapshot = await fetchRenderRoutes(credentials);
+
+  validateSyncedRoutes(
+    generation.renderRoutes,
+    liveSnapshot.routes,
+    generation
+  );
+
+  console.log(
+    [
+      "Read-only live Render route verification complete.",
+      `Pages fetched: ${liveSnapshot.pageCount}`,
+      `Live route count: ${liveSnapshot.routes.length}`,
+      `Expected route count: ${generation.renderRoutes.length}`,
+      "Exact count/order/type/source/destination match: yes",
+      "Render API mutations executed: none"
+    ].join("\n")
+  );
 }
 
 function printReport({ generation, options }) {
@@ -1002,10 +1164,24 @@ async function main() {
 
   assertSyncModeAllowed(options);
 
+  if (options.inspectLiveShape) {
+    await inspectLiveRouteShape();
+
+    if (!options.verifyLive) {
+      return;
+    }
+  }
+
   const pokemonRoutes = loadPokemonRoutes(options.routesPath);
   const generation = buildRoutes(pokemonRoutes, options);
 
   validateRoutes(generation.renderRoutes, generation);
+
+  if (options.verifyLive) {
+    await verifyLiveRoutes(generation);
+    return;
+  }
+
   await writeDryRunOutput(
     options.outputPath,
     generation.renderRoutes
@@ -1020,7 +1196,7 @@ async function main() {
   const result = await syncRenderRoutes(generation, options);
 
   console.log(
-    `Render API sync completed. Updated ${Array.isArray(result) ? result.length : "unknown"} routes.`
+    `Render API sync completed. Updated ${result.routes.length} routes.`
   );
 }
 

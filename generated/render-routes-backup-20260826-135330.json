@@ -1,0 +1,62 @@
+[
+  {
+    "route": {
+      "destination": "/pokemon/pikachu",
+      "id": "rdr-da7j4vafngtc73fmb7i0",
+      "priority": 0,
+      "source": "/pokemon/25",
+      "type": "redirect"
+    },
+    "cursor": "CdgktPoEKvs0dmFmbmd0YzczZm1iN2kw"
+  },
+  {
+    "route": {
+      "destination": "/pokemon/lapras",
+      "id": "rdr-da7j4vafngtc73fmb7ig",
+      "priority": 1,
+      "source": "/pokemon/131",
+      "type": "redirect"
+    },
+    "cursor": "CdgktPoEKvs0dmFmbmd0YzczZm1iN2ln"
+  },
+  {
+    "route": {
+      "destination": "/pokemon/pikachu/index.html",
+      "id": "rdr-da7j4vafngtc73fmb7j0",
+      "priority": 2,
+      "source": "/pokemon/pikachu",
+      "type": "rewrite"
+    },
+    "cursor": "CdgktPoEKvs0dmFmbmd0YzczZm1iN2ow"
+  },
+  {
+    "route": {
+      "destination": "/pokemon/lapras/index.html",
+      "id": "rdr-da7j4vafngtc73fmb7jg",
+      "priority": 3,
+      "source": "/pokemon/lapras",
+      "type": "rewrite"
+    },
+    "cursor": "CdgktPoEKvs0dmFmbmd0YzczZm1iN2pn"
+  },
+  {
+    "route": {
+      "destination": "/index.html",
+      "id": "rdr-da7j4vafngtc73fmb7k0",
+      "priority": 4,
+      "source": "/pokemon/*",
+      "type": "rewrite"
+    },
+    "cursor": "CdgktPoEKvs0dmFmbmd0YzczZm1iN2sw"
+  },
+  {
+    "route": {
+      "destination": "/index.html",
+      "id": "rdr-da7j4vafngtc73fmb7kg",
+      "priority": 5,
+      "source": "/*",
+      "type": "rewrite"
+    },
+    "cursor": "CdgktPoEKvs0dmFmbmd0YzczZm1iN2tn"
+  }
+]
