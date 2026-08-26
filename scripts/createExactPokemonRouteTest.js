@@ -5,12 +5,6 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
 const pokemonDistDir = path.join(repoRoot, "dist", "pokemon");
-const raichuDir = path.join(pokemonDistDir, "raichu");
-const raichuIndexPath = path.join(raichuDir, "index.html");
-const raichuExtensionlessPath = path.join(
-  pokemonDistDir,
-  "raichu"
-);
 const numericRaichuPath = path.join(pokemonDistDir, "26");
 
 const numericRedirectShell = `<!doctype html>
@@ -40,20 +34,29 @@ function assertRegularFile(filePath, label) {
   }
 }
 
-assertRegularFile(
-  raichuIndexPath,
-  "Expected Raichu prerender output"
-);
+function createExtensionlessCanonicalPrerender(slug, label) {
+  const routeDir = path.join(pokemonDistDir, slug);
+  const indexPath = path.join(routeDir, "index.html");
+  const extensionlessPath = path.join(pokemonDistDir, slug);
 
-const raichuHtml = fs.readFileSync(raichuIndexPath, "utf8");
+  assertRegularFile(
+    indexPath,
+    `Expected ${label} prerender output`
+  );
 
-fs.rmSync(raichuDir, {
-  force: true,
-  recursive: true
-});
-fs.writeFileSync(raichuExtensionlessPath, raichuHtml);
+  const html = fs.readFileSync(indexPath, "utf8");
+
+  fs.rmSync(routeDir, {
+    force: true,
+    recursive: true
+  });
+  fs.writeFileSync(extensionlessPath, html);
+}
+
+createExtensionlessCanonicalPrerender("raichu", "Raichu");
+createExtensionlessCanonicalPrerender("pikachu", "Pikachu");
 fs.writeFileSync(numericRaichuPath, numericRedirectShell);
 
 console.log(
-  "Created extensionless Raichu route test files at dist/pokemon/26 and dist/pokemon/raichu."
+  "Created extensionless route test files at dist/pokemon/26, dist/pokemon/raichu, and dist/pokemon/pikachu."
 );
