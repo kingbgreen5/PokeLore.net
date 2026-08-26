@@ -111,11 +111,6 @@ function PokeloreAnalysis({
     <CollapsibleSection
       id={`pokemon-${resolvedPokemonId}-usage-analysis`}
       title={`${pokemonName} Playthrough, Competitive, and Nuzlocke Usage`}
-      summary={
-        loadState.loaded
-          ? "Playthrough, competitive, and Nuzlocke"
-          : "Loading analysis"
-      }
       expanded={expanded}
       titleColor={titleColor}
       titleChevron={titleChevron}

@@ -153,7 +153,6 @@ function PokemonBiologyData({
     <CollapsibleSection
       id={`pokemon-${pokemon.id}-biology-and-behavior`}
       title={`${pokemonName} Biology and Behavior`}
-      summary="Species, size, habitat, color, and behavior"
       expanded={expanded}
       titleColor={titleColor}
       titleChevron={titleChevron}

@@ -5,6 +5,18 @@ services:
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
     routes:
+      - type: redirect
+        source: /pokemon/25
+        destination: /pokemon/pikachu
+      - type: redirect
+        source: /pokemon/131
+        destination: /pokemon/lapras
+      - type: rewrite
+        source: /pokemon/pikachu
+        destination: /pokemon/pikachu/index.html
+      - type: rewrite
+        source: /pokemon/lapras
+        destination: /pokemon/lapras/index.html
       - type: rewrite
         source: /pokemon/*
         destination: /index.html

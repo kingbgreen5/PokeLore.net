@@ -17,6 +17,7 @@ import CollapsibleSection from "../components/CollapsibleSection";
 import TypeEffectivenessCard from "../components/TypeEffectivenessCard";
 import BaseStatsChart from "../components/BaseStatsChart";
 import PokemonDetailArtwork from "../components/PokemonDetailArtwork";
+import PokemonDescriptionSection from "../components/PokemonDescriptionSection";
 import TypeBadge from "../components/TypeBadge";
 import DeferredSection from "../components/DeferredSection";
 import Seo from "../seo/Seo";
@@ -823,6 +824,11 @@ const visibleSpecialFormNotes =
         />
       */}
 
+      <PokemonDescriptionSection
+        key={`description-${pokemon.id}`}
+        pokemon={pokemon}
+      />
+
       <PokemonDetailArtwork
         key={`${pokemon.id}-${pokemon.name}-${pokemon.sprite}`}
         alt={formatPokemonDisplayName(
@@ -1090,9 +1096,16 @@ const visibleSpecialFormNotes =
       </div>
     )}
   </>
-)}
+  )}
 </div>
 
+  <PokeloreAnalysis
+    key={`pokelore-analysis-${pokemon.id}`}
+    pokemon={pokemon}
+    pokemonId={pokemon.id}
+    titleColor={expandableTitleColor}
+    titleChevron={true}
+  />
 
   {learnsetData ? (
     <Suspense fallback={null}>
@@ -1132,14 +1145,6 @@ const visibleSpecialFormNotes =
   <WhereToFind
     enabled={deferredDetailsReady}
     key={`where-to-find-${pokemon.id}`}
-    pokemonId={pokemon.id}
-    titleColor={expandableTitleColor}
-    titleChevron={true}
-  />
-
-  <PokeloreAnalysis
-    key={`pokelore-analysis-${pokemon.id}`}
-    pokemon={pokemon}
     pokemonId={pokemon.id}
     titleColor={expandableTitleColor}
     titleChevron={true}

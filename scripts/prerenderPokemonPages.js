@@ -560,6 +560,37 @@ function buildPokeloreSections(
         </details>`;
 }
 
+function buildPokemonDescriptionSection(
+  pokemon,
+  analysis,
+  linkTargets
+) {
+  const description =
+    analysis?.description?.trim();
+
+  if (!description) return "";
+
+  const displayName =
+    formatPokemonDisplayName(pokemon);
+  const excludedPokemonLabels =
+    getPokeloreLinePokemonLabels(analysis);
+  const linkedDescription =
+    linkifyPokeloreText(
+      description,
+      linkTargets,
+      pokemon,
+      {
+        excludedPokemonLabels,
+        usedRoutes: new Set()
+      }
+    );
+
+  return `
+        <section class="prerender-description-card" aria-label="${escapeHtml(displayName)}'s Description">
+          <p>${renderLinkedTextHtml(linkedDescription)}</p>
+        </section>`;
+}
+
 function getFirstDexEntry(pokemon) {
   return pokemon.dexEntries?.[0]?.text ?? "";
 }
@@ -733,6 +764,26 @@ function buildCriticalCss() {
         opacity: 0.86;
       }
 
+      .prerender-description-card {
+        box-sizing: border-box;
+        margin: 0 auto 1rem;
+        max-width: 42rem;
+        text-align: left;
+        width: 100%;
+      }
+
+      .prerender-description-card p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      .prerender-description-card a {
+        color: #00cadb;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
       .prerender-collapsible {
         border: 2px solid #706363;
         border-radius: 12px;
@@ -857,6 +908,11 @@ function buildPokemonShell(
         <button class="prerender-menu" type="button">Menu: Pokemon</button>
       </nav>
       <main class="prerender-hero">
+        ${buildPokemonDescriptionSection(
+          pokemon,
+          pokeloreAnalysis,
+          pokeloreLinkTargets
+        )}
         <img class="prerender-hero-img" src="${escapeHtml(heroImage)}" alt="${escapeHtml(displayName)}" width="250" height="250" fetchpriority="high" loading="eager" decoding="async">
         <h1>${escapeHtml(displayName)}</h1>
         <p>#${escapeHtml(dexNumber)}</p>
