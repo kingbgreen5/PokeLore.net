@@ -2,9 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const __dirname = path.dirname(
-  fileURLToPath(import.meta.url)
-);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
 const defaultRoutesPath = path.join(
   repoRoot,
@@ -17,19 +15,12 @@ const defaultOutputPath = path.join(
   "generated",
   "renderPokemonRoutes.json"
 );
-const pokemonDistDir = path.join(
-  repoRoot,
-  "dist",
-  "pokemon"
-);
-const defaultBackupDir = path.join(
-  repoRoot,
-  "generated",
-  "render-route-backups"
-);
+const defaultBackupDir = path.join(repoRoot, "generated");
+const pokemonDistDir = path.join(repoRoot, "dist", "pokemon");
 
 const STRATEGY_EXPLICIT = "explicit";
 const STRATEGY_PLACEHOLDER = "placeholder";
+const slugPattern = "[a-z0-9-]+";
 const fallbackRules = [
   {
     type: "rewrite",
@@ -43,14 +34,57 @@ const fallbackRules = [
   }
 ];
 
+const representativePokemon = {
+  25: "pikachu",
+  131: "lapras"
+};
+
+function parseNonNegativeInteger(value, label) {
+  if (!/^\d+$/.test(value)) {
+    throw new Error(
+      `${label} must be a non-negative integer.`
+    );
+  }
+
+  return Number(value);
+}
+
+function parseIncludeIds(value) {
+  if (!value.trim()) {
+    return [];
+  }
+
+  const seenIds = new Set();
+
+  return value.split(",").reduce((ids, rawId) => {
+    const trimmedId = rawId.trim();
+
+    if (!/^\d+$/.test(trimmedId)) {
+      throw new Error(
+        `Included Pokemon id "${rawId}" is not numeric.`
+      );
+    }
+
+    const normalizedId = String(Number(trimmedId));
+
+    if (!seenIds.has(normalizedId)) {
+      seenIds.add(normalizedId);
+      ids.push(normalizedId);
+    }
+
+    return ids;
+  }, []);
+}
+
 function parseArgs(argv) {
   const options = {
     backupDir: defaultBackupDir,
     confirm: false,
     dryRun: true,
+    includeIds: [],
+    limit: null,
     outputPath: defaultOutputPath,
     routesPath: defaultRoutesPath,
-    serviceId: process.env.RENDER_SERVICE_ID,
     strategy: STRATEGY_EXPLICIT,
     sync: false
   };
@@ -73,6 +107,21 @@ function parseArgs(argv) {
 
     if (arg === "--confirm") {
       options.confirm = true;
+      return;
+    }
+
+    if (arg.startsWith("--limit=")) {
+      options.limit = parseNonNegativeInteger(
+        arg.slice("--limit=".length),
+        "--limit"
+      );
+      return;
+    }
+
+    if (arg.startsWith("--include=")) {
+      options.includeIds = parseIncludeIds(
+        arg.slice("--include=".length)
+      );
       return;
     }
 
@@ -120,9 +169,9 @@ function parseArgs(argv) {
     }
 
     if (arg.startsWith("--service-id=")) {
-      options.serviceId =
-        arg.slice("--service-id=".length);
-      return;
+      throw new Error(
+        "Use RENDER_SERVICE_ID for live sync. Service IDs must not be passed on the command line."
+      );
     }
 
     throw new Error(`Unknown argument: ${arg}`);
@@ -132,45 +181,41 @@ function parseArgs(argv) {
 }
 
 function readJson(filePath) {
-  return JSON.parse(
-    fs.readFileSync(filePath, "utf8")
-  );
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
 function timestampForFileName(date = new Date()) {
-  return date
-    .toISOString()
-    .replace(/[:.]/g, "-");
+  const pad = value => String(value).padStart(2, "0");
+
+  return `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}-${pad(date.getHours())}${pad(date.getMinutes())}${pad(date.getSeconds())}`;
 }
 
 function sortNumericEntries(entries) {
   return [...entries].sort(
-    ([first], [second]) =>
-      Number(first) - Number(second)
+    ([first], [second]) => Number(first) - Number(second)
   );
 }
 
 function normalizeSlug(slug) {
-  return String(slug ?? "")
-    .trim()
-    .toLowerCase();
+  return String(slug ?? "").trim().toLowerCase();
 }
 
 function isNumericSlug(value) {
   return /^\d+$/.test(String(value ?? ""));
 }
 
-function isNumericPokemonPath(source) {
-  return /^\/pokemon\/\d+(?:\/|$)/.test(
-    source
+function isCanonicalSlug(value) {
+  return new RegExp(`^${slugPattern}$`).test(
+    String(value ?? "")
   );
 }
 
+function isNumericPokemonPath(source) {
+  return /^\/pokemon\/\d+(?:\/|$)/.test(source);
+}
+
 function isNumericPokemonStaticResource(name) {
-  return (
-    /^\d+$/.test(name) ||
-    /^\d+\.html$/.test(name)
-  );
+  return /^\d+$/.test(name) || /^\d+\.html$/.test(name);
 }
 
 function getNumericStaticPokemonRoutes() {
@@ -179,12 +224,8 @@ function getNumericStaticPokemonRoutes() {
   }
 
   return fs
-    .readdirSync(pokemonDistDir, {
-      withFileTypes: true
-    })
-    .filter(entry =>
-      isNumericPokemonStaticResource(entry.name)
-    )
+    .readdirSync(pokemonDistDir, { withFileTypes: true })
+    .filter(entry => isNumericPokemonStaticResource(entry.name))
     .map(entry =>
       path.relative(
         repoRoot,
@@ -209,54 +250,110 @@ function loadPokemonRoutes(routesPath) {
   return routes;
 }
 
-function buildNumericRedirects(routes) {
-  return sortNumericEntries(
-    Object.entries(routes.byId)
-  ).map(([id, slug]) => {
-    const canonicalSlug = normalizeSlug(slug);
+function getSortedPokemonIdEntries(routes) {
+  return sortNumericEntries(Object.entries(routes.byId)).map(
+    ([id, slug]) => {
+      const canonicalSlug = normalizeSlug(slug);
+      const normalizedId = String(Number(id));
 
-    if (!isNumericSlug(id)) {
-      throw new Error(
-        `Pokemon byId key "${id}" is not numeric.`
-      );
+      if (!isNumericSlug(id)) {
+        throw new Error(
+          `Pokemon byId key "${id}" is not numeric.`
+        );
+      }
+
+      if (!canonicalSlug) {
+        throw new Error(
+          `Numeric Pokemon ${id} has no canonical slug.`
+        );
+      }
+
+      if (!isCanonicalSlug(canonicalSlug)) {
+        throw new Error(
+          `Numeric Pokemon ${id} points to malformed canonical slug "${canonicalSlug}".`
+        );
+      }
+
+      if (!routes.byName[canonicalSlug]) {
+        throw new Error(
+          `Numeric Pokemon ${id} points to missing canonical slug "${canonicalSlug}".`
+        );
+      }
+
+      return [normalizedId, canonicalSlug];
     }
-
-    if (!canonicalSlug) {
-      throw new Error(
-        `Numeric Pokemon ${id} has no canonical slug.`
-      );
-    }
-
-    if (!routes.byName[canonicalSlug]) {
-      throw new Error(
-        `Numeric Pokemon ${id} points to missing canonical slug "${canonicalSlug}".`
-      );
-    }
-
-    return {
-      type: "redirect",
-      source: `/pokemon/${id}`,
-      destination: `/pokemon/${canonicalSlug}`
-    };
-  });
+  );
 }
 
-function buildExplicitCanonicalRewrites(routes) {
-  return Object.keys(routes.byName).map(slug => {
-    const canonicalSlug = normalizeSlug(slug);
+function selectPokemonEntries(routes, options) {
+  const allEntries = getSortedPokemonIdEntries(routes);
+  const selectedIds = new Set();
 
-    if (!canonicalSlug) {
+  if (options.limit === null) {
+    allEntries.forEach(([id]) => selectedIds.add(id));
+  } else {
+    allEntries
+      .slice(0, options.limit)
+      .forEach(([id]) => selectedIds.add(id));
+  }
+
+  options.includeIds.forEach(id => {
+    if (!routes.byId[id]) {
       throw new Error(
-        "Encountered empty canonical Pokemon slug."
+        `Included Pokemon id ${id} is not present in pokemonRoutes.json.`
       );
     }
 
-    return {
-      type: "rewrite",
-      source: `/pokemon/${canonicalSlug}`,
-      destination: `/pokemon/${canonicalSlug}/index.html`
-    };
+    selectedIds.add(id);
   });
+
+  return allEntries.filter(([id]) => selectedIds.has(id));
+}
+
+function buildNumericRedirects(selectedEntries) {
+  return selectedEntries.map(([id, canonicalSlug]) => ({
+    type: "redirect",
+    source: `/pokemon/${id}`,
+    destination: `/pokemon/${canonicalSlug}`
+  }));
+}
+
+function buildCanonicalRewrite(slug) {
+  const canonicalSlug = normalizeSlug(slug);
+
+  if (!isCanonicalSlug(canonicalSlug)) {
+    throw new Error(
+      `Encountered malformed canonical Pokemon slug "${slug}".`
+    );
+  }
+
+  return {
+    type: "rewrite",
+    source: `/pokemon/${canonicalSlug}`,
+    destination: `/pokemon/${canonicalSlug}/index.html`
+  };
+}
+
+function buildAllExplicitCanonicalRewrites(routes) {
+  return Object.keys(routes.byName).map(slug =>
+    buildCanonicalRewrite(slug)
+  );
+}
+
+function buildSelectedExplicitCanonicalRewrites(selectedEntries) {
+  const seenSlugs = new Set();
+  const rewrites = [];
+
+  selectedEntries.forEach(([, slug]) => {
+    if (seenSlugs.has(slug)) {
+      return;
+    }
+
+    seenSlugs.add(slug);
+    rewrites.push(buildCanonicalRewrite(slug));
+  });
+
+  return rewrites;
 }
 
 function buildPlaceholderCanonicalRewrite() {
@@ -269,26 +366,44 @@ function buildPlaceholderCanonicalRewrite() {
   ];
 }
 
-function buildRoutes(routes, strategy) {
-  const numericRedirects =
-    buildNumericRedirects(routes);
+function buildRoutes(routes, options) {
+  const selectedEntries = selectPokemonEntries(routes, options);
+  const numericRedirects = buildNumericRedirects(selectedEntries);
   const explicitRewrites =
-    buildExplicitCanonicalRewrites(routes);
+    options.limit === null
+      ? buildAllExplicitCanonicalRewrites(routes)
+      : buildSelectedExplicitCanonicalRewrites(selectedEntries);
+  const placeholderRewrites = buildPlaceholderCanonicalRewrite();
   const canonicalRewrites =
-    strategy === STRATEGY_PLACEHOLDER
-      ? buildPlaceholderCanonicalRewrite()
+    options.strategy === STRATEGY_PLACEHOLDER
+      ? placeholderRewrites
       : explicitRewrites;
+  const renderRoutes = [
+    ...numericRedirects,
+    ...canonicalRewrites,
+    ...fallbackRules
+  ];
 
   return {
-    numericRedirects,
     explicitRewrites,
-    placeholderRewrites:
-      buildPlaceholderCanonicalRewrite(),
-    renderRoutes: [
-      ...numericRedirects,
-      ...canonicalRewrites,
-      ...fallbackRules
-    ]
+    fallbackCount: fallbackRules.length,
+    numericRedirects,
+    placeholderRewrites,
+    renderRoutes,
+    selectedEntries,
+    selectedIds: selectedEntries.map(([id]) => id),
+    expectedRouteCount:
+      numericRedirects.length +
+      canonicalRewrites.length +
+      fallbackRules.length,
+    strategyATotal:
+      numericRedirects.length +
+      explicitRewrites.length +
+      fallbackRules.length,
+    strategyBTotal:
+      numericRedirects.length +
+      placeholderRewrites.length +
+      fallbackRules.length
   };
 }
 
@@ -319,14 +434,13 @@ function validateNoNumericRewrites(renderRoutes) {
     );
   }
 
-  const numericDestinationRewrite =
-    renderRoutes.find(
-      route =>
-        route.type === "rewrite" &&
-        /^\/pokemon\/\d+(?:\/index\.html)?$/.test(
-          route.destination
-        )
-    );
+  const numericDestinationRewrite = renderRoutes.find(
+    route =>
+      route.type === "rewrite" &&
+      /^\/pokemon\/\d+(?:\/index\.html)?$/.test(
+        route.destination
+      )
+  );
 
   if (numericDestinationRewrite) {
     throw new Error(
@@ -335,9 +449,7 @@ function validateNoNumericRewrites(renderRoutes) {
   }
 }
 
-function validateNoCanonicalSlugRedirects(
-  renderRoutes
-) {
+function validateNoCanonicalSlugRedirects(renderRoutes) {
   const canonicalRedirect = renderRoutes.find(
     route =>
       route.type === "redirect" &&
@@ -355,18 +467,32 @@ function validateFallbacksLast(renderRoutes) {
   const lastRules = renderRoutes.slice(-2);
 
   if (
-    JSON.stringify(lastRules) !==
-    JSON.stringify(fallbackRules)
+    JSON.stringify(lastRules) !== JSON.stringify(fallbackRules)
   ) {
     throw new Error(
       "Fallback rules must be the final two Render routes."
     );
   }
+
+  renderRoutes.slice(0, -2).forEach((route, index) => {
+    const isFallback =
+      fallbackRules.some(
+        fallback =>
+          JSON.stringify(route) === JSON.stringify(fallback)
+      ) ||
+      route.source === "/pokemon/*" ||
+      route.source === "/*";
+
+    if (isFallback) {
+      throw new Error(
+        `Fallback route appears before the final two routes at position ${index + 1}.`
+      );
+    }
+  });
 }
 
 function validateNoNumericStaticPokemonRoutes() {
-  const numericStaticRoutes =
-    getNumericStaticPokemonRoutes();
+  const numericStaticRoutes = getNumericStaticPokemonRoutes();
 
   if (numericStaticRoutes.length > 0) {
     throw new Error(
@@ -380,12 +506,219 @@ function validateNoNumericStaticPokemonRoutes() {
   }
 }
 
-function validateRoutes(renderRoutes) {
+function validateNoPlaceholderPokemonRewrite(renderRoutes) {
+  const placeholderRoute = renderRoutes.find(
+    route =>
+      route.source === "/pokemon/:slug" ||
+      route.destination === "/pokemon/:slug/index.html" ||
+      String(route.source).includes(":slug") ||
+      String(route.destination).includes(":slug")
+  );
+
+  if (placeholderRoute) {
+    throw new Error(
+      "Placeholder Pokemon rewrites are not production-safe for live sync because missing destinations return an empty HTTP 200. Use explicit Strategy A routes."
+    );
+  }
+}
+
+function validateDestinations(renderRoutes) {
+  renderRoutes.forEach((route, index) => {
+    if (
+      route.type !== "redirect" &&
+      route.type !== "rewrite"
+    ) {
+      throw new Error(
+        `Route at position ${index + 1} has unsupported type "${route.type}".`
+      );
+    }
+
+    if (
+      typeof route.source !== "string" ||
+      typeof route.destination !== "string" ||
+      !route.source.startsWith("/") ||
+      !route.destination.startsWith("/")
+    ) {
+      throw new Error(
+        `Route at position ${index + 1} has a malformed source or destination.`
+      );
+    }
+
+    if (
+      fallbackRules.some(
+        fallback =>
+          JSON.stringify(route) === JSON.stringify(fallback)
+      )
+    ) {
+      return;
+    }
+
+    if (route.type === "redirect") {
+      if (
+        !/^\/pokemon\/\d+$/.test(route.source) ||
+        !new RegExp(`^/pokemon/${slugPattern}$`).test(
+          route.destination
+        )
+      ) {
+        throw new Error(
+          `Malformed Pokemon redirect route at position ${index + 1}: ${JSON.stringify(route)}`
+        );
+      }
+
+      return;
+    }
+
+    if (
+      !new RegExp(`^/pokemon/${slugPattern}$`).test(
+        route.source
+      )
+    ) {
+      throw new Error(
+        `Malformed Pokemon rewrite source at position ${index + 1}: ${route.source}`
+      );
+    }
+
+    const expectedDestination = `${route.source}/index.html`;
+
+    if (route.destination !== expectedDestination) {
+      throw new Error(
+        `Canonical slug rewrite ${route.source} must point to ${expectedDestination}, not ${route.destination}.`
+      );
+    }
+  });
+}
+
+function validateIncludedPokemonPairs(renderRoutes, selectedEntries) {
+  const routesBySource = new Map(
+    renderRoutes.map(route => [route.source, route])
+  );
+
+  selectedEntries.forEach(([id, slug]) => {
+    const redirect = routesBySource.get(`/pokemon/${id}`);
+    const rewrite = routesBySource.get(`/pokemon/${slug}`);
+
+    if (
+      !redirect ||
+      redirect.type !== "redirect" ||
+      redirect.destination !== `/pokemon/${slug}`
+    ) {
+      throw new Error(
+        `Missing redirect/rewrite pair for included Pokemon ${id} (${slug}): redirect is absent or incorrect.`
+      );
+    }
+
+    if (
+      !rewrite ||
+      rewrite.type !== "rewrite" ||
+      rewrite.destination !== `/pokemon/${slug}/index.html`
+    ) {
+      throw new Error(
+        `Missing redirect/rewrite pair for included Pokemon ${id} (${slug}): canonical rewrite is absent or incorrect.`
+      );
+    }
+  });
+}
+
+function validateRepresentativeRules(renderRoutes, selectedIds) {
+  const selectedIdSet = new Set(selectedIds);
+  const expectedRules = [];
+
+  Object.entries(representativePokemon).forEach(([id, slug]) => {
+    if (!selectedIdSet.has(id)) {
+      return;
+    }
+
+    expectedRules.push(
+      {
+        type: "redirect",
+        source: `/pokemon/${id}`,
+        destination: `/pokemon/${slug}`
+      },
+      {
+        type: "rewrite",
+        source: `/pokemon/${slug}`,
+        destination: `/pokemon/${slug}/index.html`
+      }
+    );
+  });
+
+  expectedRules.forEach(expectedRule => {
+    const matchingRule = renderRoutes.find(
+      route => route.source === expectedRule.source
+    );
+
+    if (
+      !matchingRule ||
+      JSON.stringify(matchingRule) !==
+        JSON.stringify(expectedRule)
+    ) {
+      throw new Error(
+        `Representative rule mismatch for ${expectedRule.source}.`
+      );
+    }
+  });
+}
+
+function validateRouteCounts(renderRoutes, generation) {
+  const numericRedirectCount = renderRoutes.filter(
+    route =>
+      route.type === "redirect" &&
+      /^\/pokemon\/\d+$/.test(route.source)
+  ).length;
+  const canonicalRewriteCount = renderRoutes.filter(
+    route =>
+      route.type === "rewrite" &&
+      new RegExp(`^/pokemon/${slugPattern}$`).test(route.source)
+  ).length;
+  const fallbackCount = renderRoutes.filter(route =>
+    fallbackRules.some(
+      fallback =>
+        JSON.stringify(route) === JSON.stringify(fallback)
+    )
+  ).length;
+
+  if (numericRedirectCount !== generation.numericRedirects.length) {
+    throw new Error(
+      `Numeric redirect count mismatch. Expected ${generation.numericRedirects.length}, received ${numericRedirectCount}.`
+    );
+  }
+
+  if (canonicalRewriteCount !== generation.explicitRewrites.length) {
+    throw new Error(
+      `Canonical rewrite count mismatch. Expected ${generation.explicitRewrites.length}, received ${canonicalRewriteCount}.`
+    );
+  }
+
+  if (fallbackCount !== fallbackRules.length) {
+    throw new Error(
+      `Fallback count mismatch. Expected ${fallbackRules.length}, received ${fallbackCount}.`
+    );
+  }
+
+  if (renderRoutes.length !== generation.expectedRouteCount) {
+    throw new Error(
+      `Generated route count mismatch. Expected ${generation.expectedRouteCount}, received ${renderRoutes.length}.`
+    );
+  }
+}
+
+function validateRoutes(renderRoutes, generation) {
   validateUniqueSources(renderRoutes);
   validateNoNumericRewrites(renderRoutes);
   validateNoCanonicalSlugRedirects(renderRoutes);
   validateFallbacksLast(renderRoutes);
   validateNoNumericStaticPokemonRoutes();
+  validateNoPlaceholderPokemonRewrite(renderRoutes);
+  validateDestinations(renderRoutes);
+  validateIncludedPokemonPairs(
+    renderRoutes,
+    generation.selectedEntries
+  );
+  validateRepresentativeRules(
+    renderRoutes,
+    generation.selectedIds
+  );
+  validateRouteCounts(renderRoutes, generation);
 }
 
 function normalizeRenderRoute(route) {
@@ -414,132 +747,92 @@ function extractRenderRoutes(responseBody) {
   );
 }
 
-function validateRepresentativeRules(renderRoutes) {
-  const expectedRules = [
-    {
-      type: "redirect",
-      source: "/pokemon/25",
-      destination: "/pokemon/pikachu"
-    },
-    {
-      type: "redirect",
-      source: "/pokemon/131",
-      destination: "/pokemon/lapras"
-    },
-    {
-      type: "rewrite",
-      source: "/pokemon/pikachu",
-      destination: "/pokemon/pikachu/index.html"
-    },
-    {
-      type: "rewrite",
-      source: "/pokemon/lapras",
-      destination: "/pokemon/lapras/index.html"
-    }
-  ];
+function findRouteDiff(expectedRoutes, actualRoutes) {
+  if (actualRoutes.length !== expectedRoutes.length) {
+    return `route count differs: expected ${expectedRoutes.length}, received ${actualRoutes.length}`;
+  }
 
-  expectedRules.forEach(expectedRule => {
-    const matchingRule = renderRoutes.find(
-      route => route.source === expectedRule.source
-    );
+  for (let index = 0; index < expectedRoutes.length; index += 1) {
+    const expectedRoute = expectedRoutes[index];
+    const actualRoute = actualRoutes[index];
 
     if (
-      !matchingRule ||
-      JSON.stringify(matchingRule) !==
-        JSON.stringify(expectedRule)
+      JSON.stringify(actualRoute) !== JSON.stringify(expectedRoute)
     ) {
-      throw new Error(
-        `Post-sync representative rule mismatch for ${expectedRule.source}.`
-      );
+      return [
+        `route ${index + 1} differs`,
+        `expected ${JSON.stringify(expectedRoute)}`,
+        `received ${JSON.stringify(actualRoute)}`
+      ].join("; ");
     }
-  });
+  }
+
+  return null;
 }
 
 function validateSyncedRoutes(
   generatedRoutes,
-  liveRoutes
+  liveRoutes,
+  generation
 ) {
-  const normalizedGenerated =
-    normalizeRenderRoutes(generatedRoutes);
-  const normalizedLive =
-    normalizeRenderRoutes(liveRoutes);
+  const normalizedGenerated = normalizeRenderRoutes(generatedRoutes);
+  const normalizedLive = normalizeRenderRoutes(liveRoutes);
 
-  validateRoutes(normalizedLive);
-  validateRepresentativeRules(normalizedLive);
+  validateRoutes(normalizedLive, generation);
 
-  if (
-    normalizedLive.length !==
-    normalizedGenerated.length
-  ) {
+  const diff = findRouteDiff(
+    normalizedGenerated,
+    normalizedLive
+  );
+
+  if (diff) {
     throw new Error(
-      `Post-sync route count mismatch. Expected ${normalizedGenerated.length}, received ${normalizedLive.length}.`
+      `Post-sync Render route verification failed: ${diff}`
     );
-  }
-
-  for (
-    let index = 0;
-    index < normalizedGenerated.length;
-    index += 1
-  ) {
-    const expectedRoute =
-      normalizedGenerated[index];
-    const actualRoute =
-      normalizedLive[index];
-
-    if (
-      JSON.stringify(actualRoute) !==
-      JSON.stringify(expectedRoute)
-    ) {
-      throw new Error(
-        [
-          `Post-sync route mismatch at position ${index + 1}.`,
-          `Expected: ${JSON.stringify(expectedRoute)}`,
-          `Received: ${JSON.stringify(actualRoute)}`
-        ].join("\n")
-      );
-    }
   }
 }
 
-async function writeDryRunOutput(
-  outputPath,
-  renderRoutes
-) {
-  await fs.promises.mkdir(
-    path.dirname(outputPath),
-    {
-      recursive: true
-    }
-  );
+async function writeDryRunOutput(outputPath, renderRoutes) {
+  await fs.promises.mkdir(path.dirname(outputPath), {
+    recursive: true
+  });
   await fs.promises.writeFile(
     outputPath,
     `${JSON.stringify(renderRoutes, null, 2)}\n`
   );
 }
 
-function getRenderCredentials(options) {
+function getRenderCredentials() {
   return {
-    serviceId: options.serviceId,
+    serviceId: process.env.RENDER_SERVICE_ID,
     token: process.env.RENDER_API_TOKEN
   };
 }
 
-function assertLiveSyncAllowed(options) {
+function assertSyncModeAllowed(options) {
   if (
-    options.sync &&
-    !options.dryRun &&
-    !options.confirm
+    options.strategy === STRATEGY_PLACEHOLDER &&
+    options.sync
   ) {
+    throw new Error(
+      "Refusing to sync placeholder Pokemon rewrites: missing destinations return an empty HTTP 200, so Strategy B is unsafe until Render behavior changes."
+    );
+  }
+
+  if (options.sync && options.dryRun) {
+    throw new Error(
+      "Live Render sync requires --sync --no-dry-run --confirm. Dry-run mode never calls the Render API."
+    );
+  }
+
+  if (options.sync && !options.confirm) {
     throw new Error(
       "Live Render sync requires --confirm together with --sync --no-dry-run."
     );
   }
 }
 
-function assertRenderCredentials({
-  serviceId,
-  token
-}) {
+function assertRenderCredentials({ serviceId, token }) {
   if (!token) {
     throw new Error(
       "RENDER_API_TOKEN is required to sync Render routes."
@@ -548,15 +841,12 @@ function assertRenderCredentials({
 
   if (!serviceId) {
     throw new Error(
-      "RENDER_SERVICE_ID or --service-id is required to sync Render routes."
+      "RENDER_SERVICE_ID is required to sync Render routes."
     );
   }
 }
 
-async function fetchRenderRoutes({
-  serviceId,
-  token
-}) {
+async function fetchRenderRoutes({ serviceId, token }) {
   const response = await fetch(
     `https://api.render.com/v1/services/${encodeURIComponent(serviceId)}/routes`,
     {
@@ -574,26 +864,18 @@ async function fetchRenderRoutes({
     );
   }
 
-  return extractRenderRoutes(
-    await response.json()
-  );
+  return extractRenderRoutes(await response.json());
 }
 
-async function backupRenderRoutes(
-  routes,
-  options
-) {
+async function backupRenderRoutes(routes, options) {
   const backupPath = path.join(
     options.backupDir,
-    `live-render-routes-${timestampForFileName()}.json`
+    `render-routes-backup-${timestampForFileName()}.json`
   );
 
-  await fs.promises.mkdir(
-    path.dirname(backupPath),
-    {
-      recursive: true
-    }
-  );
+  await fs.promises.mkdir(path.dirname(backupPath), {
+    recursive: true
+  });
   await fs.promises.writeFile(
     backupPath,
     `${JSON.stringify(routes, null, 2)}\n`
@@ -602,13 +884,7 @@ async function backupRenderRoutes(
   return backupPath;
 }
 
-async function putRenderRoutes(
-  renderRoutes,
-  {
-    serviceId,
-    token
-  }
-) {
+async function putRenderRoutes(renderRoutes, { serviceId, token }) {
   const response = await fetch(
     `https://api.render.com/v1/services/${encodeURIComponent(serviceId)}/routes`,
     {
@@ -632,79 +908,89 @@ async function putRenderRoutes(
   return response.json();
 }
 
-async function syncRenderRoutes(
-  renderRoutes,
-  options
+function printSyncSummary(
+  currentRoutes,
+  generation,
+  options,
+  backupPath
 ) {
-  assertLiveSyncAllowed(options);
-  const credentials =
-    getRenderCredentials(options);
+  console.log(
+    [
+      `Current live Render route count: ${currentRoutes.length}`,
+      `Proposed live Render route count: ${generation.renderRoutes.length}`,
+      `Numeric redirects: ${generation.numericRedirects.length}`,
+      `Canonical slug rewrites: ${generation.explicitRewrites.length}`,
+      `Fallback rules: ${generation.fallbackCount}`,
+      `Limit used: ${options.limit === null ? "none" : options.limit}`,
+      `Explicit included IDs: ${options.includeIds.length ? options.includeIds.join(",") : "none"}`,
+      `Live route backup written: ${path.relative(repoRoot, backupPath)}`
+    ].join("\n")
+  );
+}
+
+async function syncRenderRoutes(generation, options) {
+  assertSyncModeAllowed(options);
+  const credentials = getRenderCredentials();
 
   assertRenderCredentials(credentials);
 
   console.log(
     "Fetching current live Render routes before sync..."
   );
-  const currentRoutes =
-    await fetchRenderRoutes(credentials);
-  const backupPath =
-    await backupRenderRoutes(
-      currentRoutes,
-      options
-    );
-
-  console.log(
-    [
-      `Current live Render route count: ${currentRoutes.length}`,
-      `Proposed Render route count: ${renderRoutes.length}`,
-      `Live route backup written: ${path.relative(repoRoot, backupPath)}`
-    ].join("\n")
+  const currentRoutes = await fetchRenderRoutes(credentials);
+  const backupPath = await backupRenderRoutes(
+    currentRoutes,
+    options
   );
 
-  await putRenderRoutes(
-    renderRoutes,
-    credentials
+  printSyncSummary(
+    currentRoutes,
+    generation,
+    options,
+    backupPath
   );
+
+  await putRenderRoutes(generation.renderRoutes, credentials);
 
   console.log(
     "Render PUT completed. Fetching routes again for verification..."
   );
-  const postSyncRoutes =
-    await fetchRenderRoutes(credentials);
+  const postSyncRoutes = await fetchRenderRoutes(credentials);
 
-  validateSyncedRoutes(
-    renderRoutes,
-    postSyncRoutes
-  );
+  try {
+    validateSyncedRoutes(
+      generation.renderRoutes,
+      postSyncRoutes,
+      generation
+    );
+  } catch (error) {
+    throw new Error(
+      [
+        error.message,
+        `Backup file: ${path.relative(repoRoot, backupPath)}`,
+        "No automatic restore was attempted."
+      ].join("\n"),
+      { cause: error }
+    );
+  }
 
   return postSyncRoutes;
 }
 
-function printReport({
-  explicitRewrites,
-  numericRedirects,
-  options,
-  renderRoutes
-}) {
-  const strategyATotal =
-    numericRedirects.length +
-    explicitRewrites.length +
-    fallbackRules.length;
-  const strategyBTotal =
-    numericRedirects.length +
-    1 +
-    fallbackRules.length;
-
+function printReport({ generation, options }) {
   console.log(
     [
       "Render Pokemon route generation complete.",
       `Mode: ${options.dryRun ? "dry-run" : "sync"}`,
       `Selected output strategy: ${options.strategy}`,
-      `Numeric redirects generated: ${numericRedirects.length}`,
-      `Canonical slug rewrites under Strategy A: ${explicitRewrites.length}`,
-      `Total rule count under Strategy A: ${strategyATotal}`,
-      `Total rule count if Strategy B proves usable: ${strategyBTotal}`,
-      `Rules in generated output: ${renderRoutes.length}`,
+      `Limit used: ${options.limit === null ? "none" : options.limit}`,
+      `Explicit included IDs: ${options.includeIds.length ? options.includeIds.join(",") : "none"}`,
+      `Numeric redirects generated: ${generation.numericRedirects.length}`,
+      `Canonical slug rewrites under Strategy A: ${generation.explicitRewrites.length}`,
+      `Fallback rules generated: ${generation.fallbackCount}`,
+      `Total rule count under Strategy A: ${generation.strategyATotal}`,
+      `Total rule count if Strategy B proves usable: ${generation.strategyBTotal}`,
+      `Rules in generated output: ${generation.renderRoutes.length}`,
       `Output file: ${path.relative(repoRoot, options.outputPath)}`,
       "Validation: passed"
     ].join("\n")
@@ -712,45 +998,27 @@ function printReport({
 }
 
 async function main() {
-  const options = parseArgs(
-    process.argv.slice(2)
-  );
-  assertLiveSyncAllowed(options);
-  const pokemonRoutes = loadPokemonRoutes(
-    options.routesPath
-  );
-  const {
-    explicitRewrites,
-    numericRedirects,
-    renderRoutes
-  } = buildRoutes(
-    pokemonRoutes,
-    options.strategy
-  );
+  const options = parseArgs(process.argv.slice(2));
 
-  validateRoutes(renderRoutes);
+  assertSyncModeAllowed(options);
+
+  const pokemonRoutes = loadPokemonRoutes(options.routesPath);
+  const generation = buildRoutes(pokemonRoutes, options);
+
+  validateRoutes(generation.renderRoutes, generation);
   await writeDryRunOutput(
     options.outputPath,
-    renderRoutes
+    generation.renderRoutes
   );
-  printReport({
-    explicitRewrites,
-    numericRedirects,
-    options,
-    renderRoutes
-  });
+  printReport({ generation, options });
 
-  if (!options.sync || options.dryRun) {
-    console.log(
-      "Render API sync skipped."
-    );
+  if (!options.sync) {
+    console.log("Render API sync skipped.");
     return;
   }
 
-  const result = await syncRenderRoutes(
-    renderRoutes,
-    options
-  );
+  const result = await syncRenderRoutes(generation, options);
+
   console.log(
     `Render API sync completed. Updated ${Array.isArray(result) ? result.length : "unknown"} routes.`
   );
