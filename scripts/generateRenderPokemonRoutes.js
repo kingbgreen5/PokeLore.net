@@ -2,6 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+// Archived diagnostic tooling for the abandoned Render-rule strategy.
+// Production Pokemon routing is now finalized by finalizePokemonPrerenderRoutes.js
+// into exact extensionless static files; do not use this script for deploys.
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
 const defaultRoutesPath = path.join(

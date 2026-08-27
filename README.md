@@ -19,6 +19,13 @@ The sync is resumable, validates existing files, writes updates
 atomically, and regenerates
 `public/data/pokemonArtworkManifest.json`.
 
+## Pokemon static routing
+
+Pokemon detail pages are prerendered and finalized into extensionless static
+files during the normal production build. See
+`docs/pokemon-static-routing.md` for the Render requirements and maintenance
+notes.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)

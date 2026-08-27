@@ -5,18 +5,9 @@ services:
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
     routes:
-      - type: redirect
-        source: /pokemon/25
-        destination: /pokemon/pikachu
-      - type: redirect
-        source: /pokemon/131
-        destination: /pokemon/lapras
-      - type: rewrite
-        source: /pokemon/pikachu
-        destination: /pokemon/pikachu/index.html
-      - type: rewrite
-        source: /pokemon/lapras
-        destination: /pokemon/lapras/index.html
+      # Pokemon canonical and numeric URLs are exact extensionless static files
+      # emitted by the production build. Keep Render routing minimal so missing
+      # Pokemon URLs fall through to React's confirmed not-found/noindex path.
       - type: rewrite
         source: /pokemon/*
         destination: /index.html
