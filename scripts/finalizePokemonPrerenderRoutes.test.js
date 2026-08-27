@@ -40,7 +40,8 @@ function writePrerender(pokemonDistDir, slug) {
       "<!doctype html>",
       "<html lang=\"en\">",
       "<head>",
-      `<title>${displayName} - PokeLore</title>`,
+      `<title>${displayName} Pokédex: Stats, Moves, Evolution &amp; Analysis | PokéLore</title>`,
+      `<meta name="description" content="${displayName} stats, moves, weaknesses, evolution, locations, Pokédex entries, plus playthrough, competitive and Nuzlocke analysis—all in one place.">`,
       `<link rel="canonical" href="https://pokelore.net/pokemon/${slug}">`,
       "<link rel=\"stylesheet\" href=\"/assets/index.css\">",
       `<script type="module" src="/assets/${slug}.js"></script>`,
@@ -112,6 +113,7 @@ function writePrerender(pokemonDistDir, slug) {
     /<meta http-equiv="refresh" content="0; url=\/pokemon\/lapras">/
   );
   assert.match(shell, /<a href="\/pokemon\/lapras">Lapras<\/a>/);
+  assert.doesNotMatch(shell, /<meta name="description"/i);
   assert.doesNotMatch(shell, /noindex/i);
 }
 

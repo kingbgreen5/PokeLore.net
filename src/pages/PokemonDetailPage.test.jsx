@@ -26,6 +26,7 @@ import bulbasaur from "../../public/data/pokemonData/1.json";
 import charizard from "../../public/data/pokemonData/6.json";
 import pikachu from "../../public/data/pokemonData/25.json";
 import lapras from "../../public/data/pokemonData/131.json";
+import celebi from "../../public/data/pokemonData/251.json";
 import feebas from "../../public/data/pokemonData/349.json";
 import miraidon from "../../public/data/pokemonData/1008.json";
 
@@ -41,6 +42,10 @@ const representativePokemon = [
   {
     slug: "lapras",
     pokemon: lapras
+  },
+  {
+    slug: "celebi",
+    pokemon: celebi
   },
   {
     slug: "feebas",
@@ -206,6 +211,12 @@ function canonicalHref() {
     ?.getAttribute("href");
 }
 
+function metaContent(selector) {
+  return document.head
+    .querySelector(selector)
+    ?.getAttribute("content");
+}
+
 function getAbilityDisplayName(ability) {
   return typeof ability === "string"
     ? ability
@@ -260,7 +271,30 @@ async function expectResolvedPokemonPage(
     })
   ).toBeInTheDocument();
 
-  expect(document.title).toBe(expectedSeo.title);
+  await waitFor(() =>
+    expect(document.title).toBe(
+      expectedSeo.title
+    )
+  );
+  await waitFor(() =>
+    expect(
+      metaContent('meta[property="og:title"]')
+    ).toBe(expectedSeo.title)
+  );
+  expect(
+    metaContent('meta[name="twitter:title"]')
+  ).toBe(expectedSeo.title);
+  await waitFor(() =>
+    expect(
+      metaContent('meta[name="description"]')
+    ).toBe(expectedSeo.description)
+  );
+  expect(
+    metaContent('meta[property="og:description"]')
+  ).toBe(expectedSeo.description);
+  expect(
+    metaContent('meta[name="twitter:description"]')
+  ).toBe(expectedSeo.description);
   expect(canonicalTags()).toHaveLength(1);
   expect(canonicalHref()).toBe(
     `https://pokelore.net/pokemon/${slug}`

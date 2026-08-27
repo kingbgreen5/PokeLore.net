@@ -1,15 +1,15 @@
 import { formatPokemonDisplayName }
-from "../utils/pokemonNames";
+from "../utils/pokemonNames.js";
 import { getPokemonUrl }
-from "../utils/pokemonUrls";
+from "../utils/pokemonUrls.js";
 import {
   DYNAMAX_CRYSTAL_GUIDE_PATH,
   formatDynamaxPokemonList,
   getDynamaxCrystalData,
   getDynamaxCrystalDisplayName,
   isDynamaxCrystalItem
-} from "../utils/dynamaxCrystals";
-import { getFossilItemData } from "../data/fossilItems";
+} from "../utils/dynamaxCrystals.js";
+import { getFossilItemData } from "../data/fossilItems.js";
 
 export const SITE_NAME = "PokéLore";
 export const SITE_URL = "https://pokelore.net";
@@ -591,19 +591,25 @@ export function locationSeo(location) {
   };
 }
 
+export function pokemonSeoTitle(pokemon) {
+  const name =
+    formatPokemonDisplayName(pokemon);
+
+  return `${name} Pokédex: Stats, Moves, Evolution & Analysis | ${SITE_NAME}`;
+}
+
+export function pokemonSeoDescription(pokemon) {
+  const name =
+    formatPokemonDisplayName(pokemon);
+
+  return `${name} stats, moves, weaknesses, evolution, locations, Pokédex entries, plus playthrough, competitive and Nuzlocke analysis—all in one place.`;
+}
+
 export function pokemonSeo(pokemon) {
   const name =
     formatPokemonDisplayName(pokemon);
   const canonical =
     pageUrl(getPokemonUrl(pokemon) ?? "/");
-  const dexNumber =
-    pokemon?.id
-      ? String(pokemon.id).padStart(3, "0")
-      : null;
-  const dexSuffix =
-    pokemon?.isDefaultForm && dexNumber
-      ? ` — #${dexNumber}`
-      : "";
   const heightInches =
     Number.isFinite(Number(pokemon?.height))
       ? heightToInches(pokemon.height)
@@ -634,10 +640,12 @@ export function pokemonSeo(pokemon) {
     heightEnglish && heightMetric
       ? ` ${name} is listed at ${heightEnglish} (${heightMetric}) with an in-chart visual size comparison.`
       : "";
-  const description =
+  const structuredDataDescription =
     `Explore ${name}'s stats, moves, abilities, evolution details, type matchups, locations, and size chart.${sizeDescription}`;
+  const description =
+    pokemonSeoDescription(pokemon);
   const title =
-    `${name} Stats, Moves, Abilities, Locations, and Size Chart | ${SITE_NAME}${dexSuffix}`;
+    pokemonSeoTitle(pokemon);
   const pokemonId =
     `${canonical}#pokemon`;
   const sizeComparisonId =
@@ -686,7 +694,8 @@ export function pokemonSeo(pokemon) {
           "@id": `${canonical}#webpage`,
           url: canonical,
           name: title,
-          description,
+          description:
+            structuredDataDescription,
           mainEntity: {
             "@id": pokemonId
           },
@@ -723,7 +732,8 @@ export function pokemonSeo(pokemon) {
             ? `National Pokédex #${pokemon.id}`
             : undefined,
           image: pokemon?.sprite ?? undefined,
-          description,
+          description:
+            structuredDataDescription,
           height:
             heightEnglish && heightMetric
               ? `${heightEnglish} (${heightMetric})`

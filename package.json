@@ -16,6 +16,7 @@
     "generate:pokemon-routes": "node scripts/generatePokemonRoutes.js",
     "generate:ev-training-routes": "node scripts/generateEvTrainingRoutes.js",
     "generate:pokelore-links": "node scripts/generatePokeloreLinkTargets.js",
+    "enrich:pokelore-descriptions": "node scripts/enrichPokeloreDescriptions.js",
     "generate:playthrough-scores": "node scripts/generatePlaythroughScores.js",
     "generate:team-coverage": "npm run generate:playthrough-scores && node scripts/generateTeamCoverageIndex.js",
     "generate:tm-materials": "node scripts/generateTmMaterialData.js",

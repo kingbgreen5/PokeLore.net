@@ -196,6 +196,16 @@ function assertGeneratedCanonicalHtml(html, slug) {
 function assertFinalizedCanonicalHtml(html, slug) {
   assertGeneratedCanonicalHtml(html, slug);
 
+  if (
+    !/<meta\s+name=["']description["']\s+content=["'][^"']+ stats, moves, weaknesses, evolution, locations, Pokédex entries, plus playthrough, competitive and Nuzlocke analysis—all in one place\.["']/i.test(
+      html
+    )
+  ) {
+    throw new Error(
+      `Finalized HTML for "${slug}" is missing the Pokemon SEO description template.`
+    );
+  }
+
   if (!/<link[^>]+href=["']\/assets\/[^"']+\.css/i.test(html)) {
     throw new Error(
       `Finalized HTML for "${slug}" is missing application CSS references.`
@@ -381,13 +391,12 @@ function validateRepresentativeCanonicalContent(
   const displayName = formatPokemonName(slug);
 
   if (
-    !new RegExp(
-      `<title>[^<]*${displayName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[^<]*</title>`,
-      "i"
-    ).test(html)
+    !/<title>[^<]+ Pokédex: Stats, Moves, Evolution &amp; Analysis \| PokéLore<\/title>/i.test(
+      html
+    )
   ) {
     throw new Error(
-      `Representative ${id}/${slug} is missing expected title text "${displayName}".`
+      `Representative ${id}/${slug} is missing the expected Pokemon SEO title template.`
     );
   }
 

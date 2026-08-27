@@ -3,6 +3,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolvePokeloreAnalysis } from "../src/utils/pokeloreAnalysis.js";
 import {
+  pokemonSeoDescription,
+  pokemonSeoTitle
+} from "../src/seo/seoConfig.js";
+import {
   getPokeloreLinePokemonLabels,
   linkifyPokeloreText
 } from "../src/utils/pokeloreTextLinks.js";
@@ -943,10 +947,9 @@ function injectHeadTags(
   routeName,
   heroImage
 ) {
-  const displayName =
-    formatPokemonDisplayName(pokemon);
-  const title = `${displayName} - PokeLore`;
-  const description = `${displayName} Pokemon details, type matchups, base stats, abilities, evolutions, locations, and learnsets.`;
+  const title = pokemonSeoTitle(pokemon);
+  const description =
+    pokemonSeoDescription(pokemon);
   const canonical = `https://pokelore.net/pokemon/${routeName}`;
   const tags = `
     <title>${escapeHtml(title)}</title>
@@ -1078,4 +1081,10 @@ function main() {
   assertNoNumericPokemonStaticRoutes();
 }
 
-main();
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main();
+}
+
+export {
+  injectHeadTags
+};
