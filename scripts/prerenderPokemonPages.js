@@ -10,6 +10,24 @@ import {
   getPokeloreLinePokemonLabels,
   linkifyPokeloreText
 } from "../src/utils/pokeloreTextLinks.js";
+import {
+  formatPokemonDisplayName as formatSitePokemonDisplayName,
+  getRegionalFormKey
+} from "../src/utils/pokemonNames.js";
+import {
+  formatDamageMultiplier,
+  formatTypeName,
+  getDefensiveMatchupGroups
+} from "../src/utils/typeEffectiveness.js";
+import {
+  buildEvolutionDisplayModel,
+  collectPokemonSummaries,
+  getEvolutionOverride,
+  getEvolutionSummaryText,
+  getFallbackPokemonSummary,
+  getVersionNotes,
+  getVisibleFormEvolutionPaths
+} from "../src/utils/evolutionDisplay.js";
 
 const __dirname = path.dirname(
   fileURLToPath(import.meta.url)
@@ -41,6 +59,18 @@ const pokeloreLinkTargetsPath = path.join(
   "data",
   "pokeloreLinkTargets.json"
 );
+const evolutionChainsDir = path.join(
+  repoRoot,
+  "public",
+  "data",
+  "evolutionChains"
+);
+const evolutionMethodOverridesPath = path.join(
+  repoRoot,
+  "public",
+  "data",
+  "evolutionMethodOverrides.json"
+);
 const pokemonDistDir = path.join(
   distDir,
   "pokemon"
@@ -52,6 +82,17 @@ const detailImageDir = path.join(
   "pokemon",
   "official",
   "detail"
+);
+const typeBadgeSourceDir = path.join(
+  repoRoot,
+  "src",
+  "assets",
+  "Type Badges"
+);
+const typeBadgeDistDir = path.join(
+  distDir,
+  "assets",
+  "type-badges"
 );
 
 const OFFICIAL_ARTWORK_PATTERN =
@@ -366,6 +407,36 @@ function buildTypeBadges(types) {
     .join("");
 }
 
+function getTypeBadgeImagePath(type) {
+  return `/assets/type-badges/${String(type).toUpperCase()}.png`;
+}
+
+function copyTypeBadgeAssets() {
+  fs.mkdirSync(typeBadgeDistDir, {
+    recursive: true
+  });
+
+  Object.keys(typeColors).forEach(type => {
+    const fileName = `${type.toUpperCase()}.png`;
+    const sourcePath = path.join(
+      typeBadgeSourceDir,
+      fileName
+    );
+    const outputPath = path.join(
+      typeBadgeDistDir,
+      fileName
+    );
+
+    if (!fs.existsSync(sourcePath)) {
+      throw new Error(
+        `Missing type badge image: ${sourcePath}`
+      );
+    }
+
+    fs.copyFileSync(sourcePath, outputPath);
+  });
+}
+
 function buildAbilities(abilities) {
   return (abilities ?? [])
     .map(ability => {
@@ -413,6 +484,312 @@ function buildStats(stats = {}) {
         </div>`;
     })
     .join("");
+}
+
+function buildTypeEffectivenessGroup(
+  title,
+  matchups
+) {
+  if (!matchups.length) {
+    return "";
+  }
+
+  return `
+          <section class="prerender-matchup-group">
+            <h3>${escapeHtml(title)}</h3>
+            <ul>
+              ${matchups
+                .map(matchup => {
+                  const typeName =
+                    matchup.typeName ??
+                    formatTypeName(
+                      matchup.type
+                    );
+                  const multiplierLabel =
+                    matchup.multiplierLabel ??
+                    formatDamageMultiplier(
+                      matchup.multiplier
+                    );
+
+                  return `
+                <li>
+                  <a href="/type/${escapeHtml(matchup.type)}" aria-label="${escapeHtml(`${typeName} attacking moves deal ${multiplierLabel} damage`)}">
+                    <strong>${escapeHtml(multiplierLabel)}</strong>
+                    <img src="${escapeHtml(getTypeBadgeImagePath(matchup.type))}" alt="${escapeHtml(`${typeName} type`)}" width="70" height="24" decoding="async">
+                  </a>
+                </li>`;
+                })
+                .join("")}
+            </ul>
+          </section>`;
+}
+
+function buildTypeEffectivenessSection(
+  pokemon
+) {
+  const displayName =
+    formatSitePokemonDisplayName(pokemon);
+  const groups =
+    getDefensiveMatchupGroups(
+      pokemon.types
+    );
+  const groupMarkup = [
+    buildTypeEffectivenessGroup(
+      "Weak To",
+      groups.weaknesses
+    ),
+    buildTypeEffectivenessGroup(
+      "Resists",
+      groups.resistances
+    ),
+    buildTypeEffectivenessGroup(
+      "Immune To",
+      groups.immunities
+    )
+  ].join("");
+
+  if (!groupMarkup.trim()) {
+    return "";
+  }
+
+  return `
+        <section class="prerender-type-effectiveness" aria-labelledby="prerender-type-effectiveness-heading">
+          <h2 id="prerender-type-effectiveness-heading">${escapeHtml(displayName)}'s Weaknesses and Resistances</h2>
+          <div class="prerender-matchup-grid">
+            ${groupMarkup}
+          </div>
+        </section>`;
+}
+
+function getEvolutionLinkUrl(pokemon) {
+  return `/pokemon/${encodeURIComponent(
+    pokemon?.name ?? ""
+  )}`;
+}
+
+function getMethodPartHref(part) {
+  if (!part.slug) {
+    return null;
+  }
+
+  if (part.type === "item") {
+    return `/item/${encodeURIComponent(part.slug)}`;
+  }
+
+  if (part.type === "move") {
+    return `/move/${encodeURIComponent(part.slug)}`;
+  }
+
+  if (part.type === "location") {
+    return `/location/${encodeURIComponent(part.slug)}`;
+  }
+
+  if (part.type === "topic") {
+    return `/topic/${encodeURIComponent(part.slug)}`;
+  }
+
+  return null;
+}
+
+function renderEvolutionMethodPartsHtml(parts) {
+  return parts
+    .map(part => {
+      const text = part.text ?? "";
+      const href = getMethodPartHref(part);
+
+      return href
+        ? `<a href="${escapeHtml(href)}">${escapeHtml(text)}</a>`
+        : escapeHtml(text);
+    })
+    .join("")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function buildPrerenderEvolutionCard(
+  pokemon
+) {
+  const displayName =
+    formatSitePokemonDisplayName(pokemon);
+  const image = getHeroImage(pokemon);
+
+  return `
+                <a class="prerender-evolution-card" href="${escapeHtml(getEvolutionLinkUrl(pokemon))}">
+                  ${
+                    image
+                      ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(displayName)}" width="90" height="90" loading="lazy" decoding="async">`
+                      : ""
+                  }
+                  <span>${escapeHtml(displayName)}</span>
+                </a>`;
+}
+
+function buildEvolutionModelHtml(
+  model,
+  isRoot = false
+) {
+  const methodHtml =
+    model.methodParts.length > 0
+      ? renderEvolutionMethodPartsHtml(
+          model.methodParts
+        )
+      : "";
+
+  return `
+              <div class="prerender-evolution-node">
+                ${
+                  !isRoot && methodHtml
+                    ? `<div class="prerender-evolution-method">${methodHtml}<span aria-hidden="true"> ↓</span></div>`
+                    : ""
+                }
+                ${buildPrerenderEvolutionCard(model.pokemon)}
+                ${
+                  model.note
+                    ? `<small class="prerender-evolution-note">${escapeHtml(model.note)}</small>`
+                    : ""
+                }
+                ${
+                  model.children.length > 0
+                    ? `<div class="prerender-evolution-children">
+                        ${model.children
+                          .map(child =>
+                            buildEvolutionModelHtml(
+                              child
+                            )
+                          )
+                          .join("")}
+                      </div>`
+                    : ""
+                }
+              </div>`;
+}
+
+function buildPrerenderFormEvolutionPaths(
+  root,
+  paths,
+  currentPokemonName
+) {
+  const pokemonSummaries =
+    collectPokemonSummaries(root);
+  const visiblePaths =
+    getVisibleFormEvolutionPaths(
+      paths,
+      currentPokemonName
+    );
+
+  return visiblePaths
+    .map(pathInfo => {
+      const basePokemon =
+        pokemonSummaries[
+          pathInfo.basePokemon
+        ] ||
+        getFallbackPokemonSummary(
+          pathInfo.basePokemon
+        );
+      const evolvedPokemon =
+        pokemonSummaries[
+          pathInfo.evolvesTo
+        ] ||
+        getFallbackPokemonSummary(
+          pathInfo.evolvesTo
+        );
+      const condition =
+        pathInfo.displayCondition ||
+        pathInfo.condition ||
+        "Evolution method varies";
+      const versionNotes =
+        getVersionNotes(pathInfo);
+      const accessibleLabel =
+        pathInfo.accessibleLabel ||
+        `${formatSitePokemonDisplayName(
+          basePokemon
+        )} evolves into ${formatSitePokemonDisplayName(
+          evolvedPokemon
+        )}. ${condition}.`;
+
+      return `
+              <section class="prerender-form-evolution-path" aria-label="${escapeHtml(accessibleLabel)}">
+                ${buildPrerenderEvolutionCard(basePokemon)}
+                <div class="prerender-evolution-method">
+                  ${escapeHtml(condition)}
+                  <span aria-hidden="true"> ↓</span>
+                  ${versionNotes
+                    .map(
+                      note =>
+                        `<small>${escapeHtml(note)}</small>`
+                    )
+                    .join("")}
+                </div>
+                ${buildPrerenderEvolutionCard(evolvedPokemon)}
+              </section>`;
+    })
+    .join("");
+}
+
+function buildEvolutionSection(
+  evolutionChain,
+  pokemon,
+  evolutionMethodOverrides = {}
+) {
+  if (!evolutionChain?.root) {
+    return "";
+  }
+
+  const activeFormKey =
+    getRegionalFormKey(pokemon);
+  const summaryText =
+    getEvolutionSummaryText(
+      evolutionChain.root,
+      {
+        activeFormKey,
+        currentPokemonName:
+          pokemon.name,
+        evolutionMethodOverrides
+      }
+    );
+  const familyEvolutionOverride =
+    getEvolutionOverride(
+      evolutionChain.root.pokemon?.name,
+      evolutionMethodOverrides
+    );
+  const formEvolutionPaths =
+    familyEvolutionOverride
+      ?.formEvolutionPaths;
+  const useFormEvolutionPaths =
+    Boolean(
+      familyEvolutionOverride
+        ?.replaceDefaultEvolutionDisplay &&
+      Array.isArray(formEvolutionPaths) &&
+      formEvolutionPaths.length > 0
+    );
+  const evolutionMarkup =
+    useFormEvolutionPaths
+      ? buildPrerenderFormEvolutionPaths(
+          evolutionChain.root,
+          formEvolutionPaths,
+          pokemon.name
+        )
+      : buildEvolutionModelHtml(
+          buildEvolutionDisplayModel(
+            evolutionChain.root,
+            {
+              activeFormKey,
+              currentPokemonName:
+                pokemon.name,
+              evolutionMethodOverrides
+            }
+          ),
+          true
+        );
+
+  return `
+        <section class="prerender-evolution" aria-labelledby="prerender-evolution-heading">
+          <h2 id="prerender-evolution-heading">Evolution Chain</h2>
+          <p class="prerender-evolution-summary">${escapeHtml(summaryText)}</p>
+          <div class="prerender-evolution-tree">
+            ${evolutionMarkup}
+          </div>
+        </section>`;
 }
 
 function buildEvYield(evYield = {}) {
@@ -761,6 +1138,168 @@ function buildCriticalCss() {
         margin: 0.15rem 0 0.55rem;
       }
 
+      .prerender-type-effectiveness {
+        box-sizing: border-box;
+        margin: 1.5rem auto 0;
+        max-width: 900px;
+        padding: 0 1rem 1rem;
+        width: 100%;
+      }
+
+      .prerender-type-effectiveness h2 {
+        color: #f3f4f6;
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin: 0 0 0.75rem;
+      }
+
+      .prerender-matchup-grid {
+        display: grid;
+        gap: 0.65rem;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .prerender-matchup-group h3 {
+        color: #f3f4f6;
+        font-size: 1rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem;
+      }
+
+      .prerender-matchup-group ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .prerender-matchup-group a {
+        align-items: center;
+        color: white;
+        display: inline-flex;
+        font-size: 0.72rem;
+        font-weight: 700;
+        gap: 0.35rem;
+        justify-content: center;
+        text-decoration: none;
+      }
+
+      .prerender-matchup-group strong {
+        color: #f3f4f6;
+      }
+
+      .prerender-matchup-group img {
+        display: block;
+        height: 1.4rem;
+        max-width: 100%;
+        object-fit: contain;
+        width: auto;
+      }
+
+      .prerender-evolution {
+        box-sizing: border-box;
+        margin: 1.5rem auto 0;
+        max-width: 980px;
+        padding: 0 1rem 1rem;
+        width: 100%;
+      }
+
+      .prerender-evolution h2 {
+        color: #f3f4f6;
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin: 0 0 0.65rem;
+      }
+
+      .prerender-evolution-summary {
+        color: #d1d5db;
+        line-height: 1.55;
+        margin: 0 auto 1rem;
+        max-width: 44rem;
+      }
+
+      .prerender-evolution-tree {
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        width: 100%;
+      }
+
+      .prerender-evolution-node {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        min-width: 135px;
+      }
+
+      .prerender-evolution-children {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .prerender-evolution-method {
+        color: #d1d5db;
+        font-size: 0.8rem;
+        line-height: 1.25;
+        margin: 0.75rem 0;
+        max-width: 170px;
+      }
+
+      .prerender-evolution-method a {
+        color: #00cadb;
+        font-weight: 700;
+        text-decoration: underline;
+      }
+
+      .prerender-evolution-method small,
+      .prerender-evolution-note {
+        display: block;
+        font-size: 0.72rem;
+        margin-top: 0.25rem;
+        opacity: 0.8;
+      }
+
+      .prerender-evolution-card {
+        align-items: center;
+        background: #2c2c2c;
+        border: 2px solid #555;
+        border-radius: 12px;
+        box-sizing: border-box;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        min-height: 135px;
+        padding: 0.25rem;
+        text-decoration: none;
+        width: 135px;
+      }
+
+      .prerender-evolution-card img {
+        height: 90px;
+        object-fit: contain;
+        width: 90px;
+      }
+
+      .prerender-evolution-card span {
+        color: #f3f4f6;
+        font-size: 0.8rem;
+        line-height: 1.1;
+      }
+
+      .prerender-form-evolution-path {
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        min-width: max-content;
+      }
+
       .prerender-entry {
         font-size: 0.95rem;
         margin: 1rem auto 0;
@@ -888,7 +1427,9 @@ function buildPokemonShell(
   routeName,
   bannerAssets,
   pokeloreAnalyses,
-  pokeloreLinkTargets
+  pokeloreLinkTargets,
+  evolutionChain = null,
+  evolutionMethodOverrides = {}
 ) {
   const displayName =
     formatPokemonDisplayName(pokemon);
@@ -927,6 +1468,14 @@ function buildPokemonShell(
           ${buildEvYield(pokemon.evYield)}
           ${buildStats(pokemon.stats)}
         </section>
+        ${buildTypeEffectivenessSection(
+          pokemon
+        )}
+        ${buildEvolutionSection(
+          evolutionChain,
+          pokemon,
+          evolutionMethodOverrides
+        )}
         ${
           dexEntry
             ? `<p class="prerender-entry">${escapeHtml(dexEntry)}</p>`
@@ -976,7 +1525,9 @@ function writePokemonPage(
   pokemon,
   bannerAssets,
   pokeloreAnalyses,
-  pokeloreLinkTargets
+  pokeloreLinkTargets,
+  evolutionChain,
+  evolutionMethodOverrides
 ) {
   const heroImage = getHeroImage(pokemon);
   const shell = buildPokemonShell(
@@ -984,7 +1535,9 @@ function writePokemonPage(
     routeName,
     bannerAssets,
     pokeloreAnalyses,
-    pokeloreLinkTargets
+    pokeloreLinkTargets,
+    evolutionChain,
+    evolutionMethodOverrides
   );
   const html = injectHeadTags(
     template,
@@ -1030,9 +1583,14 @@ function main() {
   const pokeloreLinkTargets = readJson(
     pokeloreLinkTargetsPath
   );
+  const evolutionMethodOverrides = readJson(
+    evolutionMethodOverridesPath
+  );
+  const evolutionChainCache = new Map();
   const bannerAssets = findBannerAssets();
 
   removeNumericPokemonStaticRoutes();
+  copyTypeBadgeAssets();
 
   let written = 0;
 
@@ -1054,6 +1612,32 @@ function main() {
       pokemonData,
       routeName
     );
+    let evolutionChain = null;
+
+    if (pokemon.evolutionChainId) {
+      if (
+        !evolutionChainCache.has(
+          pokemon.evolutionChainId
+        )
+      ) {
+        const chainPath = path.join(
+          evolutionChainsDir,
+          `${pokemon.evolutionChainId}.json`
+        );
+
+        evolutionChainCache.set(
+          pokemon.evolutionChainId,
+          fs.existsSync(chainPath)
+            ? readJson(chainPath)
+            : null
+        );
+      }
+
+      evolutionChain =
+        evolutionChainCache.get(
+          pokemon.evolutionChainId
+        );
+    }
 
     writePokemonPage(
       template,
@@ -1061,7 +1645,9 @@ function main() {
       pokemon,
       bannerAssets,
       pokeloreAnalyses,
-      pokeloreLinkTargets
+      pokeloreLinkTargets,
+      evolutionChain,
+      evolutionMethodOverrides
     );
     written++;
   }
@@ -1086,5 +1672,9 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 }
 
 export {
+  buildPokemonShell,
+  buildEvolutionSection,
+  buildTypeEffectivenessSection,
+  copyTypeBadgeAssets,
   injectHeadTags
 };

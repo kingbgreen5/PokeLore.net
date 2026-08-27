@@ -49,6 +49,10 @@ function writePrerender(pokemonDistDir, slug) {
       "<body>",
       `<h1>${displayName}</h1>`,
       "<h2>Base Stats</h2>",
+      `<h2>${displayName}'s Weaknesses and Resistances</h2>`,
+      "<span>Ground</span><strong>2×</strong>",
+      "<h2>Evolution Chain</h2>",
+      `<p>${displayName} does not evolve into or from any other Pokémon.</p>`,
       "<section class=\"prerender-analysis-card\">Rich content</section>",
       "</body>",
       "</html>"

@@ -32,6 +32,8 @@ import {
   getPokemonUrl,
   resolvePokemonRouteIdentifier
 } from "../utils/pokemonUrls";
+import { getEvolutionSummaryText }
+from "../utils/evolutionDisplay";
 
 const DEFERRED_DETAILS_WARMUP_DELAY_MS = 1600;
 const DEFERRED_SECTION_ROOT_MARGIN = "1200px 0px";
@@ -793,6 +795,18 @@ const visibleSpecialFormNotes =
   ).filter(note =>
     note.pokemon === pokemon.name
   );
+const evolutionSummaryText =
+  evolutionData?.root
+    ? getEvolutionSummaryText(
+        evolutionData.root,
+        {
+          activeFormKey,
+          currentPokemonName:
+            pokemon.name,
+          evolutionMethodOverrides
+        }
+      )
+    : "";
 
 //----------------------------------------RETURN STATEMENT-----------------------------------------
 
@@ -963,6 +977,9 @@ const visibleSpecialFormNotes =
 />
 
 <TypeEffectivenessCard
+  pokemonName={formatPokemonDisplayName(
+    pokemon
+  )}
   types={pokemon.types}
 />
 
@@ -1005,6 +1022,19 @@ const visibleSpecialFormNotes =
 >
 
 <h2>Evolution Chain</h2>
+{evolutionSummaryText && (
+  <p
+    className="evolution-summary"
+    style={{
+      color: "#d1d5db",
+      lineHeight: 1.55,
+      margin: "0 auto 1rem",
+      maxWidth: "44rem"
+    }}
+  >
+    {evolutionSummaryText}
+  </p>
+)}
 <div
   ref={evolutionScrollRef}
   style={{

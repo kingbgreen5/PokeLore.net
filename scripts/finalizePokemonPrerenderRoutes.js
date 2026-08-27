@@ -417,6 +417,18 @@ function validateRepresentativeCanonicalContent(
     );
   }
 
+  if (!/Weaknesses and Resistances/i.test(html)) {
+    throw new Error(
+      `Representative ${id}/${slug} is missing weakness and resistance content.`
+    );
+  }
+
+  if (!/Evolution Chain/i.test(html)) {
+    throw new Error(
+      `Representative ${id}/${slug} is missing evolution chain content.`
+    );
+  }
+
   if (
     !/prerender-analysis|Pokelore|Playthrough|Nuzlocke|Competitive/i.test(
       html

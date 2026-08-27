@@ -23,12 +23,18 @@ import PokemonDetailPage from "./PokemonDetailPage";
 import { pokemonSeo } from "../seo/seoConfig";
 import pokemonRoutes from "../../public/data/pokemonRoutes.json";
 import bulbasaur from "../../public/data/pokemonData/1.json";
+import ivysaur from "../../public/data/pokemonData/2.json";
 import charizard from "../../public/data/pokemonData/6.json";
 import pikachu from "../../public/data/pokemonData/25.json";
+import gyarados from "../../public/data/pokemonData/130.json";
 import lapras from "../../public/data/pokemonData/131.json";
 import celebi from "../../public/data/pokemonData/251.json";
 import feebas from "../../public/data/pokemonData/349.json";
 import miraidon from "../../public/data/pokemonData/1008.json";
+import charizardMegaX from "../../public/data/pokemonData/10034.json";
+import bulbasaurChain from "../../public/data/evolutionChains/1.json";
+import evolutionMethodOverrides from "../../public/data/evolutionMethodOverrides.json";
+import { formatPokemonDisplayName } from "../utils/pokemonNames";
 
 const representativePokemon = [
   {
@@ -36,8 +42,16 @@ const representativePokemon = [
     pokemon: bulbasaur
   },
   {
+    slug: "ivysaur",
+    pokemon: ivysaur
+  },
+  {
     slug: "pikachu",
     pokemon: pikachu
+  },
+  {
+    slug: "gyarados",
+    pokemon: gyarados
   },
   {
     slug: "lapras",
@@ -58,6 +72,10 @@ const representativePokemon = [
   {
     slug: "miraidon",
     pokemon: miraidon
+  },
+  {
+    slug: "charizard-mega-x",
+    pokemon: charizardMegaX
   }
 ];
 
@@ -72,7 +90,12 @@ function jsonResponse(data) {
   return {
     ok: true,
     status: 200,
-    json: vi.fn().mockResolvedValue(data)
+    json: vi.fn().mockResolvedValue(data),
+    text: vi
+      .fn()
+      .mockResolvedValue(
+        JSON.stringify(data)
+      )
   };
 }
 
@@ -172,6 +195,32 @@ function stubPokemonFetch({
           pokemon && !failedPokemonIds.has(id)
             ? jsonResponse(pokemon)
             : notFoundResponse()
+        );
+      }
+
+      const evolutionMatch =
+        String(url).match(
+          /^\/data\/evolutionChains\/(\d+)\.json$/
+        );
+
+      if (evolutionMatch) {
+        return Promise.resolve(
+          evolutionMatch[1] === "1"
+            ? jsonResponse(
+                bulbasaurChain
+              )
+            : notFoundResponse()
+        );
+      }
+
+      if (
+        url ===
+        "/data/evolutionMethodOverrides.json"
+      ) {
+        return Promise.resolve(
+          jsonResponse(
+            evolutionMethodOverrides
+          )
         );
       }
 
@@ -314,6 +363,12 @@ async function expectResolvedPokemonPage(
     )
   ).toBeInTheDocument();
   expect(
+    screen.getByRole("heading", {
+      level: 2,
+      name: `${formatPokemonDisplayName(pokemon)}'s Weaknesses and Resistances`
+    })
+  ).toBeInTheDocument();
+  expect(
     screen.getAllByRole("img", {
       name: `${pokemon.types[0]} type`
     }).length
@@ -337,6 +392,7 @@ describe("PokemonDetailPage SEO indexing", () => {
     cleanup();
     vi.restoreAllMocks();
     vi.unstubAllGlobals();
+    vi.useRealTimers();
     document.head.innerHTML = "";
     document.title = "";
   });
@@ -624,6 +680,65 @@ describe("PokemonDetailPage SEO indexing", () => {
         pokemon
       );
     }
+  });
+
+  it("renders form-specific weakness and resistance values for canonical forms", async () => {
+    stubPokemonFetch();
+
+    renderPokemonRoute(
+      "/pokemon/charizard-mega-x"
+    );
+
+    await expectResolvedPokemonPage(
+      "charizard-mega-x",
+      charizardMegaX
+    );
+
+    expect(
+      screen.getByRole("link", {
+        name: "Ground attacking moves deal 2× damage"
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", {
+        name: "Ground attacking moves deal 0× damage"
+      })
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders a visible evolution summary with the hydrated tree", async () => {
+    stubPokemonFetch();
+
+    renderPokemonRoute(
+      "/pokemon/bulbasaur"
+    );
+
+    await expectResolvedPokemonPage(
+      "bulbasaur",
+      bulbasaur
+    );
+
+    expect(
+      await screen.findByText(
+        "Bulbasaur evolves into Ivysaur at level 16, and Ivysaur evolves into Venusaur at level 32.",
+        {},
+        {
+          timeout: 8000
+        }
+      )
+    ).toBeInTheDocument();
+    expect(
+      await screen.findByRole(
+        "link",
+        {
+          name: /Ivysaur/i
+        }
+      )
+    ).toHaveAttribute(
+      "href",
+      "/pokemon/ivysaur"
+    );
+
   });
 
   it("only emits noindex for a confirmed invalid Pokemon route", async () => {

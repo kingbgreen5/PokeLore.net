@@ -39,6 +39,7 @@ const typeBadgeImages = {
 };
 
 function TypeBadge({
+  alt,
   height = "1.5rem",
   type
 }) {
@@ -53,7 +54,7 @@ function TypeBadge({
 
   return (
     <img
-      alt={`${normalizedType} type`}
+      alt={alt ?? `${normalizedType} type`}
       src={src}
       style={{
         display: "block",

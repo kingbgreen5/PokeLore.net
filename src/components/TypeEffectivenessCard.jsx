@@ -1,46 +1,23 @@
+import { useId } from "react";
 import { Link } from "react-router-dom";
-import typeColors from "../constants/typeColors";
-import typeChart from "../constants/Types";
 import TypeBadgeImage from "./TypeBadge";
-
-
-
-const allTypes = Object.keys(typeColors);
-
-function getDefensiveMatchups(types) {
-  return allTypes
-    .map(attackType => {
-      const multiplier = types.reduce(
-        (total, defenseType) =>
-          total *
-          (typeChart[attackType]?.[
-            defenseType
-          ] ?? 1),
-        1
-      );
-
-      return {
-        type: attackType,
-        multiplier
-      };
-    })
-    .filter(
-      matchup =>
-        matchup.multiplier !== 1
-    )
-    .sort(
-      (a, b) =>
-        b.multiplier - a.multiplier ||
-        a.type.localeCompare(b.type)
-    );
-}
+import {
+  formatDamageMultiplier,
+  formatTypeName,
+  getDefensiveMatchupGroups
+} from "../utils/typeEffectiveness";
 
 function TypeBadge({
   type,
   multiplier
 }) {
+  const typeName = formatTypeName(type);
+  const multiplierLabel =
+    formatDamageMultiplier(multiplier);
+
   return (
     <Link
+      aria-label={`${typeName} attacking moves deal ${multiplierLabel} damage`}
       to={`/type/${type}`}
       style={{
         alignItems: "center",
@@ -51,21 +28,24 @@ function TypeBadge({
         fontSize: ".72rem",
         fontWeight: "bold",
         gap: ".35rem",
+        justifyContent: "center",
         textDecoration: "none"
       }}
     >
+      <strong>
+        {multiplierLabel}
+      </strong>
       <TypeBadgeImage
+        alt={`${typeName} type`}
         height="1.4rem"
         type={type}
       />
-      <strong>
-        {multiplier}x
-      </strong>
     </Link>
   );
 }
 
 function MatchupGroup({
+  headingId,
   title,
   matchups
 }) {
@@ -74,8 +54,9 @@ function MatchupGroup({
   }
 
   return (
-    <section>
+    <section aria-labelledby={headingId}>
       <h3
+        id={headingId}
         style={{
           marginBottom: ".65rem"
         }}
@@ -83,68 +64,54 @@ function MatchupGroup({
         {title}
       </h3>
 
-      <div
+      <ul
         style={{
           display: "flex",
           flexWrap: "wrap",
           gap: ".5rem",
-          justifyContent: "center"
+          justifyContent: "center",
+          listStyle: "none",
+          margin: 0,
+          padding: 0
         }}
       >
         {matchups.map(
           matchup => (
-            <TypeBadge
+            <li
               key={matchup.type}
-              type={matchup.type}
-              multiplier={
-                matchup.multiplier
-              }
-            />
+            >
+              <TypeBadge
+                type={matchup.type}
+                multiplier={
+                  matchup.multiplier
+                }
+              />
+            </li>
           )
         )}
-      </div>
+      </ul>
     </section>
   );
 }
 
 function TypeEffectivenessCard({
+  headingLevel = "h2",
+  pokemonName,
   types
 }) {
-  const matchups =
-    getDefensiveMatchups(types);
-
-  const doubleWeaknesses =
-    matchups.filter(
-      matchup =>
-        matchup.multiplier === 4
-    );
-
-  const weaknesses =
-    matchups.filter(
-      matchup =>
-        matchup.multiplier === 2
-    );
-
-  const resistances =
-    matchups.filter(
-      matchup =>
-        matchup.multiplier === 0.5
-    );
-
-  const doubleResistances =
-    matchups.filter(
-      matchup =>
-        matchup.multiplier === 0.25
-    );
-
-  const immunities =
-    matchups.filter(
-      matchup =>
-        matchup.multiplier === 0
-    );
+  const headingId = useId();
+  const groupIdPrefix = useId();
+  const HeadingTag =
+    headingLevel === "h3" ? "h3" : "h2";
+  const groups =
+    getDefensiveMatchupGroups(types);
+  const headingText = pokemonName
+    ? `${pokemonName}'s Weaknesses and Resistances`
+    : "Weaknesses and Resistances";
 
   return (
-    <div
+    <section
+      aria-labelledby={headingId}
       style={{
         // border: "2px solid #555555",
         borderRadius: "12px",
@@ -155,9 +122,9 @@ function TypeEffectivenessCard({
             //  backgroundColor: "#2c2c2c",
       }}
     >
-      {/* <h2>
-        Type Effectiveness
-      </h2> */}
+      <HeadingTag id={headingId}>
+        {headingText}
+      </HeadingTag>
 
       <div
         style={{
@@ -170,27 +137,24 @@ function TypeEffectivenessCard({
         }}
       >
         <MatchupGroup
+          headingId={`${groupIdPrefix}-weaknesses`}
           title="Weak To"
-          matchups={[
-            ...doubleWeaknesses,
-            ...weaknesses
-          ]}
+          matchups={groups.weaknesses}
         />
 
         <MatchupGroup
+          headingId={`${groupIdPrefix}-resistances`}
           title="Resists"
-          matchups={[
-            ...doubleResistances,
-            ...resistances
-          ]}
+          matchups={groups.resistances}
         />
 
         <MatchupGroup
+          headingId={`${groupIdPrefix}-immunities`}
           title="Immune To"
-          matchups={immunities}
+          matchups={groups.immunities}
         />
       </div>
-    </div>
+    </section>
   );
 }
 
