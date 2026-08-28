@@ -11,6 +11,7 @@ import usePokeloreLinkTargets from "../hooks/usePokeloreLinkTargets";
 import Seo from "../seo/Seo";
 import { evTrainingRoutesSeo } from "../seo/seoConfig";
 import { readJsonFile } from "../utils/readJsonFile";
+import { getPokemonUrl } from "../utils/pokemonUrls";
 
 const DEFAULT_STAT = "hp";
 const DEFAULT_VERSION = "platinum";
@@ -830,22 +831,10 @@ function PokemonRow({
 }) {
   const levelRange =
     formatLevelRange(pokemon);
-
-  return (
-    <Link
-      to={`/pokemon/${pokemon.id}`}
-      style={{
-        alignItems: "center",
-        borderTop: "1px solid #2f323d",
-        color: "inherit",
-        display: "grid",
-        gap: ".75rem",
-        gridTemplateColumns:
-          "42px minmax(0, 1fr) auto",
-        padding: ".7rem 0",
-        textDecoration: "none"
-      }}
-    >
+  const pokemonUrl =
+    getPokemonUrl(pokemon);
+  const rowContent = (
+    <>
       {pokemon.sprite ? (
         <img
           src={pokemon.sprite}
@@ -897,6 +886,34 @@ function PokemonRow({
       >
         {formatChance(pokemon.chance)}
       </span>
+    </>
+  );
+  const rowStyle = {
+    alignItems: "center",
+    borderTop: "1px solid #2f323d",
+    color: "inherit",
+    display: "grid",
+    gap: ".75rem",
+    gridTemplateColumns:
+      "42px minmax(0, 1fr) auto",
+    padding: ".7rem 0",
+    textDecoration: "none"
+  };
+
+  if (!pokemonUrl) {
+    return (
+      <div style={rowStyle}>
+        {rowContent}
+      </div>
+    );
+  }
+
+  return (
+    <Link
+      to={pokemonUrl}
+      style={rowStyle}
+    >
+      {rowContent}
     </Link>
   );
 }
