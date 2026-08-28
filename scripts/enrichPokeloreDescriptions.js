@@ -60,7 +60,16 @@ const DEFAULT_FORM_LABELS = new Set([
 ]);
 
 const FORM_ALIASES = new Map([
+  ["10 forme", ["10"]],
+  ["50 forme", ["50"]],
+  ["active mode", ["standard"]],
+  ["blade forme", ["blade"]],
+  ["complete forme", ["complete"]],
+  ["confined", ["standard"]],
+  ["eternal flower", ["eternal"]],
   ["gigantamax", ["gmax"]],
+  ["neutral mode", ["standard"]],
+  ["shield forme", ["shield"]],
   ["unovan standard", ["standard", "base"]],
   ["unovan zen", ["zen"]],
   ["galarian standard", ["galar standard", "galarian"]],

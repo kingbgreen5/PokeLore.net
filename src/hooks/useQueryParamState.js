@@ -14,41 +14,35 @@ function useQueryParamState(
     defaultValue;
 
   function setValue(nextValue) {
-    setSearchParams(
-      currentParams => {
-        const params =
-          new URLSearchParams(
-            currentParams
-          );
-
-        const resolvedValue =
-          typeof nextValue ===
-          "function"
-            ? nextValue(
-                params.get(paramName) ??
-                  defaultValue
-              )
-            : nextValue;
-
-        if (
-          resolvedValue ===
-            defaultValue ||
-          resolvedValue === "" ||
-          resolvedValue === null ||
-          resolvedValue === undefined
-        ) {
-          params.delete(paramName);
-        } else {
-          params.set(
-            paramName,
-            resolvedValue
-          );
-        }
-
-        return params;
-      },
-      { replace: true }
+    const currentSearch =
+      typeof window === "undefined"
+        ? searchParams
+        : window.location.search;
+    const params = new URLSearchParams(
+      currentSearch
     );
+
+    const resolvedValue =
+      typeof nextValue ===
+      "function"
+        ? nextValue(
+            params.get(paramName) ??
+              defaultValue
+          )
+        : nextValue;
+
+    if (
+      resolvedValue === defaultValue ||
+      resolvedValue === "" ||
+      resolvedValue === null ||
+      resolvedValue === undefined
+    ) {
+      params.delete(paramName);
+    } else {
+      params.set(paramName, resolvedValue);
+    }
+
+    setSearchParams(params, { replace: true });
   }
 
   return [

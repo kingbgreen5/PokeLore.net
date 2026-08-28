@@ -19,9 +19,15 @@ async function fetchLinkTargets() {
   return response.json();
 }
 
-export default function usePokeloreLinkTargets() {
+export default function usePokeloreLinkTargets(
+  initialTargets = []
+) {
   const [targets, setTargets] =
-    useState([]);
+    useState(() =>
+      Array.isArray(initialTargets)
+        ? initialTargets
+        : []
+    );
 
   useEffect(() => {
     let isActive = true;

@@ -16,6 +16,54 @@ const DEFAULT_STAT = "hp";
 const DEFAULT_VERSION = "platinum";
 const ENABLED_VALUE = "enabled";
 const DISABLED_VALUE = "disabled";
+const DEFAULT_STATS = [
+  {
+    key: "hp",
+    label: "HP"
+  },
+  {
+    key: "attack",
+    label: "Attack"
+  },
+  {
+    key: "defense",
+    label: "Defense"
+  },
+  {
+    key: "specialAttack",
+    label: "Sp. Atk"
+  },
+  {
+    key: "specialDefense",
+    label: "Sp. Def"
+  },
+  {
+    key: "speed",
+    label: "Speed"
+  }
+];
+
+function getBrowserInitialData() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  return (
+    window.__POKELORE_EV_TRAINING_ROUTES__ ?? null
+  );
+}
+
+function getBrowserInitialLinkTargets() {
+  if (typeof window === "undefined") {
+    return [];
+  }
+
+  return Array.isArray(
+    window.__POKELORE_LINK_TARGETS__
+  )
+    ? window.__POKELORE_LINK_TARGETS__
+    : [];
+}
 
 function formatName(value = "") {
   return String(value)
@@ -476,9 +524,11 @@ function GuideText({
   );
 }
 
-function EvTrainingGuideSection() {
+function EvTrainingGuideSection({
+  initialLinkTargets = []
+}) {
   const linkTargets =
-    usePokeloreLinkTargets();
+    usePokeloreLinkTargets(initialLinkTargets);
   const itemLinkTargets = useMemo(
     () =>
       linkTargets.filter(
@@ -967,11 +1017,24 @@ function RouteCard({
   );
 }
 
-function EvTrainingRoutesPage() {
+function EvTrainingRoutesPage({
+  initialData,
+  initialLinkTargets
+} = {}) {
+  const initialRouteData =
+    initialData ?? getBrowserInitialData();
+  const initialGuideLinkTargets =
+    initialLinkTargets ??
+    getBrowserInitialLinkTargets();
   const [data, setData] =
-    useState(null);
+    useState(initialRouteData);
   const [loading, setLoading] =
-    useState(true);
+    useState(
+      !initialRouteData ||
+        initialRouteData.isPartial === true
+    );
+  const [loadError, setLoadError] =
+    useState(false);
   const [selectedStat, setSelectedStat] =
     useQueryParamState(
       "stat",
@@ -1002,6 +1065,7 @@ function EvTrainingRoutesPage() {
   useEffect(() => {
     async function loadData() {
       try {
+        setLoadError(false);
         setLoading(true);
         const nextData =
           await readJsonFile(
@@ -1017,7 +1081,12 @@ function EvTrainingRoutesPage() {
           "Failed to load EV training routes:",
           error
         );
-        setData(null);
+        setLoadError(true);
+        setData(currentData =>
+          currentData?.isPartial === true
+            ? currentData
+            : null
+        );
       } finally {
         setLoading(false);
       }
@@ -1026,8 +1095,19 @@ function EvTrainingRoutesPage() {
     loadData();
   }, []);
 
-  const stats = data?.stats ?? [];
-  const versions = data?.versions ?? [];
+  const stats =
+    data?.stats?.length > 0
+      ? data.stats
+      : DEFAULT_STATS;
+  const versions =
+    data?.versions?.length > 0
+      ? data.versions
+      : [
+          {
+            version: DEFAULT_VERSION,
+            displayName: formatName(DEFAULT_VERSION)
+          }
+        ];
   const activeStat =
     stats.some(
       stat => stat.key === selectedStat
@@ -1068,31 +1148,10 @@ function EvTrainingRoutesPage() {
       ]?.[activeStat] ?? [],
     [data, activeStat, activeVersion]
   );
-
-  if (loading) {
-    return (
-      <>
-        <Seo {...evTrainingRoutesSeo()} />
-        <p>Loading...</p>
-      </>
-    );
-  }
-
-  if (!data) {
-    return (
-      <main
-        style={{
-          padding: "2rem"
-        }}
-      >
-        <Seo {...evTrainingRoutesSeo()} />
-        <h1>
-          Best EV Training Locations Calculator
-        </h1>
-        <p>EV training data is unavailable.</p>
-      </main>
-    );
-  }
+  const waitingForFullRouteData =
+    data?.isPartial === true &&
+    routes.length === 0 &&
+    !loadError;
 
   return (
     <main
@@ -1114,12 +1173,12 @@ function EvTrainingRoutesPage() {
         <h1
           style={{
             letterSpacing: 0,
-            lineHeight: 1.18,
+            lineHeight: 1.32,
             marginBottom: ".75rem",
             textAlign: "center"
           }}
         >
-          Best EV Training Locations Calculator
+          Best Pokémon EV Training Locations Calculator
         </h1>
         <p
           style={{
@@ -1222,7 +1281,27 @@ function EvTrainingRoutesPage() {
           gap: "1rem"
         }}
       >
-        {routes.length === 0 ? (
+        {(loading || waitingForFullRouteData) &&
+        routes.length === 0 ? (
+          <p
+            style={{
+              textAlign: "center"
+            }}
+          >
+            Loading EV training locations...
+          </p>
+        ) : !data ||
+          (loadError &&
+            data?.isPartial === true &&
+            routes.length === 0) ? (
+          <p
+            style={{
+              textAlign: "center"
+            }}
+          >
+            EV training data is unavailable.
+          </p>
+        ) : routes.length === 0 ? (
           <p
             style={{
               textAlign: "center"
@@ -1243,7 +1322,9 @@ function EvTrainingRoutesPage() {
         )}
       </section>
 
-      <EvTrainingGuideSection />
+      <EvTrainingGuideSection
+        initialLinkTargets={initialGuideLinkTargets}
+      />
     </main>
   );
 }
