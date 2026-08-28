@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { sortVersions } from "../src/constants/versionOrder.js";
+import { formatVersionName } from "../src/utils/formatVersionName.js";
 import { formatPokemonDisplayName } from "../src/utils/pokemonNames.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -730,7 +731,7 @@ async function generateEvTrainingRoutes() {
         stats: STATS,
         versions: versions.map(version => ({
           version,
-          displayName: formatName(version)
+          displayName: formatVersionName(version)
         })),
         routesByVersion
       },

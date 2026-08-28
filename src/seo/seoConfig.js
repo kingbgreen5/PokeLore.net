@@ -165,7 +165,7 @@ export function evTrainingRoutesSeo() {
   const title =
     "Best Pokémon EV Training Locations Calculator | PokéLore";
   const description =
-    "Find the best EV training locations in every Pokémon game. Compare routes for HP, Attack, Defense, Sp. Atk, Sp. Def, and Speed EVs, plus Power Item tips.";
+    "Find the best Pokémon EV training locations by game. Compare routes for HP, Attack, Defense, Sp. Atk, Sp. Def, and Speed EVs, plus Power Item tips.";
   const canonical = pageUrl(
     "/ev-training-routes"
   );

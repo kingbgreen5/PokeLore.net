@@ -12,11 +12,14 @@ import Seo from "../seo/Seo";
 import { evTrainingRoutesSeo } from "../seo/seoConfig";
 import { readJsonFile } from "../utils/readJsonFile";
 import { getPokemonUrl } from "../utils/pokemonUrls";
+import { formatVersionName } from "../utils/formatVersionName";
 
 const DEFAULT_STAT = "hp";
 const DEFAULT_VERSION = "platinum";
 const ENABLED_VALUE = "enabled";
 const DISABLED_VALUE = "disabled";
+const PAGE_SUBTITLE =
+  "Find the best EV training spots by game and stat, ranked by encounter chance, EVs per encounter, and clean target-only chance.";
 const DEFAULT_STATS = [
   {
     key: "hp",
@@ -442,14 +445,19 @@ function GuideSection({
         gap: ".75rem"
       }}
     >
-      <h2
+      <h3
         style={{
+          color: "var(--text-h)",
+          fontFamily: "var(--heading)",
+          fontSize: "24px",
+          fontWeight: 500,
           letterSpacing: 0,
-          marginBottom: 0
+          lineHeight: "118%",
+          margin: 0
         }}
       >
         {title}
-      </h2>
+      </h3>
       {children}
     </section>
   );
@@ -466,15 +474,16 @@ function GuideSubsection({
         gap: ".5rem"
       }}
     >
-      <h3
+      <h4
         style={{
           color: "var(--text-h)",
           fontSize: "1.1rem",
+          fontWeight: 700,
           margin: 0
         }}
       >
         {title}
-      </h3>
+      </h4>
       {children}
     </section>
   );
@@ -1122,7 +1131,8 @@ function EvTrainingRoutesPage({
       : [
           {
             version: DEFAULT_VERSION,
-            displayName: formatName(DEFAULT_VERSION)
+            displayName:
+              formatVersionName(DEFAULT_VERSION)
           }
         ];
   const activeStat =
@@ -1204,8 +1214,7 @@ function EvTrainingRoutesPage({
             textAlign: "center"
           }}
         >
-          Ranked by matching encounter chance, expected
-          EV per encounter, and clean target-only chance.
+          {PAGE_SUBTITLE}
         </p>
       </header>
 

@@ -51,6 +51,7 @@ const DEFAULT_FORM_LABELS = new Set([
   "base",
   "standard",
   "default",
+  "alolan",
   "kantonian",
   "johtonian",
   "hoennian",
@@ -63,17 +64,34 @@ const FORM_ALIASES = new Map([
   ["10 forme", ["10"]],
   ["50 forme", ["50"]],
   ["active mode", ["standard"]],
+  ["alolan", ["alola"]],
+  ["baile style", ["baile"]],
   ["blade forme", ["blade"]],
   ["complete forme", ["complete"]],
   ["confined", ["standard"]],
   ["eternal flower", ["eternal"]],
   ["gigantamax", ["gmax"]],
+  ["galarian", ["galar"]],
+  ["hisuian", ["hisui"]],
   ["neutral mode", ["standard"]],
+  ["pa u style", ["pau"]],
+  ["paldean", ["paldea"]],
+  ["pom pom style", ["pom pom"]],
   ["shield forme", ["shield"]],
+  ["sensu style", ["sensu"]],
+  ["school form", ["school"]],
+  ["solo form", ["solo"]],
   ["unovan standard", ["standard", "base"]],
   ["unovan zen", ["zen"]],
   ["galarian standard", ["galar standard", "galarian"]],
   ["galarian zen", ["galar zen"]]
+]);
+
+const REGIONAL_FORM_SUFFIXES = new Map([
+  ["alolan", "-alola"],
+  ["galarian", "-galar"],
+  ["hisuian", "-hisui"],
+  ["paldean", "-paldea"]
 ]);
 
 function readJson(filePath) {
@@ -294,27 +312,41 @@ function inferPokemonForm(pokemon) {
   return "standard";
 }
 
-function formMatches(entryForm, pokemon) {
-  if (!entryForm) return true;
+function getFormMatchScore(entryForm, pokemon) {
+  if (!entryForm) return 0;
 
   const normalizedEntryForm =
     normalizeForm(entryForm);
   const inferredForm = inferPokemonForm(pokemon);
   const formAliases =
     FORM_ALIASES.get(normalizedEntryForm) ?? [];
+  const regionalSuffix = REGIONAL_FORM_SUFFIXES.get(
+    normalizedEntryForm
+  );
 
   if (normalizedEntryForm === inferredForm) {
-    return true;
+    return 12;
+  }
+
+  if (
+    regionalSuffix &&
+    normalizeText(pokemon?.name).includes(regionalSuffix)
+  ) {
+    return 12;
   }
 
   if (formAliases.includes(inferredForm)) {
-    return true;
+    return 12;
   }
 
-  return (
+  if (
     pokemon.isDefaultForm &&
     DEFAULT_FORM_LABELS.has(normalizedEntryForm)
-  );
+  ) {
+    return 2;
+  }
+
+  return 0;
 }
 
 function scorePokemonMatch(
@@ -353,8 +385,13 @@ function scorePokemonMatch(
   if (!score) return 0;
 
   if (entryForm) {
-    if (!formMatches(entryForm, pokemon)) return 0;
-    score += pokemon.isDefaultForm ? 6 : 10;
+    const formMatchScore = getFormMatchScore(
+      entryForm,
+      pokemon
+    );
+
+    if (!formMatchScore) return 0;
+    score += formMatchScore;
   } else if (pokemon.isDefaultForm) {
     score += 2;
   }
