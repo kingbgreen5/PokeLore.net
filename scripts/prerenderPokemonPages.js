@@ -28,6 +28,11 @@ import {
   getVersionNotes,
   getVisibleFormEvolutionPaths
 } from "../src/utils/evolutionDisplay.js";
+import {
+  getLearnsetCandidateIds,
+  getLatestLevelUpLearnsetPreview,
+  hasLearnsetMoves
+} from "../src/utils/learnsetDisplay.js";
 
 const __dirname = path.dirname(
   fileURLToPath(import.meta.url)
@@ -58,6 +63,18 @@ const pokeloreLinkTargetsPath = path.join(
   "public",
   "data",
   "pokeloreLinkTargets.json"
+);
+const movesIndexPath = path.join(
+  repoRoot,
+  "public",
+  "data",
+  "movesIndex.json"
+);
+const pokemonLearnsetsDir = path.join(
+  repoRoot,
+  "public",
+  "data",
+  "pokemonLearnsets"
 );
 const evolutionChainsDir = path.join(
   repoRoot,
@@ -290,6 +307,26 @@ function renderLinkedTextHtml(parts) {
         })
     )
     .join("");
+}
+
+function escapeJsonForScript(value) {
+  return JSON.stringify(value)
+    .replaceAll("<", "\\u003c")
+    .replaceAll(">", "\\u003e")
+    .replaceAll("&", "\\u0026");
+}
+
+function buildMovesMap(movesIndex) {
+  if (Array.isArray(movesIndex)) {
+    return Object.fromEntries(
+      movesIndex.map(move => [
+        move.name,
+        move
+      ])
+    );
+  }
+
+  return movesIndex ?? {};
 }
 
 function applySelectedVariety(
@@ -796,6 +833,88 @@ function buildEvolutionSection(
         </section>`;
 }
 
+function buildLearnsetRowsHtml(rows) {
+  if (!rows.length) {
+    return `
+          <p>No level-up moves are listed for this version group.</p>`;
+  }
+
+  return `
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Level</th>
+                <th scope="col">Move</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows
+                .map(
+                  row => `
+                <tr>
+                  <td>${escapeHtml(row.levelLabel)}</td>
+                  <td><a href="/move/${escapeHtml(row.move)}">${escapeHtml(row.moveLabel)}</a></td>
+                </tr>`
+                )
+                .join("")}
+            </tbody>
+          </table>`;
+}
+
+function buildLearnsetSection(
+  pokemon,
+  learnset,
+  movesData = null
+) {
+  if (!hasLearnsetMoves(learnset)) {
+    return "";
+  }
+
+  const displayName =
+    formatSitePokemonDisplayName(pokemon);
+  const preview =
+    getLatestLevelUpLearnsetPreview(
+      learnset,
+      movesData,
+      {
+        pokemonId: pokemon.id,
+        pokemon: pokemon.name
+      }
+    );
+
+  return `
+        <section class="prerender-learnsets">
+          <button type="button" aria-expanded="false" aria-controls="prerender-learnsets-content">
+            <h2>Learnsets</h2>
+            <p>${escapeHtml(preview.summaryMoveCount)} moves</p>
+          </button>
+          <div id="prerender-learnsets-content" data-seo-visible="true" class="collapsible-content collapsed">
+            <div class="prerender-learnset-preview" data-prerender-learnset="true">
+              <h3>${escapeHtml(displayName)} Moves Learned by Level Up</h3>
+              ${
+                preview.versionLabel
+                  ? `<p>${escapeHtml(preview.versionLabel)}</p>`
+                  : ""
+              }
+              ${buildLearnsetRowsHtml(preview.rows)}
+            </div>
+          </div>
+        </section>`;
+}
+
+function buildPrerenderLearnsetDataScript(
+  pokemon,
+  learnset,
+  movesData = null
+) {
+  if (!hasLearnsetMoves(learnset)) {
+    return "";
+  }
+
+  return `
+    <script id="pokelore-prerender-learnset-data" type="application/json">${escapeJsonForScript(getLatestLevelUpLearnsetPreview(learnset, movesData, { pokemonId: pokemon.id, pokemon: pokemon.name }))}</script>`;
+}
+
 function buildEvYield(evYield = {}) {
   const statRows = [
     ["HP", evYield.hp],
@@ -1203,6 +1322,25 @@ function buildCriticalCss() {
         width: auto;
       }
 
+      .collapsible-content {
+        transition:
+          opacity 0.15s ease,
+          max-height 0.15s ease;
+      }
+
+      .collapsible-content.collapsed {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .collapsible-content.open {
+        max-height: none;
+        opacity: 1;
+        overflow: visible;
+      }
+
       .prerender-evolution {
         box-sizing: border-box;
         margin: 1.5rem auto 0;
@@ -1339,6 +1477,85 @@ function buildCriticalCss() {
         min-width: max-content;
       }
 
+      .prerender-learnsets {
+        border: 2px solid #706363;
+        border-radius: 12px;
+        box-sizing: border-box;
+        margin: 1rem auto;
+        max-width: 900px;
+        min-width: 0;
+        padding: 0.35rem;
+        text-align: left;
+        width: 100%;
+      }
+
+      .prerender-learnsets button {
+        align-items: center;
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        display: flex;
+        font: inherit;
+        justify-content: space-between;
+        max-width: 100%;
+        min-width: 0;
+        padding: 0;
+        text-align: left;
+        width: 100%;
+      }
+
+      .prerender-learnsets h2 {
+        align-items: center;
+        color: #00cadb;
+        display: inline-flex;
+        font-size: 1.5rem;
+        gap: 0.5rem;
+        margin: 0.83rem 0;
+      }
+
+      .prerender-learnsets button h2::before {
+        border-left: 0.38rem solid transparent;
+        border-right: 0.38rem solid transparent;
+        border-top: 0.55rem solid currentColor;
+        content: "";
+        display: inline-block;
+        height: 0;
+        width: 0;
+      }
+
+      .prerender-learnsets button p {
+        margin: 1rem 0;
+      }
+
+      .prerender-learnset-preview {
+        margin-top: 1rem;
+      }
+
+      .prerender-learnset-preview h3 {
+        color: #f3f4f6;
+        font-size: 1rem;
+        margin: 0 0 0.5rem;
+      }
+
+      .prerender-learnset-preview table {
+        border-collapse: collapse;
+        font-size: 0.82rem;
+        width: 100%;
+      }
+
+      .prerender-learnset-preview th,
+      .prerender-learnset-preview td {
+        border-bottom: 1px solid #555;
+        padding: 0.35rem 0.45rem;
+      }
+
+      .prerender-learnset-preview a {
+        color: #00cadb;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
       .prerender-entry {
         font-size: 0.95rem;
         margin: 1rem auto 0;
@@ -1468,7 +1685,9 @@ function buildPokemonShell(
   pokeloreAnalyses,
   pokeloreLinkTargets,
   evolutionChain = null,
-  evolutionMethodOverrides = {}
+  evolutionMethodOverrides = {},
+  learnset = null,
+  movesData = null
 ) {
   const displayName =
     formatPokemonDisplayName(pokemon);
@@ -1525,6 +1744,11 @@ function buildPokemonShell(
           pokeloreAnalysis,
           pokeloreLinkTargets
         )}
+        ${buildLearnsetSection(
+          pokemon,
+          learnset,
+          movesData
+        )}
       </main>
     </div>`;
 }
@@ -1533,7 +1757,9 @@ function injectHeadTags(
   html,
   pokemon,
   routeName,
-  heroImage
+  heroImage,
+  learnset = null,
+  movesData = null
 ) {
   const title = pokemonSeoTitle(pokemon);
   const description =
@@ -1545,6 +1771,11 @@ function injectHeadTags(
     <link rel="canonical" href="${escapeHtml(canonical)}">
     <link rel="preload" as="image" href="${escapeHtml(heroImage)}" fetchpriority="high">
     ${buildCriticalCss()}
+    ${buildPrerenderLearnsetDataScript(
+      pokemon,
+      learnset,
+      movesData
+    )}
   `;
 
   return html
@@ -1566,7 +1797,9 @@ function writePokemonPage(
   pokeloreAnalyses,
   pokeloreLinkTargets,
   evolutionChain,
-  evolutionMethodOverrides
+  evolutionMethodOverrides,
+  learnset,
+  movesData
 ) {
   const heroImage = getHeroImage(pokemon);
   const shell = buildPokemonShell(
@@ -1576,13 +1809,17 @@ function writePokemonPage(
     pokeloreAnalyses,
     pokeloreLinkTargets,
     evolutionChain,
-    evolutionMethodOverrides
+    evolutionMethodOverrides,
+    learnset,
+    movesData
   );
   const html = injectHeadTags(
     template,
     pokemon,
     routeName,
-    heroImage
+    heroImage,
+    learnset,
+    movesData
   ).replace(
     '<div id="root"></div>',
     `<div id="root">${shell}</div>`
@@ -1622,10 +1859,14 @@ function main() {
   const pokeloreLinkTargets = readJson(
     pokeloreLinkTargetsPath
   );
+  const movesData = buildMovesMap(
+    readJson(movesIndexPath)
+  );
   const evolutionMethodOverrides = readJson(
     evolutionMethodOverridesPath
   );
   const evolutionChainCache = new Map();
+  const learnsetCache = new Map();
   const bannerAssets = findBannerAssets();
 
   removeNumericPokemonStaticRoutes();
@@ -1677,6 +1918,32 @@ function main() {
           pokemon.evolutionChainId
         );
     }
+    let learnset = null;
+
+    for (const candidateId of getLearnsetCandidateIds(
+      pokemon
+    )) {
+      if (!learnsetCache.has(candidateId)) {
+        const learnsetPath = path.join(
+          pokemonLearnsetsDir,
+          `${candidateId}.json`
+        );
+
+        learnsetCache.set(
+          candidateId,
+          fs.existsSync(learnsetPath)
+            ? readJson(learnsetPath)
+            : null
+        );
+      }
+
+      learnset =
+        learnsetCache.get(candidateId);
+
+      if (hasLearnsetMoves(learnset)) {
+        break;
+      }
+    }
 
     writePokemonPage(
       template,
@@ -1686,7 +1953,9 @@ function main() {
       pokeloreAnalyses,
       pokeloreLinkTargets,
       evolutionChain,
-      evolutionMethodOverrides
+      evolutionMethodOverrides,
+      learnset,
+      movesData
     );
     written++;
   }
@@ -1713,6 +1982,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 export {
   buildPokemonShell,
   buildEvolutionSection,
+  buildLearnsetSection,
   buildTypeEffectivenessSection,
   copyTypeBadgeAssets,
   injectHeadTags

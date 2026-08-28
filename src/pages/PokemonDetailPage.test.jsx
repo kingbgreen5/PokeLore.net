@@ -33,8 +33,21 @@ import feebas from "../../public/data/pokemonData/349.json";
 import miraidon from "../../public/data/pokemonData/1008.json";
 import charizardMegaX from "../../public/data/pokemonData/10034.json";
 import bulbasaurChain from "../../public/data/evolutionChains/1.json";
+import bulbasaurLearnset from "../../public/data/pokemonLearnsets/1.json";
+import movesIndex from "../../public/data/movesIndex.json";
 import evolutionMethodOverrides from "../../public/data/evolutionMethodOverrides.json";
 import { formatPokemonDisplayName } from "../utils/pokemonNames";
+import {
+  getLatestLevelUpLearnsetPreview
+} from "../utils/learnsetDisplay";
+
+const movesIndexByName =
+  Object.fromEntries(
+    movesIndex.map(move => [
+      move.name,
+      move
+    ])
+  );
 
 const representativePokemon = [
   {
@@ -166,7 +179,8 @@ function createDeferred() {
 
 function stubPokemonFetch({
   failRoutes = false,
-  failPokemonIds = []
+  failPokemonIds = [],
+  pokemonLearnsets = {}
 } = {}) {
   const failedPokemonIds = new Set(
     failPokemonIds.map(Number)
@@ -221,6 +235,30 @@ function stubPokemonFetch({
           jsonResponse(
             evolutionMethodOverrides
           )
+        );
+      }
+
+      const learnsetMatch =
+        String(url).match(
+          /^\/data\/pokemonLearnsets\/(\d+)\.json$/
+        );
+
+      if (learnsetMatch) {
+        const learnset =
+          pokemonLearnsets[
+            learnsetMatch[1]
+          ];
+
+        return Promise.resolve(
+          learnset
+            ? jsonResponse(learnset)
+            : notFoundResponse()
+        );
+      }
+
+      if (url === "/data/movesIndex.json") {
+        return Promise.resolve(
+          jsonResponse(movesIndex)
         );
       }
 
@@ -739,6 +777,86 @@ describe("PokemonDetailPage SEO indexing", () => {
       "/pokemon/ivysaur"
     );
 
+  });
+
+  it("keeps prerendered Learnsets rows until the full LearnsetCard replaces them", async () => {
+    const preview =
+      getLatestLevelUpLearnsetPreview(
+        bulbasaurLearnset,
+        movesIndexByName
+      );
+
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      `<script id="pokelore-prerender-learnset-data" type="application/json">${JSON.stringify(preview)}</script>`
+    );
+    stubPokemonFetch({
+      pokemonLearnsets: {
+        1: bulbasaurLearnset
+      }
+    });
+
+    renderPokemonRoute(
+      "/pokemon/bulbasaur"
+    );
+
+    await expectResolvedPokemonPage(
+      "bulbasaur",
+      bulbasaur
+    );
+
+    const learnsetsButton =
+      await screen.findByRole(
+        "button",
+        {
+          name: /Learnsets 1096 moves/
+        }
+      );
+
+    expect(
+      learnsetsButton
+    ).toHaveAttribute(
+      "aria-expanded",
+      "false"
+    );
+    expect(
+      screen.getByText(
+        "Bulbasaur Moves Learned by Level Up"
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "Razor Leaf"
+      })
+    ).toHaveAttribute(
+      "href",
+      "/move/razor-leaf"
+    );
+
+    fireEvent.click(learnsetsButton);
+
+    expect(
+      await screen.findByLabelText(
+        "Learnset version",
+        {},
+        {
+          timeout: 8000
+        }
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        "Bulbasaur Moves Learned by Level Up"
+      )
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("table")
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: "Machine"
+      })
+    ).toBeInTheDocument();
   });
 
   it("only emits noindex for a confirmed invalid Pokemon route", async () => {

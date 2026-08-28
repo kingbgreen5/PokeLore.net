@@ -34,6 +34,11 @@ import {
 } from "../utils/pokemonUrls";
 import { getEvolutionSummaryText }
 from "../utils/evolutionDisplay";
+import {
+  formatLearnsetLevel,
+  getLearnsetCandidateIds,
+  hasLearnsetMoves
+} from "../utils/learnsetDisplay";
 
 const DEFERRED_DETAILS_WARMUP_DELAY_MS = 1600;
 const DEFERRED_SECTION_ROOT_MARGIN = "1200px 0px";
@@ -243,17 +248,137 @@ function applySelectedVariety(
   };
 }
 
+function readPrerenderLearnsetPreview(
+  pokemon
+) {
+  if (
+    typeof document === "undefined" ||
+    !pokemon
+  ) {
+    return null;
+  }
+
+  const dataElement =
+    document.getElementById(
+      "pokelore-prerender-learnset-data"
+    );
+
+  if (!dataElement?.textContent) {
+    return null;
+  }
+
+  try {
+    const preview = JSON.parse(
+      dataElement.textContent
+    );
+
+    return preview?.pokemonId === pokemon.id
+      ? preview
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+async function readFirstAvailableLearnset(
+  candidateIds
+) {
+  for (const id of candidateIds) {
+    const response = await fetch(
+      `/data/pokemonLearnsets/${id}.json`
+    );
+
+    if (response.ok) {
+      const learnset = await response.json();
+
+      if (hasLearnsetMoves(learnset)) {
+        return learnset;
+      }
+    }
+  }
+
+  throw new Error(
+    `Missing learnset for ${candidateIds.join(", ")}`
+  );
+}
+
+function LightweightLearnsetPreview({
+  pokemon,
+  preview
+}) {
+  if (!preview) {
+    return null;
+  }
+
+  const displayName =
+    formatPokemonDisplayName(pokemon);
+
+  return (
+    <div
+      className="prerender-learnset-preview"
+      data-prerender-learnset="true"
+    >
+      <h3>
+        {displayName} Moves Learned by Level Up
+      </h3>
+      {preview.versionLabel && (
+        <p>{preview.versionLabel}</p>
+      )}
+      {preview.rows?.length ? (
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Level</th>
+              <th scope="col">Move</th>
+            </tr>
+          </thead>
+          <tbody>
+            {preview.rows.map(row => (
+              <tr
+                key={`${row.move}-${row.level}`}
+              >
+                <td>
+                  {row.levelLabel ??
+                    formatLearnsetLevel(
+                      row.level
+                    )}
+                </td>
+                <td>
+                  <Link
+                    to={`/move/${row.move}`}
+                  >
+                    {row.moveLabel}
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>
+          No level-up moves are listed for this
+          version group.
+        </p>
+      )}
+    </div>
+  );
+}
+
 function LearnsetPlaceholder({
   loading,
   onReveal,
   titleColor,
-  titleChevron = false
+  titleChevron = false,
+  preview = null,
+  pokemon = null
 }) {
   return (
     <CollapsibleSection
       title="Learnsets"
       summary={
-        loading
+        preview
+          ? `${preview.summaryMoveCount} moves`
+          : loading
           ? "Loading moves"
           : "Preparing moves"
       }
@@ -264,8 +389,13 @@ function LearnsetPlaceholder({
       contentStyle={{
         marginTop: "1rem"
       }}
-      seoVisible={false}
-    />
+      seoVisible={Boolean(preview)}
+    >
+      <LightweightLearnsetPreview
+        pokemon={pokemon}
+        preview={preview}
+      />
+    </CollapsibleSection>
   );
 }
 
@@ -372,6 +502,10 @@ const [
   deferredDetailsReady,
   setDeferredDetailsReady
 ] = useState(false);
+const [
+  deferredDetailsRevealRequested,
+  setDeferredDetailsRevealRequested
+] = useState(false);
 //---------------------------------------------------------------------LOAD POKEMON USE EFFECT---------------------------------------------------------------------
 useEffect(() => {
   let isActive = true;
@@ -393,6 +527,7 @@ useEffect(() => {
       setLearnsetLoading(false);
       setEvolutionLoading(false);
       setDeferredDetailsReady(false);
+      setDeferredDetailsRevealRequested(false);
 
       const routesResponse =
         await fetch(
@@ -627,34 +762,21 @@ useEffect(() => {
     try {
       setLearnsetLoading(true);
 
-      const [
-        movesJson,
-        learnsetResponse
-      ] = await Promise.all([
-        loadMovesMap(),
-        fetch(
-          `/data/pokemonLearnsets/${pokemon.id}.json`
-        )
-      ]);
+      const learnsetCandidateIds =
+        getLearnsetCandidateIds(pokemon);
+      const [movesJson, learnsetJson] =
+        await Promise.all([
+          loadMovesMap(),
+          readFirstAvailableLearnset(
+            learnsetCandidateIds
+          )
+        ]);
 
       if (!isActive) {
         return;
       }
 
       setMovesData(movesJson);
-
-      if (!learnsetResponse.ok) {
-        throw new Error(
-          `Missing learnset for ${pokemon.id}`
-        );
-      }
-
-      const learnsetJson =
-        await learnsetResponse.json();
-
-      if (!isActive) {
-        return;
-      }
 
       setLearnsetData(learnsetJson);
     } catch (error) {
@@ -760,6 +882,10 @@ if (loadError || !pokemon) {
 
 const activeFormKey =
   getRegionalFormKey(pokemon);
+const prerenderLearnsetPreview =
+  readPrerenderLearnsetPreview(
+    pokemon
+  );
 const searchParams =
   new URLSearchParams(
     location.search
@@ -1002,15 +1128,33 @@ const evolutionSummaryText =
 
 <DeferredSection
   fallback={
-    <div
-      aria-hidden="true"
-      style={{
-        minHeight: "1px"
-      }}
-    />
+    prerenderLearnsetPreview ? (
+      <LearnsetPlaceholder
+        onReveal={() => {
+          setDeferredDetailsReady(true)
+          setDeferredDetailsRevealRequested(
+            true
+          );
+        }}
+        titleColor={expandableTitleColor}
+        titleChevron={true}
+        pokemon={pokemon}
+        preview={prerenderLearnsetPreview}
+      />
+    ) : (
+      <div
+        aria-hidden="true"
+        style={{
+          minHeight: "1px"
+        }}
+      />
+    )
   }
   onReveal={() =>
     setDeferredDetailsReady(true)
+  }
+  forceReveal={
+    deferredDetailsRevealRequested
   }
   delayMs={2800}
   rootMargin={DEFERRED_SECTION_ROOT_MARGIN}
@@ -1170,6 +1314,8 @@ const evolutionSummaryText =
       }
       titleColor={expandableTitleColor}
       titleChevron={true}
+      pokemon={pokemon}
+      preview={prerenderLearnsetPreview}
     />
   )}
 

@@ -429,6 +429,12 @@ function validateRepresentativeCanonicalContent(
     );
   }
 
+  if (!/Learnsets/i.test(html)) {
+    throw new Error(
+      `Representative ${id}/${slug} is missing learnset content.`
+    );
+  }
+
   if (
     !/prerender-analysis|Pokelore|Playthrough|Nuzlocke|Competitive/i.test(
       html

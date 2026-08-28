@@ -1,11 +1,15 @@
 import assert from "node:assert/strict";
 import {
   buildEvolutionSection,
+  buildLearnsetSection,
   buildPokemonShell,
   buildTypeEffectivenessSection,
   injectHeadTags
 } from "./prerenderPokemonPages.js";
 import pikachu from "../public/data/pokemonData/25.json" with {
+  type: "json"
+};
+import bulbasaur from "../public/data/pokemonData/1.json" with {
   type: "json"
 };
 import ivysaur from "../public/data/pokemonData/2.json" with {
@@ -32,6 +36,34 @@ import feebasChain from "../public/data/evolutionChains/178.json" with {
 import evolutionMethodOverrides from "../public/data/evolutionMethodOverrides.json" with {
   type: "json"
 };
+import bulbasaurLearnset from "../public/data/pokemonLearnsets/1.json" with {
+  type: "json"
+};
+import pikachuLearnset from "../public/data/pokemonLearnsets/25.json" with {
+  type: "json"
+};
+import eeveeLearnset from "../public/data/pokemonLearnsets/133.json" with {
+  type: "json"
+};
+import celebiLearnset from "../public/data/pokemonLearnsets/251.json" with {
+  type: "json"
+};
+import feebasLearnset from "../public/data/pokemonLearnsets/349.json" with {
+  type: "json"
+};
+import miraidonLearnset from "../public/data/pokemonLearnsets/1008.json" with {
+  type: "json"
+};
+import movesIndex from "../public/data/movesIndex.json" with {
+  type: "json"
+};
+
+const movesData = Object.fromEntries(
+  movesIndex.map(move => [
+    move.name,
+    move
+  ])
+);
 
 const html = injectHeadTags(
   [
@@ -219,12 +251,127 @@ assert.match(
   /<a href="\/item\/prism-scale">Prism Scale<\/a>/
 );
 
+const pikachuLearnsetSection =
+  buildLearnsetSection(
+    pikachu,
+    pikachuLearnset,
+    movesData
+  );
+
+assert.match(
+  pikachuLearnsetSection,
+  /<h2>Learnsets<\/h2>/
+);
+assert.match(
+  pikachuLearnsetSection,
+  /<p>1075 moves<\/p>/
+);
+assert.match(
+  pikachuLearnsetSection,
+  /class="collapsible-content collapsed"/
+);
+assert.match(
+  pikachuLearnsetSection,
+  /<h3>Pikachu Moves Learned by Level Up<\/h3>/
+);
+assert.match(
+  pikachuLearnsetSection,
+  /<p>Scarlet Violet<\/p>/
+);
+assert.match(
+  pikachuLearnsetSection,
+  /<td>36<\/td>\s*<td><a href="\/move\/thunderbolt">Thunderbolt<\/a><\/td>/
+);
+assert.match(
+  pikachuLearnsetSection,
+  /<td>44<\/td>\s*<td><a href="\/move\/thunder">Thunder<\/a><\/td>/
+);
+assert.doesNotMatch(
+  pikachuLearnsetSection,
+  /Machine|Tutor|Egg|<a href="\/move\/protect">Protect<\/a>|<a href="\/move\/surf">Surf<\/a>/
+);
+
+const representativeLearnsets = [
+  [
+    "Bulbasaur",
+    bulbasaur,
+    bulbasaurLearnset,
+    /<p>Scarlet Violet<\/p>[\s\S]*<td>12<\/td>\s*<td><a href="\/move\/razor-leaf">Razor Leaf<\/a><\/td>/
+  ],
+  [
+    "Eevee",
+    {
+      id: 133,
+      name: "eevee"
+    },
+    eeveeLearnset,
+    /<p>Scarlet Violet<\/p>[\s\S]*<td>15<\/td>\s*<td><a href="\/move\/baby-doll-eyes">Baby-Doll Eyes<\/a><\/td>/
+  ],
+  [
+    "Celebi",
+    {
+      id: 251,
+      name: "celebi"
+    },
+    celebiLearnset,
+    /<p>Brilliant Diamond Shining Pearl<\/p>[\s\S]*<td>100<\/td>\s*<td><a href="\/move\/perish-song">Perish Song<\/a><\/td>/
+  ],
+  [
+    "Feebas",
+    {
+      id: 349,
+      name: "feebas"
+    },
+    feebasLearnset,
+    /<p>Scarlet Violet<\/p>[\s\S]*<td>25<\/td>\s*<td><a href="\/move\/flail">Flail<\/a><\/td>/
+  ],
+  [
+    "Miraidon",
+    {
+      id: 1008,
+      name: "miraidon"
+    },
+    miraidonLearnset,
+    /<p>Scarlet Violet<\/p>[\s\S]*<td>98<\/td>\s*<td><a href="\/move\/hyper-beam">Hyper Beam<\/a><\/td>/
+  ]
+];
+
+representativeLearnsets.forEach(
+  ([label, pokemon, learnset, expected]) => {
+    const learnsetSection =
+      buildLearnsetSection(
+        pokemon,
+        learnset,
+        movesData
+      );
+
+    assert.match(
+      learnsetSection,
+      new RegExp(
+        `<h3>${label} Moves Learned by Level Up<\\/h3>`
+      )
+    );
+    assert.match(
+      learnsetSection,
+      expected
+    );
+    assert.doesNotMatch(
+      learnsetSection,
+      /<th[^>]*>Type<\/th>|<th[^>]*>Pwr<\/th>|<th[^>]*>Acc<\/th>|<th[^>]*>Cat\.<\/th>/
+    );
+  }
+);
+
 const shell = buildPokemonShell(
   pikachu,
   "pikachu",
   {},
   [],
-  []
+  [],
+  null,
+  {},
+  pikachuLearnset,
+  movesData
 );
 
 assert.match(
@@ -234,6 +381,10 @@ assert.match(
 assert.match(
   shell,
   /<strong>2×<\/strong>\s*<img src="\/assets\/type-badges\/GROUND\.png" alt="Ground type"/
+);
+assert.match(
+  shell,
+  /<h2>Learnsets<\/h2>[\s\S]*<a href="\/move\/thunderbolt">Thunderbolt<\/a>/
 );
 
 console.log(

@@ -8,6 +8,7 @@ function DeferredSection({
   children,
   delayMs = null,
   fallback = null,
+  forceReveal = false,
   onReveal,
   revealOnIntersect = true,
   rootMargin = "600px 0px"
@@ -15,9 +16,11 @@ function DeferredSection({
   const containerRef = useRef(null);
   const [revealed, setRevealed] =
     useState(false);
+  const isRevealed =
+    revealed || forceReveal;
 
   useEffect(() => {
-    if (revealed) {
+    if (isRevealed) {
       return undefined;
     }
 
@@ -74,22 +77,22 @@ function DeferredSection({
   }, [
     delayMs,
     revealOnIntersect,
-    revealed,
+    isRevealed,
     rootMargin
   ]);
 
   useEffect(() => {
-    if (revealed) {
+    if (isRevealed) {
       onReveal?.();
     }
   }, [
     onReveal,
-    revealed
+    isRevealed
   ]);
 
   return (
     <div ref={containerRef}>
-      {revealed ? children : fallback}
+      {isRevealed ? children : fallback}
     </div>
   );
 }

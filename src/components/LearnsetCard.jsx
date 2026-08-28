@@ -12,21 +12,20 @@ import useLocalStorageState from "../hooks/useLocalStorageState";
 import physicalBadge from "../assets/Physical Badge.png";
 import specialBadge from "../assets/Special Badge.png";
 import statusBadge from "../assets/Status Badge.png";
-import { sortVersionGroups } from "../constants/versionOrder";
+import {
+  LEARNSET_METHOD_ORDER,
+  formatLearnsetLabel,
+  formatMoveDisplayName,
+  formatVersionGroupName,
+  getLearnsetMovesForVersion,
+  getLearnsetVersionGroups,
+  getSelectedLearnsetVersionGroup,
+  getSortedCondensedLearnsetMoves,
+  groupLearnsetMovesByMethod
+} from "../utils/learnsetDisplay";
 
 const LEARNSET_VERSION_STORAGE_KEY =
   "pokelore:learnset-version";
-
-function capitalize(text) {
-  return text
-    .split("-")
-    .map(
-      word =>
-        word.charAt(0).toUpperCase() +
-        word.slice(1)
-    )
-    .join(" ");
-}
 
 function getCategoryBadge(category) {
   const normalizedCategory =
@@ -71,17 +70,11 @@ function LearnsetCard({
   // ];
 
 const versionGroups = useMemo(
-  () => [
-    "all",
-    ...sortVersionGroups(
-      new Set(
-        pokemonData.moves.map(
-          move => move.versionGroup
-        )
-      )
-    )
-  ],
-  [pokemonData.moves]
+  () =>
+    getLearnsetVersionGroups(
+      pokemonData
+    ),
+  [pokemonData]
 );
 
   //-----------------------------------------
@@ -96,11 +89,10 @@ const versionGroups = useMemo(
     "all"
   );
   const selectedVersion =
-    versionGroups.includes(
+    getSelectedLearnsetVersionGroup(
+      pokemonData,
       preferredVersion
-    )
-      ? preferredVersion
-      : "all";
+    );
 
   const updatePreferredVersion =
     useCallback(
@@ -146,13 +138,10 @@ const versionGroups = useMemo(
   //   );
 
 const filteredMoves =
-  selectedVersion === "all"
-    ? pokemonData.moves
-    : pokemonData.moves.filter(
-        move =>
-          move.versionGroup ===
-          selectedVersion
-      );
+  getLearnsetMovesForVersion(
+    pokemonData,
+    selectedVersion
+  );
 
 
 
@@ -162,26 +151,9 @@ const filteredMoves =
   //-----------------------------------------
 
   const groupedMoves =
-    filteredMoves.reduce((acc, move) => {
-      if (!acc[move.method]) {
-        acc[move.method] = [];
-      }
-
-      acc[move.method].push(move);
-
-      return acc;
-    }, {});
-
-  //-----------------------------------------
-  // Method Display Order
-  //-----------------------------------------
-
-  const methodOrder = [
-    "level-up",
-    "machine",
-    "tutor",
-    "egg"
-  ];
+    groupLearnsetMovesByMethod(
+      filteredMoves
+    );
 
   //-----------------------------------------
   // Render
@@ -234,9 +206,9 @@ const filteredMoves =
                     key={version}
                     value={version}
                   >
-                 {version === "all"
-                   ? "All Generations"
-                           : capitalize(version)}
+                 {formatVersionGroupName(
+                   version
+                 )}
                   </option>
                 )
               )}
@@ -254,7 +226,7 @@ const filteredMoves =
               alignItems: "start"
             }}
           >
-            {methodOrder.map(
+            {LEARNSET_METHOD_ORDER.map(
               method => {
                 const moves =
                   groupedMoves[
@@ -264,44 +236,9 @@ const filteredMoves =
                 if (!moves)
                   return null;
 
-                //-----------------------------------------
-                // Condense Duplicate Moves
-                //-----------------------------------------
-
-                const condensedMap =
-                  {};
-
-                for (const move of moves) {
-                  const key = `${move.move}-${move.level}`;
-
-                  if (
-                    !condensedMap[
-                      key
-                    ]
-                  ) {
-                    condensedMap[
-                      key
-                    ] = move;
-                  }
-                }
-
-                const condensedMoves =
-                  Object.values(
-                    condensedMap
-                  );
-
-                //-----------------------------------------
-                // Sort
-                //-----------------------------------------
-
                 const sortedMoves =
-                  condensedMoves.sort(
-                    (
-                      a,
-                      b
-                    ) =>
-                      a.level -
-                      b.level
+                  getSortedCondensedLearnsetMoves(
+                    moves
                   );
 
                 return (
@@ -323,7 +260,7 @@ const filteredMoves =
                           "1rem"
                       }}
                     >
-                      {capitalize(
+                      {formatLearnsetLabel(
                         method
                       )}
                     </h3>
@@ -439,7 +376,7 @@ const filteredMoves =
                                   "none"
                               }}
                             >
-                              {capitalize(
+                              {formatMoveDisplayName(
                                 move.move
                               )}
                             </Link>
