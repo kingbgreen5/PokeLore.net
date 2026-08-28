@@ -788,6 +788,13 @@ const useFormEvolutionPaths =
     Array.isArray(formEvolutionPaths) &&
     formEvolutionPaths.length > 0
   );
+const useHorizontalEvolutionLayout =
+  Boolean(
+    evolutionData?.root?.pokemon?.name &&
+    evolutionData.root.pokemon.name !==
+      "eevee" &&
+    !useFormEvolutionPaths
+  );
 const visibleSpecialFormNotes =
   (
     familyEvolutionOverride
@@ -1026,7 +1033,7 @@ const evolutionSummaryText =
   <p
     className="evolution-summary"
     style={{
-      color: "#d1d5db",
+      color: "var(--text)",
       lineHeight: 1.55,
       margin: "0 auto 1rem",
       maxWidth: "44rem"
@@ -1037,18 +1044,20 @@ const evolutionSummaryText =
 )}
 <div
   ref={evolutionScrollRef}
-  style={{
-    overflowX: "auto",
-    width: "100%"
-  }}
+  className="evolution-tree-scroll"
 >
   <div
-    style={{
-      width: useFormEvolutionPaths
-        ? "100%"
-        : "max-content",
-      margin:'0 auto',
-    }}
+    className={[
+      "evolution-tree-inner",
+      useFormEvolutionPaths
+        ? "evolution-tree-inner-form"
+        : "",
+      useHorizontalEvolutionLayout
+        ? "evolution-tree-inner-horizontal"
+        : ""
+    ]
+      .filter(Boolean)
+      .join(" ")}
   >
     {evolutionLoading && (
       <p>Loading evolution chain...</p>
@@ -1069,6 +1078,9 @@ const evolutionSummaryText =
           activeFormKey={activeFormKey}
           currentPokemonName={pokemon.name}
           evolutionMethodOverrides={evolutionMethodOverrides}
+          horizontalLayout={
+            useHorizontalEvolutionLayout
+          }
         />
       )
     )}

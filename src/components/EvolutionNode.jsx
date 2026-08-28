@@ -227,7 +227,8 @@ function EvolutionNode({
   isRoot,
   activeFormKey,
   currentPokemonName,
-  evolutionMethodOverrides
+  evolutionMethodOverrides,
+  horizontalLayout = false
 }) {
   const displayedPokemon =
     getDisplayedEvolutionPokemon(
@@ -257,17 +258,11 @@ function EvolutionNode({
 
     
     <div
-      style={{
-        display: "flex",
-        width: "100%",
-        flexDirection: "column",
-      marginBottom: "1rem",
-      marginTop: "auto",
-        alignItems: "center",
-
-        // gap: ".1rem",
-        // border: "1px solid",
-      }}
+      className={`evolution-node${
+        horizontalLayout
+          ? " evolution-node-horizontal"
+          : ""
+      }`}
     >
         
 
@@ -282,15 +277,7 @@ function EvolutionNode({
 
 {node.trigger && (
   <div
-    style={{
-      fontSize: ".8rem",
-      textAlign: "center",
-      width: "clamp(80px, 12vw, 170px)",
-     lineHeight: 1.1,
-     marginBottom: "1rem",
-     marginTop: "1rem",
-
-    }}
+    className="evolution-method"
   >
     <EvolutionDescription
       node={node}
@@ -301,7 +288,10 @@ function EvolutionNode({
         evolutionMethodOverrides
       }
     />
-     <div> ↓</div>
+     <span
+       aria-hidden="true"
+       className="evolution-method-arrow"
+     />
   </div>
  
 )}
@@ -325,12 +315,7 @@ function EvolutionNode({
       {visibleChildren.length >
         0 && (
 
-        <div
-          style={{
-            display: "flex",
-            gap: "1rem"
-          }}
-        >
+        <div className="evolution-children">
 
           {visibleChildren.map(
             child => (
@@ -348,6 +333,9 @@ function EvolutionNode({
                 }
                 evolutionMethodOverrides={
                   evolutionMethodOverrides
+                }
+                horizontalLayout={
+                  horizontalLayout
                 }
               />
 

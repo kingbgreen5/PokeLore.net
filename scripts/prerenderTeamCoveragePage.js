@@ -144,6 +144,29 @@ function buildCriticalCss() {
         margin: 0;
       }
 
+      .prerender-team-coverage-ev-link {
+        background: rgba(14, 165, 233, 0.13);
+        border: 1px solid rgba(56, 189, 248, 0.45);
+        border-radius: 8px;
+        box-sizing: border-box;
+        color: #dbeafe;
+        display: block;
+        line-height: 1.5;
+        margin: 0 auto 2rem;
+        max-width: 760px;
+        padding: 1rem 1.15rem;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .prerender-team-coverage-ev-link span {
+        color: #38bdf8;
+        font-weight: 700;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+      }
+
       .prerender-team-coverage-explainer {
         border-top: 1px solid #555;
         margin: 2rem auto 0;
@@ -202,6 +225,11 @@ function buildShell() {
           offensive and defensive needs.
         </p>
       </section>
+
+      <a class="prerender-team-coverage-ev-link" href="/ev-training-routes">
+        Once your team is ready, use our <span>EV Training Locations Calculator</span>
+        to find the best spots to EV Train your team.
+      </a>
 
       <article class="prerender-team-coverage-explainer">
         <h2>How the Pokémon Playthrough Team Builder Works</h2>

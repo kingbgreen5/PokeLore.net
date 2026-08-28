@@ -3704,6 +3704,17 @@ function TeamCoveragePage() {
           </>
         )}
 
+        <Link
+          className="team-coverage-ev-training-link"
+          to="/ev-training-routes"
+        >
+          Once your team is ready, use our{" "}
+          <span>
+            EV Training Locations Calculator
+          </span>{" "}
+          to find the best spots to EV Train your team.
+        </Link>
+
         <TeamCoverageExplainer />
       </section>
 

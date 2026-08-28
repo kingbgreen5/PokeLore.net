@@ -781,9 +781,13 @@ function buildEvolutionSection(
           ),
           true
         );
+  const useHorizontalEvolutionLayout =
+    !useFormEvolutionPaths &&
+    evolutionChain.root.pokemon?.name !==
+      "eevee";
 
   return `
-        <section class="prerender-evolution" aria-labelledby="prerender-evolution-heading">
+        <section class="prerender-evolution${useHorizontalEvolutionLayout ? " prerender-evolution-horizontal" : ""}" aria-labelledby="prerender-evolution-heading">
           <h2 id="prerender-evolution-heading">Evolution Chain</h2>
           <p class="prerender-evolution-summary">${escapeHtml(summaryText)}</p>
           <div class="prerender-evolution-tree">
@@ -1215,7 +1219,7 @@ function buildCriticalCss() {
       }
 
       .prerender-evolution-summary {
-        color: #d1d5db;
+        color: #9ca3af;
         line-height: 1.55;
         margin: 0 auto 1rem;
         max-width: 44rem;
@@ -1289,6 +1293,41 @@ function buildCriticalCss() {
         color: #f3f4f6;
         font-size: 0.8rem;
         line-height: 1.1;
+      }
+
+      @media (min-width: 769px) {
+        .prerender-evolution-horizontal .prerender-evolution-tree {
+          justify-content: center;
+          padding-bottom: 2rem;
+        }
+
+        .prerender-evolution-horizontal .prerender-evolution-node {
+          align-items: center;
+          flex-direction: row;
+          gap: 1.75rem;
+          min-width: max-content;
+        }
+
+        .prerender-evolution-horizontal .prerender-evolution-children {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .prerender-evolution-horizontal .prerender-evolution-method {
+          flex: 0 0 clamp(130px, 15vw, 220px);
+          margin: 0;
+          max-width: 220px;
+        }
+
+        .prerender-evolution-horizontal .prerender-evolution-method span[aria-hidden="true"] {
+          font-size: 0;
+        }
+
+        .prerender-evolution-horizontal .prerender-evolution-method span[aria-hidden="true"]::before {
+          content: "→";
+          font-size: 0.8rem;
+        }
       }
 
       .prerender-form-evolution-path {

@@ -768,7 +768,7 @@ function EvTrainingGuideSection() {
           linkTargets={itemLinkTargets}
           usedRoutes={usedLinkRoutes}
         >
-          The best Pokemon to defeat depends on the game, the stat you want to train, encounter rates, and available training mechanics. That is what EV Training Locations & Best Routes above is designed to solve: select your game and target stat to find locations where the encounter pool is favorable while minimizing unwanted EVs.
+          The best Pokemon to defeat depends on the game, the stat you want to train, encounter rates, and available training mechanics. That is what the EV training calculator above is designed to solve: select your game and target stat to find locations where the encounter pool is favorable while minimizing unwanted EVs.
         </GuideText>
       </GuideSection>
     </section>
@@ -1087,7 +1087,7 @@ function EvTrainingRoutesPage() {
       >
         <Seo {...evTrainingRoutesSeo()} />
         <h1>
-          EV Training Locations & Best Routes
+          Best EV Training Locations Calculator
         </h1>
         <p>EV training data is unavailable.</p>
       </main>
@@ -1119,7 +1119,7 @@ function EvTrainingRoutesPage() {
             textAlign: "center"
           }}
         >
-          EV Training Locations & Best Routes
+          Best EV Training Locations Calculator
         </h1>
         <p
           style={{

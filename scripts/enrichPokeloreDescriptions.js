@@ -48,6 +48,7 @@ const GENERATION_LABELS = {
 };
 
 const DEFAULT_FORM_LABELS = new Set([
+  "base",
   "standard",
   "default",
   "kantonian",
@@ -56,6 +57,14 @@ const DEFAULT_FORM_LABELS = new Set([
   "sinnohan",
   "unovan",
   "kalosian"
+]);
+
+const FORM_ALIASES = new Map([
+  ["gigantamax", ["gmax"]],
+  ["unovan standard", ["standard", "base"]],
+  ["unovan zen", ["zen"]],
+  ["galarian standard", ["galar standard", "galarian"]],
+  ["galarian zen", ["galar zen"]]
 ]);
 
 function readJson(filePath) {
@@ -191,6 +200,24 @@ export function buildEvolutionStageLookup(evolutionChains) {
 
       byId.set(id, record);
       bySpecies.set(speciesKey, record);
+
+      for (const variety of node.varieties ?? []) {
+        const varietyId = Number(variety.id);
+        const varietyKey = normalizePokemonName(
+          variety.name
+        );
+
+        byId.set(varietyId, {
+          ...record,
+          pokemonId: varietyId,
+          speciesKey: varietyKey
+        });
+        bySpecies.set(varietyKey, {
+          ...record,
+          pokemonId: varietyId,
+          speciesKey: varietyKey
+        });
+      }
     });
   }
 
@@ -223,6 +250,7 @@ function getEvolutionStageForPokemon(
 
 function inferPokemonForm(pokemon) {
   const name = normalizeText(pokemon?.name);
+  const species = normalizeText(pokemon?.species);
 
   if (name.includes("-paldea-combat-breed")) {
     return "paldean combat breed";
@@ -234,6 +262,21 @@ function inferPokemonForm(pokemon) {
     return "paldean aqua breed";
   }
   if (name.includes("-bloodmoon")) return "bloodmoon";
+
+  if (
+    species &&
+    name.startsWith(`${species}-`)
+  ) {
+    return normalizeForm(
+      name
+        .slice(species.length + 1)
+        .replace(/^alola\b/, "alolan")
+        .replace(/^galar\b/, "galarian")
+        .replace(/^hisui\b/, "hisuian")
+        .replace(/^paldea\b/, "paldean")
+    );
+  }
+
   if (name.includes("-alola")) return "alolan";
   if (name.includes("-galar")) return "galarian";
   if (name.includes("-hisui")) return "hisuian";
@@ -248,8 +291,14 @@ function formMatches(entryForm, pokemon) {
   const normalizedEntryForm =
     normalizeForm(entryForm);
   const inferredForm = inferPokemonForm(pokemon);
+  const formAliases =
+    FORM_ALIASES.get(normalizedEntryForm) ?? [];
 
   if (normalizedEntryForm === inferredForm) {
+    return true;
+  }
+
+  if (formAliases.includes(inferredForm)) {
     return true;
   }
 
