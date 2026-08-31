@@ -34,6 +34,7 @@ import miraidon from "../../public/data/pokemonData/1008.json";
 import charizardMegaX from "../../public/data/pokemonData/10034.json";
 import bulbasaurChain from "../../public/data/evolutionChains/1.json";
 import bulbasaurLearnset from "../../public/data/pokemonLearnsets/1.json";
+import feebasEncounters from "../../public/data/pokemonEncounters/349.json";
 import movesIndex from "../../public/data/movesIndex.json";
 import evolutionMethodOverrides from "../../public/data/evolutionMethodOverrides.json";
 import { formatPokemonDisplayName } from "../utils/pokemonNames";
@@ -180,7 +181,8 @@ function createDeferred() {
 function stubPokemonFetch({
   failRoutes = false,
   failPokemonIds = [],
-  pokemonLearnsets = {}
+  pokemonLearnsets = {},
+  pokemonEncounters = {}
 } = {}) {
   const failedPokemonIds = new Set(
     failPokemonIds.map(Number)
@@ -259,6 +261,24 @@ function stubPokemonFetch({
       if (url === "/data/movesIndex.json") {
         return Promise.resolve(
           jsonResponse(movesIndex)
+        );
+      }
+
+      const encounterMatch =
+        String(url).match(
+          /^\/data\/pokemonEncounters\/(\d+)\.json$/
+        );
+
+      if (encounterMatch) {
+        const encounterData =
+          pokemonEncounters[
+            encounterMatch[1]
+          ];
+
+        return Promise.resolve(
+          encounterData
+            ? jsonResponse(encounterData)
+            : notFoundResponse()
         );
       }
 
@@ -857,6 +877,72 @@ describe("PokemonDetailPage SEO indexing", () => {
         name: "Machine"
       })
     ).toBeInTheDocument();
+  });
+
+  it("replaces prerendered Where To Find preview with the hydrated component without duplicates", async () => {
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      `<script id="pokelore-prerender-where-to-find-data" type="application/json">${JSON.stringify({
+        pokemonId: 349,
+        pokemon: "feebas",
+        locationCount: 5
+      })}</script>`
+    );
+    stubPokemonFetch({
+      pokemonEncounters: {
+        349: feebasEncounters
+      }
+    });
+
+    renderPokemonRoute(
+      "/pokemon/feebas"
+    );
+
+    await expectResolvedPokemonPage(
+      "feebas",
+      feebas
+    );
+
+    const previewButton =
+      await screen.findByRole(
+        "button",
+        {
+          name: /Where To Find Feebas 5 locations/
+        }
+      );
+
+    expect(
+      screen.getAllByRole("button", {
+        name: /Where To Find Feebas/
+      })
+    ).toHaveLength(1);
+
+    fireEvent.click(previewButton);
+
+    expect(
+      await screen.findByRole(
+        "combobox",
+        {
+          name: "Encounter version"
+        },
+        {
+          timeout: 8000
+        }
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.getAllByRole("button", {
+        name: /Where To Find Feebas/
+      })
+    ).toHaveLength(1);
+    expect(
+      screen.getByRole("link", {
+        name: "Route 119"
+      })
+    ).toHaveAttribute(
+      "href",
+      "/location/hoenn-route-119"
+    );
   });
 
   it("only emits noindex for a confirmed invalid Pokemon route", async () => {

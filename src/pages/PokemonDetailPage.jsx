@@ -280,6 +280,39 @@ function readPrerenderLearnsetPreview(
   }
 }
 
+function readPrerenderWhereToFindPreview(
+  pokemon
+) {
+  if (
+    typeof document === "undefined" ||
+    !pokemon
+  ) {
+    return null;
+  }
+
+  const dataElement =
+    document.getElementById(
+      "pokelore-prerender-where-to-find-data"
+    );
+
+  if (!dataElement?.textContent) {
+    return null;
+  }
+
+  try {
+    const preview = JSON.parse(
+      dataElement.textContent
+    );
+
+    return Number(preview?.pokemonId) ===
+      Number(pokemon.id)
+      ? preview
+      : null;
+  } catch {
+    return null;
+  }
+}
+
 async function readFirstAvailableLearnset(
   candidateIds
 ) {
@@ -361,6 +394,52 @@ function LightweightLearnsetPreview({
         </p>
       )}
     </div>
+  );
+}
+
+function WhereToFindPlaceholder({
+  onReveal,
+  preview,
+  pokemon,
+  titleColor,
+  titleChevron = false
+}) {
+  if (!preview || !pokemon) {
+    return null;
+  }
+
+  const displayName =
+    formatPokemonDisplayName(pokemon);
+  const locationCount = Number(
+    preview.locationCount ?? 0
+  );
+
+  return (
+    <CollapsibleSection
+      title={`Where To Find ${displayName}`}
+      summary={
+        locationCount > 0
+          ? `${locationCount} locations`
+          : "No known locations"
+      }
+      expanded={false}
+      titleColor={titleColor}
+      titleChevron={titleChevron}
+      onToggle={onReveal}
+      contentStyle={{
+        marginTop: "1rem"
+      }}
+      seoVisible={Boolean(preview)}
+      style={{
+        marginTop: "1rem"
+      }}
+    >
+      <p>
+        {locationCount > 0
+          ? "Loading encounter location data..."
+          : "No known encounter locations."}
+      </p>
+    </CollapsibleSection>
   );
 }
 
@@ -886,6 +965,10 @@ const prerenderLearnsetPreview =
   readPrerenderLearnsetPreview(
     pokemon
   );
+const prerenderWhereToFindPreview =
+  readPrerenderWhereToFindPreview(
+    pokemon
+  );
 const searchParams =
   new URLSearchParams(
     location.search
@@ -970,6 +1053,11 @@ const evolutionSummaryText =
           style={{ width: "250px" }}
         />
       */}
+
+
+
+
+
 
       <PokemonDescriptionSection
         key={`description-${pokemon.id}`}
@@ -1128,19 +1216,40 @@ const evolutionSummaryText =
 
 <DeferredSection
   fallback={
-    prerenderLearnsetPreview ? (
-      <LearnsetPlaceholder
-        onReveal={() => {
-          setDeferredDetailsReady(true)
-          setDeferredDetailsRevealRequested(
-            true
-          );
-        }}
-        titleColor={expandableTitleColor}
-        titleChevron={true}
-        pokemon={pokemon}
-        preview={prerenderLearnsetPreview}
-      />
+    prerenderLearnsetPreview ||
+    prerenderWhereToFindPreview ? (
+      <>
+        {prerenderLearnsetPreview && (
+          <LearnsetPlaceholder
+            onReveal={() => {
+              setDeferredDetailsReady(true)
+              setDeferredDetailsRevealRequested(
+                true
+              );
+            }}
+            titleColor={expandableTitleColor}
+            titleChevron={true}
+            pokemon={pokemon}
+            preview={prerenderLearnsetPreview}
+          />
+        )}
+        {prerenderWhereToFindPreview && (
+          <WhereToFindPlaceholder
+            onReveal={() => {
+              setDeferredDetailsReady(true);
+              setDeferredDetailsRevealRequested(
+                true
+              );
+            }}
+            titleColor={expandableTitleColor}
+            titleChevron={true}
+            pokemon={pokemon}
+            preview={
+              prerenderWhereToFindPreview
+            }
+          />
+        )}
+      </>
     ) : (
       <div
         aria-hidden="true"
@@ -1332,8 +1441,14 @@ const evolutionSummaryText =
 
   <WhereToFind
     enabled={deferredDetailsReady}
+    initialPreview={
+      prerenderWhereToFindPreview
+    }
     key={`where-to-find-${pokemon.id}`}
     pokemonId={pokemon.id}
+    pokemonName={formatPokemonDisplayName(
+      pokemon
+    )}
     titleColor={expandableTitleColor}
     titleChevron={true}
   />

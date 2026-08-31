@@ -3,6 +3,7 @@ import {
   buildEvolutionSection,
   buildLearnsetSection,
   buildPokemonShell,
+  buildWhereToFindSection,
   buildTypeEffectivenessSection,
   injectHeadTags
 } from "./prerenderPokemonPages.js";
@@ -51,6 +52,12 @@ import celebiLearnset from "../public/data/pokemonLearnsets/251.json" with {
 import feebasLearnset from "../public/data/pokemonLearnsets/349.json" with {
   type: "json"
 };
+import feebasEncounters from "../public/data/pokemonEncounters/349.json" with {
+  type: "json"
+};
+import pikachuEncounters from "../public/data/pokemonEncounters/25.json" with {
+  type: "json"
+};
 import miraidonLearnset from "../public/data/pokemonLearnsets/1008.json" with {
   type: "json"
 };
@@ -97,6 +104,10 @@ assert.match(
 assert.doesNotMatch(
   html,
   /<meta name="robots"/
+);
+assert.match(
+  html,
+  /id="pokelore-prerender-where-to-find-data"[^>]*>\{"pokemonId":25,"pokemon":"pikachu","locationCount":0\}<\/script>/
 );
 
 const ivysaurTypeSection =
@@ -291,6 +302,81 @@ assert.doesNotMatch(
   /Machine|Tutor|Egg|<a href="\/move\/protect">Protect<\/a>|<a href="\/move\/surf">Surf<\/a>/
 );
 
+const feebasWhereToFindSection =
+  buildWhereToFindSection(
+    {
+      id: 349,
+      name: "feebas"
+    },
+    feebasEncounters
+  );
+
+assert.match(
+  feebasWhereToFindSection,
+  /<h2>Where To Find Feebas<\/h2>/
+);
+assert.match(
+  feebasWhereToFindSection,
+  /<a href="\/location\/hoenn-route-119">Route 119<\/a> · Hoenn/
+);
+assert.match(
+  feebasWhereToFindSection,
+  /Road 119/
+);
+assert.match(
+  feebasWhereToFindSection,
+  /Ruby, Sapphire, Emerald/
+);
+assert.match(
+  feebasWhereToFindSection,
+  /Feebas Tile Fishing · Lv\. 20–25 · up to 50%/
+);
+assert.match(
+  feebasWhereToFindSection,
+  /<li>Feebas Tile Fishing · Lv\. 20–25 · 50%<\/li>/
+);
+assert.match(
+  feebasWhereToFindSection,
+  /class="collapsible-content collapsed"/
+);
+
+const pikachuWhereToFindSection =
+  buildWhereToFindSection(
+    pikachu,
+    pikachuEncounters
+  );
+
+assert.match(
+  pikachuWhereToFindSection,
+  /<h2>Where To Find Pikachu<\/h2>/
+);
+assert.match(
+  pikachuWhereToFindSection,
+  /<a href="\/location\/friend-safari">Friend Safari<\/a> · Kalos/
+);
+assert.match(
+  pikachuWhereToFindSection,
+  /Friend Safari Slot 2/
+);
+
+const noLocationWhereToFindSection =
+  buildWhereToFindSection(
+    {
+      id: 617,
+      name: "accelgor"
+    },
+    null
+  );
+
+assert.match(
+  noLocationWhereToFindSection,
+  /<h2>Where To Find Accelgor<\/h2>/
+);
+assert.match(
+  noLocationWhereToFindSection,
+  /No known locations/
+);
+
 const representativeLearnsets = [
   [
     "Bulbasaur",
@@ -371,7 +457,8 @@ const shell = buildPokemonShell(
   null,
   {},
   pikachuLearnset,
-  movesData
+  movesData,
+  pikachuEncounters
 );
 
 assert.match(
@@ -385,6 +472,10 @@ assert.match(
 assert.match(
   shell,
   /<h2>Learnsets<\/h2>[\s\S]*<a href="\/move\/thunderbolt">Thunderbolt<\/a>/
+);
+assert.match(
+  shell,
+  /<h2>Where To Find Pikachu<\/h2>[\s\S]*Friend Safari Slot 2/
 );
 
 console.log(

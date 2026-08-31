@@ -435,6 +435,12 @@ function validateRepresentativeCanonicalContent(
     );
   }
 
+  if (!/Where To Find/i.test(html)) {
+    throw new Error(
+      `Representative ${id}/${slug} is missing Where To Find content.`
+    );
+  }
+
   if (
     !/prerender-analysis|Pokelore|Playthrough|Nuzlocke|Competitive/i.test(
       html

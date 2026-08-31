@@ -55,6 +55,8 @@ function writePrerender(pokemonDistDir, slug) {
       `<p>${displayName} does not evolve into or from any other Pokémon.</p>`,
       "<h2>Learnsets</h2>",
       "<h3>Moves Learned by Level Up</h3>",
+      `<h2>Where To Find ${displayName}</h2>`,
+      "<a href=\"/location/sample-route\">Sample Route</a>",
       "<section class=\"prerender-analysis-card\">Rich content</section>",
       "</body>",
       "</html>"

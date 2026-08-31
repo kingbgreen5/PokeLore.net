@@ -33,6 +33,22 @@ import {
   getLatestLevelUpLearnsetPreview,
   hasLearnsetMoves
 } from "../src/utils/learnsetDisplay.js";
+import {
+  ALL_ENCOUNTER_VERSIONS,
+  filterEncounterLocationsByVersion,
+  formatEncounterConditions,
+  formatChance,
+  formatEncounterLabel,
+  formatEncounterLevelRange,
+  formatEncounterMethodName,
+  formatEncounterSummary,
+  formatEncounterVersionName,
+  getEncounterSummary,
+  getGroupedEncounterVersions,
+  getUniqueEncounterRecords,
+  getPokemonEncounterCandidateIds,
+  hasEncounterLocations
+} from "../src/utils/encounterDisplay.js";
 
 const __dirname = path.dirname(
   fileURLToPath(import.meta.url)
@@ -75,6 +91,12 @@ const pokemonLearnsetsDir = path.join(
   "public",
   "data",
   "pokemonLearnsets"
+);
+const pokemonEncountersDir = path.join(
+  repoRoot,
+  "public",
+  "data",
+  "pokemonEncounters"
 );
 const evolutionChainsDir = path.join(
   repoRoot,
@@ -915,6 +937,130 @@ function buildPrerenderLearnsetDataScript(
     <script id="pokelore-prerender-learnset-data" type="application/json">${escapeJsonForScript(getLatestLevelUpLearnsetPreview(learnset, movesData, { pokemonId: pokemon.id, pokemon: pokemon.name }))}</script>`;
 }
 
+function buildEncounterRecordHtml(encounter) {
+  const parts = [
+    formatEncounterMethodName(
+      encounter.method
+    ),
+    formatEncounterLevelRange(encounter),
+    formatChance(encounter.chance)
+  ].filter(Boolean);
+  const conditions =
+    formatEncounterConditions(
+      encounter.conditions ?? []
+    );
+
+  if (conditions) {
+    parts.push(conditions);
+  }
+
+  return `<li>${escapeHtml(parts.join(" · "))}</li>`;
+}
+
+function formatEncounterVersionGroupName(
+  versions = []
+) {
+  return versions
+    .map(formatEncounterVersionName)
+    .join(", ");
+}
+
+function buildEncounterVersionHtml(
+  versionGroup
+) {
+  const summaryText =
+    formatEncounterSummary(
+      getEncounterSummary(versionGroup)
+    );
+
+  return `<section class="prerender-encounter-version"><h4>${escapeHtml(formatEncounterVersionGroupName(versionGroup.versions))}</h4>${
+    summaryText
+      ? `<p>${escapeHtml(summaryText)}</p>`
+      : ""
+  }<ul>${getUniqueEncounterRecords(
+    versionGroup
+  )
+    .map(buildEncounterRecordHtml)
+    .join("")}</ul></section>`;
+}
+
+function buildEncounterAreaHtml(area) {
+  return `<section class="prerender-encounter-area"><h3>${escapeHtml(area.displayName ?? area.name)}</h3>${getGroupedEncounterVersions(area)
+    .map(buildEncounterVersionHtml)
+    .join("")}</section>`;
+}
+
+function buildEncounterLocationHtml(
+  location
+) {
+  const summaryText =
+    formatEncounterSummary(
+      getEncounterSummary(location, {
+        allVersions: true
+      })
+    );
+  const locationName =
+    location.location?.displayName ??
+    location.location?.name;
+  const regionName =
+    formatEncounterLabel(
+      location.location?.region
+    );
+  const locationSlug =
+    location.location?.name;
+
+  return `<details class="prerender-encounter-location"><summary><span><a href="/location/${escapeHtml(locationSlug)}">${escapeHtml(locationName)}</a>${regionName ? ` · ${escapeHtml(regionName)}` : ""}</span>${
+    summaryText
+      ? `<small>${escapeHtml(summaryText)}</small>`
+      : ""
+  }</summary>${(location.areas ?? [])
+    .map(buildEncounterAreaHtml)
+    .join("")}</details>`;
+}
+
+function buildWhereToFindSection(
+  pokemon,
+  encounterData
+) {
+  const displayName =
+    formatSitePokemonDisplayName(pokemon);
+  const title = `Where To Find ${displayName}`;
+  const locations =
+    hasEncounterLocations(encounterData)
+      ? filterEncounterLocationsByVersion(
+          encounterData,
+          ALL_ENCOUNTER_VERSIONS
+        )
+      : [];
+  const summary =
+    locations.length > 0
+      ? `${locations.length} locations`
+      : "No known locations";
+
+  return `<section class="prerender-where-to-find"><button type="button" aria-expanded="false" aria-controls="prerender-where-to-find-content"><h2>${escapeHtml(title)}</h2><p>${escapeHtml(summary)}</p></button><div id="prerender-where-to-find-content" data-seo-visible="true" class="collapsible-content collapsed">${
+    locations.length > 0
+      ? locations
+          .map(buildEncounterLocationHtml)
+          .join("")
+      : `<p>No encounter location data is available yet.</p>`
+  }</div></section>`;
+}
+
+function buildPrerenderWhereToFindDataScript(
+  pokemon,
+  encounterData
+) {
+  const locations =
+    encounterData?.locations ?? [];
+
+  return `
+    <script id="pokelore-prerender-where-to-find-data" type="application/json">${escapeJsonForScript({
+      pokemonId: pokemon.id,
+      pokemon: pokemon.name,
+      locationCount: locations.length
+    })}</script>`;
+}
+
 function buildEvYield(evYield = {}) {
   const statRows = [
     ["HP", evYield.hp],
@@ -1477,7 +1623,8 @@ function buildCriticalCss() {
         min-width: max-content;
       }
 
-      .prerender-learnsets {
+      .prerender-learnsets,
+      .prerender-where-to-find {
         border: 2px solid #706363;
         border-radius: 12px;
         box-sizing: border-box;
@@ -1489,7 +1636,8 @@ function buildCriticalCss() {
         width: 100%;
       }
 
-      .prerender-learnsets button {
+      .prerender-learnsets button,
+      .prerender-where-to-find button {
         align-items: center;
         background: none;
         border: none;
@@ -1505,7 +1653,8 @@ function buildCriticalCss() {
         width: 100%;
       }
 
-      .prerender-learnsets h2 {
+      .prerender-learnsets h2,
+      .prerender-where-to-find h2 {
         align-items: center;
         color: #00cadb;
         display: inline-flex;
@@ -1514,7 +1663,8 @@ function buildCriticalCss() {
         margin: 0.83rem 0;
       }
 
-      .prerender-learnsets button h2::before {
+      .prerender-learnsets button h2::before,
+      .prerender-where-to-find button h2::before {
         border-left: 0.38rem solid transparent;
         border-right: 0.38rem solid transparent;
         border-top: 0.55rem solid currentColor;
@@ -1524,7 +1674,8 @@ function buildCriticalCss() {
         width: 0;
       }
 
-      .prerender-learnsets button p {
+      .prerender-learnsets button p,
+      .prerender-where-to-find button p {
         margin: 1rem 0;
       }
 
@@ -1554,6 +1705,76 @@ function buildCriticalCss() {
         color: #00cadb;
         font-weight: 700;
         text-decoration: none;
+      }
+
+      .prerender-encounter-location {
+        border: 1px solid #555;
+        border-radius: 8px;
+        margin-top: 0.75rem;
+        padding: 0.85rem;
+      }
+
+      .prerender-encounter-location summary {
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .prerender-encounter-location summary span,
+      .prerender-encounter-location summary small {
+        display: block;
+      }
+
+      .prerender-encounter-location summary small {
+        font-size: 0.82rem;
+        font-weight: 400;
+        margin-top: 0.25rem;
+        opacity: 0.8;
+      }
+
+      .prerender-encounter-location a {
+        color: #00cadb;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .prerender-encounter-area {
+        margin-top: 0.85rem;
+      }
+
+      .prerender-encounter-area h3,
+      .prerender-encounter-version h4 {
+        color: #f3f4f6;
+        margin: 0.5rem 0;
+      }
+
+      .prerender-encounter-area h3 {
+        font-size: 1rem;
+      }
+
+      .prerender-encounter-version h4 {
+        font-size: 0.92rem;
+      }
+
+      .prerender-encounter-version p {
+        font-size: 0.82rem;
+        margin: 0 0 0.4rem;
+        opacity: 0.85;
+      }
+
+      .prerender-encounter-version ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .prerender-encounter-version li {
+        border: 1px solid #555;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        padding: 0.25rem 0.55rem;
       }
 
       .prerender-entry {
@@ -1687,7 +1908,8 @@ function buildPokemonShell(
   evolutionChain = null,
   evolutionMethodOverrides = {},
   learnset = null,
-  movesData = null
+  movesData = null,
+  encounterData = null
 ) {
   const displayName =
     formatPokemonDisplayName(pokemon);
@@ -1749,6 +1971,10 @@ function buildPokemonShell(
           learnset,
           movesData
         )}
+        ${buildWhereToFindSection(
+          pokemon,
+          encounterData
+        )}
       </main>
     </div>`;
 }
@@ -1759,7 +1985,8 @@ function injectHeadTags(
   routeName,
   heroImage,
   learnset = null,
-  movesData = null
+  movesData = null,
+  encounterData = null
 ) {
   const title = pokemonSeoTitle(pokemon);
   const description =
@@ -1775,6 +2002,10 @@ function injectHeadTags(
       pokemon,
       learnset,
       movesData
+    )}
+    ${buildPrerenderWhereToFindDataScript(
+      pokemon,
+      encounterData
     )}
   `;
 
@@ -1799,7 +2030,8 @@ function writePokemonPage(
   evolutionChain,
   evolutionMethodOverrides,
   learnset,
-  movesData
+  movesData,
+  encounterData
 ) {
   const heroImage = getHeroImage(pokemon);
   const shell = buildPokemonShell(
@@ -1811,7 +2043,8 @@ function writePokemonPage(
     evolutionChain,
     evolutionMethodOverrides,
     learnset,
-    movesData
+    movesData,
+    encounterData
   );
   const html = injectHeadTags(
     template,
@@ -1819,7 +2052,8 @@ function writePokemonPage(
     routeName,
     heroImage,
     learnset,
-    movesData
+    movesData,
+    encounterData
   ).replace(
     '<div id="root"></div>',
     `<div id="root">${shell}</div>`
@@ -1867,6 +2101,7 @@ function main() {
   );
   const evolutionChainCache = new Map();
   const learnsetCache = new Map();
+  const encounterCache = new Map();
   const bannerAssets = findBannerAssets();
 
   removeNumericPokemonStaticRoutes();
@@ -1945,6 +2180,33 @@ function main() {
       }
     }
 
+    let encounterData = null;
+
+    for (const candidateId of getPokemonEncounterCandidateIds(
+      pokemon
+    )) {
+      if (!encounterCache.has(candidateId)) {
+        const encounterPath = path.join(
+          pokemonEncountersDir,
+          `${candidateId}.json`
+        );
+
+        encounterCache.set(
+          candidateId,
+          fs.existsSync(encounterPath)
+            ? readJson(encounterPath)
+            : null
+        );
+      }
+
+      encounterData =
+        encounterCache.get(candidateId);
+
+      if (hasEncounterLocations(encounterData)) {
+        break;
+      }
+    }
+
     writePokemonPage(
       template,
       routeName,
@@ -1955,7 +2217,8 @@ function main() {
       evolutionChain,
       evolutionMethodOverrides,
       learnset,
-      movesData
+      movesData,
+      encounterData
     );
     written++;
   }
@@ -1983,6 +2246,7 @@ export {
   buildPokemonShell,
   buildEvolutionSection,
   buildLearnsetSection,
+  buildWhereToFindSection,
   buildTypeEffectivenessSection,
   copyTypeBadgeAssets,
   injectHeadTags

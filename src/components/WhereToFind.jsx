@@ -7,39 +7,26 @@ import { Link } from "react-router-dom";
 import CollapsibleSection from "./CollapsibleSection";
 import useSessionState from "../hooks/useSessionState";
 import useLocalStorageState from "../hooks/useLocalStorageState";
-import { sortVersions } from "../constants/versionOrder";
-
-function capitalize(text) {
-  return String(text)
-    .split("-")
-    .map(
-      word =>
-        word.charAt(0).toUpperCase() +
-        word.slice(1)
-    )
-    .join(" ");
-}
-
-function formatLevelRange(encounter) {
-  if (
-    encounter.minLevel === null &&
-    encounter.maxLevel === null
-  ) {
-    return "-";
-  }
-
-  if (
-    encounter.minLevel === encounter.maxLevel
-  ) {
-    return `Lv. ${encounter.minLevel}`;
-  }
-
-  return `Lv. ${encounter.minLevel}-${encounter.maxLevel}`;
-}
+import {
+  ALL_ENCOUNTER_VERSIONS,
+  filterEncounterLocationsByVersion,
+  formatEncounterConditions,
+  formatEncounterLabel,
+  formatEncounterLevelRange,
+  formatEncounterMethodName,
+  formatEncounterSummary,
+  formatEncounterVersionName,
+  getEncounterVersions,
+  getLocationEncounterSummary,
+  getSelectedEncounterVersion,
+  hasEncounterLocations
+} from "../utils/encounterDisplay";
 
 function WhereToFind({
   enabled = true,
+  initialPreview = null,
   pokemonId,
+  pokemonName,
   titleColor,
   titleChevron = false
 }) {
@@ -109,56 +96,21 @@ function WhereToFind({
   ]);
 
   const versionOptions = useMemo(
-    () => [
-      "all",
-      ...sortVersions(
-        new Set(
-          encounterData?.locations?.flatMap(
-            location =>
-              location.areas.flatMap(area =>
-                area.versions.map(
-                  version => version.version
-                )
-              )
-          ) ?? []
-        )
-      )
-    ],
+    () => getEncounterVersions(encounterData),
     [encounterData]
   );
   const selectedVersion =
-    versionOptions.includes(
+    getSelectedEncounterVersion(
+      encounterData,
       preferredVersion
-    )
-      ? preferredVersion
-      : "all";
+    );
 
   const visibleLocations = useMemo(
     () =>
-      encounterData?.locations
-        ?.map(location => ({
-          ...location,
-          areas: location.areas
-            .map(area => ({
-              ...area,
-              versions:
-                selectedVersion === "all"
-                  ? area.versions
-                  : area.versions.filter(
-                      version =>
-                        version.version ===
-                        selectedVersion
-                    )
-            }))
-            .filter(
-              area =>
-                area.versions.length > 0
-            )
-        }))
-        .filter(
-          location =>
-            location.areas.length > 0
-        ) ?? [],
+      filterEncounterLocationsByVersion(
+        encounterData,
+        selectedVersion
+      ),
     [
       encounterData,
       selectedVersion
@@ -166,17 +118,39 @@ function WhereToFind({
   );
 
   const hasEncounterData =
-    encounterData?.locations?.length > 0;
+    hasEncounterLocations(encounterData);
+  const previewMatches =
+    Number(initialPreview?.pokemonId) ===
+    Number(pokemonId);
+  const previewLocationCount =
+    previewMatches &&
+    Number.isFinite(
+      Number(initialPreview?.locationCount)
+    )
+      ? Number(initialPreview.locationCount)
+      : null;
+  const title = pokemonName
+    ? `Where To Find ${pokemonName}`
+    : "Where To Find";
+  const locationSummary =
+    !loaded && previewLocationCount !== null
+      ? previewLocationCount
+      : visibleLocations.length;
 
   return (
     <CollapsibleSection
-      title="Where To Find"
+      title={title}
       summary={
         !loaded
-          ? "Loading locations"
+          ? previewLocationCount !== null
+            ? previewLocationCount > 0
+              ? `${previewLocationCount} locations`
+              : "No known locations"
+            : "Loading locations"
           : hasEncounterData
-            ? `${visibleLocations.length}${
-                selectedVersion === "all"
+            ? `${locationSummary}${
+                selectedVersion ===
+                ALL_ENCOUNTER_VERSIONS
                   ? ""
                   : ` / ${encounterData.locations.length}`
               } locations`
@@ -201,7 +175,9 @@ function WhereToFind({
             <p>
               {loaded
                 ? "No encounter location data is available yet."
-                : "Loading encounter location data..."}
+                : previewLocationCount === 0
+                  ? "No known encounter locations."
+                  : "Loading encounter location data..."}
             </p>
           )}
 
@@ -233,7 +209,9 @@ function WhereToFind({
                 >
                   {version === "all"
                     ? "All Versions"
-                    : capitalize(version)}
+                    : formatEncounterVersionName(
+                        version
+                      )}
                 </option>
               ))}
             </select>
@@ -248,7 +226,16 @@ function WhereToFind({
             </p>
           )}
 
-          {hasEncounterData && visibleLocations.map(location => (
+          {hasEncounterData && visibleLocations.map(location => {
+              const summaryText =
+                formatEncounterSummary(
+                  getLocationEncounterSummary(
+                    location,
+                    selectedVersion
+                  )
+                );
+
+              return (
             <details
               key={location.location.name}
               style={{
@@ -263,17 +250,36 @@ function WhereToFind({
                   fontWeight: "bold"
                 }}
               >
-                <Link
-                  to={`/location/${location.location.name}`}
+                <span
+                  style={{
+                    display: "block"
+                  }}
                 >
-                  {
-                    location.location
-                      .displayName
-                  }
-                </Link>
-                {" · "}
-                {capitalize(
-                  location.location.region
+                  <Link
+                    to={`/location/${location.location.name}`}
+                  >
+                    {
+                      location.location
+                        .displayName
+                    }
+                  </Link>
+                  {" · "}
+                  {formatEncounterLabel(
+                    location.location.region
+                  )}
+                </span>
+                {summaryText && (
+                  <span
+                    style={{
+                      display: "block",
+                      fontSize: ".88rem",
+                      fontWeight: "normal",
+                      marginTop: ".25rem",
+                      opacity: 0.78
+                    }}
+                  >
+                    {summaryText}
+                  </span>
                 )}
               </summary>
 
@@ -297,7 +303,7 @@ function WhereToFind({
                       }}
                     >
                       <strong>
-                        {capitalize(
+                        {formatEncounterVersionName(
                           version.version
                         )}
                       </strong>
@@ -333,11 +339,11 @@ function WhereToFind({
                                   ".3rem .6rem"
                               }}
                             >
-                              {capitalize(
+                              {formatEncounterMethodName(
                                 encounter.method
                               )}
                               {" · "}
-                              {formatLevelRange(
+                              {formatEncounterLevelRange(
                                 encounter
                               )}
                               {" · "}
@@ -345,12 +351,12 @@ function WhereToFind({
                                 encounter.chance
                               }
                               %
-                              {encounter
-                                .conditions
+                              {(encounter
+                                .conditions ?? [])
                                 .length > 0 &&
-                                ` · ${encounter.conditions
-                                  .map(capitalize)
-                                  .join(", ")}`}
+                                ` · ${formatEncounterConditions(
+                                  encounter.conditions
+                                )}`}
                             </span>
                           )
                         )}
@@ -360,7 +366,8 @@ function WhereToFind({
                 </div>
               ))}
             </details>
-          ))}
+              );
+            })}
     </CollapsibleSection>
   );
 }
