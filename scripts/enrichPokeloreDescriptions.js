@@ -133,6 +133,7 @@ const FORM_ALIASES = new Map([
   ["single strike style", ["single strike", "standard"]],
   ["solo form", ["solo"]],
   ["stretchy form", ["stretchy"]],
+  ["stereo", ["standard"]],
   ["supervisor", ["standard"]],
   ["teal mask", ["standard"]],
   ["terastal form", ["terastal"]],
