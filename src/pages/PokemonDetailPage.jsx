@@ -9,6 +9,7 @@ import {
   lazy,
   Suspense,
   useEffect,
+  useMemo,
   useRef,
   useState
 } from "react";
@@ -22,8 +23,10 @@ import TypeBadge from "../components/TypeBadge";
 import DeferredSection from "../components/DeferredSection";
 import Seo from "../seo/Seo";
 import { pokemonSeo } from "../seo/seoConfig";
+import { useSelectedEtsyAd } from "../hooks/useSelectedEtsyAd";
 import { readJsonFile } from "../utils/readJsonFile";
 import { loadMovesMap } from "../utils/loadMovesData";
+import { getEtsyPageTags } from "../utils/etsyMerch";
 import {
   formatPokemonDisplayName,
   getRegionalFormKey
@@ -76,6 +79,8 @@ const loadSizeComparison = () =>
   import("../components/SizeComparison");
 const loadPokemonSpriteCarousel = () =>
   import("../components/PokemonSpriteCarousel.jsx");
+const loadEtsyMerchPromo = () =>
+  import("../components/EtsyMerchPromo.jsx");
 
 const LearnsetCard = lazy(loadLearnsetCard);
 const DexEntryCard = lazy(loadDexEntryCard);
@@ -91,6 +96,7 @@ const HeldItems = lazy(loadHeldItems);
 const AdditionalImages = lazy(loadAdditionalImages);
 const SizeComparison = lazy(loadSizeComparison);
 const PokemonSpriteCarousel = lazy(loadPokemonSpriteCarousel);
+const EtsyMerchPromo = lazy(loadEtsyMerchPromo);
 
 function warmPokemonDetailDeferredModules() {
   return Promise.allSettled([
@@ -107,7 +113,8 @@ function warmPokemonDetailDeferredModules() {
     loadHeldItems(),
     loadAdditionalImages(),
     loadSizeComparison(),
-    loadPokemonSpriteCarousel()
+    loadPokemonSpriteCarousel(),
+    loadEtsyMerchPromo()
   ]);
 }
 
@@ -938,6 +945,24 @@ useEffect(() => {
 
 }, [evolutionData]);
 
+const etsyPageTags = useMemo(
+  () =>
+    getEtsyPageTags({
+      pathname: location.pathname,
+      pokemon
+    }),
+  [
+    location.pathname,
+    pokemon
+  ]
+);
+const selectedEtsyAd =
+  useSelectedEtsyAd(etsyPageTags, {
+    pageViewKey: pokemon
+      ? `${location.pathname}|${pokemon.id}|${pokemon.name}`
+      : location.pathname
+  });
+
 if (redirectPath) {
   return (
     <Navigate
@@ -1464,6 +1489,12 @@ const evolutionSummaryText =
   <OaksNotes note={oaksNotes} />
 
   <PokemonGoNotes note={pokemonGoNotes} />
+
+  <EtsyMerchPromo
+    ad={selectedEtsyAd}
+    pagePath={location.pathname}
+    placement="pokemon-detail"
+  />
 
   <AdditionalImages
     pokemonId={pokemon.id}

@@ -1,0 +1,61 @@
+.etsy-merch-promo {
+  background: #202020;
+  border: 1px solid #4a4a4a;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin: 2rem auto 1rem;
+  max-width: 320px;
+  padding: .75rem;
+  text-align: left;
+}
+
+.etsy-merch-promo__eyebrow {
+  color: var(--text-h);
+  font-size: .82rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 .55rem;
+}
+
+.etsy-merch-promo__link {
+  color: inherit;
+  display: grid;
+  gap: .65rem;
+  text-decoration: none;
+}
+
+.etsy-merch-promo__image-shell {
+  aspect-ratio: 4 / 3;
+  background: #2c2c2c;
+  border: 1px solid #555;
+  border-radius: 6px;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+}
+
+.etsy-merch-promo__image {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.etsy-merch-promo__cta {
+  color: var(--link-unvisited);
+  font-size: .9rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.etsy-merch-promo:hover,
+.etsy-merch-promo:focus-within {
+  border-color: rgba(0, 202, 219, .55);
+}
+
+@media (max-width: 420px) {
+  .etsy-merch-promo {
+    max-width: 100%;
+  }
+}
+

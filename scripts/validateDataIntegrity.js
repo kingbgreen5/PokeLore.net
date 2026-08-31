@@ -480,14 +480,17 @@ function validateSitemap() {
       "/abilities",
       "/dex-entries",
       "/dppt-feebas-calculator",
+      "/ev-training-routes",
       "/items",
       "/items/dynamax-crystals",
       "/learnsets",
       "/locations",
       "/moves",
       "/news",
+      "/rse-feebas-calculator",
       "/single-type-coverage",
       "/team-coverage",
+      "/tools",
       "/topics",
       "/types"
     ]);

@@ -12,6 +12,9 @@ import { getPokemonUrl }
   from "../src/utils/pokemonUrls.js";
 
 const SITE_URL = "https://pokelore.net";
+// Update only after a meaningful sitewide change to canonical Pokemon detail-page content.
+// Do not replace with the current build/deploy date.
+const POKEMON_DETAIL_LASTMOD = "2026-08-31";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
@@ -53,6 +56,28 @@ function route(pathname) {
   return `${SITE_URL}${pathname === "/" ? "" : pathname}`;
 }
 
+function sitemapEntry(loc, lastmod = null) {
+  return {
+    loc,
+    lastmod
+  };
+}
+
+function sitemapLoc(entry) {
+  return typeof entry === "string" ? entry : entry.loc;
+}
+
+function dedupeSitemapEntries(entries) {
+  return [
+    ...new Map(
+      entries.map(entry => [
+        sitemapLoc(entry),
+        entry
+      ])
+    ).values()
+  ];
+}
+
 function staticRoutes() {
   return [
     "/",
@@ -79,7 +104,10 @@ function pokemonRoutes(pokemonRouteLookup) {
   return Object.keys(
     pokemonRouteLookup.byName ?? {}
   ).map(pokemonName =>
-    route(getPokemonUrl(pokemonName))
+    sitemapEntry(
+      route(getPokemonUrl(pokemonName)),
+      POKEMON_DETAIL_LASTMOD
+    )
   );
 }
 
@@ -248,27 +276,29 @@ async function buildNewsSitemapArticles() {
   });
 }
 
-function renderSitemap(urls) {
-  const lastmod =
+function renderSitemap(entries, options = {}) {
+  const defaultLastmod =
+    options.defaultLastmod ??
     new Date().toISOString().slice(0, 10);
 
-  const entries = urls
+  const renderedEntries = entries
     .map(
-      url => `  <url>
-    <loc>${escapeXml(url)}</loc>
-    <lastmod>${lastmod}</lastmod>
+      entry => `  <url>
+    <loc>${escapeXml(sitemapLoc(entry))}</loc>
+    <lastmod>${escapeXml(entry.lastmod ?? defaultLastmod)}</lastmod>
   </url>`
     )
     .join("\n");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${entries}
+${renderedEntries}
 </urlset>
 `;
 }
 
-function validateSitemapUrls(urls) {
+function validateSitemapUrls(entries) {
+  const urls = entries.map(sitemapLoc);
   const numericPokemonUrls =
     urls.filter(url =>
       /\/pokemon\/[0-9]+(?:[/?#]|$)/.test(url)
@@ -317,13 +347,15 @@ ${entries}
 async function main() {
   validateReleasedDynamaxCrystals();
 
-  const urls = [...new Set(await buildRoutes())];
+  const entries = dedupeSitemapEntries(
+    await buildRoutes()
+  );
 
-  validateSitemapUrls(urls);
+  validateSitemapUrls(entries);
 
   await fs.writeFile(
     outputPath,
-    renderSitemap(urls),
+    renderSitemap(entries),
     "utf8"
   );
 
@@ -337,17 +369,29 @@ async function main() {
   );
 
   console.log(
-    `Generated sitemap with ${urls.length} URLs at ${outputPath}`
+    `Generated sitemap with ${entries.length} URLs at ${outputPath}`
   );
   console.log(
     `Generated news sitemap with ${newsArticles.length} URLs at ${newsSitemapOutputPath}`
   );
 }
 
-main().catch(error => {
-  console.error(
-    "Failed to generate sitemap:",
-    error
-  );
-  throw error;
-});
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main().catch(error => {
+    console.error(
+      "Failed to generate sitemap:",
+      error
+    );
+    throw error;
+  });
+}
+
+export {
+  buildRoutes,
+  dedupeSitemapEntries,
+  POKEMON_DETAIL_LASTMOD,
+  pokemonRoutes,
+  renderSitemap,
+  sitemapLoc,
+  validateSitemapUrls
+};
