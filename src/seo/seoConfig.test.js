@@ -4,6 +4,7 @@ import {
   it
 } from "vitest";
 import {
+  homeSeo,
   pokemonSeo,
   pokemonSeoDescription,
   pokemonSeoTitle
@@ -67,6 +68,30 @@ const representativePokemon = [
 ];
 
 describe("pokemonSeo", () => {
+  it("uses the canonical homepage SEO metadata and WebSite schema", () => {
+    const seo = homeSeo();
+
+    expect(seo.title).toBe(
+      "PokéLore.net | Pokémon Pokédex, Tools & Game Guides"
+    );
+    expect(seo.description).toBe(
+      "PokéLore.net is a Pokémon Pokédex and game resource with stats, moves, evolutions, weaknesses, encounter locations, game analysis, team building, EV training tools, Feebas calculators, and more."
+    );
+    expect(seo.canonical).toBe(
+      "https://pokelore.net/"
+    );
+    expect(seo.structuredData).toEqual({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      url: "https://pokelore.net/",
+      name: "PokéLore",
+      alternateName: [
+        "PokéLore.net",
+        "PokeLore.net"
+      ]
+    });
+  });
+
   it("uses the canonical Pokemon detail title template", () => {
     representativePokemon.forEach(
       ({

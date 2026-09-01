@@ -65,11 +65,26 @@ export function defaultSeo() {
 }
 
 export function homeSeo() {
+  const title =
+    "PokéLore.net | Pokémon Pokédex, Tools & Game Guides";
+  const description =
+    "PokéLore.net is a Pokémon Pokédex and game resource with stats, moves, evolutions, weaknesses, encounter locations, game analysis, team building, EV training tools, Feebas calculators, and more.";
+  const canonical = `${SITE_URL}/`;
+
   return {
-    title: `${SITE_NAME} | Search Pokémon Lore, Moves, Abilities & Learnsets`,
-    description:
-      "Search Pokémon by name, National Dex number, or type and explore detailed Pokémon data.",
-    canonical: SITE_URL
+    title,
+    description,
+    canonical,
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      url: canonical,
+      name: SITE_NAME,
+      alternateName: [
+        "PokéLore.net",
+        "PokeLore.net"
+      ]
+    }
   };
 }
 

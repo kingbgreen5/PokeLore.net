@@ -5,17 +5,81 @@ import {
   useRef,
   useState
 } from "react";
-import { useSearchParams }
+import {
+  Link,
+  useSearchParams
+}
 from "react-router-dom";
 import LatestNews from "../components/news/LatestNews";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import typeColors from "../constants/typeColors";
+import {
+  homepageIntro,
+  homepageToolLinks
+} from "../data/homepageContent";
 import usePersistedScroll from "../hooks/usePersistedScroll";
 import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { homeSeo } from "../seo/seoConfig";
 
 const POKEMON_PAGE_SIZE = 150;
+
+function HomepageIntro() {
+  return (
+    <section className="homepage-intro">
+      <h1>{homepageIntro.heading}</h1>
+      <p className="homepage-intro-description">
+        {homepageIntro.description}
+      </p>
+    </section>
+  );
+}
+
+function HomepageTools() {
+  return (
+    <section
+      className="homepage-tools"
+      aria-labelledby="homepage-tools-heading"
+    >
+      <h2 id="homepage-tools-heading">
+        Pokémon Tools & Resources
+      </h2>
+      <div className="homepage-tool-grid">
+        {homepageToolLinks.map(tool => (
+          <Link
+            className="homepage-tool-card"
+            key={tool.path}
+            to={tool.path}
+          >
+            <span className="homepage-tool-card-title">
+              {tool.title}
+            </span>
+            <span className="homepage-tool-card-description">
+              {tool.description}
+            </span>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function NationalPokedexHeading() {
+  return (
+    <section
+      className="homepage-pokedex-heading"
+      aria-labelledby="homepage-pokedex-heading"
+    >
+      <h2 id="homepage-pokedex-heading">
+        Explore the National Pokédex
+      </h2>
+      <p>
+        Browse Pokémon in National Pokédex order or use the filters to
+        find a specific Pokémon.
+      </p>
+    </section>
+  );
+}
 
 function HomePage() {
   const gridRef = useRef(null);
@@ -278,13 +342,15 @@ function HomePage() {
   if (loading) {
     return (
       <div
-        style={{
-          padding: "2rem",
-          textAlign: "center"
-        }}
+        className="homepage-shell"
       >
         <Seo {...homeSeo()} />
-        Booting up Pokédex...
+        <HomepageIntro />
+        <HomepageTools />
+        <NationalPokedexHeading />
+        <p className="homepage-loading">
+          Booting up Pokédex...
+        </p>
       </div>
     );
   }
@@ -296,48 +362,17 @@ function HomePage() {
 
   return (
     <div
-      style={{
-        // padding: "1.5rem",
-        maxWidth: "1800px",
-        margin: "0 auto",
-        width: "100%"
-      }}
+      className="homepage-shell"
     >
       <Seo {...homeSeo()} />
 
+      <HomepageIntro />
+
+      <HomepageTools />
+
       <LatestNews limit={4} />
 
-      {/* Hero Section */}
-
-      <div
-        style={{
-          marginBottom: "2rem",
-          textAlign: "center"
-        }}
-      >
-        {/* <h3
-          style={{
-            // fontSize: "2.5rem",
-            // marginBottom: ".5rem"
-          }}
-        >
-          Pokédex
-        </h3> */}
-
-        {/* <p
-          style={{
-            opacity: 0.8,
-            maxWidth: "700px",
-            margin: "0 auto"
-          }}
-        >
-          Browse Pokémon by National
-          Dex number, search by
-          name, filter by type, and
-          explore detailed Pokémon
-          data.
-        </p> */}
-      </div>
+      <NationalPokedexHeading />
 
       {/* Controls */}
 
