@@ -107,11 +107,16 @@ assert.equal(
   structuredData.url,
   "https://pokelore.net/"
 );
-assert.equal(structuredData.name, "PokéLore");
+assert.equal(structuredData.name, "PokéLore.net");
 assert.deepEqual(structuredData.alternateName, [
-  "PokéLore.net",
-  "PokeLore.net"
+  "PokéLore",
+  "pokelore.net"
 ]);
+assert.notEqual(
+  structuredData.name,
+  "PokéLore",
+  "Expected PokéLore to be an alternate name, not the preferred WebSite name."
+);
 
 assert.ok(
   !/PokéLore\.com|PokeLore\.com/i.test(html),

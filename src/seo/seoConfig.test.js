@@ -84,10 +84,10 @@ describe("pokemonSeo", () => {
       "@context": "https://schema.org",
       "@type": "WebSite",
       url: "https://pokelore.net/",
-      name: "PokéLore",
+      name: "PokéLore.net",
       alternateName: [
-        "PokéLore.net",
-        "PokeLore.net"
+        "PokéLore",
+        "pokelore.net"
       ]
     });
   });

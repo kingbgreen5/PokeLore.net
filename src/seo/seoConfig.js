@@ -79,10 +79,10 @@ export function homeSeo() {
       "@context": "https://schema.org",
       "@type": "WebSite",
       url: canonical,
-      name: SITE_NAME,
+      name: "PokéLore.net",
       alternateName: [
-        "PokéLore.net",
-        "PokeLore.net"
+        SITE_NAME,
+        "pokelore.net"
       ]
     }
   };
