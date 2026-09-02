@@ -62,14 +62,26 @@ const homepagePrerenderedTemplate = `<!doctype html>
   </body>
 </html>`;
 
+function dataFor(itemData) {
+  return loadItemPageData(itemData, {
+    dataDir,
+    pokemonIndex,
+    tmMaterialDetailsData
+  });
+}
+
 function pageFor(itemData) {
   return renderItemPage(
     template,
-    loadItemPageData(itemData, {
-      dataDir,
-      pokemonIndex,
-      tmMaterialDetailsData
-    })
+    dataFor(itemData)
+  );
+}
+
+function getMetaDescriptionTags(html) {
+  return (
+    html.match(
+      /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/gi
+    ) ?? []
   );
 }
 
@@ -91,15 +103,21 @@ describe("prerenderItemPages", () => {
   });
 
   it("renders item-specific SEO and content instead of homepage metadata", () => {
-    const html = pageFor(fireStone);
-    const seo = itemSeo(fireStone);
+    const data = dataFor(fireStone);
+    const html = renderItemPage(
+      template,
+      data
+    );
+    const seo = itemSeo(data.item);
+    const descriptionTags =
+      getMetaDescriptionTags(html);
 
     expect(html).toContain(
       "<title>Fire Stone Locations, Uses &amp; Details | PokéLore</title>"
     );
-    expect(html).toContain(
+    expect(descriptionTags).toEqual([
       `<meta name="description" content="${seo.description}">`
-    );
+    ]);
     expect(html).toContain(
       '<link rel="canonical" href="https://pokelore.net/item/fire-stone">'
     );
@@ -115,6 +133,25 @@ describe("prerenderItemPages", () => {
     expect(html).not.toContain(
       '<link rel="canonical" href="https://pokelore.net/">'
     );
+  });
+
+  it("inserts item SEO descriptions when the Vite shell has no existing description", () => {
+    const shellWithoutDescription =
+      template.replace(
+        /\s*<meta name="description"[^>]+>/,
+        ""
+      );
+    const data = dataFor(machoBrace);
+    const html = renderItemPage(
+      shellWithoutDescription,
+      data
+    );
+
+    expect(getMetaDescriptionTags(html)).toEqual([
+      `<meta name="description" content="${
+        itemSeo(data.item).description
+      }">`
+    ]);
   });
 
   it("replaces homepage prerender content when the template already contains it", () => {
@@ -211,16 +248,34 @@ describe("prerenderItemPages", () => {
     const html = renderItemFallback(template);
 
     expect(html).toContain(
-      "<title>Pokemon Item Lookup | PokéLore</title>"
+      "<title>Pokemon Item Guide | PokéLore</title>"
     );
     expect(html).toContain(
-      '<meta name="robots" content="noindex, follow">'
+      '<meta name="description" content="Loading Pokemon item details, effects, locations, game descriptions, and related data on PokeLore.">'
+    );
+    expect(getMetaDescriptionTags(html)).toHaveLength(
+      1
+    );
+    expect(html).toContain(
+      '<meta name="robots" content="max-image-preview:large">'
+    );
+    expect(html).toContain(
+      '<script type="module" src="/assets/index.js"></script>'
+    );
+    expect(html).toContain(
+      "Loading item details..."
     );
     expect(html).not.toContain(
       '<link rel="canonical" href="https://pokelore.net/">'
     );
+    expect(html).not.toMatch(
+      /<link\s+rel="canonical"/i
+    );
     expect(html).not.toContain(
       "<h1>Pokémon Pokédex, Tools & Game Guides</h1>"
+    );
+    expect(html).not.toContain(
+      'id="seo-structured-data"'
     );
   });
 });

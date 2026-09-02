@@ -607,7 +607,7 @@ describe("ItemDetailPage", () => {
       )
     ).toHaveAttribute(
       "content",
-      "noindex, follow"
+      "max-image-preview:large"
     );
   });
 });

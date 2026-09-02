@@ -10,12 +10,30 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
 const defaultDistDir = path.join(rootDir, "dist");
 const defaultItemDistDir = path.join(defaultDistDir, "item");
+const defaultFallbackPath = path.join(defaultDistDir, "item-fallback.html");
 const defaultDataDir = path.join(rootDir, "public", "data");
 
 const HOMEPAGE_H1 =
   "<h1>Pokémon Pokédex, Tools & Game Guides</h1>";
 const HOMEPAGE_CANONICAL =
   '<link rel="canonical" href="https://pokelore.net/">';
+const HOMEPAGE_STRUCTURED_DATA =
+  'id="seo-structured-data"';
+
+function getSingleMetaDescription(html, label) {
+  const matches =
+    html.match(
+      /<meta\s+name=["']description["']\s+content=["'][^"']+["']\s*\/?>/gi
+    ) ?? [];
+
+  if (matches.length !== 1) {
+    throw new Error(
+      `${label} must contain exactly one meta description. Found ${matches.length}.`
+    );
+  }
+
+  return matches[0];
+}
 
 function finalizeCanonicalRoute(itemDistDir, slug) {
   const routeDir = path.join(itemDistDir, slug);
@@ -44,6 +62,11 @@ function finalizeCanonicalRoute(itemDistDir, slug) {
       `${slug} item prerender contains the homepage canonical.`
     );
   }
+
+  getSingleMetaDescription(
+    html,
+    `${slug} item prerender`
+  );
 
   fs.rmSync(routeDir, {
     recursive: true,
@@ -87,9 +110,70 @@ function assertFinalizedItemRoute(
   }
 }
 
+function assertItemFallback(fallbackPath) {
+  if (!fs.existsSync(fallbackPath)) {
+    throw new Error(
+      `Neutral item fallback missing: ${fallbackPath}`
+    );
+  }
+
+  if (!fs.statSync(fallbackPath).isFile()) {
+    throw new Error(
+      `Neutral item fallback is not a regular file: ${fallbackPath}`
+    );
+  }
+
+  const html = fs.readFileSync(
+    fallbackPath,
+    "utf8"
+  );
+
+  if (!html.trim()) {
+    throw new Error(
+      `Neutral item fallback is empty: ${fallbackPath}`
+    );
+  }
+
+  getSingleMetaDescription(
+    html,
+    "Neutral item fallback"
+  );
+
+  if (!/<script[^>]+src=["']\/assets\//i.test(html)) {
+    throw new Error(
+      "Neutral item fallback is missing application JS references."
+    );
+  }
+
+  if (html.includes(HOMEPAGE_H1)) {
+    throw new Error(
+      "Neutral item fallback contains the homepage H1."
+    );
+  }
+
+  if (html.includes(HOMEPAGE_CANONICAL)) {
+    throw new Error(
+      "Neutral item fallback contains the homepage canonical."
+    );
+  }
+
+  if (html.includes(HOMEPAGE_STRUCTURED_DATA)) {
+    throw new Error(
+      "Neutral item fallback contains homepage structured data."
+    );
+  }
+
+  if (/<link\s+rel=["']canonical["']/i.test(html)) {
+    throw new Error(
+      "Neutral item fallback must not contain a canonical URL."
+    );
+  }
+}
+
 function finalizeItemPrerenderRoutes({
   itemDistDir = defaultItemDistDir,
-  dataDir = defaultDataDir
+  dataDir = defaultDataDir,
+  fallbackPath = defaultFallbackPath
 } = {}) {
   const entries = getCanonicalItemEntries({
     dataDir
@@ -112,8 +196,11 @@ function finalizeItemPrerenderRoutes({
     );
   }
 
+  assertItemFallback(fallbackPath);
+
   return {
     count: entries.length,
+    fallbackPath,
     itemDistDir
   };
 }
@@ -137,6 +224,7 @@ if (process.argv[1] === __filename) {
 
 export {
   assertFinalizedItemRoute,
+  assertItemFallback,
   finalizeCanonicalRoute,
   finalizeItemPrerenderRoutes
 };

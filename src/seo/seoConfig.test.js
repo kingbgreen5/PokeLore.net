@@ -185,7 +185,14 @@ describe("itemSeo", () => {
     ].forEach(seo => {
       expect(seo.canonical).toBeUndefined();
       expect(seo.canonicalAction).toBe("remove");
-      expect(seo.robots).toBe("noindex, follow");
     });
+  });
+
+  it("only noindexes confirmed invalid item routes", () => {
+    expect(invalidItemSeo().robots).toBe(
+      "noindex, follow"
+    );
+    expect(unresolvedItemSeo().robots).toBeUndefined();
+    expect(unavailableItemSeo().robots).toBeUndefined();
   });
 });

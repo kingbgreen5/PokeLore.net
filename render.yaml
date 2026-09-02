@@ -4,6 +4,13 @@ services:
     runtime: static
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
+    headers:
+      - path: /pokemon/*
+        name: Content-Type
+        value: text/html; charset=utf-8
+      - path: /item/*
+        name: Content-Type
+        value: text/html; charset=utf-8
     routes:
       # Pokemon canonical and numeric URLs are exact extensionless static files
       # emitted by the production build. Keep Render routing minimal so missing
@@ -15,7 +22,7 @@ services:
       # URLs receive a real neutral item shell instead of homepage metadata.
       - type: rewrite
         source: /item/*
-        destination: /item-fallback
+        destination: /item-fallback.html
       - type: rewrite
         source: /*
         destination: /index.html

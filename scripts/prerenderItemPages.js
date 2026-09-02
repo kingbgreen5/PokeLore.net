@@ -1,7 +1,10 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { itemSeo } from "../src/seo/seoConfig.js";
+import {
+  itemSeo,
+  unresolvedItemSeo
+} from "../src/seo/seoConfig.js";
 import { compareVersionGroups } from "../src/constants/versionOrder.js";
 import { normalizeDisplayText } from "../src/utils/normalizeText.js";
 import { getPokemonUrl } from "../src/utils/pokemonUrls.js";
@@ -32,7 +35,7 @@ const publicDataDir = path.join(rootDir, "public", "data");
 const distDir = path.join(rootDir, "dist");
 const indexPath = path.join(distDir, "index.html");
 const itemDistDir = path.join(distDir, "item");
-const fallbackPath = path.join(distDir, "item-fallback");
+const fallbackPath = path.join(distDir, "item-fallback.html");
 
 function readJson(filePath) {
   return JSON.parse(
@@ -269,16 +272,15 @@ function loadItemPageData(
 function renderHead(template, seo) {
   const robots =
     seo.robots ?? "max-image-preview:large";
-  let html = template
-    .replace(
-      /<title>[\s\S]*?<\/title>/i,
-      `<title>${escapeHtml(seo.title)}</title>`
-    )
-    .replace(
-      /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
-      `<meta name="description" content="${escapeHtml(seo.description)}">`
-    );
+  let html = template.replace(
+    /<title>[\s\S]*?<\/title>/i,
+    `<title>${escapeHtml(seo.title)}</title>`
+  );
 
+  html = html.replace(
+    /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/gi,
+    ""
+  );
   html = html.replace(
     /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/gi,
     ""
@@ -292,9 +294,18 @@ function renderHead(template, seo) {
     ""
   );
 
+  const canonicalTag =
+    seo.canonicalAction === "remove" || !seo.canonical
+      ? ""
+      : `  <link rel="canonical" href="${escapeHtml(seo.canonical)}">\n`;
+
   return html.replace(
     "</head>",
-    `  <link rel="canonical" href="${escapeHtml(seo.canonical)}">\n  <meta name="robots" content="${escapeHtml(robots)}">\n</head>`
+    [
+      `  <meta name="description" content="${escapeHtml(seo.description)}">`,
+      `${canonicalTag}  <meta name="robots" content="${escapeHtml(robots)}">`,
+      "</head>"
+    ].join("\n")
   );
 }
 
@@ -1003,36 +1014,9 @@ function renderItemPage(template, data) {
 }
 
 function renderItemFallback(template) {
-  let html = template
-    .replace(
-      /<title>[\s\S]*?<\/title>/i,
-      "<title>Pokemon Item Lookup | PokéLore</title>"
-    )
-    .replace(
-      /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
-      '<meta name="description" content="Look up Pokemon item details, effects, locations, game descriptions, and related data on PokeLore.">'
-    );
-
-  html = html.replace(
-    /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/gi,
-    ""
-  );
-  html = html.replace(
-    /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/gi,
-    ""
-  );
-  html = html.replace(
-    /<script\s+id="seo-structured-data"[\s\S]*?<\/script>/gi,
-    ""
-  );
-  html = html.replace(
-    "</head>",
-    '  <meta name="robots" content="noindex, follow">\n</head>'
-  );
-
   return replaceRoot(
-    html,
-    '<main class="prerender-item-shell"><h1>Pokemon Item Lookup</h1></main>',
+    renderHead(template, unresolvedItemSeo()),
+    '<main class="prerender-item-shell"><p>Loading item details...</p></main>',
     "item-fallback"
   );
 }

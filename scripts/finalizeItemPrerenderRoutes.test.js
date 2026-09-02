@@ -33,6 +33,29 @@ function writeJson(filePath, data) {
   );
 }
 
+function writeFallback(fallbackPath) {
+  fs.mkdirSync(path.dirname(fallbackPath), {
+    recursive: true
+  });
+  fs.writeFileSync(
+    fallbackPath,
+    [
+      "<!doctype html>",
+      "<html>",
+      "<head>",
+      "<title>Pokemon Item Guide | PokéLore</title>",
+      '<meta name="description" content="Loading Pokemon item details, effects, locations, game descriptions, and related data on PokeLore.">',
+      '<meta name="robots" content="max-image-preview:large">',
+      '<script type="module" src="/assets/index.js"></script>',
+      "</head>",
+      "<body>",
+      '<div id="root"><main><p>Loading item details...</p></main></div>',
+      "</body>",
+      "</html>"
+    ].join("\n")
+  );
+}
+
 afterEach(() => {
   if (tempRoot) {
     fs.rmSync(tempRoot, {
@@ -51,6 +74,11 @@ describe("finalizeItemPrerenderRoutes", () => {
       root,
       "dist",
       "item"
+    );
+    const fallbackPath = path.join(
+      root,
+      "dist",
+      "item-fallback.html"
     );
 
     writeJson(
@@ -77,15 +105,20 @@ describe("finalizeItemPrerenderRoutes", () => {
         "poke-ball",
         "index.html"
       ),
-      '<!doctype html><title>Poke Ball Item Guide | PokéLore</title><link rel="canonical" href="https://pokelore.net/item/poke-ball"><h1>Poke Ball</h1>'
+      '<!doctype html><title>Poke Ball Item Guide | PokéLore</title><meta name="description" content="View Poke Ball details."><link rel="canonical" href="https://pokelore.net/item/poke-ball"><h1>Poke Ball</h1>'
     );
+    writeFallback(fallbackPath);
 
     const result = finalizeItemPrerenderRoutes({
       dataDir,
-      itemDistDir
+      itemDistDir,
+      fallbackPath
     });
 
     expect(result.count).toBe(1);
+    expect(result.fallbackPath).toBe(
+      fallbackPath
+    );
     expect(
       fs.existsSync(
         path.join(itemDistDir, "poke-ball")
@@ -105,5 +138,12 @@ describe("finalizeItemPrerenderRoutes", () => {
         )
       )
     ).toBe(false);
+    expect(
+      fs.readFileSync(
+        path.join(itemDistDir, "poke-ball"),
+        "utf8"
+      )
+    ).not.toContain("Loading item details...");
+    expect(fs.existsSync(fallbackPath)).toBe(true);
   });
 });
