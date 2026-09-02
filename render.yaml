@@ -11,6 +11,11 @@ services:
       - type: rewrite
         source: /pokemon/*
         destination: /index.html
+      # Canonical item URLs are exact extensionless static files. Missing item
+      # URLs receive a real neutral item shell instead of homepage metadata.
+      - type: rewrite
+        source: /item/*
+        destination: /item-fallback
       - type: rewrite
         source: /*
         destination: /index.html

@@ -5,10 +5,15 @@ import {
 } from "vitest";
 import {
   homeSeo,
+  invalidItemSeo,
+  itemSeo,
   pokemonSeo,
   pokemonSeoDescription,
-  pokemonSeoTitle
+  pokemonSeoTitle,
+  unavailableItemSeo,
+  unresolvedItemSeo
 } from "./seoConfig.js";
+import fireStone from "../../public/data/items/fire-stone.json";
 import bulbasaur from "../../public/data/pokemonData/1.json";
 import pikachu from "../../public/data/pokemonData/25.json";
 import lapras from "../../public/data/pokemonData/131.json";
@@ -153,5 +158,34 @@ describe("pokemonSeo", () => {
     ).toBe(
       "Explore Pikachu's stats, moves, abilities, evolution details, type matchups, locations, and size chart. Pikachu is listed at 1' 4\" (0.4 m) with an in-chart visual size comparison."
     );
+  });
+});
+
+describe("itemSeo", () => {
+  it("uses item-specific metadata for a loaded item", () => {
+    const seo = itemSeo(fireStone);
+
+    expect(seo.title).toBe(
+      "Fire Stone Locations, Uses & Details | PokéLore"
+    );
+    expect(seo.description).toBe(
+      "Find Fire Stone locations across Pokemon games, plus acquisition methods, requirements, repeatable sources, effects, uses, and game-specific details."
+    );
+    expect(seo.canonical).toBe(
+      "https://pokelore.net/item/fire-stone"
+    );
+    expect(seo.robots).toBeUndefined();
+  });
+
+  it("removes canonicals for unresolved, invalid, and transient item states", () => {
+    [
+      unresolvedItemSeo(),
+      invalidItemSeo(),
+      unavailableItemSeo()
+    ].forEach(seo => {
+      expect(seo.canonical).toBeUndefined();
+      expect(seo.canonicalAction).toBe("remove");
+      expect(seo.robots).toBe("noindex, follow");
+    });
   });
 });

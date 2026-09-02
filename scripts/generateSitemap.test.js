@@ -5,7 +5,9 @@ import {
   it
 } from "vitest";
 import {
+  ITEM_DETAIL_LASTMOD,
   POKEMON_DETAIL_LASTMOD,
+  itemRoutes,
   pokemonRoutes,
   renderSitemap,
   sitemapLoc,
@@ -37,6 +39,61 @@ const pokemonRouteLookup = {
 };
 
 describe("generateSitemap", () => {
+  it("builds canonical item entries with a stable content-update lastmod", () => {
+    const itemEntries = itemRoutes([
+      {
+        name: "fire-stone"
+      },
+      {
+        name: "macho-brace"
+      },
+      {
+        name: "dynamax-crystal-and15",
+        category: {
+          name: "dynamax-crystals"
+        }
+      },
+      {
+        name: "dynamax-crystal-aql7235",
+        category: {
+          name: "dynamax-crystals"
+        }
+      }
+    ]);
+
+    expect(
+      itemEntries.map(sitemapLoc)
+    ).toEqual([
+      "https://pokelore.net/item/fire-stone",
+      "https://pokelore.net/item/macho-brace",
+      "https://pokelore.net/item/dynamax-crystal-and15"
+    ]);
+    expect(
+      itemEntries.every(
+        entry =>
+          entry.lastmod === ITEM_DETAIL_LASTMOD
+      )
+    ).toBe(true);
+
+    const sitemap = renderSitemap(
+      [
+        "https://pokelore.net/moves",
+        ...itemEntries
+      ],
+      {
+        defaultLastmod: "2099-12-31"
+      }
+    );
+    const blocks = extractUrlBlocks(sitemap);
+
+    expect(
+      blocks.find(block => block.loc === "https://pokelore.net/moves")?.lastmod
+    ).toBe("2099-12-31");
+    expect(
+      blocks.find(block => block.loc === "https://pokelore.net/item/fire-stone")?.lastmod
+    ).toBe(ITEM_DETAIL_LASTMOD);
+  });
+
   it("builds canonical Pokemon entries with a stable content-update lastmod", () => {
     const pokemonEntries =
       pokemonRoutes(pokemonRouteLookup);

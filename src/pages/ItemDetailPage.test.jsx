@@ -174,6 +174,12 @@ describe("ItemDetailPage", () => {
   afterEach(() => {
     cleanup();
     vi.restoreAllMocks();
+    document
+      .getElementById(
+        "pokelore-prerender-item-data"
+      )
+      ?.remove();
+    document.head.innerHTML = "";
   });
 
   it("renders an item when optional migrated acquisition data is missing", async () => {
@@ -434,6 +440,174 @@ describe("ItemDetailPage", () => {
       )
     ).toHaveTextContent(
       "/item/heart-scale"
+    );
+  });
+
+  it("keeps seeded prerender item data visible while refreshing client data", async () => {
+    const fireStone = {
+      ...pokeBall,
+      id: 82,
+      name: "fire-stone",
+      displayName: "Fire Stone",
+      effect:
+        "Used on a party Pokémon to evolve compatible Pokémon."
+    };
+    const itemResponse = createDeferred();
+    const script =
+      document.createElement("script");
+
+    script.id =
+      "pokelore-prerender-item-data";
+    script.type = "application/json";
+    script.textContent = JSON.stringify({
+      item: fireStone,
+      pokemonIndex: [],
+      oaksNotes: null,
+      pokemonGoNotes: null,
+      relatedLinks: null,
+      berryData: null
+    });
+    document.body.appendChild(script);
+
+    const fetchMock = vi
+      .fn()
+      .mockImplementation(url => {
+        if (
+          url ===
+          "/data/items/fire-stone.json"
+        ) {
+          return itemResponse.promise;
+        }
+
+        if (
+          url ===
+          "/data/pokemonIndex.json"
+        ) {
+          return Promise.resolve(
+            jsonResponse([])
+          );
+        }
+
+        if (
+          url.includes(
+            "/data/itemLocationsCurated/"
+          )
+        ) {
+          return Promise.resolve(
+            htmlFallbackResponse()
+          );
+        }
+
+        return Promise.resolve({
+          ok: false,
+          status: 404,
+          text: vi.fn()
+        });
+      });
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    renderItemRoute("/item/fire-stone");
+
+    expect(
+      screen.getByRole("heading", {
+        name: "Fire Stone"
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText("Loading...")
+    ).not.toBeInTheDocument();
+
+    itemResponse.resolve(
+      jsonResponse(fireStone)
+    );
+
+    await waitFor(() =>
+      expect(fetchMock).toHaveBeenCalledWith(
+        "/data/items/fire-stone.json"
+      )
+    );
+  });
+
+  it("renders confirmed invalid item URLs as noindex without a canonical", async () => {
+    document.head.innerHTML =
+      '<link rel="canonical" href="https://pokelore.net/"><meta name="robots" content="max-image-preview:large">';
+
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValue({
+        ok: false,
+        status: 404,
+        text: vi.fn()
+      });
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    renderItemRoute("/item/not-real");
+
+    expect(
+      await screen.findByRole(
+        "heading",
+        {
+          name: "Item not found"
+        }
+      )
+    ).toBeInTheDocument();
+
+    await waitFor(() =>
+      expect(
+        document.head.querySelector(
+          'link[rel="canonical"]'
+        )
+      ).toBeNull()
+    );
+    expect(
+      document.head.querySelector(
+        'meta[name="robots"]'
+      )
+    ).toHaveAttribute(
+      "content",
+      "noindex, follow"
+    );
+  });
+
+  it("renders transient item data failures as temporarily unavailable", async () => {
+    document.head.innerHTML =
+      '<link rel="canonical" href="https://pokelore.net/"><meta name="robots" content="max-image-preview:large">';
+
+    const fetchMock = vi
+      .fn()
+      .mockRejectedValue(
+        new Error("network unavailable")
+      );
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    renderItemRoute("/item/poke-ball");
+
+    expect(
+      await screen.findByRole(
+        "heading",
+        {
+          name: "Item temporarily unavailable"
+        }
+      )
+    ).toBeInTheDocument();
+
+    await waitFor(() =>
+      expect(
+        document.head.querySelector(
+          'link[rel="canonical"]'
+        )
+      ).toBeNull()
+    );
+    expect(
+      document.head.querySelector(
+        'meta[name="robots"]'
+      )
+    ).toHaveAttribute(
+      "content",
+      "noindex, follow"
     );
   });
 });

@@ -457,6 +457,36 @@ export function itemSeo(item) {
   };
 }
 
+export function unresolvedItemSeo() {
+  return {
+    title: `Pokemon Item Guide | ${SITE_NAME}`,
+    description:
+      "Loading Pokemon item details, effects, locations, game descriptions, and related data on PokeLore.",
+    canonicalAction: "remove",
+    robots: "noindex, follow"
+  };
+}
+
+export function invalidItemSeo() {
+  return {
+    title: `Item Not Found | ${SITE_NAME}`,
+    description:
+      "This Pokemon item page could not be found on PokeLore.",
+    canonicalAction: "remove",
+    robots: "noindex, follow"
+  };
+}
+
+export function unavailableItemSeo() {
+  return {
+    title: `Item Temporarily Unavailable | ${SITE_NAME}`,
+    description:
+      "This Pokemon item page could not be loaded right now. Please try again shortly.",
+    canonicalAction: "remove",
+    robots: "noindex, follow"
+  };
+}
+
 export function dynamaxCrystalsGuideSeo() {
   return {
     title: `Dynamax Crystals Guide: All Released Crystal Raids | ${SITE_NAME}`,

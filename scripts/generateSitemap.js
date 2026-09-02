@@ -4,10 +4,10 @@ import { fileURLToPath } from "node:url";
 import { itemLocationTopics } from "../src/topics/topicMetadata.js";
 import {
   DYNAMAX_CRYSTAL_GUIDE_PATH,
-  isDynamaxCrystalItem,
-  isReleasedDynamaxCrystal,
   validateReleasedDynamaxCrystals
 } from "../src/utils/dynamaxCrystals.js";
+import { isItemHiddenFromUi }
+  from "../src/utils/itemVisibility.js";
 import { getPokemonUrl }
   from "../src/utils/pokemonUrls.js";
 
@@ -15,6 +15,9 @@ const SITE_URL = "https://pokelore.net";
 // Update only after a meaningful sitewide change to canonical Pokemon detail-page content.
 // Do not replace with the current build/deploy date.
 const POKEMON_DETAIL_LASTMOD = "2026-08-31";
+// Update only after a meaningful sitewide change to canonical item detail-page content.
+// Do not replace with the current build/deploy date.
+const ITEM_DETAIL_LASTMOD = "2026-09-02";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
@@ -125,13 +128,12 @@ function abilityRoutes(abilities) {
 
 function itemRoutes(itemsIndex) {
   return itemsIndex
-    .filter(
-      item =>
-        !isDynamaxCrystalItem(item) ||
-        isReleasedDynamaxCrystal(item)
-    )
+    .filter(item => !isItemHiddenFromUi(item))
     .map(item =>
-      route(`/item/${item.name}`)
+      sitemapEntry(
+        route(`/item/${item.name}`),
+        ITEM_DETAIL_LASTMOD
+      )
     );
 }
 
@@ -389,7 +391,9 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 export {
   buildRoutes,
   dedupeSitemapEntries,
+  ITEM_DETAIL_LASTMOD,
   POKEMON_DETAIL_LASTMOD,
+  itemRoutes,
   pokemonRoutes,
   renderSitemap,
   sitemapLoc,

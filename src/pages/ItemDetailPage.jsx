@@ -1,6 +1,7 @@
 import {
   useEffect,
   useMemo,
+  useRef,
   useState
 } from "react";
 import {
@@ -16,14 +17,24 @@ import PokemonGoNotes from "../components/PokemonGoNotes";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import RelatedLinks from "../components/RelatedLinks";
 import Seo from "../seo/Seo";
-import { itemSeo } from "../seo/seoConfig";
+import {
+  invalidItemSeo,
+  itemSeo,
+  unavailableItemSeo,
+  unresolvedItemSeo
+} from "../seo/seoConfig";
 import { readJsonFile } from "../utils/readJsonFile";
 import { isItemHiddenFromUi } from "../utils/itemVisibility";
 import {
-  applyTmMaterialFallback,
-  getTmMaterialDetail,
   isTmMaterialItem
 } from "../utils/tmMaterialDetails";
+import {
+  buildMachineItemDescription,
+  capitalizeItemText as capitalize,
+  isMachineItem,
+  mergeItemDetailData,
+  normalizeItemName
+} from "../utils/itemDetail";
 import {
   DYNAMAX_CRYSTAL_GUIDE_PATH,
   formatDynamaxPokemonList,
@@ -35,93 +46,74 @@ import {
   isUsableFlavorText
 } from "../utils/dynamaxCrystals";
 
-function capitalize(text) {
-  return String(text ?? "")
-    .split("-")
-    .map(
-      word =>
-        word.charAt(0).toUpperCase() +
-        word.slice(1)
-    )
-    .join(" ");
-}
-
-function normalizeItemName(itemName) {
-  let normalized;
-
-  try {
-    normalized = decodeURIComponent(
-      String(itemName ?? "")
-    );
-  } catch {
-    normalized = String(itemName ?? "");
-  }
-
-  normalized = normalized
-    .trim()
-    .toLowerCase();
-
-  normalized = normalized.replace(
-    /^(tm|hm|tr)-(\d+)$/,
-    "$1$2"
-  );
-
-  normalized = normalized.replace(
-    /^(tm|hm|tr)(\d+)s$/,
-    "$1$2"
-  );
-
-  return normalized;
-}
-
-function isMachineItem(item) {
-  return (
-    item?.machines?.length > 0 ||
-    /^(tm|hm|tr)\d+/i.test(
-      item?.name ?? ""
-    )
-  );
-}
-
-function formatList(values) {
-  if (values.length <= 1) {
-    return values[0] ?? "";
-  }
-
-  if (values.length === 2) {
-    return `${values[0]} or ${values[1]}`;
-  }
-
-  return `${values.slice(0, -1).join(", ")}, or ${
-    values[values.length - 1]
-  }`;
-}
-
-function buildMachineItemDescription(item) {
-  const moveNames = Array.from(
-    new Set(
-      item?.machines
-        ?.map(machine =>
-          machine.move?.name
-        )
-        .filter(Boolean) ?? []
-    )
-  ).map(capitalize);
-
-  if (moveNames.length === 0) {
+function readPrerenderItemData(normalizedItemName) {
+  if (typeof document === "undefined") {
     return null;
   }
 
-  const itemName =
-    item.displayName ?? capitalize(item.name);
-  const moveList =
-    formatList(moveNames);
+  const script = document.getElementById(
+    "pokelore-prerender-item-data"
+  );
 
-  return `${itemName} teaches ${moveList}${
-    moveNames.length > 1
-      ? " depending on version"
-      : ""
-  }.`;
+  if (!script?.textContent) {
+    return null;
+  }
+
+  try {
+    const data = JSON.parse(script.textContent);
+
+    if (data?.item?.name !== normalizedItemName) {
+      return null;
+    }
+
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+async function readItemDataFile(itemSlug) {
+  try {
+    const url = `/data/items/${itemSlug}.json`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        return {
+          status: "missing"
+        };
+      }
+
+      return {
+        status: "error",
+        error: new Error(
+          `Failed to fetch ${url}: ${response.status}`
+        )
+      };
+    }
+
+    const text = await response.text();
+    const trimmed = text.trim();
+
+    if (
+      !trimmed.startsWith("{") &&
+      !trimmed.startsWith("[")
+    ) {
+      return {
+        status: "missing"
+      };
+    }
+
+    return {
+      status: "loaded",
+      data: JSON.parse(text)
+    };
+  } catch (error) {
+    return {
+      status: "error",
+      error
+    };
+  }
 }
 
 
@@ -383,32 +375,68 @@ function ItemDetailPage() {
     normalizeItemName(itemName);
   const rawItemName =
     String(itemName ?? "");
+  const prerenderItemData =
+    readPrerenderItemData(
+      normalizedItemName
+    );
 
   const [item, setItem] =
-    useState(null);
+    useState(
+      () => prerenderItemData?.item ?? null
+    );
 
   const [pokemonIndex, setPokemonIndex] =
-    useState([]);
+    useState(
+      () =>
+        prerenderItemData?.pokemonIndex ?? []
+    );
   const [oaksNotes, setOaksNotes] =
-    useState(null);
+    useState(
+      () => prerenderItemData?.oaksNotes ?? null
+    );
   const [
     pokemonGoNotes,
     setPokemonGoNotes
-  ] = useState(null);
+  ] = useState(
+    () => prerenderItemData?.pokemonGoNotes ?? null
+  );
   const [relatedLinks, setRelatedLinks] =
-    useState(null);
+    useState(
+      () =>
+        prerenderItemData?.relatedLinks ?? null
+    );
   const [berryData, setBerryData] =
-    useState(null);
+    useState(
+      () => prerenderItemData?.berryData ?? null
+    );
 
   const [loading, setLoading] =
-    useState(true);
+    useState(
+      () => !prerenderItemData?.item
+    );
+  const [loadStatus, setLoadStatus] =
+    useState(
+      () =>
+        prerenderItemData?.item
+          ? "loaded"
+          : "loading"
+    );
+  const hasVisibleItemRef = useRef(
+    Boolean(prerenderItemData?.item)
+  );
 
   useEffect(() => {
     let isActive = true;
 
     async function loadItem() {
+      const keepVisibleDuringRefresh =
+        hasVisibleItemRef.current;
+
       try {
-        setLoading(true);
+        if (!keepVisibleDuringRefresh) {
+          setLoading(true);
+          setLoadStatus("loading");
+        }
 
         const itemCandidates = [
           normalizedItemName,
@@ -422,15 +450,27 @@ function ItemDetailPage() {
 
         let itemData = null;
 
-        for (const candidate of itemCandidates) {
-          itemData = await readJsonFile(
-            `/data/items/${candidate}.json`,
-            {
-              warn: true
-            }
-          );
+        let itemDataFailure = null;
 
-          if (itemData) break;
+        for (const candidate of itemCandidates) {
+          const result =
+            await readItemDataFile(candidate);
+
+          if (result.status === "loaded") {
+            itemData = result.data;
+            break;
+          }
+
+          if (result.status === "error") {
+            itemDataFailure =
+              result.error ?? new Error(
+                "Failed to load item data."
+              );
+          }
+        }
+
+        if (!itemData && itemDataFailure) {
+          throw itemDataFailure;
         }
 
         if (
@@ -447,6 +487,7 @@ function ItemDetailPage() {
           setPokemonGoNotes(null);
           setRelatedLinks(null);
           setBerryData(null);
+          setLoadStatus("not-found");
           return;
         }
 
@@ -491,24 +532,14 @@ function ItemDetailPage() {
           return;
         }
 
-        const itemWithAcquisition = {
-          ...itemData,
-          acquisition:
-            migratedLocationData?.acquisition ??
-            itemData.acquisition
-        };
-        const tmMaterialDetail =
-          getTmMaterialDetail(
-            itemData,
-            tmMaterialDetailsData
-          );
-
         setItem(
-          applyTmMaterialFallback(
-            itemWithAcquisition,
-            tmMaterialDetail
-          )
+          mergeItemDetailData({
+            itemData,
+            migratedLocationData,
+            tmMaterialDetailsData
+          })
         );
+        hasVisibleItemRef.current = true;
         setPokemonIndex(
           Array.isArray(pokemonIndexData)
             ? pokemonIndexData
@@ -518,6 +549,7 @@ function ItemDetailPage() {
         setPokemonGoNotes(pokemonGoNotesData);
         setRelatedLinks(relatedLinksData);
         setBerryData(berryDetailData);
+        setLoadStatus("loaded");
       } catch (error) {
         if (!isActive) {
           return;
@@ -527,11 +559,14 @@ function ItemDetailPage() {
           "Failed to load item:",
           error
         );
-        setItem(null);
-        setOaksNotes(null);
-        setPokemonGoNotes(null);
-        setRelatedLinks(null);
-        setBerryData(null);
+        if (!keepVisibleDuringRefresh) {
+          setItem(null);
+          setOaksNotes(null);
+          setPokemonGoNotes(null);
+          setRelatedLinks(null);
+          setBerryData(null);
+        }
+        setLoadStatus("error");
       } finally {
         if (isActive) {
           setLoading(false);
@@ -652,7 +687,7 @@ function ItemDetailPage() {
   ) {
     return (
       <>
-        <Seo {...itemSeo(normalizedItemName)} />
+        <Seo {...unresolvedItemSeo()} />
         <p>Loading...</p>
       </>
     );
@@ -672,19 +707,28 @@ function ItemDetailPage() {
   }
 
   if (!item) {
+    const seo =
+      loadStatus === "error"
+        ? unavailableItemSeo()
+        : invalidItemSeo();
+
     return (
       <div
       style={{
         padding: "2rem"
       }}
     >
-        <Seo {...itemSeo(normalizedItemName)} />
+        <Seo {...seo} />
 
         <Link to="/items">
           Back To Items
         </Link>
 
-        <h1>Item not found</h1>
+        <h1>
+          {loadStatus === "error"
+            ? "Item temporarily unavailable"
+            : "Item not found"}
+        </h1>
       </div>
     );
   }

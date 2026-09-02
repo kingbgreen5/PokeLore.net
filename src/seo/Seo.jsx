@@ -25,7 +25,10 @@ function getOrCreateMeta(attribute, key) {
 }
 
 function setMetaName(name, content) {
-  if (!content) return;
+  if (!content) {
+    removeMeta("name", name);
+    return;
+  }
 
   getOrCreateMeta("name", name).setAttribute(
     "content",
@@ -34,7 +37,10 @@ function setMetaName(name, content) {
 }
 
 function setMetaProperty(property, content) {
-  if (!content) return;
+  if (!content) {
+    removeMeta("property", property);
+    return;
+  }
 
   getOrCreateMeta("property", property).setAttribute(
     "content",
