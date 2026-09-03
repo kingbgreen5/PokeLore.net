@@ -10,6 +10,9 @@ import { normalizeDisplayText } from "../src/utils/normalizeText.js";
 import { getPokemonUrl } from "../src/utils/pokemonUrls.js";
 import { isItemHiddenFromUi } from "../src/utils/itemVisibility.js";
 import {
+  groupAcquisitionByGameFamily
+} from "../src/utils/itemAcquisitionGrouping.js";
+import {
   buildMachineItemDescription,
   capitalizeItemText,
   isMachineItem,
@@ -412,9 +415,14 @@ function renderAcquisitionMethod(method, index) {
   const key = `${method.generation ?? "unknown"}-${index}`;
 
   return `<article class="prerender-item-acquisition-entry" data-key="${escapeHtml(key)}">
-    <h3>Generation ${renderText(method.generation ?? "Unknown")}</h3>
+    <p><strong>Generation:</strong> ${renderText(method.generation ?? "Unknown")}</p>
     <p><strong>Games:</strong> ${renderText((method.games ?? []).join(", "))}</p>
     <p><strong>Location:</strong> ${formatLocation(method.location)}</p>
+    ${
+      method.area
+        ? `<p><strong>Area:</strong> ${renderText(method.area)}</p>`
+        : ""
+    }
     <p><strong>Method:</strong> ${renderText(method.method ?? method.details)}</p>
     ${
       formatCost(method.cost)
@@ -460,6 +468,11 @@ function renderAcquisitionMethod(method, index) {
       method.relatedLocations,
       formatLocation
     )}
+    ${
+      method.notes
+        ? `<p><strong>Notes:</strong> ${renderText(method.notes)}</p>`
+        : ""
+    }
     <p><strong>Repeatable:</strong> ${method.repeatable ? "Yes" : "No"} <strong>Version Exclusive:</strong> ${method.versionExclusive ? "Yes" : "No"}</p>
   </article>`;
 }
@@ -473,9 +486,20 @@ function renderAcquisition(item) {
     return "";
   }
 
+  const groups =
+    groupAcquisitionByGameFamily(acquisition);
+
   return `<section class="prerender-item-section prerender-item-acquisition">
     <h2>Where To Get ${renderText(item.displayName)}</h2>
-    ${acquisition.map(renderAcquisitionMethod).join("")}
+    ${groups
+      .map(
+        group =>
+          `<section class="prerender-item-acquisition-group" data-key="${escapeHtml(group.key)}">
+            <h3>${renderText(group.label)}</h3>
+            ${group.entries.map(renderAcquisitionMethod).join("")}
+          </section>`
+      )
+      .join("")}
   </section>`;
 }
 

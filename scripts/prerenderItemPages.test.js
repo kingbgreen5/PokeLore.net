@@ -14,6 +14,9 @@ import {
 import { itemSeo } from "../src/seo/seoConfig.js";
 import fireStone from "../public/data/items/fire-stone.json";
 import machoBrace from "../public/data/items/macho-brace.json";
+import prismScale from "../public/data/items/prism-scale.json";
+import gooeyMulch from "../public/data/items/gooey-mulch.json";
+import rareCandy from "../public/data/items/rare-candy.json";
 import oranBerry from "../public/data/items/oran-berry.json";
 import tm01 from "../public/data/items/tm01.json";
 import snomThread from "../public/data/items/snom-thread.json";
@@ -77,6 +80,14 @@ function pageFor(itemData) {
   );
 }
 
+function acquisitionHeadingLabels(html) {
+  return [
+    ...html.matchAll(
+      /<section class="prerender-item-acquisition-group"[^>]*>\s*<h3>(.*?)<\/h3>/g
+    )
+  ].map(match => match[1]);
+}
+
 function getMetaDescriptionTags(html) {
   return (
     html.match(
@@ -125,6 +136,21 @@ describe("prerenderItemPages", () => {
     expect(html).toContain("<h2>Effect</h2>");
     expect(html).toContain(
       "<h2>Where To Get Fire Stone</h2>"
+    );
+    expect(html).toContain(
+      "<h3>Pokémon Ruby, Sapphire &amp; Emerald</h3>"
+    );
+    expect(html).toContain(
+      "<h3>Pokémon FireRed &amp; LeafGreen</h3>"
+    );
+    expect(html).toContain(
+      "<h3>Pokémon Diamond, Pearl &amp; Platinum</h3>"
+    );
+    expect(html).toContain(
+      "<h3>Pokémon HeartGold &amp; SoulSilver</h3>"
+    );
+    expect(html).not.toContain(
+      "<h3>Generation 4</h3>"
     );
     expect(html).toContain("Celadon Department Store");
     expect(html).not.toContain(
@@ -199,8 +225,100 @@ describe("prerenderItemPages", () => {
       '<a href="/location/hoenn-route-111">Route 111</a>'
     );
     expect(html).toContain(
+      "<h3>Pokémon Ruby, Sapphire &amp; Emerald</h3>"
+    );
+    expect(html).toContain(
       "Defeat all four members of the Winstrate family"
     );
+    expect(html).toContain(
+      "<strong>Area:</strong> Winstrate family house"
+    );
+    expect(html).toContain(
+      "<strong>Repeatable:</strong> No <strong>Version Exclusive:</strong> No"
+    );
+    expect(html).toContain(
+      '<a href="/pokemon/machop">Machop</a>'
+    );
+    expect(html).toContain(
+      '<a href="/pokemon/drowzee">Drowzee</a>'
+    );
+  });
+
+  it("renders acquisition headings by game family in raw prerender HTML", () => {
+    const fireStoneHtml = pageFor(fireStone);
+    const machoBraceHtml = pageFor(machoBrace);
+    const prismScaleHtml = pageFor(prismScale);
+    const gooeyMulchHtml = pageFor(gooeyMulch);
+
+    expect(
+      acquisitionHeadingLabels(fireStoneHtml)
+    ).toEqual([
+      "Pokémon Red, Blue &amp; Yellow",
+      "Pokémon Gold, Silver &amp; Crystal",
+      "Pokémon Ruby, Sapphire &amp; Emerald",
+      "Pokémon FireRed &amp; LeafGreen",
+      "Pokémon Diamond, Pearl &amp; Platinum",
+      "Pokémon HeartGold &amp; SoulSilver",
+      "Pokémon Black &amp; White",
+      "Pokémon Black 2 &amp; White 2",
+      "Pokémon X &amp; Y",
+      "Pokémon Omega Ruby &amp; Alpha Sapphire",
+      "Pokémon Sun &amp; Moon",
+      "Pokémon Ultra Sun &amp; Ultra Moon",
+      "Pokémon: Let&#39;s Go, Pikachu! &amp; Let&#39;s Go, Eevee!",
+      "Pokémon Sword &amp; Shield",
+      "Pokémon Brilliant Diamond &amp; Shining Pearl",
+      "Pokémon Legends: Arceus",
+      "Pokémon Scarlet &amp; Violet",
+      "Pokémon Legends: Z-A"
+    ]);
+
+    expect(
+      acquisitionHeadingLabels(machoBraceHtml)
+    ).toContain(
+      "Pokémon Black, White, Black 2 &amp; White 2"
+    );
+    expect(
+      acquisitionHeadingLabels(prismScaleHtml)
+    ).toContain(
+      "Pokémon Sun, Moon, Ultra Sun &amp; Ultra Moon"
+    );
+    expect(
+      acquisitionHeadingLabels(gooeyMulchHtml)
+    ).toEqual([
+      "Pokémon HeartGold &amp; SoulSilver"
+    ]);
+
+    expect(fireStoneHtml).not.toContain(
+      "<h3>Generation 4</h3>"
+    );
+  });
+
+  it("renders every acquisition record once in each prerendered item page", () => {
+    const cases = [
+      fireStone,
+      machoBrace,
+      prismScale,
+      gooeyMulch,
+      rareCandy
+    ];
+
+    for (const item of cases) {
+      const data = dataFor(item);
+      const html = renderItemPage(
+        template,
+        data
+      );
+      const entryCount = (
+        html.match(
+          /class="prerender-item-acquisition-entry"/g
+        ) ?? []
+      ).length;
+
+      expect(entryCount).toBe(
+        data.item.acquisition.length
+      );
+    }
   });
 
   it("renders representative specialized item content", () => {

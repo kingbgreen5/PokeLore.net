@@ -40,7 +40,8 @@ export const VERSION_ORDER = [
   "shining-pearl",
   "legends-arceus",
   "scarlet",
-  "violet"
+  "violet",
+  "legends-z-a"
 ];
 
 export const VERSION_GROUP_ORDER = [

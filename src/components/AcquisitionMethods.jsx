@@ -7,6 +7,9 @@ import CollapsibleSection from "./CollapsibleSection";
 import useSessionState from "../hooks/useSessionState";
 import { normalizeDisplayText } from "../utils/normalizeText";
 import { getPokemonUrl } from "../utils/pokemonUrls";
+import {
+  groupAcquisitionByGameFamily
+} from "../utils/itemAcquisitionGrouping";
 
 function formatAcquisitionType(type) {
   if (!type) return "Unknown";
@@ -346,6 +349,13 @@ function AcquisitionMethods({
       selectedGeneration
     ]
   );
+  const acquisitionGroups = useMemo(
+    () =>
+      groupAcquisitionByGameFamily(
+        filteredAcquisition
+      ),
+    [filteredAcquisition]
+  );
 
   if (
     acquisitionList.length === 0
@@ -418,17 +428,34 @@ function AcquisitionMethods({
           </select>
       </div>
 
-          {filteredAcquisition.map(
-            (method, index) => (
-              <article
-                key={`${method.generation}-${formatLocationKey(method.location)}-${method.method}-${index}`}
+          {acquisitionGroups.map(group => (
+            <section
+              key={group.key}
+              style={{
+                display: "grid",
+                gap: ".75rem"
+              }}
+            >
+              <h3
                 style={{
-                  border:
-                    "1px solid #666",
-                  borderRadius: "12px",
-                  padding: "1rem"
-                  }}
-                >
+                  margin:
+                    ".25rem 0 .15rem"
+                }}
+              >
+                {group.label}
+              </h3>
+
+              {group.entries.map(
+                (method, index) => (
+                  <article
+                    key={`${group.key}-${method.generation}-${formatLocationKey(method.location)}-${method.method}-${index}`}
+                    style={{
+                      border:
+                        "1px solid #666",
+                      borderRadius: "12px",
+                      padding: "1rem"
+                      }}
+                    >
                 <div
                   style={{
                     alignItems: "center",
@@ -441,14 +468,14 @@ function AcquisitionMethods({
                       ".75rem"
                   }}
                 >
-                  <h3
+                  <span
                     style={{
-                      margin: 0
+                      fontWeight: 700
                     }}
                   >
                     Generation{" "}
                     {method.generation}
-                  </h3>
+                  </span>
 
                   <span
                     style={{
@@ -497,6 +524,18 @@ function AcquisitionMethods({
                       />
                     </p>
                   </div>
+
+                  {method.area && (
+                    <div>
+                      <strong>Area</strong>
+                      <p>
+                        {renderTextWithPokemonLinks(
+                          method.area,
+                          method.relatedPokemon
+                        )}
+                      </p>
+                    </div>
+                  )}
 
                   <div>
                     <strong>Method</strong>
@@ -690,6 +729,18 @@ function AcquisitionMethods({
                     </div>
                   )}
 
+                  {method.notes && (
+                    <div>
+                      <strong>Notes</strong>
+                      <p>
+                        {renderTextWithPokemonLinks(
+                          method.notes,
+                          method.relatedPokemon
+                        )}
+                      </p>
+                    </div>
+                  )}
+
                   <div
                     style={{
                       display: "flex",
@@ -718,8 +769,10 @@ function AcquisitionMethods({
                   </div>
                 </div>
               </article>
-            )
-          )}
+                )
+              )}
+            </section>
+          ))}
     </CollapsibleSection>
   );
 }
