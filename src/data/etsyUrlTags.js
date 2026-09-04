@@ -10,6 +10,9 @@ export const etsyUrlTags = {
     "milotic",
     "hoenn",
     "fishing"
+  ],
+  "/team-coverage": [
+    "kanto"
   ]
 };
 

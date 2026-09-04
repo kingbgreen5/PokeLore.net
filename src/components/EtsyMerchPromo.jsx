@@ -79,10 +79,12 @@ function EtsyMerchPromo({
     <aside
       aria-label="Pokemon-inspired merchandise"
       className="etsy-merch-promo"
+      data-placement={placement}
+      style={{
+        "--etsy-merch-aspect-ratio":
+          ad.aspectRatio ?? "16 / 3"
+      }}
     >
-      <p className="etsy-merch-promo__eyebrow">
-        Pokemon-inspired merch
-      </p>
       <a
         className="etsy-merch-promo__link"
         href={ad.link}
@@ -118,10 +120,6 @@ function EtsyMerchPromo({
             }
             src={ad.img}
           />
-        </span>
-        <span className="etsy-merch-promo__cta">
-          Shop on Etsy{" "}
-          <span aria-hidden="true">-&gt;</span>
         </span>
       </a>
     </aside>

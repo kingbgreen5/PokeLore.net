@@ -1,31 +1,29 @@
 .etsy-merch-promo {
   background: #202020;
-  border: 1px solid #4a4a4a;
-  border-radius: 8px;
+  border: 2px solid #706363;
+  border-radius: 12px;
   box-sizing: border-box;
-  margin: 2rem auto 1rem;
-  max-width: 320px;
-  padding: .75rem;
+  margin: 1rem auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: .35rem;
   text-align: left;
+  width: 100%;
 }
 
-.etsy-merch-promo__eyebrow {
-  color: var(--text-h);
-  font-size: .82rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0 0 .55rem;
+.etsy-merch-promo[data-placement="pokemon-detail"] {
+  max-width: 749px;
 }
 
 .etsy-merch-promo__link {
   color: inherit;
   display: grid;
-  gap: .65rem;
+  gap: .45rem;
   text-decoration: none;
 }
 
 .etsy-merch-promo__image-shell {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: var(--etsy-merch-aspect-ratio, 16 / 3);
   background: #2c2c2c;
   border: 1px solid #555;
   border-radius: 6px;
@@ -37,15 +35,8 @@
 .etsy-merch-promo__image {
   display: block;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
-}
-
-.etsy-merch-promo__cta {
-  color: var(--link-unvisited);
-  font-size: .9rem;
-  font-weight: 700;
-  line-height: 1.2;
 }
 
 .etsy-merch-promo:hover,
@@ -58,4 +49,3 @@
     max-width: 100%;
   }
 }
-

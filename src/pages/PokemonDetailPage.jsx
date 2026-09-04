@@ -1490,12 +1490,6 @@ const evolutionSummaryText =
 
   <PokemonGoNotes note={pokemonGoNotes} />
 
-  <EtsyMerchPromo
-    ad={selectedEtsyAd}
-    pagePath={location.pathname}
-    placement="pokemon-detail"
-  />
-
   <AdditionalImages
     pokemonId={pokemon.id}
     pokemonName={formatPokemonDisplayName(
@@ -1510,6 +1504,12 @@ const evolutionSummaryText =
     pokemon={pokemon}
     titleColor={expandableTitleColor}
     titleChevron={true}
+  />
+
+  <EtsyMerchPromo
+    ad={selectedEtsyAd}
+    pagePath={location.pathname}
+    placement="pokemon-detail"
   />
 
   <h2>Misc</h2>

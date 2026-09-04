@@ -118,7 +118,7 @@ describe("EtsyMerchPromo", () => {
     );
 
     const link = screen.getByRole("link", {
-      name: /Shop on Etsy/
+      name: /Pokemon-inspired Etsy merchandise/
     });
 
     expect(link).toHaveAttribute(
@@ -148,4 +148,3 @@ describe("EtsyMerchPromo", () => {
     );
   });
 });
-

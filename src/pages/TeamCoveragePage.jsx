@@ -4,15 +4,22 @@ import {
   useRef,
   useState
 } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useSearchParams
+} from "react-router-dom";
+import EtsyMerchPromo from "../components/EtsyMerchPromo";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import TypeBadge from "../components/TypeBadge";
 import typeChart from "../constants/Types";
 import typeColors from "../constants/typeColors";
 import { VERSION_GROUP_ORDER } from "../constants/versionOrder";
 import useLocalStorageState from "../hooks/useLocalStorageState";
+import { useSelectedEtsyAd } from "../hooks/useSelectedEtsyAd";
 import Seo from "../seo/Seo";
 import { teamCoverageSeo } from "../seo/seoConfig";
+import { getEtsyPageTags } from "../utils/etsyMerch";
 import { loadMovesMap } from "../utils/loadMovesData";
 import { formatPokemonDisplayName } from "../utils/pokemonNames";
 import {
@@ -1736,10 +1743,22 @@ function TeamCoverageExplainer() {
 }
 
 function TeamCoveragePage() {
+  const location = useLocation();
   const [
     searchParams,
     setSearchParams
   ] = useSearchParams();
+  const etsyPageTags = useMemo(
+    () =>
+      getEtsyPageTags({
+        pathname: location.pathname
+      }),
+    [location.pathname]
+  );
+  const selectedEtsyAd =
+    useSelectedEtsyAd(etsyPageTags, {
+      pageViewKey: location.pathname
+    });
   const [
     preferredVersion,
     setPreferredVersion
@@ -3714,6 +3733,12 @@ function TeamCoveragePage() {
           </span>{" "}
           to find the best spots to EV Train your team.
         </Link>
+
+        <EtsyMerchPromo
+          ad={selectedEtsyAd}
+          pagePath={location.pathname}
+          placement="team-coverage-explainer-top"
+        />
 
         <TeamCoverageExplainer />
       </section>
