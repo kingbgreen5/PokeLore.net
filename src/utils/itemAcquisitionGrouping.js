@@ -234,10 +234,97 @@ function formatGameListLabel(gameSlugs, fallbackGames) {
   return formatList(shortenedNames);
 }
 
+function shortGameName(gameSlug) {
+  return String(displayNameBySlug.get(gameSlug) ?? gameSlug)
+    .replace(/^Pokémon:?\s*/, "")
+    .replace(/^Pokemon:?\s*/, "");
+}
+
+function sameGameSlugs(a, b) {
+  const first = sortGameSlugs(
+    Array.from(new Set(a))
+  );
+  const second = sortGameSlugs(
+    Array.from(new Set(b))
+  );
+
+  return (
+    first.length === second.length &&
+    first.every(
+      (slug, index) => slug === second[index]
+    )
+  );
+}
+
 export function getAcquisitionGameSlug(gameName) {
   return gameSlugByName.get(
     normalizeGameName(gameName)
   );
+}
+
+export function getAcquisitionGameSlugs(games) {
+  return sortGameSlugs(
+    Array.from(
+      new Set(
+        (Array.isArray(games) ? games : [])
+          .map(getAcquisitionGameSlug)
+          .filter(Boolean)
+      )
+    )
+  );
+}
+
+export function formatGameRestrictionLabel(gameSlugs) {
+  const shortNames = sortGameSlugs(gameSlugs)
+    .map(shortGameName)
+    .filter(Boolean);
+
+  if (shortNames.length === 0) {
+    return null;
+  }
+
+  return `${formatList(shortNames)} only`;
+}
+
+export function getAcquisitionCardGameContext(
+  method,
+  group
+) {
+  const methodGameSlugs =
+    getAcquisitionGameSlugs(method?.games);
+  const groupGameSlugs = sortGameSlugs(
+    group?.gameSlugs ?? []
+  );
+  const hasKnownMethodGames =
+    methodGameSlugs.length > 0;
+  const hasKnownGroupGames =
+    groupGameSlugs.length > 0;
+  const gamesMatchGroup =
+    hasKnownMethodGames &&
+    hasKnownGroupGames &&
+    sameGameSlugs(
+      methodGameSlugs,
+      groupGameSlugs
+    );
+  const isNarrowerThanGroup =
+    hasKnownMethodGames &&
+    hasKnownGroupGames &&
+    methodGameSlugs.length <
+      groupGameSlugs.length &&
+    methodGameSlugs.every(slug =>
+      groupGameSlugs.includes(slug)
+    );
+
+  return {
+    methodGameSlugs,
+    redundantGames: gamesMatchGroup,
+    restrictionLabel: isNarrowerThanGroup
+      ? formatGameRestrictionLabel(methodGameSlugs)
+      : null,
+    showFallbackVersionExclusive:
+      Boolean(method?.versionExclusive) &&
+      !isNarrowerThanGroup
+  };
 }
 
 export function formatGameGroupLabel({
@@ -293,15 +380,8 @@ export function groupAcquisitionByGameFamily(
     const games = Array.isArray(method.games)
       ? method.games
       : [];
-    const gameSlugs = sortGameSlugs(
-      Array.from(
-        new Set(
-          games
-            .map(getAcquisitionGameSlug)
-            .filter(Boolean)
-        )
-      )
-    );
+    const gameSlugs =
+      getAcquisitionGameSlugs(games);
     const family =
       findFamilyForGameSlugs(gameSlugs);
     const key =

@@ -7,7 +7,8 @@ import {
 import {
   cleanup,
   render,
-  screen
+  screen,
+  within
 } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import AcquisitionMethods from "./AcquisitionMethods";
@@ -103,6 +104,23 @@ describe("AcquisitionMethods", () => {
         name: /Generation 4/
       })
     ).not.toBeInTheDocument();
+
+    const platinumEntry = screen
+      .getByText("Solaceon Ruins")
+      .closest("article");
+
+    expect(platinumEntry).not.toHaveTextContent(
+      /Generation\s*4/
+    );
+    expect(platinumEntry).not.toHaveTextContent(
+      /Games/
+    );
+    expect(platinumEntry).toHaveTextContent(
+      "Platinum only"
+    );
+    expect(platinumEntry).not.toHaveTextContent(
+      /Version\s*Exclusive:\s*Yes/
+    );
   });
 
   it("preserves links and acquisition detail fields inside each grouped entry", () => {
@@ -210,11 +228,40 @@ describe("AcquisitionMethods", () => {
       .getByText("Hammerlocke")
       .closest("article");
 
+    expect(
+      screen.queryByText(
+        "Pokemon Ruby, Pokemon Sapphire, Pokemon Emerald"
+      )
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        "Pokemon Sword, Pokemon Shield"
+      )
+    ).not.toBeInTheDocument();
+    expect(hammerlockeEntry).not.toHaveTextContent(
+      /Generation\s*8/
+    );
+    expect(hammerlockeEntry).not.toHaveTextContent(
+      /Version\s*Exclusive:\s*No/
+    );
     expect(hammerlockeEntry).toHaveTextContent(
       /Repeatable:\s*Yes/
     );
-    expect(hammerlockeEntry).toHaveTextContent(
-      /Version\s*Exclusive:\s*No/
+    expect(
+      within(hammerlockeEntry).getByText("Purchase")
+    ).toBeInTheDocument();
+    expect(
+      within(hammerlockeEntry).getByText(
+        "Purchase from the BP Shop."
+      )
+    ).toBeInTheDocument();
+
+    const rubyEntry = screen
+      .getByText("Route 111")
+      .closest("article");
+
+    expect(rubyEntry).toHaveTextContent(
+      /Repeatable:\s*No/
     );
 
     expect(

@@ -234,7 +234,16 @@ describe("prerenderItemPages", () => {
       "<strong>Area:</strong> Winstrate family house"
     );
     expect(html).toContain(
-      "<strong>Repeatable:</strong> No <strong>Version Exclusive:</strong> No"
+      "<strong>Repeatable:</strong> No"
+    );
+    expect(html).not.toContain(
+      "<strong>Version Exclusive:</strong> No"
+    );
+    expect(html).not.toContain(
+      "<strong>Generation:</strong>"
+    );
+    expect(html).not.toContain(
+      "<strong>Games:</strong>"
     );
     expect(html).toContain(
       '<a href="/pokemon/machop">Machop</a>'
@@ -291,6 +300,50 @@ describe("prerenderItemPages", () => {
 
     expect(fireStoneHtml).not.toContain(
       "<h3>Generation 4</h3>"
+    );
+    expect(fireStoneHtml).not.toContain(
+      "<strong>Generation:</strong>"
+    );
+    expect(fireStoneHtml).not.toContain(
+      "<strong>Games:</strong>"
+    );
+    expect(fireStoneHtml).not.toContain(
+      "<strong>Version Exclusive:</strong> No"
+    );
+    expect(fireStoneHtml).toContain(
+      "<p><strong>Platinum only</strong></p>"
+    );
+    expect(fireStoneHtml).toContain(
+      "<p><strong>Diamond &amp; Pearl only</strong></p>"
+    );
+  });
+
+  it("keeps compact acquisition cards aligned with grouped raw HTML", () => {
+    const html = pageFor(fireStone);
+
+    expect(html).toContain(
+      "<h3>Pokémon Ruby, Sapphire &amp; Emerald</h3>"
+    );
+    expect(html).toContain(
+      '<p class="prerender-item-acquisition-location"><a href="/location/fiery-path">Fiery Path</a></p>'
+    );
+    expect(html).toContain(
+      '<span class="prerender-item-acquisition-type">Field Item</span>'
+    );
+    expect(html).toContain(
+      "Collect the visible Fire Stone on the ground."
+    );
+    expect(html).toContain(
+      "<strong>Repeatable:</strong> No"
+    );
+    expect(html).not.toContain(
+      "<strong>Generation:</strong>"
+    );
+    expect(html).not.toContain(
+      "<strong>Games:</strong> Pokémon Ruby, Pokémon Sapphire, Pokémon Emerald"
+    );
+    expect(html).not.toContain(
+      "<strong>Version Exclusive:</strong> No"
     );
   });
 

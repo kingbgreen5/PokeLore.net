@@ -4,6 +4,8 @@ import {
   it
 } from "vitest";
 import {
+  formatGameRestrictionLabel,
+  getAcquisitionCardGameContext,
   formatGameGroupLabel,
   getAcquisitionGameSlug,
   groupAcquisitionByGameFamily
@@ -60,6 +62,90 @@ describe("itemAcquisitionGrouping", () => {
         ]
       })
     ).toBe("Pokémon HeartGold & SoulSilver");
+  });
+
+  it("formats compact game restrictions without repeating Pokemon", () => {
+    expect(
+      formatGameRestrictionLabel(["platinum"])
+    ).toBe("Platinum only");
+    expect(
+      formatGameRestrictionLabel([
+        "diamond",
+        "pearl"
+      ])
+    ).toBe("Diamond & Pearl only");
+  });
+
+  it("detects redundant full-game card metadata and narrower restrictions", () => {
+    const [group] =
+      groupAcquisitionByGameFamily([
+        method({
+          generation: 4,
+          games: [
+            "Pokémon Diamond",
+            "Pokémon Pearl"
+          ],
+          location: "Fuego Ironworks"
+        }),
+        method({
+          generation: 4,
+          games: ["Pokémon Platinum"],
+          location: "Solaceon Ruins"
+        })
+      ]);
+
+    expect(
+      getAcquisitionCardGameContext(
+        {
+          games: [
+            "Pokémon Diamond",
+            "Pokémon Pearl",
+            "Pokémon Platinum"
+          ],
+          versionExclusive: false
+        },
+        group
+      )
+    ).toMatchObject({
+      redundantGames: true,
+      restrictionLabel: null,
+      showFallbackVersionExclusive: false
+    });
+
+    expect(
+      getAcquisitionCardGameContext(
+        {
+          games: ["Pokémon Platinum"],
+          versionExclusive: true
+        },
+        group
+      )
+    ).toMatchObject({
+      redundantGames: false,
+      restrictionLabel: "Platinum only",
+      showFallbackVersionExclusive: false
+    });
+  });
+
+  it("keeps a truthful version-exclusive fallback when exact games are unknown", () => {
+    expect(
+      getAcquisitionCardGameContext(
+        {
+          games: ["Unknown Version"],
+          versionExclusive: true
+        },
+        {
+          gameSlugs: [
+            "diamond",
+            "pearl",
+            "platinum"
+          ]
+        }
+      )
+    ).toMatchObject({
+      restrictionLabel: null,
+      showFallbackVersionExclusive: true
+    });
   });
 
   it("groups single-game entries under their practical version family", () => {

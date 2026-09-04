@@ -8,6 +8,7 @@ import useSessionState from "../hooks/useSessionState";
 import { normalizeDisplayText } from "../utils/normalizeText";
 import { getPokemonUrl } from "../utils/pokemonUrls";
 import {
+  getAcquisitionCardGameContext,
   groupAcquisitionByGameFamily
 } from "../utils/itemAcquisitionGrouping";
 
@@ -446,7 +447,19 @@ function AcquisitionMethods({
               </h3>
 
               {group.entries.map(
-                (method, index) => (
+                (method, index) => {
+                  const gameContext =
+                    getAcquisitionCardGameContext(
+                      method,
+                      group
+                    );
+                  const versionNotice =
+                    gameContext.restrictionLabel ??
+                    (gameContext.showFallbackVersionExclusive
+                      ? "Version Exclusive: Yes"
+                      : null);
+
+                  return (
                   <article
                     key={`${group.key}-${method.generation}-${formatLocationKey(method.location)}-${method.method}-${index}`}
                     style={{
@@ -456,74 +469,68 @@ function AcquisitionMethods({
                       padding: "1rem"
                       }}
                     >
-                <div
-                  style={{
-                    alignItems: "center",
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: ".5rem",
-                    justifyContent:
-                      "space-between",
-                    marginBottom:
-                      ".75rem"
-                  }}
-                >
-                  <span
-                    style={{
-                      fontWeight: 700
-                    }}
-                  >
-                    Generation{" "}
-                    {method.generation}
-                  </span>
+                    <div
+                      style={{
+                        alignItems:
+                          "flex-start",
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: ".75rem",
+                        justifyContent:
+                          "space-between",
+                        marginBottom:
+                          ".75rem"
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: "1.1rem",
+                          fontWeight: 700
+                        }}
+                      >
+                        <ItemLocationLink
+                          location={
+                            method.location
+                          }
+                          relatedPokemon={
+                            method.relatedPokemon
+                          }
+                        />
+                      </div>
 
-                  <span
-                    style={{
-                      border:
-                        "1px solid #888",
-                      borderRadius:
-                        "999px",
-                      fontSize: ".8rem",
-                      padding:
-                        ".25rem .65rem"
-                    }}
-                  >
-                    {formatAcquisitionType(
-                      method.acquisitionType
-                    )}
-                  </span>
-                </div>
+                      <span
+                        style={{
+                          border:
+                            "1px solid #888",
+                          borderRadius:
+                            "999px",
+                          fontSize: ".8rem",
+                          padding:
+                            ".25rem .65rem"
+                        }}
+                      >
+                        {formatAcquisitionType(
+                          method.acquisitionType
+                        )}
+                      </span>
+                    </div>
 
-                <div
-                  style={{
-                    display: "grid",
-                    gap: ".75rem"
-                  }}
-                >
-                  <div>
-                    <strong>Games</strong>
-                    <p>
-                      {method.games
-                        .map(normalizeDisplayText)
-                        .join(", ")}
-                    </p>
-                  </div>
-
-                  <div>
-                    <strong>
-                      Location
-                    </strong>
-                    <p>
-                      <ItemLocationLink
-                        location={
-                          method.location
-                        }
-                        relatedPokemon={
-                          method.relatedPokemon
-                        }
-                      />
-                    </p>
-                  </div>
+                    <div
+                      style={{
+                        display: "grid",
+                        gap: ".75rem"
+                      }}
+                    >
+                      {versionNotice && (
+                        <p
+                          style={{
+                            fontWeight: 700,
+                            margin: 0
+                          }}
+                        >
+                          {versionNotice}
+                        </p>
+                      )}
 
                   {method.area && (
                     <div>
@@ -537,27 +544,17 @@ function AcquisitionMethods({
                     </div>
                   )}
 
-                  <div>
-                    <strong>Method</strong>
-                    <p>
+                      <p
+                        style={{
+                          margin: 0
+                        }}
+                      >
                       {renderTextWithPokemonLinks(
                         method.method ??
                           method.details,
                         method.relatedPokemon
                       )}
-                    </p>
-                  </div>
-
-                  {formatCost(method.cost) && (
-                    <div>
-                      <strong>Cost</strong>
-                      <p>
-                        {formatCost(
-                          method.cost
-                        )}
                       </p>
-                    </div>
-                  )}
 
                   {method.requirements
                     ?.length > 0 && (
@@ -659,6 +656,17 @@ function AcquisitionMethods({
                     </div>
                   )}
 
+                  {formatCost(method.cost) && (
+                    <div>
+                      <strong>Cost</strong>
+                      <p>
+                        {formatCost(
+                          method.cost
+                        )}
+                      </p>
+                    </div>
+                  )}
+
                   {method.relatedMoves
                     ?.length > 0 && (
                     <div>
@@ -757,19 +765,11 @@ function AcquisitionMethods({
                         : "No"}
                     </span>
 
-                    <span>
-                      <strong>
-                        Version
-                        Exclusive:
-                      </strong>{" "}
-                      {method.versionExclusive
-                        ? "Yes"
-                        : "No"}
-                    </span>
                   </div>
                 </div>
               </article>
-                )
+                  );
+                }
               )}
             </section>
           ))}

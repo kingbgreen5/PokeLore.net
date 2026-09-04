@@ -10,6 +10,7 @@ import { normalizeDisplayText } from "../src/utils/normalizeText.js";
 import { getPokemonUrl } from "../src/utils/pokemonUrls.js";
 import { isItemHiddenFromUi } from "../src/utils/itemVisibility.js";
 import {
+  getAcquisitionCardGameContext,
   groupAcquisitionByGameFamily
 } from "../src/utils/itemAcquisitionGrouping.js";
 import {
@@ -411,29 +412,61 @@ function formatCost(cost) {
   }`.trim();
 }
 
-function renderAcquisitionMethod(method, index) {
+function formatAcquisitionType(type) {
+  if (!type) {
+    return "Unknown";
+  }
+
+  return normalizeDisplayText(type)
+    .split("-")
+    .map(
+      word =>
+        word.charAt(0).toUpperCase() +
+        word.slice(1)
+    )
+    .join(" ");
+}
+
+function renderAcquisitionMethod(
+  method,
+  index,
+  group
+) {
   const key = `${method.generation ?? "unknown"}-${index}`;
+  const gameContext =
+    getAcquisitionCardGameContext(method, group);
+  const versionNotice =
+    gameContext.restrictionLabel ??
+    (gameContext.showFallbackVersionExclusive
+      ? "Version Exclusive: Yes"
+      : null);
 
   return `<article class="prerender-item-acquisition-entry" data-key="${escapeHtml(key)}">
-    <p><strong>Generation:</strong> ${renderText(method.generation ?? "Unknown")}</p>
-    <p><strong>Games:</strong> ${renderText((method.games ?? []).join(", "))}</p>
-    <p><strong>Location:</strong> ${formatLocation(method.location)}</p>
+    <div class="prerender-item-acquisition-entry-header">
+      <p class="prerender-item-acquisition-location">${formatLocation(method.location)}</p>
+      <span class="prerender-item-acquisition-type">${renderText(formatAcquisitionType(method.acquisitionType))}</span>
+    </div>
+    ${
+      versionNotice
+        ? `<p><strong>${renderText(versionNotice)}</strong></p>`
+        : ""
+    }
     ${
       method.area
         ? `<p><strong>Area:</strong> ${renderText(method.area)}</p>`
         : ""
     }
-    <p><strong>Method:</strong> ${renderText(method.method ?? method.details)}</p>
-    ${
-      formatCost(method.cost)
-        ? `<p><strong>Cost:</strong> ${renderText(formatCost(method.cost))}</p>`
-        : ""
-    }
+    <p>${renderText(method.method ?? method.details)}</p>
     ${renderRelatedList(
       "Requirements",
       method.requirements,
       renderText
     )}
+    ${
+      formatCost(method.cost)
+        ? `<p><strong>Cost:</strong> ${renderText(formatCost(method.cost))}</p>`
+        : ""
+    }
     ${renderRelatedList(
       "Related Items",
       method.relatedItems,
@@ -473,7 +506,7 @@ function renderAcquisitionMethod(method, index) {
         ? `<p><strong>Notes:</strong> ${renderText(method.notes)}</p>`
         : ""
     }
-    <p><strong>Repeatable:</strong> ${method.repeatable ? "Yes" : "No"} <strong>Version Exclusive:</strong> ${method.versionExclusive ? "Yes" : "No"}</p>
+    <p><strong>Repeatable:</strong> ${method.repeatable ? "Yes" : "No"}</p>
   </article>`;
 }
 
@@ -496,7 +529,15 @@ function renderAcquisition(item) {
         group =>
           `<section class="prerender-item-acquisition-group" data-key="${escapeHtml(group.key)}">
             <h3>${renderText(group.label)}</h3>
-            ${group.entries.map(renderAcquisitionMethod).join("")}
+            ${group.entries
+              .map((method, index) =>
+                renderAcquisitionMethod(
+                  method,
+                  index,
+                  group
+                )
+              )
+              .join("")}
           </section>`
       )
       .join("")}
@@ -985,6 +1026,9 @@ function renderItemMain({
     .prerender-item-section { border: 1px solid #666; border-radius: 12px; margin-bottom: 2rem; padding: 1rem; text-align: left; }
     .prerender-item-section h2 { margin-top: 0; }
     .prerender-item-acquisition-entry, .prerender-item-flavor { border-bottom: 1px solid #444; margin-bottom: 1rem; padding-bottom: 1rem; }
+    .prerender-item-acquisition-entry-header { align-items: flex-start; display: flex; flex-wrap: wrap; gap: .75rem; justify-content: space-between; }
+    .prerender-item-acquisition-location { font-size: 1.1rem; font-weight: 700; margin-top: 0; }
+    .prerender-item-acquisition-type { border: 1px solid #888; border-radius: 999px; font-size: .8rem; padding: .25rem .65rem; }
     .prerender-item-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); margin: 0; }
     .prerender-item-grid dt { font-weight: 700; }
     .prerender-item-grid dd { margin: .35rem 0 0; }
