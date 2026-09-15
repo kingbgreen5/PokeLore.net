@@ -14,6 +14,15 @@ import { getFossilItemData } from "../data/fossilItems.js";
 export const SITE_NAME = "PokéLore";
 export const SITE_URL = "https://pokelore.net";
 
+export function tcgChallengeSeo(seeded = false) {
+  return {
+    title: 'Pokémon Card Challenge Run Generator & Virtual Pack Opener | PokéLore',
+    description: 'Open virtual Pokémon TCG packs from Base Set through Neo Destiny and build a videogame challenge team. Reproduce seeded runs and save progress in your browser.',
+    canonical: `${SITE_URL}/tcg-challenge`,
+    robots: seeded ? 'noindex,follow' : 'index,follow,max-image-preview:large',
+  };
+}
+
 export function formatName(value = "") {
   return String(value)
     .split("-")

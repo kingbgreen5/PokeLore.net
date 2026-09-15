@@ -87,6 +87,7 @@ function staticRoutes() {
     "/dex-entries",
     "/learnsets",
     "/tools",
+    "/tcg-challenge",
     "/team-coverage",
     "/ev-training-routes",
     "/dppt-feebas-calculator",

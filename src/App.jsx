@@ -147,6 +147,7 @@ const SingleTypeCoveragePage = lazy(() =>
 const ToolsPage = lazy(() =>
   import("./pages/ToolsPage")
 );
+const TcgChallengePage = lazy(() => import('./pages/TcgChallengePage'));
 const SeoReviewPage = lazy(() =>
   import("./pages/SeoReviewPage")
 );
@@ -416,6 +417,7 @@ function App() {
   path="/tools"
   element={<ToolsPage />}
 />
+<Route path="/tcg-challenge" element={<TcgChallengePage />} />
 
 <Route
   path="/team-coverage"

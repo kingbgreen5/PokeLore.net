@@ -1,0 +1,82 @@
+.tcg-page { max-width: 1240px; margin: auto; padding: 2rem 1.25rem 4rem; text-align: left; color: #d1d5db; }
+.tcg-page h1,.tcg-page h2,.tcg-page h3 { letter-spacing: 0; color: var(--text-h); }
+.tcg-header { text-align: center; padding: 1rem 0 1.5rem; }
+.tcg-header h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: .75rem 0; line-height: 1.15; }
+.tcg-eyebrow { color: #eac671; font-size: .75rem; font-weight: 750; letter-spacing: .14em; }
+.tcg-panel { background: #202129; border: 1px solid #3f4350; border-radius: 12px; padding: 1.4rem; margin-bottom: 1.5rem; }
+.tcg-panel h2 { margin-top: 0; font-size: 1.4rem; }
+.tcg-page label { display: grid; gap: .45rem; font-size: .88rem; }
+.tcg-page input,.tcg-page select,.tcg-page textarea { box-sizing: border-box; width: 100%; min-width: 0; background: #16171d; border: 1px solid #626779; border-radius: 6px; padding: .75rem; color: #f3f4f6; font: inherit; }
+.tcg-page textarea { min-height: 100px; resize: vertical; }
+.tcg-page button { font: inherit; font-size: .86rem; border: 1px solid #626779; border-radius: 6px; padding: .65rem .85rem; background: #30333e; color: #f3f4f6; cursor: pointer; min-height: 44px; }
+.tcg-page button:hover:not(:disabled) { border-color: #eac671; background: #3a3e4b; }
+.tcg-page button:disabled { opacity: .5; cursor: default; }
+.tcg-page :focus-visible { outline: 3px solid var(--link-unvisited); outline-offset: 4px; }
+.tcg-page .tcg-primary { background: #eac671; color: #171820; font-weight: 750; border-color: #eac671; }
+.tcg-page .tcg-primary:hover:not(:disabled) { background: #f6d990; }
+.tcg-setup { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; align-items: end; }
+.tcg-muted { color: #b1b6c4; font-size: .83rem; }
+.tcg-order-description { margin: .45rem 0 0; }
+.tcg-row,.tcg-run-header,.tcg-saved { display: flex; justify-content: space-between; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.tcg-actions { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; }
+.tcg-status { overflow-wrap: anywhere; font-size: .88rem; color: #c9e7c1; }
+.tcg-status:not(:empty) { padding: .75rem 0; }
+.tcg-error { background: #472c31; color: #ffd2d2; padding: 1rem; border-radius: 6px; }
+.tcg-opening { background: radial-gradient(ellipse at top, #303248, #202129 70%); }
+.tcg-reveal-stage { display: grid; justify-items: center; gap: 1.2rem; padding: 1.5rem 0 2rem; }
+.tcg-page .tcg-card-back { display: flex; flex-direction: column; align-items: center; gap: .8rem; width: 220px; padding: 0; border: 0; background: transparent; transition: transform .2s; }
+.tcg-page .tcg-card-back img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 16px 35px #0006; }
+.tcg-page .tcg-card-back:hover:not(:disabled) { transform: translateY(-5px) rotate(-1deg); background: transparent; }
+.tcg-reveal-label { display: grid; gap: .4rem; text-align: center; }
+.tcg-reveal-label strong { color: #eac671; }
+.tcg-wrapper-preview,.tcg-sealed-pack { display: grid; justify-items: center; gap: 1rem; margin: 1.5rem auto; text-align: center; }
+.tcg-wrapper-preview img { object-fit: contain; max-height: 200px; width: auto; }
+.tcg-page .tcg-wrapper-button { padding: 0; border: 0; background: transparent; transition: transform .2s; }
+.tcg-page .tcg-wrapper-button:hover:not(:disabled) { background: transparent; transform: translateY(-5px); }
+.tcg-wrapper-button img { display: block; object-fit: contain; width: auto; max-width: 220px; height: 340px; filter: drop-shadow(0 12px 15px #0006); }
+.tcg-wrapper-preview figcaption,.tcg-sealed-pack figcaption { font-size: .78rem; color: #c6cbd6; }
+.tcg-order-controls { display: flex; flex-wrap: wrap; align-items: start; gap: 1rem 2rem; padding-bottom: 1.3rem; margin-bottom: 1.3rem; border-bottom: 1px solid #454958; }
+.tcg-order-controls details { flex: 1; min-width: 200px; font-size: .8rem; }
+.tcg-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+.tcg-pack-grid { grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); align-items: start; gap: .8rem; }
+.tcg-pack-slot { min-width: 0; }
+.tcg-pack-grid .tcg-card-back { width: 100%; gap: 0; border: 1px solid #eac671; border-radius: 9px; overflow: hidden; box-shadow: 0 0 12px #eac67125; }
+.tcg-pack-grid .tcg-card-back img { border-radius: 0; box-shadow: none; aspect-ratio: 245 / 342; object-fit: contain; }
+.tcg-pack-grid .tcg-card-back:disabled { opacity: .55; filter: grayscale(.75); border-color: #454958; box-shadow: none; }
+.tcg-pack-grid .tcg-reveal-label { padding: .65rem .35rem; color: #eac671; font-size: .78rem; }
+.tcg-card-details > summary { padding: .65rem .45rem; font-size: .78rem; font-weight: 650; overflow-wrap: anywhere; }
+.tcg-pack-grid .tcg-card { animation: tcg-flip .25s ease-out; }
+@keyframes tcg-flip { from { transform: perspective(700px) rotateY(-75deg); opacity: .5; } to { transform: perspective(700px) rotateY(0); opacity: 1; } }
+.tcg-card { background: #181920; border: 1px solid #454958; border-radius: 9px; overflow: hidden; animation: tcg-reveal .25s ease-out; min-width: 0; }
+.tcg-special { border-color: #eac671; box-shadow: 0 0 14px #eac67125; }
+.tcg-art { display: block; width: 100%; aspect-ratio: 245 / 342; object-fit: contain; }
+.tcg-image-wrap { position: relative; }
+.tcg-image-loading { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; font-size: .75rem; padding: .5rem; background: #252b3c; }
+.tcg-image-fallback { display: grid; place-content: center; text-align: center; background: #2b3245; }
+.tcg-card-body { padding: .8rem; }
+.tcg-card h3 { font-size: 1rem; margin: .35rem 0; }
+.tcg-card small,.tcg-category { font-size: .7rem; color: #c4c8d3; }
+.tcg-card-actions { display: grid; gap: .4rem; margin-top: .7rem; }
+.tcg-page .tcg-text-button { color: var(--link-unvisited); background: transparent; border-color: transparent; }
+.tcg-reward { font-size: .78rem; line-height: 1.5; }
+.tcg-card details { font-size: .75rem; }
+.tcg-page summary { cursor: pointer; padding: .5rem 0; }
+.tcg-tm-list { max-height: 180px; overflow: auto; padding-left: 1rem; }
+.tcg-team { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .65rem; }
+.tcg-team-slot { background: #181920; border: 1px dashed #626779; border-radius: 8px; min-height: 170px; padding: .75rem .45rem; display: flex; flex-direction: column; align-items: center; gap: .55rem; text-align: center; }
+.tcg-team-slot h3 { font-size: .85rem; margin: 0; }
+.tcg-team-slot small,.tcg-team-slot a { font-size: .7rem; }
+.tcg-team-slot button { font-size: .73rem; width: 100%; padding: .4rem; }
+.tcg-team-slot img { object-fit: contain; }
+.tcg-types { display: flex; gap: .3rem; flex-wrap: wrap; justify-content: center; }
+.tcg-empty-slot { font-size: 2rem; color: #949bae; margin-top: 2rem; }
+.tcg-info-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.tcg-info-columns ul { max-height: 330px; overflow: auto; padding-left: 1.4rem; }
+.tcg-saved { border-top: 1px solid #454958; padding: 1rem 0; }
+.tcg-saved p { font-size: .8rem; }
+.tcg-help { max-width: 850px; margin: 2.5rem auto 0; font-size: .9rem; line-height: 1.75; }
+.tcg-summary { color: #eac671; }
+@keyframes tcg-reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 900px) { .tcg-team { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 540px) { .tcg-page { padding: 1rem .7rem 3rem; } .tcg-panel { padding: 1rem; } .tcg-setup,.tcg-info-columns { grid-template-columns: 1fr; } .tcg-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; } .tcg-card-body { padding: .55rem; } .tcg-card-actions button { padding: .5rem .2rem; font-size: .72rem; } .tcg-team { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { .tcg-page *, .tcg-page *::after { animation: none !important; transition: none !important; } .tcg-page .tcg-card-back:hover,.tcg-page .tcg-wrapper-button:hover { transform: none; } }

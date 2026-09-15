@@ -4,6 +4,11 @@ import { toolsSeo } from "../seo/seoConfig";
 
 const tools = [
   {
+    title: "Pokémon Card Challenge",
+    path: "/tcg-challenge",
+    description: "Open vintage virtual booster packs and build a seeded Pokémon videogame challenge team."
+  },
+  {
     title: "Team Builder",
     path: "/team-coverage",
     description:

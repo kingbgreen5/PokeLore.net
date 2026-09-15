@@ -1,0 +1,34 @@
+import { chromium } from 'playwright';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const browser = await chromium.launch({headless:true});
+try {
+ const page = await browser.newPage();
+ const errors=[]; page.on('pageerror',e=>errors.push(e.message));
+ const key='pokelore:tcg-challenges:v1';
+ const save=()=>page.evaluate(k=>JSON.parse(localStorage.getItem(k))[0],key);
+ await page.goto('http://127.0.0.1:5187/tcg-challenge?game=crystal&set=neo1&seed=73A9A788&order=rare-last-v1');
+ await page.getByLabel('Reveal order').waitFor();
+ assert.deepEqual(await page.getByLabel('Reveal order').locator('option').allTextContents(),['Suggested','Original Order']);
+ assert.equal(await page.getByLabel('Reveal order').inputValue(),'suggested-v1');
+ await page.getByRole('button',{name:'Start Challenge',exact:true}).click();
+ await page.getByRole('button',{name:'Open Pack',exact:true}).click();
+ const first=(await save()).packs[0].cards;
+ const data=JSON.parse(fs.readFileSync('public/data/tcg/v1/neo1.json'));
+ assert.ok(first.slice(0,2).every(c=>data.cards.find(x=>x.id===c.id).category==='Pokemon'));
+ assert.ok(['rare','holo','secret','shining'].includes(first.at(-1).pool));
+ await page.getByRole('button',{name:'Reveal card 1 of 11',exact:true}).click();
+ await page.getByLabel('Reveal order for next pack').selectOption('historical-v1');
+ await page.reload();
+ await page.getByRole('button',{name:'Resume',exact:true}).click();
+ await page.getByRole('button',{name:'Reveal card 2 of 11',exact:true}).waitFor();
+ assert.deepEqual((await save()).packs[0].cards,first);
+ await page.getByRole('button',{name:'Reveal all',exact:true}).click();
+ await page.getByRole('button',{name:'Open next pack',exact:true}).click();
+ assert.equal((await save()).packs[1].cards[0].pool,'energy');
+ assert.equal((await save()).packs[1].order,'historical-v1');
+ await page.setViewportSize({width:390,height:844});
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ assert.deepEqual(errors,[]);
+ console.log('Suggested browser checks passed: two options, retired URL migration, Pokemon first, rare last, partial resume, mode switching, mobile.');
+} finally { await browser.close(); }

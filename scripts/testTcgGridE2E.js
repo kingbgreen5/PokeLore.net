@@ -1,0 +1,35 @@
+import { chromium } from 'playwright';
+import assert from 'node:assert/strict';
+const browser=await chromium.launch({headless:true});
+try {
+ const page=await browser.newPage({viewport:{width:1365,height:1000}});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.route('https://assets.tcgdex.net/**',route=>route.abort());
+ await page.route('https://images.pokemontcg.io/**',route=>route.abort());
+ await page.goto('http://127.0.0.1:5187/tcg-challenge?game=crystal&set=neo1&seed=73A9A788&order=suggested-v1');
+ await page.getByRole('button',{name:'Start Challenge',exact:true}).click();
+ await page.getByRole('button',{name:'Open Pack',exact:true}).click();
+ const card=i=>page.getByRole('button',{name:`Reveal card ${i} of 11`,exact:true});
+ assert.equal(await page.locator('.tcg-pack-slot').count(),11);
+ assert.equal(await card(1).isEnabled(),true);assert.equal(await card(2).isEnabled(),true);
+ assert.equal(await card(3).isDisabled(),true);
+ await card(2).click();assert.equal(await card(3).isDisabled(),true);
+ await page.reload();await page.getByRole('button',{name:'Resume',exact:true}).click();
+ await card(1).waitFor();assert.equal(await page.locator('.tcg-pack-slot').nth(1).locator('article').count(),1);
+ await card(1).click();assert.equal(await card(3).isEnabled(),true);assert.equal(await card(4).isDisabled(),true);
+ await page.locator('.tcg-pack-grid').scrollIntoViewIfNeeded();
+ await page.locator('.tcg-image-fallback').first().waitFor();
+ await page.screenshot({path:'.tmp-tcg/grid-desktop.png'});
+ await page.locator('.tcg-card-details summary').first().click();
+ await page.getByRole('button',{name:/^Add /}).first().click();
+ await page.locator('.tcg-card-details summary').first().click();
+ await page.setViewportSize({width:390,height:844});
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ await page.locator('.tcg-pack-grid').scrollIntoViewIfNeeded();
+ await page.screenshot({path:'.tmp-tcg/grid-mobile.png'});
+ for(let i=3;i<=11;i++) await card(i).click();
+ assert.equal(await page.getByRole('button',{name:'Open next pack',exact:true}).isEnabled(),true);
+ assert.equal(await page.locator('.tcg-pack-grid article').count(),11);
+ assert.deepEqual(errors,[]);
+ console.log('Pack grid passed: gating, second-first save/resume, in-place reveal, team actions, mobile, completion.');
+} finally {await browser.close();}
