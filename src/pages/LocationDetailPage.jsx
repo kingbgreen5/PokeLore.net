@@ -15,7 +15,7 @@ import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import useQueryParamState from "../hooks/useQueryParamState";
 import Seo from "../seo/Seo";
 import { locationSeo } from "../seo/seoConfig";
-import { readJsonFile } from "../utils/readJsonFile";
+import { loadLocationData } from "../utils/locationData";
 import { normalizeDisplayText } from "../utils/normalizeText";
 import {
   compareVersions,
@@ -962,25 +962,19 @@ function LocationItemsSection({
   );
 }
 
-function LocationDetailPage() {
+// Key the state to the URL so navigation cannot expose the previous location.
+function LocationDetailPage({ initialData } = {}) {
   const { locationName } = useParams();
+  const embedded = initialData ?? (typeof window !== "undefined" ? window.__POKELORE_LOCATION__ : null);
+  return <LocationDetailContent key={locationName} initialData={embedded?.location?.name === locationName ? embedded : null} />;
+}
 
-  const [location, setLocation] =
-    useState(null);
-  const [locationItems, setLocationItems] =
-    useState(null);
-  const [
-    pokemonDetailsById,
-    setPokemonDetailsById
-  ] = useState({});
-  const [oaksNotes, setOaksNotes] =
-    useState(null);
-  const [
-    pokemonGoNotes,
-    setPokemonGoNotes
-  ] = useState(null);
-  const [loading, setLoading] =
-    useState(true);
+function LocationDetailContent({ initialData }) {
+  const { locationName } = useParams();
+  const [data, setData] = useState(initialData);
+  const [status, setStatus] = useState(initialData ? "ready" : "loading");
+  const [retry, setRetry] = useState(0);
+  const { location = null, locationItems = null, pokemonDetailsById = {}, oaksNotes = null, pokemonGoNotes = null } = data ?? {};
   const [
     expandedSections,
     setExpandedSections
@@ -996,90 +990,19 @@ function LocationDetailPage() {
     );
 
   useEffect(() => {
-    async function loadLocation() {
-      try {
-        setLoading(true);
-
-        const [
-          data,
-          itemData,
-          oaksNotesData,
-          pokemonGoNotesData
-        ] = await Promise.all([
-          readJsonFile(
-            `/data/locations/${locationName}.json`,
-            {
-              required: true
-            }
-          ),
-          readJsonFile(
-            `/data/locationItems/${locationName}.json`
-          ),
-          readJsonFile(
-            `/data/oaksNotes/locations/${locationName}.json`
-          ),
-          readJsonFile(
-            `/data/pokemonGo/locations/${locationName}.json`
-          )
-        ]);
-
-        let nextPokemonDetailsById = {};
-
-        if (
-          data?.name === FRIEND_SAFARI_LOCATION_NAME
-        ) {
-          const pokemonIds = Array.from(
-            new Set(
-              data.areas.flatMap(area =>
-                area.pokemonEncounters.map(
-                  encounter =>
-                    encounter.pokemon.id
-                )
-              )
-            )
-          );
-          const pokemonDetails =
-            await Promise.all(
-              pokemonIds.map(async id => [
-                id,
-                await readJsonFile(
-                  `/data/pokemonData/${id}.json`
-                )
-              ])
-            );
-
-          nextPokemonDetailsById =
-            Object.fromEntries(
-              pokemonDetails.filter(
-                ([, pokemon]) => pokemon
-              )
-            );
-        }
-
-        setLocation(data);
-        setLocationItems(itemData);
-        setPokemonDetailsById(
-          nextPokemonDetailsById
-        );
-        setOaksNotes(oaksNotesData);
-        setPokemonGoNotes(pokemonGoNotesData);
-      } catch (error) {
-        console.error(
-          "Failed to load location:",
-          error
-        );
-        setLocation(null);
-        setLocationItems(null);
-        setPokemonDetailsById({});
-        setOaksNotes(null);
-        setPokemonGoNotes(null);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadLocation();
-  }, [locationName]);
+    if (initialData && retry === 0) return;
+    let cancelled = false;
+    loadLocationData(locationName).then(result => {
+      if (cancelled) return;
+      setData(result);
+      setStatus(result ? "ready" : "not-found");
+    }).catch(error => {
+      if (cancelled) return;
+      console.error("Failed to load location:", error);
+      setStatus("unavailable");
+    });
+    return () => { cancelled = true; };
+  }, [locationName, initialData, retry]);
 
   const versions = useMemo(() => {
     if (!location) return [];
@@ -1172,29 +1095,17 @@ function LocationDetailPage() {
     });
   }
 
-  if (loading) {
-    return (
-      <>
-        <Seo {...locationSeo(locationName)} />
-        <p>Loading...</p>
-      </>
-    );
-  }
-
-  if (!location) {
-    return (
-      <div
-        style={{
-          padding: "2rem"
-        }}
-      >
-        <Seo {...locationSeo(locationName)} />
-        <h1>Location not found</h1>
-        <Link to="/locations">
-          Back To Locations
-        </Link>
-      </div>
-    );
+  if (status !== "ready") {
+    const missing = status === "not-found";
+    const unavailable = status === "unavailable";
+    const heading = missing ? "Location not found" : unavailable ? "Location temporarily unavailable" : "Loading location";
+    return <main style={{ padding: "2rem" }}>
+      <Seo title={`${heading} | PokéLore`} description={unavailable ? "Location details are temporarily unavailable. Please try again." : `${heading}.`}
+        canonicalAction="remove" robots={missing ? "noindex, follow" : "max-image-preview:large"} />
+      <h1>{heading}</h1>
+      {unavailable && <button onClick={() => { setStatus("loading"); setRetry(value => value + 1); }}>Try again</button>}
+      <Link to="/locations">Back To Locations</Link>
+    </main>;
   }
 
   return (
@@ -1205,19 +1116,22 @@ function LocationDetailPage() {
         padding: "2rem"
       }}
     >
-      <Seo {...locationSeo(location)} />
+      <Seo {...locationSeo(location, locationItems)} />
 
       <Link to="/locations">
         Back To Locations
       </Link>
 
       <h1>{location.displayName}</h1>
+      <p>{locationSeo(location, locationItems).description}</p>
 
       <p>
-        {location.region.displayName}
+        {location.region?.displayName}
         {" · "}
         {location.areas.length} areas
       </p>
+
+      {location.gameIndices?.length > 0 && <p>Generations: {[...new Set(location.gameIndices.map(entry => capitalize(entry.generation)))].join(", ")}</p>}
 
       <JumpLink
         targetId={POKEMON_ENCOUNTERS_SECTION_ID}

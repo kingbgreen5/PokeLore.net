@@ -49,12 +49,8 @@ function setMetaProperty(property, content) {
 }
 
 function removeMeta(attribute, key) {
-  const element =
-    document.head.querySelector(
-      `meta[${attribute}="${key}"]`
-    );
-
-  element?.remove();
+  document.head.querySelectorAll(`meta[${attribute}="${key}"]`)
+    .forEach(element => element.remove());
 }
 
 function setCanonical(href) {

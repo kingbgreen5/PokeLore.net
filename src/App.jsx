@@ -1,3 +1,4 @@
+import Seo from "./seo/Seo";
 
 import {
   lazy,
@@ -181,6 +182,13 @@ const OgItemPreview = lazy(() =>
 );
 
 function RouteLoadingFallback() {
+  const { pathname } = useLocation();
+  if (pathname.startsWith("/location/")) {
+    return <main aria-label="Loading location">
+      <Seo title="Loading location | PokéLore" description="Loading location details." canonicalAction="remove" robots="max-image-preview:large" />
+      <p>Loading location...</p>
+    </main>;
+  }
   return (
     <main
       aria-label="Loading page"

@@ -7,7 +7,7 @@
     "dev": "vite",
     "prebuild": "npm run normalize:entries && npm run build:item-locations && npm run generate:tm-materials && npm run generate:location-items && npm run generate:pokemon-held-items && npm run generate:type-abilities && npm run generate:pokemon-routes && npm run generate:ev-training-routes && npm run generate:pokelore-links && npm run generate:team-coverage && npm run generate:topics && npm run generate:sitemap && npm run generate:tcg-rewards",
     "build": "vite build",
-    "postbuild": "npm run prerender:pokemon && npm run finalize:pokemon-prerender-routes && npm run prerender:items && npm run finalize:item-prerender-routes && npm run prerender:team-coverage && npm run prerender:ev-training-routes && npm run prerender:tcg-challenge && npm run prerender:homepage",
+    "postbuild": "npm run prerender:pokemon && npm run finalize:pokemon-prerender-routes && npm run prerender:items && npm run finalize:item-prerender-routes && npm run prerender:team-coverage && npm run prerender:ev-training-routes && npm run prerender:tcg-challenge && npm run prerender:locations && npm run finalize:location-prerender-routes && npm run prerender:homepage",
     "prerender:pokemon": "node scripts/prerenderPokemonPages.js",
     "prerender:items": "node scripts/prerenderItemPages.js",
     "prerender:team-coverage": "node scripts/prerenderTeamCoveragePage.js",
@@ -58,7 +58,10 @@
     "prerender:tcg-challenge": "node scripts/prerenderTcgChallengePage.js",
     "generate:tcg-rewards": "node scripts/generateTcgRewards.js",
     "test:tcg:e2e": "node scripts/testTcgChallengeE2E.js",
-    "import:tcg-artwork": "node scripts/importTcgArtwork.js"
+    "import:tcg-artwork": "node scripts/importTcgArtwork.js",
+    "prerender:locations": "node scripts/prerenderLocationPages.js",
+    "finalize:location-prerender-routes": "node scripts/finalizeLocationPrerenderRoutes.js",
+    "test:location:e2e": "node scripts/testLocationBuildE2E.js"
   },
   "dependencies": {
     "axios": "^1.16.0",

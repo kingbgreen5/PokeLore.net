@@ -5,6 +5,9 @@ services:
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
     headers:
+      - path: /location/*
+        name: Content-Type
+        value: text/html; charset=utf-8
       - path: /pokemon/*
         name: Content-Type
         value: text/html; charset=utf-8
@@ -23,6 +26,11 @@ services:
       - type: rewrite
         source: /item/*
         destination: /item-fallback.html
+      # Valid location URLs are exact extensionless files, served before rewrites.
+      # Unknown URLs receive neutral metadata until React confirms the lookup.
+      - type: rewrite
+        source: /location/*
+        destination: /location-fallback.html
       - type: rewrite
         source: /*
         destination: /index.html

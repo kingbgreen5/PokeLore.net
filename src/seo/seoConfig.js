@@ -621,25 +621,23 @@ export function topicSeo(topic) {
   };
 }
 
-export function locationSeo(location) {
-  const slug =
-    typeof location === "string"
-      ? location
-      : location?.name;
-  const name =
-    typeof location === "string"
-      ? formatName(location)
-      : location?.displayName ??
-        formatName(location?.name);
-  const region =
-    typeof location === "string"
-      ? null
-      : location?.region?.displayName;
-
+export function locationSeo(location, locationItems) {
+  const slug = typeof location === "string" ? location : location?.name;
+  const name = typeof location === "string" ? formatName(location) : location?.displayName ?? formatName(slug);
+  const region = location?.region?.displayName;
+  const hasEncounters = location?.areas?.some(area => area.pokemonEncounters?.length > 0);
+  const hasItems = locationItems?.items?.length > 0;
+  const content = [hasItems && "Items", hasEncounters && "Pokémon"].filter(Boolean);
+  const versions = [...new Set([
+    ...(location?.areas ?? []).flatMap(area => area.pokemonEncounters.flatMap(entry => entry.versions.map(version => formatName(version.version)))),
+    ...(locationItems?.items ?? []).flatMap(item => item.versions.map(version => version.version))
+  ])];
+  const context = [hasItems && "item locations and acquisition details", hasEncounters && "Pokémon encounters by area, version, method and level"].filter(Boolean);
   return {
-    title: `${name} Pokémon Encounters | ${SITE_NAME}`,
-    description: `View Pokémon encounters in ${name}${region ? ` in ${region}` : ""}, grouped by area, version, encounter method, level range, and chance.`,
-    canonical: pageUrl(`/location/${slug}`)
+    title: `${name} Guide${content.length ? `, ${content.join(" & ")}` : ""} | ${SITE_NAME}`,
+    description: `${name}${region ? ` in ${region}` : ""}. ${context.length ? `Explore ${context.join(" and ")}.` : "View available location and game data."}${versions.length > 0 && versions.length <= 4 ? ` Games: ${versions.join(", ")}.` : ""}`,
+    canonical: pageUrl(`/location/${slug}`),
+    robots: "max-image-preview:large"
   };
 }
 
