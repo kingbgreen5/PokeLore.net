@@ -6,6 +6,23 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 const root=path.resolve('dist');
+const renderYaml = await fs.readFile('render.yaml', 'utf8');
+const headerRules = [...renderYaml.matchAll(/- path: (\/\S+)\s+name: Content-Type\s+value: ([^\r\n]+)/g)]
+  .map(([, pattern, value]) => ({ prefix: pattern.replace(/\*$/, ''), value: value.trim() }));
+const mimeTypes = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp' };
+function contentType(file, pathname, rules = headerRules) {
+  return rules.find(rule => pathname.startsWith(rule.prefix))?.value
+    ?? mimeTypes[path.extname(file)] ?? 'application/octet-stream';
+}
+// Without the host rule, extensionless HTML is binary even when its body is correct.
+assert.equal(contentType('dist/location/pokeathlon-dome', '/location/pokeathlon-dome', []), 'application/octet-stream');
+for (const namespace of ['location', 'pokemon', 'item']) {
+  const files = await fs.readdir(path.join(root, namespace), { withFileTypes: true });
+  for (const file of files) {
+    assert(file.isFile() && !path.extname(file.name), `Non-document resource under /${namespace}/: ${file.name}`);
+    assert.match((await fs.readFile(path.join(root, namespace, file.name), 'utf8')).slice(0, 200), /<!doctype html>/i);
+  }
+}
 const server=http.createServer(async(req,res)=>{
   try {
     const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
@@ -14,7 +31,7 @@ const server=http.createServer(async(req,res)=>{
     let stat=await fs.stat(file).catch(()=>null);
     if(stat?.isDirectory()){file=path.join(file,'index.html');stat=await fs.stat(file).catch(()=>null);}
     if(!stat?.isFile()) file=path.join(root,pathname.startsWith('/location/')?'location-fallback.html':pathname.startsWith('/item/')?'item-fallback.html':'index.html');
-    const type={'.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp'}[path.extname(file)]??'text/html; charset=utf-8';
+    const type=contentType(file, pathname);
     res.writeHead(200,{'Content-Type':type});res.end(await fs.readFile(file));
   }catch(error){res.writeHead(500).end(String(error));}
 });
@@ -22,6 +39,22 @@ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 const base=`http://127.0.0.1:${server.address().port}`;
 let browser;
 try {
+  const assets = await fs.readdir(path.join(root, 'assets'));
+  const imageDir = path.join(root, 'assets/type-badges');
+  const image = (await fs.readdir(imageDir)).find(file => file.endsWith('.png'));
+  const checks = [
+    ['/', 'text/html'], ['/pokemon/pikachu', 'text/html'],
+    ['/assets/' + assets.find(file => file.endsWith('.css')), 'text/css'],
+    ['/assets/' + assets.find(file => file.endsWith('.js')), 'text/javascript'],
+    ['/data/locations/pokeathlon-dome.json', 'application/json'],
+    ['/assets/type-badges/' + image, 'image/png']
+  ];
+  for (const [pathname, expected] of checks) {
+    const response = await fetch(base + pathname, { method: 'HEAD' });
+    assert.equal(response.status, 200);
+    assert(response.headers.get('content-type').startsWith(expected), pathname);
+    console.log(`MIME regression: ${pathname} -> ${response.headers.get('content-type')}`);
+  }
   browser=await chromium.launch();
   const noJs=await browser.newContext({javaScriptEnabled:false});
   await noJs.route('**/*',route=>route.request().url().startsWith(base)?route.continue():route.abort());

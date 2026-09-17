@@ -1127,17 +1127,26 @@ function LocationDetailContent({ initialData }) {
 
       <p>
         {location.region?.displayName}
-        {" · "}
-        {location.areas.length} areas
       </p>
 
-      {location.gameIndices?.length > 0 && <p>Generations: {[...new Set(location.gameIndices.map(entry => capitalize(entry.generation)))].join(", ")}</p>}
+      {location.gameIndices?.length > 0 && (
+        <p>
+          Generations: {[...new Set(location.gameIndices.map(entry =>
+            capitalize(entry.generation).replace(
+              /\b[ivxlcdm]+$/i,
+              numeral => numeral.toUpperCase()
+            )
+          ))].join(", ")}
+        </p>
+      )}
 
-      <JumpLink
-        targetId={POKEMON_ENCOUNTERS_SECTION_ID}
-      >
-        Pokemon Encounters
-      </JumpLink>
+      {encounterCount > 0 && (
+        <JumpLink
+          targetId={POKEMON_ENCOUNTERS_SECTION_ID}
+        >
+          Pokemon Encounters
+        </JumpLink>
+      )}
 
       <LocationItemsSection
         expanded={itemsExpanded}

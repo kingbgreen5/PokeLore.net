@@ -4,6 +4,9 @@ services:
     runtime: static
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
+    # These rules must also be applied to the live static site (Blueprint sync
+    # or Dashboard > Headers). A code-only deploy does not sync service settings.
+    # /location/, /pokemon/ and /item/ are document-only output namespaces.
     headers:
       - path: /location/*
         name: Content-Type

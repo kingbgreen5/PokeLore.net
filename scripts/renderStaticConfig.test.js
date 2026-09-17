@@ -25,11 +25,17 @@ function headerRuleFor(pathPattern) {
 }
 
 describe("Render static config", () => {
-  it("serves extensionless Pokemon and item pages as HTML", () => {
+  it("serves extensionless location, Pokemon and item pages as HTML", () => {
+    expect(headerRuleFor("/location/*")).toBe(true);
     expect(headerRuleFor("/pokemon/*")).toBe(
       true
     );
     expect(headerRuleFor("/item/*")).toBe(true);
+  });
+
+  it("does not override MIME types outside document namespaces", () => {
+    const paths = [...renderYaml.matchAll(/- path: (\S+)\s+name: Content-Type/g)].map(match => match[1]);
+    expect(paths).toEqual(["/location/*", "/pokemon/*", "/item/*"]);
   });
 
   it("routes unknown item URLs to the real neutral item fallback before the global SPA fallback", () => {

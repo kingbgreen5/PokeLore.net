@@ -37,3 +37,32 @@ Verified in this change:
 - ESLint on all changed JavaScript/JSX files and `git diff --check`: passed.
 - Existing unrelated checks needing follow-up: after sitemap generation, `test:data` rejects `/tcg-challenge` because the validator omits that existing route; the general browser smoke test stops on its homepage “all types” expectation. Neither check was weakened for this change.
 - Build-generated timestamp/sitemap churn was removed from tracked source data. The generated `dist` output remains available for inspection.
+
+## Extensionless HTML MIME configuration
+
+The `/location/*` Content-Type rule is already declared in `render.yaml`, matching the working Pokémon rule:
+
+```yaml
+- path: /location/*
+  name: Content-Type
+  value: text/html; charset=utf-8
+```
+
+This must be applied to the **live static service**, not just present in the repository. For a Blueprint-managed service, sync its Blueprint and verify the Headers settings. Otherwise open the existing PokéLore static site in Render Dashboard → Headers and add/save exactly the rule above. Leave existing Pokémon/item headers and rewrite rules intact. Do not create a new service, redirect canonical URLs, or change prerender output to address MIME types.
+
+During diagnosis, live HEAD and GET requests showed location pages returning HTTP 200 with `Content-Type: binary/octet-stream` and `X-Content-Type-Options: nosniff`, even though their bodies contained the correct title, canonical, shop and game content. Pikachu already returned `text/html; charset=utf-8`. The user then added and saved the missing location header in the live Render Headers settings. Immediately afterward, both HEAD and GET returned `text/html; charset=utf-8`, and the production page rendered normally in the browser. Rebuilding HTML alone would not have corrected the unapplied host header rule.
+
+`/location/` contains only finalized HTML documents. JSON is under `/data/`, and bundled CSS/JS/images are under `/assets/` or other separate asset paths. The build E2E check now audits the document namespaces, defaults unknown extensions to binary, and applies the actual header rules read from `render.yaml`. Previously that test server assigned HTML to every unknown extension, which masked missing MIME configuration. It also checks the homepage, Pikachu, CSS, JS, JSON and PNG response types.
+
+After saving/syncing the live header, run:
+
+```sh
+curl -I https://pokelore.net/location/pokeathlon-dome
+curl -I https://pokelore.net/pokemon/pikachu
+```
+
+Both must return 200 and an HTML Content-Type. Repeat for another route, city and cave, then open the location URL in a normal browser and confirm it renders rather than downloads. If a cached binary response remains, recheck after cache expiry or use Render's supported cache-clear/redeploy action. Verify raw HTML still includes the location-specific title, canonical, Athlete Shop, HeartGold and SoulSilver.
+
+Render references: https://render.com/docs/static-site-headers and https://render.com/docs/blueprint-spec#headers
+
+Production verification after saving the header: Pokéathlon Dome, Kanto Route 2, Goldenrod City, Mt. Moon and Friend Safari returned HTTP 200 HTML. Pikachu and the homepage remained HTML; CSS, JavaScript, JSON and PNG retained their proper MIME types. The raw Pokéathlon Dome response retained its exact title, canonical and shop/game content. No prerender, canonical URL, or rewrite changes were necessary.
