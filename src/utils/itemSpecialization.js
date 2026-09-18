@@ -78,12 +78,26 @@ export function buildItemSpecializedSections({ item, pokemonIndex = [], fossilCh
   }
   const ev = evItemRules[item.name];
   if (ev) {
-    const rows = item.name === "macho-brace" ? [
-      [text(`Battle EVs: ${ev.evMultiplier}× the holder's normal gain.`)],
-      [text(`Games: ${ev.scope.label}.`)]
-    ] : ev.rules.map(r => [text(`${r.label}: +${r.bonusEVs} ${ev.stat} EVs whenever the holder earns EVs from battle.`)]);
-    rows.push([text(`While held in battle, Speed is reduced to ${ev.speedMultiplier * 100}% of its normal value.`)]);
-    rows.push([{ text: "EV training routes", href: "/ev-training-routes" }]);
+    const isMachoBrace = item.name === "macho-brace";
+    const rows = [
+      [
+        text(isMachoBrace
+          ? "The Macho Brace doubles the EVs the holder earns from battle."
+          : `The ${item.displayName} grants additional ${ev.stat} EVs whenever the holder earns EVs from battle.`),
+        { break: true },
+        text(`While held in battle, it also reduces the holder's Speed to ${ev.speedMultiplier * 100}% of its normal value.`)
+      ]
+    ];
+    if (isMachoBrace) {
+      rows.push([{ text: "Applies in:", strong: true }, { break: true }, text(`${ev.scope.label}.`)]);
+    } else {
+      rows.push(...ev.rules.map(r => [
+        { text: `+${r.bonusEVs} ${ev.stat} EVs`, strong: true },
+        { break: true },
+        text(`Applies in: ${r.label}.`)
+      ]));
+    }
+    rows.push([{ text: "EV Training Routes →", href: "/ev-training-routes" }]);
     sections.push({ id: "ev-training-effect", title: item.name === "macho-brace" ? "How the Macho Brace Works" : `${item.displayName} EV Effect`, rows });
   }
   if (item.category?.name === "mulch") {
