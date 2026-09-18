@@ -12,6 +12,9 @@ import {
 import AcquisitionMethods from "../components/AcquisitionMethods";
 import BerryDetails from "../components/items/BerryDetails";
 import TmMoveDetails from "../components/items/TmMoveDetails";
+import ItemSpecializedSections from "../components/items/ItemSpecializedSections.js";
+import { buildItemSpecializedSections } from "../utils/itemSpecialization.js";
+import { fossilChainIds } from "../data/itemSpecializationRules.js";
 import OaksNotes from "../components/OaksNotes";
 import PokemonGoNotes from "../components/PokemonGoNotes";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
@@ -409,6 +412,9 @@ function ItemDetailPage() {
     useState(
       () => prerenderItemData?.berryData ?? null
     );
+  const [specializedSections, setSpecializedSections] = useState(
+    () => prerenderItemData?.specializedSections ?? []
+  );
 
   const [loading, setLoading] =
     useState(
@@ -498,7 +504,9 @@ function ItemDetailPage() {
           pokemonGoNotesData,
           relatedLinksData,
           berryDetailData,
-          tmMaterialDetailsData
+          tmMaterialDetailsData,
+          fossilChain,
+          itemsIndexData
         ] = await Promise.all([
           readJsonFile(
             "/data/pokemonIndex.json"
@@ -525,7 +533,13 @@ function ItemDetailPage() {
             ? readJsonFile(
                 "/data/tmMaterialDetails.json"
               )
-            : Promise.resolve(null)
+            : Promise.resolve(null),
+          fossilChainIds[itemData.name]
+            ? readJsonFile(`/data/evolutionChains/${fossilChainIds[itemData.name]}.json`)
+            : Promise.resolve(null),
+          itemData.category?.name === "mulch"
+            ? readJsonFile("/data/itemsIndex.json")
+            : Promise.resolve([])
         ]);
 
         if (!isActive) {
@@ -549,6 +563,12 @@ function ItemDetailPage() {
         setPokemonGoNotes(pokemonGoNotesData);
         setRelatedLinks(relatedLinksData);
         setBerryData(berryDetailData);
+        setSpecializedSections(buildItemSpecializedSections({
+          item: itemData,
+          pokemonIndex: Array.isArray(pokemonIndexData) ? pokemonIndexData : [],
+          fossilChain,
+          itemsIndex: Array.isArray(itemsIndexData) ? itemsIndexData : []
+        }));
         setLoadStatus("loaded");
       } catch (error) {
         if (!isActive) {
@@ -667,13 +687,14 @@ function ItemDetailPage() {
     item?.category?.pocket === "berries";
   const effectText =
     machineItemDescription ?? item?.effect;
+  const hasEvModule = specializedSections.some(section => section.id === "ev-training-effect");
   const showEffect =
     effectText &&
-    !isBerryItem;
+    !isBerryItem && !hasEvModule;
   const showShortEffect =
     item?.shortEffect &&
     !machineItemDescription &&
-    !isBerryItem;
+    !isBerryItem && !hasEvModule;
   const usableFlavorTextEntries =
     item?.flavorTextEntries?.filter(entry =>
       isUsableFlavorText(entry.text)
@@ -827,6 +848,8 @@ function ItemDetailPage() {
       )}
 
       <TmMoveDetails item={item} />
+
+      <ItemSpecializedSections sections={specializedSections} />
 
       <AcquisitionMethods
         key={item.name}

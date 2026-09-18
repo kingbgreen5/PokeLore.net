@@ -1,6 +1,11 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import ItemSpecializedSections from "../src/components/items/ItemSpecializedSections.js";
+import { buildItemSpecializedSections } from "../src/utils/itemSpecialization.js";
+import { fossilChainIds } from "../src/data/itemSpecializationRules.js";
 import {
   itemSeo,
   unresolvedItemSeo
@@ -261,6 +266,16 @@ function loadItemPageData(
 
   return {
     item,
+    specializedSections: buildItemSpecializedSections({
+      item,
+      pokemonIndex,
+      fossilChain: fossilChainIds[slug]
+        ? readJsonIfExists(path.join(dataDir, "evolutionChains", `${fossilChainIds[slug]}.json`))
+        : null,
+      itemsIndex: item.category?.name === "mulch"
+        ? readJsonIfExists(path.join(dataDir, "itemsIndex.json")) ?? []
+        : []
+    }),
     berryData,
     oaksNotes,
     pokemonGoNotes,
@@ -976,7 +991,8 @@ function renderNoteSection(
   </section>`;
 }
 
-function renderEffectSections(item) {
+function renderEffectSections(item, specializedSections) {
+  if (specializedSections.some(section => section.id === "ev-training-effect")) return "";
   const machineDescription =
     isMachineItem(item)
       ? buildMachineItemDescription(item)
@@ -1014,7 +1030,8 @@ function renderItemMain({
   oaksNotes,
   pokemonGoNotes,
   relatedLinks,
-  pokemonIndex
+  pokemonIndex,
+  specializedSections = []
 }) {
   const itemName = item.displayName;
 
@@ -1046,7 +1063,8 @@ function renderItemMain({
       }
       <h1>${renderText(itemName)}</h1>
     </header>
-    ${renderEffectSections(item)}
+    ${renderEffectSections(item, specializedSections)}
+    ${renderToStaticMarkup(createElement(ItemSpecializedSections, { sections: specializedSections }))}
     ${renderDynamaxCrystalDetails(item)}
     ${renderMachineDetails(item)}
     ${renderAcquisition(item)}
@@ -1065,6 +1083,7 @@ function renderItemPage(template, data) {
   const seo = itemSeo(data.item);
   const payload = {
     item: data.item,
+    specializedSections: data.specializedSections ?? [],
     berryData: data.berryData,
     oaksNotes: data.oaksNotes,
     pokemonGoNotes: data.pokemonGoNotes,
