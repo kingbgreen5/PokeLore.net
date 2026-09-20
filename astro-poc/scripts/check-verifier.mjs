@@ -8,7 +8,7 @@ const parent = `evidence/verifier-${Date.now()}`;
 mkdirSync(parent, { recursive: true });
 const cases = {
   canonical: html => html.replace('rel="canonical"', 'rel="wrong"'),
-  analysis: html => html.replace('id="competitive"', 'id="competitive" hidden').replace(/(<div id="competitive" hidden>[\s\S]*?<p>)[\s\S]*?(<\/p>)/, '$1Missing$2'),
+  analysis: html => html.replace(/(<div[^>]*id="competitive"[^>]*>[\s\S]*?<p>)[\s\S]*?(<\/p>)/, '$1Missing$2'),
   duplicateH1: html => html.replace('</h1>', '</h1><h1>Duplicate</h1>'),
   noindex: html => html.replace('index,follow,max-image-preview:large', 'noindex,follow')
 };

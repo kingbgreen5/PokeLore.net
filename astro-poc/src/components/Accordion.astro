@@ -1,0 +1,7 @@
+---
+const { id, title, count } = Astro.props;
+---
+<details id={id} class="reference-accordion" data-storage={id}>
+  <summary><h2>{title}</h2>{count && <span class="accordion-count">{count}</span>}</summary>
+  <div class="accordion-body"><slot /></div>
+</details>

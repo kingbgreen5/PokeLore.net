@@ -1,15 +1,39 @@
 ---
 import SeoHead from '../components/SeoHead.astro';
+import GlobalSiteSearch from '../islands/GlobalSiteSearch.jsx';
+import banner360 from '../../../src/assets/Banner-360.webp?url';
+import banner640 from '../../../src/assets/Banner-640.webp?url';
+import banner900 from '../../../src/assets/Banner-900.webp?url';
+import bannerFallback from '../../../src/assets/Banner-900.png?url';
+import '../../../src/index.css';
 import '../styles/reference.css';
+import { publicHref } from '../lib/links.js';
 const { seo } = Astro.props;
+const nav = [['/', 'Pokémon'], ['/moves','Moves'], ['/abilities','Abilities'], ['/items','Items'], ['/locations','Locations'], ['/topics','Topics'], ['/news','News'], ['/types','Types'], ['/tools','Tools'], ['/dex-entries','Entries']];
 ---
 <!doctype html>
 <html lang="en">
   <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><SeoHead seo={seo} /></head>
-  <body>
+  <body><div id="root">
     <a class="skip" href="#main">Skip to content</a>
-    <header><a class="brand" href="/">PokéLore<span>.net</span></a><p>Pokémon lore, stats &amp; game reference</p></header>
+    <header>
+      <a class="banner" href="/" aria-label="PokéLore home"><picture><source type="image/webp" srcset={`${banner360} 360w, ${banner640} 640w, ${banner900} 900w`} sizes="(max-width: 720px) 90vw, 900px" /><img src={bannerFallback} alt="PokéLore.net" width="900" height="224" fetchpriority="high" /></picture></a>
+      <nav class="global-navigation" aria-label="Site navigation">
+        <GlobalSiteSearch client:load />
+        <noscript><p>Search requires JavaScript. Browse with the menu below.</p></noscript>
+        <details class="site-menu"><summary>Menu: Pokémon</summary><div>{nav.map(([href,label])=><a href={publicHref(href)} aria-current={href==='/' ? 'page':undefined}>{label}</a>)}</div></details>
+      </nav>
+    </header>
     <main id="main"><slot /></main>
-    <footer>PokéLore · Astro reference proof of concept</footer>
-  </body>
+  </div></body>
 </html>
+<script>
+  for (const details of document.querySelectorAll('details[data-storage]')) {
+    const key = `${location.pathname}:${details.id}:expanded`;
+    try { details.open = sessionStorage.getItem(key) === 'true'; } catch {}
+    details.addEventListener('toggle', () => { try { sessionStorage.setItem(key, String(details.open)); } catch {} });
+  }
+  const menu = document.querySelector('.site-menu');
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && menu instanceof HTMLDetailsElement) menu.open = false; });
+  document.addEventListener('click', event => { if (menu instanceof HTMLDetailsElement && !menu.contains(event.target)) menu.open = false; });
+</script>

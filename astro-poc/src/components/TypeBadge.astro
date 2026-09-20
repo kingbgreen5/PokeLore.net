@@ -1,0 +1,6 @@
+---
+const { type, height = '1.4rem' } = Astro.props;
+const images = import.meta.glob('../../../src/assets/Type Badges/*.png', { eager: true, query: '?url', import: 'default' });
+const src = images[`../../../src/assets/Type Badges/${type.toUpperCase()}.png`];
+---
+<img src={src} alt={`${type} type`} class="type-badge" style={{height}} />

@@ -1,6 +1,6 @@
 # Separate Render staging test
 
-Do not change the production service, its domains, Blueprint, redirects, or headers. This POC has not been deployed. HTTP results below are acceptance targets, not claimed observations.
+Do not change the production service, its domains, Blueprint, redirects, or headers. The Phase 1 test service already exists; this Phase 1B work has not been deployed. Reuse the separate test service when deployment is authorized. HTTP results below are acceptance targets, not claimed observations.
 
 ## Create the service manually
 
@@ -50,8 +50,10 @@ astro-poc/dist/
   pokemon/pikachu.html
   pokemon/charizard.html
   pokemon/raichu-alola.html
-  _astro/*.css
-  images/pokemon/official/detail/{14,25,6,10100}.webp
+  _astro/* (CSS, island JavaScript and bundled assets)
+  images/pokemon/official/{card,detail,full}/* (selected existing artwork)
+  images/etsy/* (selected promo)
+  data/search.json
 ```
 
 There are no extensionless output copies or `pokemon/<slug>/index.html` files. Canonicals and navigational links have neither `.html` nor trailing slash. Astro's file layout does not itself dictate Render's HTTP behavior.
@@ -67,7 +69,7 @@ First test whether Render resolves `/pokemon/kakuna` to `pokemon/kakuna.html` au
 
 These serve each real document at its canonical URL and preserve missing-path 404s. No normalization script is currently justified. If neither native resolution nor these exact rewrites preserves the acceptance targets, stop the rollout and record the HTTP evidence before considering a POC-only normalizer.
 
-Expected MIME types: HTML documents `text/html` (optional charset), CSS `text/css`, artwork `image/webp`. Standard extension-based files should need no MIME override. Do not apply `Content-Type: text/html` to `/*`; that would break CSS/images. If a future experiment creates extensionless files, its MIME behavior needs a separate decision.
+Expected MIME types: HTML documents `text/html` (optional charset), CSS `text/css`, JavaScript `text/javascript` or `application/javascript`, search data `application/json`, artwork `image/webp`. Standard extension-based files should need no MIME override. Do not apply `Content-Type: text/html` to `/*`; that would break CSS/images. If a future experiment creates extensionless files, its MIME behavior needs a separate decision.
 
 ## HTTP tests (do not follow redirects initially)
 
@@ -110,6 +112,6 @@ Confirm Kakuna's title, one production-origin canonical, JSON-LD and complete bo
 | Invalid Pokémon / random path | 404, custom not-found body, no homepage | Pending |
 | `/pokemon/kakuna.html` | Record actual status/location/body; do not assume | Pending |
 | `/pokemon/kakuna/index.html` | Record actual status/location/body; do not assume | Pending |
-| CSS / images | 200, correct MIME, noindex header | Pending |
+| CSS / JS / search JSON / images | 200, correct MIME, noindex header | Pending |
 
 Do not try to hide `.html` aliases with redirects before observing default behavior; existing-resource precedence may make such rules ineffective. Alias behavior, slash normalization, custom 404 handling, MIME and noindex coverage remain release gates. Local Astro preview is not an emulator of Render.

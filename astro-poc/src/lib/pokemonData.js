@@ -9,12 +9,13 @@ import { getLearnsetCandidateIds, hasLearnsetMoves, getLatestLevelUpLearnsetPrev
 import { linkifyPokeloreText, getPokeloreLinePokemonLabels } from '../../../src/utils/pokeloreTextLinks.js';
 
 const jsonCache = new Map();
-function read(name, optional = false) {
+export function readData(name, optional = false) {
   const path = join(repositoryRoot, 'public/data', name);
   if (optional && !existsSync(path)) return null;
   if (!jsonCache.has(path)) jsonCache.set(path, JSON.parse(readFileSync(path, 'utf8')));
   return jsonCache.get(path);
 }
+const read = readData;
 function requireData(condition, slug, field) {
   if (!condition) throw new Error(`[${slug}] Missing or invalid required data: ${field}`);
 }
@@ -35,7 +36,15 @@ export function loadPokemon(slug) {
   const abilities = p.abilities.map(a => {
     const key = a.name.toLowerCase().replaceAll(' ', '-');
     requireData(abilityData[key]?.effect, slug, `ability ${key}`);
-    return { ...a, slug: key, effect: abilityData[key].effect };
+    const effect = abilityData[key].effect;
+    // Keep complete source sentences; long mechanics remain available below.
+    const sentences = effect.match(/[^.!?]+[.!?]+(?:\s|$)|[^.!?]+$/g) ?? [effect];
+    let description = sentences[0].trim();
+    for (const sentence of sentences.slice(1)) {
+      if (`${description} ${sentence.trim()}`.length > 280) break;
+      description += ` ${sentence.trim()}`;
+    }
+    return { ...a, slug: key, effect, description };
   });
   const analysis = resolvePokeloreAnalysis(read('PokeloreAnalysis.json'), p);
   for (const key of ['description', 'playthrough', 'competitive', 'nuzlocke', 'biologyAndBehavior']) {
@@ -88,7 +97,14 @@ export function loadPokemon(slug) {
   });
   const result = { p, name, abilities, analysis, sharedSpeciesAnalysis, warnings, evolution,
     evolutionSummary: getEvolutionSummaryText(chain.root, evolutionOptions),
-    preview, encounters, artwork, total, summary, matchups: getDefensiveMatchupGroups(p.types), linkedText };
+    preview, learnset, moves: Object.fromEntries([...new Set(learnset.moves.map(m => m.move))].map(key => [key, moves[key]])),
+    encounters, artwork, total, summary, matchups: getDefensiveMatchupGroups(p.types), linkedText,
+    spriteBounds: { [p.id]: read('pokemonSpriteBounds.json').sprites?.[p.id] },
+    corrections: { sprites: { [p.id]: read('pokemonSpriteCorrections.json').sprites?.[p.id] }, comparisonCharacters: read('pokemonSpriteCorrections.json').comparisonCharacters ?? {} },
+    navigation: read('pokemonIndex.json').filter(entry => routes.byName[entry.name]).map(({id,name,species,sprite,types}) => ({id,name,species,sprite,types})).sort((a,b)=>a.id-b.id),
+    heldItems: read(`pokemonHeldItems/${p.id}.json`, true),
+    oaksNote: read(`oaksNotes/pokemon/${p.name}.json`, true), goNote: read(`pokemonGo/pokemon/${p.name}.json`, true)
+  };
   for (const warning of warnings) console.warn(`[${slug}] ${warning}`);
   cache.set(slug, result);
   return result;

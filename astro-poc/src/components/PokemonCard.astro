@@ -1,0 +1,14 @@
+---
+import { formatPokemonDisplayName } from '../../../src/utils/pokemonNames.js';
+import { getLocalPokemonArtwork } from '../../../src/utils/pokemonSprites.js';
+import { publicHref } from '../lib/links.js';
+import TypeBadge from './TypeBadge.astro';
+const { pokemon } = Astro.props;
+const artwork = getLocalPokemonArtwork(pokemon, 'card') ?? pokemon.sprite;
+---
+<a class="pokemon-summary-card" href={publicHref(`/pokemon/${pokemon.name}`)}>
+  <span class="dex-number">#{String(pokemon.id).padStart(4,'0')}</span>
+  <img class="card-artwork" src={artwork} alt={formatPokemonDisplayName(pokemon)} width="90" height="90" loading="lazy" />
+  <strong>{formatPokemonDisplayName(pokemon)}</strong>
+  <span class="card-types">{pokemon.types.map(type => <TypeBadge type={type} height="1.15rem" />)}</span>
+</a>

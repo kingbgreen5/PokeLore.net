@@ -1,0 +1,138 @@
+// Adapted for SSR image-completion timing; tracking helpers are unchanged.
+import {
+  useEffect,
+  useRef,
+  useState
+} from "react";
+
+import {
+  trackEtsyMerchClick,
+  trackEtsyMerchImpression
+} from "../../../src/utils/etsyMerch.js";
+import "../../../src/components/EtsyMerchPromo.css";
+
+function EtsyMerchPromo({
+  ad,
+  pagePath,
+  placement = "unknown"
+}) {
+  const [imageStatus, setImageStatus] =
+    useState({
+      key: null,
+      status: "pending"
+    });
+  const impressionKeyRef = useRef(null);
+  const imageRef = useRef(null);
+  const imageKey = [
+    ad?.id,
+    ad?.img,
+    pagePath,
+    placement
+  ].join("|");
+  const resolvedImageStatus =
+    imageStatus.key === imageKey
+      ? imageStatus.status
+      : "pending";
+
+  useEffect(() => {
+    if (imageRef.current?.complete && imageRef.current.naturalWidth > 0) {
+      setImageStatus({ key: imageKey, status: "loaded" });
+    }
+  }, [imageKey]);
+
+  useEffect(() => {
+    if (
+      !ad ||
+      resolvedImageStatus !== "loaded"
+    ) {
+      return;
+    }
+
+    const impressionKey = [
+      ad.id,
+      ad.listingId,
+      pagePath,
+      placement
+    ].join("|");
+
+    if (
+      impressionKeyRef.current ===
+      impressionKey
+    ) {
+      return;
+    }
+
+    impressionKeyRef.current =
+      impressionKey;
+    trackEtsyMerchImpression({
+      ad,
+      pagePath,
+      placement
+    });
+  }, [
+    ad,
+    pagePath,
+    placement,
+    resolvedImageStatus
+  ]);
+
+  if (
+    !ad ||
+    resolvedImageStatus === "error"
+  ) {
+    return null;
+  }
+
+  return (
+    <aside
+      aria-label="Pokemon-inspired merchandise"
+      className="etsy-merch-promo"
+      data-placement={placement}
+      style={{
+        "--etsy-merch-aspect-ratio":
+          ad.aspectRatio ?? "16 / 3"
+      }}
+    >
+      <a
+        className="etsy-merch-promo__link"
+        href={ad.link}
+        onClick={() =>
+          trackEtsyMerchClick({
+            ad,
+            pagePath,
+            placement
+          })
+        }
+        rel="sponsored noopener"
+        target="_blank"
+      >
+        <span className="etsy-merch-promo__image-shell">
+          <img
+            ref={imageRef}
+            alt={
+              ad.alt ??
+              "Pokemon-inspired Etsy merchandise"
+            }
+            className="etsy-merch-promo__image"
+            loading="lazy"
+            onError={() =>
+              setImageStatus({
+                key: imageKey,
+                status: "error"
+              })
+            }
+            onLoad={() =>
+              setImageStatus({
+                key: imageKey,
+                status: "loaded"
+              })
+            }
+            src={ad.img}
+          />
+        </span>
+      </a>
+    </aside>
+  );
+}
+
+export default EtsyMerchPromo;

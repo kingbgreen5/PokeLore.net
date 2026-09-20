@@ -20,7 +20,11 @@ const files = filesAt(dist);
 assert.deepEqual(files.filter(f => f.endsWith('.html')).sort(),
   ['index.html', '404.html', ...POC_SLUGS.map(s => `pokemon/${s}.html`)].sort(), 'Exactly six HTML documents');
 assert(!files.some(f => /^pokemon\/\d+(?:[/.]|$)/.test(f)), 'No numeric resources');
-assert(!files.some(f => /\.(?:m?js)$/.test(f)), 'Core POC must ship no browser JavaScript');
+// Phase 1B permits scoped islands; core HTML and the head remain server-owned.
+for (const file of readdirSync('src/islands').filter(f=>f.endsWith('.jsx'))) {
+  const source=readFileSync(join('src/islands',file),'utf8');
+  assert(!/from\s*["']react-router|document\.title|querySelector\([^)]*canonical|<Seo\b/.test(source), `${file}: no router or SEO repair`);
+}
 
 for (const slug of POC_SLUGS) {
   const d = documentAt(`pokemon/${slug}.html`);
@@ -48,16 +52,27 @@ for (const slug of POC_SLUGS) {
   for (const key of ['playthrough', 'competitive', 'nuzlocke', 'biologyAndBehavior']) {
     assert(text.includes(normalize(data.analysis[key])), `${slug}: complete ${key}`);
   }
-  assert.equal(d.querySelectorAll('#stats tbody tr').length, 7);
-  assert.deepEqual([...d.querySelectorAll('#stats td')].map(el => Number(el.textContent)), [...Object.values(data.p.stats), data.total]);
+  const statLabels=['HP','Attack','Defense','Sp. Atk','Sp. Def','Speed'];
+  Object.values(data.p.stats).forEach((value,i)=>assert(normalize(one('#stats').textContent).includes(`${statLabels[i]}: ${value}`)));
+  assert(normalize(one('#stats').textContent).includes(`Total: ${data.total}`));
+  assert.equal(d.querySelectorAll('#stats div[style*="height:12px"]').length,6,'Six graphical stat bars');
+  for(const ability of data.abilities) {
+    assert(one(`#abilities a[href="https://pokelore.net/ability/${ability.slug}"]`).textContent.includes(ability.name));
+    assert(one('#abilities').textContent.includes(ability.effect));
+  }
   for (const group of ['weaknesses', 'resistances', 'immunities']) for (const match of data.matchups[group]) {
-    assert(normalize(one('#matchups').textContent).includes(`${match.typeName} ${match.multiplierLabel}`));
+    assert(d.querySelector(`#matchups a[aria-label="${match.typeName} attacking moves deal ${match.multiplierLabel} damage"]`));
   }
   assert(text.includes(data.evolutionSummary));
-  assert.equal(d.querySelectorAll('#learnset tbody tr').length, data.preview.rows.length);
+  assert(one('#learnset select[aria-label="Learnset version"]'));
+  for (const move of data.learnset.moves) assert(d.querySelector(`#learnset a[href="https://pokelore.net/move/${move.move}"]`),`${slug}: all-method SSR move ${move.move}`);
   for (const row of data.preview.rows) assert(d.querySelector(`#learnset a[href="https://pokelore.net/move/${row.move}"]`));
   for (const location of data.encounters?.locations ?? []) assert(d.querySelector(`#encounters a[href="https://pokelore.net/location/${location.location.name}"]`));
-  assert(!d.querySelector('script:not([type="application/ld+json"]), astro-island, meta[http-equiv="refresh"]'));
+  assert(!d.querySelector('meta[http-equiv="refresh"]'));
+  assert.equal(d.querySelectorAll('astro-island').length,7,'Seven focused islands, not one whole-page app');
+  for (const id of ['abilities','stats','matchups','evolution','analysis','biology']) assert(!one(`#${id}`).closest('astro-island'),`${id} remains static`);
+  assert(one('#dex-entries').textContent.includes(data.p.dexEntries[0].text));
+  assert(one('#size-comparison').textContent.includes('Compare with'));
   assert(!/Loading (?:Pokémon|Pokemon|evolution|learnset)/i.test(text));
   for (const link of d.querySelectorAll('a[href]')) {
     const url = new URL(link.getAttribute('href'), 'https://pokelore.net');
@@ -67,7 +82,7 @@ for (const slug of POC_SLUGS) {
     }
     assert(!url.pathname.endsWith('.html'), `HTML alias link: ${url}`);
   }
-  for (const img of d.querySelectorAll('img')) assert(existsSync(join(dist, img.getAttribute('src'))), 'Missing local image');
+  for (const img of d.querySelectorAll('img')) { const src=img.getAttribute('src'); if(src?.startsWith('/')) assert(existsSync(join(dist,decodeURIComponent(src))), `Missing local image: ${src}`); }
   const headings = [...d.querySelectorAll('h1,h2,h3,h4,h5,h6')].map(h => Number(h.tagName[1]));
   headings.forEach((level, i) => { if (i) assert(level <= headings[i - 1] + 1, `${slug}: heading hierarchy`); });
   console.log(`PASS /pokemon/${slug}: metadata, schema, full static content, links and artwork`);
@@ -80,4 +95,4 @@ assert.equal(notFound.querySelector('h1').textContent, 'Page not found');
 assert(!notFound.querySelector('link[rel="canonical"]'), '404 must not canonicalize to homepage');
 assert(!notFound.querySelector('meta[http-equiv="refresh"]'));
 for (const [id, slug] of [[14, 'kakuna'], [25, 'pikachu'], [6, 'charizard'], [10100, 'raichu-alola']]) assert.equal(routes.byId[id], slug);
-console.log('PASS: six documents; homepage, 404, registry redirects; no numeric resources or client runtime.');
+console.log('PASS: six documents; homepage, 404, registry redirects; static core and scoped islands.');

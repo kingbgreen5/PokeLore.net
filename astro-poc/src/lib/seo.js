@@ -5,11 +5,8 @@ export function referenceSeo(data) {
   const seo = structuredClone(pokemonSeo(data.p));
   seo.image = new URL(data.artwork, SITE_URL).href;
   seo.robots = 'index,follow,max-image-preview:large';
-  // Do not claim a visual size comparison that this small POC does not render.
-  seo.structuredData['@graph'] = seo.structuredData['@graph'].filter(node => node['@type'] !== 'CreativeWork');
+  // Phase 1B renders the actual size comparison: retain its intended schema.
   for (const node of seo.structuredData['@graph']) {
-    if (node.description) node.description = seo.description;
-    delete node.hasPart;
     if (node['@type'] === 'Thing') {
       node.image = seo.image;
       // API form IDs (e.g. 10100) are not National Pokédex numbers.

@@ -1,39 +1,85 @@
-# Current reference output versus Astro POC
+# Phase 1B visual and functional comparison
 
-Captured locally on 2026-09-19 (America/Chicago). Three separate baselines were inspected: existing **raw `dist/pokemon/<slug>`** files; **rendered React DOM** from the current checkout served by Vite, with collapsed controls expanded; and **Astro HTML/DOM with JavaScript disabled**. Raw `dist` can predate this checkout; it was not regenerated. This is not a live-site crawl. `scripts/compare-pages.mjs` reproduces the capture into ignored `evidence/comparison.json`.
+Verified locally on 2026-09-20 (America/Chicago) against repository source, supplied screenshots, live production Kakuna captures and the local React render. The new result is local Astro output; this task has not updated the existing Render POC.
 
-The React baseline's optional held-item and remote additional-image loaders logged fetch errors in this local environment. Core reference content rendered and was captured; the comparison does not certify those optional widgets or remote asset availability.
+## Visual result
 
-| Area | Raw prerendered baseline | Rendered React baseline | Astro POC |
-|---|---|---|---|
-| Title | `<Name> Pokédex: Stats, Moves, Evolution & Analysis \| PokéLore` | Same for all three | Exact match via shared policy |
-| Description | `<Name> stats, moves, weaknesses, evolution, locations, Pokédex entries, plus playthrough, competitive and Nuzlocke analysis—all in one place.` | Same for all three | Exact match |
-| Canonical | One production-origin, extensionless slug URL | Same for all three | Exact match; no head mutation |
-| H1 | One: Kakuna / Pikachu / Charizard | Same | Same |
-| Headings | Stats/matchups/evolution plus analysis subheads and collapsed reference sections | Adds abilities, forms, selectors, galleries, size comparison; duplicate Biology heading | One logical H1; H2 sections; H3 analysis/matchup/learnset/location subsections |
-| Structured data | **No JSON-LD** in any of the three captured raw pages | WebPage, BreadcrumbList, Thing, CreativeWork via client effect | WebPage, BreadcrumbList, Thing in original HTML: **intentional improvement**; size-comparison CreativeWork omitted because that UI is outside POC |
-| Summary | Existing analysis descriptions | Same descriptions | Full exact descriptions for all three |
-| Abilities/stats | Core values present | Same primary dataset | Full ability effects, hidden labels, six stats and total |
-| Weakness/resistance/immunity | Type-chart reference | Shared type chart | Same pure helper; explicitly before ability effects; prints “None” for empty groups |
-| Evolution | Shared display policy | Shared policy plus richer visual cards/forms | Same summary/model for these three; semantic linked tree |
-| Analysis | Complete playthrough, competitive, Nuzlocke prose present | Same | All three exact prose strings present and visible without JS |
-| Biology | Complete prose present | Same, plus extended biological facts | Exact biology prose, always visible; extended facts not migrated |
-| Learnset | Latest level-up preview plus embedded data | Interactive all-generation/method options after expansion | Complete shared latest level-up preview only; no browser fetch |
-| Locations | Areas displayed as reference headings; collapsible data | Interactive selectors and location grouping | All source locations/areas/versions/encounter methods, levels, chance and conditions rendered openly; location-level H3 and area labels beneath |
-| Internal links | Relevant reference links | Also includes global navigation, forms and all-version moves | Same canonical route policy; POC Pokémon local, other references absolute to production; no numeric links |
+Production and Astro Kakuna were captured at 1440px and 390px. Inspection shows the same major composition: responsive logo/search/menu, centered summary and 250px artwork, name/type images, narrow six-bar stats chart, grouped matchups, evolutionary cards and full-width bordered accordions. Learnsets preserve production columns and type/category images. Size comparison preserves trainer artwork, chart, selector and layering. Approved ability descriptions add height above the stats, shifting later sections naturally.
 
-## Per-Pokémon checks
+| Area | Result / implementation |
+|---|---|
+| Header | Original responsive banner assets; adapted full search and native menu |
+| Hero/stats | Production ordering, badges and directly reused SSR BaseStatsChart; total/EV yield retained |
+| Matchups/evolution | Original helpers; Astro badge groups, linked cards, conditions and responsive tree |
+| Analysis/Dex/biology | Initial HTML, native accordions, production card treatment and biological facts |
+| Learnsets | All-generation selector, method tables and canonical move/type/category links; build-time data |
+| Encounters | Production version filter, groups, nested disclosures and encounter details |
+| Gallery | Original remote gallery; controlled success and failure/retry tests |
+| Promo/Misc | Original placement/artwork/CSS/tracking helpers; static Misc data |
+| Size/navigation | Original calibrated chart/trainer choices/carousel; ordinary anchors and previous/next |
+| Other routes | Same template for Pikachu, Charizard and Alolan Raichu, including forms and hidden abilities |
 
-| Pokémon | Stats (HP / Atk / Def / SpA / SpD / Spe), total | Latest level-up preview | Evolution | Unique links raw / React / Astro |
-|---|---|---|---|---|
-| Kakuna | 45 / 25 / 50 / 25 / 25 / 35 = **205** | Brilliant Diamond Shining Pearl, **2** rows | Weedle → Kakuna at 7 → Beedrill at 10 | 47 / 1074 / 48 |
-| Pikachu | 35 / 55 / 40 / 50 / 50 / 90 = **320** | Scarlet Violet, **20** rows | Pichu → Pikachu (friendship) → Raichu (Thunder Stone) | 56 / 1190 / 56 |
-| Charizard | 78 / 84 / 78 / 109 / 85 / 100 = **534** | Scarlet Violet, **15** rows | Charmander → Charmeleon at 16 → Charizard at 36 | 67 / 1207 / 68 |
+Evidence in ignored `evidence/phase1b/`:
 
-Link totals reflect expanded React navigation and interactive content, not missing core prose in Astro. Astro includes its skip link. Name/description/canonical comparisons and complete analysis/biology presence passed for each Pokémon. The static verifier independently compares six stats, totals, matchup entries, evolutionary summary, every latest-level-up row and each available encounter-location link against the build-time model.
+- `production-{1440,390}-{hero,sections}.png`: live production captures.
+- `source-{1440,390}-{hero,sections}.png`: current repository React implementation.
+- `astro-{1440,390}-{hero,sections,learnset}.png`: POC captures.
+- `astro-size-{desktop,390,900}.png`: enhanced size chart.
+- `test-results.json`, `performance.json`, `browser-errors.json`: machine-readable evidence.
 
-Kakuna remains weak to Fire, Flying, Psychic and Rock; Pikachu to Ground; Charizard to Rock (4×), Electric and Water, and immune to Ground. Resistances are emitted from the same production type chart. All encounter data is preserved in initial HTML; presentation uses source location display names (e.g. Route rather than some existing Road labels), and keeps individual area names below each location.
+This is a practical visual comparison, not pixel-diff certification. Final local screenshots were refreshed after refinements; the last sandboxed live recapture was network-blocked, so earlier successful live captures remain the reference.
 
-SEO image URLs now reference the existing local PokéLore artwork at the production origin, with OG/Twitter alt metadata, instead of upstream GitHub sprites. Indexable documents use explicit `index,follow,max-image-preview:large`; 404 alone uses `noindex,follow`. Staging must apply its separate noindex HTTP header.
+## Intentional differences
 
-The fourth route, Alolan Raichu, verifies form-specific typing/stats/artwork and slug identity. It also exposed shared-species biology and incomplete regional evolution restrictions in existing helpers. These are documented data limitations, not silently asserted form parity. Its JSON-LD uses National Dex 26 rather than form ID 10100.
+1. **APPROVED: ability descriptions directly beneath linked names.** Authoritative effect text is subordinate; long mechanics have a concise verbatim source excerpt plus native “Full ability effect” disclosure. Hidden Abilities are labeled.
+2. Native navigation and details/summary replace router links and JavaScript-only disclosure buttons. Semantic headings retain production visual sizes. Storage-backed selectors and useful accordion state remain enhancements.
+3. Four Pokémon route locally; unmigrated references go to production canonical URLs. Previous/next anchors supplement the carousel.
+4. Gallery failure has explicit retry instead of repeated automatic requests.
+5. Promo selection happens at build time with the existing helper and deterministic first eligible choice. Currently there is one eligible image; a future larger inventory needs a rotation decision. Existing impression/click helper names and payloads remain; cached images loaded before hydration are handled. No analytics loader was added: callbacks use `window.gtag` when available, as before. Tests stubbed that function and did not send analytics or follow an Etsy link.
+6. No-JavaScript mobile size charts have a scroll boundary to prevent oversized artwork widening the page. Enhanced mobile behavior retains the original layout.
+
+## Verification results
+
+Build, output verifier and four deliberate-corruption checks pass. Phase 1 assertions remain and now cover the full default learnset, ability descriptions/links, graphical stats, Dex entries, size section and scoped islands. Missing canonical/competitive prose, duplicate H1 and accidental noindex are rejected.
+
+Browser tests pass search/back/forward; menu/Escape; analysis/Dex/biology/learnset/location disclosures; move filtering/persistence; encounter version/area information; ability/evolution/move/location links; gallery success/error/retry; promo callbacks; trainer selection/layering; and carousel recentering. Metadata does not change during interactions.
+
+All four routes pass no-JavaScript checks at 390px: native disclosures open and core content is visible with no horizontal document overflow. All four hydrate tested widgets without page exceptions or React hydration failures. Kakuna additionally passes 1440px captures and 390/900px size checks. Testing caught and fixed no-JS Charizard artwork overflow.
+
+Static title, description, one canonical, OG/Twitter metadata, robots and JSON-LD remain Astro-owned. WebPage, BreadcrumbList, Thing and restored size CreativeWork are in initial HTML. Alolan Raichu still uses National Dex 26 rather than form ID 10100 in schema. No runtime head repair or React Router was introduced.
+
+Gallery tests use deterministic PokeAPI mocks; upstream availability is not certified. The four-page sample does not certify every filter/version/optional-data combination.
+
+## JavaScript and scaling
+
+Kakuna has seven SSR islands: search hydrates immediately; learnset, encounters, gallery, promo, size and carousel hydrate when visible. The generated external JavaScript inventory is **311,744 bytes raw / 131,574 gzip**, across 15 files (about 304 / 128 KiB). Gzip figures compress each file independently; they are estimates rather than observed Render transfer sizes.
+
+At a fresh 1440×1000 hero viewport, measured external scripts total **198,756 raw / 64,046 gzip bytes** (194 / 63 KiB). These comprise ReactDOM client, React/JSX runtimes, search and tiny anchor/link helpers. Scrolling loads all remaining widget files. Collapsed widgets still hydrate when their headers become visible. An additional **5,422 bytes of inline scripts** include Astro/bootstrap/menu code, separately from external totals.
+
+| Chunk / group | Raw bytes | Gzip bytes |
+|---|---:|---:|
+| ReactDOM client | 185,936 | 58,439 |
+| React runtime | 7,614 | 2,914 |
+| Global search | 4,312 | 2,016 |
+| Learnset | 72,332 | 51,775 |
+| Size comparison | 20,370 | 6,868 |
+| Encounters | 6,105 | 2,468 |
+| Carousel | 5,761 | 2,350 |
+| Gallery | 2,457 | 1,336 |
+| Promo | 1,595 | 766 |
+| JSX, anchor, link, disclosure, version and sprite helpers combined | 5,262 | 2,642 |
+
+The learnset bundle contains original type/category image assets embedded as data URLs, explaining its unusually large compressed size. No production router or SEO component is bundled.
+
+Kakuna HTML is **1,593,930 bytes raw / 119,132 gzip**, driven largely by the complete SSR carousel and serialized Pokémon index, plus interactive reference data. Search separately loads **1,428,192 raw bytes** of generated records on interaction. Carousel imagery outside the selected build assets references production; the optional gallery depends on PokeAPI and remote sprite hosts. Trainer assets retain original sizes.
+
+Before full scale, evaluate a crawlable bounded carousel with progressive index loading, external badge assets and disclosure-triggered hydration where practical. Preserve useful SSR content and behavior while measuring. Adapted component copies need a synchronization policy during migration.
+
+## Gaps and readiness
+
+- Alolan Raichu inherits species biology and incomplete regional evolution restrictions from existing data/helpers. Shared prose is labeled; no form-specific facts were invented.
+- Oak/GO note records are absent for the sample. Broad forms, branching evolutions and optional data remain unaudited. Admin-only size-review editing is not part of this port.
+- Gallery availability and analytics transport depend on their external services/deployment setup.
+- Phase 1B changes are not deployed. Render headers, redirects, status/MIME and deployed interactions still need acceptance on the separate test service.
+
+The template is reusable and meets this four-page parity scope. It is **not yet certified for the full Pokédex**: address payload concerns, broader data coverage and deployed acceptance in a separately authorized phase. Production source/configuration remains unchanged.

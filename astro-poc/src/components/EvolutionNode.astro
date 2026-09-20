@@ -1,11 +1,10 @@
 ---
-import { referenceHref, pokemonPath } from '../lib/routes.js';
-import { formatPokemonDisplayName } from '../../../src/utils/pokemonNames.js';
+import PokemonCard from './PokemonCard.astro';
+import { publicHref } from '../lib/links.js';
 const { model } = Astro.props;
 ---
-<li>
-  {model.methodText && <span>{model.methodText} → </span>}
-  <a href={referenceHref(pokemonPath(model.pokemon.name))}>{formatPokemonDisplayName(model.pokemon)}</a>
-  {model.note && <p>{model.note}</p>}
-  {model.children.length > 0 && <ul>{model.children.map(child => <Astro.self model={child} />)}</ul>}
-</li>
+<div class="evolution-node evolution-node-horizontal">
+  {model.methodText && <div class="evolution-method">{model.methodParts.map(part => part.type && part.slug ? <a href={publicHref(`/${part.type}/${part.slug}`)}>{part.text}</a> : part.text)}<span class="evolution-method-arrow" aria-hidden="true"></span>{model.note && <small>{model.note}</small>}</div>}
+  <PokemonCard pokemon={model.pokemon} />
+  {model.children.length > 0 && <div class="evolution-children">{model.children.map(child => <Astro.self model={child} />)}</div>}
+</div>
