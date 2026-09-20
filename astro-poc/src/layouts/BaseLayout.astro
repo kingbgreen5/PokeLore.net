@@ -1,0 +1,15 @@
+---
+import SeoHead from '../components/SeoHead.astro';
+import '../styles/reference.css';
+const { seo } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><SeoHead seo={seo} /></head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header><a class="brand" href="/">PokéLore<span>.net</span></a><p>Pokémon lore, stats &amp; game reference</p></header>
+    <main id="main"><slot /></main>
+    <footer>PokéLore · Astro reference proof of concept</footer>
+  </body>
+</html>

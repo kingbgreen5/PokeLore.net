@@ -1,0 +1,11 @@
+---
+import { referenceHref, pokemonPath } from '../lib/routes.js';
+import { formatPokemonDisplayName } from '../../../src/utils/pokemonNames.js';
+const { model } = Astro.props;
+---
+<li>
+  {model.methodText && <span>{model.methodText} → </span>}
+  <a href={referenceHref(pokemonPath(model.pokemon.name))}>{formatPokemonDisplayName(model.pokemon)}</a>
+  {model.note && <p>{model.note}</p>}
+  {model.children.length > 0 && <ul>{model.children.map(child => <Astro.self model={child} />)}</ul>}
+</li>

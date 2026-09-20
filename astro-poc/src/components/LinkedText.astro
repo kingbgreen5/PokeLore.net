@@ -1,0 +1,5 @@
+---
+import { referenceHref } from '../lib/routes.js';
+const { parts } = Astro.props;
+---
+{parts.map(part => part.href ? <a href={referenceHref(part.href)}>{part.text}</a> : part.text)}

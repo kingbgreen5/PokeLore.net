@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import EvolutionNode from '../../components/EvolutionNode.astro';
+import LinkedText from '../../components/LinkedText.astro';
+import { POC_SLUGS, referenceHref } from '../../lib/routes.js';
+import { loadPokemon } from '../../lib/pokemonData.js';
+import { referenceSeo } from '../../lib/seo.js';
+import { formatTypeName } from '../../../../src/utils/typeEffectiveness.js';
+import { formatEncounterVersionName, formatEncounterMethodName, formatEncounterLevelRange, formatEncounterConditions, formatChance } from '../../../../src/utils/encounterDisplay.js';
+export function getStaticPaths() { return POC_SLUGS.map(slug => ({ params: { slug } })); }
+const data = loadPokemon(Astro.params.slug);
+const { p, name, analysis, matchups } = data;
+const statLabels = { hp: 'HP', attack: 'Attack', defense: 'Defense', specialAttack: 'Special Attack', specialDefense: 'Special Defense', speed: 'Speed' };
+---
+<BaseLayout seo={referenceSeo(data)}>
+  <Breadcrumbs name={name} />
+  <article>
+    <div class="hero"><img src={data.artwork} alt={name} width="250" height="250" fetchpriority="high" /><div>
+      <h1>{name}</h1><p class="summary">{data.summary}</p>
+      <p>{p.types.map(type => <a class="badge" href={referenceHref(`/type/${type}`)}>{formatTypeName(type)}</a>)}</p>
+      <p>{p.genus} · {(p.height / 10).toFixed(1)} m · {(p.weight / 10).toFixed(1)} kg</p>
+    </div></div>
+    <section id="abilities"><h2>Abilities</h2><dl>{data.abilities.map(a => <><dt><a href={referenceHref(`/ability/${a.slug}`)}>{a.name}</a>{a.hidden ? ' (Hidden Ability)' : ''}</dt><dd>{a.effect}</dd></>)}</dl></section>
+    <section id="stats"><h2>Base Stats</h2><table><thead><tr><th scope="col">Stat</th><th scope="col">Value</th></tr></thead><tbody>{Object.entries(p.stats).map(([key, value]) => <tr><th scope="row">{statLabels[key]}</th><td>{value}</td></tr>)}<tr><th scope="row">Total</th><td>{data.total}</td></tr></tbody></table></section>
+    <section id="matchups"><h2>Weaknesses and Resistances</h2><p>Type matchups before ability effects.</p><div class="columns">{['weaknesses', 'resistances', 'immunities'].map(group => <div><h3>{formatTypeName(group)}</h3>{matchups[group].length ? <ul>{matchups[group].map(m => <li><a href={referenceHref(`/type/${m.type}`)}>{m.typeName}</a> {m.multiplierLabel}</li>)}</ul> : <p>None</p>}</div>)}</div></section>
+    <section id="evolution"><h2>Evolution Chain</h2><p>{data.evolutionSummary}</p><ul class="evolution"><EvolutionNode model={data.evolution} /></ul></section>
+    <section id="analysis"><h2>{name} Analysis</h2><p>Playthrough, competitive and Nuzlocke guidance for the evolution line.</p>{['playthrough', 'competitive', 'nuzlocke'].map(key => <div id={key}><h3>{formatTypeName(key)}</h3><p><LinkedText parts={data.linkedText(analysis[key])} /></p></div>)}</section>
+    <section id="biology"><h2>Biology and Behavior</h2>{data.sharedSpeciesAnalysis && <p class="note">The existing dataset supplies shared {analysis.name} species biology here; this is not form-specific Alolan biology.</p>}<p><LinkedText parts={data.linkedText(analysis.biologyAndBehavior)} /></p></section>
+    <section id="learnset"><h2>Learnset</h2><h3>{data.preview.versionLabel} — Level-up moves</h3><table><thead><tr><th scope="col">Level</th><th scope="col">Move</th></tr></thead><tbody>{data.preview.rows.map(row => <tr><td>{row.levelLabel}</td><td><a href={referenceHref(`/move/${row.move}`)}>{row.moveLabel}</a></td></tr>)}</tbody></table></section>
+    <section id="encounters"><h2>Where to Find {name}</h2>{data.encounters?.locations?.length ? data.encounters.locations.map(entry => <div class="location"><h3><a href={referenceHref(`/location/${entry.location.name}`)}>{entry.location.displayName}</a></h3>{entry.areas.map(area => <div><p><strong>{area.displayName}</strong></p><ul>{area.versions.map(version => version.encounters.map(encounter => <li>{formatEncounterVersionName(version.version)}: {formatEncounterMethodName(encounter.method)} · {formatEncounterLevelRange({ minLevel: encounter.minLevel, maxLevel: encounter.maxLevel })} · {formatChance(encounter.chance)} {formatEncounterConditions(encounter.conditions)}</li>))}</ul></div>)}</div>) : <p>No encounter records are available in the current dataset. This does not imply that the Pokémon cannot be obtained.</p>}</section>
+  </article>
+</BaseLayout>
