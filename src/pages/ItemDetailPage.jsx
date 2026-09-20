@@ -691,10 +691,6 @@ function ItemDetailPage() {
   const showEffect =
     effectText &&
     !isBerryItem && !hasEvModule;
-  const showShortEffect =
-    item?.shortEffect &&
-    !machineItemDescription &&
-    !isBerryItem && !hasEvModule;
   const usableFlavorTextEntries =
     item?.flavorTextEntries?.filter(entry =>
       isUsableFlavorText(entry.text)
@@ -836,17 +832,6 @@ function ItemDetailPage() {
         />
       )}
 
-      {showShortEffect && (
-        <section
-          style={{
-            marginBottom: "2rem"
-          }}
-        >
-          <h2>Short Effect</h2>
-          <p>{item.shortEffect}</p>
-        </section>
-      )}
-
       <TmMoveDetails item={item} />
 
       <ItemSpecializedSections sections={specializedSections} />
@@ -854,7 +839,6 @@ function ItemDetailPage() {
       <AcquisitionMethods
         key={item.name}
         acquisition={item.acquisition}
-        storageKey={`item:${item.name}:acquisition-expanded`}
       />
 
       {isBerryItem && (

@@ -4,7 +4,6 @@ import {
 } from "react";
 import { Link } from "react-router-dom";
 import CollapsibleSection from "./CollapsibleSection";
-import useSessionState from "../hooks/useSessionState";
 import { normalizeDisplayText } from "../utils/normalizeText";
 import { getPokemonUrl } from "../utils/pokemonUrls";
 import {
@@ -302,14 +301,10 @@ function formatCost(cost) {
 }
 
 function AcquisitionMethods({
-  acquisition,
-  storageKey = "acquisition-expanded"
+  acquisition
 }) {
   const [expanded, setExpanded] =
-    useSessionState(
-      storageKey,
-      false
-    );
+    useState(true);
 
   const [selectedGeneration, setSelectedGeneration] =
     useState("all");

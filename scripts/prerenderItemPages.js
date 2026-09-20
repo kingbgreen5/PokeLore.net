@@ -1000,24 +1000,12 @@ function renderEffectSections(item, specializedSections) {
   const isBerry = isBerryItem(item);
   const effectText =
     machineDescription ?? item.effect;
-  const showShortEffect =
-    item.shortEffect &&
-    !machineDescription &&
-    !isBerry &&
-    item.shortEffect !== item.effect;
   const sections = [];
 
   if (effectText && !isBerry) {
     sections.push(`<section class="prerender-item-section">
       <h2>Effect</h2>
       <p>${renderText(effectText)}</p>
-    </section>`);
-  }
-
-  if (showShortEffect) {
-    sections.push(`<section class="prerender-item-section">
-      <h2>Short Effect</h2>
-      <p>${renderText(item.shortEffect)}</p>
     </section>`);
   }
 
