@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/normalize-output.mjs && npm run verify",
     "preview": "astro preview",
     "verify": "node scripts/verify-build.mjs"
   },

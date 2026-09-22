@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
-import { resolve, join, relative } from 'node:path';
+import { resolve, join, relative, extname } from 'node:path';
 import { parseHTML } from 'linkedom';
 import { POC_SLUGS, routes, pokemonPath } from '../src/lib/routes.js';
 import { loadPokemon } from '../src/lib/pokemonData.js';
@@ -18,7 +18,9 @@ function filesAt(dir) {
 }
 const files = filesAt(dist);
 assert.deepEqual(files.filter(f => f.endsWith('.html')).sort(),
-  ['index.html', '404.html', ...POC_SLUGS.map(s => `pokemon/${s}.html`)].sort(), 'Exactly six HTML documents');
+  ['index.html', '404.html'].sort(), 'Only required special files retain .html');
+assert.deepEqual(files.filter(f => !extname(f)).sort(),
+  POC_SLUGS.map(s => `pokemon/${s}`).sort(), 'Exactly four extensionless canonical pages');
 assert(!files.some(f => /^pokemon\/\d+(?:[/.]|$)/.test(f)), 'No numeric resources');
 // Phase 1B permits scoped islands; core HTML and the head remain server-owned.
 for (const file of readdirSync('src/islands').filter(f=>f.endsWith('.jsx'))) {
@@ -27,7 +29,7 @@ for (const file of readdirSync('src/islands').filter(f=>f.endsWith('.jsx'))) {
 }
 
 for (const slug of POC_SLUGS) {
-  const d = documentAt(`pokemon/${slug}.html`);
+  const d = documentAt(`pokemon/${slug}`);
   const data = loadPokemon(slug);
   const seo = referenceSeo(data);
   const text = normalize(d.body.textContent);
@@ -88,11 +90,27 @@ for (const slug of POC_SLUGS) {
   console.log(`PASS /pokemon/${slug}: metadata, schema, full static content, links and artwork`);
 }
 const home = documentAt('index.html');
+assert.equal(home.querySelector('link[rel="canonical"]').getAttribute('href'), 'https://pokelore.net/');
 for (const slug of POC_SLUGS) assert(home.querySelector(`a[href="${pokemonPath(slug)}"]`));
 assert(!/noindex/.test(home.querySelector('meta[name="robots"]').getAttribute('content')));
 const notFound = documentAt('404.html');
 assert.equal(notFound.querySelector('h1').textContent, 'Page not found');
 assert(!notFound.querySelector('link[rel="canonical"]'), '404 must not canonicalize to homepage');
 assert(!notFound.querySelector('meta[http-equiv="refresh"]'));
+// Asset URLs must still resolve after renaming documents; check all six pages.
+for (const file of ['index.html', '404.html', ...POC_SLUGS.map(s => `pokemon/${s}`)]) {
+  const document = documentAt(file);
+  for (const element of document.querySelectorAll('[src], link[rel="stylesheet"], link[rel="modulepreload"], astro-island')) {
+    for (const attr of ['src', 'href', 'component-url', 'renderer-url']) {
+      const url = element.getAttribute(attr);
+      if (url?.startsWith('/') && !url.startsWith('//')) {
+        assert(existsSync(join(dist, decodeURIComponent(new URL(url, 'https://pokelore.net').pathname))), `${file}: missing asset ${url}`);
+      }
+    }
+  }
+}
+assert(files.some(f => f.endsWith('.css')), 'CSS output retained');
+assert(files.some(f => f.endsWith('.js')), 'Island JavaScript retained');
+assert(Array.isArray(JSON.parse(readFileSync(join(dist, 'data/search.json'), 'utf8'))), 'Search JSON retained');
 for (const [id, slug] of [[14, 'kakuna'], [25, 'pikachu'], [6, 'charizard'], [10100, 'raichu-alola']]) assert.equal(routes.byId[id], slug);
 console.log('PASS: six documents; homepage, 404, registry redirects; static core and scoped islands.');

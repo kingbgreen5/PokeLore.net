@@ -20,7 +20,7 @@ try {
     const bytes = readFileSync(`dist/_astro/${file}`);
     return { file, bytes: bytes.length, gzip: gzipSync(bytes).length };
   });
-  const html = readFileSync('dist/pokemon/kakuna.html');
+  const html = readFileSync('dist/pokemon/kakuna');
   const document = parseHTML(html.toString()).document;
   const inline = [...document.querySelectorAll('script:not([src])')].filter(s => s.type !== 'application/ld+json').map(s => s.textContent).join('\n');
   const report = { html: { bytes: html.length, gzip: gzipSync(html).length }, inlineScriptBytes: Buffer.byteLength(inline), initial: sizes(initial), afterScrolling: sizes([...scripts]), searchDataBytes: readFileSync('dist/data/search.json').length };

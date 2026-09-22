@@ -15,7 +15,7 @@ const cases = {
 for (const [name, corrupt] of Object.entries(cases)) {
   const output = join(parent, name);
   cpSync('dist', output, { recursive: true });
-  const page = join(output, 'pokemon/kakuna.html');
+  const page = join(output, 'pokemon/kakuna');
   const original = readFileSync(page, 'utf8');
   const changed = corrupt(original);
   assert.notEqual(changed, original, `${name}: mutation applied`);
@@ -24,3 +24,11 @@ for (const [name, corrupt] of Object.entries(cases)) {
   assert.equal(check.status, 1, `${name}: verifier must reject corrupted output\n${check.stdout}\n${check.stderr}`);
   console.log(`PASS: verifier rejected ${name} regression`);
 }
+
+// A surviving .html alias must fail even if both documents have correct content.
+const aliasOutput = join(parent, 'html-alias');
+cpSync('dist', aliasOutput, { recursive: true });
+cpSync(join(aliasOutput, 'pokemon/kakuna'), join(aliasOutput, 'pokemon/kakuna.html'));
+const aliasCheck = spawnSync(process.execPath, ['scripts/verify-build.mjs', aliasOutput], { encoding: 'utf8' });
+assert.equal(aliasCheck.status, 1, `verifier must reject duplicate HTML alias\n${aliasCheck.stdout}\n${aliasCheck.stderr}`);
+console.log('PASS: verifier rejected duplicate .html resource');

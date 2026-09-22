@@ -1,6 +1,6 @@
 # PokéLore Astro proof of concept — Phase 1B
 
-The four-page POC now uses the production Pokémon-detail layout and interactive widgets while Astro owns the document, core content and SEO. Kakuna is the visual reference; Pikachu, Charizard and Alolan Raichu use the same template. Work remains local on `astro-migration`; this phase does not deploy, change production or start the full migration.
+The four-page POC now uses the production Pokémon-detail layout and interactive widgets while Astro owns the document, core content and SEO. Kakuna is the visual reference; Pikachu, Charizard and Alolan Raichu use the same template. Work remains local on `astro-migration`; this local work does not deploy, change production or start the full migration.
 
 ```sh
 cd astro-poc
@@ -43,7 +43,7 @@ Ability descriptions show the existing In-Game Description (`shortEffect` in `ab
 
 Four Pokémon link locally; other references use production canonical URLs. Static JSON-LD includes the size-comparison CreativeWork/hasPart now that the section exists. Phase 1 form National Dex normalization, artwork metadata and initial-HTML SEO remain.
 
-Output: six HTML documents (`/`, four Pokémon, `/404.html`), CSS/JS, original bundled assets, selected official artwork, promo image and `data/search.json`. No numeric Pokémon documents, sitemap, normalizer or catch-all.
+Output: six HTML documents (`/`, four Pokémon, `/404.html`), CSS/JS, original bundled assets, selected official artwork, promo image and `data/search.json`. The four Pokémon documents are physically extensionless; index.html and 404.html remain. No numeric Pokémon documents, sitemap or catch-all.
 
 ## Validation
 
@@ -70,3 +70,9 @@ Review these limits and perform deployed Phase 1B acceptance before scaling. [Re
 Development serves the same selected public artwork and generated search records through Vite middleware. The shared allowlist in scripts/public-assets.mjs is also used by the build copier, so a prior build is not required for dev images or search. Restart npm run dev after configuration changes.
 
 Learnset categories now follow the Gen I–III type split for selected legacy games across all methods. See [historical category rules and tests](LEARNSET_CATEGORIES.md).
+
+## Canonical output experiment
+
+The user-reported first Render test found slash and .html aliases returning 200. The build now runs Astro, scripts/normalize-output.mjs, then the verifier. The normalizer renames only self-canonical file-format HTML pages, preserving every document byte and all assets; it retains index.html and 404.html. Tests cover generic paths, idempotence, collision preflight and preserved special/noncanonical files. The verifier rejects duplicate .html aliases. See [second Render acceptance test](RENDER_TESTING.md) for manual redirects, MIME checks and exact curl commands. Live normalization behavior remains pending redeployment. No Pokémon template or content changed in this step.
+
+Clean npm ci and the normalized build passed after stopping the old preview that held a Rollup file lock. npm reported 3 dependency advisories (1 low, 1 high, 1 critical); no dependency versions or audit fixes were changed as part of this output-only task.

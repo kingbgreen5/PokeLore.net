@@ -80,6 +80,6 @@ Before full scale, evaluate a crawlable bounded carousel with progressive index 
 - Alolan Raichu inherits species biology and incomplete regional evolution restrictions from existing data/helpers. Shared prose is labeled; no form-specific facts were invented.
 - Oak/GO note records are absent for the sample. Broad forms, branching evolutions and optional data remain unaudited. Admin-only size-review editing is not part of this port.
 - Gallery availability and analytics transport depend on their external services/deployment setup.
-- Phase 1B changes are not deployed. Render headers, redirects, status/MIME and deployed interactions still need acceptance on the separate test service.
+- Subsequent user-reported Render testing confirmed canonical 200s, missing-path 404s and noindex, but found slash/.html aliases still returning 200. The new extensionless output experiment is prepared locally; its redirects and MIME remain pending live acceptance. See RENDER_TESTING.md.
 
 The template is reusable and meets this four-page parity scope. It is **not yet certified for the full Pokédex**: address payload concerns, broader data coverage and deployed acceptance in a separately authorized phase. Production source/configuration remains unchanged.

@@ -1,28 +1,59 @@
-# Separate Render staging test
+# Render staging: extensionless-output acceptance test
 
-Do not change the production service, its domains, Blueprint, redirects, or headers. The Phase 1 test service already exists; this Phase 1B work has not been deployed. Reuse the separate test service when deployment is authorized. HTTP results below are acceptance targets, not claimed observations.
+Scope: `https://pokelore-net-astro-test.onrender.com` only. Production source, Render configuration, finalizers and domains are unchanged. This task prepares local output; it does not deploy, configure the dashboard or begin the full migration.
 
-## Create the service manually
+## First live test — reported by the user
 
-1. Commit/push the POC on **astro-migration** when ready. In Render choose **New → Static Site**, connect this repository, and select branch **astro-migration**. Do not create a service from the production Blueprint.
-2. Use a separate name such as `pokelore-astro-test`. Attach **no custom domain**; use its assigned `*.onrender.com` address.
-3. Leave **Root Directory empty** (repository root). The build needs parent `src/` and `public/data/`; selecting `astro-poc` as a restricted monorepo root can exclude them.
-4. Build command: `cd astro-poc && npm ci && npm run build && npm run verify`
-5. Publish directory: **astro-poc/dist** (relative to repository root).
-6. Set environment **NODE_VERSION=24.18.0** (the locally tested version) and **SKIP_INSTALL_DEPS=true**. The latter prevents automatic installation of the root production package; the build command explicitly installs the POC. No application secrets or other environment variables are required. Do not omit dev dependencies: the verifier uses linkedom.
-7. Add this HTTP response header in the **test service only**, then verify it before sharing the URL:
-
-| Path | Header | Value |
+| Request | Reported status | Assessment |
 |---|---|---|
-| `/*` | `X-Robots-Tag` | `noindex` |
+| `/pokemon/kakuna` | 200 | Correct |
+| `/pokemon/kakuna/` | 200 | Needs normalization |
+| `/pokemon/14` | 404 | Numeric redirect not configured/proven |
+| `/pokemon/not-a-real-pokemon` | 404 | Correct |
+| `/random-garbage-path` | 404 | Correct |
+| `/pokemon/kakuna.html` | 200 | Undesired alias |
+| Staging `X-Robots-Tag: noindex` | Working | Retain |
 
-Canonical documents intentionally retain indexable robots metadata and canonical origin `https://pokelore.net`. Staging indexing protection is the HTTP header, not client JavaScript.
+These are the supplied live observations, not a newly performed crawl. The second test below remains pending deployment.
 
-Render documents manual dependency installation and service-specific headers in its [Static Sites guide](https://render.com/docs/static-sites).
+Render [serves existing resources before redirect/rewrite rules](https://render.com/docs/redirects-rewrites). The working hypothesis is that replacing the physical `.html` resources with extensionless files will let the slash redirect run. This is an experiment: only the next live HTTP test can confirm Render's slash and alias resolution.
 
-## Redirect rules
+## Build and final output
 
-Add these rules in the test site's Redirects/Rewrites dashboard, in this order. Each action is **Redirect** (Render's permanent HTTP 301 action).
+Keep the existing separate static site on `astro-migration`, with no custom domain:
+
+- Root Directory: empty (repository root; the POC reads parent source/data).
+- Build command: `cd astro-poc && npm ci && npm run build`
+- Publish directory: `astro-poc/dist`
+- Environment: `NODE_VERSION=24.18.0`, `SKIP_INSTALL_DEPS=true`.
+- Do not omit dev dependencies; linkedom is used by normalization and verification.
+
+`npm run build` now runs `astro build` → `scripts/normalize-output.mjs` → `npm run verify`. The existing longer command ending with `&& npm run verify` also works but verifies twice. No production finalizer is reused.
+
+```text
+astro-poc/dist/
+  index.html
+  404.html
+  pokemon/
+    kakuna
+    pikachu
+    charizard
+    raichu-alola
+  _astro/*                   CSS, JavaScript and bundled assets
+  images/pokemon/official/*  selected existing artwork
+  images/etsy/*              selected promo
+  data/search.json
+```
+
+No `pokemon/<slug>.html`, `pokemon/<slug>/index.html`, numeric document or meta-refresh shell is generated.
+
+The generic normalizer scans `.html` files but only renames a file when its single HTTPS PokéLore canonical exactly matches its own extensionless path. `index.html` and `404.html` are always preserved, including nested special files. Documents without a matching canonical, external canonicals, asset-shaped paths and non-HTML assets are left alone. Slug path segments are restricted to letters, digits, underscores and hyphens. All destinations are checked before any rename; collisions and symlinks fail the build. Renames preserve document bytes exactly, including metadata, JSON-LD, content and links. Re-running normalization is a no-op.
+
+The normalizer is generic; the verifier still enforces this experiment's four-page allowlist. Adding another route family is not part of this task.
+
+## Manual staging redirects
+
+In the test service's Redirects/Rewrites dashboard, add or retain these five rules. Each action is **Redirect** (301), not Rewrite:
 
 | Source | Destination | Action |
 |---|---|---|
@@ -32,86 +63,85 @@ Add these rules in the test site's Redirects/Rewrites dashboard, in this order. 
 | `/pokemon/10100` | `/pokemon/raichu-alola` | Redirect |
 | `/pokemon/:slug/` | `/pokemon/:slug` | Redirect |
 
-All four numeric pairs are checked against both directions of `public/data/pokemonRoutes.json` by `npm run verify`. No numeric resource, meta-refresh shell, or Astro redirect page is generated. Numeric URLs with a slash may take two redirects; the requested non-slash aliases should take one.
+These four numeric redirects are temporary HTTP proof rules, not a full redirect migration. The build verifies their IDs against the existing registry. Numeric URLs with a slash may take two redirects; plain numeric URLs should take one.
 
-The placeholder rule is the recommended trailing-slash experiment: it preserves one Pokémon path component. Render supports placeholders, but existing-resource precedence may affect matching. Its [redirect documentation](https://render.com/docs/redirects-rewrites) says existing resources are served before dashboard rules. Consequently this rule's actual status and location must be verified on staging.
+Remove any old test rewrites from `/pokemon/<slug>` to `/pokemon/<slug>.html`: those target files no longer exist. Do not introduce `.html` aliases to compensate. Do not add `/* → /index.html`, `/pokemon/* → /index.html`, or a catch-all rewrite to `404.html`. Missing routes must retain HTTP 404.
 
-**Never add `/* → /index.html` or `/pokemon/* → /index.html`.** No SPA fallback is required. Do not add a catch-all rewrite to `404.html` either: that could turn missing resources into successful responses. Render should serve the root `404.html` for missing resources with status 404; verify both the status and body.
+## Headers and MIME: required release gate
 
-## Output and URL resolution
+Retain the existing staging header:
 
-Astro is configured with `output: 'static'`, `trailingSlash: 'never'`, `build.format: 'file'`, and `site: 'https://pokelore.net'`. The [Astro configuration reference](https://docs.astro.build/en/reference/configuration-reference/#buildformat) describes file output. These settings produce:
-
-```text
-astro-poc/dist/
-  index.html
-  404.html
-  pokemon/kakuna.html
-  pokemon/pikachu.html
-  pokemon/charizard.html
-  pokemon/raichu-alola.html
-  _astro/* (CSS, island JavaScript and bundled assets)
-  images/pokemon/official/{card,detail,full}/* (selected existing artwork)
-  images/etsy/* (selected promo)
-  data/search.json
-```
-
-There are no extensionless output copies or `pokemon/<slug>/index.html` files. Canonicals and navigational links have neither `.html` nor trailing slash. Astro's file layout does not itself dictate Render's HTTP behavior.
-
-First test whether Render resolves `/pokemon/kakuna` to `pokemon/kakuna.html` automatically. **This is an expectation to test, not a deployment guarantee.** If it does not, add these four explicit **Rewrite** rules after the redirects, and retest:
-
-| Source | Destination |
-|---|---|
-| `/pokemon/kakuna` | `/pokemon/kakuna.html` |
-| `/pokemon/pikachu` | `/pokemon/pikachu.html` |
-| `/pokemon/charizard` | `/pokemon/charizard.html` |
-| `/pokemon/raichu-alola` | `/pokemon/raichu-alola.html` |
-
-These serve each real document at its canonical URL and preserve missing-path 404s. No normalization script is currently justified. If neither native resolution nor these exact rewrites preserves the acceptance targets, stop the rollout and record the HTTP evidence before considering a POC-only normalizer.
-
-Expected MIME types: HTML documents `text/html` (optional charset), CSS `text/css`, JavaScript `text/javascript` or `application/javascript`, search data `application/json`, artwork `image/webp`. Standard extension-based files should need no MIME override. Do not apply `Content-Type: text/html` to `/*`; that would break CSS/images. If a future experiment creates extensionless files, its MIME behavior needs a separate decision.
-
-## HTTP tests (do not follow redirects initially)
-
-Use the actual assigned hostname in place of the placeholder. On Windows use `curl.exe` if `curl` aliases PowerShell's web cmdlet. These commands intentionally omit `-L`:
-
-```sh
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/pokemon/kakuna
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/pokemon/kakuna/
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/pokemon/14
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/pokemon/pikachu
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/pokemon/25
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/pokemon/charizard
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/pokemon/6
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/pokemon/raichu-alola
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/pokemon/10100
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/pokemon/not-a-real-pokemon
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/random-garbage-path
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/pokemon/kakuna.html
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/pokemon/kakuna/index.html
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/404.html
-curl -I https://POKELORE-ASTRO-TEST.onrender.com/images/pokemon/official/detail/14.webp
-```
-
-Also inspect real GET responses, because HEAD alone cannot confirm the document:
-
-```sh
-curl -sS -D kakuna.headers -o kakuna.html https://POKELORE-ASTRO-TEST.onrender.com/pokemon/kakuna
-curl -sS -D invalid.headers -o invalid.html https://POKELORE-ASTRO-TEST.onrender.com/pokemon/not-a-real-pokemon
-curl -sS -D random.headers -o random.html https://POKELORE-ASTRO-TEST.onrender.com/random-garbage-path
-```
-
-Confirm Kakuna's title, one production-origin canonical, JSON-LD and complete body in View Source; disable JavaScript and verify content and artwork. Inspect the actual `_astro/*.css` URL from that HTML and request it with `curl -I`. After recording original redirects, use `curl -IL --max-redirs 5 URL` to check the chain has no loop and ends at the intended slug.
-
-| Request | Required result | Observed on Render |
+| Path | Header | Value |
 |---|---|---|
-| Each canonical slug | 200, correct document, text/html, X-Robots-Tag: noindex | Pending deployment |
-| `/pokemon/kakuna/` | 301, Location `/pokemon/kakuna` (absolute equivalent allowed) | Pending |
-| Numeric aliases | 301 to corresponding slug | Pending |
-| Invalid Pokémon / random path | 404, custom not-found body, no homepage | Pending |
-| `/pokemon/kakuna.html` | Record actual status/location/body; do not assume | Pending |
-| `/pokemon/kakuna/index.html` | Record actual status/location/body; do not assume | Pending |
-| CSS / JS / search JSON / images | 200, correct MIME, noindex header | Pending |
+| `/*` | `X-Robots-Tag` | `noindex` |
 
-Do not try to hide `.html` aliases with redirects before observing default behavior; existing-resource precedence may make such rules ineffective. Alias behavior, slash normalization, custom 404 handling, MIME and noindex coverage remain release gates. Local Astro preview is not an emulator of Render.
+**Extensionless documents must return `Content-Type: text/html` (optionally `charset=utf-8`).** A 200 response with an octet-stream/plain-text content type is a failed acceptance test, even if the body contains valid HTML. HTML meta tags cannot repair an incorrect HTTP content type.
+
+First inspect Render's actual response after deployment. If MIME is wrong, add these narrowly scoped staging headers and retest:
+
+| Path | Header | Value |
+|---|---|---|
+| `/pokemon/kakuna` | `Content-Type` | `text/html; charset=utf-8` |
+| `/pokemon/pikachu` | `Content-Type` | `text/html; charset=utf-8` |
+| `/pokemon/charizard` | `Content-Type` | `text/html; charset=utf-8` |
+| `/pokemon/raichu-alola` | `Content-Type` | `text/html; charset=utf-8` |
+
+Render supports [custom static-site response headers](https://render.com/docs/static-site-headers), but verify the final effective Content-Type rather than assuming an override succeeded. Do not apply HTML Content-Type to `/*`; CSS, JavaScript, JSON and images need their own MIME types. If a header override cannot fix it cleanly, stop this experiment rather than declaring acceptance.
+
+Expected assets: CSS `text/css`; JavaScript `text/javascript` or `application/javascript`; search `application/json`; artwork `image/webp` or `image/png`; promo `image/jpeg`. All should still return 200 and the staging noindex header.
+
+## Exact second-test commands
+
+These commands work in Git Bash. In PowerShell use `curl.exe` instead of `curl`. Do not follow redirects for the initial status/Location checks:
+
+```sh
+curl -I https://pokelore-net-astro-test.onrender.com/
+curl -I https://pokelore-net-astro-test.onrender.com/pokemon/kakuna
+curl -I https://pokelore-net-astro-test.onrender.com/pokemon/kakuna/
+curl -I https://pokelore-net-astro-test.onrender.com/pokemon/14
+curl -I https://pokelore-net-astro-test.onrender.com/pokemon/pikachu
+curl -I https://pokelore-net-astro-test.onrender.com/pokemon/25
+curl -I https://pokelore-net-astro-test.onrender.com/pokemon/charizard
+curl -I https://pokelore-net-astro-test.onrender.com/pokemon/6
+curl -I https://pokelore-net-astro-test.onrender.com/pokemon/raichu-alola
+curl -I https://pokelore-net-astro-test.onrender.com/pokemon/10100
+curl -I https://pokelore-net-astro-test.onrender.com/pokemon/not-a-real-pokemon
+curl -I https://pokelore-net-astro-test.onrender.com/random-garbage-path
+curl -I https://pokelore-net-astro-test.onrender.com/pokemon/kakuna.html
+curl -I https://pokelore-net-astro-test.onrender.com/pokemon/kakuna/index.html
+curl -I https://pokelore-net-astro-test.onrender.com/404.html
+curl -I https://pokelore-net-astro-test.onrender.com/images/pokemon/official/detail/14.webp
+curl -I https://pokelore-net-astro-test.onrender.com/data/search.json
+```
+
+Also test real GET responses (HEAD alone cannot verify the HTML):
+
+```sh
+mkdir -p astro-poc/evidence/render-normalized
+curl -sS -D astro-poc/evidence/render-normalized/kakuna.headers -o astro-poc/evidence/render-normalized/kakuna.html https://pokelore-net-astro-test.onrender.com/pokemon/kakuna
+curl -sS -D astro-poc/evidence/render-normalized/invalid.headers -o astro-poc/evidence/render-normalized/invalid.html https://pokelore-net-astro-test.onrender.com/pokemon/not-a-real-pokemon
+curl -sS -D astro-poc/evidence/render-normalized/random.headers -o astro-poc/evidence/render-normalized/random.html https://pokelore-net-astro-test.onrender.com/random-garbage-path
+curl -sS -D astro-poc/evidence/render-normalized/alias.headers -o astro-poc/evidence/render-normalized/alias.html https://pokelore-net-astro-test.onrender.com/pokemon/kakuna.html
+curl -IL --max-redirs 5 https://pokelore-net-astro-test.onrender.com/pokemon/kakuna/
+curl -IL --max-redirs 5 https://pokelore-net-astro-test.onrender.com/pokemon/14
+```
+
+Run the file-saving commands from repository root. Inspect Kakuna's source for its title, exactly one production canonical, JSON-LD and full body. The missing-path bodies should be the custom not-found page, not the homepage. Get current hashed CSS/JS URLs from Kakuna's HTML or browser Network panel and test those exact URLs with `curl -I` too; filenames change per build. Check desktop/mobile rendering and no-JS core content after confirming MIME.
+
+| Request | Second-test requirement | Observed after normalized deployment |
+|---|---|---|
+| Four canonical slugs | 200, correct HTML, text/html, noindex header | Pending |
+| `/pokemon/kakuna/` | 301, Location `/pokemon/kakuna` | Pending |
+| Four numeric aliases | 301, corresponding slug Location | Pending |
+| Invalid Pokémon and random path | 404, custom not-found body | Pending |
+| `/pokemon/kakuna.html` | Preferably 404; a 200 means alias normalization is not proved | Pending |
+| `/pokemon/kakuna/index.html` | 404 | Pending |
+| Assets/search | 200, correct MIME, noindex header | Pending |
+
+Absolute Location values with the staging origin are equivalent. Check other POC slash/HTML aliases as well before accepting the contract. No local tool emulates Render's edge resolver; passing local builds proves files, not the deployed HTTP contract.
+
+## Local checks and scale limits
+
+Run from `astro-poc`: `npm ci`, `npm run build`, `node --test scripts/normalize-output.test.mjs`, `node scripts/check-verifier.mjs`. The build already runs verification; `npm run verify` remains available independently. `npm run dev` is unchanged and remains the local UI workflow. Generic static preview servers may assign the wrong MIME to extensionless files; do not use local preview MIME or redirects as evidence of Render behavior.
+
+Before scaling, prove MIME/redirect/404 behavior on Render and consider route collisions: a physical `/pokemon/example` file cannot also be a directory containing `/pokemon/example/details`. The normalizer rejects destination collisions. Unicode/encoded/dotted canonical paths and directory-index route layouts need an explicit future policy; they are not blindly renamed. Header and redirect management at full scale is also unproven. No full Pokédex migration should begin on the strength of local normalization alone.
