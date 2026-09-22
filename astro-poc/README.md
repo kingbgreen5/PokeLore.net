@@ -37,9 +37,9 @@ Direct reuse without hydration: production `BaseStatsChart.jsx`. Other direct im
 
 Seven React islands: search (`client:load`); learnset, encounters, gallery, promo, size comparison and carousel (`client:visible`). Stats render on the server without a client directive. No whole-page React root, React Router, client head repair, SPA fallback or runtime Pokémon-data fetch was introduced.
 
-Native accordions work without JavaScript. Summary, abilities/full effects, six stats, matchups, evolution, all analysis, Dex entries, biology, default all-generation moves and encounters are in original HTML. Filters require JavaScript; static defaults remain useful. The Phase 1 latest-level-up subset remains included and verified.
+Native accordions work without JavaScript. Summary, abilities/in-game descriptions, six stats, matchups, evolution, all analysis, Dex entries, biology, default all-generation moves and encounters are in original HTML. Filters require JavaScript; static defaults remain useful. The Phase 1 latest-level-up subset remains included and verified.
 
-Ability descriptions use verbatim source sentences from `abilities.json`, approximately 280 characters maximum before a native “Full ability effect” disclosure. Names link to canonical ability pages and Hidden Abilities are labeled. No ability prose was invented.
+Ability descriptions show the existing In-Game Description (`shortEffect` in `abilities.json`) verbatim beneath each name in smaller text, matching the production ability detail page. Names link to canonical ability pages and Hidden Abilities are labeled. No ability prose was invented.
 
 Four Pokémon link locally; other references use production canonical URLs. Static JSON-LD includes the size-comparison CreativeWork/hasPart now that the section exists. Phase 1 form National Dex normalization, artwork metadata and initial-HTML SEO remain.
 
@@ -66,3 +66,7 @@ Screenshot comparison additionally uses live production HTTPS and root Vite on 5
 The template is reusable, but full-Pokédex readiness is not certified. The complete navigation index makes HTML large; embedded badge assets increase JS. Broader form/evolution/optional-content coverage needs audit. Alolan Raichu's inherited species biology and regional evolution restrictions remain documented data limitations. Gallery images still depend on PokeAPI. No production analytics loader or admin-only size-review tools were added. No Oak/GO note records exist for this sample; those optional features are not certified.
 
 Review these limits and perform deployed Phase 1B acceptance before scaling. [Render instructions](RENDER_TESTING.md) preserve the static routing policy; this task did not deploy changes.
+
+Development serves the same selected public artwork and generated search records through Vite middleware. The shared allowlist in scripts/public-assets.mjs is also used by the build copier, so a prior build is not required for dev images or search. Restart npm run dev after configuration changes.
+
+Learnset categories now follow the Gen I–III type split for selected legacy games across all methods. See [historical category rules and tests](LEARNSET_CATEGORIES.md).

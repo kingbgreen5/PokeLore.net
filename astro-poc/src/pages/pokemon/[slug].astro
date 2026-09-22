@@ -18,38 +18,266 @@ import { publicHref } from '../../lib/links.js';
 import { loadPokemon } from '../../lib/pokemonData.js';
 import { referenceSeo } from '../../lib/seo.js';
 import { formatTypeName } from '../../../../src/utils/typeEffectiveness.js';
-export function getStaticPaths() { return POC_SLUGS.map(slug => ({ params: { slug } })); }
+
+export function getStaticPaths() {
+  return POC_SLUGS.map(slug => ({ params: { slug } }));
+}
+
 const data = loadPokemon(Astro.params.slug);
 const { p, name, analysis, matchups } = data;
-const ad = selectEtsyAd(getEtsyPageTags({pathname: `/pokemon/${p.name}`, pokemon:p}), {random:()=>0});
+const ad = selectEtsyAd(
+  getEtsyPageTags({ pathname: `/pokemon/${p.name}`, pokemon: p }),
+  { random: () => 0 }
+);
+
 const inches = Math.round(p.height / 10 * 39.3701);
-const facts = [['Species',p.genus],['Height',`${Math.floor(inches/12)}' ${inches%12}" (${(p.height/10).toFixed(1)} m)`],['Weight',`${(p.weight/10*2.20462).toFixed(1)} lbs (${(p.weight/10).toFixed(1)} kg)`],['Habitat',formatTypeName(p.habitat)||'Currently Unknown'],['Color',formatTypeName(p.color)],['Body Style',formatTypeName(p.shape)]];
-const currentIndex = data.navigation.findIndex(entry=>entry.id===p.id);
-const previous = data.navigation[currentIndex-1], next=data.navigation[currentIndex+1];
+const facts = [
+  ['Species', p.genus],
+  ['Height', `${Math.floor(inches / 12)}' ${inches % 12}" (${(p.height / 10).toFixed(1)} m)`],
+  ['Weight', `${(p.weight / 10 * 2.20462).toFixed(1)} lbs (${(p.weight / 10).toFixed(1)} kg)`],
+  ['Habitat', formatTypeName(p.habitat) || 'Currently Unknown'],
+  ['Color', formatTypeName(p.color)],
+  ['Body Style', formatTypeName(p.shape)]
+];
+
+const matchupSections = [
+  ['weaknesses', 'Weak To'],
+  ['resistances', 'Resists'],
+  ['immunities', 'Immune To']
+];
+const analysisSections = [
+  ['playthrough', `Using ${name} in a Playthrough`],
+  ['competitive', `${name} in Competitive Pokémon`],
+  ['nuzlocke', `${name} in Nuzlockes`]
+];
+
+const currentIndex = data.navigation.findIndex(entry => entry.id === p.id);
+const previous = data.navigation[currentIndex - 1];
+const next = data.navigation[currentIndex + 1];
 ---
+
 <BaseLayout seo={referenceSeo(data)}>
   <article class="pokemon-detail">
-    <p class="hero-summary"><LinkedText parts={data.linkedText(data.summary)} /></p>
-    <img class="hero-artwork" src={data.artwork} alt={name} width="250" height="250" fetchpriority="high" />
+    <p class="hero-summary">
+      <LinkedText parts={data.linkedText(data.summary)} />
+    </p>
+    <img
+      class="hero-artwork"
+      src={data.artwork}
+      alt={name}
+      width="250"
+      height="250"
+      fetchpriority="high"
+    />
     <h1>{name}</h1>
-    <div class="hero-types">{p.types.map(type=><a href={publicHref(`/type/${type}`)}><TypeBadge type={type} height="2rem" /></a>)}</div>
-    <section id="abilities"><h2>Abilities</h2><div class="abilities">{data.abilities.map(a=><div class="ability"><a href={publicHref(`/ability/${a.slug}`)}>{a.name}{a.hidden && <small>Hidden Ability</small>}</a><p>{a.description}</p>{a.description !== a.effect && <details class="ability-effect"><summary>Full ability effect</summary><p>{a.effect}</p></details>}</div>)}</div></section>
-    <div id="stats"><BaseStatsChart stats={p.stats} evYield={p.evYield} /></div>
-    <section id="matchups" class="matchups"><h2>{name}'s Weaknesses and Resistances</h2><div class="matchup-groups">{[['weaknesses','Weak To'],['resistances','Resists'],['immunities','Immune To']].map(([key,label])=>matchups[key].length>0 && <div><h3>{label}</h3><ul>{matchups[key].map(m=><li><a href={publicHref(`/type/${m.type}`)} aria-label={`${m.typeName} attacking moves deal ${m.multiplierLabel} damage`}><strong>{m.multiplierLabel}</strong><TypeBadge type={m.type} /></a></li>)}</ul></div>)}</div></section>
-    <section id="evolution" class="evolution-section"><h2>Evolution Chain</h2><p class="evolution-summary">{data.evolutionSummary}</p><div class="evolution-tree-scroll"><div class="evolution-tree-inner evolution-tree-inner-horizontal"><EvolutionNode model={data.evolution} /></div></div></section>
-    {p.varieties?.length>1 && <section><h2>Forms</h2><div class="forms">{p.varieties.filter(form=>routes.byName[form.name]).map(form=><PokemonCard pokemon={form} />)}</div></section>}
-    <Accordion id="analysis" title={`${name} Playthrough, Competitive, and Nuzlocke Usage`}><div class="prose-cards">{[['playthrough',`Using ${name} in a Playthrough`],['competitive',`${name} in Competitive Pokémon`],['nuzlocke',`${name} in Nuzlockes`]].map(([key,title])=><div class="prose-card" id={key}><h3>{title}</h3><p><LinkedText parts={data.linkedText(analysis[key])} /></p></div>)}</div></Accordion>
-    <div id="learnset"><LearnsetCard pokemonData={data.learnset} movesData={data.moves} client:visible /></div>
-    <Accordion id="dex-entries" title="Pokédex Entries" count={`${p.dexEntries.length} entries`}>{p.dexEntries.map(entry=><div class="dex-entry"><strong>{entry.versions.map(formatTypeName).join(' / ')}</strong><p>{entry.text}</p></div>)}</Accordion>
-    <div id="encounters"><WhereToFind pokemonId={p.id} pokemonName={name} initialData={data.encounters} client:visible /></div>
-    {data.heldItems?.heldItems?.length>0 && <Accordion id="held-items" title="Held Items" count={`${data.heldItems.heldItems.length} items`}>{data.heldItems.heldItems.map(held=><div class="prose-card"><a href={publicHref(`/item/${held.item.name}`)}>{held.item.displayName}</a><ul>{held.versionDetails.map(detail=><li>{formatTypeName(detail.version)}: {detail.rarity}% chance</li>)}</ul></div>)}</Accordion>}
-    <div id="additional-images"><AdditionalImages pokemonId={p.id} pokemonName={name} client:visible /></div>
-    <Accordion id="biology" title={`${name} Biology and Behavior`}><div class="prose-cards"><div class="prose-card">{data.sharedSpeciesAnalysis && <p class="note">The existing dataset supplies shared {analysis.name} species biology here; this is not form-specific Alolan biology.</p>}<p><LinkedText parts={data.linkedText(analysis.biologyAndBehavior)} /></p></div><section class="prose-card"><h3>{name} Biological Data</h3><dl class="biological-facts">{facts.map(([label,value])=><div><dt>{label}</dt><dd>{value}</dd></div>)}</dl></section></div></Accordion>
-    <EtsyMerchPromo ad={ad} pagePath={`/pokemon/${p.name}`} placement="pokemon-detail" client:visible />
-    <section class="misc"><h2>Misc</h2><p>Catch Rate: {p.catchRate}</p><p>Base Experience: {p.baseExperience} Exp</p><p>Hatch Counter: {p.hatchCounter}</p></section>
-    <SizeComparison pokemon={p} initialBounds={data.spriteBounds} initialCorrections={data.corrections} sectionId="size-comparison" client:visible />
-    <div id="navigation"><PokemonSpriteCarousel pokemon={p} initialIndex={data.navigation} client:visible /></div>
-    <nav class="previous-next" aria-label="Previous and next Pokémon">{previous && <a href={publicHref(`/pokemon/${previous.name}`)}>← {formatTypeName(previous.name)}</a>}{next && <a href={publicHref(`/pokemon/${next.name}`)}>{formatTypeName(next.name)} →</a>}</nav>
-    <nav class="sr-only" aria-label="Breadcrumb"><a href="/">PokéLore</a> › {name}</nav>
+    <div class="hero-types">
+      {p.types.map(type => (
+        <a href={publicHref(`/type/${type}`)}>
+          <TypeBadge type={type} height="2rem" />
+        </a>
+      ))}
+    </div>
+
+    <section id="abilities">
+      <h2>Abilities</h2>
+      <div class="abilities">
+        {data.abilities.map(ability => (
+          <div class="ability">
+            <a href={publicHref(`/ability/${ability.slug}`)}>
+              {ability.name}
+            </a>
+            <p>{ability.description}</p>
+            {ability.hidden && <small>Hidden Ability</small>}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div id="stats">
+      <BaseStatsChart stats={p.stats} evYield={p.evYield} />
+    </div>
+
+    <section id="matchups" class="matchups">
+      <h2>{name}'s Weaknesses and Resistances</h2>
+      <div class="matchup-groups">
+        {matchupSections.map(([key, label]) => (
+          matchups[key].length > 0 && (
+            <div>
+              <h3>{label}</h3>
+              <ul>
+                {matchups[key].map(matchup => (
+                  <li>
+                    <a
+                      href={publicHref(`/type/${matchup.type}`)}
+                      aria-label={`${matchup.typeName} attacking moves deal ${matchup.multiplierLabel} damage`}
+                    >
+                      <strong>{matchup.multiplierLabel}</strong>
+                      <TypeBadge type={matchup.type} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        ))}
+      </div>
+    </section>
+
+    <section id="evolution" class="evolution-section">
+      <h2>Evolution Chain</h2>
+      <p class="evolution-summary">{data.evolutionSummary}</p>
+      <div class="evolution-tree-scroll">
+        <div class="evolution-tree-inner evolution-tree-inner-horizontal">
+          <EvolutionNode model={data.evolution} />
+        </div>
+      </div>
+    </section>
+
+    {p.varieties?.length > 1 && (
+      <section>
+        <h2>Forms</h2>
+        <div class="forms">
+          {p.varieties
+            .filter(form => routes.byName[form.name])
+            .map(form => <PokemonCard pokemon={form} />)}
+        </div>
+      </section>
+    )}
+
+    <Accordion
+      id="analysis"
+      title={`${name} Playthrough, Competitive, and Nuzlocke Usage`}
+    >
+      <div class="prose-cards">
+        {analysisSections.map(([key, title]) => (
+          <div class="prose-card" id={key}>
+            <h3>{title}</h3>
+            <p><LinkedText parts={data.linkedText(analysis[key])} /></p>
+          </div>
+        ))}
+      </div>
+    </Accordion>
+
+    <div id="learnset">
+      <LearnsetCard
+        pokemonData={data.learnset}
+        movesData={data.moves}
+        client:visible
+      />
+    </div>
+
+    <Accordion
+      id="dex-entries"
+      title="Pokédex Entries"
+      count={`${p.dexEntries.length} entries`}
+    >
+      {p.dexEntries.map(entry => (
+        <div class="dex-entry">
+          <strong>{entry.versions.map(formatTypeName).join(' / ')}</strong>
+          <p>{entry.text}</p>
+        </div>
+      ))}
+    </Accordion>
+
+    <div id="encounters">
+      <WhereToFind
+        pokemonId={p.id}
+        pokemonName={name}
+        initialData={data.encounters}
+        client:visible
+      />
+    </div>
+
+    {data.heldItems?.heldItems?.length > 0 && (
+      <Accordion
+        id="held-items"
+        title="Held Items"
+        count={`${data.heldItems.heldItems.length} items`}
+      >
+        {data.heldItems.heldItems.map(held => (
+          <div class="prose-card">
+            <a href={publicHref(`/item/${held.item.name}`)}>
+              {held.item.displayName}
+            </a>
+            <ul>
+              {held.versionDetails.map(detail => (
+                <li>{formatTypeName(detail.version)}: {detail.rarity}% chance</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </Accordion>
+    )}
+
+    <div id="additional-images">
+      <AdditionalImages pokemonId={p.id} pokemonName={name} client:visible />
+    </div>
+
+    <Accordion id="biology" title={`${name} Biology and Behavior`}>
+      <div class="prose-cards">
+        <div class="prose-card">
+          {data.sharedSpeciesAnalysis && (
+            <p class="note">
+              The existing dataset supplies shared {analysis.name} species biology here;
+              this is not form-specific Alolan biology.
+            </p>
+          )}
+          <p><LinkedText parts={data.linkedText(analysis.biologyAndBehavior)} /></p>
+        </div>
+        <section class="prose-card">
+          <h3>{name} Biological Data</h3>
+          <dl class="biological-facts">
+            {facts.map(([label, value]) => (
+              <div>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      </div>
+    </Accordion>
+
+    <EtsyMerchPromo
+      ad={ad}
+      pagePath={`/pokemon/${p.name}`}
+      placement="pokemon-detail"
+      client:visible
+    />
+
+    <section class="misc">
+      <h2>Misc</h2>
+      <p>Catch Rate: {p.catchRate}</p>
+      <p>Base Experience: {p.baseExperience} Exp</p>
+      <p>Hatch Counter: {p.hatchCounter}</p>
+    </section>
+
+    <SizeComparison
+      pokemon={p}
+      initialBounds={data.spriteBounds}
+      initialCorrections={data.corrections}
+      sectionId="size-comparison"
+      client:visible
+    />
+
+    <div id="navigation">
+      <PokemonSpriteCarousel pokemon={p} initialIndex={data.navigation} client:visible />
+    </div>
+
+    <nav class="previous-next" aria-label="Previous and next Pokémon">
+      {previous && (
+        <a href={publicHref(`/pokemon/${previous.name}`)}>
+          ← {formatTypeName(previous.name)}
+        </a>
+      )}
+      {next && (
+        <a href={publicHref(`/pokemon/${next.name}`)}>
+          {formatTypeName(next.name)} →
+        </a>
+      )}
+    </nav>
+    <nav class="sr-only" aria-label="Breadcrumb">
+      <a href="/">PokéLore</a> › {name}
+    </nav>
   </article>
 </BaseLayout>

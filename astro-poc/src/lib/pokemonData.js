@@ -35,16 +35,9 @@ export function loadPokemon(slug) {
   const abilityData = read('abilities.json');
   const abilities = p.abilities.map(a => {
     const key = a.name.toLowerCase().replaceAll(' ', '-');
-    requireData(abilityData[key]?.effect, slug, `ability ${key}`);
-    const effect = abilityData[key].effect;
-    // Keep complete source sentences; long mechanics remain available below.
-    const sentences = effect.match(/[^.!?]+[.!?]+(?:\s|$)|[^.!?]+$/g) ?? [effect];
-    let description = sentences[0].trim();
-    for (const sentence of sentences.slice(1)) {
-      if (`${description} ${sentence.trim()}`.length > 280) break;
-      description += ` ${sentence.trim()}`;
-    }
-    return { ...a, slug: key, effect, description };
+    const description = abilityData[key]?.shortEffect;
+    requireData(typeof description === 'string' && description.trim(), slug, `ability ${key} in-game description`);
+    return { ...a, slug: key, description };
   });
   const analysis = resolvePokeloreAnalysis(read('PokeloreAnalysis.json'), p);
   for (const key of ['description', 'playthrough', 'competitive', 'nuzlocke', 'biologyAndBehavior']) {
@@ -97,7 +90,14 @@ export function loadPokemon(slug) {
   });
   const result = { p, name, abilities, analysis, sharedSpeciesAnalysis, warnings, evolution,
     evolutionSummary: getEvolutionSummaryText(chain.root, evolutionOptions),
-    preview, learnset, moves: Object.fromEntries([...new Set(learnset.moves.map(m => m.move))].map(key => [key, moves[key]])),
+    preview, learnset,
+    moves: Object.fromEntries([...new Set(learnset.moves.map(m => m.move))].map(key => {
+      const detail = read(`moves/${key}.json`, true);
+      const pastTypes = (detail?.pastValues ?? [])
+        .filter(entry => entry.type)
+        .map(({ type, versionGroup }) => ({ type, versionGroup }));
+      return [key, { ...moves[key], pastTypes }];
+    })),
     encounters, artwork, total, summary, matchups: getDefensiveMatchupGroups(p.types), linkedText,
     spriteBounds: { [p.id]: read('pokemonSpriteBounds.json').sprites?.[p.id] },
     corrections: { sprites: { [p.id]: read('pokemonSpriteCorrections.json').sprites?.[p.id] }, comparisonCharacters: read('pokemonSpriteCorrections.json').comparisonCharacters ?? {} },

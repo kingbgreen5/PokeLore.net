@@ -58,7 +58,7 @@ for (const slug of POC_SLUGS) {
   assert.equal(d.querySelectorAll('#stats div[style*="height:12px"]').length,6,'Six graphical stat bars');
   for(const ability of data.abilities) {
     assert(one(`#abilities a[href="https://pokelore.net/ability/${ability.slug}"]`).textContent.includes(ability.name));
-    assert(one('#abilities').textContent.includes(ability.effect));
+    assert(one('#abilities').textContent.includes(ability.description));
   }
   for (const group of ['weaknesses', 'resistances', 'immunities']) for (const match of data.matchups[group]) {
     assert(d.querySelector(`#matchups a[aria-label="${match.typeName} attacking moves deal ${match.multiplierLabel} damage"]`));

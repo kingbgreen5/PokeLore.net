@@ -31,7 +31,7 @@ This is a practical visual comparison, not pixel-diff certification. Final local
 
 ## Intentional differences
 
-1. **APPROVED: ability descriptions directly beneath linked names.** Authoritative effect text is subordinate; long mechanics have a concise verbatim source excerpt plus native “Full ability effect” disclosure. Hidden Abilities are labeled.
+1. **APPROVED: ability descriptions directly beneath linked names.** The existing In-Game Description (`shortEffect`) appears verbatim in smaller text, without truncation or a disclosure. Hidden Abilities are labeled.
 2. Native navigation and details/summary replace router links and JavaScript-only disclosure buttons. Semantic headings retain production visual sizes. Storage-backed selectors and useful accordion state remain enhancements.
 3. Four Pokémon route locally; unmigrated references go to production canonical URLs. Previous/next anchors supplement the carousel.
 4. Gallery failure has explicit retry instead of repeated automatic requests.

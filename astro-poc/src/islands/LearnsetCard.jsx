@@ -12,6 +12,7 @@ import useLocalStorageState from "../hooks/useLocalStorageState";
 import physicalBadge from "../../../src/assets/Physical Badge.png?url";
 import specialBadge from "../../../src/assets/Special Badge.png?url";
 import statusBadge from "../../../src/assets/Status Badge.png?url";
+import { getLearnsetMoveDisplay, usesTypeBasedCategories } from '../lib/moveCategory.js';
 import {
   LEARNSET_METHOD_ORDER,
   formatLearnsetLabel,
@@ -217,6 +218,13 @@ const filteredMoves =
 
           {/* Learn Method Sections */}
 
+          {usesTypeBasedCategories(selectedVersion) && (
+            <p style={{ fontSize: '.75rem', margin: '0 0 1rem' }}>
+              In Generations I–III, damaging moves use type-based categories. Status moves remain Status.
+              {' '}“Varies” means the category depends on the move’s actual type.
+            </p>
+          )}
+
           <div
             style={{
               display: "grid",
@@ -320,10 +328,9 @@ const filteredMoves =
                             move
                               .move
                           ];
-                        const categoryBadge =
-                          getCategoryBadge(
-                            moveDetails?.category
-                          );
+                        const { type, category, categoryNote } =
+                          getLearnsetMoveDisplay(moveDetails, selectedVersion);
+                        const categoryBadge = getCategoryBadge(category);
 
                         return (
                           <div
@@ -383,9 +390,9 @@ const filteredMoves =
 
                             {/* Type */}
 
-                            {moveDetails?.type ? (
+                            {type ? (
                               <Link
-                                to={`/type/${moveDetails.type}`}
+                                to={`/type/${type}`}
                                 style={{
                                   border:
                                     "none",
@@ -401,7 +408,7 @@ const filteredMoves =
                               >
                                 <TypeBadge
                                   height="1.25rem"
-                                  type={moveDetails.type}
+                                  type={type}
                                 />
                               </Link>
                             ) : (
@@ -447,7 +454,7 @@ const filteredMoves =
                                   src={
                                     categoryBadge
                                   }
-                                  alt={`${moveDetails.category} move`}
+                                  alt={`${category} move`}
                                   style={{
                                     display:
                                       "block",
@@ -460,8 +467,9 @@ const filteredMoves =
                                   }}
                                 />
                               ) : (
-                                moveDetails?.category ||
-                                  "---"
+                                category === 'variable'
+                                  ? <span title={categoryNote} aria-label={categoryNote}>Varies</span>
+                                  : category || "---"
                               )}
                             </div>
 
