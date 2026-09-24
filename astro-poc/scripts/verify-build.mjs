@@ -19,7 +19,11 @@ function filesAt(dir) {
 const files = filesAt(dist);
 assert.deepEqual(files.filter(f => f.endsWith('.html')).sort(),
   ['index.html', '404.html'].sort(), 'Only required special files retain .html');
-assert.deepEqual(files.filter(f => !extname(f)).sort(),
+const hostingFiles = new Set(['_headers', '_redirects']);
+for (const file of hostingFiles) {
+  assert(readFileSync(join(dist, file)).equals(readFileSync(join('public', file))), `${file}: hosting configuration copied unchanged`);
+}
+assert.deepEqual(files.filter(f => !extname(f) && !hostingFiles.has(f)).sort(),
   POC_SLUGS.map(s => `pokemon/${s}`).sort(), 'Exactly four extensionless canonical pages');
 assert(!files.some(f => /^pokemon\/\d+(?:[/.]|$)/.test(f)), 'No numeric resources');
 // Phase 1B permits scoped islands; core HTML and the head remain server-owned.
