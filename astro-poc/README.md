@@ -41,9 +41,9 @@ Native accordions work without JavaScript. Summary, abilities/in-game descriptio
 
 Ability descriptions show the existing In-Game Description (`shortEffect` in `abilities.json`) verbatim beneath each name in smaller text, matching the production ability detail page. Names link to canonical ability pages and Hidden Abilities are labeled. No ability prose was invented.
 
-Four Pokémon link locally; other references use production canonical URLs. Static JSON-LD includes the size-comparison CreativeWork/hasPart now that the section exists. Phase 1 form National Dex normalization, artwork metadata and initial-HTML SEO remain.
+All Pokémon links use relative canonical slug paths; unmigrated Pokémon return 404 in this four-page POC. Other route families use production canonical URLs. Static JSON-LD includes the size-comparison CreativeWork/hasPart now that the section exists. Phase 1 form National Dex normalization, artwork metadata and initial-HTML SEO remain.
 
-Output: six HTML documents (`/`, four Pokémon, `/404.html`), CSS/JS, original bundled assets, selected official artwork, promo image and `data/search.json`. The four Pokémon documents are physically extensionless; index.html and 404.html remain. No numeric Pokémon documents, sitemap or catch-all.
+Output: six HTML documents (`/`, four Pokémon, `/404.html`), CSS/JS, original bundled assets, selected official artwork, promo image and `data/search.json`. The four Pokémon documents are normal .html files; Cloudflare serves their extensionless canonical URLs. No numeric Pokémon documents, sitemap or catch-all.
 
 ## Validation
 
@@ -65,14 +65,13 @@ Screenshot comparison additionally uses live production HTTPS and root Vite on 5
 
 The template is reusable, but full-Pokédex readiness is not certified. The complete navigation index makes HTML large; embedded badge assets increase JS. Broader form/evolution/optional-content coverage needs audit. Alolan Raichu's inherited species biology and regional evolution restrictions remain documented data limitations. Gallery images still depend on PokeAPI. No production analytics loader or admin-only size-review tools were added. No Oak/GO note records exist for this sample; those optional features are not certified.
 
-Review these limits and perform deployed Phase 1B acceptance before scaling. [Render instructions](RENDER_TESTING.md) preserve the static routing policy; this task did not deploy changes.
+Review these limits and perform deployed Phase 1B acceptance before scaling. [Cloudflare instructions](CLOUDFLARE_TESTING.md) document native routing, generated redirects and pending live acceptance.
 
 Development serves the same selected public artwork and generated search records through Vite middleware. The shared allowlist in scripts/public-assets.mjs is also used by the build copier, so a prior build is not required for dev images or search. Restart npm run dev after configuration changes.
 
 Learnset categories now follow the Gen I–III type split for selected legacy games across all methods. See [historical category rules and tests](LEARNSET_CATEGORIES.md).
 
-## Canonical output experiment
 
-The user-reported first Render test found slash and .html aliases returning 200. The build now runs Astro, scripts/normalize-output.mjs, then the verifier. The normalizer renames only self-canonical file-format HTML pages, preserving every document byte and all assets; it retains index.html and 404.html. Tests cover generic paths, idempotence, collision preflight and preserved special/noncanonical files. The verifier rejects duplicate .html aliases. See [second Render acceptance test](RENDER_TESTING.md) for manual redirects, MIME checks and exact curl commands. Live normalization behavior remains pending redeployment. No Pokémon template or content changed in this step.
+## Cloudflare-native routing
 
-Clean npm ci and the normalized build passed after stopping the old preview that held a Rollup file lock. npm reported 3 dependency advisories (1 low, 1 high, 1 critical); no dependency versions or audit fixes were changed as part of this output-only task.
+Current hosting instructions and exact HTTP checks are in [CLOUDFLARE_TESTING.md](CLOUDFLARE_TESTING.md). The Render normalizer was removed. npm run build now generates 1,350 numeric 301 redirects plus two dynamic normalization rules, builds normal Astro HTML, then verifies output. Wrangler uses drop-trailing-slash and 404-page with no Worker runtime. Static/header rules are copied from public to dist. The staging-only noindex rule must be removed from any eventual production artifact. Wrangler 4.137.0 is pinned for local routing tests and deployment. Tests pass locally; the changed configuration has not been redeployed by this task.

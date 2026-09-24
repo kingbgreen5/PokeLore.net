@@ -33,7 +33,7 @@ This is a practical visual comparison, not pixel-diff certification. Final local
 
 1. **APPROVED: ability descriptions directly beneath linked names.** The existing In-Game Description (`shortEffect`) appears verbatim in smaller text, without truncation or a disclosure. Hidden Abilities are labeled.
 2. Native navigation and details/summary replace router links and JavaScript-only disclosure buttons. Semantic headings retain production visual sizes. Storage-backed selectors and useful accordion state remain enhancements.
-3. Four Pokémon route locally; unmigrated references go to production canonical URLs. Previous/next anchors supplement the carousel.
+3. All Pokémon references now use relative canonical URLs; non-POC Pokémon return 404 locally. Unmigrated non-Pokémon route families go to production canonical URLs. Previous/next anchors supplement the carousel.
 4. Gallery failure has explicit retry instead of repeated automatic requests.
 5. Promo selection happens at build time with the existing helper and deterministic first eligible choice. Currently there is one eligible image; a future larger inventory needs a rotation decision. Existing impression/click helper names and payloads remain; cached images loaded before hydration are handled. No analytics loader was added: callbacks use `window.gtag` when available, as before. Tests stubbed that function and did not send analytics or follow an Etsy link.
 6. No-JavaScript mobile size charts have a scroll boundary to prevent oversized artwork widening the page. Enhanced mobile behavior retains the original layout.
@@ -80,6 +80,6 @@ Before full scale, evaluate a crawlable bounded carousel with progressive index 
 - Alolan Raichu inherits species biology and incomplete regional evolution restrictions from existing data/helpers. Shared prose is labeled; no form-specific facts were invented.
 - Oak/GO note records are absent for the sample. Broad forms, branching evolutions and optional data remain unaudited. Admin-only size-review editing is not part of this port.
 - Gallery availability and analytics transport depend on their external services/deployment setup.
-- Subsequent user-reported Render testing confirmed canonical 200s, missing-path 404s and noindex, but found slash/.html aliases still returning 200. The new extensionless output experiment is prepared locally; its redirects and MIME remain pending live acceptance. See RENDER_TESTING.md.
+- Hosting has moved to Cloudflare Workers Static Assets. Native HTML handling and all 1,350 numeric redirects now pass local Cloudflare runtime checks; redeployment/live acceptance remains pending. See CLOUDFLARE_TESTING.md. Earlier payload measurements above describe the Phase 1B capture, not a new performance measurement.
 
 The template is reusable and meets this four-page parity scope. It is **not yet certified for the full Pokédex**: address payload concerns, broader data coverage and deployed acceptance in a separately authorized phase. Production source/configuration remains unchanged.

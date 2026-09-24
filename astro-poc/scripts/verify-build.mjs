@@ -5,6 +5,7 @@ import { parseHTML } from 'linkedom';
 import { POC_SLUGS, routes, pokemonPath } from '../src/lib/routes.js';
 import { loadPokemon } from '../src/lib/pokemonData.js';
 import { referenceSeo } from '../src/lib/seo.js';
+import { registryRedirects } from './generate-redirects.mjs';
 
 const dist = resolve(process.argv[2] ?? 'dist');
 const normalize = text => text.replace(/\s+/g, ' ').trim();
@@ -18,13 +19,24 @@ function filesAt(dir) {
 }
 const files = filesAt(dist);
 assert.deepEqual(files.filter(f => f.endsWith('.html')).sort(),
-  ['index.html', '404.html'].sort(), 'Only required special files retain .html');
+  ['index.html', '404.html', ...POC_SLUGS.map(s => `pokemon/${s}.html`)].sort(), 'Exactly six Astro HTML documents');
 const hostingFiles = new Set(['_headers', '_redirects']);
 for (const file of hostingFiles) {
   assert(readFileSync(join(dist, file)).equals(readFileSync(join('public', file))), `${file}: hosting configuration copied unchanged`);
 }
 assert.deepEqual(files.filter(f => !extname(f) && !hostingFiles.has(f)).sort(),
-  POC_SLUGS.map(s => `pokemon/${s}`).sort(), 'Exactly four extensionless canonical pages');
+  [], 'No extensionless page copies');
+const redirects = registryRedirects();
+assert.equal(readFileSync(join(dist, '_redirects'), 'utf8'), redirects.text, 'Complete generated registry redirects and exact normalization rules');
+const config = JSON.parse(readFileSync('wrangler.jsonc', 'utf8'));
+assert.equal(config.assets.directory, './dist');
+assert.equal(config.assets.html_handling, 'drop-trailing-slash');
+assert.equal(config.assets.not_found_handling, '404-page');
+assert(!config.main && !config.assets.run_worker_first, 'Static assets only, no Worker runtime');
+const headers = readFileSync(join(dist, '_headers'), 'utf8');
+assert.match(headers, /\/\*\s+X-Robots-Tag: noindex/);
+assert(!/Content-Type:/i.test(headers), 'Native HTML and asset MIME types');
+console.log(`PASS: ${redirects.count} static numeric redirects (< 2000), two dynamic 301 rules, no SPA fallback, staging noindex.`);
 assert(!files.some(f => /^pokemon\/\d+(?:[/.]|$)/.test(f)), 'No numeric resources');
 // Phase 1B permits scoped islands; core HTML and the head remain server-owned.
 for (const file of readdirSync('src/islands').filter(f=>f.endsWith('.jsx'))) {
@@ -33,7 +45,7 @@ for (const file of readdirSync('src/islands').filter(f=>f.endsWith('.jsx'))) {
 }
 
 for (const slug of POC_SLUGS) {
-  const d = documentAt(`pokemon/${slug}`);
+  const d = documentAt(`pokemon/${slug}.html`);
   const data = loadPokemon(slug);
   const seo = referenceSeo(data);
   const text = normalize(d.body.textContent);
@@ -43,7 +55,7 @@ for (const slug of POC_SLUGS) {
   assert.equal(one('meta[name="description"]').getAttribute('content'), seo.description);
   const canonical = one('link[rel="canonical"]').getAttribute('href');
   assert.equal(canonical, `https://pokelore.net${pokemonPath(slug)}`);
-  assert(!canonical.endsWith('/') && !/\/pokemon\/\d+(?:[/?#]|$)/.test(canonical));
+  assert(!canonical.endsWith('/') && !canonical.endsWith('.html') && !/\/pokemon\/\d+(?:[/?#]|$)/.test(canonical));
   assert(!/noindex/i.test(one('meta[name="robots"]').getAttribute('content')));
   for (const property of ['title', 'description', 'url', 'type', 'image', 'image:alt']) assert(one(`meta[property="og:${property}"]`).getAttribute('content'));
   for (const property of ['card', 'title', 'description', 'image']) assert(one(`meta[name="twitter:${property}"]`).getAttribute('content'));
@@ -85,6 +97,7 @@ for (const slug of POC_SLUGS) {
     if (url.pathname.startsWith('/pokemon/')) {
       const name = url.pathname.slice('/pokemon/'.length);
       assert(routes.byName[name] && !/^\d+$/.test(name), `Invalid Pokémon link: ${url}`);
+      assert.equal(link.getAttribute('href'), url.pathname, `Pokémon links must be relative canonical paths: ${url}`);
     }
     assert(!url.pathname.endsWith('.html'), `HTML alias link: ${url}`);
   }
@@ -102,7 +115,7 @@ assert.equal(notFound.querySelector('h1').textContent, 'Page not found');
 assert(!notFound.querySelector('link[rel="canonical"]'), '404 must not canonicalize to homepage');
 assert(!notFound.querySelector('meta[http-equiv="refresh"]'));
 // Asset URLs must still resolve after renaming documents; check all six pages.
-for (const file of ['index.html', '404.html', ...POC_SLUGS.map(s => `pokemon/${s}`)]) {
+for (const file of ['index.html', '404.html', ...POC_SLUGS.map(s => `pokemon/${s}.html`)]) {
   const document = documentAt(file);
   for (const element of document.querySelectorAll('[src], link[rel="stylesheet"], link[rel="modulepreload"], astro-island')) {
     for (const attr of ['src', 'href', 'component-url', 'renderer-url']) {

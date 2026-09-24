@@ -54,7 +54,7 @@ try {
   assert(!((await page.locator('#encounters .accordion-body details').allTextContents()).join(' ').includes('SoulSilver')));
   assert((await loc.locator('a').first().getAttribute('href')).startsWith('https://pokelore.net/location/'));
   assert.equal(await page.locator('#abilities a').first().getAttribute('href'),'https://pokelore.net/ability/shed-skin');
-  assert.equal(await page.locator('#evolution a.pokemon-summary-card').first().getAttribute('href'),'https://pokelore.net/pokemon/weedle');
+  assert.equal(await page.locator('#evolution a.pokemon-summary-card').first().getAttribute('href'),'/pokemon/weedle');
   // Test optional remote-gallery success/error deterministically, without depending on network availability.
   let apiCalls=0;
   await page.route('https://pokeapi.co/api/v2/pokemon/14',route=>{apiCalls++;return route.fulfill({json:{sprites:{front_default:`${origin}/images/pokemon/official/detail/14.webp`}}});});
@@ -124,4 +124,3 @@ try {
   writeFileSync('evidence/phase1b/test-results.json',JSON.stringify(result,null,2));
   console.log(JSON.stringify({...result,javascript:{chunks:js.length,bytes:js.reduce((s,f)=>s+f.bytes,0),gzip:js.reduce((s,f)=>s+f.gzip,0)}}));
 } finally {await browser.close();}
-

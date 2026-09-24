@@ -15,7 +15,7 @@ const cases = {
 for (const [name, corrupt] of Object.entries(cases)) {
   const output = join(parent, name);
   cpSync('dist', output, { recursive: true });
-  const page = join(output, 'pokemon/kakuna');
+  const page = join(output, 'pokemon/kakuna.html');
   const original = readFileSync(page, 'utf8');
   const changed = corrupt(original);
   assert.notEqual(changed, original, `${name}: mutation applied`);
@@ -25,10 +25,10 @@ for (const [name, corrupt] of Object.entries(cases)) {
   console.log(`PASS: verifier rejected ${name} regression`);
 }
 
-// A surviving .html alias must fail even if both documents have correct content.
+// A surviving extensionless copy must fail even if its content is correct.
 const aliasOutput = join(parent, 'html-alias');
 cpSync('dist', aliasOutput, { recursive: true });
-cpSync(join(aliasOutput, 'pokemon/kakuna'), join(aliasOutput, 'pokemon/kakuna.html'));
+cpSync(join(aliasOutput, 'pokemon/kakuna.html'), join(aliasOutput, 'pokemon/kakuna'));
 const aliasCheck = spawnSync(process.execPath, ['scripts/verify-build.mjs', aliasOutput], { encoding: 'utf8' });
-assert.equal(aliasCheck.status, 1, `verifier must reject duplicate HTML alias\n${aliasCheck.stdout}\n${aliasCheck.stderr}`);
-console.log('PASS: verifier rejected duplicate .html resource');
+assert.equal(aliasCheck.status, 1, `verifier must reject extensionless copy\n${aliasCheck.stdout}\n${aliasCheck.stderr}`);
+console.log('PASS: verifier rejected extensionless page copy');

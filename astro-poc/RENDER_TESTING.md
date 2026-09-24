@@ -1,3 +1,5 @@
+> Historical Render experiment only. The normalizer described below has been removed. Use [CLOUDFLARE_TESTING.md](CLOUDFLARE_TESTING.md) for current build, deployment and acceptance instructions.
+
 # Render staging: extensionless-output acceptance test
 
 Scope: `https://pokelore-net-astro-test.onrender.com` only. Production source, Render configuration, finalizers and domains are unchanged. This task prepares local output; it does not deploy, configure the dashboard or begin the full migration.
