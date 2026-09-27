@@ -5,6 +5,7 @@ import TypeBadge from '../../components/TypeBadge.astro';
 import PokemonCard from '../../components/PokemonCard.astro';
 import EvolutionNode from '../../components/EvolutionNode.astro';
 import LinkedText from '../../components/LinkedText.astro';
+import LearnsetStatic from '../../components/LearnsetStatic.astro';
 import BaseStatsChart from '../../../../src/components/BaseStatsChart.jsx';
 import LearnsetCard from '../../islands/LearnsetCard.jsx';
 import WhereToFind from '../../islands/WhereToFind.jsx';
@@ -13,14 +14,15 @@ import SizeComparison from '../../islands/SizeComparison.jsx';
 import PokemonSpriteCarousel from '../../islands/PokemonSpriteCarousel.jsx';
 import EtsyMerchPromo from '../../islands/EtsyMerchPromo.jsx';
 import { getEtsyPageTags, selectEtsyAd } from '../../../../src/utils/etsyMerch.js';
-import { POC_SLUGS, routes } from '../../lib/routes.js';
+import { POKEMON_SLUGS, routes } from '../../lib/routes.js';
 import { publicHref } from '../../lib/links.js';
 import { loadPokemon } from '../../lib/pokemonData.js';
 import { referenceSeo } from '../../lib/seo.js';
 import { formatTypeName } from '../../../../src/utils/typeEffectiveness.js';
+import { getLearnsetVersionGroups } from '../../../../src/utils/learnsetDisplay.js';
 
 export function getStaticPaths() {
-  return POC_SLUGS.map(slug => ({ params: { slug } }));
+  return POKEMON_SLUGS.map(slug => ({ params: { slug } }));
 }
 
 const data = loadPokemon(Astro.params.slug);
@@ -31,14 +33,19 @@ const ad = selectEtsyAd(
 );
 
 const inches = Math.round(p.height / 10 * 39.3701);
+const gender = p.genderRate === -1
+  ? 'Genderless'
+  : `${(p.genderRate / 8 * 100).toFixed(p.genderRate % 2 ? 1 : 0)}% female / ${((8 - p.genderRate) / 8 * 100).toFixed(p.genderRate % 2 ? 1 : 0)}% male`;
 const facts = [
+  ['National Pokédex', `#${data.nationalDexNumber}`],
   ['Species', p.genus],
   ['Height', `${Math.floor(inches / 12)}' ${inches % 12}" (${(p.height / 10).toFixed(1)} m)`],
-  ['Weight', `${(p.weight / 10 * 2.20462).toFixed(1)} lbs (${(p.weight / 10).toFixed(1)} kg)`],
+  p.weight > 0 ? ['Weight', `${(p.weight / 10 * 2.20462).toFixed(1)} lbs (${(p.weight / 10).toFixed(1)} kg)`] : null,
   ['Habitat', formatTypeName(p.habitat) || 'Currently Unknown'],
   ['Color', formatTypeName(p.color)],
-  ['Body Style', formatTypeName(p.shape)]
-];
+  ['Body Style', formatTypeName(p.shape)],
+  ['Gender', gender]
+].filter(Boolean);
 
 const matchupSections = [
   ['weaknesses', 'Weak To'],
@@ -49,11 +56,10 @@ const analysisSections = [
   ['playthrough', `Using ${name} in a Playthrough`],
   ['competitive', `${name} in Competitive Pokémon`],
   ['nuzlocke', `${name} in Nuzlockes`]
-];
+].filter(([key]) => analysis[key]);
 
-const currentIndex = data.navigation.findIndex(entry => entry.id === p.id);
-const previous = data.navigation[currentIndex - 1];
-const next = data.navigation[currentIndex + 1];
+const { previous, next } = data.navigation;
+const carouselPokemon = { id: p.id, name: p.name };
 ---
 
 <BaseLayout seo={referenceSeo(data)}>
@@ -90,6 +96,9 @@ const next = data.navigation[currentIndex + 1];
             {ability.hidden && <small>Hidden Ability</small>}
           </div>
         ))}
+        {data.abilities.length === 0 && (
+          <p class="note">Ability data is not available for this form in the current source dataset.</p>
+        )}
       </div>
     </section>
 
@@ -126,6 +135,7 @@ const next = data.navigation[currentIndex + 1];
     <section id="evolution" class="evolution-section">
       <h2>Evolution Chain</h2>
       <p class="evolution-summary">{data.evolutionSummary}</p>
+      {data.evolutionClarification && <p class="note evolution-form-note">{data.evolutionClarification}</p>}
       <div class="evolution-tree-scroll">
         <div class="evolution-tree-inner evolution-tree-inner-horizontal">
           <EvolutionNode model={data.evolution} />
@@ -144,27 +154,36 @@ const next = data.navigation[currentIndex + 1];
       </section>
     )}
 
-    <Accordion
-      id="analysis"
-      title={`${name} Playthrough, Competitive, and Nuzlocke Usage`}
-    >
-      <div class="prose-cards">
-        {analysisSections.map(([key, title]) => (
-          <div class="prose-card" id={key}>
-            <h3>{title}</h3>
-            <p><LinkedText parts={data.linkedText(analysis[key])} /></p>
-          </div>
-        ))}
-      </div>
-    </Accordion>
+    {analysisSections.length > 0 && (
+      <Accordion
+        id="analysis"
+        title={`${name} Playthrough, Competitive, and Nuzlocke Usage`}
+      >
+        <div class="prose-cards">
+          {analysisSections.map(([key, title]) => (
+            <div class="prose-card" id={key}>
+              <h3>{title}</h3>
+              <p><LinkedText parts={data.linkedText(analysis[key])} /></p>
+            </div>
+          ))}
+        </div>
+      </Accordion>
+    )}
 
-    <div id="learnset">
+    <Accordion
+      id="learnset"
+      title="Learnsets"
+      count={`${data.preview.rows.length} level-up moves · ${data.preview.versionLabel}`}
+    >
       <LearnsetCard
-        pokemonData={data.learnset}
-        movesData={data.moves}
+        payloadUrl={data.learnsetPayloadUrl}
+        versionGroups={getLearnsetVersionGroups(data.learnset)}
+        defaultVersion={data.preview.versionGroup}
+        staticContentId={`learnset-static-${p.name}`}
         client:visible
       />
-    </div>
+      <LearnsetStatic id={`learnset-static-${p.name}`} preview={data.preview} moves={data.moves} />
+    </Accordion>
 
     <Accordion
       id="dex-entries"
@@ -179,14 +198,16 @@ const next = data.navigation[currentIndex + 1];
       ))}
     </Accordion>
 
-    <div id="encounters">
-      <WhereToFind
-        pokemonId={p.id}
-        pokemonName={name}
-        initialData={data.encounters}
-        client:visible
-      />
-    </div>
+    {data.hasEncounters && (
+      <div id="encounters">
+        <WhereToFind
+          pokemonId={p.id}
+          pokemonName={name}
+          initialData={data.encounters}
+          client:visible
+        />
+      </div>
+    )}
 
     {data.heldItems?.heldItems?.length > 0 && (
       <Accordion
@@ -218,11 +239,13 @@ const next = data.navigation[currentIndex + 1];
         <div class="prose-card">
           {data.sharedSpeciesAnalysis && (
             <p class="note">
-              The existing dataset supplies shared {analysis.name} species biology here;
-              this is not form-specific Alolan biology.
+              Form-specific biology is not available for {name}; shared {data.analysisSourceName}
+              species prose is not shown as form-specific content.
             </p>
           )}
-          <p><LinkedText parts={data.linkedText(analysis.biologyAndBehavior)} /></p>
+          {analysis.biologyAndBehavior && (
+            <p><LinkedText parts={data.linkedText(analysis.biologyAndBehavior)} /></p>
+          )}
         </div>
         <section class="prose-card">
           <h3>{name} Biological Data</h3>
@@ -248,20 +271,28 @@ const next = data.navigation[currentIndex + 1];
     <section class="misc">
       <h2>Misc</h2>
       <p>Catch Rate: {p.catchRate}</p>
-      <p>Base Experience: {p.baseExperience} Exp</p>
+      {Number.isFinite(p.baseExperience) && <p>Base Experience: {p.baseExperience} Exp</p>}
       <p>Hatch Counter: {p.hatchCounter}</p>
     </section>
 
-    <SizeComparison
-      pokemon={p}
-      initialBounds={data.spriteBounds}
-      initialCorrections={data.corrections}
-      sectionId="size-comparison"
-      client:visible
-    />
+    {data.hasSizeComparison && (
+      <SizeComparison
+        pokemon={p}
+        initialBounds={data.spriteBounds}
+        initialCorrections={data.corrections}
+        sectionId="size-comparison"
+        client:visible
+      />
+    )}
 
     <div id="navigation">
-      <PokemonSpriteCarousel pokemon={p} initialIndex={data.navigation} client:visible />
+      <PokemonSpriteCarousel
+        pokemon={carouselPokemon}
+        initialIndex={data.navigation.initialWindow}
+        registryUrl="/data/navigation/pokemon-navigation.json"
+        navigationCount={data.navigation.total}
+        client:visible
+      />
     </div>
 
     <nav class="previous-next" aria-label="Previous and next Pokémon">

@@ -4,7 +4,9 @@ import { getLocalPokemonArtwork } from '../../../src/utils/pokemonSprites.js';
 import { publicHref } from '../lib/links.js';
 import TypeBadge from './TypeBadge.astro';
 const { pokemon } = Astro.props;
-const artwork = getLocalPokemonArtwork(pokemon, 'card') ?? pokemon.sprite;
+const artwork = (!pokemon.isDefault && (pokemon.spriteFallback ?? pokemon.sprite))
+  || getLocalPokemonArtwork(pokemon, 'card')
+  || pokemon.sprite;
 ---
 <a class="pokemon-summary-card" href={publicHref(`/pokemon/${pokemon.name}`)}>
   <span class="dex-number">#{String(pokemon.id).padStart(4,'0')}</span>

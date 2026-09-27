@@ -3,9 +3,10 @@ import { join, resolve } from 'node:path';
 
 // Anchor to the POC working directory, including when bundled by Astro.
 export const repositoryRoot = resolve(process.cwd(), '..');
-import { POC_SLUGS, publicHref } from './links.js';
-export { POC_SLUGS };
+import { publicHref } from './links.js';
 export const routes = JSON.parse(readFileSync(join(repositoryRoot, 'public/data/pokemonRoutes.json'), 'utf8'));
+export const POKEMON_SLUGS = Object.freeze(Object.keys(routes.byName));
+export const POKEMON_SLUG_SET = new Set(POKEMON_SLUGS);
 export function pokemonPath(slug) {
   if (!routes.byName[slug] || /^\d+$/.test(slug)) throw new Error(`Unregistered Pokémon slug: ${slug}`);
   return `/pokemon/${slug}`;

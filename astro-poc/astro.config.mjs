@@ -3,7 +3,8 @@ import { mkdirSync, writeFileSync, createReadStream } from 'node:fs';
 import react from '@astrojs/react';
 import { join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { publicAssets, searchJson, copyPublicAssets } from './scripts/public-assets.mjs';
+import { publicAssets, searchJson, learnsetJson, navigationJson, copyPublicAssets, copyLearnsetPayloads, writeNavigationPayload } from './scripts/public-assets.mjs';
+import { POKEMON_SLUG_SET } from './src/lib/routes.js';
 
 export default defineConfig({
   site: 'https://pokelore.net',
@@ -28,6 +29,18 @@ export default defineConfig({
             res.end(req.method === 'HEAD' ? undefined : search);
             return;
           }
+          if (pathname === '/data/navigation/pokemon-navigation.json') {
+            const navigation = navigationJson();
+            res.setHeader('Content-Type', 'application/json; charset=utf-8');
+            res.end(req.method === 'HEAD' ? undefined : navigation);
+            return;
+          }
+          const learnsetMatch = pathname.match(/^\/data\/learnsets\/([a-z0-9-]+)\.json$/);
+          if (learnsetMatch && POKEMON_SLUG_SET.has(learnsetMatch[1])) {
+            res.setHeader('Content-Type', 'application/json; charset=utf-8');
+            res.end(req.method === 'HEAD' ? undefined : learnsetJson(learnsetMatch[1]));
+            return;
+          }
           const source = assets.get(pathname);
           if (!source) return next();
           const mime = { '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg' };
@@ -48,6 +61,8 @@ export default defineConfig({
         copyPublicAssets(output);
         mkdirSync(join(output, 'data'), { recursive: true });
         writeFileSync(join(output, 'data/search.json'), searchJson());
+        writeNavigationPayload(output);
+        copyLearnsetPayloads(output);
       }
     }
   }]

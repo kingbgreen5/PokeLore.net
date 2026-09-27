@@ -1,77 +1,28 @@
-# PokéLore Astro proof of concept — Phase 1B
+# PokéLore Astro migration — Phase 3
 
-The four-page POC now uses the production Pokémon-detail layout and interactive widgets while Astro owns the document, core content and SEO. Kakuna is the visual reference; Pikachu, Charizard and Alolan Raichu use the same template. Work remains local on `astro-migration`; this local work does not deploy, change production or start the full migration.
+This isolated Astro application generates all 1,352 canonical Pokémon routes from the authoritative by-name registry. It is deployed only to the staging Worker at [pokelore-astro-test.thebeakeh.workers.dev](https://pokelore-astro-test.thebeakeh.workers.dev); production React/Vite files, DNS, and other page families are outside this phase.
 
 ```sh
 cd astro-poc
 npm ci
 npm run build
-npm run verify
-node scripts/check-verifier.mjs
+npm run preview -- --host 127.0.0.1 --port 4321
 ```
 
-Tested with Node 24.18.0, Astro 6.4.8, @astrojs/react 6.0.6, React/ReactDOM 19.2.5 and development-only linkedom 0.18.13. The lockfile pins installed versions. Build inputs include parent source/data, so this directory is not a standalone repository.
+`npm run build` regenerates 1,350 numeric redirects, builds the complete static catalog, verifies every generated document, and runs both catalog audits. The canonical route manifest is written to `evidence/full-catalog/staging-pokemon-urls.txt`; aggregate size and completeness evidence is in `evidence/full-catalog/verification.json`.
 
-## Implementation map
-
-| Files | Responsibility / provenance |
-|---|---|
-| `src/pages/pokemon/[slug].astro` | Shared static summary, hero, abilities, matchups, evolution, analysis, Dex entries, biology, Misc, forms, optional held items and previous/next links |
-| `src/layouts/BaseLayout.astro`, `src/styles/reference.css` | Production banner assets and root CSS; adapted production spacing/markup; native menu with Escape/outside-click enhancement |
-| `src/components/{Accordion,TypeBadge,PokemonCard,EvolutionNode}.astro` | Native details/summary, original badge images, production-style evolutionary cards/connectors |
-| `src/islands/GlobalSiteSearch.jsx` | Adapted production search/ranking; generated search records loaded on interaction |
-| `src/islands/{LearnsetCard,WhereToFind}.jsx` | Adapted production filters/tables/grouping; SSR build-time props; storage restored after hydration |
-| `src/islands/AdditionalImages.jsx` | Production gallery behavior; on-open PokeAPI request with explicit failure/retry |
-| `src/islands/SizeComparison.jsx`, `src/lib/sizeComparisonCharacters.js` | Original chart/calibration/responsive logic and trainer assets; build-time props |
-| `src/islands/PokemonSpriteCarousel.jsx` | Original drag/scroll/recenter navigation; build-time index and ordinary anchors |
-| `src/islands/EtsyMerchPromo.jsx` | Original promo/tracking helpers/CSS; SSR ad and cached-image load handling |
-| `src/islands/{Anchor,CollapsibleSection,TypeBadge}.jsx`, `src/hooks/` | Canonical anchors, SSR-native accordions, original badges and hydration-safe persistence |
-| `src/lib/{pokemonData,routes,links,searchRecords,seo}.js` | Cached filesystem data, validation, allowlisted routes, search records, static metadata |
-| `astro.config.mjs`, `package*.json` | Isolated React integration, selected artwork/promo copying, generated search data |
-| `scripts/verify-build.mjs`, `scripts/check-verifier.mjs` | Expanded Phase 1 assertions and deliberate-corruption checks |
-| `scripts/{parity-browser,test-parity,measure-parity}.mjs` | Screenshots, interaction/no-JS checks and JavaScript measurement |
-
-Direct reuse without hydration: production `BaseStatsChart.jsx`. Other direct imports include global CSS, Etsy CSS/helpers, banner/type/trainer assets and pure names, evolution, matchup, prose-link, learnset and SEO helpers. Adaptations live here; parent files are read only.
-
-## Static content and islands
-
-Seven React islands: search (`client:load`); learnset, encounters, gallery, promo, size comparison and carousel (`client:visible`). Stats render on the server without a client directive. No whole-page React root, React Router, client head repair, SPA fallback or runtime Pokémon-data fetch was introduced.
-
-Native accordions work without JavaScript. Summary, abilities/in-game descriptions, six stats, matchups, evolution, all analysis, Dex entries, biology, default all-generation moves and encounters are in original HTML. Filters require JavaScript; static defaults remain useful. The Phase 1 latest-level-up subset remains included and verified.
-
-Ability descriptions show the existing In-Game Description (`shortEffect` in `abilities.json`) verbatim beneath each name in smaller text, matching the production ability detail page. Names link to canonical ability pages and Hidden Abilities are labeled. No ability prose was invented.
-
-All Pokémon links use relative canonical slug paths; unmigrated Pokémon return 404 in this four-page POC. Other route families use production canonical URLs. Static JSON-LD includes the size-comparison CreativeWork/hasPart now that the section exists. Phase 1 form National Dex normalization, artwork metadata and initial-HTML SEO remain.
-
-Output: six HTML documents (`/`, four Pokémon, `/404.html`), CSS/JS, original bundled assets, selected official artwork, promo image and `data/search.json`. The four Pokémon documents are normal .html files; Cloudflare serves their extensionless canonical URLs. No numeric Pokémon documents, sitemap or catch-all.
-
-## Validation
-
-Build, output verification and four deliberate-corruption checks pass. Browser checks cover all four POC routes with/without JavaScript; desktop/mobile; 900px chart layout; search/back/forward; menu/accordions; move and encounter filters; gallery success/failure/retry; promo callbacks; trainer selection and carousel recentering. No page exceptions or hydration errors were recorded. See [comparison and payload report](COMPARISON.md) and [completed inventory](PARITY_PLAN.md).
-
-Browser scripts use the root repository's existing Playwright installation. Start preview on port 4321:
+With preview running, the remaining local gates are:
 
 ```sh
-npm run preview -- --host 127.0.0.1 --port 4321
-# In another terminal, from astro-poc:
-node scripts/test-parity.mjs
-node scripts/measure-parity.mjs
-node scripts/parity-browser.mjs
+npm run verify:full-crawl
+npm run verify:stress-browser
+npm run compare:stress-production -- http://127.0.0.1:4321
 ```
 
-Screenshot comparison additionally uses live production HTTPS and root Vite on 5180, started from repository root with `node node_modules/vite/bin/vite.js --host 127.0.0.1 --port 5180 --strictPort`. The older `scripts/compare-pages.mjs` remains an optional Phase 1 raw-output comparison. Generated evidence is ignored by Git. The root build lifecycle was not run in Phase 1B because it rewrites production datasets.
+The shared route remains `src/pages/pokemon/[slug].astro`. Core identity, metadata, abilities, stats, matchups, evolution, latest learnset, Pokédex entries, available editorial content, biology, encounters, and facts are static HTML. React islands handle search and focused interactions. Historical learnsets are prebuilt per-route JSON files fetched only when requested.
 
-## Before scaling
+Form semantics remain registry-driven: 327 non-default routes, 319 automatic classifications, eight explicit overrides, and zero unresolved routes. Missing form-specific source fields are omitted or explicitly labeled; base-form prose or abilities are not silently inherited.
 
-The template is reusable, but full-Pokédex readiness is not certified. The complete navigation index makes HTML large; embedded badge assets increase JS. Broader form/evolution/optional-content coverage needs audit. Alolan Raichu's inherited species biology and regional evolution restrictions remain documented data limitations. Gallery images still depend on PokeAPI. No production analytics loader or admin-only size-review tools were added. No Oak/GO note records exist for this sample; those optional features are not certified.
+The complete Phase 3 result is in [PHASE3_FULL_CATALOG_REPORT.md](PHASE3_FULL_CATALOG_REPORT.md). The navigation optimization and final Pokémon-family acceptance result are in [PHASE3B_NAVIGATION_OPTIMIZATION.md](PHASE3B_NAVIGATION_OPTIMIZATION.md). Cloudflare commands and HTTP checks are in [CLOUDFLARE_TESTING.md](CLOUDFLARE_TESTING.md).
 
-Review these limits and perform deployed Phase 1B acceptance before scaling. [Cloudflare instructions](CLOUDFLARE_TESTING.md) document native routing, generated redirects and pending live acceptance.
-
-Development serves the same selected public artwork and generated search records through Vite middleware. The shared allowlist in scripts/public-assets.mjs is also used by the build copier, so a prior build is not required for dev images or search. Restart npm run dev after configuration changes.
-
-Learnset categories now follow the Gen I–III type split for selected legacy games across all methods. See [historical category rules and tests](LEARNSET_CATEGORIES.md).
-
-
-## Cloudflare-native routing
-
-Current hosting instructions and exact HTTP checks are in [CLOUDFLARE_TESTING.md](CLOUDFLARE_TESTING.md). The Render normalizer was removed. npm run build now generates 1,350 numeric 301 redirects plus two dynamic normalization rules, builds normal Astro HTML, then verifies output. Wrangler uses drop-trailing-slash and 404-page with no Worker runtime. Static/header rules are copied from public to dist. The staging-only noindex rule must be removed from any eventual production artifact. Wrangler 4.137.0 is pinned for local routing tests and deployment. Tests pass locally; the changed configuration has not been redeployed by this task.
+The carousel renders nine nearby canonical links in each initial document. Its compact island loads the shared 1,352-route registry from `/data/navigation/pokemon-navigation.json` only after carousel interaction. JavaScript-disabled pages retain the nearby window and previous/next links.

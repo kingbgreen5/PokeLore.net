@@ -95,7 +95,10 @@ function PokemonSpriteCarouselPlaceholder() {
 //---------------------------SPRITE CAROUSEL---------------------------
 
 function PokemonSpriteCarousel({
-  pokemon, initialIndex
+  pokemon,
+  initialIndex,
+  registryUrl,
+  navigationCount
 }) {
   //---------------------------ROUTER + REFS---------------------------
 
@@ -111,11 +114,14 @@ function PokemonSpriteCarousel({
     scrollLeft: 0
   });
   const suppressClickRef = useRef(false);
+  const registryRequestRef = useRef(null);
 
   //---------------------------STATE---------------------------
 
   const [pokemonIndex, setPokemonIndex] =
     useState(initialIndex);
+  const [registryError, setRegistryError] =
+    useState(false);
   const [isDragging, setIsDragging] =
     useState(false);
   const [
@@ -124,6 +130,51 @@ function PokemonSpriteCarousel({
   ] = useState(false);
 
   //---------------------------LOAD POKEMON INDEX---------------------------
+
+  const hasFullIndex =
+    pokemonIndex.length === navigationCount;
+
+  const loadFullIndex = useCallback(async () => {
+    if (hasFullIndex) return pokemonIndex;
+    if (!registryRequestRef.current) {
+      registryRequestRef.current = fetch(registryUrl, {
+        headers: { Accept: "application/json" }
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(
+              `Navigation registry request failed: ${response.status}`
+            );
+          }
+          return response.json();
+        })
+        .then(entries => {
+          if (
+            !Array.isArray(entries) ||
+            entries.length !== navigationCount ||
+            entries.some(entry =>
+              !Number.isInteger(entry?.id) ||
+              typeof entry?.name !== "string"
+            )
+          ) {
+            throw new Error("Invalid Pokémon navigation registry");
+          }
+          setPokemonIndex(entries);
+          setRegistryError(false);
+          return entries;
+        })
+        .catch(error => {
+          registryRequestRef.current = null;
+          setRegistryError(true);
+          throw error;
+        });
+    }
+    return registryRequestRef.current;
+  }, [hasFullIndex, navigationCount, pokemonIndex, registryUrl]);
+
+  function requestFullIndex() {
+    void loadFullIndex().catch(() => {});
+  }
 
   //---------------------------CURRENT DISPLAYED POKEMON---------------------------
 
@@ -134,14 +185,10 @@ function PokemonSpriteCarousel({
 
     return (
       pokemonIndex.find(
-        entry => entry.id === pokemon.id
-      ) ??
-      pokemonIndex.find(
-        entry =>
-          entry.name === pokemon.species
-      ) ??
-      pokemonIndex.find(
         entry => entry.name === pokemon.name
+      ) ??
+      pokemonIndex.find(
+        entry => entry.id === pokemon.id
       ) ??
       null
     );
@@ -155,8 +202,8 @@ function PokemonSpriteCarousel({
         carouselPokemon
           ? pokemonIndex.findIndex(
               entry =>
-                entry.id ===
-                carouselPokemon.id
+                entry.name ===
+                carouselPokemon.name
             )
           : -1,
       [
@@ -173,7 +220,7 @@ function PokemonSpriteCarousel({
     const container = containerRef.current;
     const item =
       itemRefs.current.get(
-        carouselPokemon.id
+        carouselPokemon.name
       );
 
     if (!container || !item) return false;
@@ -209,7 +256,7 @@ function PokemonSpriteCarousel({
       const container = containerRef.current;
       const item =
         itemRefs.current.get(
-          carouselPokemon.id
+          carouselPokemon.name
         );
 
       if (!container || !item) return;
@@ -248,6 +295,7 @@ function PokemonSpriteCarousel({
   //---------------------------DRAG TO SCROLL---------------------------
 
   function handlePointerDown(event) {
+    requestFullIndex();
     const container = containerRef.current;
 
     if (!container) return;
@@ -400,8 +448,11 @@ function PokemonSpriteCarousel({
 
       <div
         ref={containerRef}
+        aria-busy={!hasFullIndex && !registryError ? undefined : false}
         onScroll={updateCurrentCentered}
         onPointerDown={handlePointerDown}
+        onFocusCapture={requestFullIndex}
+        onWheel={requestFullIndex}
         onPointerMove={handlePointerMove}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
@@ -436,7 +487,7 @@ function PokemonSpriteCarousel({
           //---------------------------IS CURRENT---------------------------
 
           const isCurrent =
-            entry.id === carouselPokemon.id;
+            entry.name === carouselPokemon.name;
 
           const pokemonNavigation =
             getPokemonNavigation(entry.name);
@@ -452,20 +503,21 @@ function PokemonSpriteCarousel({
             //---------------------------POKEMON CARD---------------------------
       
             <Link
-              key={entry.id}
+              key={entry.name}
               to={pokemonNavigation.to ?? "#"}
               state={pokemonNavigation.state}
               aria-disabled={!pokemonNavigation.to}
+              aria-current={isCurrent ? "page" : undefined}
               data-pokemon-name={entry.name}
               ref={element => {
                 if (element) {
                   itemRefs.current.set(
-                    entry.id,
+                    entry.name,
                     element
                   );
                 } else {
                   itemRefs.current.delete(
-                    entry.id
+                    entry.name
                   );
                 }
               }}
@@ -563,7 +615,7 @@ function PokemonSpriteCarousel({
               */}
 
               <img
-                src={carouselSources[0]?.startsWith("/") ? `https://pokelore.net${carouselSources[0]}` : carouselSources[0]}
+                src={carouselSources[0]}
                 alt={entry.name}
                 decoding="async"
                 fetchPriority={
@@ -610,6 +662,25 @@ function PokemonSpriteCarousel({
           );
         })}
       </div>
+
+      {!hasFullIndex && (
+        <button
+          type="button"
+          onClick={requestFullIndex}
+          style={{
+            backgroundColor: "#2c2c2c",
+            border: "1px solid #666",
+            borderRadius: "999px",
+            color: "white",
+            cursor: "pointer",
+            fontSize: ".85rem",
+            marginTop: ".5rem",
+            padding: ".35rem .8rem"
+          }}
+        >
+          {registryError ? "Retry full Pokédex" : "Browse full Pokédex"}
+        </button>
+      )}
 
       {/* //---------------------------RECENTER BUTTON--------------------------- */}
 

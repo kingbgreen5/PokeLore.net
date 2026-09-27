@@ -9,7 +9,14 @@
     "dev": "astro dev",
     "build": "node scripts/generate-redirects.mjs && astro build && npm run verify",
     "preview": "astro preview",
-    "verify": "node scripts/verify-build.mjs"
+    "deploy": "npm run build && wrangler deploy --config wrangler.jsonc",
+    "verify": "node scripts/verify-build.mjs && node scripts/audit-form-semantics.mjs && node scripts/audit-catalog-readiness.mjs",
+    "verify:stress-browser": "node scripts/stress-browser.mjs",
+    "verify:full-crawl": "node scripts/crawl-full-catalog.mjs",
+    "measure:stress": "node scripts/measure-stress.mjs",
+    "compare:stress-production": "node scripts/compare-stress-production.mjs",
+    "audit:catalog-readiness": "node scripts/audit-catalog-readiness.mjs",
+    "audit:form-semantics": "node scripts/audit-form-semantics.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.6",

@@ -1,491 +1,95 @@
-// Adapted from production; see PARITY_PLAN.md.
-import {
-  useCallback,
-  useEffect,
-  useMemo
-} from "react";
-import TypeBadge from "./TypeBadge";
-import { Anchor as Link } from "./Anchor.jsx";
-import CollapsibleSection from "./CollapsibleSection";
-import useSessionState from "../hooks/useSessionState";
-import useLocalStorageState from "../hooks/useLocalStorageState";
-import physicalBadge from "../../../src/assets/Physical Badge.png?url";
-import specialBadge from "../../../src/assets/Special Badge.png?url";
-import statusBadge from "../../../src/assets/Status Badge.png?url";
+import { useEffect, useMemo, useState } from 'react';
+import TypeBadge from './TypeBadge';
+import { Anchor as Link } from './Anchor.jsx';
+import physicalBadge from '../../../src/assets/Physical Badge.png?url';
+import specialBadge from '../../../src/assets/Special Badge.png?url';
+import statusBadge from '../../../src/assets/Status Badge.png?url';
 import { getLearnsetMoveDisplay, usesTypeBasedCategories } from '../lib/moveCategory.js';
 import {
-  LEARNSET_METHOD_ORDER,
-  formatLearnsetLabel,
-  formatMoveDisplayName,
-  formatVersionGroupName,
-  getLearnsetMovesForVersion,
-  getLearnsetVersionGroups,
-  getSelectedLearnsetVersionGroup,
-  getSortedCondensedLearnsetMoves,
-  groupLearnsetMovesByMethod
-} from "../../../src/utils/learnsetDisplay.js";
+  LEARNSET_METHOD_ORDER, formatLearnsetLabel, formatMoveDisplayName,
+  formatVersionGroupName, getLearnsetMovesForVersion,
+  getSortedCondensedLearnsetMoves, groupLearnsetMovesByMethod
+} from '../../../src/utils/learnsetDisplay.js';
 
-const LEARNSET_VERSION_STORAGE_KEY =
-  "pokelore:learnset-version";
+const STORAGE_KEY = 'pokelore:learnset-version';
+const DISPLAY_METHOD_ORDER = [...LEARNSET_METHOD_ORDER, 'form-change'];
+const categoryBadges = { physical: physicalBadge, special: specialBadge, status: statusBadge };
 
-function getCategoryBadge(category) {
-  const normalizedCategory =
-    category?.toLowerCase();
-
-  if (normalizedCategory === "physical") {
-    return physicalBadge;
-  }
-
-  if (normalizedCategory === "special") {
-    return specialBadge;
-  }
-
-  if (normalizedCategory === "status") {
-    return statusBadge;
-  }
-
-  return null;
+function MoveGroup({ method, rows, movesData, version }) {
+  return <div className="learnsetCard">
+    <h3>{formatLearnsetLabel(method)}</h3>
+    <div className="learnset-grid learnset-grid-head" aria-hidden="true">
+      <span>Lvl</span><span>Move</span><span>Type</span><span>Pwr</span><span>Acc</span><span>Cat.</span>
+    </div>
+    {getSortedCondensedLearnsetMoves(rows).map((move, index) => {
+      const detail = movesData[move.move];
+      const display = getLearnsetMoveDisplay(detail, version);
+      const badge = categoryBadges[display.category];
+      return <div className="learnset-grid learnset-row" key={`${move.move}-${move.level}-${index}`}>
+        <span>{move.level > 0 ? move.level : '-'}</span>
+        <Link to={`/move/${move.move}`}>{formatMoveDisplayName(move.move, movesData)}</Link>
+        <Link to={`/type/${display.type}`}><TypeBadge height="1.25rem" type={display.type} /></Link>
+        <span>{detail?.power || '---'}</span>
+        <span>{detail?.accuracy || '---'}</span>
+        <span>{badge
+          ? <img src={badge} alt={`${display.category} move`} className="category-badge" />
+          : display.category === 'variable'
+            ? <span title={display.categoryNote} aria-label={display.categoryNote}>Varies</span>
+            : display.category || '---'}</span>
+      </div>;
+    })}
+  </div>;
 }
 
-function LearnsetCard({
-  pokemonData,
-  movesData,
-  titleColor,
-  titleChevron = false
-}) {
-  const [expanded, setExpanded] =
-    useSessionState(
-      `pokemon:${pokemonData.id ?? pokemonData.pokemon}:learnsets-expanded`,
-      false
-    );
-  //-----------------------------------------
-  // Version Groups
-  //-----------------------------------------
-
-  // const versionGroups = [
-  //   ...new Set(
-  //     pokemonData.moves.map(
-  //       move => move.versionGroup
-  //     )
-  //   )
-  // ];
-
-const versionGroups = useMemo(
-  () =>
-    getLearnsetVersionGroups(
-      pokemonData
-    ),
-  [pokemonData]
-);
-
-  //-----------------------------------------
-  //  Default Selected Version
-  //-----------------------------------------
-
-  const [
-    preferredVersion,
-    setPreferredVersion
-  ] = useLocalStorageState(
-    LEARNSET_VERSION_STORAGE_KEY,
-    "all"
-  );
-  const selectedVersion =
-    getSelectedLearnsetVersionGroup(
-      pokemonData,
-      preferredVersion
-    );
-
-  const updatePreferredVersion =
-    useCallback(
-      nextVersion => {
-        try {
-          localStorage.setItem(
-            LEARNSET_VERSION_STORAGE_KEY,
-            JSON.stringify(nextVersion)
-          );
-        } catch {
-          // Local storage can fail in private browsing or strict browser settings.
-        }
-
-        setPreferredVersion(nextVersion);
-      },
-      [setPreferredVersion]
-    );
+export default function LearnsetCard({ payloadUrl, versionGroups, defaultVersion, staticContentId }) {
+  const [selectedVersion, setSelectedVersion] = useState(defaultVersion);
+  const [payload, setPayload] = useState(null);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    if (
-      !versionGroups.includes(
-        preferredVersion
-      )
-    ) {
-      updatePreferredVersion("all");
-    }
-  }, [
-    preferredVersion,
-    updatePreferredVersion,
-    versionGroups
-  ]);
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (versionGroups.includes(saved)) setSelectedVersion(saved);
+    } catch {}
+  }, [versionGroups]);
 
+  useEffect(() => {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedVersion)); } catch {}
+    const staticContent = document.getElementById(staticContentId);
+    if (staticContent) staticContent.hidden = selectedVersion !== defaultVersion;
+    if (selectedVersion === defaultVersion || payload || error) return;
+    let cancelled = false;
+    fetch(payloadUrl).then(response => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.json();
+    }).then(value => { if (!cancelled) setPayload(value); })
+      .catch(() => { if (!cancelled) setError('This learnset could not be loaded. The latest level-up learnset remains available.'); });
+    return () => { cancelled = true; };
+  }, [selectedVersion, defaultVersion, payload, payloadUrl, staticContentId, error]);
 
-  //-----------------------------------------
-  // Filter By Selected Version
-  //-----------------------------------------
+  const grouped = useMemo(() => payload && selectedVersion !== defaultVersion
+    ? groupLearnsetMovesByMethod(getLearnsetMovesForVersion(payload.pokemonData, selectedVersion))
+    : null, [payload, selectedVersion, defaultVersion]);
+  const count = grouped ? Object.values(grouped).flat().length : 0;
 
-  // const filteredMoves =
-  //   pokemonData.moves.filter(
-  //     move =>
-  //       move.versionGroup ===
-  //       selectedVersion
-  //   );
-
-const filteredMoves =
-  getLearnsetMovesForVersion(
-    pokemonData,
-    selectedVersion
-  );
-
-
-
-
-  //-----------------------------------------
-  // Group By Learn Method
-  //-----------------------------------------
-
-  const groupedMoves =
-    groupLearnsetMovesByMethod(
-      filteredMoves
-    );
-
-  //-----------------------------------------
-  // Render
-  //-----------------------------------------
-
-  return (
-    <CollapsibleSection
-      title="Learnsets"
-      summary={`${filteredMoves.length} moves`}
-      titleColor={titleColor}
-      titleChevron={titleChevron}
-      expanded={expanded}
-      onToggle={() =>
-        setExpanded(!expanded)
-      }
-      contentStyle={{
-        marginTop: "1rem"
-      }}
-    >
-        <div>
-          {/* Version Selector */}
-
-          <div
-            style={{
-              marginBottom: "1rem"
-            }}
-          >
-            <select
-              aria-label="Learnset version"
-              value={
-                selectedVersion
-              }
-              onChange={e =>
-                updatePreferredVersion(
-                  e.target.value
-                )
-              }
-              style={{
-                padding:
-                  "0.5rem",
-                borderRadius:
-                  "8px",
-                border:
-                  "1px solid #606060"
-              }}
-            >
-              {versionGroups.map(
-                version => (
-                  <option
-                    key={version}
-                    value={version}
-                  >
-                 {formatVersionGroupName(
-                   version
-                 )}
-                  </option>
-                )
-              )}
-            </select>
-          </div>
-
-          {/* Learn Method Sections */}
-
-          {usesTypeBasedCategories(selectedVersion) && (
-            <p style={{ fontSize: '.75rem', margin: '0 0 1rem' }}>
-              In Generations I–III, damaging moves use type-based categories. Status moves remain Status.
-              {' '}“Varies” means the category depends on the move’s actual type.
-            </p>
-          )}
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit, minmax(320px, 1fr))",
-              gap: "1rem",
-              alignItems: "start"
-            }}
-          >
-            {LEARNSET_METHOD_ORDER.map(
-              method => {
-                const moves =
-                  groupedMoves[
-                    method
-                  ];
-
-                if (!moves)
-                  return null;
-
-                const sortedMoves =
-                  getSortedCondensedLearnsetMoves(
-                    moves
-                  );
-
-                return (
-
-                  <div className="learnsetCard"
-                    key={method}
-                    style={{
-
-                      padding:
-                        "0.15rem"
-                    }}
-                  >
-                    {/* Section Title */}
-
-                    <h3
-                      style={{
-                        marginTop: 0,
-                        marginBottom:
-                          "1rem"
-                      }}
-                    >
-                      {formatLearnsetLabel(
-                        method
-                      )}
-                    </h3>
-
-                    {/* Column Headers */}
-
-                    <div
-                      style={{
-                        display:
-                          "grid",
-                        gridTemplateColumns:
-                          // "10px 1fr 70px 50px 50px 10px",
-                          "20px 1fr 70px 30px 20px 40px",
-                        gap:
-                          ".35rem",
-                        fontWeight:
-                          "bold",
-                        borderBottom:
-                          "2px solid #888",
-                        paddingBottom:
-                          ".5rem",
-                        marginBottom:
-                          ".5rem",
-                        fontSize:
-                          ".75rem"
-                      }}
-                    >
-                      <div>
-                        Lvl
-                      </div>
-                      <div>
-                        Move
-                      </div>
-                      <div>
-                        Type
-                      </div>
-                      <div>
-                        Pwr
-                      </div>
-                      <div>
-                        Acc
-                      </div>
-                        <div>
-                        Cat.
-                      </div>
-                    </div>
-
-                    {/* Move Rows */}
-
-                    {sortedMoves.map(
-                      (
-                        move,
-                        index
-                      ) => {
-                        const moveDetails =
-                          movesData[
-                            move
-                              .move
-                          ];
-                        const { type, category, categoryNote } =
-                          getLearnsetMoveDisplay(moveDetails, selectedVersion);
-                        const categoryBadge = getCategoryBadge(category);
-
-                        return (
-                          <div
-                            key={
-                              index
-                            }
-                            style={{
-                              display:
-                                "grid",
-                              gridTemplateColumns:
-                                // "30px 1fr 70px 50px 50px",
-                                   "20px 1fr 70px 25px 15px 50px",
-                              gap:
-                                ".35rem",
-                              alignItems:
-                                "center",
-                              padding:
-                                ".2rem 0",
-                              fontSize:
-                                ".72rem"
-                            }}
-                          >
-                            {/* Level */}
-
-                            <div>
-                              {move.level >
-                              0
-                                ? move.level
-                                : "-"}
-                            </div>
-
-                            {/* Move Button */}
-
-                            <Link
-                              to={`/move/${move.move}`}
-                              style={{
-                                background:
-                                  "none",
-                                border:
-                                  "none",
-                                cursor:
-                                  "pointer",
-                                textAlign:
-                                  "left",
-                                padding:
-                                  0,
-                                fontWeight:
-                                  "bold",
-                                textDecoration:
-                                  "none"
-                              }}
-                            >
-                              {formatMoveDisplayName(
-                                move.move
-                              )}
-                            </Link>
-
-                            {/* Type */}
-
-                            {type ? (
-                              <Link
-                                to={`/type/${type}`}
-                                style={{
-                                  border:
-                                    "none",
-                                  cursor:
-                                    "pointer",
-                                  display:
-                                    "inline-flex",
-                                  textAlign:
-                                    "center",
-                                  textDecoration:
-                                    "none"
-                                }}
-                              >
-                                <TypeBadge
-                                  height="1.25rem"
-                                  type={type}
-                                />
-                              </Link>
-                            ) : (
-                              <span
-                                style={{
-                                  borderRadius:
-                                    "999px",
-                                  color:
-                                    "white",
-                                  fontSize:
-                                    ".6rem",
-                                  padding:
-                                    "0.2rem 0.5rem",
-                                  textAlign:
-                                    "center",
-                                  textTransform:
-                                    "uppercase"
-                                }}
-                              >
-                                ---
-                              </span>
-                            )}
-
-                            {/* Power */}
-
-                            <div>
-                              {moveDetails?.power ||
-                                "---"}
-                            </div>
-
-
-
-                            <div>
-                              {moveDetails?.accuracy ||
-                                "---"}
-                            </div>
-
-                            {/* Category */}
-
-                            <div>
-                              {categoryBadge ? (
-                                <img
-                                  src={
-                                    categoryBadge
-                                  }
-                                  alt={`${category} move`}
-                                  style={{
-                                    display:
-                                      "block",
-                                    width:
-                                      "60px",
-                                    height:
-                                      "28px",
-                                    objectFit:
-                                      "contain"
-                                  }}
-                                />
-                              ) : (
-                                category === 'variable'
-                                  ? <span title={categoryNote} aria-label={categoryNote}>Varies</span>
-                                  : category || "---"
-                              )}
-                            </div>
-
-
-                          </div>
-                        );
-                      }
-                    )}
-                  </div>
-                );
-              }
-            )}
-          </div>
-        </div>
-    </CollapsibleSection>
-  );
+  return <div className="learnset-controls">
+    <label>Game or generation{' '}
+      <select aria-label="Learnset version" value={selectedVersion} onChange={event => setSelectedVersion(event.target.value)}>
+        {versionGroups.map(version => <option value={version} key={version}>{formatVersionGroupName(version)}</option>)}
+      </select>
+    </label>
+    {selectedVersion !== defaultVersion && !payload && !error && <p role="status">Loading selected learnset…</p>}
+    {error && <p role="alert">{error}</p>}
+    {grouped && <>
+      {usesTypeBasedCategories(selectedVersion) && <p className="learnset-category-note">
+        In Generations I–III, damaging moves use type-based categories. Status moves remain Status. “Varies” depends on the move's actual type.
+      </p>}
+      <p className="sr-only" role="status">{count} moves loaded for {formatVersionGroupName(selectedVersion)}.</p>
+      <div className="learnset-methods">
+        {DISPLAY_METHOD_ORDER.map(method => grouped[method]
+          ? <MoveGroup key={method} method={method} rows={grouped[method]} movesData={payload.movesData} version={selectedVersion} />
+          : null)}
+      </div>
+    </>}
+  </div>;
 }
-
-export default LearnsetCard;
