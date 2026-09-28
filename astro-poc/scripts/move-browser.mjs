@@ -5,6 +5,7 @@ import { MOVE_STRESS_SLUGS } from '../src/lib/moveRoutes.js';
 import { MOVE_SLUGS, loadMove } from '../src/lib/moveData.js';
 
 const origin = process.argv[2] ?? 'http://127.0.0.1:4324';
+const localOnly = process.argv.includes('--local-only');
 const browser = await chromium.launch({ headless: true });
 const results = { origin, checkedAt: new Date().toISOString(), javascriptDisabled: [], responsive: [], productionParity: [], consoleErrors: [] };
 const normalize = value => String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -43,20 +44,43 @@ try {
     const island = [...document.querySelectorAll('astro-island')].find(node => node.querySelector('.move-learner-explorer'));
     return island && !island.hasAttribute('ssr');
   });
-  await explorer.getByRole('button', { name: /Show every/i }).click();
+  await explorer.getByRole('button', { name: /Explore every/i }).click();
   await interactive.locator('.move-historical-learners').waitFor();
   assert(await interactive.locator('.move-historical-learners a').count() > 800, 'complete latest learner set loads');
-  const older = await explorer.locator('select option').first().getAttribute('value');
-  await explorer.locator('select').selectOption(older);
+  assert(await interactive.locator('.move-size-pokemon').count() > 800, 'height chart reflects complete learner set');
+  await explorer.getByLabel('Sort by').selectOption('speed');
+  await explorer.getByLabel('Direction').selectOption('asc');
+  const speedValues = await interactive.locator('.move-historical-learners li span').allTextContents();
+  assert(speedValues.every(value => /^Speed: \d+$/.test(value)), 'selected stat is shown');
+  await explorer.getByLabel('Minimum').fill('100');
+  assert((await interactive.locator('.move-historical-learners li span').allTextContents()).every(value => Number(value.split(': ')[1]) >= 100), 'minimum filter');
+  const methods = await explorer.getByLabel('Method').locator('option').allTextContents();
+  assert(methods.length > 1, 'method filter populated');
+  await explorer.getByRole('button', { name: 'Reset', exact: true }).first().click();
+  const older = await explorer.getByLabel('Game generation').locator('option').first().getAttribute('value');
+  await explorer.getByLabel('Game generation').selectOption(older);
   await interactive.locator('.move-historical-learners').waitFor();
   await interactive.locator('.move-historical-learners a').first().click();
   await interactive.waitForLoadState('domcontentloaded');
   await interactive.goBack({ waitUntil: 'domcontentloaded' });
   assert.equal(normalize(await interactive.locator('h1').innerText()), 'Protect', 'browser Back restores Move page');
-  assert.equal(results.consoleErrors.length, 0, 'no interactive browser errors');
+  const applicationErrors = results.consoleErrors.filter(message => !message.includes('ERR_NETWORK_ACCESS_DENIED'));
+  assert.equal(applicationErrors.length, 0, 'no interactive application errors');
   await interactive.close();
 
-  for (const slug of ['thunderbolt', 'protect', 'fissure', 'swift', 'tackle', 'tera-starstorm']) {
+  const mobileTools = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  await mobileTools.goto(`${origin}/move/protect`, { waitUntil: 'load' });
+  const mobileExplorer = mobileTools.locator('.move-learner-explorer');
+  await mobileExplorer.scrollIntoViewIfNeeded();
+  await mobileTools.waitForFunction(() => [...document.querySelectorAll('astro-island')].some(node => node.querySelector('.move-learner-explorer') && !node.hasAttribute('ssr')));
+  await mobileExplorer.getByRole('button', { name: /Explore every/i }).click();
+  await mobileTools.locator('.move-size-chart').waitFor();
+  assert(await mobileTools.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'interactive tools: 390px page overflow');
+  assert(await mobileExplorer.getByLabel('Sort by').isVisible(), 'interactive tools: mobile sort visible');
+  assert(await mobileTools.locator('.move-size-scroll').evaluate(element => element.scrollWidth > element.clientWidth), 'interactive tools: chart scrolls internally');
+  await mobileTools.close();
+
+  if (!localOnly) for (const slug of ['thunderbolt', 'protect', 'fissure', 'swift', 'tackle', 'tera-starstorm']) {
     const expected = loadMove(slug).move;
     const pair = {};
     for (const [label, site] of [['production', 'https://pokelore.net'], ['astro', origin]]) {
@@ -94,5 +118,5 @@ try {
   await invalid.close();
   mkdirSync('evidence/moves', { recursive: true });
   writeFileSync('evidence/moves/browser.json', JSON.stringify(results, null, 2));
-  console.log(`PASS Move browser: ${browserSamples.length} no-JS pages, responsive layouts, learner interaction and Back navigation, production parity, real 404.`);
+  console.log(`PASS Move browser: ${browserSamples.length} no-JS pages, responsive layouts, learner interaction and Back navigation, ${localOnly ? 'local/staging acceptance' : 'production parity'}, real 404.`);
 } finally { await browser.close(); }

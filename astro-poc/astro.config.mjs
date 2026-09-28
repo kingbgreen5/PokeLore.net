@@ -3,7 +3,7 @@ import { mkdirSync, writeFileSync, createReadStream } from 'node:fs';
 import react from '@astrojs/react';
 import { join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { publicAssets, searchJson, learnsetJson, navigationJson, moveLearnerJson, copyPublicAssets, copyLearnsetPayloads, copyMoveLearnerPayloads, writeNavigationPayload } from './scripts/public-assets.mjs';
+import { publicAssets, searchJson, learnsetJson, navigationJson, moveLearnerJson, learnerFactsJson, copyPublicAssets, copyLearnsetPayloads, copyMoveLearnerPayloads, writeNavigationPayload, writeLearnerFacts } from './scripts/public-assets.mjs';
 import { POKEMON_SLUG_SET } from './src/lib/routes.js';
 import { MOVE_SLUG_SET } from './src/lib/moveData.js';
 
@@ -34,6 +34,11 @@ export default defineConfig({
             const navigation = navigationJson();
             res.setHeader('Content-Type', 'application/json; charset=utf-8');
             res.end(req.method === 'HEAD' ? undefined : navigation);
+            return;
+          }
+          if (pathname === '/data/pokemon/learner-facts.json') {
+            res.setHeader('Content-Type', 'application/json; charset=utf-8');
+            res.end(req.method === 'HEAD' ? undefined : learnerFactsJson());
             return;
           }
           const learnsetMatch = pathname.match(/^\/data\/learnsets\/([a-z0-9-]+)\.json$/);
@@ -71,6 +76,7 @@ export default defineConfig({
         writeNavigationPayload(output);
         copyLearnsetPayloads(output);
         copyMoveLearnerPayloads(output);
+        writeLearnerFacts(output);
       }
     }
   }]

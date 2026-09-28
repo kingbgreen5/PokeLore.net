@@ -10,7 +10,7 @@
     "build": "node scripts/generate-redirects.mjs && astro build && npm run verify",
     "preview": "astro preview",
     "deploy": "npm run build && wrangler deploy --config wrangler.jsonc",
-    "verify": "node scripts/verify-build.mjs && node scripts/verify-moves.mjs && node scripts/audit-form-semantics.mjs && node scripts/audit-catalog-readiness.mjs",
+    "verify": "node scripts/verify-build.mjs && node scripts/test-move-learner-tools.mjs && node scripts/verify-moves.mjs && node scripts/audit-form-semantics.mjs && node scripts/audit-catalog-readiness.mjs",
     "verify:stress-browser": "node scripts/stress-browser.mjs",
     "verify:move-browser": "node scripts/move-browser.mjs",
     "verify:move-crawl": "node scripts/crawl-move-catalog.mjs",

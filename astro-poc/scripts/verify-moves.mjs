@@ -5,6 +5,8 @@ import { gzipSync } from 'node:zlib';
 import { parseHTML } from 'linkedom';
 import { MOVE_SLUGS, MOVE_SLUG_SET, loadMove, moveLearnerPayload } from '../src/lib/moveData.js';
 import { routes } from '../src/lib/routes.js';
+import { moveLearnerFactsJson } from '../src/lib/moveLearnerFacts.js';
+import { sizeChartLearners } from '../src/lib/moveLearnerTools.js';
 
 const dist = resolve(process.argv[2] ?? 'dist');
 const startedAt = performance.now();
@@ -27,6 +29,16 @@ assert.deepEqual(generatedSlugs, [...MOVE_SLUGS].sort(), 'Generated Move documen
 const metrics = [], canonicals = new Set(), moveTargets = new Set(), pokemonTargets = new Set();
 const conditions = { nullAccuracy: 0, nullPower: 0, historicalValues: 0, withoutLearnerData: 0, withLearnerData: 0 };
 let learnerPayloadCount = 0;
+const learnerFactsFile = join(dist, 'data', 'pokemon', 'learner-facts.json');
+assert(existsSync(learnerFactsFile), 'shared learner facts exist');
+assert.equal(readFileSync(learnerFactsFile, 'utf8'), moveLearnerFactsJson(), 'shared learner facts match routed source');
+const learnerFacts = JSON.parse(readFileSync(learnerFactsFile, 'utf8'));
+assert.equal(Object.keys(learnerFacts).length, Object.keys(routes.byName).length, 'every routed Pokémon has learner facts');
+for (const [slug, fact] of Object.entries(learnerFacts)) {
+  assert.equal(fact.name, slug); assert(routes.byName[slug]);
+  assert.equal(fact.baseStatTotal, Object.values(fact.stats).reduce((sum, value) => sum + value, 0));
+  assert(fact.height === null || fact.height > 0); assert(fact.weight === null || fact.weight > 0);
+}
 
 for (const [index, slug] of MOVE_SLUGS.entries()) {
   const file = join(dist, 'move', `${slug}.html`);
@@ -90,10 +102,12 @@ for (const [index, slug] of MOVE_SLUGS.entries()) {
     const payload = JSON.parse(sourcePayload); assert.equal(payload.move, slug); assert.deepEqual(payload.versions, data.versions);
     for (const [version, groups] of Object.entries(payload.groupsByVersion)) for (const group of groups) {
       assert(data.versions.includes(version)); const names = group.pokemon.map(pokemon => pokemon.name); assert.equal(new Set(names).size, names.length, `${slug}/${version}/${group.method}: unique learners`);
-      for (const pokemon of group.pokemon) assert(routes.byName[pokemon.name] && !/^\d+$/.test(pokemon.name), `${slug}: payload learner ${pokemon.name}`);
+      for (const pokemon of group.pokemon) { assert(routes.byName[pokemon.name] && !/^\d+$/.test(pokemon.name), `${slug}: payload learner ${pokemon.name}`); assert(learnerFacts[pokemon.name], `${slug}: facts join ${pokemon.name}`); }
     }
     assert(island, `${slug}: learner island`); const props = island.getAttribute('props') ?? ''; hydrationPropBytes = Buffer.byteLength(props);
-    assert(hydrationPropBytes < 10000); assert(!props.includes('groupsByVersion'));
+    assert(hydrationPropBytes < 10000); assert(!props.includes('groupsByVersion')); assert(props.includes('learner-facts.json'));
+    const currentGroups = payload.groupsByVersion[data.latestVersion].map(group => ({...group,pokemon:group.pokemon.map(p=>({...p,...learnerFacts[p.name]}))}));
+    const chart = sizeChartLearners(currentGroups); assert(chart.every((pokemon,index) => !index || chart[index-1].height >= pokemon.height), `${slug}: chart largest first`);
     staticLearners = document.querySelectorAll('#latest-move-learners a[href^="/pokemon/"]').length;
     assert(staticLearners > 0 && staticLearners <= 80, `${slug}: static learner preview ${staticLearners}`);
     learnerPayloadBytes = statSync(payloadFile).size;

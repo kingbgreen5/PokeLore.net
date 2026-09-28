@@ -5,6 +5,7 @@ import { loadPokemon, readData } from '../src/lib/pokemonData.js';
 import { POKEMON_SLUGS, repositoryRoot } from '../src/lib/routes.js';
 import { pokemonNavigationJson } from '../src/lib/pokemonNavigation.js';
 import { MOVE_SLUGS, loadMove, moveLearnerPayload } from '../src/lib/moveData.js';
+import { moveLearnerFactsJson } from '../src/lib/moveLearnerFacts.js';
 import { getPokemonCardSources, getPokemonDetailSources, getPokemonSizeComparisonSources } from '../../src/utils/pokemonSprites.js';
 
 // One allowlist for development serving and production copying.
@@ -61,6 +62,14 @@ export function writeNavigationPayload(output) {
 
 export function moveLearnerJson(slug) {
   return moveLearnerPayload(slug);
+}
+
+export function learnerFactsJson() { return moveLearnerFactsJson(); }
+
+export function writeLearnerFacts(output) {
+  const directory = join(output, 'data', 'pokemon');
+  mkdirSync(directory, { recursive: true });
+  writeFileSync(join(directory, 'learner-facts.json'), learnerFactsJson());
 }
 
 export function copyMoveLearnerPayloads(output) {

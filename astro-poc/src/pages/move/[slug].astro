@@ -49,7 +49,7 @@ const latestPreviewGroups = latestGroups.map(group => {
     <section class="move-learners" aria-labelledby="move-learners-heading">
       <h2 id="move-learners-heading">Pokémon That Learn {name}</h2>
       <p>{learnerCount} Pokémon are represented across all recorded games.</p>
-      {versions.length > 0 && <MoveLearnerExplorer client:visible payloadUrl={`/data/move-learners/${move.name}.json`} versions={versions} initialVersion={latestVersion} staticId="latest-move-learners" />}
+      {versions.length > 0 && <MoveLearnerExplorer client:visible payloadUrl={`/data/move-learners/${move.name}.json`} factsUrl="/data/pokemon/learner-facts.json" versions={versions} initialVersion={latestVersion} staticId="latest-move-learners" />}
       <div id="latest-move-learners">
         {latestVersion && <h3>{formatLabel(latestVersion)} Learners</h3>}
         {latestPreviewGroups.map(group => <section class="move-learner-group"><h3>{group.label} <small>{group.total} Pokémon</small></h3><div class="move-learner-cards">{group.pokemon.map(pokemon => <a class="move-learner-card" href={`/pokemon/${pokemon.name}`}><span>#{String(pokemon.id).padStart(4, '0')}</span>{pokemon.sprite && <img src={pokemon.sprite} alt="" width="72" height="72" loading="lazy" />}<strong>{pokemon.displayName}</strong></a>)}</div>{group.total > group.pokemon.length && <p class="move-preview-note">Showing {group.pokemon.length} of {group.total}; use the control above for the complete list.</p>}</section>)}
