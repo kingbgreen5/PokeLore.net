@@ -3,7 +3,7 @@
 1. **Scope.** Phase 4C restores learner stat sorting, filters, and a height comparison on the 937 canonical Astro Move routes. Production source files were not changed.
 2. **Production audit.** Production supports National Dex order; BST, HP, Attack, Defense, Sp. Atk, Sp. Def, and Speed sorts; ascending/descending direction; min/max thresholds; Reset; stat values beside results; and a height chart with largest first, feet/inches labels, horizontal scrolling, and zoom controls.
 3. **Static baseline.** The latest-game learner preview remains ordinary HTML. With JavaScript disabled, Move identity, facts, effect, disclosures, and up to 80 canonical learner links remain available.
-4. **Activation.** Historical and complete learner tools still load only after the visitor changes the game or chooses “Explore every … learner.” The island remains `client:visible`.
+4. **Activation.** Historical and complete learner tools load automatically when the learner section approaches the viewport. The island remains `client:visible`, and the static preview stays visible as its loading and no-JavaScript fallback.
 5. **Data architecture.** Per-Move payloads remain identity-only. A shared `/data/pokemon/learner-facts.json` registry supplies routed stats, BST, height, weight, display name, and a local sprite path.
 6. **Why shared data.** Repeating stats and size facts through 833 Move payloads would multiply the same Pokémon records across tens of megabytes. The shared artifact is 349,377 bytes raw and 51,661 bytes gzip, and browsers can cache it between Move pages.
 7. **Requests.** Activating the tools makes two data requests: the selected Move's existing learner payload and the shared facts registry. It makes no per-Pokémon JSON requests.

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { STAT_OPTIONS, filterAndSortGroups, formatHeight, sizeChartLearners, statValue, uniqueLearners } from '../lib/moveLearnerTools.js';
 
 const labels = { 'level-up': 'Level Up', machine: 'TMs, HMs, and TRs', egg: 'Via Breeding', tutor: 'Move Tutor', 'xd-purification': 'XD Purification', 'form-change': 'Form Change' };
@@ -53,6 +53,8 @@ export default function MoveLearnerExplorer({ payloadUrl, factsUrl, versions, in
   async function browseAll() { if (await loadData()) { setShowAll(true); document.getElementById(staticId)?.setAttribute('hidden', ''); } }
   function reset() { setMethod(''); setStat(''); setDirection('desc'); setMinimum(''); setMaximum(''); }
 
+  useEffect(() => { browseAll(); }, []);
+
   const sourceGroups = version === initialVersion && !showAll ? null : data?.payload.groupsByVersion?.[version] ?? [];
   const methods = sourceGroups?.map(group => group.method) ?? [];
   const groups = useMemo(() => sourceGroups && data ? filterAndSortGroups(sourceGroups, data.facts, { method, stat, direction, minimum, maximum }) : null,
@@ -62,7 +64,7 @@ export default function MoveLearnerExplorer({ payloadUrl, factsUrl, versions, in
 
   return <div className="move-learner-explorer">
     <div className="move-learner-primary"><label>Game generation<select value={version} onChange={event => selectVersion(event.target.value)}>{versions.map(item => <option key={item} value={item}>{title(item)}</option>)}</select></label></div>
-    {version === initialVersion && !showAll && <><p className="move-filter-note">Showing the latest available learner preview below.</p><button type="button" onClick={browseAll}>Explore every {title(initialVersion)} learner</button></>}
+    {version === initialVersion && !showAll && !loading && !error && <p className="move-filter-note">Preparing learner sorting and size comparison…</p>}
     {loading && <p>Loading learner tools…</p>}
     {error && <p role="alert">{error} <button type="button" onClick={browseAll}>Retry</button></p>}
     {sourceGroups && <>
@@ -75,11 +77,11 @@ export default function MoveLearnerExplorer({ payloadUrl, factsUrl, versions, in
         <button type="button" onClick={reset}>Reset</button>
       </div>
       <p className="move-results-count" aria-live="polite">{unique.length} Pokémon shown</p>
+      <SizeChart pokemon={chart} />
       <div className="move-historical-learners">{groups.length ? groups.map(group => <section key={group.method}>
         <h3>{labels[group.method] ?? title(group.method)} <small>{group.pokemon.length} Pokémon</small></h3>
         <ul>{group.pokemon.map(pokemon => <li key={pokemon.name}><a href={`/pokemon/${pokemon.name}`}>{pokemon.displayName}</a>{stat && <span>{STAT_OPTIONS.find(([value]) => value === stat)?.[1]}: {statValue(pokemon, stat)}</span>}</li>)}</ul>
       </section>) : <p>No learners match these filters.</p>}</div>
-      <SizeChart pokemon={chart} />
     </>}
     <span className="sr-only" aria-describedby={staticId}>Latest learners are present in the static document.</span>
   </div>;

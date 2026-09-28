@@ -44,7 +44,7 @@ try {
     const island = [...document.querySelectorAll('astro-island')].find(node => node.querySelector('.move-learner-explorer'));
     return island && !island.hasAttribute('ssr');
   });
-  await explorer.getByRole('button', { name: /Explore every/i }).click();
+  await interactive.locator('.move-learner-tools').waitFor();
   await interactive.locator('.move-historical-learners').waitFor();
   assert(await interactive.locator('.move-historical-learners a').count() > 800, 'complete latest learner set loads');
   assert(await interactive.locator('.move-size-pokemon').count() > 800, 'height chart reflects complete learner set');
@@ -73,7 +73,7 @@ try {
   const mobileExplorer = mobileTools.locator('.move-learner-explorer');
   await mobileExplorer.scrollIntoViewIfNeeded();
   await mobileTools.waitForFunction(() => [...document.querySelectorAll('astro-island')].some(node => node.querySelector('.move-learner-explorer') && !node.hasAttribute('ssr')));
-  await mobileExplorer.getByRole('button', { name: /Explore every/i }).click();
+  await mobileTools.locator('.move-learner-tools').waitFor();
   await mobileTools.locator('.move-size-chart').waitFor();
   assert(await mobileTools.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'interactive tools: 390px page overflow');
   assert(await mobileExplorer.getByLabel('Sort by').isVisible(), 'interactive tools: mobile sort visible');
