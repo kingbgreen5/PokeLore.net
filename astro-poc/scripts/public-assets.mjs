@@ -4,6 +4,7 @@ import { createSearchRecords } from '../src/lib/searchRecords.js';
 import { loadPokemon, readData } from '../src/lib/pokemonData.js';
 import { POKEMON_SLUGS, repositoryRoot } from '../src/lib/routes.js';
 import { pokemonNavigationJson } from '../src/lib/pokemonNavigation.js';
+import { MOVE_SLUGS, loadMove, moveLearnerPayload } from '../src/lib/moveData.js';
 import { getPokemonCardSources, getPokemonDetailSources, getPokemonSizeComparisonSources } from '../../src/utils/pokemonSprites.js';
 
 // One allowlist for development serving and production copying.
@@ -56,6 +57,18 @@ export function writeNavigationPayload(output) {
   const directory = join(output, 'data', 'navigation');
   mkdirSync(directory, { recursive: true });
   writeFileSync(join(directory, 'pokemon-navigation.json'), navigationJson());
+}
+
+export function moveLearnerJson(slug) {
+  return moveLearnerPayload(slug);
+}
+
+export function copyMoveLearnerPayloads(output) {
+  const directory = join(output, 'data', 'move-learners');
+  mkdirSync(directory, { recursive: true });
+  for (const slug of MOVE_SLUGS) {
+    if (loadMove(slug).versions.length > 0) writeFileSync(join(directory, `${slug}.json`), moveLearnerJson(slug));
+  }
 }
 
 export function copyPublicAssets(output) {

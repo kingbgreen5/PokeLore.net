@@ -8,7 +8,9 @@ export function validateRedirects(text, registry) {
   const numeric = [];
   const dynamic = new Set([
     '/pokemon/:slug/ /pokemon/:slug 301',
-    '/pokemon/:slug.html /pokemon/:slug 301'
+    '/pokemon/:slug.html /pokemon/:slug 301',
+    '/move/:slug/ /move/:slug 301',
+    '/move/:slug.html /move/:slug 301'
   ]);
   let dynamicCount = 0;
   let reachedDynamic = false;
@@ -42,5 +44,6 @@ export function validateRedirects(text, registry) {
   assert.equal(numeric.length, Object.keys(registry.byId).length, 'Numeric count differs from registry');
   assert(numeric.length < 2000 && dynamicCount <= 100, 'Cloudflare redirect budget exceeded');
   assert.equal(sources.get('/pokemon/:slug/'), '/pokemon/:slug', 'Missing slash normalization');
+  assert.equal(sources.get('/move/:slug/'), '/move/:slug', 'Missing Move slash normalization');
   return { numeric, dynamicCount };
 }

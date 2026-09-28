@@ -6,7 +6,9 @@ import { fileURLToPath } from 'node:url';
 export const STATIC_REDIRECT_LIMIT = 2000;
 export const DYNAMIC_REDIRECTS = [
   '/pokemon/:slug/ /pokemon/:slug 301',
-  '/pokemon/:slug.html /pokemon/:slug 301'
+  '/pokemon/:slug.html /pokemon/:slug 301',
+  '/move/:slug/ /move/:slug 301',
+  '/move/:slug.html /move/:slug 301'
 ];
 
 export function generateRedirects(source) {

@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import MoveLearnerExplorer from '../../islands/MoveLearnerExplorer.jsx';
+import { publicHref } from '../../lib/links.js';
+import { MOVE_SLUGS, formatLabel, formatMoveValue, loadMove, moveSeoData } from '../../lib/moveData.js';
+
+export function getStaticPaths() {
+  return MOVE_SLUGS.map(slug => ({ params: { slug } }));
+}
+
+const data = loadMove(Astro.params.slug);
+const { move, latestGroups, latestVersion, versions, learnerCount } = data;
+const name = move.displayName ?? formatLabel(move.name);
+const effect = move.shortEffect ?? move.description ?? move.effect;
+const extendedEffect = move.effect && move.effect !== effect ? move.effect : null;
+const accuracy = formatMoveValue(move.accuracy, move.accuracy == null ? '' : '%');
+const flags = (move.flags ?? []).map(flag => typeof flag === 'string' ? { name: flag, displayName: formatLabel(flag) } : flag);
+const statRows = [['Power', formatMoveValue(move.power)], ['Accuracy', accuracy], ['PP', formatMoveValue(move.pp)], ['Priority', formatMoveValue(move.priority)], ['Critical hit chance', move.meta?.critRate > 0 ? move.meta.critRate === 1 ? '1/8' : move.meta.critRate === 2 ? '1/2' : 'Guaranteed' : '1/24'], ['Effect chance', formatMoveValue(move.effectChance, move.effectChance == null ? '' : '%')]];
+let previewRemaining = 80;
+const latestPreviewGroups = latestGroups.map(group => {
+  const pokemon = group.pokemon.slice(0, Math.min(20, previewRemaining));
+  previewRemaining -= pokemon.length;
+  return { ...group, pokemon, total: group.pokemon.length };
+}).filter(group => group.pokemon.length);
+---
+<BaseLayout seo={moveSeoData(data)}>
+  <article class="move-detail">
+    <a class="move-back" href={publicHref('/moves')}>← Back To Moves</a>
+    <header class="move-header">
+      <h1>{name}</h1>
+      <div class="move-type-row"><span></span><a href={publicHref(`/type/${move.type}`)}><TypeBadge type={move.type} height="2.65rem" /></a><span></span></div>
+      <span class="move-category">{formatLabel(move.category)}</span>
+    </header>
+
+    <section class="move-facts" aria-labelledby="move-details-heading">
+      <h2 id="move-details-heading" class="sr-only">Move Details</h2>
+      <dl>{statRows.map(([label, value], index) => <div class:list={{ prominent: index < 2 }}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+      {flags.length > 0 && <ul class="move-flags">{flags.map(flag => <li title={flag.description}>{flag.displayName ?? formatLabel(flag.name)}</li>)}</ul>}
+    </section>
+
+    <section class="move-effect"><h2>Effect</h2>{effect ? <p>{effect}</p> : <p>No detailed effect text is available.</p>}{extendedEffect && <p>{extendedEffect}</p>}</section>
+    <dl class="move-context"><div><dt>Target</dt><dd>{formatLabel(move.target)}</dd></div><div><dt>Introduced</dt><dd>{formatLabel(move.generation)}</dd></div></dl>
+
+    {(move.statChanges?.length ?? 0) > 0 && <section class="move-section"><h2>Stat Changes</h2><ul>{move.statChanges.map(change => <li>{formatLabel(change.stat)}: <strong>{change.change > 0 ? `+${change.change}` : change.change}</strong></li>)}</ul></section>}
+
+    {(move.flavorTextEntries?.length ?? 0) > 0 && <details class="move-disclosure"><summary><h2>In-Game Descriptions</h2><span>{move.flavorTextEntries.length} entries</span></summary><div>{move.flavorTextEntries.map(entry => <article><h3>{formatLabel(entry.versionGroup)}</h3><p>{entry.text}</p></article>)}</div></details>}
+
+    <section class="move-learners" aria-labelledby="move-learners-heading">
+      <h2 id="move-learners-heading">Pokémon That Learn {name}</h2>
+      <p>{learnerCount} Pokémon are represented across all recorded games.</p>
+      {versions.length > 0 && <MoveLearnerExplorer client:visible payloadUrl={`/data/move-learners/${move.name}.json`} versions={versions} initialVersion={latestVersion} staticId="latest-move-learners" />}
+      <div id="latest-move-learners">
+        {latestVersion && <h3>{formatLabel(latestVersion)} Learners</h3>}
+        {latestPreviewGroups.map(group => <section class="move-learner-group"><h3>{group.label} <small>{group.total} Pokémon</small></h3><div class="move-learner-cards">{group.pokemon.map(pokemon => <a class="move-learner-card" href={`/pokemon/${pokemon.name}`}><span>#{String(pokemon.id).padStart(4, '0')}</span>{pokemon.sprite && <img src={pokemon.sprite} alt="" width="72" height="72" loading="lazy" />}<strong>{pokemon.displayName}</strong></a>)}</div>{group.total > group.pokemon.length && <p class="move-preview-note">Showing {group.pokemon.length} of {group.total}; use the control above for the complete list.</p>}</section>)}
+        {latestGroups.length === 0 && <p>No learner records are available in the current source dataset.</p>}
+      </div>
+    </section>
+
+    {(move.machineItems?.length ?? 0) > 0 && <details class="move-disclosure"><summary><h2>TMs, HMs, and TRs</h2><span>{move.machineItems.length} entries</span></summary><div class="move-machine-grid">{move.machineItems.map(item => <a href={publicHref(`/item/${item.itemName}`)}><strong>{item.itemDisplayName}</strong><span>{item.generation}</span><small>{formatLabel(item.versionGroup)}</small></a>)}</div></details>}
+
+    {(move.pastValues?.length ?? 0) > 0 && <details class="move-disclosure"><summary><h2>Version History</h2><span>{move.pastValues.length} changes</span></summary><div>{move.pastValues.map(value => <article><h3>{formatLabel(value.versionGroup)}</h3><p>Power: {formatMoveValue(value.power)} · Accuracy: {formatMoveValue(value.accuracy, value.accuracy == null ? '' : '%')} · PP: {formatMoveValue(value.pp)}{value.type ? ` · Type: ${formatLabel(value.type)}` : ''}</p>{value.effectEntries?.map(entry => <p>{entry.shortEffect || entry.effect}</p>)}</article>)}</div></details>}
+
+    <nav class="sr-only" aria-label="Breadcrumb"><a href="/">PokéLore</a> › <a href={publicHref('/moves')}>Moves</a> › {name}</nav>
+  </article>
+</BaseLayout>

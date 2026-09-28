@@ -3,4 +3,6 @@ const { type, height = '1.4rem' } = Astro.props;
 const images = import.meta.glob('../../../src/assets/Type Badges/*.png', { eager: true, query: '?url', import: 'default' });
 const src = images[`../../../src/assets/Type Badges/${type.toUpperCase()}.png`];
 ---
-<img src={src} alt={`${type} type`} class="type-badge" style={{height}} />
+{src
+  ? <img src={src} alt={`${type} type`} class="type-badge" style={{height}} />
+  : <span class="type-badge type-badge-fallback" style={{height}} aria-label={`${type} type`}>{type}</span>}

@@ -12,6 +12,8 @@ export const STRESS_SLUGS = [
 export function publicHref(path) {
   if (!path || !path.startsWith('/')) return path;
   const pathname = path.split(/[?#]/)[0];
+  const moveMatch = pathname.match(/^\/move\/([a-z0-9]+(?:-[a-z0-9]+)*)$/);
   return pathname === '/' || /^\/pokemon\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(pathname)
+    || Boolean(moveMatch)
     ? path : `https://pokelore.net${path}`;
 }
