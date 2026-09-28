@@ -6,7 +6,7 @@ import { parseHTML } from 'linkedom';
 import { MOVE_SLUGS, MOVE_SLUG_SET, loadMove, moveLearnerPayload } from '../src/lib/moveData.js';
 import { routes } from '../src/lib/routes.js';
 import { moveLearnerFactsJson } from '../src/lib/moveLearnerFacts.js';
-import { sizeChartLearners } from '../src/lib/moveLearnerTools.js';
+import { allMoveLearners } from '../src/lib/moveLearnerTools.js';
 
 const dist = resolve(process.argv[2] ?? 'dist');
 const startedAt = performance.now();
@@ -37,6 +37,8 @@ assert.equal(Object.keys(learnerFacts).length, Object.keys(routes.byName).length
 for (const [slug, fact] of Object.entries(learnerFacts)) {
   assert.equal(fact.name, slug); assert(routes.byName[slug]);
   assert.equal(fact.baseStatTotal, Object.values(fact.stats).reduce((sum, value) => sum + value, 0));
+  assert(Array.isArray(fact.types) && fact.types.length > 0 && fact.types.every(type => typeof type === 'string'));
+  assert.equal(typeof fact.cardSprite, 'string');
   assert(fact.height === null || fact.height > 0); assert(fact.weight === null || fact.weight > 0);
 }
 
@@ -106,10 +108,14 @@ for (const [index, slug] of MOVE_SLUGS.entries()) {
     }
     assert(island, `${slug}: learner island`); const props = island.getAttribute('props') ?? ''; hydrationPropBytes = Buffer.byteLength(props);
     assert(hydrationPropBytes < 10000); assert(!props.includes('groupsByVersion')); assert(props.includes('learner-facts.json'));
-    const currentGroups = payload.groupsByVersion[data.latestVersion].map(group => ({...group,pokemon:group.pokemon.map(p=>({...p,...learnerFacts[p.name]}))}));
-    const chart = sizeChartLearners(currentGroups); assert(chart.every((pokemon,index) => !index || chart[index-1].height >= pokemon.height), `${slug}: chart largest first`);
+    const chart = allMoveLearners(payload.groupsByVersion, learnerFacts).filter(pokemon => Number.isFinite(pokemon.height) && pokemon.height > 0)
+      .sort((a,b) => b.height * b.correctionFactor - a.height * a.correctionFactor || b.height-a.height || a.id-b.id || a.name.localeCompare(b.name));
+    assert.equal(chart.length, data.learnerCount, `${slug}: chart includes every all-generation learner with valid height`);
+    assert(chart.every((pokemon,index) => !index || chart[index-1].height * chart[index-1].correctionFactor >= pokemon.height * pokemon.correctionFactor), `${slug}: corrected visual height largest first`);
     staticLearners = document.querySelectorAll('#latest-move-learners a[href^="/pokemon/"]').length;
     assert(staticLearners > 0 && staticLearners <= 80, `${slug}: static learner preview ${staticLearners}`);
+    assert.equal(document.querySelectorAll('#latest-move-learners .pokemon-summary-card').length, staticLearners, `${slug}: static learners use summary cards`);
+    assert.equal(document.querySelectorAll('#latest-move-learners .card-artwork').length, staticLearners, `${slug}: every summary card has artwork`);
     learnerPayloadBytes = statSync(payloadFile).size;
   } else {
     assert(!existsSync(payloadFile), `${slug}: no empty learner payload`); assert(!island, `${slug}: no learner control`);

@@ -1,8 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PokemonCard from '../../components/PokemonCard.astro';
 import TypeBadge from '../../components/TypeBadge.astro';
 import MoveLearnerExplorer from '../../islands/MoveLearnerExplorer.jsx';
+import MoveLearnerSizeChart from '../../islands/MoveLearnerSizeChart.jsx';
 import { publicHref } from '../../lib/links.js';
+import { moveLearnerFacts } from '../../lib/moveLearnerFacts.js';
 import { MOVE_SLUGS, formatLabel, formatMoveValue, loadMove, moveSeoData } from '../../lib/moveData.js';
 
 export function getStaticPaths() {
@@ -10,6 +13,7 @@ export function getStaticPaths() {
 }
 
 const data = loadMove(Astro.params.slug);
+const learnerFacts = moveLearnerFacts();
 const { move, latestGroups, latestVersion, versions, learnerCount } = data;
 const name = move.displayName ?? formatLabel(move.name);
 const effect = move.shortEffect ?? move.description ?? move.effect;
@@ -52,7 +56,7 @@ const latestPreviewGroups = latestGroups.map(group => {
       {versions.length > 0 && <MoveLearnerExplorer client:visible payloadUrl={`/data/move-learners/${move.name}.json`} factsUrl="/data/pokemon/learner-facts.json" versions={versions} initialVersion={latestVersion} staticId="latest-move-learners" />}
       <div id="latest-move-learners">
         {latestVersion && <h3>{formatLabel(latestVersion)} Learners</h3>}
-        {latestPreviewGroups.map(group => <section class="move-learner-group"><h3>{group.label} <small>{group.total} Pokémon</small></h3><div class="move-learner-cards">{group.pokemon.map(pokemon => <a class="move-learner-card" href={`/pokemon/${pokemon.name}`}><span>#{String(pokemon.id).padStart(4, '0')}</span>{pokemon.sprite && <img src={pokemon.sprite} alt="" width="72" height="72" loading="lazy" />}<strong>{pokemon.displayName}</strong></a>)}</div>{group.total > group.pokemon.length && <p class="move-preview-note">Showing {group.pokemon.length} of {group.total}; use the control above for the complete list.</p>}</section>)}
+        {latestPreviewGroups.map(group => <section class="move-learner-group"><h3>{group.label} <small>{group.total} Pokémon</small></h3><div class="move-learner-cards">{group.pokemon.map(pokemon => <PokemonCard pokemon={{ ...learnerFacts[pokemon.name], sprite: learnerFacts[pokemon.name].cardSprite }} />)}</div>{group.total > group.pokemon.length && <p class="move-preview-note">Showing {group.pokemon.length} of {group.total}; use the control above for the complete list.</p>}</section>)}
         {latestGroups.length === 0 && <p>No learner records are available in the current source dataset.</p>}
       </div>
     </section>
@@ -60,6 +64,8 @@ const latestPreviewGroups = latestGroups.map(group => {
     {(move.machineItems?.length ?? 0) > 0 && <details class="move-disclosure"><summary><h2>TMs, HMs, and TRs</h2><span>{move.machineItems.length} entries</span></summary><div class="move-machine-grid">{move.machineItems.map(item => <a href={publicHref(`/item/${item.itemName}`)}><strong>{item.itemDisplayName}</strong><span>{item.generation}</span><small>{formatLabel(item.versionGroup)}</small></a>)}</div></details>}
 
     {(move.pastValues?.length ?? 0) > 0 && <details class="move-disclosure"><summary><h2>Version History</h2><span>{move.pastValues.length} changes</span></summary><div>{move.pastValues.map(value => <article><h3>{formatLabel(value.versionGroup)}</h3><p>Power: {formatMoveValue(value.power)} · Accuracy: {formatMoveValue(value.accuracy, value.accuracy == null ? '' : '%')} · PP: {formatMoveValue(value.pp)}{value.type ? ` · Type: ${formatLabel(value.type)}` : ''}</p>{value.effectEntries?.map(entry => <p>{entry.shortEffect || entry.effect}</p>)}</article>)}</div></details>}
+
+    {versions.length > 0 && <MoveLearnerSizeChart client:visible payloadUrl={`/data/move-learners/${move.name}.json`} factsUrl="/data/pokemon/learner-facts.json" moveName={name} />}
 
     <nav class="sr-only" aria-label="Breadcrumb"><a href="/">PokéLore</a> › <a href={publicHref('/moves')}>Moves</a> › {name}</nav>
   </article>

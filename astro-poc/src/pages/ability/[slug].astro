@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PokemonCard from '../../components/PokemonCard.astro';
+import { publicHref } from '../../lib/links.js';
+import { abilityModel } from '../../lib/abilityData.js';
+import { ABILITY_STRESS_SLUGS } from '../../lib/abilityRoutes.js';
+
+export function getStaticPaths() {
+  return ABILITY_STRESS_SLUGS.map(slug => ({ params: { slug } }));
+}
+
+const data = abilityModel(Astro.params.slug);
+const holderGroups = [
+  { id: 'regular-holders', title: 'Regular Ability', holders: data.regularHolders },
+  { id: 'hidden-holders', title: 'Hidden Ability', holders: data.hiddenHolders }
+].filter(group => group.holders.length);
+---
+<BaseLayout seo={data.seo}>
+  <article class="ability-detail">
+    <a class="ability-back" href={publicHref('/abilities')}>← Back To Abilities</a>
+    <header class="ability-header">
+      <p>{data.generationDisplay}</p>
+      <h1>{data.displayName}</h1>
+      <p class="ability-summary">{data.shortEffect}</p>
+    </header>
+    <section class="ability-effect" aria-labelledby="ability-effect-heading"><h2 id="ability-effect-heading">Detailed Effect</h2><p>{data.effect}</p></section>
+    {data.oaksNotes && <aside class="ability-oaks-notes" aria-labelledby="oaks-notes-heading">
+      <h2 id="oaks-notes-heading">{data.oaksNotes.title}</h2>
+      {data.oaksNotes.sections.map(section => <section><h3>{section.heading}</h3>{section.body.map(block => <div><p>{block.text}</p>{block.links?.length > 0 && <p class="ability-note-links">{block.links.map(link => <a href={publicHref(link.to)}>{link.label}</a>)}</p>}</div>)}</section>)}
+    </aside>}
+    <section class="ability-holders" aria-labelledby="ability-holders-heading">
+      <h2 id="ability-holders-heading">Pokémon With {data.displayName}</h2>
+      <p>{data.routedHolderCount ? `${data.routedHolderCount} canonical Pokémon form${data.routedHolderCount === 1 ? '' : 's'} can have this Ability.` : 'No canonical Pokémon form in the current source data has this Ability.'}</p>
+      {holderGroups.map(group => <section class="ability-holder-group" id={group.id}><h3>{group.title} <small>{group.holders.length} Pokémon</small></h3><div class="ability-holder-cards">{group.holders.map(holder => <PokemonCard pokemon={holder} />)}</div></section>)}
+    </section>
+    <nav class="sr-only" aria-label="Breadcrumb"><a href="/">PokéLore</a> › <a href={publicHref('/abilities')}>Abilities</a> › {data.displayName}</nav>
+  </article>
+</BaseLayout>

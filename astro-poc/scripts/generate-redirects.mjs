@@ -8,7 +8,9 @@ export const DYNAMIC_REDIRECTS = [
   '/pokemon/:slug/ /pokemon/:slug 301',
   '/pokemon/:slug.html /pokemon/:slug 301',
   '/move/:slug/ /move/:slug 301',
-  '/move/:slug.html /move/:slug 301'
+  '/move/:slug.html /move/:slug 301',
+  '/ability/:slug/ /ability/:slug 301',
+  '/ability/:slug.html /ability/:slug 301'
 ];
 
 export function generateRedirects(source) {

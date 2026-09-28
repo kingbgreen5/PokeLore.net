@@ -10,6 +10,7 @@ import { loadPokemon } from '../src/lib/pokemonData.js';
 import { getPokemonNavigation } from '../src/lib/pokemonNavigation.js';
 import { referenceSeo } from '../src/lib/seo.js';
 import { MOVE_SLUGS } from '../src/lib/moveData.js';
+import { ABILITY_STRESS_SLUGS } from '../src/lib/abilityRoutes.js';
 import { registryRedirects } from './generate-redirects.mjs';
 import { validateRedirects } from './validate-redirects.mjs';
 
@@ -35,7 +36,7 @@ assert.equal(sharedNavigation.length, POKEMON_SLUGS.length, 'Shared navigation i
 assert.equal(new Set(sharedNavigation.map(entry => entry.name)).size, POKEMON_SLUGS.length, 'Shared navigation names are unique');
 assert(sharedNavigation.every(entry => Object.keys(entry).sort().join(',') === 'id,name,sprite'), 'Navigation records contain only id, name and sprite');
 assert.deepEqual(files.filter(f => f.endsWith('.html')).sort(),
-  ['index.html', '404.html', ...POKEMON_SLUGS.map(s => `pokemon/${s}.html`), ...MOVE_SLUGS.map(s => `move/${s}.html`)].sort(), 'Exactly the canonical Astro HTML documents');
+  ['index.html', '404.html', ...POKEMON_SLUGS.map(s => `pokemon/${s}.html`), ...MOVE_SLUGS.map(s => `move/${s}.html`), ...ABILITY_STRESS_SLUGS.map(s => `ability/${s}.html`)].sort(), 'Exactly the canonical Astro HTML documents');
 const hostingFiles = new Set(['_headers', '_redirects']);
 for (const file of hostingFiles) {
   assert(readFileSync(join(dist, file)).equals(readFileSync(join('public', file))), `${file}: hosting configuration copied unchanged`);
@@ -57,7 +58,7 @@ assert(!config.main && !config.assets.run_worker_first, 'Static assets only, no 
 const headers = readFileSync(join(dist, '_headers'), 'utf8');
 assert.match(headers, /\/\*\s+X-Robots-Tag: noindex/);
 assert(!/Content-Type:/i.test(headers), 'Native HTML and asset MIME types');
-console.log(`PASS: ${redirects.count} static numeric redirects (< 2000), four dynamic 301 rules, no SPA fallback, staging noindex.`);
+console.log(`PASS: ${redirects.count} static numeric redirects (< 2000), six dynamic 301 rules, no SPA fallback, staging noindex.`);
 assert(!files.some(f => /^pokemon\/\d+(?:[/.]|$)/.test(f)), 'No numeric resources');
 // Phase 1B permits scoped islands; core HTML and the head remain server-owned.
 for (const file of readdirSync('src/islands').filter(f=>f.endsWith('.jsx'))) {

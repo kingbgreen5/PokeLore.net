@@ -1,25 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { STAT_OPTIONS, filterAndSortGroups, formatHeight, sizeChartLearners, statValue, uniqueLearners } from '../lib/moveLearnerTools.js';
+import { STAT_OPTIONS, filterAndSortGroups, statValue, uniqueLearners } from '../lib/moveLearnerTools.js';
+import PokemonSummaryCard from './PokemonSummaryCard.jsx';
 
 const labels = { 'level-up': 'Level Up', machine: 'TMs, HMs, and TRs', egg: 'Via Breeding', tutor: 'Move Tutor', 'xd-purification': 'XD Purification', 'form-change': 'Form Change' };
 const title = value => String(value).split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
-
-function SizeChart({ pokemon }) {
-  const [zoom, setZoom] = useState(1);
-  if (!pokemon.length) return null;
-  const maximum = pokemon[0].height;
-  return <section className="move-size-chart" aria-labelledby="move-size-heading">
-    <div className="move-size-heading"><div><h3 id="move-size-heading">Learner Height Comparison</h3><p>Largest to smallest for the learners currently shown.</p></div>
-      <div className="move-size-zoom" aria-label="Chart zoom"><button type="button" onClick={() => setZoom(value => Math.max(.65, value - .15))} aria-label="Zoom out">−</button><button type="button" onClick={() => setZoom(1)}>Reset</button><button type="button" onClick={() => setZoom(value => Math.min(1.8, value + .15))} aria-label="Zoom in">+</button></div>
-    </div>
-    <div className="move-size-scroll"><div className="move-size-track" style={{ '--chart-zoom': zoom }}>
-      {pokemon.map(item => <a key={item.name} href={`/pokemon/${item.name}`} className="move-size-pokemon" title={`${item.displayName}: ${formatHeight(item.height)}`}>
-        <div className="move-size-stage">{item.sprite && <img src={item.sprite} alt="" loading="lazy" style={{ height: `${Math.max(34, 190 * item.height / maximum)}px` }} />}</div>
-        <strong>{item.displayName}</strong><span>{formatHeight(item.height)}</span>
-      </a>)}
-    </div></div>
-  </section>;
-}
 
 export default function MoveLearnerExplorer({ payloadUrl, factsUrl, versions, initialVersion, staticId }) {
   const [version, setVersion] = useState(initialVersion ?? '');
@@ -60,7 +44,6 @@ export default function MoveLearnerExplorer({ payloadUrl, factsUrl, versions, in
   const groups = useMemo(() => sourceGroups && data ? filterAndSortGroups(sourceGroups, data.facts, { method, stat, direction, minimum, maximum }) : null,
     [sourceGroups, data, method, stat, direction, minimum, maximum]);
   const unique = groups ? uniqueLearners(groups) : [];
-  const chart = groups ? sizeChartLearners(groups) : [];
 
   return <div className="move-learner-explorer">
     <div className="move-learner-primary"><label>Game generation<select value={version} onChange={event => selectVersion(event.target.value)}>{versions.map(item => <option key={item} value={item}>{title(item)}</option>)}</select></label></div>
@@ -77,10 +60,9 @@ export default function MoveLearnerExplorer({ payloadUrl, factsUrl, versions, in
         <button type="button" onClick={reset}>Reset</button>
       </div>
       <p className="move-results-count" aria-live="polite">{unique.length} Pokémon shown</p>
-      <SizeChart pokemon={chart} />
       <div className="move-historical-learners">{groups.length ? groups.map(group => <section key={group.method}>
         <h3>{labels[group.method] ?? title(group.method)} <small>{group.pokemon.length} Pokémon</small></h3>
-        <ul>{group.pokemon.map(pokemon => <li key={pokemon.name}><a href={`/pokemon/${pokemon.name}`}>{pokemon.displayName}</a>{stat && <span>{STAT_OPTIONS.find(([value]) => value === stat)?.[1]}: {statValue(pokemon, stat)}</span>}</li>)}</ul>
+        <ul>{group.pokemon.map(pokemon => <li key={pokemon.name}><PokemonSummaryCard pokemon={pokemon} />{stat && <span>{STAT_OPTIONS.find(([value]) => value === stat)?.[1]}: {statValue(pokemon, stat)}</span>}</li>)}</ul>
       </section>) : <p>No learners match these filters.</p>}</div>
     </>}
     <span className="sr-only" aria-describedby={staticId}>Latest learners are present in the static document.</span>

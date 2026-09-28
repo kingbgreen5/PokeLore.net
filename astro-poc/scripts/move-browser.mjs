@@ -18,7 +18,7 @@ try {
     assert.equal(await noJs.locator('h1').count(), 1, `${slug}: H1`);
     assert(await noJs.locator('.move-effect').innerText(), `${slug}: effect`);
     const data = loadMove(slug);
-    assert.equal(await noJs.locator('.move-learner-card').count() > 0, data.learnerCount > 0, `${slug}: static learner availability follows source`);
+    assert.equal(await noJs.locator('#latest-move-learners .pokemon-summary-card').count() > 0, data.learnerCount > 0, `${slug}: static learner availability follows source`);
     assert(await noJs.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${slug}: mobile overflow`);
     results.javascriptDisabled.push(slug);
   }
@@ -47,13 +47,18 @@ try {
   await interactive.locator('.move-learner-tools').waitFor();
   await interactive.locator('.move-historical-learners').waitFor();
   assert(await interactive.locator('.move-historical-learners a').count() > 800, 'complete latest learner set loads');
-  assert(await interactive.locator('.move-size-pokemon').count() > 800, 'height chart reflects complete learner set');
+  const sizeChart = interactive.locator('.move-size-chart-original');
+  await sizeChart.scrollIntoViewIfNeeded();
+  await interactive.locator('.move-size-entry').first().waitFor();
+  assert(await interactive.locator('.move-size-entry').count() > 1200, 'height chart includes complete all-generation learner set');
   await explorer.getByLabel('Sort by').selectOption('speed');
   await explorer.getByLabel('Direction').selectOption('asc');
-  const speedValues = await interactive.locator('.move-historical-learners li span').allTextContents();
+  assert(await interactive.locator('.move-historical-learners .pokemon-summary-card .card-artwork').count() > 800, 'complete learner cards include artwork');
+  assert(await interactive.locator('.move-historical-learners .pokemon-summary-card .card-types img').count() > 800, 'complete learner cards include type badges');
+  const speedValues = await interactive.locator('.move-historical-learners li>span').allTextContents();
   assert(speedValues.every(value => /^Speed: \d+$/.test(value)), 'selected stat is shown');
   await explorer.getByLabel('Minimum').fill('100');
-  assert((await interactive.locator('.move-historical-learners li span').allTextContents()).every(value => Number(value.split(': ')[1]) >= 100), 'minimum filter');
+  assert((await interactive.locator('.move-historical-learners li>span').allTextContents()).every(value => Number(value.split(': ')[1]) >= 100), 'minimum filter');
   const methods = await explorer.getByLabel('Method').locator('option').allTextContents();
   assert(methods.length > 1, 'method filter populated');
   await explorer.getByRole('button', { name: 'Reset', exact: true }).first().click();
@@ -74,10 +79,12 @@ try {
   await mobileExplorer.scrollIntoViewIfNeeded();
   await mobileTools.waitForFunction(() => [...document.querySelectorAll('astro-island')].some(node => node.querySelector('.move-learner-explorer') && !node.hasAttribute('ssr')));
   await mobileTools.locator('.move-learner-tools').waitFor();
-  await mobileTools.locator('.move-size-chart').waitFor();
+  const mobileChart = mobileTools.locator('.move-size-chart-original');
+  await mobileChart.scrollIntoViewIfNeeded();
+  await mobileTools.locator('.move-size-entry').first().waitFor();
   assert(await mobileTools.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'interactive tools: 390px page overflow');
   assert(await mobileExplorer.getByLabel('Sort by').isVisible(), 'interactive tools: mobile sort visible');
-  assert(await mobileTools.locator('.move-size-scroll').evaluate(element => element.scrollWidth > element.clientWidth), 'interactive tools: chart scrolls internally');
+  assert(await mobileTools.locator('.move-size-scroll-original').evaluate(element => element.scrollWidth > element.clientWidth), 'interactive tools: chart scrolls internally');
   await mobileTools.close();
 
   if (!localOnly) for (const slug of ['thunderbolt', 'protect', 'fissure', 'swift', 'tackle', 'tera-starstorm']) {

@@ -50,7 +50,15 @@ export function sizeChartLearners(groups) {
     .sort((a, b) => b.height - a.height || compareLearners(a, b));
 }
 
+export function allMoveLearners(groupsByVersion, facts) {
+  const byName = new Map();
+  for (const groups of Object.values(groupsByVersion ?? {})) for (const group of groups) for (const identity of group.pokemon) {
+    if (!byName.has(identity.name) && facts[identity.name]) byName.set(identity.name, { ...identity, ...facts[identity.name] });
+  }
+  return [...byName.values()];
+}
+
 export function formatHeight(decimetres) {
   const inches = Math.round(decimetres * 3.937007874);
-  return `${Math.floor(inches / 12)}′ ${inches % 12}″`;
+  return `${Math.floor(inches / 12)}' ${inches % 12}\"`;
 }

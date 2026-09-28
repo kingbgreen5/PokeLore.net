@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { STAT_OPTIONS, compareLearners, filterAndSortGroups, formatHeight, sizeChartLearners } from '../src/lib/moveLearnerTools.js';
+import { STAT_OPTIONS, allMoveLearners, compareLearners, filterAndSortGroups, formatHeight, sizeChartLearners } from '../src/lib/moveLearnerTools.js';
 
 const make = (name, id, values, height = 10) => ({ name, id, displayName: name, baseStatTotal: values.reduce((a,b)=>a+b,0), stats: Object.fromEntries(['hp','attack','defense','specialAttack','specialDefense','speed'].map((key,index)=>[key,values[index]])), height });
 const facts = {
@@ -19,5 +19,6 @@ assert.deepEqual(tied.map(p=>p.name), ['alpha','alpha-form'], 'stable canonical 
 const filtered = filterAndSortGroups(groups,facts,{method:'level-up',stat:'attack',direction:'desc',minimum:'65',maximum:'95'});
 assert.deepEqual(filtered[0].pokemon.map(p=>p.name), ['beta-form','beta']);
 assert.deepEqual(sizeChartLearners(filtered).map(p=>p.name), ['beta-form','beta']);
-assert.equal(formatHeight(17), '5′ 7″');
+assert.equal(formatHeight(17), '5\' 7"');
+assert.deepEqual(allMoveLearners({one:groups},facts).map(p=>p.name), ['alpha','beta','beta-form'], 'all-generation chart union');
 console.log('PASS Move learner tools: seven stat fields, both directions, stable ties, method/range filters, form identity, size order and height labels.');
