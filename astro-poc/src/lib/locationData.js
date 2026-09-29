@@ -3,6 +3,7 @@ import { join, resolve } from 'node:path';
 import { POKEMON_SLUG_SET } from './routes.js';
 import { ITEM_SLUG_SET } from './itemData.js';
 import { MOVE_SLUG_SET } from './moveData.js';
+import { sortVersions } from '../../../src/constants/versionOrder.js';
 
 const root = resolve(process.cwd(), '..');
 const dataDir = join(root, 'public', 'data');
@@ -22,7 +23,10 @@ export function locationModel(slug) {
   const items = (locationItems?.items ?? []).flatMap(entry => ITEM_SLUG_SET.has(entry.item?.name) ? [{ ...entry.item, displayName: entry.item.displayName ?? display(entry.item.name), versions: entry.versions ?? [] }] : []);
   const areas = (location.areas ?? []).map(area => ({ ...area, pokemonEncounters: (area.pokemonEncounters ?? []).map(entry => ({ ...entry, pokemon: linkPokemon(entry.pokemon) })).filter(entry => entry.pokemon) }));
   const encounterRows = areas.flatMap(area => area.pokemonEncounters.flatMap(entry => entry.versions.flatMap(version => version.encounters.map(encounter => ({ ...encounter, version: version.version, pokemon: entry.pokemon, area: area.displayName })) )));
-  const versions = [...new Set(encounterRows.map(row => row.version).concat(items.flatMap(item => item.versions.map(v => v.version))))].sort();
+  // The game filter belongs to the encounters table, so only expose versions
+  // that have encounter rows. Item availability can use different display
+  // labels and must not add duplicate or non-filterable options here.
+  const versions = sortVersions([...new Set(encounterRows.map(row => row.version))]);
   const hasEncounters = encounterRows.length > 0;
   const hasItems = items.length > 0;
   const content = [hasItems && 'Items', hasEncounters && 'Pokémon'].filter(Boolean);

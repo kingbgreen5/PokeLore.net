@@ -12,7 +12,7 @@ import { referenceSeo } from '../src/lib/seo.js';
 import { MOVE_SLUGS } from '../src/lib/moveData.js';
 import { ABILITY_SLUGS } from '../src/lib/abilityData.js';
 import { ITEM_SLUGS } from '../src/lib/itemData.js';
-import { LOCATION_STRESS_SLUGS } from '../src/lib/locationData.js';
+import { LOCATION_SLUGS } from '../src/lib/locationData.js';
 import { registryRedirects } from './generate-redirects.mjs';
 import { validateRedirects } from './validate-redirects.mjs';
 
@@ -38,7 +38,7 @@ assert.equal(sharedNavigation.length, POKEMON_SLUGS.length, 'Shared navigation i
 assert.equal(new Set(sharedNavigation.map(entry => entry.name)).size, POKEMON_SLUGS.length, 'Shared navigation names are unique');
 assert(sharedNavigation.every(entry => Object.keys(entry).sort().join(',') === 'id,name,sprite'), 'Navigation records contain only id, name and sprite');
 assert.deepEqual(files.filter(f => f.endsWith('.html')).sort(),
-  ['index.html', '404.html', ...POKEMON_SLUGS.map(s => `pokemon/${s}.html`), ...MOVE_SLUGS.map(s => `move/${s}.html`), ...ABILITY_SLUGS.map(s => `ability/${s}.html`), ...ITEM_SLUGS.map(s => `item/${s}.html`), ...LOCATION_STRESS_SLUGS.map(s => `location/${s}.html`)].sort(), 'Exactly the canonical Astro HTML documents');
+  ['index.html', '404.html', ...POKEMON_SLUGS.map(s => `pokemon/${s}.html`), ...MOVE_SLUGS.map(s => `move/${s}.html`), ...ABILITY_SLUGS.map(s => `ability/${s}.html`), ...ITEM_SLUGS.map(s => `item/${s}.html`), ...LOCATION_SLUGS.map(s => `location/${s}.html`)].sort(), 'Exactly the canonical Astro HTML documents');
 const hostingFiles = new Set(['_headers', '_redirects']);
 for (const file of hostingFiles) {
   assert(readFileSync(join(dist, file)).equals(readFileSync(join('public', file))), `${file}: hosting configuration copied unchanged`);
