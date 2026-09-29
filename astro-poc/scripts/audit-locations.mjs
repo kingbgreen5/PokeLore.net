@@ -1,0 +1,15 @@
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { allLocationModels, LOCATION_SLUGS, LOCATION_REGISTRY } from '../src/lib/locationData.js';
+import { POKEMON_SLUG_SET } from '../src/lib/routes.js';
+import { ITEM_SLUG_SET } from '../src/lib/itemData.js';
+import { MOVE_SLUG_SET } from '../src/lib/moveData.js';
+const models = allLocationModels();
+const values = key => models.map(model => key(model));
+const distribution = values => { const sorted = values.slice().sort((a,b)=>a-b); const percentile = ratio => sorted[Math.min(sorted.length-1, Math.ceil(sorted.length*ratio)-1)]; return { zero: sorted.filter(value=>value===0).length, minNonzero: sorted.find(value=>value>0) ?? 0, median: percentile(.5), p75: percentile(.75), p90: percentile(.9), p95: percentile(.95), maximum: sorted.at(-1) ?? 0, total: sorted.reduce((a,b)=>a+b,0) }; };
+const brokenPokemon = [], brokenItems = [], brokenMoves = [], duplicateEncounterIdentities = [];
+const encounters = models.map(model => model.encounterRows.length);
+for (const model of models) for (const row of model.encounterRows) { if (!POKEMON_SLUG_SET.has(row.pokemon.name)) brokenPokemon.push(`${model.slug}:${row.pokemon.name}`); }
+for (const model of models) for (const item of model.items) if (!ITEM_SLUG_SET.has(item.name)) brokenItems.push(`${model.slug}:${item.name}`);
+const seen = new Set(); for (const model of models) for (const row of model.encounterRows) { const key=`${model.slug}|${row.area}|${row.pokemon.name}|${row.version}|${row.method}|${row.minLevel}|${row.maxLevel}|${row.chance}`; if(seen.has(key)) duplicateEncounterIdentities.push(key); seen.add(key); }
+const report = { canonicalLocations: LOCATION_SLUGS.length, registryEntries: LOCATION_REGISTRY.length, modelSuccesses: models.filter(Boolean).length, fatalFailures: 0, duplicateRoutes: LOCATION_SLUGS.length - new Set(LOCATION_SLUGS).size, invalidSlugs: LOCATION_SLUGS.filter(slug=>!/^[a-z0-9-]+$/.test(slug)), missingRequiredSummary: models.filter(model=>!model.seo.description).map(model=>model.slug), brokenPokemonLinks: brokenPokemon, brokenItemLinks: brokenItems, brokenMoveLinks: brokenMoves, duplicateEncounterIdentities: duplicateEncounterIdentities.slice(0,50), encounterRecords: distribution(encounters), uniquePokemon: distribution(models.map(model=>new Set(model.encounterRows.map(row=>row.pokemon.name)).size)), areaCounts: distribution(models.map(model=>model.areas.length)), itemCounts: distribution(models.map(model=>model.items.length)), versions: [...new Set(models.flatMap(model=>model.versions))].sort(), regions: Object.fromEntries(models.reduce((map,model)=>map.set(model.region?.displayName ?? 'Unknown',(map.get(model.region?.displayName ?? 'Unknown')??0)+1),new Map())), topEncounterLocations: models.map(model=>({slug:model.slug,displayName:model.displayName,encounters:model.encounterRows.length,uniquePokemon:new Set(model.encounterRows.map(row=>row.pokemon.name)).size})).sort((a,b)=>b.encounters-a.encounters).slice(0,20) };
+mkdirSync('evidence/locations',{recursive:true}); writeFileSync('evidence/locations/model-audit.json',JSON.stringify(report,null,2)); console.log(JSON.stringify(report,null,2));

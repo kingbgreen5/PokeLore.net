@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { LOCATION_SLUGS, LOCATION_STRESS_SLUGS, locationModel } from '../../lib/locationData.js';
+export function getStaticPaths() { return LOCATION_SLUGS.filter(slug => LOCATION_STRESS_SLUGS.includes(slug)).map(slug => ({ params: { slug } })); }
+const data = locationModel(Astro.params.slug);
+const titleCase = value => String(value ?? '').split('-').filter(Boolean).map(word => word[0]?.toUpperCase() + word.slice(1)).join(' ');
+const level = row => row.minLevel == null && row.maxLevel == null ? '—' : row.minLevel === row.maxLevel ? `Lv. ${row.minLevel}` : `Lv. ${row.minLevel}-${row.maxLevel}`;
+const pokemonRows = data.encounterRows.slice(0, 240);
+---
+<BaseLayout seo={data.seo}>
+  <article class="location-detail">
+    <a class="location-back" href="/locations">← Back To Locations</a>
+    <header><p class="location-region">{data.region?.displayName ?? 'Region not specified'}</p><h1>{data.displayName}</h1><p class="location-summary">{data.seo.description}</p></header>
+    {data.gameIndices?.length > 0 && <p class="location-generations">Generations: {[...new Set(data.gameIndices.map(entry => titleCase(entry.generation)))].join(', ')}</p>}
+    {data.areas.length > 0 && <section class="location-section"><h2>Areas <small>{data.areas.length}</small></h2><div class="area-links">{data.areas.map(area => <a href={`#${area.name}`}>{area.displayName}</a>)}</div></section>}
+    <section class="location-section"><h2>Pokémon Encounters <small>{data.encounterRows.length}</small></h2>{data.encounterRows.length === 0 ? <p>No Pokémon encounters are recorded for this location.</p> : <div class="encounter-table-wrap"><table><thead><tr><th>Pokémon</th><th>Area</th><th>Game</th><th>Method</th><th>Level</th><th>Chance</th></tr></thead><tbody>{pokemonRows.map((row, index) => <tr key={`${row.pokemon.name}-${row.version}-${row.method}-${index}`}><td><a href={`/pokemon/${row.pokemon.name}`}>{row.pokemon.displayName}</a></td><td>{row.area}</td><td>{titleCase(row.version)}</td><td>{titleCase(row.method)}</td><td>{level(row)}</td><td>{row.chance == null ? '—' : `${row.chance}%`}</td></tr>)}</tbody></table>{pokemonRows.length < data.encounterRows.length && <p class="notice">Showing the first {pokemonRows.length} encounter records. Choose a game or area on the full production view for narrower results.</p>}</div>}</section>
+    {data.items.length > 0 && <section class="location-section"><h2>Items Found Here <small>{data.items.length}</small></h2><div class="item-links">{data.items.map(item => <a href={`/item/${item.name}`}>{item.displayName}</a>)}</div></section>}
+    {data.areas.map(area => <section class="location-area" id={area.name}><h2>{area.displayName}</h2>{area.encounterMethodRates?.length > 0 && <p class="method-list">Methods: {area.encounterMethodRates.map(rate => titleCase(rate.method)).join(', ')}</p>}</section>)}
+    {data.oaksNotes && <section class="location-section"><h2>{data.oaksNotes.title ?? 'Notes'}</h2>{data.oaksNotes.sections?.flatMap(section => section.body ?? []).map(block => <p>{block.text}</p>)}</section>}
+    <nav class="sr-only" aria-label="Breadcrumb"><a href="/">PokéLore</a> › <a href="/locations">Locations</a> › {data.displayName}</nav>
+  </article>
+</BaseLayout>
+<style>
+  .location-detail{box-sizing:border-box;margin:0 auto;max-width:1100px;padding:2rem 1rem 4rem}.location-back{border:1px solid #555;border-radius:999px;color:inherit;display:inline-block;margin-bottom:1.5rem;padding:.45rem .85rem}.location-detail header{text-align:center}.location-region{color:#fab856;font-size:.85rem;font-weight:800;letter-spacing:.06em;margin:0;text-transform:uppercase}.location-detail h1{font-size:clamp(2.2rem,6vw,4.5rem);line-height:1.05;margin:.4rem 0}.location-summary{color:#b8c7df;font-size:1.05rem;line-height:1.55;margin:0 auto 1rem;max-width:800px}.location-generations{text-align:center}.location-section,.location-area{border:2px solid #4d4d55;border-radius:14px;margin:1.25rem 0;padding:1rem}.location-section h2,.location-area h2{margin-top:0}.location-section h2 small{font-size:.8rem;font-weight:400}.area-links,.item-links{display:flex;flex-wrap:wrap;gap:.5rem}.area-links a,.item-links a{background:#202026;border:1px solid #555;border-radius:8px;padding:.45rem .65rem}.encounter-table-wrap{overflow-x:auto}.encounter-table-wrap table{border-collapse:collapse;min-width:760px;width:100%}th,td{border-bottom:1px solid #555;padding:.55rem;text-align:left}th{color:#fab856}.notice,.method-list{color:#b8c7df;line-height:1.5}@media(max-width:600px){.location-detail{padding:1.25rem .25rem 3rem}.location-section,.location-area{padding:.8rem}}
+</style>

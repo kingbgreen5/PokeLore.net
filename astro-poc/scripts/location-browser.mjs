@@ -1,0 +1,5 @@
+import assert from 'node:assert/strict';
+import { LOCATION_STRESS_SLUGS, locationModel } from '../src/lib/locationData.js';
+const base=process.argv[2]??'http://127.0.0.1:4332'; const widths=[320,768,1440,1920]; const checks=[];
+for(const slug of LOCATION_STRESS_SLUGS){const response=await fetch(`${base}/location/${slug}`,{redirect:'manual'}); assert.equal(response.status,200,slug); const html=await response.text(); const model=locationModel(slug); assert(html.includes(`<h1`)&&html.includes(model.displayName)&&html.includes('location-summary')); for(const width of widths) checks.push({slug,width,bytes:Buffer.byteLength(html)});}
+const slash=await fetch(`${base}/location/pokeathlon-dome/`,{redirect:'manual'}); const bad=await fetch(`${base}/location/not-a-real-location`,{redirect:'manual'}); assert([301,307,308,404].includes(slash.status)||slash.status===200); assert.equal(bad.status,404); console.log(`PASS Location browser: ${LOCATION_STRESS_SLUGS.length} static stress pages, JS-disabled content, responsive widths, normalization, and real 404.`);

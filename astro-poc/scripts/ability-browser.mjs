@@ -31,7 +31,7 @@ try {
   }
   await noJs.close();
 
-  for (const width of [768, 1440]) {
+  for (const width of [320, 390, 768, 1440, 1920]) {
     const page = await browser.newPage({ viewport: { width, height: 1000 } });
     for (const slug of ['sturdy', 'protean', 'embody-aspect']) {
       await page.goto(`${origin}/ability/${slug}`, { waitUntil: 'load' });
@@ -42,7 +42,12 @@ try {
   }
 
   const regression = await browser.newPage({ javaScriptEnabled: false });
-  for (const path of ['/pokemon/chikorita', '/pokemon/charizard-mega-x', '/move/vine-whip', '/move/protect']) {
+  for (const path of [
+    '/pokemon/pikachu', '/pokemon/charizard', '/pokemon/eevee', '/pokemon/mewtwo',
+    '/pokemon/raichu-alola', '/pokemon/charizard-mega-x', '/pokemon/rotom-wash',
+    '/pokemon/frillish-female', '/pokemon/jellicent-female',
+    '/move/tackle', '/move/protect', '/move/swift', '/move/return'
+  ]) {
     const response = await regression.goto(`${origin}${path}`, { waitUntil: 'load' });
     assert.equal(response.status(), 200, path);
     assert.equal(await regression.locator('h1').count(), 1, path);

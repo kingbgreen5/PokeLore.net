@@ -2,11 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PokemonCard from '../../components/PokemonCard.astro';
 import { publicHref } from '../../lib/links.js';
-import { abilityModel } from '../../lib/abilityData.js';
-import { ABILITY_STRESS_SLUGS } from '../../lib/abilityRoutes.js';
+import { ABILITY_SLUGS, abilityModel } from '../../lib/abilityData.js';
 
 export function getStaticPaths() {
-  return ABILITY_STRESS_SLUGS.map(slug => ({ params: { slug } }));
+  return ABILITY_SLUGS.map(slug => ({ params: { slug } }));
 }
 
 const data = abilityModel(Astro.params.slug);
