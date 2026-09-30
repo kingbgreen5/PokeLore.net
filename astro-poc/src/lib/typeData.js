@@ -35,6 +35,7 @@ function canonicalPokemon(slug) {
     displayName: formatPokemonDisplayName(pokemon),
     dexNumber: source.varieties?.find(row => row.isDefault)?.id ?? source.id,
     sprite: variety.spriteFallback ?? variety.sprite ?? source.sprite,
+    height: pokemon.height,
     types: pokemon.types,
     stats: pokemon.stats,
     bst: Object.values(pokemon.stats ?? {}).reduce((sum, value) => sum + Number(value || 0), 0)

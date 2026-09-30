@@ -13,7 +13,7 @@ import { MOVE_SLUGS } from '../src/lib/moveData.js';
 import { ABILITY_SLUGS } from '../src/lib/abilityData.js';
 import { ITEM_SLUGS } from '../src/lib/itemData.js';
 import { LOCATION_SLUGS } from '../src/lib/locationData.js';
-import { TYPE_STRESS_SLUGS } from '../src/lib/typeData.js';
+import { TYPE_SLUGS } from '../src/lib/typeData.js';
 import { registryRedirects } from './generate-redirects.mjs';
 import { validateRedirects } from './validate-redirects.mjs';
 
@@ -39,7 +39,7 @@ assert.equal(sharedNavigation.length, POKEMON_SLUGS.length, 'Shared navigation i
 assert.equal(new Set(sharedNavigation.map(entry => entry.name)).size, POKEMON_SLUGS.length, 'Shared navigation names are unique');
 assert(sharedNavigation.every(entry => Object.keys(entry).sort().join(',') === 'id,name,sprite'), 'Navigation records contain only id, name and sprite');
 assert.deepEqual(files.filter(f => f.endsWith('.html')).sort(),
-  ['index.html', '404.html', 'types.html', ...POKEMON_SLUGS.map(s => `pokemon/${s}.html`), ...MOVE_SLUGS.map(s => `move/${s}.html`), ...ABILITY_SLUGS.map(s => `ability/${s}.html`), ...ITEM_SLUGS.map(s => `item/${s}.html`), ...LOCATION_SLUGS.map(s => `location/${s}.html`), ...TYPE_STRESS_SLUGS.map(s => `type/${s}.html`)].sort(), 'Exactly the canonical Astro HTML documents');
+  ['index.html', '404.html', 'types.html', 'locations.html', ...POKEMON_SLUGS.map(s => `pokemon/${s}.html`), ...MOVE_SLUGS.map(s => `move/${s}.html`), ...ABILITY_SLUGS.map(s => `ability/${s}.html`), ...ITEM_SLUGS.map(s => `item/${s}.html`), ...LOCATION_SLUGS.map(s => `location/${s}.html`), ...TYPE_SLUGS.map(s => `type/${s}.html`)].sort(), 'Exactly the canonical Astro HTML documents');
 const hostingFiles = new Set(['_headers', '_redirects']);
 for (const file of hostingFiles) {
   assert(readFileSync(join(dist, file)).equals(readFileSync(join('public', file))), `${file}: hosting configuration copied unchanged`);
@@ -110,12 +110,14 @@ for (const [routeIndex, slug] of POKEMON_SLUGS.entries()) {
   assert(normalize(one('#stats').textContent).includes(`Total: ${data.total}`));
   assert.equal(d.querySelectorAll('#stats div[style*="height:12px"]').length,6,'Six graphical stat bars');
   for(const ability of data.abilities) {
-    assert(one(`#abilities a[href="https://pokelore.net/ability/${ability.slug}"]`).textContent.includes(ability.name));
+    assert(one(`#abilities a[href="/ability/${ability.slug}"]`).textContent.includes(ability.name));
     assert(one('#abilities').textContent.includes(ability.description));
   }
   for (const group of ['weaknesses', 'resistances', 'immunities']) for (const match of data.matchups[group]) {
     assert(d.querySelector(`#matchups a[aria-label="${match.typeName} attacking moves deal ${match.multiplierLabel} damage"]`));
+    assert.equal(d.querySelector(`#matchups a[aria-label="${match.typeName} attacking moves deal ${match.multiplierLabel} damage"]`).getAttribute('href'), `/type/${match.type}`, `${slug}: matchup types use the Astro route`);
   }
+  assert.deepEqual([...d.querySelectorAll('.hero-types a')].map(link => link.getAttribute('href')), data.p.types.map(type => `/type/${type}`), `${slug}: hero types use the Astro route`);
   assert(text.includes(data.evolutionSummary));
   assert(one('#learnset select[aria-label="Learnset version"]'));
   const staticLearnset = one(`#learnset-static-${slug}`);
@@ -131,7 +133,6 @@ for (const [routeIndex, slug] of POKEMON_SLUGS.entries()) {
   const learnsetProps = learnsetIsland.getAttribute('props') ?? '';
   assert(learnsetProps.length < 10000, `${slug}: learnset hydration props remain lightweight (${learnsetProps.length} bytes)`);
   assert(!learnsetProps.includes('pokemonData') && !learnsetProps.includes('movesData'), `${slug}: complete learnset is not duplicated in hydration props`);
-  for (const location of data.encounters?.locations ?? []) assert(d.querySelector(`#encounters a[href="https://pokelore.net/location/${location.location.name}"]`));
   assert(!d.querySelector('meta[http-equiv="refresh"]'));
   assert.equal(d.querySelectorAll('astro-island').length, 5 + Number(data.hasEncounters) + Number(data.hasSizeComparison),
     `${slug}: focused islands only, with optional data hydrated only when supported`);
@@ -212,6 +213,18 @@ const notFound = documentAt('404.html');
 assert.equal(notFound.querySelector('h1').textContent, 'Page not found');
 assert(!notFound.querySelector('link[rel="canonical"]'), '404 must not canonicalize to homepage');
 assert(!notFound.querySelector('meta[http-equiv="refresh"]'));
+const locationsHub = documentAt('locations.html');
+assert.equal(locationsHub.querySelector('link[rel="canonical"]').getAttribute('href'), 'https://pokelore.net/locations');
+assert.equal(normalize(locationsHub.querySelector('h1').textContent), 'Pokémon Locations by Region & Game');
+assert(locationsHub.querySelector('[data-location-filters]'), 'Locations hub has static filter controls');
+const locationHubTargets = [...locationsHub.querySelectorAll('[data-location] a[href]')]
+  .map(link => new URL(link.getAttribute('href'), 'https://pokelore.net').pathname.slice('/location/'.length));
+assert.equal(locationHubTargets.length, LOCATION_SLUGS.length, 'Locations hub links every canonical location once');
+assert.equal(new Set(locationHubTargets).size, LOCATION_SLUGS.length, 'Locations hub has no duplicate canonical links');
+assert.deepEqual([...new Set(locationHubTargets)].sort(), [...LOCATION_SLUGS].sort(), 'Locations hub link targets match frozen registry');
+assert.equal(Number(locationsHub.querySelector('[data-location-count]').textContent.replaceAll(',', '')), LOCATION_SLUGS.length, 'Locations hub no-JS result count');
+const sitemap = readFileSync(join(dist, 'sitemap.xml'), 'utf8');
+assert.equal((sitemap.match(/<loc>https:\/\/pokelore\.net\/locations<\/loc>/g) ?? []).length, 1, 'Sitemap includes the locations hub exactly once');
 // Non-Pokémon documents also retain their referenced assets.
 for (const file of ['index.html', '404.html']) {
   const document = documentAt(file);

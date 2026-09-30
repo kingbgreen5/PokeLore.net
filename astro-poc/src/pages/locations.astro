@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { LOCATION_SLUGS, locationModel } from '../lib/locationData.js';
+
+const normalize = value => String(value ?? '')
+  .toLocaleLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9]+/g, ' ')
+  .trim();
+
+const regionOrder = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Unova', 'Kalos', 'Alola', 'Galar', 'Hisui', 'Paldea', 'Orre', 'Unknown'];
+const models = LOCATION_SLUGS.map(locationModel);
+const nameCounts = models.reduce((counts, location) => {
+  counts.set(location.displayName, (counts.get(location.displayName) ?? 0) + 1);
+  return counts;
+}, new Map());
+const nameRegionCounts = models.reduce((counts, location) => {
+  const key = `${location.displayName}|${location.region?.displayName ?? 'Unknown'}`;
+  counts.set(key, (counts.get(key) ?? 0) + 1);
+  return counts;
+}, new Map());
+const titleCase = value => String(value).split('-').filter(Boolean).map(word => word[0]?.toUpperCase() + word.slice(1)).join(' ');
+const locations = models.map(location => {
+  const region = location.region?.displayName ?? 'Unknown';
+  const duplicate = nameCounts.get(location.displayName) > 1;
+  const sameRegionDuplicate = nameRegionCounts.get(`${location.displayName}|${region}`) > 1;
+  const localQualifier = location.slug.split('--')[1];
+  return {
+    slug: location.slug,
+    displayName: location.displayName,
+    label: sameRegionDuplicate && localQualifier ? `${location.displayName} — ${titleCase(localQualifier)}` : duplicate ? `${location.displayName} — ${region}` : location.displayName,
+    region,
+    hasEncounters: location.hasEncounters,
+    searchText: normalize(`${location.displayName} ${location.slug} ${region}`),
+  };
+});
+const regions = [...new Set(locations.map(location => location.region))]
+  .sort((a, b) => (regionOrder.indexOf(a) === -1 ? 99 : regionOrder.indexOf(a)) - (regionOrder.indexOf(b) === -1 ? 99 : regionOrder.indexOf(b)) || a.localeCompare(b))
+  .map(region => ({
+    name: region,
+    key: normalize(region).replaceAll(' ', '-'),
+    locations: locations.filter(location => location.region === region).sort((a, b) => a.label.localeCompare(b.label)),
+  }));
+const canonical = 'https://pokelore.net/locations';
+const count = locations.length;
+---
+<BaseLayout seo={{ title: 'Pokémon Locations by Region & Game | PokéLore', description: `Browse ${count.toLocaleString()} canonical Pokémon locations by region, with direct links to encounter and item details.`, canonical, robots: 'noindex' }}>
+  <article class="locations-hub">
+    <header>
+      <h1>Pokémon Locations by Region &amp; Game</h1>
+      <p>Browse {count.toLocaleString()} canonical locations. Each guide includes its available games, items, and Pokémon encounter data when available.</p>
+    </header>
+
+    <form class="location-filters" aria-label="Filter locations" data-location-filters>
+      <label>
+        <span>Search locations</span>
+        <input type="search" placeholder="e.g. Seafoam Islands" autocomplete="off" data-location-search />
+      </label>
+      <label>
+        <span>Region</span>
+        <select data-location-region>
+          <option value="">All regions</option>
+          {regions.map(region => <option value={region.key}>{region.name}</option>)}
+        </select>
+      </label>
+      <label class="encounter-toggle">
+        <input type="checkbox" data-location-encounters />
+        <span>Only locations with Pokémon encounters</span>
+      </label>
+      <button type="reset" data-location-reset>Reset filters</button>
+    </form>
+
+    <p class="result-count" aria-live="polite"><strong data-location-count>{count.toLocaleString()}</strong> locations shown</p>
+
+    <div class="region-groups">
+      {regions.map(region => <section class="region-group" data-location-group={region.key}>
+        <h2>{region.name}</h2>
+        <ul>
+          {region.locations.map(location => <li data-location data-region={region.key} data-search={location.searchText} data-encounters={String(location.hasEncounters)}>
+            <a href={`/location/${location.slug}`}>{location.label}</a>
+            {location.hasEncounters && <span class="encounter-marker">Encounters</span>}
+          </li>)}
+        </ul>
+      </section>)}
+    </div>
+  </article>
+</BaseLayout>
+
+<script>
+  const form = document.querySelector('[data-location-filters]');
+  if (form instanceof HTMLFormElement) {
+    const search = form.querySelector('[data-location-search]');
+    const region = form.querySelector('[data-location-region]');
+    const encounters = form.querySelector('[data-location-encounters]');
+    const count = document.querySelector('[data-location-count]');
+    const entries = [...document.querySelectorAll('[data-location]')];
+    const groups = [...document.querySelectorAll('[data-location-group]')];
+    const applyFilters = () => {
+      const query = search instanceof HTMLInputElement ? search.value.trim().toLocaleLowerCase() : '';
+      const selectedRegion = region instanceof HTMLSelectElement ? region.value : '';
+      const onlyEncounters = encounters instanceof HTMLInputElement && encounters.checked;
+      let visible = 0;
+      for (const entry of entries) {
+        const matches = (!query || entry.dataset.search?.includes(query))
+          && (!selectedRegion || entry.dataset.region === selectedRegion)
+          && (!onlyEncounters || entry.dataset.encounters === 'true');
+        entry.hidden = !matches;
+        if (matches) visible += 1;
+      }
+      for (const group of groups) group.hidden = !group.querySelector('[data-location]:not([hidden])');
+      if (count) count.textContent = visible.toLocaleString();
+    };
+    form.addEventListener('input', applyFilters);
+    form.addEventListener('change', applyFilters);
+    form.addEventListener('reset', () => requestAnimationFrame(applyFilters));
+  }
+</script>
+
+<style>
+  .locations-hub{margin:0 auto;max-width:1100px;padding:2rem 1rem 3rem}.locations-hub>header{text-align:center}.locations-hub>header p{color:#b8c7df;margin:0 auto;max-width:760px}.location-filters{align-items:end;background:#1f1f1f;border:1px solid #555;border-radius:10px;display:flex;flex-wrap:wrap;gap:.8rem;margin:2rem 0 1rem;padding:1rem}.location-filters label{display:grid;gap:.3rem}.location-filters input[type="search"],.location-filters select{background:#303030;border:1px solid #777;border-radius:6px;color:#fff;font:inherit;padding:.55rem .65rem}.location-filters input[type="search"]{min-width:230px}.encounter-toggle{align-items:center;display:flex!important;grid-template-columns:auto 1fr;margin-bottom:.15rem}.location-filters button{background:#555;border:1px solid #888;border-radius:6px;color:#fff;cursor:pointer;font:inherit;padding:.55rem .75rem}.result-count{color:#b8c7df;margin:.5rem 0 1.2rem}.result-count strong{color:#fff}.region-groups{display:grid;gap:1.25rem}.region-group{border-top:1px solid #555;padding-top:.7rem}.region-group h2{color:#62d8f3;margin:0 0 .65rem}.region-group ul{columns:3;column-gap:1.5rem;list-style:none;margin:0;padding:0}.region-group li{align-items:center;break-inside:avoid;display:flex;gap:.5rem;min-height:1.9rem}.region-group a{color:#62d8f3;text-decoration:none}.region-group a:hover,.region-group a:focus-visible{text-decoration:underline}.encounter-marker{color:#aebbd1;font-size:.78rem;margin-left:auto;white-space:nowrap}@media(max-width:760px){.location-filters{align-items:stretch;display:grid}.location-filters input[type="search"]{min-width:0;width:100%}.region-group ul{columns:2}}@media(max-width:480px){.locations-hub{padding-inline:.75rem}.region-group ul{columns:1}.encounter-marker{display:none}}
+</style>
