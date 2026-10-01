@@ -13,6 +13,6 @@ export function publicHref(path) {
   if (!path || !path.startsWith('/')) return path;
   const pathname = path.split(/[?#]/)[0];
   const migratedDetailRoute = /^\/(?:pokemon|move|ability|item|location|type)\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(pathname);
-  return pathname === '/' || pathname === '/moves' || pathname === '/items' || pathname === '/abilities' || pathname === '/dex-entries' || migratedDetailRoute
+  return pathname === '/' || pathname === '/moves' || pathname === '/items' || pathname === '/abilities' || pathname === '/dex-entries' || pathname === '/tools' || pathname === '/single-type-coverage' || migratedDetailRoute
     ? path : `https://pokelore.net${path}`;
 }

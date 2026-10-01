@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { DEV_TOOL_BY_SLUG, DEV_TOOL_ROUTES } from '../../lib/devTools.js';
+
+export function getStaticPaths() {
+  return DEV_TOOL_ROUTES.map(tool => ({
+    params: { tool: tool.path.slice('/dev/'.length) }
+  }));
+}
+
+const tool = DEV_TOOL_BY_SLUG.get(Astro.params.tool);
+---
+<BaseLayout seo={{ title: `${tool.label} | PokéLore`, description: tool.description, canonical: `https://pokelore.net${tool.path}`, robots: 'noindex,nofollow' }}>
+  <article class="dev-placeholder" data-dev-placeholder hidden>
+    <a href="/dev">← Back to Developer Tools</a>
+    <h1>{tool.label}</h1>
+    <code>{tool.sourcePath ?? tool.path}</code>
+    <p>{tool.description}</p>
+    <p class="status">This tool is listed in the Astro developer hub. Its original interactive implementation has not been migrated yet.</p>
+  </article>
+  <article class="dev-unavailable" data-dev-unavailable hidden><h1>Developer Tools</h1><p>This page is only available on localhost.</p></article>
+</BaseLayout>
+<script>
+  const isLocal = ['localhost', '127.0.0.1', '::1'].includes(location.hostname);
+  document.querySelector('[data-dev-placeholder]')?.toggleAttribute('hidden', !isLocal);
+  document.querySelector('[data-dev-unavailable]')?.toggleAttribute('hidden', isLocal);
+</script>
+<style>
+  .dev-placeholder,.dev-unavailable{box-sizing:border-box;margin:0 auto;max-width:760px;padding:2rem 1rem}.dev-placeholder{display:grid;gap:1rem}.dev-placeholder h1,.dev-placeholder p{margin:0}.dev-placeholder code{color:#d1d5db}.dev-placeholder .status{background:#202124;border:1px solid #454950;border-radius:8px;line-height:1.5;padding:1rem}.dev-placeholder a{color:var(--link-unvisited);font-weight:700;text-decoration:none}
+</style>

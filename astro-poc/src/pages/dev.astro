@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { DEV_TOOL_GROUPS } from '../lib/devTools.js';
+
+const canonical = 'https://pokelore.net/dev';
+---
+<BaseLayout seo={{ title: 'Developer Tools | PokéLore', description: 'Private local developer tools index.', canonical, robots: 'noindex,nofollow' }}>
+  <article class="dev-tools" data-dev-tools hidden>
+    <header>
+      <h1>Developer Tools</h1>
+      <p>Hidden local index for authoring, review, preview, and calibration tools.</p>
+    </header>
+    {DEV_TOOL_GROUPS.map(group => <section>
+      <h2>{group.title}</h2>
+      <div class="tool-grid">
+        {group.tools.map(tool => <a class:list={{ available: tool.status === 'available' }} href={tool.path}>
+          <h3>{tool.label}</h3>
+          <code>{tool.sourcePath ?? tool.path}</code>
+          <p>{tool.description}</p>
+          <span>{tool.status === 'available' ? 'Open tool' : 'Open migration status'}</span>
+        </a>)}
+      </div>
+    </section>)}
+  </article>
+  <article class="dev-unavailable" data-dev-unavailable hidden>
+    <h1>Developer Tools</h1>
+    <p>This page is only available on localhost.</p>
+  </article>
+</BaseLayout>
+<script>
+  const isLocal = ['localhost', '127.0.0.1', '::1'].includes(location.hostname);
+  document.querySelector('[data-dev-tools]')?.toggleAttribute('hidden', !isLocal);
+  document.querySelector('[data-dev-unavailable]')?.toggleAttribute('hidden', isLocal);
+</script>
+<style>
+  .dev-tools,.dev-unavailable{box-sizing:border-box;margin:0 auto;max-width:1100px;padding:2rem 1rem 3rem}.dev-tools{display:grid;gap:1.25rem}.dev-tools header{margin:0 auto .25rem;max-width:760px;text-align:center}.dev-tools header p{line-height:1.6;margin:0;opacity:.86}.dev-tools h1{margin-bottom:.75rem}.dev-tools h2{margin:0 0 .75rem}.tool-grid{display:grid;gap:.85rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.tool-grid a{background:#202124;border:1px solid #454950;border-radius:8px;color:inherit;display:grid;gap:.55rem;padding:1rem;text-align:left;text-decoration:none}.tool-grid a:hover{border-color:#63d9ff}.tool-grid a.available{border-color:#277c88}.tool-grid h3{color:var(--link-unvisited);font-size:1.05rem;margin:0}.tool-grid code{color:#d1d5db;font-size:.85rem;overflow-wrap:anywhere}.tool-grid p{line-height:1.5;margin:0;opacity:.86}.tool-grid span{color:var(--link-unvisited);font-weight:700;margin-top:auto}.dev-unavailable{max-width:760px}
+</style>

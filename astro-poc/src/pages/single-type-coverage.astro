@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SingleTypeCoverageTool from '../islands/SingleTypeCoverageTool.jsx';
+
+const canonical = 'https://pokelore.net/single-type-coverage';
+const structuredData = {
+  '@context': 'https://schema.org', '@graph': [
+    { '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: 'Single Type Coverage Calculator | PokéLore', description: 'Use the Single Type Coverage Calculator to choose a Pokemon game and defensive type, then find available Pokemon with level-up moves that hit that type for super-effective damage.', mainEntity: { '@id': `${canonical}#single-type-coverage-calculator` } },
+    { '@type': 'WebApplication', '@id': `${canonical}#single-type-coverage-calculator`, name: 'Single Type Coverage Calculator', url: canonical, applicationCategory: 'GameApplication', operatingSystem: 'Any', browserRequirements: 'Requires JavaScript', description: 'Use the Single Type Coverage Calculator to choose a Pokemon game and defensive type, then find available Pokemon with level-up moves that hit that type for super-effective damage.', featureList: ['Choose a Pokémon game version and defensive type.', 'Find available Pokémon with level-up moves that hit the selected type super-effectively.', 'Sort suggestions by National Dex number, coverage, selected-type coverage, or base stats.'], isAccessibleForFree: true, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } }
+  ]
+};
+---
+<BaseLayout seo={{ title: 'Single Type Coverage Calculator | PokéLore', description: 'Use the Single Type Coverage Calculator to choose a Pokemon game and defensive type, then find available Pokemon with level-up moves that hit that type for super-effective damage.', canonical, structuredData }}>
+  <article class="single-type-page">
+    <header>
+      <h1>Single Type Coverage</h1>
+      <p>Choose a game and a defensive type to find available Pokémon with level-up attacking moves that can hit that type for super-effective damage.</p>
+      <p class="subtle">Need to figure out your team's coverage? <a href="https://pokelore.net/team-coverage">Try our Team Coverage Calculator.</a></p>
+    </header>
+    <section class="tool-region" aria-label="Single Type Coverage Calculator">
+      <noscript><p>This calculator requires JavaScript to run.</p></noscript>
+      <SingleTypeCoverageTool initialSearch={Astro.url.search} client:load />
+    </section>
+    <section class="help">
+      <h2>How to use this calculator</h2>
+      <p>Select the game you are playing, then select the defending type you want your team to hit. Results include Pokémon available in that game with level-up attacking moves that deal super-effective damage to the selected type.</p>
+      <p>Move Power limits results to moves at or above the selected base power. “Any Power” includes every damaging level-up move. Availability is intentionally broad and can include Pokémon that require trading, so it is a planning aid rather than a strict playthrough checklist.</p>
+    </section>
+  </article>
+</BaseLayout>
+<style>
+  .single-type-page{box-sizing:border-box;margin:0 auto;max-width:1040px;padding:1rem;text-align:center}.single-type-page header>p{color:#d1d5db;font-size:1rem;line-height:1.45;margin:0 auto 1.25rem;max-width:760px}.single-type-page .subtle{color:#9ca3af;font-size:.9rem;line-height:1.4}.tool-region{margin:1.25rem auto 0;max-width:940px}.help{color:#b8c7df;margin:2rem auto 0;max-width:760px;text-align:left}.help h2{color:#f3f4f6}.help p{line-height:1.5}
+</style>

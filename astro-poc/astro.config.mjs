@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
-import { mkdirSync, writeFileSync, createReadStream } from 'node:fs';
+import { mkdirSync, writeFileSync, createReadStream, existsSync } from 'node:fs';
 import react from '@astrojs/react';
 import { join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { publicAssets, searchJson, pokemonIndexJson, learnsetJson, navigationJson, moveLearnerJson, learnerFactsJson, copyPublicAssets, copyLearnsetPayloads, copyMoveLearnerPayloads, writeNavigationPayload, writeLearnerFacts, writePokemonIndexPayload } from './scripts/public-assets.mjs';
+import { publicAssets, searchJson, pokemonIndexJson, learnsetJson, navigationJson, moveLearnerJson, learnerFactsJson, copyPublicAssets, copyLearnsetPayloads, copyMoveLearnerPayloads, copyTeamCoveragePayloads, writeNavigationPayload, writeLearnerFacts, writePokemonIndexPayload } from './scripts/public-assets.mjs';
 import { POKEMON_SLUG_SET } from './src/lib/routes.js';
 import { MOVE_SLUG_SET } from './src/lib/moveData.js';
 
@@ -13,6 +13,13 @@ export default defineConfig({
   trailingSlash: 'never',
   build: { format: 'file' },
   vite: {
+    server: {
+      fs: {
+        // Astro imports shared production assets and reads generated source data
+        // from the repository root during local development.
+        allow: [fileURLToPath(new URL('..', import.meta.url))]
+      }
+    },
     esbuild: { jsx: 'automatic', jsxImportSource: 'react' },
     resolve: { dedupe: ['react', 'react-dom'] },
     plugins: [{
@@ -59,6 +66,15 @@ export default defineConfig({
             res.end(req.method === 'HEAD' ? undefined : moveLearnerJson(moveLearnerMatch[1]));
             return;
           }
+          const coverageMatch = pathname.match(/^\/data\/teamCoverage\/([a-z0-9-]+)\.json$/);
+          if (coverageMatch) {
+            const source = join(fileURLToPath(new URL('../public/data/teamCoverage/', import.meta.url)), `${coverageMatch[1]}.json`);
+            if (!existsSync(source)) return next();
+            res.setHeader('Content-Type', 'application/json; charset=utf-8');
+            if (req.method === 'HEAD') return res.end();
+            createReadStream(source).on('error', next).pipe(res);
+            return;
+          }
           const source = assets.get(pathname);
           if (!source) return next();
           const mime = { '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg' };
@@ -83,6 +99,7 @@ export default defineConfig({
         writeNavigationPayload(output);
         copyLearnsetPayloads(output);
         copyMoveLearnerPayloads(output);
+        copyTeamCoveragePayloads(output);
         writeLearnerFacts(output);
       }
     }

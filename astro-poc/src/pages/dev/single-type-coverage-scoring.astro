@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RecommendationScoringEditor from '../../islands/RecommendationScoringEditor.jsx';
+---
+<BaseLayout seo={{ title: 'Single Type Coverage Scoring | PokéLore', description: 'Private local single type coverage scoring tools.', canonical: 'https://pokelore.net/dev/single-type-coverage-scoring', robots: 'noindex,nofollow' }}>
+  <div data-dev-editor hidden><RecommendationScoringEditor kind="single-type" client:load /></div>
+  <article class="dev-unavailable" data-dev-unavailable hidden><h1>Single Type Coverage Scoring</h1><p>This page is only available on localhost.</p></article>
+</BaseLayout>
+<script>
+  const isLocal = ['localhost', '127.0.0.1', '::1'].includes(location.hostname);
+  document.querySelector('[data-dev-editor]')?.toggleAttribute('hidden', !isLocal);
+  document.querySelector('[data-dev-unavailable]')?.toggleAttribute('hidden', isLocal);
+</script>
+<style>.dev-unavailable{box-sizing:border-box;margin:0 auto;max-width:760px;padding:2rem 1rem}.dev-unavailable h1,.dev-unavailable p{margin:0}.dev-unavailable h1{margin-bottom:.75rem}</style>

@@ -1,4 +1,4 @@
-import { mkdirSync, copyFileSync, existsSync, writeFileSync } from 'node:fs';
+import { mkdirSync, copyFileSync, existsSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { createSearchRecords } from '../src/lib/searchRecords.js';
 import { loadPokemon, readData } from '../src/lib/pokemonData.js';
@@ -91,6 +91,18 @@ export function copyPublicAssets(output) {
     const target = join(output, asset);
     mkdirSync(dirname(target), { recursive: true });
     copyFileSync(source, target);
+  }
+}
+
+// Coverage tools load one game file on demand. Keep the files as static assets
+// instead of serializing any portion of the corpus into HTML or island props.
+export function copyTeamCoveragePayloads(output) {
+  const sourceDirectory = join(repositoryRoot, 'public', 'data', 'teamCoverage');
+  const targetDirectory = join(output, 'data', 'teamCoverage');
+  mkdirSync(targetDirectory, { recursive: true });
+  for (const file of readdirSync(sourceDirectory)) {
+    if (!file.endsWith('.json')) continue;
+    copyFileSync(join(sourceDirectory, file), join(targetDirectory, file));
   }
 }
 
