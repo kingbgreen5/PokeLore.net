@@ -227,7 +227,7 @@ export function evTrainingRoutesSeo() {
           featureList: [
             "Choose a Pokemon stat to train.",
             "Choose a Pokemon game version.",
-            "Show the top ten wild encounter locations for the selected EV stat.",
+            "Show the top fifteen wild encounter locations for the selected EV stat.",
             "Compare matching encounter chance, clean target-only chance, and expected EV per encounter.",
             "List the wild Pokemon contributing to each route score."
           ],

@@ -689,7 +689,7 @@ function buildRoutesByVersion(segments) {
             segment.stat === stat.key
         )
         .sort(compareSegments)
-        .slice(0, 10)
+        .slice(0, 15)
         .map((segment, index) => ({
           rank: index + 1,
           encountersForMaxEv: encountersForMaxEv(
@@ -727,7 +727,7 @@ async function generateEvTrainingRoutes() {
       {
         generatedAt: new Date().toISOString(),
         ranking:
-          "Top ten unique repeatable wild locations per game and stat, ranked by matching encounter chance, expected EV per encounter, then clean target-only chance.",
+          "Top fifteen unique repeatable wild locations per game and stat, ranked by matching encounter chance, expected EV per encounter, then clean target-only chance.",
         stats: STATS,
         versions: versions.map(version => ({
           version,

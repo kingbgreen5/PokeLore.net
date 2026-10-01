@@ -23,7 +23,9 @@ const data = JSON.parse(readFileSync(payload, 'utf8'));
 assert.equal(data.versions.length, 24, 'Every production-supported version is included');
 for (const version of data.versions) {
   assert(data.routesByVersion[version.version], `${version.displayName}: route data exists`);
+  for (const stat of data.stats) assert(data.routesByVersion[version.version][stat.key].length <= 15, `${version.displayName}/${stat.label}: no more than fifteen ranked routes`);
 }
+assert.equal(data.routesByVersion.platinum.hp.length, 15, 'Representative populated selection exposes fifteen routes');
 const source = JSON.parse(readFileSync(join('..', 'public', 'data', 'evTrainingRoutes.json'), 'utf8'));
 for (const [version, stat] of [['platinum', 'hp'], ['emerald', 'speed'], ['black-2', 'attack'], ['sword', 'specialAttack']]) {
   assert.deepEqual(data.routesByVersion[version][stat], source.routesByVersion[version][stat], `${version}/${stat}: rank order and encounter details match production data`);
