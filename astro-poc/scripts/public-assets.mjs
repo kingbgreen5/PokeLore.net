@@ -106,6 +106,12 @@ export function copyTeamCoveragePayloads(output) {
   }
 }
 
+export function copyEvTrainingRoutesPayload(output) {
+  const target = join(output, 'data', 'evTrainingRoutes.json');
+  mkdirSync(dirname(target), { recursive: true });
+  copyFileSync(join(repositoryRoot, 'public', 'data', 'evTrainingRoutes.json'), target);
+}
+
 export function writePokemonIndexPayload(output) {
   const directory = join(output, 'data');
   mkdirSync(directory, { recursive: true });

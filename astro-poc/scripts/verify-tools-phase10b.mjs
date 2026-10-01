@@ -16,7 +16,7 @@ assert.equal(tools.querySelector('meta[name="description"]')?.getAttribute('cont
 assert.equal(tools.querySelector('link[rel="canonical"]')?.getAttribute('href'), 'https://pokelore.net/tools');
 const expectedTools = ['/tcg-challenge', '/team-coverage', '/ev-training-routes', '/dppt-feebas-calculator', '/rse-feebas-calculator', '/single-type-coverage'];
 const toolLinks = [...tools.querySelectorAll('.tools-grid a')].map(link => link.getAttribute('href'));
-assert.deepEqual(toolLinks, expectedTools.map(path => path === '/single-type-coverage' ? path : `https://pokelore.net${path}`));
+assert.deepEqual(toolLinks, expectedTools.map(path => ['/single-type-coverage', '/ev-training-routes'].includes(path) ? path : `https://pokelore.net${path}`));
 assert.equal(tools.querySelectorAll('astro-island').length, 1, 'Only the global search island is present on static /tools');
 
 const single = documentAt('single-type-coverage.html');
