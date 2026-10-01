@@ -173,7 +173,7 @@ const carouselPokemon = { id: p.id, name: p.name };
     <Accordion
       id="learnset"
       title="Learnsets"
-      count={`${data.preview.rows.length} level-up moves · ${data.preview.versionLabel}`}
+      count={`${data.staticLearnsetGroups ? Object.values(data.staticLearnsetGroups).flat().length : data.preview.rows.length} moves · ${data.preview.versionLabel}`}
     >
       <LearnsetCard
         payloadUrl={data.learnsetPayloadUrl}
@@ -182,7 +182,7 @@ const carouselPokemon = { id: p.id, name: p.name };
         staticContentId={`learnset-static-${p.name}`}
         client:visible
       />
-      <LearnsetStatic id={`learnset-static-${p.name}`} preview={data.preview} moves={data.moves} />
+      <LearnsetStatic id={`learnset-static-${p.name}`} preview={data.preview} groups={data.staticLearnsetGroups} moves={data.moves} />
     </Accordion>
 
     <Accordion

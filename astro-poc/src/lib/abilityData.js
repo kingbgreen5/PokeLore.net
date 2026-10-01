@@ -14,6 +14,11 @@ export const ABILITY_REGISTRY = Object.freeze(ABILITY_SLUGS.map(slug => Object.f
   sourceId: null,
   generation: source[slug].generation
 })));
+export const ABILITY_CATALOG = Object.freeze(ABILITY_SLUGS.map(slug => Object.freeze({
+  slug,
+  displayName: formatAbilityName(slug),
+  shortEffect: source[slug].shortEffect ?? ''
+})));
 
 let holderIndex;
 function abilitySlug(name) {

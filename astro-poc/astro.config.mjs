@@ -3,7 +3,7 @@ import { mkdirSync, writeFileSync, createReadStream } from 'node:fs';
 import react from '@astrojs/react';
 import { join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { publicAssets, searchJson, learnsetJson, navigationJson, moveLearnerJson, learnerFactsJson, copyPublicAssets, copyLearnsetPayloads, copyMoveLearnerPayloads, writeNavigationPayload, writeLearnerFacts } from './scripts/public-assets.mjs';
+import { publicAssets, searchJson, pokemonIndexJson, learnsetJson, navigationJson, moveLearnerJson, learnerFactsJson, copyPublicAssets, copyLearnsetPayloads, copyMoveLearnerPayloads, writeNavigationPayload, writeLearnerFacts, writePokemonIndexPayload } from './scripts/public-assets.mjs';
 import { POKEMON_SLUG_SET } from './src/lib/routes.js';
 import { MOVE_SLUG_SET } from './src/lib/moveData.js';
 
@@ -13,6 +13,7 @@ export default defineConfig({
   trailingSlash: 'never',
   build: { format: 'file' },
   vite: {
+    esbuild: { jsx: 'automatic', jsxImportSource: 'react' },
     resolve: { dedupe: ['react', 'react-dom'] },
     plugins: [{
       name: 'poc-dev-public-assets',
@@ -28,6 +29,11 @@ export default defineConfig({
             search ??= searchJson();
             res.setHeader('Content-Type', 'application/json; charset=utf-8');
             res.end(req.method === 'HEAD' ? undefined : search);
+            return;
+          }
+          if (pathname === '/data/pokemonIndex.json') {
+            res.setHeader('Content-Type', 'application/json; charset=utf-8');
+            res.end(req.method === 'HEAD' ? undefined : pokemonIndexJson());
             return;
           }
           if (pathname === '/data/navigation/pokemon-navigation.json') {
@@ -73,6 +79,7 @@ export default defineConfig({
         copyPublicAssets(output);
         mkdirSync(join(output, 'data'), { recursive: true });
         writeFileSync(join(output, 'data/search.json'), searchJson());
+        writePokemonIndexPayload(output);
         writeNavigationPayload(output);
         copyLearnsetPayloads(output);
         copyMoveLearnerPayloads(output);

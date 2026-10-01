@@ -1,16 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { homeSeo } from '../lib/seo.js';
-import { pokemonPath } from '../lib/routes.js';
-import { STRESS_SLUGS } from '../lib/links.js';
-import { loadPokemon } from '../lib/pokemonData.js';
+import Homepage from '../islands/Homepage.jsx';
 ---
 <BaseLayout seo={homeSeo()}>
-  <h1>PokéLore</h1>
-  <p>Explore Pokémon lore, stats, evolution, learnsets and game analysis across the complete canonical Pokédex.</p>
-  <h2>Explore the Pokédex</h2>
-  <div class="cards">{STRESS_SLUGS.map(slug => {
-    const data = loadPokemon(slug);
-    return <a class="card" href={pokemonPath(slug)}><img src={data.artwork} alt="" width="160" height="160" /><strong>{data.name}</strong></a>;
-  })}</div>
+  <Homepage client:load />
 </BaseLayout>

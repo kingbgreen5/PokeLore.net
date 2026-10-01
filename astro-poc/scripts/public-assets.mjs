@@ -39,6 +39,12 @@ export function searchJson() {
     locations: readData('locationsIndex.json'), tmMaterialDetails: readData('tmMaterialDetails.json') }));
 }
 
+// Keep the homepage's full Pokédex browser on the same generated data source as
+// production, in both `astro dev` and the static deployment.
+export function pokemonIndexJson() {
+  return JSON.stringify(readData('pokemonIndex.json'));
+}
+
 export function learnsetJson(slug) {
   const data = loadPokemon(slug);
   return JSON.stringify({ pokemonData: data.learnset, movesData: data.moves });
@@ -86,4 +92,10 @@ export function copyPublicAssets(output) {
     mkdirSync(dirname(target), { recursive: true });
     copyFileSync(source, target);
   }
+}
+
+export function writePokemonIndexPayload(output) {
+  const directory = join(output, 'data');
+  mkdirSync(directory, { recursive: true });
+  writeFileSync(join(directory, 'pokemonIndex.json'), pokemonIndexJson());
 }

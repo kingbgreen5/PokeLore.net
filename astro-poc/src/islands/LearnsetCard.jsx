@@ -56,11 +56,10 @@ export default function LearnsetCard({ payloadUrl, versionGroups, defaultVersion
   useEffect(() => {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedVersion)); } catch {}
     const staticContent = document.getElementById(staticContentId);
-    // The server-rendered preview is intentionally limited to level-up moves.
-    // Load the full payload even for the default/latest game so TM, tutor, egg,
-    // and every other available method are represented consistently.
-    if (staticContent) staticContent.hidden = Boolean(payload) || selectedVersion !== defaultVersion;
-    if (payload || error) return;
+    // The current Scarlet/Violet view is fully server-rendered. Preserve it
+    // without a hydration swap; load data only for a user-selected version.
+    if (staticContent) staticContent.hidden = selectedVersion !== defaultVersion;
+    if (selectedVersion === defaultVersion || payload || error) return;
     let cancelled = false;
     fetch(payloadUrl).then(response => {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -70,7 +69,7 @@ export default function LearnsetCard({ payloadUrl, versionGroups, defaultVersion
     return () => { cancelled = true; };
   }, [selectedVersion, defaultVersion, payload, payloadUrl, staticContentId, error]);
 
-  const grouped = useMemo(() => payload
+  const grouped = useMemo(() => payload && selectedVersion !== defaultVersion
     ? groupLearnsetMovesByMethod(getLearnsetMovesForVersion(payload.pokemonData, selectedVersion))
     : null, [payload, selectedVersion, defaultVersion]);
   const count = grouped ? Object.values(grouped).flat().length : 0;

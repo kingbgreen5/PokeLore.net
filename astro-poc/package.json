@@ -21,11 +21,11 @@
     "compare:stress-production": "node scripts/compare-stress-production.mjs",
     "audit:catalog-readiness": "node scripts/audit-catalog-readiness.mjs",
     "audit:form-semantics": "node scripts/audit-form-semantics.mjs",
-    "audit:items": "node scripts/audit-items.mjs"
-    ,"verify:items": "node scripts/verify-items.mjs"
+    "audit:items": "node scripts/audit-items.mjs",
+    "verify:items": "node scripts/verify-items.mjs"
   },
   "dependencies": {
-    "@astrojs/react": "^6.0.6",
+    "@astrojs/react": "5.0.7",
     "astro": "^6.0.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"

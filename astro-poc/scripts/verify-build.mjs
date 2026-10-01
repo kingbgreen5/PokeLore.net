@@ -4,7 +4,7 @@ import { readFileSync, readdirSync, existsSync, mkdirSync, writeFileSync, statSy
 import { resolve, join, relative, extname } from 'node:path';
 import { gzipSync } from 'node:zlib';
 import { parseHTML } from 'linkedom';
-import { POKEMON_SLUGS, routes, pokemonPath } from '../src/lib/routes.js';
+import { POKEMON_SLUGS, POKEMON_SLUG_SET, routes, pokemonPath } from '../src/lib/routes.js';
 import { STRESS_SLUGS, publicHref } from '../src/lib/links.js';
 import { loadPokemon } from '../src/lib/pokemonData.js';
 import { getPokemonNavigation } from '../src/lib/pokemonNavigation.js';
@@ -14,6 +14,7 @@ import { ABILITY_SLUGS } from '../src/lib/abilityData.js';
 import { ITEM_SLUGS } from '../src/lib/itemData.js';
 import { LOCATION_SLUGS } from '../src/lib/locationData.js';
 import { TYPE_SLUGS } from '../src/lib/typeData.js';
+import { DEX_ENTRY_CATALOG, DEX_ENTRY_STATS } from '../src/lib/dexEntryData.js';
 import { registryRedirects } from './generate-redirects.mjs';
 import { validateRedirects } from './validate-redirects.mjs';
 
@@ -39,7 +40,7 @@ assert.equal(sharedNavigation.length, POKEMON_SLUGS.length, 'Shared navigation i
 assert.equal(new Set(sharedNavigation.map(entry => entry.name)).size, POKEMON_SLUGS.length, 'Shared navigation names are unique');
 assert(sharedNavigation.every(entry => Object.keys(entry).sort().join(',') === 'id,name,sprite'), 'Navigation records contain only id, name and sprite');
 assert.deepEqual(files.filter(f => f.endsWith('.html')).sort(),
-  ['index.html', '404.html', 'types.html', 'locations.html', ...POKEMON_SLUGS.map(s => `pokemon/${s}.html`), ...MOVE_SLUGS.map(s => `move/${s}.html`), ...ABILITY_SLUGS.map(s => `ability/${s}.html`), ...ITEM_SLUGS.map(s => `item/${s}.html`), ...LOCATION_SLUGS.map(s => `location/${s}.html`), ...TYPE_SLUGS.map(s => `type/${s}.html`)].sort(), 'Exactly the canonical Astro HTML documents');
+  ['index.html', '404.html', 'moves.html', 'items.html', 'abilities.html', 'dex-entries.html', 'types.html', 'locations.html', ...POKEMON_SLUGS.map(s => `pokemon/${s}.html`), ...MOVE_SLUGS.map(s => `move/${s}.html`), ...ABILITY_SLUGS.map(s => `ability/${s}.html`), ...ITEM_SLUGS.map(s => `item/${s}.html`), ...LOCATION_SLUGS.map(s => `location/${s}.html`), ...TYPE_SLUGS.map(s => `type/${s}.html`)].sort(), 'Exactly the canonical Astro HTML documents');
 const hostingFiles = new Set(['_headers', '_redirects']);
 for (const file of hostingFiles) {
   assert(readFileSync(join(dist, file)).equals(readFileSync(join('public', file))), `${file}: hosting configuration copied unchanged`);
@@ -207,12 +208,56 @@ for (const slug of ['palafin-hero', 'aegislash-blade', 'charizard-mega-x']) {
 assert([...stressDocument('raichu-alola').querySelectorAll('#evolution .pokemon-summary-card strong')].some(node => /Alola/i.test(node.textContent)), 'Regional form participates in its regional evolution branch');
 const home = documentAt('index.html');
 assert.equal(home.querySelector('link[rel="canonical"]').getAttribute('href'), 'https://pokelore.net/');
-for (const slug of STRESS_SLUGS) assert(home.querySelector(`a[href="${pokemonPath(slug)}"]`));
+assert(home.querySelector('astro-island'), 'Homepage Pokédex browser hydrates as an island');
+assert(existsSync(join(dist, 'data', 'pokemonIndex.json')), 'Homepage index payload is emitted');
+assert.equal(JSON.parse(readFileSync(join(dist, 'data', 'pokemonIndex.json'), 'utf8')).length, 1025, 'Homepage index contains every National Pokédex entry');
 assert(!/noindex/.test(home.querySelector('meta[name="robots"]').getAttribute('content')));
 const notFound = documentAt('404.html');
 assert.equal(notFound.querySelector('h1').textContent, 'Page not found');
 assert(!notFound.querySelector('link[rel="canonical"]'), '404 must not canonicalize to homepage');
 assert(!notFound.querySelector('meta[http-equiv="refresh"]'));
+const movesHub = documentAt('moves.html');
+assert.equal(movesHub.querySelector('link[rel="canonical"]').getAttribute('href'), 'https://pokelore.net/moves');
+assert.equal(normalize(movesHub.querySelector('h1').textContent), 'Move Database');
+assert(movesHub.querySelector('[data-move-filters]'), 'Moves hub has static filter controls');
+assert(movesHub.querySelector('[data-move-grid]'), 'Moves hub has a static card grid');
+const moveHubTargets = [...movesHub.querySelectorAll('[data-move] a[href]')]
+  .map(link => new URL(link.getAttribute('href'), 'https://pokelore.net').pathname.slice('/move/'.length));
+assert.equal(moveHubTargets.length, MOVE_SLUGS.length, 'Moves hub links every canonical move once');
+assert.equal(new Set(moveHubTargets).size, MOVE_SLUGS.length, 'Moves hub has no duplicate canonical links');
+assert.deepEqual([...new Set(moveHubTargets)].sort(), [...MOVE_SLUGS].sort(), 'Moves hub link targets match frozen registry');
+assert.equal(Number(movesHub.querySelector('[data-move-count]').textContent.replaceAll(',', '')), MOVE_SLUGS.length, 'Moves hub no-JS result count');
+const itemsHub = documentAt('items.html');
+assert.equal(itemsHub.querySelector('link[rel="canonical"]').getAttribute('href'), 'https://pokelore.net/items');
+assert.equal(normalize(itemsHub.querySelector('h1').textContent), 'Item Database');
+assert(itemsHub.querySelector('[data-item-filters]'), 'Items hub has static filter controls');
+assert(itemsHub.querySelector('table [data-item-grid]'), 'Items hub has a static table body');
+const itemHubTargets = [...itemsHub.querySelectorAll('[data-item]')]
+  .map(row => new URL(row.querySelector('a[href]').getAttribute('href'), 'https://pokelore.net').pathname.slice('/item/'.length));
+assert.equal(ITEM_SLUGS.length, 1877, 'Frozen item registry count');
+assert.equal(itemHubTargets.length, ITEM_SLUGS.length, 'Items hub links every canonical item once');
+assert.equal(new Set(itemHubTargets).size, ITEM_SLUGS.length, 'Items hub has no duplicate canonical links');
+assert.deepEqual([...new Set(itemHubTargets)].sort(), [...ITEM_SLUGS].sort(), 'Items hub link targets match frozen registry');
+assert.equal(itemHubTargets.filter(slug => slug.startsWith('dynamax-crystal-')).length, 0, 'Items hub excludes every Dynamax Crystal');
+assert.equal(Number(itemsHub.querySelector('[data-item-count]').textContent.replaceAll(',', '')), ITEM_SLUGS.length, 'Items hub no-JS result count');
+assert(itemsHub.querySelectorAll('[data-item] img[loading="lazy"]').length > 0, 'Items hub retains lazy sprite markup');
+const abilitiesHub = documentAt('abilities.html');
+assert.equal(abilitiesHub.querySelector('link[rel="canonical"]').getAttribute('href'), 'https://pokelore.net/abilities');
+assert.equal(normalize(abilitiesHub.querySelector('h1').textContent), 'Ability Database');
+assert(abilitiesHub.querySelector('[data-ability-search]'), 'Abilities hub has static search control');
+assert(abilitiesHub.querySelector('table [data-ability-grid]'), 'Abilities hub has a static table body');
+const abilityHubTargets = [...abilitiesHub.querySelectorAll('[data-ability]')]
+  .map(row => new URL(row.querySelector('a[href]').getAttribute('href'), 'https://pokelore.net').pathname.slice('/ability/'.length));
+assert.equal(abilityHubTargets.length, 313, 'Abilities hub renders every canonical ability once');
+assert.equal(new Set(abilityHubTargets).size, 313, 'Abilities hub has no duplicate canonical links');
+assert.deepEqual([...new Set(abilityHubTargets)].sort(), [...ABILITY_SLUGS].sort(), 'Abilities hub targets match frozen registry');
+const dexHub = documentAt('dex-entries.html');
+assert.equal(dexHub.querySelector('link[rel="canonical"]').getAttribute('href'), 'https://pokelore.net/dex-entries');
+assert.equal(dexHub.querySelectorAll('[data-group]').length, DEX_ENTRY_STATS.species, 'Dex Entries renders every species group statically');
+assert.equal(dexHub.querySelectorAll('.dex-entry').length, DEX_ENTRY_STATS.normalizedBlocks, 'Dex Entries renders every normalized entry statically');
+const dexTargets = [...dexHub.querySelectorAll('[data-group] h2 a')].map(a => new URL(a.getAttribute('href'), 'https://pokelore.net').pathname.slice('/pokemon/'.length));
+assert(dexTargets.every(slug => POKEMON_SLUG_SET.has(slug)), 'Dex Entries uses only frozen canonical Pokémon links');
+assert.equal(new Set(dexTargets).size, DEX_ENTRY_CATALOG.length, 'Dex Entries has one canonical link per species group');
 const locationsHub = documentAt('locations.html');
 assert.equal(locationsHub.querySelector('link[rel="canonical"]').getAttribute('href'), 'https://pokelore.net/locations');
 assert.equal(normalize(locationsHub.querySelector('h1').textContent), 'Pokémon Locations by Region & Game');
@@ -225,6 +270,9 @@ assert.deepEqual([...new Set(locationHubTargets)].sort(), [...LOCATION_SLUGS].so
 assert.equal(Number(locationsHub.querySelector('[data-location-count]').textContent.replaceAll(',', '')), LOCATION_SLUGS.length, 'Locations hub no-JS result count');
 const sitemap = readFileSync(join(dist, 'sitemap.xml'), 'utf8');
 assert.equal((sitemap.match(/<loc>https:\/\/pokelore\.net\/locations<\/loc>/g) ?? []).length, 1, 'Sitemap includes the locations hub exactly once');
+assert.equal((sitemap.match(/<loc>https:\/\/pokelore\.net\/items<\/loc>/g) ?? []).length, 1, 'Sitemap includes the items hub exactly once');
+assert.equal((sitemap.match(/<loc>https:\/\/pokelore\.net\/abilities<\/loc>/g) ?? []).length, 1, 'Sitemap includes the abilities hub exactly once');
+assert.equal((sitemap.match(/<loc>https:\/\/pokelore\.net\/dex-entries<\/loc>/g) ?? []).length, 1, 'Sitemap includes the Dex Entries hub exactly once');
 // Non-Pokémon documents also retain their referenced assets.
 for (const file of ['index.html', '404.html']) {
   const document = documentAt(file);

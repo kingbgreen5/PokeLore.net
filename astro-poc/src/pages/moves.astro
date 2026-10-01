@@ -1,0 +1,59 @@
+---
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TypeBadge from '../components/TypeBadge.astro';
+import { MOVE_SLUGS, MOVE_SLUG_SET } from '../lib/moveData.js';
+import { repositoryRoot } from '../lib/routes.js';
+
+const source = JSON.parse(readFileSync(join(repositoryRoot, 'public', 'data', 'movesIndex.json'), 'utf8'));
+const slugs = source.map(move => move.name);
+const duplicateCount = slugs.length - new Set(slugs).size;
+const missing = MOVE_SLUGS.filter(slug => !slugs.includes(slug));
+const unexpected = slugs.filter(slug => !MOVE_SLUG_SET.has(slug));
+if (source.length !== MOVE_SLUGS.length || duplicateCount || missing.length || unexpected.length) {
+  throw new Error(`Move hub registry parity failed: expected ${MOVE_SLUGS.length}, actual ${source.length}, missing ${missing.length}, unexpected ${unexpected.length}, duplicates ${duplicateCount}.`);
+}
+const moves = source.map(move => ({ ...move, search: `${move.name} ${move.displayName ?? move.name}`.toLowerCase() }));
+const types = [...new Set(moves.map(move => move.type))];
+const categories = ['physical', 'special', 'status'];
+const label = value => String(value).split('-').map(word => word[0]?.toUpperCase() + word.slice(1)).join(' ');
+---
+<BaseLayout seo={{ title: 'Pokémon Moves Database | PokéLore', description: 'Search Pokémon moves by name, type, category, power, accuracy, PP, and effect.', canonical: 'https://pokelore.net/moves', robots: 'noindex' }}>
+  <article class="moves-hub">
+    <header><h1>Move Database</h1><p>Browse Pokémon moves across the games by type or category, or search by name. Power, Accuracy, and PP are shown for quick comparison.</p></header>
+    <form class="move-filters" data-move-filters aria-label="Filter moves">
+      <input type="search" placeholder="Search moves..." autocomplete="off" data-move-search />
+      <select aria-label="Move category" data-move-category><option value="">All Categories</option>{categories.map(category => <option value={category}>{label(category)}</option>)}</select>
+      <select aria-label="Move type" data-move-type><option value="">All</option>{types.map(type => <option value={type}>{label(type)}</option>)}</select>
+      <select aria-label="Power order" data-move-power><option value="">Default Order</option><option value="asc">Power Ascending</option><option value="desc">Power Descending</option></select>
+      <button type="reset">Reset</button>
+    </form>
+    <p class="move-count" aria-live="polite"><strong data-move-count>{moves.length}</strong> moves shown</p>
+    <div class="moves-table-scroll">
+      <table class="moves-table">
+        <thead><tr><th scope="col">Move</th><th scope="col">Type</th><th scope="col">Category</th><th scope="col">Power</th><th scope="col">Accuracy</th><th scope="col">PP</th></tr></thead>
+        <tbody data-move-grid>
+          {moves.map((move, index) => <tr data-move data-search={move.search} data-type={move.type} data-category={move.category} data-power={move.power ?? ''} data-order={index}>
+            <th scope="row"><a href={`/move/${move.name}`}>{move.displayName ?? label(move.name)}</a></th>
+            <td><TypeBadge type={move.type} height="1.35rem" /></td>
+            <td>{label(move.category)}</td><td>{move.power ?? '—'}</td><td>{move.accuracy ?? '—'}</td><td>{move.pp ?? '—'}</td>
+          </tr>)}
+        </tbody>
+      </table>
+    </div>
+  </article>
+</BaseLayout>
+<script>
+  const form = document.querySelector('[data-move-filters]');
+  if (form instanceof HTMLFormElement) {
+    const grid = document.querySelector('[data-move-grid]'); const cards = [...document.querySelectorAll('[data-move]')]; const count = document.querySelector('[data-move-count]');
+    const search = form.querySelector('[data-move-search]'); const category = form.querySelector('[data-move-category]'); const type = form.querySelector('[data-move-type]'); const power = form.querySelector('[data-move-power]');
+    const apply = () => { const query = search instanceof HTMLInputElement ? search.value.trim().toLowerCase() : ''; const selectedCategory = category instanceof HTMLSelectElement ? category.value : ''; const selectedType = type instanceof HTMLSelectElement ? type.value : ''; const direction = power instanceof HTMLSelectElement ? power.value : ''; const visible = cards.filter(card => (!query || card.dataset.search?.includes(query)) && (!selectedCategory || card.dataset.category === selectedCategory) && (!selectedType || card.dataset.type === selectedType));
+      visible.sort((a,b) => { if (!direction) return Number(a.dataset.order) - Number(b.dataset.order); const ap = a.dataset.power === '' ? Infinity : Number(a.dataset.power); const bp = b.dataset.power === '' ? Infinity : Number(b.dataset.power); return direction === 'asc' ? ap - bp || Number(a.dataset.order) - Number(b.dataset.order) : (ap === Infinity ? 1 : bp === Infinity ? -1 : bp - ap) || Number(a.dataset.order) - Number(b.dataset.order); }); cards.forEach(card => { card.hidden = !visible.includes(card); }); visible.forEach(card => grid?.append(card)); if (count) count.textContent = String(visible.length); };
+    form.addEventListener('input', apply); form.addEventListener('change', apply); form.addEventListener('reset', () => requestAnimationFrame(apply));
+  }
+</script>
+<style>
+  .moves-hub{margin:0 auto;max-width:1200px;padding:2rem 1rem 3rem}.moves-hub header{text-align:center}.moves-hub header p{color:#b8c7df;margin:0 auto;max-width:720px}.move-filters{align-items:center;display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin:2rem 0 1rem}.move-filters input,.move-filters select{background:#2c2c2c;border:2px solid #555;border-radius:12px;color:#fff;font:inherit;padding:.7rem 1rem}.move-filters input{box-sizing:border-box;max-width:420px;width:100%}.move-filters button{background:#555;border:1px solid #777;border-radius:8px;color:#fff;font:inherit;padding:.7rem 1rem}.move-count{text-align:center}.moves-table-scroll{border:1px solid #555;border-radius:12px;overflow-x:auto}.moves-table{border-collapse:collapse;min-width:620px;width:100%}.moves-table th,.moves-table td{border-bottom:1px solid #4a4a4a;padding:.5rem .7rem;text-align:left;vertical-align:middle}.moves-table thead th{background:#252525;color:#ffb24a;font-size:.85rem}.moves-table tbody tr:hover{background:#242424}.moves-table tbody th{font-weight:600}.moves-table tbody th a{color:#41d8ef;text-decoration:none}.moves-table tbody th a:hover{text-decoration:underline}.moves-table td:not(:first-child),.moves-table thead th:not(:first-child){text-align:center}.moves-table tbody tr:last-child th,.moves-table tbody tr:last-child td{border-bottom:0}@media(max-width:640px){.moves-hub{padding-inline:.6rem}.move-filters{gap:.55rem}.move-filters input{max-width:none}.moves-table th,.moves-table td{padding:.45rem .55rem}}
+</style>

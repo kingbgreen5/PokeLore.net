@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { DEX_ENTRY_CATALOG } from '../lib/dexEntryData.js';
+---
+<BaseLayout seo={{ title:'Pokédex Entries Database | PokéLore', description:'Search Pokédex entries across Pokémon games by keyword, Pokémon, and version.', canonical:'https://pokelore.net/dex-entries', robots:'noindex' }}>
+  <article class="dex-hub">
+    <header><h1>Pokédex Entries Database</h1><p>Search every Pokémon Pokédex entry from every main series game in one place. Find how each Pokémon has been described across generations, compare version differences, and discover how official Pokédex lore has evolved over time.</p></header>
+    <form data-dex-search><label for="dex-search">Search entries</label><input id="dex-search" type="search" placeholder='Search entries... Ex: forest, dreams...' data-search /><label class="exact"><input type="checkbox" data-exact /> Exact word</label></form>
+    <p class="result-count" aria-live="polite"><strong data-count>{DEX_ENTRY_CATALOG.reduce((n,g)=>n+g.entries.length,0)}</strong> results</p>
+    <div data-groups>{DEX_ENTRY_CATALOG.map((group,index)=><section class="dex-group" data-group data-index={index}><h2><a href={group.path}>{group.displayName}</a></h2>{group.entries.map(entry=><article class="dex-entry"><p>{entry.text}</p><small>{entry.versions.map(v=>v[0].toUpperCase()+v.slice(1)).join(' / ')}</small></article>)}</section>)}</div>
+    <button type="button" data-more hidden>Show more Pokemon</button>
+  </article>
+</BaseLayout>
+<script>
+  const form=document.querySelector('[data-dex-search]'); const groups=[...document.querySelectorAll('[data-group]')]; const count=document.querySelector('[data-count]'); const more=document.querySelector('[data-more]'); let visible=30;
+  const unwrap=value=>{const v=value.trim(), pairs={'"':'"',"'":"'",'“':'”','‘':'’'}; return pairs[v[0]]===v.at(-1)&&v.length>1?{term:v.slice(1,-1).trim(),quoted:true}:{term:v,quoted:false}};
+  const esc=value=>value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const match=(text,term,exact)=>!term||(!exact?text.toLowerCase().includes(term):new RegExp(`(^|[^\\p{L}\\p{N}])${esc(term)}(?=$|[^\\p{L}\\p{N}])`,'iu').test(text));
+  if(form){const search=form.querySelector('[data-search]'), exact=form.querySelector('[data-exact]'), params=new URLSearchParams(location.search); search.value=params.get('search')??''; exact.checked=params.get('exact')==='1'; const apply=()=>{const q=unwrap(search.value), exactMode=exact.checked||q.quoted, matches=new Map(), matched=groups.filter(group=>{const entries=[...group.querySelectorAll('.dex-entry')].filter(entry=>match(entry.querySelector('p').textContent,q.term.toLowerCase(),exactMode)); if(entries.length) matches.set(group,entries); return entries.length}); groups.forEach(group=>{const entries=matches.get(group)??[]; group.querySelectorAll('.dex-entry').forEach(entry=>entry.hidden=!entries.includes(entry)); group.hidden=!entries.length||matched.indexOf(group)>=visible}); count.textContent=String([...matches.values()].reduce((n,entries)=>n+entries.length,0)); more.hidden=matched.length<=visible; more.onclick=()=>{visible+=30;apply()};}; const sync=()=>{const next=new URLSearchParams(location.search); search.value?next.set('search',search.value):next.delete('search'); exact.checked?next.set('exact','1'):next.delete('exact'); history.replaceState(null,'',`${location.pathname}${next.toString()?`?${next}`:''}${location.hash}`)}; search.addEventListener('input',()=>{visible=30;sync();apply()});exact.addEventListener('change',()=>{visible=30;sync();apply()});apply();}
+</script>
+<style>
+ .dex-hub{margin:auto;max-width:72rem;padding:1rem}.dex-hub header{margin-bottom:1.25rem}.dex-hub header p{margin:.25rem 0;max-width:72rem}.dex-hub form{display:grid;gap:.15rem;
+ margin:0 auto;max-width:420px;
+ text-align:center}.dex-hub input[type=search]{background:#2c2c2c;border:2px solid #fff;border-radius:12px;box-sizing:border-box;color:#fff;font:inherit;padding:.8rem 1rem;width:100%}.exact{align-items:center;display:flex;
+ gap:.55rem;justify-content:center;margin:.5rem auto 1.5rem}.exact input{accent-color:var(--link-unvisited);height:1.05rem;width:1.05rem}.result-count{margin:0 auto 1rem;text-align:center}.dex-group{border:2px solid #ccc;border-radius:12px;margin:0 0 2rem;padding:1rem;text-align:left}.dex-group h2{font-size:1.5rem;font-weight:700;margin:0 0 .5rem;text-align:left}.dex-group h2 a{color:var(--link-unvisited);text-decoration:none}.dex-entry{border:0;margin:0 0 1rem;padding:10}.dex-entry:last-child{margin-bottom:0}.dex-entry p{margin:0 0 .1rem}.dex-entry small{color:#9ca3af}.dex-hub button{background:#2c2c2c;border:2px solid #555;border-radius:8px;color:#fff;display:block;font:inherit;font-weight:700;margin:0 auto 2rem;padding:.8rem 1rem}@media(max-width:720px){.dex-group{padding:.85rem}.dex-group h2{font-size:1.3rem}}
+</style>

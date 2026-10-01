@@ -5,7 +5,7 @@ import { resolvePokeloreAnalysis } from '../../../src/utils/pokeloreAnalysis.js'
 import { formatPokemonDisplayName, getRegionalFormKey } from '../../../src/utils/pokemonNames.js';
 import { getDefensiveMatchupGroups, formatTypeName, POKEMON_TYPES } from '../../../src/utils/typeEffectiveness.js';
 import { buildEvolutionDisplayModel, getEvolutionSummaryText } from '../../../src/utils/evolutionDisplay.js';
-import { getLearnsetCandidateIds, hasLearnsetMoves, getLatestLevelUpLearnsetPreview } from '../../../src/utils/learnsetDisplay.js';
+import { getLearnsetCandidateIds, hasLearnsetMoves, getLatestLevelUpLearnsetPreview, getLearnsetMovesForVersion, groupLearnsetMovesByMethod } from '../../../src/utils/learnsetDisplay.js';
 import { linkifyPokeloreText, getPokeloreLinePokemonLabels } from '../../../src/utils/pokeloreTextLinks.js';
 import { getPokemonDetailSources } from '../../../src/utils/pokemonSprites.js';
 import { getFormSemantics, getEvolutionIdentity, getEvolutionClarification } from './formSemantics.js';
@@ -115,6 +115,9 @@ export function loadPokemon(slug) {
   const preview = getLatestLevelUpLearnsetPreview(learnset, moves, { pokemonId: p.id, pokemon: p.name });
   requireData(preview.versionGroup && preview.rows.length, slug, 'latest level-up learnset');
   preview.rows.forEach(row => requireData(moves[row.move], slug, `move ${row.move}`));
+  const staticLearnsetGroups = preview.versionGroup === 'scarlet-violet'
+    ? groupLearnsetMovesByMethod(getLearnsetMovesForVersion(learnset, preview.versionGroup))
+    : null;
   const encounters = read(`pokemonEncounters/${p.id}.json`, true);
   if (!encounters?.locations?.length) warnings.push('No optional encounter locations available; this is not proof the Pokémon is unobtainable.');
   for (const location of encounters?.locations ?? []) {
@@ -146,7 +149,7 @@ export function loadPokemon(slug) {
   const result = { p, name, abilities, analysis, analysisSourceName, sharedSpeciesAnalysis, warnings, evolution,
     evolutionSummary: normalizeEvolutionText(getEvolutionSummaryText(chain.root, evolutionOptions)),
     evolutionClarification: getEvolutionClarification(formSemantics, name, baseDisplayName),
-    formSemantics, preview, learnset, learnsetSourceId,
+    formSemantics, preview, staticLearnsetGroups, learnset, learnsetSourceId,
     learnsetPayloadUrl: `/data/learnsets/${slug}.json`,
     moves: Object.fromEntries([...new Set(learnset.moves.map(m => m.move))].map(key => {
       const detail = read(`moves/${key}.json`, true);

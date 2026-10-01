@@ -2,26 +2,31 @@
 import TypeBadge from './TypeBadge.astro';
 import { publicHref } from '../lib/links.js';
 import { getLearnsetMoveDisplay } from '../lib/moveCategory.js';
+import { LEARNSET_METHOD_ORDER, formatLearnsetLabel, formatLearnsetLevel, formatMoveDisplayName, getSortedCondensedLearnsetMoves } from '../../../src/utils/learnsetDisplay.js';
 import physicalBadge from '../../../src/assets/Physical Badge.png?url';
 import specialBadge from '../../../src/assets/Special Badge.png?url';
 import statusBadge from '../../../src/assets/Status Badge.png?url';
 
-const { preview, moves, id = 'learnset-static' } = Astro.props;
+const { preview, groups = null, moves, id = 'learnset-static' } = Astro.props;
 const categoryBadges = { physical: physicalBadge, special: specialBadge, status: statusBadge };
+const sections = groups
+  ? LEARNSET_METHOD_ORDER.filter(method => groups[method]).map(method => ({ method, rows: getSortedCondensedLearnsetMoves(groups[method]) }))
+  : [{ method: 'level-up', rows: preview.rows }];
 ---
 <div id={id} class="learnset-static" data-static-version={preview.versionGroup}>
-  <h3>Level Up — {preview.versionLabel}</h3>
-  <div class="learnset-grid learnset-grid-head" aria-hidden="true">
-    <span>Lvl</span><span>Move</span><span>Type</span><span>Pwr</span><span>Acc</span><span>Cat.</span>
-  </div>
-  {preview.rows.map(row => {
+  {sections.map(section => <section class="learnsetCard">
+    <h3>{formatLearnsetLabel(section.method)}{sections.length === 1 && ` — ${preview.versionLabel}`}</h3>
+    <div class="learnset-grid learnset-grid-head" aria-hidden="true">
+      <span>Lvl</span><span>Move</span><span>Type</span><span>Pwr</span><span>Acc</span><span>Cat.</span>
+    </div>
+    {section.rows.map(row => {
     const detail = moves[row.move];
     const display = getLearnsetMoveDisplay(detail, preview.versionGroup);
     const badge = categoryBadges[display.category];
     return (
       <div class="learnset-grid learnset-row">
-        <span>{row.levelLabel}</span>
-        <a href={publicHref(`/move/${row.move}`)}>{row.moveLabel}</a>
+        <span>{row.levelLabel ?? formatLearnsetLevel(row.level)}</span>
+        <a href={publicHref(`/move/${row.move}`)}>{row.moveLabel ?? formatMoveDisplayName(row.move, moves)}</a>
         <a href={publicHref(`/type/${display.type}`)}><TypeBadge type={display.type} height="1.25rem" /></a>
         <span>{detail?.power || '---'}</span>
         <span>{detail?.accuracy || '---'}</span>
@@ -32,5 +37,6 @@ const categoryBadges = { physical: physicalBadge, special: specialBadge, status:
             : display.category || '---'}</span>
       </div>
     );
-  })}
+    })}
+  </section>)}
 </div>

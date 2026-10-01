@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ITEM_SLUGS, ITEM_SLUG_SET, allItemModels } from '../lib/itemData.js';
+
+const source = allItemModels();
+const slugs = source.map(item => item.slug);
+const duplicates = slugs.length - new Set(slugs).size;
+const missing = ITEM_SLUGS.filter(slug => !slugs.includes(slug));
+const unexpected = slugs.filter(slug => !ITEM_SLUG_SET.has(slug));
+const dynamax = source.filter(item => item.category?.name === 'dynamax-crystals' || item.slug.startsWith('dynamax-crystal-'));
+if (source.length !== ITEM_SLUGS.length || duplicates || missing.length || unexpected.length || dynamax.length) {
+  throw new Error(`Item hub registry parity failed: expected ${ITEM_SLUGS.length}, actual ${source.length}, missing ${missing.length}, unexpected ${unexpected.length}, duplicates ${duplicates}, Dynamax ${dynamax.length}.`);
+}
+const pockets = [
+  ['misc', 'Misc'], ['medicine', 'Medicine'], ['battle', 'Battle'], ['key', 'Key'],
+  ['berries', 'Berries'], ['mail', 'Mail'], ['pokeballs', 'Pokeballs'], ['machines', 'Machines']
+].filter(([pocket]) => source.some(item => item.category?.pocket === pocket));
+const searchText = item => `${item.slug} ${item.displayName ?? ''} ${item.shortEffect ?? ''}`.toLowerCase();
+const formatPocket = pocket => pocket ? pocket.charAt(0).toUpperCase() + pocket.slice(1) : '—';
+---
+<BaseLayout seo={{
+  title: 'Pokémon Items Database | PokéLore',
+  description: 'Search Pokémon items by name, pocket, category, effect, and acquisition details.',
+  canonical: 'https://pokelore.net/items',
+  robots: 'noindex'
+}}>
+  <article class="items-hub">
+    <header>
+      <h1>Item Database</h1>
+      <p>Browse Pokémon Items across the games by name and pocket, with category and short effect information for quick reference.</p>
+    </header>
+    <form class="item-filters" data-item-filters aria-label="Filter items">
+      <input type="search" placeholder="Search items..." autocomplete="off" data-item-search />
+      <select aria-label="Item pocket" data-item-pocket>
+        <option value="all">All Pockets</option>
+        {pockets.map(([value, label]) => <option value={value}>{label}</option>)}
+      </select>
+    </form>
+    <p class="item-count" aria-live="polite">Showing <strong data-item-count>{source.length}</strong> items</p>
+    <div class="item-table-wrap">
+      <table class="item-table">
+        <thead><tr><th class="item-image-column" scope="col">Image</th><th scope="col">Item</th><th scope="col">Pocket</th><th scope="col">Category</th><th scope="col">Effect</th></tr></thead>
+        <tbody data-item-grid>
+          {source.map((item, index) => <tr data-item data-search={searchText(item)} data-pocket={item.category?.pocket ?? ''} data-order={index}>
+            <td class="item-image-column">{item.sprite && <img src={item.sprite} alt="" width="38" height="38" loading="lazy" decoding="async" />}</td>
+            <th scope="row"><a href={`/item/${item.slug}`}>{item.displayName}</a></th>
+            <td>{formatPocket(item.category?.pocket)}</td>
+            <td>{item.category?.displayName ?? '—'}</td>
+            <td>{item.shortEffect ?? '—'}</td>
+          </tr>)}
+        </tbody>
+      </table>
+    </div>
+  </article>
+</BaseLayout>
+<script>
+  const form = document.querySelector('[data-item-filters]');
+  if (form instanceof HTMLFormElement) {
+    const grid = document.querySelector('[data-item-grid]');
+    const cards = [...document.querySelectorAll('[data-item]')];
+    const count = document.querySelector('[data-item-count]');
+    const search = form.querySelector('[data-item-search]');
+    const pocket = form.querySelector('[data-item-pocket]');
+    const validPockets = new Set(pocket instanceof HTMLSelectElement ? [...pocket.options].map(option => option.value) : ['all']);
+    const parameters = new URLSearchParams(location.search);
+    const initialPocket = parameters.get('pocket') ?? 'all';
+    if (search instanceof HTMLInputElement) search.value = parameters.get('search') ?? '';
+    if (pocket instanceof HTMLSelectElement) pocket.value = validPockets.has(initialPocket) ? initialPocket : 'all';
+    const replaceQuery = () => {
+      const next = new URLSearchParams(location.search);
+      const term = search instanceof HTMLInputElement ? search.value : '';
+      const selectedPocket = pocket instanceof HTMLSelectElement ? pocket.value : 'all';
+      term ? next.set('search', term) : next.delete('search');
+      selectedPocket !== 'all' ? next.set('pocket', selectedPocket) : next.delete('pocket');
+      const query = next.toString();
+      history.replaceState(null, '', `${location.pathname}${query ? `?${query}` : ''}${location.hash}`);
+    };
+    const apply = () => {
+      const term = search instanceof HTMLInputElement ? search.value.trim().toLowerCase() : '';
+      const selectedPocket = pocket instanceof HTMLSelectElement ? pocket.value : 'all';
+      const visible = cards.filter(card => (!term || card.dataset.search?.includes(term)) && (selectedPocket === 'all' || card.dataset.pocket === selectedPocket));
+      cards.forEach(card => { card.hidden = !visible.includes(card); });
+      visible.sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order)).forEach(card => grid?.append(card));
+      if (count) count.textContent = String(visible.length);
+    };
+    apply();
+    search?.addEventListener('input', () => { apply(); replaceQuery(); });
+    pocket?.addEventListener('change', () => { apply(); replaceQuery(); });
+  }
+</script>
+<style>
+  .items-hub{margin:0 auto;max-width:1400px;padding:2rem}.items-hub header{text-align:center}.items-hub header p{color:#b8c7df;line-height:1.5;margin:0 auto;max-width:720px}.item-filters{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin:2rem 0}.item-filters input,.item-filters select{background:#2c2c2c;border:2px solid #555;border-radius:12px;color:#fff;font:inherit;font-size:1rem;padding:.75rem 1rem}.item-filters input{box-sizing:border-box;max-width:420px;width:100%}.item-count{margin-bottom:1rem}.item-table-wrap{border:1px solid #555;border-radius:12px;overflow:auto}.item-table{border-collapse:collapse;min-width:860px;width:100%}.item-table th,.item-table td{border-bottom:1px solid #484850;padding:.5rem .65rem;text-align:left;vertical-align:middle}.item-table thead th{color:#fab856;font-size:.85rem;white-space:nowrap}.item-table tbody tr:last-child>*{border-bottom:0}.item-table tbody tr:hover{background:#202026}.item-table tbody th{font-weight:700;white-space:nowrap}.item-image-column{padding-right:.15rem!important;text-align:right!important;width:42px}.item-image-column img{display:block;height:38px;image-rendering:pixelated;margin-left:auto;object-fit:contain;width:38px}.item-image-column+th{padding-left:.35rem!important}.item-table td:nth-child(3),.item-table td:nth-child(4){color:#b8c7df;font-size:.9rem;white-space:nowrap}.item-table td:last-child{color:#b8c7df;font-size:.9rem;line-height:1.4;min-width:300px}@media(max-width:600px){.items-hub{padding:1.25rem .75rem 3rem}.item-filters{gap:.65rem}.item-filters input{max-width:none}.item-table{min-width:720px}.item-table th,.item-table td{padding:.45rem .5rem}.item-table td:last-child{min-width:220px}}
+</style>

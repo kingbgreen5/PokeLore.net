@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ABILITY_CATALOG, ABILITY_SLUGS, ABILITY_SLUG_SET } from '../lib/abilityData.js';
+const slugs = ABILITY_CATALOG.map(ability => ability.slug);
+const duplicates = slugs.length - new Set(slugs).size;
+const missing = ABILITY_SLUGS.filter(slug => !slugs.includes(slug));
+const unexpected = slugs.filter(slug => !ABILITY_SLUG_SET.has(slug));
+if (ABILITY_SLUGS.length !== 313 || slugs.length !== ABILITY_SLUGS.length || duplicates || missing.length || unexpected.length) throw new Error(`Ability hub registry parity failed: expected ${ABILITY_SLUGS.length}, actual ${slugs.length}, missing ${missing.length}, unexpected ${unexpected.length}, duplicates ${duplicates}.`);
+---
+<BaseLayout seo={{ title: 'Pokémon Abilities Database | PokéLore', description: 'Search Pokémon abilities and view their effects, descriptions, generations, and matching Pokémon.', canonical: 'https://pokelore.net/abilities', robots: 'noindex' }}>
+  <article class="abilities-hub">
+    <header><h1>Ability Database</h1><p>Browse Pokémon Abilities and their effects. Search by Ability name to open its detailed page.</p></header>
+    <form data-ability-search aria-label="Search abilities"><input type="search" placeholder="Search abilities..." autocomplete="off" data-ability-input /></form>
+    <div class="ability-table-wrap">
+      <table class="ability-table">
+        <thead><tr><th scope="col">Ability</th><th scope="col">Effect</th></tr></thead>
+        <tbody data-ability-grid>
+          {ABILITY_CATALOG.map(ability => <tr data-ability data-ability-slug={ability.slug}>
+            <th scope="row"><a href={`/ability/${ability.slug}`}>{ability.displayName}</a></th>
+            <td>{ability.shortEffect}</td>
+          </tr>)}
+        </tbody>
+      </table>
+    </div>
+  </article>
+</BaseLayout>
+<script>
+  const form = document.querySelector('[data-ability-search]');
+  if (form instanceof HTMLFormElement) {
+    const input = form.querySelector('[data-ability-input]'); const cards = [...document.querySelectorAll('[data-ability]')];
+    const params = new URLSearchParams(location.search);
+    const apply = () => { const term = input instanceof HTMLInputElement ? input.value.toLowerCase() : ''; cards.forEach(card => { card.hidden = Boolean(term) && !card.dataset.abilitySlug?.includes(term); }); };
+    if (input instanceof HTMLInputElement) { input.value = params.get('search') ?? ''; apply(); input.addEventListener('input', () => { const next = new URLSearchParams(location.search); input.value ? next.set('search', input.value) : next.delete('search'); history.replaceState(null, '', `${location.pathname}${next.toString() ? `?${next}` : ''}${location.hash}`); apply(); }); }
+  }
+</script>
+<style>
+  .abilities-hub{margin:0 auto;max-width:1200px;padding:2rem 1rem 3rem}.abilities-hub header{text-align:center}.abilities-hub header p{color:#b8c7df;line-height:1.5;margin:0 auto;max-width:720px}.abilities-hub form{margin:2rem 0}.abilities-hub input{background:#2c2c2c;border:2px solid #555;border-radius:12px;box-sizing:border-box;color:#fff;font:inherit;font-size:1rem;max-width:420px;padding:.8rem 1rem;width:100%}.ability-table-wrap{border:1px solid #555;border-radius:12px;overflow-x:auto}.ability-table{border-collapse:collapse;min-width:620px;width:100%}.ability-table th,.ability-table td{border-bottom:1px solid #4a4a4a;padding:.6rem .75rem;text-align:left;vertical-align:middle}.ability-table thead th{background:#252525;color:#ffb24a;font-size:.85rem}.ability-table tbody tr:hover{background:#242424}.ability-table tbody th{font-weight:600;white-space:nowrap;width:30%}.ability-table tbody th a{color:#41d8ef;text-decoration:none}.ability-table tbody th a:hover{text-decoration:underline}.ability-table tbody td{color:#b8c7df;line-height:1.4}.ability-table tbody tr:last-child th,.ability-table tbody tr:last-child td{border-bottom:0}@media(max-width:640px){.abilities-hub{padding-inline:.6rem}.ability-table th,.ability-table td{padding:.5rem .6rem}.ability-table{min-width:540px}}
+</style>
