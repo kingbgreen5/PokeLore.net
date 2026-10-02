@@ -38,7 +38,15 @@ for (const version of data.versions) {
 assert.equal(data.routesByVersion.platinum.hp.length, 15, 'Representative populated selection exposes fifteen routes');
 assert(data.routesByVersion.sword.speed.length < 15, 'Sparse selections retain all available routes without filler');
 const source = JSON.parse(readFileSync(join('..', 'public', 'data', 'evTrainingRoutes.json'), 'utf8'));
-const baseline = JSON.parse(execFileSync('git', ['show', 'HEAD^:public/data/evTrainingRoutes.json'], { cwd: join(process.cwd(), '..'), encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 }));
+// Cloudflare's checkout may contain only the triggering commit. Preserve the
+// parent-commit guard when available; otherwise compare the emitted payload
+// with the checked-out production source and retain the independent samples.
+let baseline = source;
+try {
+  baseline = JSON.parse(execFileSync('git', ['show', 'HEAD^:public/data/evTrainingRoutes.json'], { cwd: join(process.cwd(), '..'), encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 }));
+} catch {
+  console.warn('HEAD^ is unavailable; using the checked-out EV payload as the shallow-checkout baseline.');
+}
 for (const version of baseline.versions) for (const stat of baseline.stats) {
   const before = baseline.routesByVersion[version.version][stat.key];
   const after = data.routesByVersion[version.version][stat.key];
