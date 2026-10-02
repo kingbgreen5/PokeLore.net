@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Production DPPt Feebas core parity baseline. Values are intentionally structured rather than DOM snapshots.",
+  "provenance": {
+    "saveFixtures": "Synthetic valid raw-block fixtures only; this repository contains no real user or emulator .sav fixture.",
+    "lotteryPairs": "Includes the externally visually confirmed production pair 01234 -> 65432 and the production ambiguous-pair case.",
+    "map": "Coordinate checksum and sentinels are based on the production fishable-tile dataset."
+  },
+  "seedCases": [
+    { "seed": 0, "indexes": [0, 132, 264, 396] },
+    { "seed": 1, "indexes": [0, 132, 264, 397] },
+    { "seed": 305419896, "indexes": [18, 184, 350, 516] },
+    { "seed": 2147483648, "indexes": [128, 132, 264, 396] },
+    { "seed": 4294967295, "indexes": [123, 255, 387, 519] },
+    { "seed": 2725121067, "indexes": [30, 242, 276, 439] },
+    { "seed": 1525235921, "indexes": [90, 233, 328, 473] },
+    { "seed": 3735928559, "indexes": [90, 173, 322, 503] }
+  ],
+  "lotteryCases": [
+    {
+      "yesterdayLottery": "01234",
+      "todayLottery": "65432",
+      "valid": true,
+      "candidateCount": 1,
+      "candidateIndexes": [[115, 158, 339, 512]],
+      "externalVisualMatch": "matches-external"
+    },
+    {
+      "yesterdayLottery": "61249",
+      "todayLottery": "33671",
+      "valid": true,
+      "candidateCount": 2,
+      "candidateSeeds": [3178342946, 1206793734],
+      "candidateIndexes": [[57, 245, 302, 430], [71, 238, 318, 402]]
+    },
+    {
+      "yesterdayLottery": "00000",
+      "todayLottery": "00002",
+      "valid": false,
+      "candidateCount": 0,
+      "errors": ["No DPPt daily group seed produces this consecutive lottery pair."]
+    },
+    {
+      "yesterdayLottery": "99999",
+      "todayLottery": "00000",
+      "valid": false,
+      "candidateCount": 0,
+      "errors": ["Lottery numbers above 65535 cannot be produced by the DPPt group-seed lottery RNG."]
+    }
+  ],
+  "invalidLotteryCases": [
+    { "yesterdayLottery": "", "todayLottery": "00000", "errors": ["Yesterday's Lottery number: Lottery number is required."] },
+    { "yesterdayLottery": "12a45", "todayLottery": "00000", "errors": ["Yesterday's Lottery number: Lottery number must contain only decimal digits."] },
+    { "yesterdayLottery": "1234", "todayLottery": "00000", "errors": ["Yesterday's Lottery number: Lottery number must be exactly five digits."] }
+  ],
+  "greatMarshCases": [
+    { "seed": 0, "areaValues": [0, 0, 0, 0, 0, 0], "platinum": [454, 454, 454, 454, 454, 454], "diamondPearl": [453, 453, 453, 453, 453, 453] },
+    { "seed": 305419896, "areaValues": [24, 19, 21, 8, 3, 9], "platinum": [316, 455, 285, 451, 455, 453], "diamondPearl": [316, 455, 285, 451, 453, 455] },
+    { "seed": 4294967295, "areaValues": [31, 31, 31, 31, 31, 31], "platinum": [114, 114, 114, 114, 114, 114], "diamondPearl": [55, 55, 55, 55, 55, 55] }
+  ],
+  "saveCases": [
+    { "game": "diamond-pearl", "slotIndex": 0, "saveCounter": 4, "feebasSeed": 287454020 },
+    { "game": "platinum", "slotIndex": 1, "saveCounter": 9, "feebasSeed": 572662306 }
+  ],
+  "parserErrors": [
+    { "kind": "no-file", "errorCode": "NO_FILE", "message": "Choose a .sav file first." },
+    { "kind": "wrong-extension", "errorCode": "UNSUPPORTED_EXTENSION", "message": "Choose a raw .sav file." },
+    { "kind": "read-failure", "errorCode": "FILE_READ_FAILED", "message": "The save file could not be read." },
+    { "kind": "non-buffer", "errorCode": "MALFORMED_SAVE", "message": "This save file is malformed or truncated." },
+    { "kind": "wrong-size", "errorCode": "UNEXPECTED_FILE_SIZE", "message": "This file is not the expected 512 KiB raw DPPt save size." },
+    { "kind": "empty-raw-save", "errorCode": "NO_VALID_GENERAL_BLOCK", "message": "No valid DPPt general save block could be found." }
+  ],
+  "map": {
+    "gridWidth": 18,
+    "gridHeight": 34,
+    "totalGridSquares": 612,
+    "fishableTiles": 528,
+    "excludedCells": 84,
+    "coordinateChecksum": "0x7f6b8ab4",
+    "sentinels": [
+      { "index": 0, "x": 0, "y": 0 },
+      { "index": 131, "x": 7, "y": 7 },
+      { "index": 132, "x": 8, "y": 7 },
+      { "index": 263, "x": 6, "y": 17 },
+      { "index": 264, "x": 7, "y": 17 },
+      { "index": 395, "x": 14, "y": 25 },
+      { "index": 396, "x": 15, "y": 25 },
+      { "index": 527, "x": 17, "y": 33 }
+    ]
+  }
+}

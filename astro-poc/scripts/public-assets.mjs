@@ -10,7 +10,10 @@ import { getPokemonCardSources, getPokemonDetailSources, getPokemonSizeCompariso
 
 // One allowlist for development serving and production copying.
 export function publicAssets() {
-  const paths = new Set(['/images/etsy/Viridian Forest Two Gildans.jpg']);
+  const paths = new Set([
+    '/images/etsy/Viridian Forest Two Gildans.jpg',
+    '/images/maps/mt-coronet-feebas-lake.png'
+  ]);
   function addPokemon(p) {
     const entries = readData('pokemonArtworkManifest.json').artwork?.[p.id];
     if (entries) Object.values(entries).forEach(src => paths.add(src));
