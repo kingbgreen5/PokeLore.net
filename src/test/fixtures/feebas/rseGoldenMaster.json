@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Production Ruby/Sapphire/Emerald Feebas parity baseline. Expected values are structured core outputs, not DOM snapshots.",
+  "provenance": {
+    "saveFixtures": "Synthetic, checksum-valid Gen III saves only. No real cartridge or emulator .sav fixture exists in this repository.",
+    "map": "The canonical Route 119 mapping is guarded separately by its complete 444-entry fixture and its SHA-256 fingerprint below.",
+    "ui": "The public route was inspected directly; browser presentation is not represented as an executable DOM snapshot."
+  },
+  "seedCases": [
+    { "value": "0010", "spotIds": [117, 214, 67, 309, 177, 246], "coordinates": [{ "spotId": 117, "x": 31, "y": 28 }, { "spotId": 214, "x": 32, "y": 44 }, { "spotId": 67, "x": 22, "y": 23 }, { "spotId": 309, "x": 15, "y": 85 }, { "spotId": 177, "x": 35, "y": 37 }, { "spotId": 246, "x": 22, "y": 50 }] },
+    { "value": "0070", "spotIds": [371, 334, 69, 330, 334, 262], "duplicateSpotIds": [334], "reachableTileCount": 5 },
+    { "value": "007F", "spotIds": [189, 190, 30, 420, 439, 108], "coordinates": [{ "spotId": 189, "x": 31, "y": 41 }, { "spotId": 190, "x": 32, "y": 41 }, { "spotId": 30, "x": 17, "y": 15 }, { "spotId": 420, "x": 15, "y": 93 }, { "spotId": 439, "x": 18, "y": 94 }, { "spotId": 108, "x": 22, "y": 28 }] },
+    { "value": "88DE", "spotIds": [27, 438, 205, 366, 113, 445], "coordinates": [{ "spotId": 27, "x": 18, "y": 14 }, { "spotId": 438, "x": 17, "y": 94 }, { "spotId": 205, "x": 32, "y": 43 }, { "spotId": 366, "x": 10, "y": 90 }, { "spotId": 113, "x": 27, "y": 28 }, { "spotId": 445, "x": 12, "y": 95 }] },
+    { "value": "FFFF", "spotIds": [109, 132, 61, 106, 386, 99], "underBridgeSpotId": 132, "underBridgeDisplayTileCount": 10 }
+  ],
+  "invalidFeebasValues": [
+    { "value": "", "error": "Feebas value is required." },
+    { "value": "123", "error": "Feebas value must be exactly 4 hexadecimal characters." },
+    { "value": "12G4", "error": "Feebas value must contain only hexadecimal characters 0-9 and A-F." }
+  ],
+  "emeraldPrediction": {
+    "trainerId": 0,
+    "phrase": { "firstWordIndex": 0, "secondWordGroup": "lifestyle", "secondWordIndex": 0 },
+    "candidates": [{ "value": "EA44", "decimal": 59972, "scanAdvance": 23920, "trendRandOffset": 7 }, { "value": "44BC", "decimal": 17596, "scanAdvance": 24262, "trendRandOffset": 7 }, { "value": "2D24", "decimal": 11556, "scanAdvance": 45907, "trendRandOffset": 7 }, { "value": "54E4", "decimal": 21732, "scanAdvance": 47362, "trendRandOffset": 6 }, { "value": "FC71", "decimal": 64625, "scanAdvance": 47615, "trendRandOffset": 7 }],
+    "exactSearch": { "value": "9305", "maxCandidateMatches": 6, "firstMatchingCandidateRank": 6, "scanAdvance": 48139 }
+  },
+  "saveCases": [
+    { "profile": "emerald", "counter": 77, "trainerId": 54321, "feebasValue": "BEEF", "offset": 11882, "sectorOffset": 3946 },
+    { "profile": "ruby-sapphire", "counter": 78, "trainerId": 22279, "feebasValue": "CAFE", "offset": 11734, "sectorOffset": 3798 }
+  ],
+  "map": {
+    "gridWidth": 40,
+    "gridHeight": 140,
+    "internalSpotCount": 447,
+    "mappedSpotCount": 444,
+    "canonicalMappingSha256": "E98F9E4CD50B47F2FB36E42338393491F7848E86B82BF0ED3189383A52BDA040",
+    "sentinels": [{ "spotId": 4, "x": 18, "y": 2 }, { "spotId": 119, "x": 20, "y": 29 }, { "spotId": 132, "x": 23, "y": 30 }, { "spotId": 298, "x": 23, "y": 67 }, { "spotId": 447, "x": 8, "y": 96 }]
+  }
+}

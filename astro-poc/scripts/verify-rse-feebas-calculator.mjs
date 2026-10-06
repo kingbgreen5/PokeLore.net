@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import { existsSync, readFileSync, statSync } from 'node:fs';
+import { join } from 'node:path';
+import { gzipSync } from 'node:zlib';
+import { parseHTML } from 'linkedom';
+
+const dist = join(process.cwd(), 'dist');
+const file = join(dist, 'rse-feebas-calculator.html');
+assert(existsSync(file), 'RSE calculator route is generated');
+const html = readFileSync(file, 'utf8');
+const document = parseHTML(html).document;
+assert.equal(document.querySelector('link[rel="canonical"]')?.getAttribute('href'), 'https://pokelore.net/rse-feebas-calculator');
+assert.equal(document.querySelector('h1')?.textContent, 'Pokemon Ruby, Sapphire & Emerald Feebas Tile Calculator');
+assert.match(html, /processed locally in your browser/i);
+assert.match(html, /This calculator requires JavaScript to run\./);
+assert(!html.includes('ArrayBuffer(') && !html.includes('data:application/octet-stream'), 'No save payload serialized');
+const island = [...document.querySelectorAll('astro-island')].find(node => node.getAttribute('component-url')?.includes('RseFeebasCalculatorTool'));
+assert(island && island.getAttribute('client') === 'load', 'Immediate RSE calculator island exists');
+const props = island.getAttribute('props') ?? '';
+assert(props.length < 2000, 'Hydration props remain small');
+const map = join(dist, 'images', 'maps', 'route-119-feebas-map.png');
+assert(existsSync(map) && statSync(map).size > 0, 'Route 119 map is built');
+const sitemap = readFileSync(join(dist, 'sitemap.xml'), 'utf8');
+assert.equal((sitemap.match(/<loc>https:\/\/pokelore\.net\/rse-feebas-calculator<\/loc>/g) ?? []).length, 1, 'Route appears once in sitemap');
+const workerRef = new URL(island.getAttribute('component-url'), 'https://example.test').pathname.slice(1);
+console.log(JSON.stringify({ html: statSync(file).size, htmlGzip: gzipSync(html).length, islandProps: props.length, islandJs: statSync(join(dist, workerRef)).size, map: statSync(map).size }, null, 2));
+console.log('PASS RSE Feebas calculator: static shell, local-only wording, immediate island, compact props, and Route 119 map asset.');

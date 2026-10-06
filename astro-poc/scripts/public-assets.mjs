@@ -12,7 +12,8 @@ import { getPokemonCardSources, getPokemonDetailSources, getPokemonSizeCompariso
 export function publicAssets() {
   const paths = new Set([
     '/images/etsy/Viridian Forest Two Gildans.jpg',
-    '/images/maps/mt-coronet-feebas-lake.png'
+    '/images/maps/mt-coronet-feebas-lake.png',
+    '/images/maps/route-119-feebas-map.png'
   ]);
   function addPokemon(p) {
     const entries = readData('pokemonArtworkManifest.json').artwork?.[p.id];

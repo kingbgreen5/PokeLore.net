@@ -82,6 +82,22 @@ export default defineConfig({
             createReadStream(source).on('error', next).pipe(res);
             return;
           }
+          if (pathname === '/images/maps/mt-coronet-feebas-lake.png') {
+            const source = fileURLToPath(new URL('../public/images/maps/mt-coronet-feebas-lake.png', import.meta.url));
+            if (!existsSync(source)) return next();
+            res.setHeader('Content-Type', 'image/png');
+            if (req.method === 'HEAD') return res.end();
+            createReadStream(source).on('error', next).pipe(res);
+            return;
+          }
+          if (pathname === '/images/maps/route-119-feebas-map.png') {
+            const source = fileURLToPath(new URL('../public/images/maps/route-119-feebas-map.png', import.meta.url));
+            if (!existsSync(source)) return next();
+            res.setHeader('Content-Type', 'image/png');
+            if (req.method === 'HEAD') return res.end();
+            createReadStream(source).on('error', next).pipe(res);
+            return;
+          }
           const source = assets.get(pathname);
           if (!source) return next();
           const mime = { '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg' };

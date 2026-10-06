@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RseFeebasCalculatorTool from '../islands/RseFeebasCalculatorTool.jsx';
+import '../../../src/components/feebas/FeebasGuideBreadcrumbs.css';
+
+const canonical = 'https://pokelore.net/rse-feebas-calculator';
+const description = 'Find Route 119 Feebas fishing tiles in Pokémon Ruby, Sapphire, and Emerald from a local save file or your Trainer ID and Dewford trendy phrase.';
+const structuredData = { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Ruby, Sapphire and Emerald Feebas Calculator', url: canonical, applicationCategory: 'GameApplication', operatingSystem: 'Any', browserRequirements: 'Requires JavaScript', description, isAccessibleForFree: true };
+---
+<BaseLayout seo={{ title: 'Pokemon Ruby, Sapphire & Emerald Feebas Tile Calculator | PokeLore', description, canonical, structuredData }}>
+  <article class="rse-feebas-public-page">
+    <header class="rse-feebas-public-header">
+      <nav aria-label="Feebas guide breadcrumbs" class="feebas-guide-breadcrumbs"><span class="feebas-guide-breadcrumb-item"><a href="/topic/catching-feebas-every-generation">Catching Feebas: The Ultimate Guide</a></span><span class="feebas-guide-breadcrumb-item"><span aria-hidden="true" class="feebas-guide-breadcrumb-separator">/</span><a href="/topic/catching-feebas-in-pokemon-emerald">Catching Feebas in Pokemon Emerald</a></span><span class="feebas-guide-breadcrumb-item"><span aria-hidden="true" class="feebas-guide-breadcrumb-separator">/</span><span aria-current="page">Feebas Tile Calculator for Ruby/Sapphire/Emerald</span></span></nav>
+      <p>Route 119 Feebas Calculator</p><h1>Pokemon Ruby, Sapphire & Emerald Feebas Tile Calculator</h1><span>Upload your save file for exact results, or use your Trainer ID and Dewford trendy phrase to narrow down where to fish.</span>
+    </header>
+    <section aria-label="Ruby, Sapphire and Emerald Feebas calculator"><noscript><p>This calculator requires JavaScript to run. The guide below explains the supported games, local save-file method, and recovery methods.</p></noscript><RseFeebasCalculatorTool client:load /></section>
+    <aside class="rse-feebas-guide-note"><p>For more info, see our guide: <a href="/topic/catching-feebas-in-pokemon-emerald">Catching Feebas in Pokemon Emerald</a>.</p></aside>
+    <aside class="rse-feebas-beauty-note"><h2>Beauty and the &apos;Bas</h2><p>Once you have caught Feebas, please see our guide <a href="/topic/evolving-feebas-into-milotic-via-beauty">Evolving Feebas to Milotic Via Beauty</a>.</p></aside>
+    <article class="rse-feebas-public-guide">
+      <h2>How to Find Feebas in Pokémon Ruby, Sapphire, and Emerald</h2>
+      <p>Feebas is found by fishing on <a href="/location/hoenn-route-119">Route 119</a> in Pokémon Ruby, Pokémon Sapphire, and Pokémon Emerald, but it does not appear throughout the river normally. Instead, each save has a small set of specific Feebas fishing tiles, making Feebas notoriously difficult to find by searching <a href="/location/hoenn-route-119">Route 119</a> manually.</p>
+      <p>The Feebas Tile Calculator above can use information from your game to determine or narrow down those locations. If you can upload a compatible .sav file, PokéLore can read the Feebas value stored in the save and show your exact <a href="/location/hoenn-route-119">Route 119</a> Feebas locations. If you don&apos;t have access to your save file, your Trainer ID and <a href="/location/dewford-town">Dewford Town</a> trendy phrase can still be used to narrow the search.</p>
+      <h2>How Feebas Tiles Work in Ruby, Sapphire, and Emerald</h2>
+      <p>The game generates six internal Feebas fishing spots on <a href="/location/hoenn-route-119">Route 119</a> from a value stored in your save. Most correspond to individual places where you can fish, although a few possible results are inaccessible because of <a href="/location/hoenn-route-119">Route 119</a>&apos;s map layout, and one special result corresponds to fishable water beneath a bridge. Feebas is not guaranteed on every encounter even when you are fishing the correct location, so try a valid tile more than once before moving on.</p>
+      <p>Any fishing rod can catch Feebas on a valid tile. Because you are trying to check locations quickly rather than catch high-level Pokémon, the <a href="/item/old-rod">Old Rod</a> is often the fastest choice for searching. The rod you use does not determine which <a href="/location/hoenn-route-119">Route 119</a> tiles are Feebas tiles.</p>
+      <h2>Why Does the Dewford Trendy Phrase Matter?</h2>
+      <p>The trendy phrase in <a href="/location/dewford-town">Dewford Town</a> is connected to the data used for your Feebas locations. However, simply copying another player&apos;s trendy phrase will not give you their Feebas tiles; the phrase alone does not uniquely determine the locations. Additional information, such as your Trainer ID, is needed to recover useful possible results.</p>
+      <p>For best results, use the naturally generated trendy phrase from your save. If the phrase has been manually changed or affected by record mixing, the visible phrase may no longer provide enough information to predict the original Feebas value. In that situation, save-file upload is the most reliable method because it reads the value used by the game directly.</p>
+      <h2>Ruby and Sapphire: Working Battery vs. Dead Battery</h2>
+      <p>Pokémon Ruby and Sapphire behave differently depending on whether the cartridge&apos;s internal clock was working when the save was originally created. A save started with a dead or invalid battery is much easier to narrow down from its Trainer ID and Dewford phrase, while a save created with a working clock can have many more possible Feebas patterns.</p>
+      <p>For working-battery saves, PokéLore combines all matching patterns into a priority map instead of overwhelming you with dozens of separate possibilities. Tiles that occur in more matching patterns are highlighted as higher priority, giving you the best places to search first.</p>
+      <p>Uploading a save file bypasses this uncertainty entirely. If the exact value can be read from your save, it does not matter whether the battery was working or dead when the game was created.</p>
+      <h2>Does the Battery Matter in Pokémon Emerald?</h2>
+      <p>No, not for this Feebas calculation. Pokémon Emerald initializes the relevant random data differently from Ruby and Sapphire, so you do not need to know whether Emerald&apos;s internal battery was working when your save was created.</p>
+      <p>A dead battery can still affect other clock-based features in Emerald, but it does not require a separate dead-battery Feebas calculation.</p>
+      <h2>Playing Pokémon Ruby, Sapphire, or Emerald on an Emulator?</h2>
+      <p>An emulator does not automatically count as having a dead battery. Modern emulators such as mGBA can emulate the Game Boy Advance real-time clock, so a Ruby or Sapphire save created normally with a functioning emulated clock should be treated like a working-battery save.</p>
+      <p>A useful rule is to remember what happened when the save was first created: if Ruby or Sapphire displayed the &quot;internal battery has run dry&quot; warning at that time, choose the dead-battery option. If the game did not show that warning, choose working battery.</p>
+      <p>If you have access to the emulator&apos;s .sav file, use the save upload option instead; the calculator can determine your exact Feebas locations without requiring you to answer the battery question.</p>
+      <h2>Will This Feebas Calculator Work With Pokémon Emerald on Nintendo Switch?</h2>
+      <p>As of August 20, 2026, Pokémon Ruby, Sapphire, and Emerald have not been officially announced for Nintendo Switch. Recent reports claim that Switch versions of the three Hoenn games may be planned for late September or October 2026, following the February 27, 2026 releases of Pokémon FireRed and LeafGreen, but Nintendo and The Pokémon Company have not confirmed those reports.</p>
+      <p>If Pokémon Emerald, Ruby, or Sapphire are released on Switch using the original Game Boy Advance mechanics, PokéLore will test the new versions as soon as they are available and update this calculator with confirmed compatibility. Bookmark this page if you&apos;re planning to catch Feebas in Pokémon Emerald on Switch.</p>
+      <h2>What Should I Do Once I Find a Feebas Tile?</h2>
+      <p>Once you catch Feebas from one of the highlighted locations, you have found a working tile and do not need to continue searching the rest of <a href="/location/hoenn-route-119">Route 119</a>. You can keep fishing at that same location if you want additional Feebas with different stats or Natures.</p>
+      <p>Catching Feebas is only half of the challenge in Generation III: <a href="/topic/evolving-feebas-into-milotic-via-beauty">evolving it into Milotic requires raising its Beauty and then leveling it up</a>.</p>
+      <h2>FAQ</h2>
+      <h3>Where is Feebas in Pokémon Emerald?</h3><p>Feebas is found by fishing on <a href="/location/hoenn-route-119">Route 119</a>, but only at a small set of fishing locations determined by your save. Use the Emerald Feebas calculator above to narrow down the locations rather than checking the entire river manually.</p>
+      <h3>Where is Feebas in Pokémon Ruby and Sapphire?</h3><p>Like Emerald, Feebas is found by fishing at specific locations on <a href="/location/hoenn-route-119">Route 119</a>. Ruby and Sapphire calculations can also depend on whether the internal battery or RTC was working when the save was originally created.</p>
+      <h3>How many Feebas tiles are there in Emerald?</h3><p>The game generates six internal Feebas spots, although map quirks mean not every generated result necessarily corresponds to a normally accessible fishing tile.</p>
+      <h3>What is the best fishing rod for Feebas?</h3><p>Any rod can encounter Feebas on a valid tile. The <a href="/item/old-rod">Old Rod</a> is convenient for searching because encounters can be checked quickly.</p>
+      <h3>Can I find my exact Feebas tiles from a save file?</h3><p>Yes. If you have a compatible Ruby, Sapphire, or Emerald .sav, the calculator can read the value stored by the game and use it to identify your exact player-accessible Feebas locations.</p>
+    </article>
+  </article>
+</BaseLayout>
