@@ -7,6 +7,13 @@ import { publicAssets, searchJson, pokemonIndexJson, learnsetJson, navigationJso
 import { POKEMON_SLUG_SET } from './src/lib/routes.js';
 import { MOVE_SLUG_SET } from './src/lib/moveData.js';
 
+// TeamCoveragePage is intentionally imported from the parent production app.
+// In Cloudflare's isolated install its bare imports must resolve from this
+// Astro project, rather than from the external source file's directory.
+// `import.meta.resolve` preserves the package's ESM entrypoint and works both
+// with a hoisted local install and Cloudflare's nested `astro-poc/node_modules`.
+const reactRouterDomEntry = fileURLToPath(import.meta.resolve('react-router-dom'));
+
 export default defineConfig({
   site: 'https://pokelore.net',
   output: 'static',
@@ -24,7 +31,10 @@ export default defineConfig({
       }
     },
     esbuild: { jsx: 'automatic', jsxImportSource: 'react' },
-    resolve: { dedupe: ['react', 'react-dom'] },
+    resolve: {
+      alias: [{ find: /^react-router-dom$/, replacement: reactRouterDomEntry }],
+      dedupe: ['react', 'react-dom']
+    },
     plugins: [{
       name: 'team-coverage-type-badge-asset-compat',
       transform(code, id) {
