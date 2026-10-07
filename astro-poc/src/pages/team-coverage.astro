@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TeamCoverageTool from '../islands/TeamCoverageTool.jsx';
+const canonical = 'https://pokelore.net/team-coverage';
+---
+<BaseLayout seo={{ title: 'Pokémon Playthrough Team Builder | PokéLore', description: 'Build a Pokémon playthrough team, inspect offensive and defensive coverage, and find suggested teammates for your game.', canonical }}>
+  <article class="team-coverage-guide">
+    <header class="team-coverage-intro"><h1>Pokémon Playthrough Team Builder</h1><p>Build a team for the game you are actually playing, then inspect realistic move coverage, weaknesses, resistances, and suggested teammates.</p></header>
+    <section class="team-coverage-island" aria-label="Interactive Team Coverage Calculator"><noscript><p>The interactive Team Builder requires JavaScript. This guide still explains how it evaluates your team.</p></noscript><TeamCoverageTool client:only="react" /></section>
+    <section><h2>How Team Coverage Works</h2><p>Offensive coverage is based on damaging moves each team member can learn in the selected game, with optional move-power, level, and TM restrictions. Defensive coverage identifies attacking types your team resists or is immune to, while weaknesses show super-effective matchups.</p><p>Suggested teammates compare the available Pokémon against uncovered offensive and defensive needs. Filters let you include legendary Pokémon or trade evolutions and choose how recommendations are sorted. Your selections are stored locally in your browser; only the game and team are shareable in the URL.</p><h2>Using the Builder</h2><p>Select a game, add up to six Pokémon, and tune move restrictions to reflect your playthrough. Use the recommendation filters to prioritize the coverage gap that matters to you. <a href="/single-type-coverage">Need to answer one matchup instead?</a></p></section>
+  </article>
+</BaseLayout>
+<style>.team-coverage-guide{margin:0 auto;max-width:1040px;text-align:center}.team-coverage-guide header,.team-coverage-guide>section:last-child{padding:1rem}.team-coverage-guide p{color:#d1d5db;line-height:1.5}.team-coverage-guide>section:last-child{text-align:left}.team-coverage-guide h2{color:#f3f4f6}:global(body[data-team-coverage-mounted="true"]) .team-coverage-intro{display:none}</style>

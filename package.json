@@ -23,6 +23,8 @@
     "enrich:pokelore-descriptions": "node scripts/enrichPokeloreDescriptions.js",
     "generate:playthrough-scores": "node scripts/generatePlaythroughScores.js",
     "generate:team-coverage": "npm run generate:playthrough-scores && node scripts/generateTeamCoverageIndex.js",
+    "audit:team-coverage": "node scripts/auditTeamCoverageData.mjs && vitest run src/utils/teamCoverage.test.js src/utils/teamCoverageGoldenMaster.test.js",
+    "test:team-coverage-page": "node scripts/teamCoveragePageGoldenMaster.mjs",
     "generate:tm-materials": "node scripts/generateTmMaterialData.js",
     "normalize:entries": "node scripts/normalizeEntries.js",
     "generate:locations": "node scripts/generateLocationsAndEncounters.js",

@@ -17,12 +17,25 @@ export default defineConfig({
       fs: {
         // Astro imports shared production assets and reads generated source data
         // from the repository root during local development.
-        allow: [fileURLToPath(new URL('..', import.meta.url))]
+        allow: [
+          fileURLToPath(new URL('.', import.meta.url)),
+          fileURLToPath(new URL('..', import.meta.url))
+        ]
       }
     },
     esbuild: { jsx: 'automatic', jsxImportSource: 'react' },
     resolve: { dedupe: ['react', 'react-dom'] },
     plugins: [{
+      name: 'team-coverage-type-badge-asset-compat',
+      transform(code, id) {
+        const normalizedId = id.split('?')[0].replace(/\\\\/g, '/');
+        if (!normalizedId.endsWith('/src/components/TypeBadge.jsx')) return null;
+        // Production Vite supplies these imports as URL strings. Astro's image
+        // integration supplies metadata objects, so force Vite's URL import
+        // query only for this external compatibility boundary.
+        return code.replace(/(from\s+["'][^"']+\.png)(["'])/g, '$1?url$2');
+      }
+    }, {
       name: 'poc-dev-public-assets',
       configureServer(server) {
         const assets = publicAssets();
@@ -36,6 +49,23 @@ export default defineConfig({
             search ??= searchJson();
             res.setHeader('Content-Type', 'application/json; charset=utf-8');
             res.end(req.method === 'HEAD' ? undefined : search);
+            return;
+          }
+          if (['/data/pokemonRoutes.json', '/data/movesIndex.json', '/data/moves.json'].includes(pathname)) {
+            const source = join(fileURLToPath(new URL('../public', import.meta.url)), pathname);
+            if (!existsSync(source)) return next();
+            res.setHeader('Content-Type', 'application/json; charset=utf-8');
+            if (req.method === 'HEAD') return res.end();
+            createReadStream(source).on('error', next).pipe(res);
+            return;
+          }
+          const teamMemberMatch = pathname.match(/^\/data\/(pokemonData|pokemonLearnsets)\/(\d+)\.json$/);
+          if (teamMemberMatch) {
+            const source = join(fileURLToPath(new URL('../public', import.meta.url)), pathname);
+            if (!existsSync(source)) return next();
+            res.setHeader('Content-Type', 'application/json; charset=utf-8');
+            if (req.method === 'HEAD') return res.end();
+            createReadStream(source).on('error', next).pipe(res);
             return;
           }
           if (pathname === '/data/pokemonIndex.json') {

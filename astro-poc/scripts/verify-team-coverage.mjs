@@ -1,0 +1,20 @@
+import { existsSync, readFileSync, statSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
+import { gzipSync } from 'node:zlib';
+
+const dist = join(process.cwd(), 'dist');
+const required = ['team-coverage.html', 'data/pokemonRoutes.json', 'data/movesIndex.json', 'data/teamCoverage/index.json', 'data/teamCoverage/scarlet-violet.json', 'data/pokemonData/25.json', 'data/pokemonLearnsets/25.json'];
+for (const file of required) if (!existsSync(join(dist, file))) throw new Error(`Missing Team Coverage artifact: ${file}`);
+const html = readFileSync(join(dist, 'team-coverage.html'), 'utf8');
+for (const text of ['Pokémon Playthrough Team Builder', 'How Team Coverage Works', 'interactive Team Builder requires JavaScript']) if (!html.includes(text)) throw new Error(`Missing static shell text: ${text}`);
+if (!html.includes('https://pokelore.net/team-coverage')) throw new Error('Missing canonical URL');
+if (html.includes('scarlet-violet.json') || html.includes('pokemonRoutes.json')) throw new Error('Team Coverage data was serialized into HTML');
+const assets = readdirSync(join(dist, '_astro'));
+const island = assets.find(file => file.startsWith('TeamCoverageTool.') && file.endsWith('.js'));
+const shared = assets.find(file => file.startsWith('teamCoverage.') && file.endsWith('.js'));
+if (!island || !shared) throw new Error('Missing Team Coverage island bundle');
+const sitemap = existsSync(join(dist, 'sitemap-index.xml')) ? readFileSync(join(dist, 'sitemap-index.xml'), 'utf8') : '';
+const sitemapFiles = sitemap.match(/<loc>([^<]+)<\/loc>/g)?.map(entry => entry.replace(/<\/?loc>/g, '')) ?? [];
+const sitemapText = sitemapFiles.map(file => { try { return readFileSync(new URL(file).pathname, 'utf8'); } catch { return ''; } }).join('');
+if (sitemapText && (sitemapText.match(/team-coverage/g) ?? []).length !== 1) throw new Error('Sitemap does not contain team coverage exactly once');
+console.log(JSON.stringify({ route: 'team-coverage.html', html: { raw: Buffer.byteLength(html), gzip: gzipSync(html).length }, island: { path: `_astro/${island}`, bytes: statSync(join(dist, '_astro', island)).size }, shared: { path: `_astro/${shared}`, bytes: statSync(join(dist, '_astro', shared)).size }, hydrationPropsBytes: 0, requiredAssets: required }, null, 2));

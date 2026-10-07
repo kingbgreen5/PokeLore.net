@@ -1,4 +1,4 @@
-import { mkdirSync, copyFileSync, existsSync, readdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, copyFileSync, existsSync, readdirSync, writeFileSync, cpSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { createSearchRecords } from '../src/lib/searchRecords.js';
 import { loadPokemon, readData } from '../src/lib/pokemonData.js';
@@ -107,6 +107,15 @@ export function copyTeamCoveragePayloads(output) {
   for (const file of readdirSync(sourceDirectory)) {
     if (!file.endsWith('.json')) continue;
     copyFileSync(join(sourceDirectory, file), join(targetDirectory, file));
+  }
+  // The frozen React island fetches these exact production paths on demand.
+  for (const file of ['pokemonRoutes.json', 'movesIndex.json', 'moves.json']) {
+    const source = join(repositoryRoot, 'public', 'data', file);
+    if (existsSync(source)) copyFileSync(source, join(output, 'data', file));
+  }
+  for (const directory of ['pokemonData', 'pokemonLearnsets']) {
+    const source = join(repositoryRoot, 'public', 'data', directory);
+    if (existsSync(source)) cpSync(source, join(output, 'data', directory), { recursive: true });
   }
 }
 
