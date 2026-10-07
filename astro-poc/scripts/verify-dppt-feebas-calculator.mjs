@@ -15,7 +15,7 @@ assert.match(html, /processed locally in your browser/i);
 assert.match(html, /never uploaded, stored, or sent to Pok[eé]Lore/i);
 assert.match(html, /This calculator requires JavaScript to run\./);
 assert.match(html, /four Feebas fishing tiles/i);
-assert.match(html, /Great Marsh daily Pokémon/i);
+assert.match(html, /two consecutive Jubilife TV lottery numbers/i);
 assert(!html.includes('data:application/octet-stream') && !html.includes('ArrayBuffer('), 'No save-file payload is serialized into HTML');
 const island = [...document.querySelectorAll('astro-island')].find(node => node.getAttribute('component-url')?.includes('DpptFeebasCalculatorTool'));
 assert(island, 'DPPt calculator React island exists');
