@@ -41,7 +41,7 @@ assert.equal(sharedNavigation.length, POKEMON_SLUGS.length, 'Shared navigation i
 assert.equal(new Set(sharedNavigation.map(entry => entry.name)).size, POKEMON_SLUGS.length, 'Shared navigation names are unique');
 assert(sharedNavigation.every(entry => Object.keys(entry).sort().join(',') === 'id,name,sprite'), 'Navigation records contain only id, name and sprite');
 assert.deepEqual(files.filter(f => f.endsWith('.html')).sort(),
-  ['index.html', '404.html', 'moves.html', 'items.html', 'abilities.html', 'dex-entries.html', 'types.html', 'locations.html', 'tools.html', 'single-type-coverage.html', 'ev-training-routes.html', 'dppt-feebas-calculator.html', 'rse-feebas-calculator.html', 'dev.html', 'dev/team-coverage-scoring.html', 'dev/single-type-coverage-scoring.html', ...DEV_TOOL_ROUTES.map(tool => `${tool.path.slice(1)}.html`), ...POKEMON_SLUGS.map(s => `pokemon/${s}.html`), ...MOVE_SLUGS.map(s => `move/${s}.html`), ...ABILITY_SLUGS.map(s => `ability/${s}.html`), ...ITEM_SLUGS.map(s => `item/${s}.html`), ...LOCATION_SLUGS.map(s => `location/${s}.html`), ...TYPE_SLUGS.map(s => `type/${s}.html`)].sort(), 'Exactly the canonical Astro HTML documents');
+  ['index.html', '404.html', 'moves.html', 'items.html', 'abilities.html', 'dex-entries.html', 'types.html', 'locations.html', 'tools.html', 'single-type-coverage.html', 'team-coverage.html', 'ev-training-routes.html', 'dppt-feebas-calculator.html', 'rse-feebas-calculator.html', 'dev.html', 'dev/team-coverage-scoring.html', 'dev/single-type-coverage-scoring.html', ...DEV_TOOL_ROUTES.map(tool => `${tool.path.slice(1)}.html`), ...POKEMON_SLUGS.map(s => `pokemon/${s}.html`), ...MOVE_SLUGS.map(s => `move/${s}.html`), ...ABILITY_SLUGS.map(s => `ability/${s}.html`), ...ITEM_SLUGS.map(s => `item/${s}.html`), ...LOCATION_SLUGS.map(s => `location/${s}.html`), ...TYPE_SLUGS.map(s => `type/${s}.html`)].sort(), 'Exactly the canonical Astro HTML documents');
 const hostingFiles = new Set(['_headers', '_redirects']);
 for (const file of hostingFiles) {
   assert(readFileSync(join(dist, file)).equals(readFileSync(join('public', file))), `${file}: hosting configuration copied unchanged`);
@@ -68,7 +68,13 @@ assert(!files.some(f => /^pokemon\/\d+(?:[/.]|$)/.test(f)), 'No numeric resource
 // Phase 1B permits scoped islands; core HTML and the head remain server-owned.
 for (const file of readdirSync('src/islands').filter(f=>f.endsWith('.jsx'))) {
   const source=readFileSync(join('src/islands',file),'utf8');
-  assert(!/from\s*["']react-router|document\.title|querySelector\([^)]*canonical|<Seo\b/.test(source), `${file}: no router or SEO repair`);
+  const allowsClientOnlyRouter = file === 'TeamCoverageTool.jsx';
+  assert(!/document\.title|querySelector\([^)]*canonical|<Seo\b/.test(source), `${file}: no SEO repair`);
+  if (allowsClientOnlyRouter) {
+    assert(/from\s*["']react-router-dom["']/.test(source), `${file}: only the dedicated client-only Team Coverage wrapper may own its router`);
+  } else {
+    assert(!/from\s*["']react-router/.test(source), `${file}: no router`);
+  }
 }
 
 for (const [routeIndex, slug] of POKEMON_SLUGS.entries()) {
