@@ -125,6 +125,15 @@ export function copyEvTrainingRoutesPayload(output) {
   copyFileSync(join(repositoryRoot, 'public', 'data', 'evTrainingRoutes.json'), target);
 }
 
+// TCG Challenge keeps its versioned card corpus and local pack artwork as
+// cacheable runtime files; the client-only island fetches only the chosen set.
+export function copyTcgChallengePayloads(output) {
+  for (const [directory, target] of [['data/tcg', 'data/tcg'], ['images/tcg', 'images/tcg']]) {
+    const source = join(repositoryRoot, 'public', directory);
+    if (existsSync(source)) cpSync(source, join(output, target), { recursive: true });
+  }
+}
+
 export function writePokemonIndexPayload(output) {
   const directory = join(output, 'data');
   mkdirSync(directory, { recursive: true });

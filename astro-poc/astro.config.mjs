@@ -3,7 +3,7 @@ import { mkdirSync, writeFileSync, createReadStream, existsSync } from 'node:fs'
 import react from '@astrojs/react';
 import { join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { publicAssets, searchJson, pokemonIndexJson, learnsetJson, navigationJson, moveLearnerJson, learnerFactsJson, copyPublicAssets, copyLearnsetPayloads, copyMoveLearnerPayloads, copyTeamCoveragePayloads, copyEvTrainingRoutesPayload, writeNavigationPayload, writeLearnerFacts, writePokemonIndexPayload } from './scripts/public-assets.mjs';
+import { publicAssets, searchJson, pokemonIndexJson, learnsetJson, navigationJson, moveLearnerJson, learnerFactsJson, copyPublicAssets, copyLearnsetPayloads, copyMoveLearnerPayloads, copyTeamCoveragePayloads, copyEvTrainingRoutesPayload, copyTcgChallengePayloads, writeNavigationPayload, writeLearnerFacts, writePokemonIndexPayload } from './scripts/public-assets.mjs';
 import { POKEMON_SLUG_SET } from './src/lib/routes.js';
 import { MOVE_SLUG_SET } from './src/lib/moveData.js';
 
@@ -83,6 +83,15 @@ export default defineConfig({
             res.end(req.method === 'HEAD' ? undefined : pokemonIndexJson());
             return;
           }
+          const tcgMatch = pathname.match(/^\/data\/tcg\/(?:v1\/[a-z0-9-]+|rewards\/[a-z0-9-]+|artwork)\.json$/);
+          if (tcgMatch) {
+            const source = join(fileURLToPath(new URL('../public', import.meta.url)), pathname);
+            if (!existsSync(source)) return next();
+            res.setHeader('Content-Type', 'application/json; charset=utf-8');
+            if (req.method === 'HEAD') return res.end();
+            createReadStream(source).on('error', next).pipe(res);
+            return;
+          }
           if (pathname === '/data/navigation/pokemon-navigation.json') {
             const navigation = navigationJson();
             res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -138,6 +147,15 @@ export default defineConfig({
             createReadStream(source).on('error', next).pipe(res);
             return;
           }
+          const tcgArtworkMatch = pathname.match(/^\/images\/tcg\/[a-z0-9-]+\.webp$/);
+          if (tcgArtworkMatch) {
+            const source = join(fileURLToPath(new URL('../public', import.meta.url)), pathname);
+            if (!existsSync(source)) return next();
+            res.setHeader('Content-Type', 'image/webp');
+            if (req.method === 'HEAD') return res.end();
+            createReadStream(source).on('error', next).pipe(res);
+            return;
+          }
           const source = assets.get(pathname);
           if (!source) return next();
           const mime = { '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg' };
@@ -164,6 +182,7 @@ export default defineConfig({
         copyMoveLearnerPayloads(output);
         copyTeamCoveragePayloads(output);
         copyEvTrainingRoutesPayload(output);
+        copyTcgChallengePayloads(output);
         writeLearnerFacts(output);
       }
     }

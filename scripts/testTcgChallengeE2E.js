@@ -1,7 +1,10 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-const origin = process.env.TCG_TEST_ORIGIN ?? 'http://127.0.0.1:5187';
+// External target support keeps the same deterministic contract reusable for
+// Vite production, Astro preview, and noindex staging. TCG_TEST_ORIGIN stays
+// as a backwards-compatible alias for existing local invocations.
+const origin = process.env.E2E_BASE_URL ?? process.env.TCG_TEST_ORIGIN ?? 'http://127.0.0.1:5187';
 const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({ viewport: { width: 1365, height: 900 } });
 const page = await context.newPage();
@@ -10,6 +13,12 @@ page.on('pageerror', e => errors.push(e.message));
 page.on('request', request => requests.push(request.url()));
 const key = 'pokelore:tcg-challenges:v1';
 const getSave = () => page.evaluate(key => JSON.parse(localStorage.getItem(key)), key);
+const revealAll = async target => {
+  for (let index = 1; index <= 11; index++) {
+    const card = target.getByRole('button', { name: `Reveal card ${index} of 11`, exact: true });
+    if (await card.count()) await card.click();
+  }
+};
 try {
   // Exercise the fallback deliberately; TCGdex's asset host may be unavailable.
   await page.route('https://assets.tcgdex.net/**', route => route.abort());
@@ -26,12 +35,11 @@ try {
   await page.reload();
   await page.getByRole('button', { name: 'Resume', exact: true }).click();
   await page.getByRole('button', { name: 'Reveal card 2 of 11' }).waitFor();
-  await page.getByRole('button', { name: 'Reveal all', exact: true }).click();
+  await revealAll(page);
   const first = (await getSave())[0].packs[0].cards;
   await page.getByRole('button', { name: /^Add / }).first().click();
   assert.equal((await getSave())[0].team.length, 1);
   await page.getByLabel('Challenge name', { exact: true }).fill('Saved browser test');
-  await page.getByLabel('Badges, milestones & your house rules').fill('One badge earned');
   const analysis = page.getByRole('link', { name: 'Analyze this team →' });
   assert.match(await analysis.getAttribute('href'), /version=emerald&team=\d+/);
   await page.getByRole('button', { name: 'Learnset & game info' }).click();
@@ -54,14 +62,14 @@ try {
   await page.reload();
   await page.getByRole('button', { name: 'Resume', exact: true }).click();
   await page.getByRole('button', { name: 'Reveal card 1 of 11' }).waitFor();
-  assert.equal((await getSave())[0].progress, 'One badge earned');
+  assert.equal((await getSave())[0].progress, '');
   assert.equal((await getSave())[0].name, 'Saved browser test');
   const fresh = await browser.newContext();
   const replay = await fresh.newPage();
   await replay.goto(page.url());
   await replay.getByRole('button', { name: 'Start Challenge', exact: true }).click();
   await replay.getByRole('button', { name: 'Open Pack', exact: true }).click();
-  await replay.getByRole('button', { name: 'Reveal all', exact: true }).click();
+  await revealAll(replay);
   const replaySave = await replay.evaluate(key => JSON.parse(localStorage.getItem(key)), key);
   assert.deepEqual(replaySave[0].packs[0].cards, first);
   await fresh.close();
@@ -97,9 +105,9 @@ try {
   await page.setViewportSize({ width: 1365, height: 900 });
   await page.locator('.tcg-card-back').scrollIntoViewIfNeeded();
   await page.screenshot({ path: '.tmp-tcg/card-back-desktop.png' });
-  await page.getByRole('button', { name: 'Reveal all', exact: true }).click();
-  await page.getByRole('button', { name: 'Open sealed booster' }).click();
+  await revealAll(page);
+  await page.getByRole('button', { name: 'Open next pack' }).click();
   assert.equal(['rare', 'holo', 'secret', 'shining'].includes((await getSave())[0].packs[1].cards.at(-1).pool), true);
   assert.deepEqual(errors, []);
-  console.log('TCG browser checks passed: reveal/resume, journal, team, game learnsets, TM rewards, replay, rename/delete, SEO, mobile, reduced motion, no runtime API downloads.');
+  console.log('TCG browser checks passed: reveal/resume, team, game learnsets, TM rewards, replay, rename/delete, SEO, mobile, reduced motion, no runtime API downloads.');
 } finally { await browser.close(); }

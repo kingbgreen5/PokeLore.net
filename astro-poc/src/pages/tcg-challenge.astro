@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TcgChallengeTool from '../islands/TcgChallengeTool.jsx';
+const canonical = 'https://pokelore.net/tcg-challenge';
+const description = 'Open virtual Pokémon TCG packs from Base Set through Neo Destiny and build a videogame challenge team. Reproduce seeded runs and save progress in your browser.';
+---
+<BaseLayout seo={{ title: 'Pokémon Card Challenge Run Generator & Virtual Pack Opener | PokéLore', description, canonical }}>
+  <article class="tcg-challenge-guide">
+    <header class="tcg-challenge-intro"><h1>Pokémon Card Challenge Run Generator &amp; Virtual Pack Opener</h1><p>Choose a Pokémon videogame, choose a historical English TCG set, and open virtual booster packs to build a playthrough team.</p></header>
+    <section aria-label="Interactive Pokémon Card Challenge"><noscript><p>The interactive pack opener requires JavaScript. The guide below explains the challenge and supported sets.</p></noscript><TcgChallengeTool client:only="react" /></section>
+    <section class="tcg-challenge-static-guide"><h2>How the One Pack Challenge Works</h2><p>Open a starting pack, then choose when to open another as your adventure progresses. A pulled Pokémon can join your team; Energy suggests a matching TM reward and Trainer effects remain optional house rules.</p><p>Supported English sets are Base Set, Jungle, Fossil, Base Set 2, Team Rocket, Gym Heroes, Gym Challenge, Neo Genesis, Neo Discovery, Neo Revelation, and Neo Destiny. A shared seed reproduces a pack sequence, while saves remain in your browser.</p><p>Pack composition follows the tool’s documented historical model. Individual packs are simulated independently; exact print-run variation and box guarantees are not modeled. <a href="/tools">Explore more Pokémon tools</a>.</p></section>
+  </article>
+</BaseLayout>
+<style>.tcg-challenge-guide{margin:0 auto;max-width:1040px;text-align:center}.tcg-challenge-intro,.tcg-challenge-static-guide{padding:1rem}.tcg-challenge-guide p{color:#d1d5db;line-height:1.5}.tcg-challenge-static-guide{text-align:left}.tcg-challenge-static-guide h2{color:#f3f4f6}:global(body[data-tcg-challenge-mounted="true"]) .tcg-challenge-intro{display:none}</style>

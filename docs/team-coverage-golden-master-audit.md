@@ -1,6 +1,6 @@
 # Team Coverage golden-master audit
 
-Status: **Phase 10H.1 complete.** No Astro route has been created or modified.
+Status: **Phase 10I complete — `/team-coverage` is frozen on noindex Astro staging.** The production page remains the behavioral authority and has no semantic diff.
 
 ## Production authority
 
@@ -110,3 +110,15 @@ The runner now launches Vite directly with the local Vite Node entry point on `1
 The prior apparent stall was not a lifecycle deadlock: the unavailable-version assertion expected `Legends Arceus`, while production's formatter renders `Legends / Arceus`. Splitting the cases made this visible. Both isolated cases passed, then two consecutive complete runs passed with `TEAM_COVERAGE_PAGE_GOLDEN_MASTER: PASS; scenarios=6; passed=6; failed=0`. The dedicated port had no listener after the second run. `vite-cleanup=not-running` means the exact owned child had already exited before the cleanup branch, not that an external process was killed.
 
 The following contracts are now mechanically verified: clean canonical URL; legacy aliases; URL-over-storage precedence; selected-party record/learnset requests; clear-team persistence/URL; team retention across version changes; recommendation-page reset; responsive 20/12 pagination; storage events; zero-count unavailable datasets; and failed-dataset loading behavior.
+
+## Phase 10I live Astro staging parity
+
+The Astro route was deployed to noindex staging at `https://pokelore-astro-test.thebeakeh.workers.dev/team-coverage`.
+
+- The live route returned `200 OK` with `X-Robots-Tag: noindex`.
+- Its unhydrated HTML contains the canonical `https://pokelore.net/team-coverage`, the static H1, Team Coverage guide, no-JS notice, and the `TeamCoverageTool` `client:only` island. The Team Coverage corpus is not serialized into the document.
+- Required runtime assets returned 200: Pokémon routes, moves index, coverage manifest, selected Scarlet/Violet dataset, and representative Pokémon/learnset records.
+- The calculator hydrated with no console errors, no router or React runtime errors, and no `/[object Object]` request. Type badges render correctly; inlined badge assets remain valid data URLs and emitted badge assets (for example `/_astro/WATER.CrKDiUHq.png`) are valid route assets.
+- The frozen browser runner was executed against the external staging target twice consecutively. Both runs passed all six scenarios: canonical URL and initial requests; URL/storage precedence plus legacy rewrite; party requests/version retention/clear; page reset/mobile pagination/storage event; unavailable version; and intercepted selected-dataset failure/loading behavior.
+- A representative three-member Scarlet/Violet team (`25-6-7`) was compared side-by-side against production. Offensive coverage, defensive coverage, and weaknesses matched. All 11 sort modes had the same ordered visible mobile slice (12 cards); local parity already freezes the full 20-card desktop slice and tie behavior.
+- Final regression rerun: 62 Team Coverage tests passed and the 30-version data audit passed (`23,037,813` bytes of separately loaded corpus). `src/pages/TeamCoveragePage.jsx` remains unmodified.
