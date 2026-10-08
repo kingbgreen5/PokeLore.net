@@ -16,7 +16,10 @@ export function deploymentEnvironment(value = process.env.POKELORE_DEPLOY_ENV) {
 export function deploymentHeaders(environment = deploymentEnvironment()) {
   return environment === STAGING
     ? '# STAGING ONLY: protect every staging response from indexing.\n/*\n  X-Robots-Tag: noindex\n'
-    : '# Production intentionally has no blanket X-Robots-Tag directive.\n';
+    // Keep the production artifact empty rather than leaving an explanatory
+    // comment containing the header name. The verifier intentionally scans
+    // this file for that token, and a comment must not look like a directive.
+    : '';
 }
 
 export function writeDeploymentHeaders(outputDirectory, environment = deploymentEnvironment()) {

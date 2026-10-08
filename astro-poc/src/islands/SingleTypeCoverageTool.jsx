@@ -126,8 +126,10 @@ function useAstroSearchParams(initialSearch) {
   // browser, initialize from the real URL so direct shared calculator links
   // retain the production route's version/type behavior.
   const [searchParams, setParams] = useState(() => new URLSearchParams(initialSearch));
+  const [browserSearchReady, setBrowserSearchReady] = useState(false);
   useEffect(() => {
     setParams(new URLSearchParams(window.location.search));
+    setBrowserSearchReady(true);
     const onPopState = () => setParams(new URLSearchParams(window.location.search));
     window.addEventListener('popstate', onPopState); return () => window.removeEventListener('popstate', onPopState);
   }, []);
@@ -136,7 +138,7 @@ function useAstroSearchParams(initialSearch) {
     const query = params.toString(); const href = `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`;
     window.history[replace ? 'replaceState' : 'pushState']({}, '', href); setParams(params);
   };
-  return [searchParams, setSearchParams];
+  return [searchParams, setSearchParams, browserSearchReady];
 }
 
 function TypeBadgeList({ emptyLabel, height = '1.35rem', types }) {
@@ -150,7 +152,7 @@ function RecommendationCard({ minMovePower, recommendation }) {
 }
 
 export default function SingleTypeCoverageTool({ initialSearch = '' }) {
-  const [searchParams, setSearchParams] = useAstroSearchParams(initialSearch);
+  const [searchParams, setSearchParams, browserSearchReady] = useAstroSearchParams(initialSearch);
   const [preferredVersion, setPreferredVersion] = useLocalStorageState(VERSION_STORAGE_KEY, DEFAULT_VERSION_GROUP);
   const [preferredType, setPreferredType] = useLocalStorageState(TYPE_STORAGE_KEY, DEFAULT_TYPE);
   const [preferredSortMode, setPreferredSortMode] = useLocalStorageState(SORT_STORAGE_KEY, SORT_MODES[0].value);
@@ -177,10 +179,15 @@ export default function SingleTypeCoverageTool({ initialSearch = '' }) {
     return () => { mounted = false; };
   }, [selectedVersion]);
   useEffect(() => {
+    // On a static document Astro cannot include request query parameters in
+    // the island props.  Wait until the browser URL has been adopted before
+    // normalizing it; otherwise the first client effect overwrites a shared
+    // direct link with the static defaults.
+    if (!browserSearchReady) return;
     const hasVersion = searchParams.get('version') === selectedVersion; const hasType = normalizeTypeParam(searchParams.get('type')) === selectedType;
     if (hasVersion && hasType && !searchParams.has('game')) return;
     const next = new URLSearchParams(searchParams); next.set('version', selectedVersion); next.set('type', selectedType); next.delete('game'); setSearchParams(next, { replace: true });
-  }, [searchParams, selectedType, selectedVersion]);
+  }, [browserSearchReady, searchParams, selectedType, selectedVersion]);
   const loaded = teamCoverageData?.versionGroup === selectedVersion;
   const candidates = useMemo(() => {
     if (!loaded) return [];
