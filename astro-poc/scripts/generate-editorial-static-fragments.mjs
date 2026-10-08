@@ -12,12 +12,13 @@ const outputPath = join(generatedDirectory, 'editorial-static-guides.json');
 // esbuild's aliases and stdin imports accept normal absolute filesystem paths,
 // not `file:` URLs. Normalizing separators also avoids Windows alias ambiguity.
 const absolutePath = path => join(repositoryRoot, path).replaceAll('\\', '/');
-const rootModule = path => absolutePath(join('node_modules', path));
 const sourceModule = path => absolutePath(path);
 const requireFromGenerator = createRequire(import.meta.url);
 const reactEntry = fileURLToPath(import.meta.resolve('react'));
 const reactDomServerEntry = fileURLToPath(import.meta.resolve('react-dom/server'));
 const reactRouterDomEntry = fileURLToPath(import.meta.resolve('react-router-dom'));
+const reactJsxRuntimeEntry = fileURLToPath(import.meta.resolve('react/jsx-runtime'));
+const reactJsxDevRuntimeEntry = fileURLToPath(import.meta.resolve('react/jsx-dev-runtime'));
 
 const entries = {
   'evolving-feebas-into-milotic-via-beauty': 'src/topics/FeebasBeautyEvolutionGuide.jsx',
@@ -51,8 +52,8 @@ async function renderGuide(entryPath, slug) {
     write: false,
     loader: { '.css': 'text', '.png': 'dataurl', '.webp': 'dataurl', '.jpg': 'dataurl', '.svg': 'dataurl' },
     alias: {
-      'react/jsx-runtime': rootModule('react/jsx-runtime.js'),
-      'react/jsx-dev-runtime': rootModule('react/jsx-dev-runtime.js'),
+      'react/jsx-runtime': reactJsxRuntimeEntry,
+      'react/jsx-dev-runtime': reactJsxDevRuntimeEntry,
       react: reactEntry,
       'react-dom/server': reactDomServerEntry,
       'react-router-dom': reactRouterDomEntry
