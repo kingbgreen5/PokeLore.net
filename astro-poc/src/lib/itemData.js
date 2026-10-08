@@ -3,14 +3,21 @@ import { join, resolve } from 'node:path';
 import { POKEMON_SLUG_SET } from './routes.js';
 import { MOVE_SLUG_SET } from './moveData.js';
 import { getFossilItemData } from '../../../src/data/fossilItems.js';
+import { DYNAMAX_CRYSTAL_CATEGORY, dynamaxCrystalData } from '../../../src/data/dynamaxCrystals.js';
 const root = resolve(process.cwd(), '..'); const dataDir = join(root, 'public', 'data');
 const read = file => JSON.parse(readFileSync(join(dataDir, file), 'utf8'));
-const releasedDynamax = new Set(['dynamax-crystal-charizard','dynamax-crystal-gengar','dynamax-crystal-kingler','dynamax-crystal-lapras','dynamax-crystal-kyogre','dynamax-crystal-groudon','dynamax-crystal-rayquaza','dynamax-crystal-reshiram','dynamax-crystal-zekrom','dynamax-crystal-eternatus','dynamax-crystal-duraludon','dynamax-crystal-snorlax']);
-const hidden = item => item.category?.name === 'dynamax-crystals' && !releasedDynamax.has(item.name);
+const releasedDynamax = new Set(Object.keys(dynamaxCrystalData));
+const isDynamaxCrystal = item => item.category?.name === DYNAMAX_CRYSTAL_CATEGORY || item.name.startsWith('dynamax-crystal-');
+const hidden = item => isDynamaxCrystal(item) && !releasedDynamax.has(item.name);
 const source = readdirSync(join(dataDir, 'items')).filter(file => file.endsWith('.json')).map(file => read(join('items', file))).filter(item => !hidden(item));
 const pokemonIndex = read('pokemonIndex.json');
 const pokemonBySlug = new Map(pokemonIndex.map(pokemon => [pokemon.name, pokemon]));
 export const ITEM_SLUGS = Object.freeze(source.map(item => item.name).sort((a,b) => a.localeCompare(b))); export const ITEM_SLUG_SET = new Set(ITEM_SLUGS);
+// The public guide is the discoverability surface for Dynamax Crystals; their
+// individual canonical pages remain generated and sitemap-indexed, but are not
+// mixed into the ordinary item-database table.
+export const ITEM_HUB_SLUGS = Object.freeze(source.filter(item => !isDynamaxCrystal(item)).map(item => item.name).sort((a,b) => a.localeCompare(b)));
+export const ITEM_HUB_SLUG_SET = new Set(ITEM_HUB_SLUGS);
 export const ITEM_STRESS_SLUGS = Object.freeze(['leftovers','oran-berry','fire-stone','reaper-cloth','master-ball','potion','x-attack','old-amber','tm01','hm01','tr01','charizardite-x','firium-z--bag','flame-plate','fighting-memory','douse-drive','lax-incense','ability-patch','zygarde-cube','zangoose-claw']);
 export const ITEM_REGISTRY = Object.freeze(source.map(item => ({ slug:item.name, id:item.id, displayName:item.displayName, category:item.category?.name ?? null, pocket:item.category?.pocket ?? null })));
 const bySlug = new Map(source.map(item => [item.name, item])); const optional=(dir,slug)=>{const file=join(dataDir,dir,`${slug}.json`);return existsSync(file)?JSON.parse(readFileSync(file,'utf8')):null};

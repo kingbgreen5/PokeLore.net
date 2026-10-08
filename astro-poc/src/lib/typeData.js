@@ -62,7 +62,7 @@ export function typeModel(slug) {
       { '@type': 'ListItem', position: 3, name: `${name} Type`, item: canonical }
     ] }
   ] };
-  return { slug, name, summary: `Learn which Pokémon, moves, and abilities belong to the ${name} type, plus its offensive strengths and defensive weaknesses.`, pokemon, moves, abilities, offense: matchupGroups(slug, true), defense: matchupGroups(slug, false), canonical, seo: { title: `${name} Type Pokémon, Moves, Strengths & Weaknesses | PokéLore`, description, canonical, robots: 'noindex', structuredData } };
+  return { slug, name, summary: `Learn which Pokémon, moves, and abilities belong to the ${name} type, plus its offensive strengths and defensive weaknesses.`, pokemon, moves, abilities, offense: matchupGroups(slug, true), defense: matchupGroups(slug, false), canonical, seo: { title: `${name} Type Pokémon, Moves, Strengths & Weaknesses | PokéLore`, description, canonical, structuredData } };
 }
 
 export function allTypeModels() { return TYPE_SLUGS.map(typeModel); }

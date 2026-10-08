@@ -71,11 +71,10 @@ export const DEV_TOOL_GROUPS = [
   }
 ];
 
-export const DEV_TOOL_ROUTES = DEV_TOOL_GROUPS.flatMap(group =>
-  group.tools.filter(
-    tool => tool.path.startsWith('/dev/') && tool.status !== 'available'
-  )
-);
+// The remaining /dev/* entries originate in the legacy React app. They are
+// intentionally not emitted as Astro placeholders: these are local-only
+// workflows, not public production routes.
+export const DEV_TOOL_ROUTES = [];
 
 export const DEV_TOOL_BY_SLUG = new Map(
   DEV_TOOL_ROUTES.map(tool => [tool.path.slice('/dev/'.length), tool])

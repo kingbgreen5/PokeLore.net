@@ -5,7 +5,7 @@ import { TYPE_SLUGS } from '../lib/typeData.js';
 const label = value => String(value).charAt(0).toUpperCase() + String(value).slice(1);
 const canonical = 'https://pokelore.net/types';
 ---
-<BaseLayout seo={{ title: 'Pokémon Types, Matchups, Moves & Weaknesses | PokéLore', description: 'Browse Pokémon types and explore strengths, weaknesses, type matchups, Pokémon, and moves.', canonical, robots: 'noindex' }}>
+<BaseLayout seo={{ title: 'Pokémon Types, Matchups, Moves & Weaknesses | PokéLore', description: 'Browse Pokémon types and explore strengths, weaknesses, type matchups, Pokémon, and moves.', canonical }}>
   <article class="types-hub"><h1>Pokémon Types</h1><p>Explore type matchups, Pokémon, moves, and abilities for all 18 modern Pokémon types.</p><div class="type-grid">{TYPE_SLUGS.map(type => <a href={`/type/${type}`}><TypeBadge type={type} height="2rem" /><span>{label(type)} Type</span></a>)}</div></article>
 </BaseLayout>
 <style>.types-hub{margin:0 auto;max-width:1000px;padding:2rem 1rem}.types-hub>p{color:#b8c7df}.type-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-top:2rem}.type-grid a{align-items:center;background:#2c2c2c;border:1px solid #555;border-radius:10px;color:inherit;display:flex;gap:.6rem;justify-content:center;padding:1rem;text-decoration:none}</style>

@@ -45,7 +45,7 @@ const regions = [...new Set(locations.map(location => location.region))]
 const canonical = 'https://pokelore.net/locations';
 const count = locations.length;
 ---
-<BaseLayout seo={{ title: 'Pokémon Locations by Region & Game | PokéLore', description: `Browse ${count.toLocaleString()} canonical Pokémon locations by region, with direct links to encounter and item details.`, canonical, robots: 'noindex' }}>
+<BaseLayout seo={{ title: 'Pokémon Locations by Region & Game | PokéLore', description: `Browse ${count.toLocaleString()} canonical Pokémon locations by region, with direct links to encounter and item details.`, canonical }}>
   <article class="locations-hub">
     <header>
       <h1>Pokémon Locations by Region &amp; Game</h1>

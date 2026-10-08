@@ -3,9 +3,10 @@ import { mkdirSync, writeFileSync, createReadStream, existsSync } from 'node:fs'
 import react from '@astrojs/react';
 import { join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { publicAssets, searchJson, pokemonIndexJson, learnsetJson, navigationJson, moveLearnerJson, learnerFactsJson, copyPublicAssets, copyLearnsetPayloads, copyMoveLearnerPayloads, copyTeamCoveragePayloads, copyEvTrainingRoutesPayload, copyTcgChallengePayloads, writeNavigationPayload, writeLearnerFacts, writePokemonIndexPayload } from './scripts/public-assets.mjs';
+import { publicAssets, searchJson, pokemonIndexJson, learnsetJson, navigationJson, moveLearnerJson, learnerFactsJson, copyPublicAssets, copyEditorialAssets, copyLearnsetPayloads, copyMoveLearnerPayloads, copyTeamCoveragePayloads, copyEvTrainingRoutesPayload, copyTcgChallengePayloads, writeNavigationPayload, writeLearnerFacts, writePokemonIndexPayload } from './scripts/public-assets.mjs';
 import { POKEMON_SLUG_SET } from './src/lib/routes.js';
 import { MOVE_SLUG_SET } from './src/lib/moveData.js';
+import { deploymentEnvironment, writeDeploymentHeaders } from './scripts/deployment.mjs';
 
 // TeamCoveragePage is intentionally imported from the parent production app.
 // In Cloudflare's isolated install its bare imports must resolve from this
@@ -13,6 +14,7 @@ import { MOVE_SLUG_SET } from './src/lib/moveData.js';
 // `import.meta.resolve` preserves the package's ESM entrypoint and works both
 // with a hoisted local install and Cloudflare's nested `astro-poc/node_modules`.
 const reactRouterDomEntry = fileURLToPath(import.meta.resolve('react-router-dom'));
+const deployEnvironment = deploymentEnvironment();
 
 export default defineConfig({
   site: 'https://pokelore.net',
@@ -32,7 +34,9 @@ export default defineConfig({
     },
     esbuild: { jsx: 'automatic', jsxImportSource: 'react' },
     resolve: {
-      alias: [{ find: /^react-router-dom$/, replacement: reactRouterDomEntry }],
+      alias: [
+        { find: /^react-router-dom$/, replacement: reactRouterDomEntry }
+      ],
       dedupe: ['react', 'react-dom']
     },
     plugins: [{
@@ -147,6 +151,19 @@ export default defineConfig({
             createReadStream(source).on('error', next).pipe(res);
             return;
           }
+          // Editorial article images remain in the production public tree.
+          // Serve the two audited folders in development just as the build hook
+          // copies them into dist for the static deployment.
+          const editorialImageMatch = pathname.match(/^\/images\/(topics|items)\/(.+)$/);
+          if (editorialImageMatch) {
+            const source = join(fileURLToPath(new URL('../public/images/', import.meta.url)), editorialImageMatch[1], editorialImageMatch[2]);
+            if (!existsSync(source)) return next();
+            const mime = { '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif' };
+            res.setHeader('Content-Type', mime[extname(source)] ?? 'application/octet-stream');
+            if (req.method === 'HEAD') return res.end();
+            createReadStream(source).on('error', next).pipe(res);
+            return;
+          }
           const tcgArtworkMatch = pathname.match(/^\/images\/tcg\/[a-z0-9-]+\.webp$/);
           if (tcgArtworkMatch) {
             const source = join(fileURLToPath(new URL('../public', import.meta.url)), pathname);
@@ -173,7 +190,9 @@ export default defineConfig({
     hooks: {
       'astro:build:done': ({ dir }) => {
         const output = fileURLToPath(dir);
+        writeDeploymentHeaders(output, deployEnvironment);
         copyPublicAssets(output);
+        copyEditorialAssets(output);
         mkdirSync(join(output, 'data'), { recursive: true });
         writeFileSync(join(output, 'data/search.json'), searchJson());
         writePokemonIndexPayload(output);

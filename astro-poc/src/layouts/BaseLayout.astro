@@ -1,5 +1,6 @@
 ---
 import SeoHead from '../components/SeoHead.astro';
+import Analytics from '../components/Analytics.astro';
 import GlobalSiteSearch from '../islands/GlobalSiteSearch.jsx';
 import banner360 from '../../../src/assets/Banner-360.webp?url';
 import banner640 from '../../../src/assets/Banner-640.webp?url';
@@ -9,11 +10,14 @@ import '../../../src/index.css';
 import '../styles/reference.css';
 import { publicHref } from '../lib/links.js';
 const { seo } = Astro.props;
+const analyticsMeasurementId = import.meta.env.POKELORE_DEPLOY_ENV === 'production'
+  ? import.meta.env.PUBLIC_GA_MEASUREMENT_ID
+  : '';
 const nav = [['/', 'Pokémon'], ['/moves','Moves'], ['/abilities','Abilities'], ['/items','Items'], ['/locations','Locations'], ['/topics','Topics'], ['/news','News'], ['/types','Types'], ['/tools','Tools'], ['/dex-entries','Entries']];
 ---
 <!doctype html>
 <html lang="en">
-  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><SeoHead seo={seo} /></head>
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><SeoHead seo={seo} /><Analytics measurementId={analyticsMeasurementId} /></head>
   <body><div id="root">
     <a class="skip" href="#main">Skip to content</a>
     <header>

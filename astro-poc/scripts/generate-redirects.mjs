@@ -12,6 +12,9 @@ export const DYNAMIC_REDIRECTS = [
   '/ability/:slug/ /ability/:slug 301',
   '/ability/:slug.html /ability/:slug 301'
 ];
+export const STATIC_REDIRECTS = [
+  '/DexEntries /dex-entries 301'
+];
 
 export function generateRedirects(source) {
   // JSON.parse silently overwrites duplicate keys. Inspect the flat byId map
@@ -40,6 +43,7 @@ export function generateRedirects(source) {
       '# Source: public/data/pokemonRoutes.json in the parent repository.',
       ...rules,
       '# Explicit permanent normalization; static rules must come first.',
+      ...STATIC_REDIRECTS,
       ...DYNAMIC_REDIRECTS,
       ''
     ].join('\n')

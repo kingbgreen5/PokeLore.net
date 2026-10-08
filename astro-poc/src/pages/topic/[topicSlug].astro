@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import ArticleBody from '../../components/ArticleBody.astro';
+import { ACTIVE_TOPICS, getTopic, topicSeo, formatArticleDate, itemLocationRows } from '../../lib/editorialTopics.js';
+import { formatPokemonDisplayName } from '../../../../src/utils/pokemonNames.js';
+import { formatVersionGroupName } from '../../../../src/utils/learnsetDisplay.js';
+import staticGuides from '../../generated/editorial-static-guides.json';
+
+export function getStaticPaths() { return ACTIVE_TOPICS.map(topic => ({ params: { topicSlug: topic.slug } })); }
+const topic = getTopic(Astro.params.topicSlug);
+const seo = topicSeo(topic);
+const article = topic.article;
+const staticItemGames = { 'pokemon-red-item-locations': 'red', 'pokemon-blue-item-locations': 'blue', 'pokemon-yellow-item-locations': 'yellow' };
+const itemGame = staticItemGames[topic.slug];
+const entryCount = topic.kind === 'pokedex' ? topic.results.reduce((total, result) => total + result.entries.length, 0) : 0;
+const staticHtml = topic.kind === 'static' ? (itemGame ? '' : staticGuides[topic.slug]) : '';
+---
+<BaseLayout {seo}>
+  {topic.kind === 'article' && <article class="editorial-topic">
+    <nav aria-label="Breadcrumb"><a href="/topics">Topics</a><span aria-hidden="true"> / </span><span>{article.title}</span></nav>
+    <header>{article.category && <p class="category">{article.category}</p>}<h1>{article.title}</h1>{article.subtitle && <p class="subtitle">{article.subtitle}</p>}<p class="byline">{article.author || 'PokeLore'} · {formatArticleDate(article.publishedDate)}{article.updatedDate && article.updatedDate !== article.publishedDate ? ` · Updated ${formatArticleDate(article.updatedDate)}` : ''}</p></header>
+    {article.hero?.src && <figure class="hero"><img src={article.hero.src} alt={article.hero.decorative ? '' : (article.hero.alt ?? '')} width={article.hero.width || undefined} height={article.hero.height || undefined} fetchpriority="high" />{article.hero.caption && <figcaption>{article.hero.caption}</figcaption>}</figure>}
+    <ArticleBody sections={article.sections} />
+    {article.sources?.length > 0 && <section><h2>Sources and Further Reading</h2><ol>{article.sources.map(source => <li>{source.url ? <a href={source.url} target="_blank" rel="noreferrer">{source.title || source.url}</a> : source.title}{source.publisher && ` - ${source.publisher}`}{source.accessedDate && ` (accessed ${source.accessedDate})`}{source.note && <p>{source.note}</p>}</li>)}</ol></section>}
+    {article.relatedTopics?.length > 0 && <section><h2>Related Topics</h2><div>{article.relatedTopics.map(related => { const slug = typeof related === 'string' ? related : related.slug; const title = typeof related === 'string' ? related : related.title ?? slug; return <a href={`/topic/${slug}`}>{title}</a>; })}</div></section>}
+  </article>}
+  {topic.kind === 'pokedex' && <article class="pokedex-topic"><a href="/topics">Back to topics</a><h1>{topic.title}</h1><p>{topic.introText}</p><p><strong>{topic.results.length} Pokémon · {entryCount} matching entries</strong></p><div class="pokedex-grid">{topic.results.map(result => <article class="pokemon-entry"><a href={`/pokemon/${result.pokemon.name}`}><span>#{String(result.pokemon.id).padStart(4, '0')}</span><img src={result.pokemon.sprite} alt={formatPokemonDisplayName(result.pokemon)} loading="lazy" width="96" height="96" /><strong>{formatPokemonDisplayName(result.pokemon)}</strong></a><div class="types">{result.pokemon.types.map(type => <a href={`/type/${type}`}><TypeBadge type={type} height="1.2rem" /></a>)}</div>{result.habitatMatches?.map(match => <p class="habitat">Habitat: {match.displayName}</p>)}{result.curatedMatches?.map(match => <p class="curated">{match.reason}</p>)}{result.entries.map(entry => <section class="entry"><p>{entry.text}</p>{entry.versions.length > 0 && <small class="version-labels">{entry.versions.map(formatVersionGroupName).join(', ')}</small>}</section>)}</article>)}</div></article>}
+  {topic.kind === 'static' && <article class="static-topic">{itemGame ? <><a href="/topics">Back to topics</a><h1>{topic.title}</h1><p>{topic.introText}</p><p><strong>{itemLocationRows(itemGame).length} location entries</strong></p><ul>{itemLocationRows(itemGame).map(row => <li><a href={`/item/${row.item.name}`}>{row.item.displayName}</a> — {row.method.details || row.method.type}{row.method.area && ` (${row.method.area})`}</li>)}</ul></> : <Fragment set:html={staticHtml} />}</article>}
+</BaseLayout>
+<style>.editorial-topic,.pokedex-topic,.static-topic{margin:0 auto;max-width:960px;padding:2rem 1rem;text-align:left}.editorial-topic header{margin-top:1rem}
+.editorial-topic h1{line-height:1.12;margin-bottom:.45em}.category{color:#fab856;font-weight:700}
+.subtitle{color:#b6beca;font-size:1.15rem}.byline{color:#b6beca}.hero{margin:1.5rem 0}.hero img{height:auto;max-width:100%}
+.pokedex-grid{column-gap:1rem;column-width:260px}.pokemon-entry{background:#2c2c2c;border:2px solid #555;border-radius:12px;break-inside:avoid;
+margin-bottom:1rem;padding:1rem}.pokemon-entry>a{align-items:center;color:inherit;display:grid;justify-items:center;text-decoration:none}
+.pokemon-entry img{object-fit:contain}.types{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;margin:.75rem 0}.types a{display:inline-flex;
+text-decoration:none}.habitat,.curated,.entry{border-left:3px solid #7ac97a;padding-left:.75rem}.curated{border-color:#8ca0ff}.entry{border-color:#fab856}.version-labels{color:#8995a5;
+display:block;margin-bottom:.7rem}.static-topic :global(main){padding:0}</style>

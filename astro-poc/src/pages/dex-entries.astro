@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { DEX_ENTRY_CATALOG } from '../lib/dexEntryData.js';
 ---
-<BaseLayout seo={{ title:'Pokédex Entries Database | PokéLore', description:'Search Pokédex entries across Pokémon games by keyword, Pokémon, and version.', canonical:'https://pokelore.net/dex-entries', robots:'noindex' }}>
+<BaseLayout seo={{ title:'Pokédex Entries Database | PokéLore', description:'Search Pokédex entries across Pokémon games by keyword, Pokémon, and version.', canonical:'https://pokelore.net/dex-entries' }}>
   <article class="dex-hub">
     <header><h1>Pokédex Entries Database</h1><p>Search every Pokémon Pokédex entry from every main series game in one place. Find how each Pokémon has been described across generations, compare version differences, and discover how official Pokédex lore has evolved over time.</p></header>
     <form data-dex-search><label for="dex-search">Search entries</label><input id="dex-search" type="search" placeholder='Search entries... Ex: forest, dreams...' data-search /><label class="exact"><input type="checkbox" data-exact /> Exact word</label></form>

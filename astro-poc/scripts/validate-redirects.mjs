@@ -14,6 +14,9 @@ export function validateRedirects(text, registry) {
     '/ability/:slug/ /ability/:slug 301',
     '/ability/:slug.html /ability/:slug 301'
   ]);
+  const staticAliases = new Map([
+    ['/DexEntries', '/dex-entries']
+  ]);
   let dynamicCount = 0;
   let reachedDynamic = false;
   for (const [index, line] of text.split(/\r?\n/).entries()) {
@@ -32,6 +35,10 @@ export function validateRedirects(text, registry) {
       continue;
     }
     assert(!reachedDynamic, `Static rule after dynamic rules at line ${lineNumber}`);
+    if (staticAliases.has(source)) {
+      assert.equal(destination, staticAliases.get(source), `Wrong destination for ${source}`);
+      continue;
+    }
     const id = source.match(/^\/pokemon\/([1-9]\d*)$/)?.[1];
     assert(id && Object.hasOwn(registry.byId, id), `Unknown numeric source at line ${lineNumber}`);
     assert.equal(destination, `/pokemon/${registry.byId[id]}`, `Wrong destination for ${source}`);
@@ -48,5 +55,6 @@ export function validateRedirects(text, registry) {
   assert.equal(sources.get('/pokemon/:slug/'), '/pokemon/:slug', 'Missing slash normalization');
   assert.equal(sources.get('/move/:slug/'), '/move/:slug', 'Missing Move slash normalization');
   assert.equal(sources.get('/ability/:slug/'), '/ability/:slug', 'Missing Ability slash normalization');
+  assert.equal(sources.get('/DexEntries'), '/dex-entries', 'Missing legacy DexEntries redirect');
   return { numeric, dynamicCount };
 }

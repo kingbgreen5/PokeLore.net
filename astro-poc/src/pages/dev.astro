@@ -3,6 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { DEV_TOOL_GROUPS } from '../lib/devTools.js';
 
 const canonical = 'https://pokelore.net/dev';
+const availableGroups = DEV_TOOL_GROUPS.map(group => ({
+  ...group,
+  tools: group.tools.filter(tool => tool.status === 'available')
+})).filter(group => group.tools.length > 0);
 ---
 <BaseLayout seo={{ title: 'Developer Tools | PokéLore', description: 'Private local developer tools index.', canonical, robots: 'noindex,nofollow' }}>
   <article class="dev-tools" data-dev-tools hidden>
@@ -10,7 +14,7 @@ const canonical = 'https://pokelore.net/dev';
       <h1>Developer Tools</h1>
       <p>Hidden local index for authoring, review, preview, and calibration tools.</p>
     </header>
-    {DEV_TOOL_GROUPS.map(group => <section>
+    {availableGroups.map(group => <section>
       <h2>{group.title}</h2>
       <div class="tool-grid">
         {group.tools.map(tool => <a class:list={{ available: tool.status === 'available' }} href={tool.path}>

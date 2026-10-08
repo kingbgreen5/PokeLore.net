@@ -105,8 +105,13 @@ function readLocalValue(key, defaultValue) {
   try { const value = window.localStorage.getItem(key); return value === null ? defaultValue : JSON.parse(value); } catch { return defaultValue; }
 }
 function useLocalStorageState(key, defaultValue) {
-  const [value, setValue] = useState(() => readLocalValue(key, defaultValue));
-  useEffect(() => { try { window.localStorage.setItem(key, JSON.stringify(value)); } catch {} }, [key, value]);
+  // Static HTML always renders these defaults. Reading browser-only preferences
+  // during the first client render made query/local-storage visits disagree
+  // with the server markup, forcing React to abandon hydration (#418).
+  const [value, setValue] = useState(defaultValue);
+  const [ready, setReady] = useState(false);
+  useEffect(() => { setValue(readLocalValue(key, defaultValue)); setReady(true); }, [defaultValue, key]);
+  useEffect(() => { if (ready) try { window.localStorage.setItem(key, JSON.stringify(value)); } catch {} }, [key, ready, value]);
   useEffect(() => {
     const handleStorage = event => {
       if (event.storageArea !== window.localStorage || event.key !== key) return;
@@ -120,8 +125,9 @@ function useAstroSearchParams(initialSearch) {
   // Static Astro documents are generated without request query strings. On the
   // browser, initialize from the real URL so direct shared calculator links
   // retain the production route's version/type behavior.
-  const [searchParams, setParams] = useState(() => new URLSearchParams(typeof window === 'undefined' ? initialSearch : window.location.search));
+  const [searchParams, setParams] = useState(() => new URLSearchParams(initialSearch));
   useEffect(() => {
+    setParams(new URLSearchParams(window.location.search));
     const onPopState = () => setParams(new URLSearchParams(window.location.search));
     window.addEventListener('popstate', onPopState); return () => window.removeEventListener('popstate', onPopState);
   }, []);

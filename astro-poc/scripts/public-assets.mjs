@@ -98,6 +98,15 @@ export function copyPublicAssets(output) {
   }
 }
 
+// Editorial article image paths are source-authored JSON values. Copy their
+// existing public folders intact rather than creating a parallel asset map.
+export function copyEditorialAssets(output) {
+  for (const directory of ['images/topics', 'images/items']) {
+    const source = join(repositoryRoot, 'public', directory);
+    if (existsSync(source)) cpSync(source, join(output, directory), { recursive: true });
+  }
+}
+
 // Coverage tools load one game file on demand. Keep the files as static assets
 // instead of serializing any portion of the corpus into HTML or island props.
 export function copyTeamCoveragePayloads(output) {

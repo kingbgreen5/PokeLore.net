@@ -1,0 +1,32 @@
+---
+import { parseInlineText } from '../lib/editorialTopics.js';
+const { sections = [] } = Astro.props;
+const escapeHtml = value => String(value ?? '')
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll("'", '&#39;');
+const inlineHtml = value => parseInlineText(value)
+  .map(part => part.href
+    ? `<a href="${escapeHtml(part.href)}">${escapeHtml(part.text)}</a>`
+    : escapeHtml(part.text))
+  .join('');
+---
+{sections.map(block => {
+  if (block.type === 'paragraph') return <p><Fragment set:html={inlineHtml(block.text)} /></p>;
+  if (block.type === 'heading') return Number(block.level) === 3 ? <h3 id={block.anchor}>{block.text}</h3> : <h2 id={block.anchor}>{block.text}</h2>;
+  if (block.type === 'image') return <figure><img src={block.src} alt={block.decorative ? '' : (block.alt ?? '')} width={block.width || undefined} height={block.height || undefined} loading="lazy" />{block.caption && <figcaption>{block.caption}</figcaption>}</figure>;
+  if (block.type === 'image-grid') return <div class="image-grid">{(block.images ?? []).map(image => <figure><img src={image.src} alt={image.decorative ? '' : (image.alt ?? '')} loading="lazy" />{image.caption && <figcaption>{image.caption}</figcaption>}</figure>)}</div>;
+  if (block.type === 'list') { const Tag = block.ordered ? 'ol' : 'ul'; return <Tag>{(block.items ?? []).map(item => <li><Fragment set:html={inlineHtml(item)} /></li>)}</Tag>; }
+  if (block.type === 'quote') return <figure class="quote"><blockquote><Fragment set:html={inlineHtml(block.text)} /></blockquote>{block.citation && <figcaption>{block.citation}</figcaption>}</figure>;
+  if (block.type === 'table') return <div class="table-wrap"><table>{block.headers?.length > 0 && <thead><tr>{block.headers.map(header => <th>{header}</th>)}</tr></thead>}<tbody>{(block.rows ?? []).map(row => <tr>{row.map(cell => <td>{cell}</td>)}</tr>)}</tbody></table></div>;
+  if (block.type === 'comparison') return <section class="comparison">{block.title && <h3>{block.title}</h3>}{(block.items ?? []).map(item => <article><h4>{item.label}</h4><p><Fragment set:html={inlineHtml(item.text)} /></p></article>)}</section>;
+  if (block.type === 'callout') return <aside class="callout">{block.title && <h3>{block.title}</h3>}<p><Fragment set:html={inlineHtml(block.text ?? '')} /></p></aside>;
+  if (block.type === 'youtube') return <figure><iframe src={`https://www.youtube-nocookie.com/embed/${block.videoId ?? new URL(block.url).searchParams.get('v')}`} title={block.title ?? 'YouTube video'} loading="lazy" allowfullscreen></iframe>{block.caption && <figcaption>{block.caption}</figcaption>}</figure>;
+  if (block.type === 'pokemon-link') return <p><a href={`/pokemon/${block.slug}`}>{block.label ?? block.slug}</a>{block.text && ` - ${block.text}`}</p>;
+  if (block.type === 'topic-link') return <p><a href={`/topic/${block.slug}`}>{block.label ?? block.slug}</a>{block.text && ` - ${block.text}`}</p>;
+  if (block.type === 'oak-notes') return <aside class="oak-notes"><h2>{block.title || "Oak's Notes"}</h2>{(block.notes ?? []).map(note => <p><Fragment set:html={inlineHtml(note)} /></p>)}{(block.sections ?? []).map(section => <section>{section.heading && <h3>{section.heading}</h3>}{(section.body ?? []).map(text => <p><Fragment set:html={inlineHtml(text)} /></p>)}</section>)}</aside>;
+  return null;
+})}
+<style>.image-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.image-grid figure{margin:0}.image-grid img,figure img{height:auto;max-width:100%}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%}td,th{border:1px solid #555;padding:.55rem;text-align:left}.quote,.callout,.oak-notes,.comparison{border-left:3px solid #fab856;margin:1.5rem 0;padding:.75rem 1rem}.comparison{border:0;padding:0}.comparison article{background:#2c2c2c;border:1px solid #555;border-radius:8px;margin:.75rem 0;padding:.75rem}iframe{aspect-ratio:16/9;border:0;max-width:100%;width:720px}</style>

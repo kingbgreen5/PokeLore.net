@@ -1,15 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { ITEM_SLUGS, ITEM_SLUG_SET, allItemModels } from '../lib/itemData.js';
+import { ITEM_HUB_SLUGS, ITEM_HUB_SLUG_SET, allItemModels } from '../lib/itemData.js';
 
-const source = allItemModels();
+const source = allItemModels().filter(item => ITEM_HUB_SLUG_SET.has(item.slug));
 const slugs = source.map(item => item.slug);
 const duplicates = slugs.length - new Set(slugs).size;
-const missing = ITEM_SLUGS.filter(slug => !slugs.includes(slug));
-const unexpected = slugs.filter(slug => !ITEM_SLUG_SET.has(slug));
+const missing = ITEM_HUB_SLUGS.filter(slug => !slugs.includes(slug));
+const unexpected = slugs.filter(slug => !ITEM_HUB_SLUG_SET.has(slug));
 const dynamax = source.filter(item => item.category?.name === 'dynamax-crystals' || item.slug.startsWith('dynamax-crystal-'));
-if (source.length !== ITEM_SLUGS.length || duplicates || missing.length || unexpected.length || dynamax.length) {
-  throw new Error(`Item hub registry parity failed: expected ${ITEM_SLUGS.length}, actual ${source.length}, missing ${missing.length}, unexpected ${unexpected.length}, duplicates ${duplicates}, Dynamax ${dynamax.length}.`);
+if (source.length !== ITEM_HUB_SLUGS.length || duplicates || missing.length || unexpected.length || dynamax.length) {
+  throw new Error(`Item hub registry parity failed: expected ${ITEM_HUB_SLUGS.length}, actual ${source.length}, missing ${missing.length}, unexpected ${unexpected.length}, duplicates ${duplicates}, Dynamax ${dynamax.length}.`);
 }
 const pockets = [
   ['misc', 'Misc'], ['medicine', 'Medicine'], ['battle', 'Battle'], ['key', 'Key'],
@@ -22,7 +22,6 @@ const formatPocket = pocket => pocket ? pocket.charAt(0).toUpperCase() + pocket.
   title: 'Pokémon Items Database | PokéLore',
   description: 'Search Pokémon items by name, pocket, category, effect, and acquisition details.',
   canonical: 'https://pokelore.net/items',
-  robots: 'noindex'
 }}>
   <article class="items-hub">
     <header>

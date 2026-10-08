@@ -11,15 +11,18 @@ import { getPokemonNavigation } from '../src/lib/pokemonNavigation.js';
 import { referenceSeo } from '../src/lib/seo.js';
 import { MOVE_SLUGS } from '../src/lib/moveData.js';
 import { ABILITY_SLUGS } from '../src/lib/abilityData.js';
-import { ITEM_SLUGS } from '../src/lib/itemData.js';
+import { ITEM_HUB_SLUGS, ITEM_SLUGS } from '../src/lib/itemData.js';
 import { LOCATION_SLUGS } from '../src/lib/locationData.js';
 import { TYPE_SLUGS } from '../src/lib/typeData.js';
 import { DEV_TOOL_ROUTES } from '../src/lib/devTools.js';
+import { TOPIC_SLUGS } from '../src/lib/editorialTopics.js';
 import { DEX_ENTRY_CATALOG, DEX_ENTRY_STATS } from '../src/lib/dexEntryData.js';
 import { registryRedirects } from './generate-redirects.mjs';
 import { validateRedirects } from './validate-redirects.mjs';
+import { deploymentEnvironment, deploymentHeaders } from './deployment.mjs';
 
 const dist = resolve(process.argv[2] ?? 'dist');
+const deployEnvironment = deploymentEnvironment();
 const normalize = text => text.replace(/\s+/g, ' ').trim();
 function documentAt(file) {
   assert(existsSync(join(dist, file)), `Missing output: ${file}`);
@@ -41,11 +44,10 @@ assert.equal(sharedNavigation.length, POKEMON_SLUGS.length, 'Shared navigation i
 assert.equal(new Set(sharedNavigation.map(entry => entry.name)).size, POKEMON_SLUGS.length, 'Shared navigation names are unique');
 assert(sharedNavigation.every(entry => Object.keys(entry).sort().join(',') === 'id,name,sprite'), 'Navigation records contain only id, name and sprite');
 assert.deepEqual(files.filter(f => f.endsWith('.html')).sort(),
-  ['index.html', '404.html', 'moves.html', 'items.html', 'abilities.html', 'dex-entries.html', 'types.html', 'locations.html', 'tools.html', 'single-type-coverage.html', 'team-coverage.html', 'ev-training-routes.html', 'dppt-feebas-calculator.html', 'rse-feebas-calculator.html', 'dev.html', 'dev/team-coverage-scoring.html', 'dev/single-type-coverage-scoring.html', ...DEV_TOOL_ROUTES.map(tool => `${tool.path.slice(1)}.html`), ...POKEMON_SLUGS.map(s => `pokemon/${s}.html`), ...MOVE_SLUGS.map(s => `move/${s}.html`), ...ABILITY_SLUGS.map(s => `ability/${s}.html`), ...ITEM_SLUGS.map(s => `item/${s}.html`), ...LOCATION_SLUGS.map(s => `location/${s}.html`), ...TYPE_SLUGS.map(s => `type/${s}.html`)].sort(), 'Exactly the canonical Astro HTML documents');
+  ['index.html', '404.html', 'moves.html', 'items.html', 'items/dynamax-crystals.html', 'abilities.html', 'dex-entries.html', 'types.html', 'locations.html', 'tools.html', 'topics.html', 'news.html', 'tcg-challenge.html', 'single-type-coverage.html', 'team-coverage.html', 'ev-training-routes.html', 'dppt-feebas-calculator.html', 'rse-feebas-calculator.html', 'dev.html', 'dev/team-coverage-scoring.html', 'dev/single-type-coverage-scoring.html', ...DEV_TOOL_ROUTES.map(tool => `${tool.path.slice(1)}.html`), ...TOPIC_SLUGS.map(s => `topic/${s}.html`), ...POKEMON_SLUGS.map(s => `pokemon/${s}.html`), ...MOVE_SLUGS.map(s => `move/${s}.html`), ...ABILITY_SLUGS.map(s => `ability/${s}.html`), ...ITEM_SLUGS.map(s => `item/${s}.html`), ...LOCATION_SLUGS.map(s => `location/${s}.html`), ...TYPE_SLUGS.map(s => `type/${s}.html`)].sort(), 'Exactly the canonical Astro HTML documents');
 const hostingFiles = new Set(['_headers', '_redirects']);
-for (const file of hostingFiles) {
-  assert(readFileSync(join(dist, file)).equals(readFileSync(join('public', file))), `${file}: hosting configuration copied unchanged`);
-}
+assert.equal(readFileSync(join(dist, '_headers'), 'utf8'), deploymentHeaders(deployEnvironment), `${deployEnvironment}: generated header policy`);
+assert(readFileSync(join(dist, '_redirects')).equals(readFileSync(join('public', '_redirects'))), '_redirects: hosting configuration copied unchanged');
 assert.deepEqual(files.filter(f => !extname(f) && !hostingFiles.has(f)).sort(),
   [], 'No extensionless page copies');
 const redirects = registryRedirects();
@@ -61,17 +63,18 @@ assert.equal(config.assets.html_handling, 'drop-trailing-slash');
 assert.equal(config.assets.not_found_handling, 'none');
 assert(!config.main && !config.assets.run_worker_first, 'Static assets only, no Worker runtime');
 const headers = readFileSync(join(dist, '_headers'), 'utf8');
-assert.match(headers, /\/\*\s+X-Robots-Tag: noindex/);
+if (deployEnvironment === 'staging') assert.match(headers, /\/\*\s+X-Robots-Tag: noindex/);
+else assert(!/X-Robots-Tag/i.test(headers), 'Production has no blanket noindex header');
 assert(!/Content-Type:/i.test(headers), 'Native HTML and asset MIME types');
-console.log(`PASS: ${redirects.count} static numeric redirects (< 2000), six dynamic 301 rules, no SPA fallback, staging noindex.`);
+console.log(`PASS: ${redirects.count} static numeric redirects (< 2000), six dynamic 301 rules, no SPA fallback, ${deployEnvironment} header policy.`);
 assert(!files.some(f => /^pokemon\/\d+(?:[/.]|$)/.test(f)), 'No numeric resources');
 // Phase 1B permits scoped islands; core HTML and the head remain server-owned.
 for (const file of readdirSync('src/islands').filter(f=>f.endsWith('.jsx'))) {
   const source=readFileSync(join('src/islands',file),'utf8');
-  const allowsClientOnlyRouter = file === 'TeamCoverageTool.jsx';
+  const allowsClientOnlyRouter = new Set(['TeamCoverageTool.jsx', 'TcgChallengeTool.jsx']).has(file);
   assert(!/document\.title|querySelector\([^)]*canonical|<Seo\b/.test(source), `${file}: no SEO repair`);
   if (allowsClientOnlyRouter) {
-    assert(/from\s*["']react-router-dom["']/.test(source), `${file}: only the dedicated client-only Team Coverage wrapper may own its router`);
+    assert(/from\s*["']react-router-dom["']/.test(source), `${file}: dedicated client-only tool wrapper owns its router`);
   } else {
     assert(!/from\s*["']react-router/.test(source), `${file}: no router`);
   }
@@ -241,12 +244,12 @@ assert(itemsHub.querySelector('[data-item-filters]'), 'Items hub has static filt
 assert(itemsHub.querySelector('table [data-item-grid]'), 'Items hub has a static table body');
 const itemHubTargets = [...itemsHub.querySelectorAll('[data-item]')]
   .map(row => new URL(row.querySelector('a[href]').getAttribute('href'), 'https://pokelore.net').pathname.slice('/item/'.length));
-assert.equal(ITEM_SLUGS.length, 1877, 'Frozen item registry count');
-assert.equal(itemHubTargets.length, ITEM_SLUGS.length, 'Items hub links every canonical item once');
-assert.equal(new Set(itemHubTargets).size, ITEM_SLUGS.length, 'Items hub has no duplicate canonical links');
-assert.deepEqual([...new Set(itemHubTargets)].sort(), [...ITEM_SLUGS].sort(), 'Items hub link targets match frozen registry');
+assert.equal(ITEM_SLUGS.length, 1889, 'Frozen item registry count');
+assert.equal(itemHubTargets.length, ITEM_HUB_SLUGS.length, 'Items hub links every eligible item once');
+assert.equal(new Set(itemHubTargets).size, ITEM_HUB_SLUGS.length, 'Items hub has no duplicate canonical links');
+assert.deepEqual([...new Set(itemHubTargets)].sort(), [...ITEM_HUB_SLUGS].sort(), 'Items hub link targets match its filtered registry');
 assert.equal(itemHubTargets.filter(slug => slug.startsWith('dynamax-crystal-')).length, 0, 'Items hub excludes every Dynamax Crystal');
-assert.equal(Number(itemsHub.querySelector('[data-item-count]').textContent.replaceAll(',', '')), ITEM_SLUGS.length, 'Items hub no-JS result count');
+assert.equal(Number(itemsHub.querySelector('[data-item-count]').textContent.replaceAll(',', '')), ITEM_HUB_SLUGS.length, 'Items hub no-JS result count');
 assert(itemsHub.querySelectorAll('[data-item] img[loading="lazy"]').length > 0, 'Items hub retains lazy sprite markup');
 const abilitiesHub = documentAt('abilities.html');
 assert.equal(abilitiesHub.querySelector('link[rel="canonical"]').getAttribute('href'), 'https://pokelore.net/abilities');

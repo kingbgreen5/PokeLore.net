@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const seo = { title: 'Pokemon News | PokéLore', description: 'Read the latest Pokemon news, official updates, analysis, and carefully labeled rumors from PokeLore.', canonical: 'https://pokelore.net/news', robots: 'index,follow,max-image-preview:large' };
+---
+<BaseLayout {seo}><article class="news"><a href="/">Back to PokeLore</a><h1>Latest Pokemon News</h1><p class="intro">Official updates, developing stories, analysis, and clearly labeled rumors from PokeLore.</p><p>No active news stories yet.</p></article></BaseLayout>
+<style>.news{margin:0 auto;max-width:1080px;padding:2rem 1rem;text-align:left}.intro{color:#b6beca;line-height:1.5;max-width:720px}</style>

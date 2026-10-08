@@ -1,0 +1,30 @@
+---
+const { measurementId } = Astro.props;
+---
+{measurementId && <script is:inline define:vars={{ measurementId }}>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  function loadGoogleTag() {
+    if (window.__pokeloreGoogleTagLoaded) return;
+    window.__pokeloreGoogleTagLoaded = true;
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+    document.head.appendChild(script);
+    window.gtag('config', measurementId);
+  }
+
+  function scheduleGoogleTag() {
+    window.setTimeout(() => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(loadGoogleTag, { timeout: 2000 });
+      } else {
+        loadGoogleTag();
+      }
+    }, 4500);
+  }
+
+  scheduleGoogleTag();
+</script>}
+

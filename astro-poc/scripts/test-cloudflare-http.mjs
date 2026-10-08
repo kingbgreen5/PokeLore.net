@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { parseHTML } from 'linkedom';
 const origin = process.argv[2] ?? 'http://127.0.0.1:8787';
+const requireNoindex = process.env.POKELORE_DEPLOY_ENV !== 'production';
 const registry = JSON.parse(readFileSync('../public/data/pokemonRoutes.json','utf8'));
 const results = [];
 async function check(path, status, location, html = false) {
@@ -16,7 +17,8 @@ async function check(path, status, location, html = false) {
     } else assert.equal(result.location,null,`${path}: no unnecessary redirect`);
     if(html) {
       assert.match(result.type,/^text\/html/);
-      assert.match(result.robots,/noindex/);
+      if (requireNoindex) assert.match(result.robots,/noindex/);
+      else assert.equal(result.robots, null, `${path}: production response has no blanket noindex`);
     }
     if(method==='GET') {
       const body=await response.text();
@@ -66,8 +68,9 @@ for(const [path,mime] of [[css,/text\/css/],['/data/search.json',/application\/j
   const response=await fetch(new URL(path,origin));
   assert.equal(response.status,200);
   assert.match(response.headers.get('content-type'),mime);
-  assert.match(response.headers.get('x-robots-tag'),/noindex/);
+  if (requireNoindex) assert.match(response.headers.get('x-robots-tag'),/noindex/);
+  else assert.equal(response.headers.get('x-robots-tag'), null, `${path}: production asset has no blanket noindex`);
 }
 mkdirSync('evidence/cloudflare',{recursive:true});
 writeFileSync('evidence/cloudflare/http-results.json',JSON.stringify({origin,checkedAt:new Date().toISOString(),results},null,2));
-console.log(`PASS: ${entries.length} numeric redirects; canonical 200s; slash 301s; optional .html aliases; two-hop numeric slash; custom 404s; MIME; noindex; assets (HEAD and GET).`);
+console.log(`PASS: ${entries.length} numeric redirects; canonical 200s; slash 301s; optional .html aliases; two-hop numeric slash; custom 404s; MIME; ${requireNoindex ? 'staging noindex' : 'production indexability'}; assets (HEAD and GET).`);

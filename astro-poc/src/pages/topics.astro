@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { TOPIC_GROUPS, topicCountLabel } from '../lib/editorialTopics.js';
+const seo = { title: 'Pokémon Topics, Item Locations & Lore Guides | PokéLore', description: 'Explore curated Pokémon topics, item-location guides, habitats, behavior, rarity, danger, and Pokédex lore.', canonical: 'https://pokelore.net/topics', robots: 'index,follow,max-image-preview:large' };
+---
+<BaseLayout {seo}>
+  <article class="topics">
+    <h1>Pokémon Topics</h1>
+    <p class="intro">Browse curated topic pages and guides, including item locations, Pokémon habitats, behavior, and official Pokédex lore excerpts.</p>
+    {TOPIC_GROUPS.map(group => <section aria-labelledby={`group-${group.subgroup}`}>
+      <h2 id={`group-${group.subgroup}`}>{group.title}</h2>
+      <div class="topic-list" role="list">
+        {group.topics.map(topic => <a class="topic-row" href={`/topic/${topic.slug}`} role="listitem">
+          <span class="topic-copy"><span class="topic-title">{topic.title}</span><span class="topic-description">{topic.shortDescription}</span></span>
+          <span class="topic-kind">{topicCountLabel(topic)}</span>
+        </a>)}
+      </div>
+    </section>)}
+  </article>
+</BaseLayout>
+<style>
+  .topics{margin:0 auto;max-width:980px;padding:2rem}
+  .intro{margin:0 0 2rem;max-width:760px}
+  .topics section{margin:0 0 2.5rem}
+  .topics h2{border-bottom:2px solid #555;margin:0;padding:0 0 .55rem}
+  .topic-list{border-top:1px solid #555}
+  .topic-row{align-items:start;border-bottom:1px solid #555;color:inherit;display:grid;gap:1rem;grid-template-columns:minmax(0,1fr) auto;padding:1rem .25rem;text-align:left;text-decoration:none}
+  .topic-row:hover,.topic-row:focus-visible{background:rgb(255 255 255 / .06);outline:none}
+  .topic-copy{display:grid;gap:.3rem;min-width:0}
+  .topic-title{color:var(--link-unvisited);font-size:1.05rem;font-weight:700}
+  .topic-description{line-height:1.45;opacity:.86}
+  .topic-kind{font-size:.8rem;line-height:1.45;opacity:.72;text-align:right;white-space:nowrap}
+  @media (max-width:600px){.topics{padding:1.25rem}.topic-row{grid-template-columns:1fr}.topic-kind{text-align:left}}
+</style>

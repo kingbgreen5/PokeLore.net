@@ -7,7 +7,7 @@ const missing = ABILITY_SLUGS.filter(slug => !slugs.includes(slug));
 const unexpected = slugs.filter(slug => !ABILITY_SLUG_SET.has(slug));
 if (ABILITY_SLUGS.length !== 313 || slugs.length !== ABILITY_SLUGS.length || duplicates || missing.length || unexpected.length) throw new Error(`Ability hub registry parity failed: expected ${ABILITY_SLUGS.length}, actual ${slugs.length}, missing ${missing.length}, unexpected ${unexpected.length}, duplicates ${duplicates}.`);
 ---
-<BaseLayout seo={{ title: 'Pokémon Abilities Database | PokéLore', description: 'Search Pokémon abilities and view their effects, descriptions, generations, and matching Pokémon.', canonical: 'https://pokelore.net/abilities', robots: 'noindex' }}>
+<BaseLayout seo={{ title: 'Pokémon Abilities Database | PokéLore', description: 'Search Pokémon abilities and view their effects, descriptions, generations, and matching Pokémon.', canonical: 'https://pokelore.net/abilities' }}>
   <article class="abilities-hub">
     <header><h1>Ability Database</h1><p>Browse Pokémon Abilities and their effects. Search by Ability name to open its detailed page.</p></header>
     <form data-ability-search aria-label="Search abilities"><input type="search" placeholder="Search abilities..." autocomplete="off" data-ability-input /></form>

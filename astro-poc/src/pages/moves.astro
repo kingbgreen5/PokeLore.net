@@ -19,7 +19,7 @@ const types = [...new Set(moves.map(move => move.type))];
 const categories = ['physical', 'special', 'status'];
 const label = value => String(value).split('-').map(word => word[0]?.toUpperCase() + word.slice(1)).join(' ');
 ---
-<BaseLayout seo={{ title: 'Pokémon Moves Database | PokéLore', description: 'Search Pokémon moves by name, type, category, power, accuracy, PP, and effect.', canonical: 'https://pokelore.net/moves', robots: 'noindex' }}>
+<BaseLayout seo={{ title: 'Pokémon Moves Database | PokéLore', description: 'Search Pokémon moves by name, type, category, power, accuracy, PP, and effect.', canonical: 'https://pokelore.net/moves' }}>
   <article class="moves-hub">
     <header><h1>Move Database</h1><p>Browse Pokémon moves across the games by type or category, or search by name. Power, Accuracy, and PP are shown for quick comparison.</p></header>
     <form class="move-filters" data-move-filters aria-label="Filter moves">

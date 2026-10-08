@@ -1,0 +1,15 @@
+{
+  // Do not deploy this configuration until the owner has approved the binding.
+  // This intentionally creates a new Worker rather than replacing the current
+  // production React/Vite origin before rollback details are recorded.
+  "name": "pokelore-astro-production",
+  "compatibility_date": "2026-09-23",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "none"
+  },
+  "routes": [
+    { "pattern": "pokelore.net", "custom_domain": true }
+  ]
+}

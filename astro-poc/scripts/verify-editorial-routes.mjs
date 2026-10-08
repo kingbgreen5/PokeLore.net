@@ -1,0 +1,45 @@
+import assert from 'node:assert/strict';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+import { parseHTML } from 'linkedom';
+import { ACTIVE_TOPICS, HIDDEN_TOPIC_SLUGS, TOPIC_SLUGS, topicSeo } from '../src/lib/editorialTopics.js';
+
+const dist = resolve(process.argv[2] ?? 'dist');
+const html = file => readFileSync(join(dist, file), 'utf8');
+const documentAt = file => parseHTML(html(file)).document;
+assert.equal(TOPIC_SLUGS.length, 24, 'Exactly 24 active canonical topic slugs');
+assert.equal(new Set(TOPIC_SLUGS).size, 24, 'Topic slugs are unique');
+assert(existsSync(join(dist, 'topics.html')), '/topics generated');
+assert(existsSync(join(dist, 'news.html')), '/news generated');
+assert(!existsSync(join(dist, 'news')), 'No news-detail output directory');
+assert.equal(readdirSync(join(dist, 'topic')).filter(file => file.endsWith('.html')).length, 24, 'Exactly 24 topic documents generated');
+for (const slug of HIDDEN_TOPIC_SLUGS) assert(!existsSync(join(dist, 'topic', `${slug}.html`)), `${slug} remains hidden`);
+const topics = documentAt('topics.html');
+assert.equal(topics.querySelector('h1').textContent, 'Pokémon Topics');
+assert.equal(topics.querySelectorAll('.topic-row').length, 24, '/topics exposes active population');
+for (const topic of ACTIVE_TOPICS) {
+  const file = `topic/${topic.slug}.html`;
+  const document = documentAt(file);
+  const seo = topicSeo(topic);
+  assert.equal(document.querySelector('h1')?.textContent.trim(), topic.title.trim(), `${topic.slug}: H1`);
+  assert.equal(document.querySelector('title')?.textContent, seo.title, `${topic.slug}: title`);
+  assert.equal(document.querySelector('meta[name="description"]')?.getAttribute('content'), seo.description, `${topic.slug}: description`);
+  assert.equal(document.querySelector('link[rel="canonical"]')?.getAttribute('href'), seo.canonical, `${topic.slug}: canonical`);
+  assert(!/noindex/i.test(document.querySelector('meta[name="robots"]')?.getAttribute('content') ?? ''), `${topic.slug}: indexable artifact`);
+  const text = document.body.textContent.replace(/\s+/g, ' ').trim();
+  assert(text.length > 120, `${topic.slug}: substantive static HTML`);
+  assert(!/Loading (topic|item locations)/i.test(text), `${topic.slug}: no client-only loading shell`);
+  for (const image of document.querySelectorAll('img[src^="/"]')) assert(existsSync(join(dist, image.getAttribute('src'))), `${topic.slug}: local image exists`);
+  for (const link of document.querySelectorAll('a[href^="/"]')) assert(!link.getAttribute('href').includes('.html'), `${topic.slug}: no .html link`);
+}
+const news = documentAt('news.html');
+assert.equal(news.querySelector('h1').textContent, 'Latest Pokemon News');
+assert(news.body.textContent.includes('No active news stories yet.'), 'News retains audited empty state');
+const winds = TOPIC_SLUGS.filter(slug => slug.includes('winds-and-waves') || slug === 'overworld-poke-ball-throwing-appears-to-be-returning');
+assert.equal(winds.length, 4, 'All four Winds and Waves routes generated');
+const feebas = TOPIC_SLUGS.filter(slug => slug.includes('feebas'));
+assert.equal(feebas.length, 6, 'All six Feebas editorial routes generated');
+assert.equal(ACTIVE_TOPICS.filter(topic => topic.kind === 'static').length, 7, 'Seven static guides');
+assert.equal(ACTIVE_TOPICS.filter(topic => topic.kind === 'pokedex').length, 7, 'Seven generated Pokédex topics');
+assert.equal(ACTIVE_TOPICS.filter(topic => topic.kind === 'article').length, 10, 'Ten JSON editorial articles');
+console.log('PASS editorial: 24 topic pages, empty news index, hidden records excluded, SEO and static-content parity verified.');
