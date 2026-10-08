@@ -5,6 +5,7 @@ import {
 } from "react";
 import { Link } from "react-router-dom";
 import FeebasGuideBreadcrumbs from "../components/feebas/FeebasGuideBreadcrumbs";
+import MaintenanceNotice from "../components/MaintenanceNotice";
 import DpptFeebasMap from "../components/feebas/DpptFeebasMap";
 import DpptGreatMarshResults from "../components/feebas/DpptGreatMarshResults";
 import Seo from "../seo/Seo";
@@ -218,6 +219,7 @@ function DpptFeebasPublicCalculatorPage() {
         <h1>
           Pokemon Diamond, Pearl, and Platinum Feebas Calculator
         </h1>
+        <MaintenanceNotice />
       </header>
 
       <section className="dppt-feebas-public-tool">

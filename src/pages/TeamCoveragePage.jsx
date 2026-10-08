@@ -10,6 +10,7 @@ import {
   useSearchParams
 } from "react-router-dom";
 import EtsyMerchPromo from "../components/EtsyMerchPromo";
+import MaintenanceNotice from "../components/MaintenanceNotice";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import TypeBadge from "../components/TypeBadge";
 import typeChart from "../constants/Types";
@@ -2830,6 +2831,8 @@ function TeamCoveragePage() {
       >
         Pokémon Playthrough Team Builder
       </h1>
+
+      <MaintenanceNotice />
 
       <p
         style={{
