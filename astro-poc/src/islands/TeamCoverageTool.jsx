@@ -1,6 +1,7 @@
 // Deliberately wraps the frozen production implementation instead of copying
-// calculator semantics into Astro. BrowserRouter supplies the same URL APIs
-// TeamCoveragePage uses in the Vite application.
+// calculator semantics into Astro. BrowserRouter supplies the URL APIs the
+// calculator uses for its own query state. Links that leave this island must
+// opt into document navigation, because Astro owns the destination pages.
 import { BrowserRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 import TeamCoveragePage from '../../../src/pages/TeamCoveragePage.jsx';

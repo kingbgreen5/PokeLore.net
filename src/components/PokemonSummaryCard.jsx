@@ -104,7 +104,8 @@ function PokemonSummaryCard({
   pokemon,
   compact = false,
   subcompact = false,
-  variant
+  variant,
+  reloadDocument = false
 }) {
   
    const location = useLocation();
@@ -149,6 +150,7 @@ function PokemonSummaryCard({
   return (
     <Link
       to={pokemonUrl ?? "#"}
+      reloadDocument={reloadDocument}
       state={{
         preserveScroll:
           isSizeReviewMode

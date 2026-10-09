@@ -1169,6 +1169,7 @@ function PartyTile({
       <PokemonSummaryCard
         pokemon={pokemon}
         variant="teamCoverage"
+        reloadDocument
       />
 
       <div className="team-coverage-party-actions">
@@ -1453,6 +1454,7 @@ function RecommendationCard({
       <PokemonSummaryCard
         pokemon={recommendation}
         variant="compact"
+        reloadDocument
       />
       <button
         type="button"
@@ -3711,6 +3713,7 @@ function TeamCoveragePage() {
         <Link
           className="team-coverage-ev-training-link"
           to="/ev-training-routes"
+          reloadDocument
         >
           Once your team is ready, use our{" "}
           <span>
