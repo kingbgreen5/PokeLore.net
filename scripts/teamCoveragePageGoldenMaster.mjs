@@ -64,7 +64,8 @@ async function run() {
       await page.goto(`${baseUrl}/team-coverage?version=scarlet-violet&team=25-6`); await pageReady(page);
       for (const path of ['/data/pokemonData/25.json', '/data/pokemonLearnsets/25.json', '/data/pokemonData/6.json', '/data/pokemonLearnsets/6.json']) expect(requests.includes(path), `missing ${path}`);
       await page.locator('#team-coverage-version').selectOption('emerald'); await page.getByText(/Showing 1-\d+ of \d+ matches/).waitFor(); expect(new URL(page.url()).search === '?version=emerald&team=25-6', page.url());
-      await page.getByRole('button', { name: 'Clear Team' }).click(); await page.waitForURL(`${baseUrl}/team-coverage?version=emerald`); expect((await page.evaluate(key => JSON.parse(localStorage.getItem(key)), storage.party)).every(slot => slot === null), 'party not cleared'); await page.close();
+      await page.getByRole('button', { name: 'Clear Team' }).click(); await page.waitForURL(`${baseUrl}/team-coverage?version=emerald`); expect((await page.evaluate(key => JSON.parse(localStorage.getItem(key)), storage.party)).every(slot => slot === null), 'party not cleared');
+      await page.reload(); await pageReady(page); expect(new URL(page.url()).search === '?version=emerald', page.url()); expect((await page.evaluate(key => JSON.parse(localStorage.getItem(key)), storage.party)).every(slot => slot === null), 'empty party was not retained after refresh'); await page.close();
     });
     await scenario('page reset, responsive size, and storage event', async () => {
       const page = await browser.newPage({ viewport: { width: 1280, height: 900 } }); await page.goto(`${baseUrl}/team-coverage`); await pageReady(page);

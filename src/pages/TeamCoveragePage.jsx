@@ -1780,6 +1780,8 @@ function TeamCoveragePage() {
       PARTY_STORAGE_KEY,
       createEmptyParty()
     );
+  const pendingLocalPartyParamRef =
+    useRef(null);
   const storageParty = useMemo(
     () => normalizeParty(party),
     [party]
@@ -1793,8 +1795,14 @@ function TeamCoveragePage() {
       ),
     [searchParams]
   );
+  // While a local edit is waiting for React Router to replace the URL, keep
+  // that edit authoritative. In particular, an intentionally empty party
+  // must not be repopulated by the stale `team` query parameter from the
+  // previous render.
   const normalizedParty =
-    urlParty ?? storageParty;
+    pendingLocalPartyParamRef.current !== null
+      ? storageParty
+      : urlParty ?? storageParty;
   const selectedPartyIds = useMemo(
     () => [
       ...new Set(
@@ -1819,8 +1827,6 @@ function TeamCoveragePage() {
     teamCoverageData,
     setTeamCoverageData
   ] = useState(null);
-  const pendingLocalPartyParamRef =
-    useRef(null);
   const [
     recommendationPage,
     setRecommendationPage
@@ -2856,9 +2862,9 @@ function TeamCoveragePage() {
         }}
       >
         Just need to cover one type?{" "}
-        <Link to="/single-type-coverage">
+        <a href="/single-type-coverage">
           Try our Single Coverage Calculator.
-        </Link>
+        </a>
       </p>
 
       <div

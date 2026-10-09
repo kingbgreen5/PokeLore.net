@@ -15,14 +15,21 @@ async function check(path, status, location, html = false) {
     if(location && response.status !== 404) {
       assert.equal(new URL(result.location, origin).pathname,location,`${path}: Location`);
     } else assert.equal(result.location,null,`${path}: no unnecessary redirect`);
-    if(html) {
+    if(html && response.status !== 404) {
       assert.match(result.type,/^text\/html/);
       if (requireNoindex) assert.match(result.robots,/noindex/);
       else assert.equal(result.robots, null, `${path}: production response has no blanket noindex`);
     }
+    if (response.status === 404) {
+      // Workers Static Assets may return either its HTML 404 document or a
+      // true empty 404 when no matching asset exists. Both reject the request
+      // correctly; redirects, 200 soft-404s, and unrelated fallback HTML do
+      // not.
+      assert(result.type === null || /^text\/html/.test(result.type), `${path}: 404 must be empty or HTML`);
+    }
     if(method==='GET') {
       const body=await response.text();
-      if(response.status===404) assert.match(body,/Page not found/);
+      if(response.status===404) assert(body.length === 0 || /Page not found/.test(body), `${path}: 404 must be empty or explicit not-found HTML`);
       if(status===200 && path.startsWith('/pokemon/')) {
         const document=parseHTML(body).document;
         assert.equal(document.querySelector('link[rel="canonical"]').getAttribute('href'),`https://pokelore.net${path}`);
