@@ -60,6 +60,49 @@ async function run() {
       await page.getByRole('button', { name: 'Share Team' }).click(); await page.getByText(/Team link copied|Copy this team link:/).waitFor(); const shareMessage = await page.locator('[aria-live="polite"]').textContent(); expect(shareMessage.includes('Team link copied.') || shareMessage.includes(`version=emerald&team=25-6`), `invalid shared link: ${shareMessage}`);
       await page.reload(); await pageReady(page); expect(!(await page.getByRole('button', { name: 'Clear Team' }).isEnabled()), 'team persisted after refresh'); await page.close();
     });
+    await scenario('legacy base Team Coverage URLs', async () => {
+      const legacyCases = [
+        { path: '/team-coverage', version: 'scarlet-violet', team: [] },
+        { path: '/team-coverage?version=scarlet-violet', version: 'scarlet-violet', team: [] }
+      ];
+      for (const legacy of legacyCases) {
+        const page = await browser.newPage(); await page.goto(`${baseUrl}${legacy.path}`); await pageReady(page);
+        expect(await page.locator('#team-coverage-version').inputValue() === legacy.version, `version not honored for ${legacy.path}`);
+        expect(new URL(page.url()).search === `?version=${legacy.version}`, `unexpected URL for ${legacy.path}: ${page.url()}`);
+        expect(await page.locator('.team-coverage-party-clear-button').count() === 0, `unexpected team for ${legacy.path}`);
+        await page.close();
+      }
+    });
+    await scenario('legacy team URLs seed and clear safely', async () => {
+      const legacyCases = [
+        { path: '/team-coverage?version=scarlet-violet&team=3-5-142', version: 'scarlet-violet', team: [3, 5, 142] },
+        { path: '/team-coverage?version=sword-shield&team=25-6', version: 'sword-shield', team: [25, 6] }
+      ];
+      for (const legacy of legacyCases) {
+        const page = await browser.newPage(); const requests = []; page.on('request', request => requests.push(new URL(request.url()).pathname));
+        await page.goto(`${baseUrl}${legacy.path}`); await pageReady(page);
+        expect(await page.locator('#team-coverage-version').inputValue() === legacy.version, `version not honored for ${legacy.path}`);
+        expect(new URL(page.url()).search === `?version=${legacy.version}`, `team was not consumed for ${legacy.path}: ${page.url()}`);
+        expect(await page.locator('.team-coverage-party-clear-button').count() === legacy.team.length, `team not seeded for ${legacy.path}`);
+        for (const id of legacy.team) expect(requests.includes(`/data/pokemonData/${id}.json`), `missing Pokémon ${id} for ${legacy.path}`);
+        await page.close();
+      }
+      const page = await browser.newPage(); await page.context().grantPermissions(['clipboard-read', 'clipboard-write'], { origin: baseUrl });
+      await page.goto(`${baseUrl}/team-coverage?version=scarlet-violet&team=3-5-142`); await pageReady(page);
+      await page.locator('.team-coverage-party-clear-button').first().click(); await page.waitForTimeout(100);
+      expect(await page.locator('.team-coverage-party-clear-button').count() === 2, 'cleared slot was repopulated');
+      await page.getByRole('button', { name: 'Clear Team' }).click(); await page.waitForTimeout(100);
+      expect(await page.locator('.team-coverage-party-clear-button').count() === 0, 'Clear Team left Pokémon behind');
+      await page.reload(); await pageReady(page); expect(await page.locator('.team-coverage-party-clear-button').count() === 0, 'team returned after refresh');
+      await page.close();
+    });
+    await scenario('Share Team links reproduce in a fresh browser', async () => {
+      const sharePage = await browser.newPage(); await sharePage.context().grantPermissions(['clipboard-read', 'clipboard-write'], { origin: baseUrl });
+      await sharePage.goto(`${baseUrl}/team-coverage?version=sword-shield&team=25-6`); await pageReady(sharePage); await sharePage.getByRole('button', { name: 'Share Team' }).click(); await sharePage.getByText('Team link copied.').waitFor();
+      const sharedUrl = await sharePage.evaluate(() => navigator.clipboard.readText()); expect(sharedUrl === `${baseUrl}/team-coverage?version=sword-shield&team=25-6`, `unexpected share URL: ${sharedUrl}`); await sharePage.close();
+      const freshContext = await browser.newContext(); const recipient = await freshContext.newPage(); await recipient.goto(sharedUrl); await pageReady(recipient);
+      expect(await recipient.locator('#team-coverage-version').inputValue() === 'sword-shield', 'shared version was not restored'); expect(await recipient.locator('.team-coverage-party-clear-button').count() === 2, 'shared team was not restored'); await freshContext.close();
+    });
     await scenario('party requests, version retention, and clear', async () => {
       const page = await browser.newPage(); const requests = []; page.on('request', request => requests.push(new URL(request.url()).pathname));
       await page.goto(`${baseUrl}/team-coverage?version=scarlet-violet&team=25-6`); await pageReady(page);
