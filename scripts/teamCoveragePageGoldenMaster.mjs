@@ -54,18 +54,19 @@ async function run() {
       for (const path of ['/data/pokemonRoutes.json', '/data/movesIndex.json', '/data/teamCoverage/scarlet-violet.json']) expect(requests.includes(path), `missing ${path}`);
       expect(requests.filter(path => path.startsWith('/data/teamCoverage/')).length === 1, 'more than one coverage dataset'); await page.close();
     });
-    await scenario('URL/storage precedence and legacy canonicalization', async () => {
+    await scenario('shared team links are one-time input', async () => {
       const page = await browser.newPage(); await page.addInitScript(keys => { localStorage.setItem(keys.version, JSON.stringify('red-blue')); localStorage.setItem(keys.party, JSON.stringify([1, 4, 7, null, null, null])); }, storage);
-      await page.goto(`${baseUrl}/team-coverage?version=emerald&team=25-6-0`); await pageReady(page); expect(new URL(page.url()).search === '?version=emerald&team=25-6', page.url());
-      await page.goto(`${baseUrl}/team-coverage?game=emerald&party=25,6,invalid,0`); await pageReady(page); expect(new URL(page.url()).search === '?version=emerald&team=25-6', page.url()); await page.close();
+      await page.goto(`${baseUrl}/team-coverage?version=emerald&team=25-6-0`); await pageReady(page); expect(new URL(page.url()).search === '?version=emerald', page.url()); expect(await page.getByRole('button', { name: 'Clear Team' }).isEnabled(), 'shared team was not loaded');
+      await page.getByRole('button', { name: 'Share Team' }).click(); await page.getByText(/Team link copied|Copy this team link:/).waitFor(); const shareMessage = await page.locator('[aria-live="polite"]').textContent(); expect(shareMessage.includes('Team link copied.') || shareMessage.includes(`version=emerald&team=25-6`), `invalid shared link: ${shareMessage}`);
+      await page.reload(); await pageReady(page); expect(!(await page.getByRole('button', { name: 'Clear Team' }).isEnabled()), 'team persisted after refresh'); await page.close();
     });
     await scenario('party requests, version retention, and clear', async () => {
       const page = await browser.newPage(); const requests = []; page.on('request', request => requests.push(new URL(request.url()).pathname));
       await page.goto(`${baseUrl}/team-coverage?version=scarlet-violet&team=25-6`); await pageReady(page);
       for (const path of ['/data/pokemonData/25.json', '/data/pokemonLearnsets/25.json', '/data/pokemonData/6.json', '/data/pokemonLearnsets/6.json']) expect(requests.includes(path), `missing ${path}`);
-      await page.locator('#team-coverage-version').selectOption('emerald'); await page.getByText(/Showing 1-\d+ of \d+ matches/).waitFor(); expect(new URL(page.url()).search === '?version=emerald&team=25-6', page.url());
-      await page.getByRole('button', { name: 'Clear Team' }).click(); await page.waitForURL(`${baseUrl}/team-coverage?version=emerald`); expect((await page.evaluate(key => JSON.parse(localStorage.getItem(key)), storage.party)).every(slot => slot === null), 'party not cleared');
-      await page.reload(); await pageReady(page); expect(new URL(page.url()).search === '?version=emerald', page.url()); expect((await page.evaluate(key => JSON.parse(localStorage.getItem(key)), storage.party)).every(slot => slot === null), 'empty party was not retained after refresh'); await page.close();
+      expect(new URL(page.url()).search === '?version=scarlet-violet', page.url()); await page.locator('#team-coverage-version').selectOption('emerald'); await page.getByText(/Showing 1-\d+ of \d+ matches/).waitFor(); expect(new URL(page.url()).search === '?version=emerald', page.url());
+      await page.getByRole('button', { name: 'Clear Team' }).click(); await page.waitForURL(`${baseUrl}/team-coverage?version=emerald`); expect(!(await page.getByRole('button', { name: 'Clear Team' }).isEnabled()), 'party not cleared');
+      await page.reload(); await pageReady(page); expect(new URL(page.url()).search === '?version=emerald', page.url()); expect(!(await page.getByRole('button', { name: 'Clear Team' }).isEnabled()), 'team persisted after refresh'); await page.close();
     });
     await scenario('page reset, responsive size, and storage event', async () => {
       const page = await browser.newPage({ viewport: { width: 1280, height: 900 } }); await page.goto(`${baseUrl}/team-coverage`); await pageReady(page);

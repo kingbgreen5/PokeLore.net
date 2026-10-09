@@ -1,7 +1,6 @@
 import {
   useEffect,
   useMemo,
-  useRef,
   useState
 } from "react";
 import {
@@ -41,8 +40,6 @@ import {
 const PARTY_SIZE = 6;
 const DEFAULT_VERSION_GROUP =
   "scarlet-violet";
-const PARTY_STORAGE_KEY =
-  "pokelore:team-coverage-party";
 const VERSION_STORAGE_KEY =
   "pokelore:learnset-version";
 const SORT_STORAGE_KEY =
@@ -318,15 +315,6 @@ function normalizeParty(value) {
 
   return createEmptyParty().map(
     (_, index) => source[index] ?? null
-  );
-}
-
-function partiesEqual(a, b) {
-  const left = normalizeParty(a);
-  const right = normalizeParty(b);
-
-  return left.every(
-    (value, index) => value === right[index]
   );
 }
 
@@ -1775,17 +1763,6 @@ function TeamCoveragePage() {
       preferredVersion
     ) ??
     DEFAULT_VERSION_GROUP;
-  const [party, setParty] =
-    useLocalStorageState(
-      PARTY_STORAGE_KEY,
-      createEmptyParty()
-    );
-  const pendingLocalPartyParamRef =
-    useRef(null);
-  const storageParty = useMemo(
-    () => normalizeParty(party),
-    [party]
-  );
   const urlParty = useMemo(
     () =>
       normalizePartyParam(
@@ -1795,14 +1772,16 @@ function TeamCoveragePage() {
       ),
     [searchParams]
   );
-  // While a local edit is waiting for React Router to replace the URL, keep
-  // that edit authoritative. In particular, an intentionally empty party
-  // must not be repopulated by the stale `team` query parameter from the
-  // previous render.
+  // Shared links can populate a new session once, but a roster is not saved
+  // to browser storage or kept in the URL after that initial load.
+  const [party, setParty] = useState(
+    () => urlParty ?? createEmptyParty()
+  );
   const normalizedParty =
-    pendingLocalPartyParamRef.current !== null
-      ? storageParty
-      : urlParty ?? storageParty;
+    useMemo(
+      () => normalizeParty(party),
+      [party]
+    );
   const selectedPartyIds = useMemo(
     () => [
       ...new Set(
@@ -1823,6 +1802,8 @@ function TeamCoveragePage() {
     activeSlot,
     setActiveSlot
   ] = useState(null);
+  const [shareStatus, setShareStatus] =
+    useState("");
   const [
     teamCoverageData,
     setTeamCoverageData
@@ -2046,56 +2027,17 @@ function TeamCoveragePage() {
   }, []);
 
   useEffect(() => {
-    const pendingLocalPartyParam =
-      pendingLocalPartyParamRef.current;
-    const currentPartyParam =
-      searchParams.get("team") ??
-      searchParams.get("party") ??
-      searchParams.get("pokemon") ??
-      "";
-
-    if (pendingLocalPartyParam !== null) {
-      if (
-        currentPartyParam ===
-        pendingLocalPartyParam
-      ) {
-        pendingLocalPartyParamRef.current =
-          null;
-      }
-
-      return;
-    }
-
-    if (
-      urlParty &&
-      !partiesEqual(urlParty, storageParty)
-    ) {
-      setParty(urlParty);
-    }
-  }, [
-    setParty,
-    searchParams,
-    storageParty,
-    urlParty
-  ]);
-
-  useEffect(() => {
-    const serializedParty =
-      serializePartyParam(normalizedParty);
     const urlHasSelectedVersion =
       searchParams.get("version") ===
       selectedVersion;
-    const urlHasSelectedParty =
-      (searchParams.get("team") ?? "") ===
-      serializedParty;
     const hasLegacyParams =
       searchParams.has("game") ||
+      searchParams.has("team") ||
       searchParams.has("party") ||
       searchParams.has("pokemon");
 
     if (
       urlHasSelectedVersion &&
-      urlHasSelectedParty &&
       !hasLegacyParams
     ) {
       return;
@@ -2112,20 +2054,12 @@ function TeamCoveragePage() {
     nextParams.delete("party");
     nextParams.delete("pokemon");
 
-    if (serializedParty) {
-      nextParams.set(
-        "team",
-        serializedParty
-      );
-    } else {
-      nextParams.delete("team");
-    }
+    nextParams.delete("team");
 
     setSearchParams(nextParams, {
       replace: true
     });
   }, [
-    normalizedParty,
     searchParams,
     selectedVersion,
     setSearchParams
@@ -2738,14 +2672,9 @@ function TeamCoveragePage() {
   const hasSelectedParty =
     normalizedParty.some(Boolean);
 
-  function updatePartySearchParams(
-    nextParty,
-    options
-  ) {
+  function updatePartySearchParams(options) {
     const nextParams =
       new URLSearchParams(searchParams);
-    const serializedParty =
-      serializePartyParam(nextParty);
 
     nextParams.set(
       "version",
@@ -2755,14 +2684,7 @@ function TeamCoveragePage() {
     nextParams.delete("party");
     nextParams.delete("pokemon");
 
-    if (serializedParty) {
-      nextParams.set(
-        "team",
-        serializedParty
-      );
-    } else {
-      nextParams.delete("team");
-    }
+    nextParams.delete("team");
 
     setSearchParams(nextParams, options);
   }
@@ -2772,26 +2694,52 @@ function TeamCoveragePage() {
     const next =
       normalizeParty(normalizedParty);
     next[slotIndex] = value;
-    const serializedParty =
-      serializePartyParam(next);
-
-    pendingLocalPartyParamRef.current =
-      serializedParty;
     setParty(next);
 
-    updatePartySearchParams(next, {
-      replace: !serializedParty
+    updatePartySearchParams({
+      replace: true
     });
   }
 
   function clearParty() {
     setRecommendationPage(1);
     const next = createEmptyParty();
-    pendingLocalPartyParamRef.current = "";
     setParty(next);
-    updatePartySearchParams(next, {
+    updatePartySearchParams({
       replace: true
     });
+  }
+
+  async function shareParty() {
+    const serializedParty =
+      serializePartyParam(normalizedParty);
+    if (!serializedParty) {
+      return;
+    }
+
+    const sharedUrl = new URL(
+      "/team-coverage",
+      window.location.origin
+    );
+    sharedUrl.searchParams.set(
+      "version",
+      selectedVersion
+    );
+    sharedUrl.searchParams.set(
+      "team",
+      serializedParty
+    );
+
+    try {
+      await navigator.clipboard.writeText(
+        sharedUrl.toString()
+      );
+      setShareStatus("Team link copied.");
+    } catch {
+      setShareStatus(
+        `Copy this team link: ${sharedUrl}`
+      );
+    }
   }
 
   function addRecommendationToTeam(recommendation) {
@@ -3072,6 +3020,27 @@ function TeamCoveragePage() {
         <button
           type="button"
           disabled={!hasSelectedParty}
+          onClick={shareParty}
+          style={{
+            backgroundColor: "transparent",
+            border: "1px solid #666",
+            borderRadius: "6px",
+            color: "#d1d5db",
+            cursor: hasSelectedParty
+              ? "pointer"
+              : "default",
+            fontSize: ".85rem",
+            opacity: hasSelectedParty
+              ? 1
+              : 0.45,
+            padding: ".45rem .7rem"
+          }}
+        >
+          Share Team
+        </button>
+        <button
+          type="button"
+          disabled={!hasSelectedParty}
           onClick={clearParty}
           style={{
             backgroundColor: "transparent",
@@ -3090,6 +3059,16 @@ function TeamCoveragePage() {
         >
           Clear Team
         </button>
+        <span
+          aria-live="polite"
+          style={{
+            color: "#9ca3af",
+            fontSize: ".8rem",
+            maxWidth: "100%"
+          }}
+        >
+          {shareStatus}
+        </span>
       </div>
 
       <section
