@@ -6,7 +6,7 @@ const dist = join(process.cwd(), 'dist');
 const required = ['team-coverage.html', 'data/pokemonRoutes.json', 'data/movesIndex.json', 'data/teamCoverage/index.json', 'data/teamCoverage/scarlet-violet.json', 'data/pokemonData/25.json', 'data/pokemonLearnsets/25.json'];
 for (const file of required) if (!existsSync(join(dist, file))) throw new Error(`Missing Team Coverage artifact: ${file}`);
 const html = readFileSync(join(dist, 'team-coverage.html'), 'utf8');
-for (const text of ['Pokémon Playthrough Team Builder', 'How Team Coverage Works', 'interactive Team Builder requires JavaScript']) if (!html.includes(text)) throw new Error(`Missing static shell text: ${text}`);
+for (const text of ['Pokémon Playthrough Team Builder', 'How the Pokémon Playthrough Team Builder Works']) if (!html.includes(text)) throw new Error(`Missing static shell text: ${text}`);
 if (!html.includes('https://pokelore.net/team-coverage')) throw new Error('Missing canonical URL');
 if (html.includes('scarlet-violet.json') || html.includes('pokemonRoutes.json')) throw new Error('Team Coverage data was serialized into HTML');
 const assets = readdirSync(join(dist, '_astro'));
