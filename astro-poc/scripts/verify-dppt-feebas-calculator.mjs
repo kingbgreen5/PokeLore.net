@@ -16,7 +16,7 @@ assert.equal(document.querySelector('h1')?.textContent, 'Pokémon Platinum, Diam
 assert.match(html, /processed locally in your browser/i);
 assert.match(html, /never uploaded, stored, or sent to Pok[eé]Lore/i);
 assert.match(html, /This calculator requires JavaScript to run\./);
-assert.match(html, /four Feebas fishing tiles/i);
+assert.match(html, /exact Feebas fishing tiles/i);
 assert.match(html, /two consecutive Jubilife TV lottery numbers/i);
 assert.match(html, /Use this free Feebas tile calculator to locate the fishing spots/i);
 assert.match(html, /The calculator displays the results on an interactive map/i);
