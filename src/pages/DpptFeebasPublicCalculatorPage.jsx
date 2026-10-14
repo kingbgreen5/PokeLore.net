@@ -207,8 +207,8 @@ function DpptFeebasPublicCalculatorPage() {
   return (
     <main className="dppt-feebas-public-page">
       <Seo
-        title="Feebas Tile Calculator for Diamond, Pearl, and Platinum - | PokeLore"
-        description="Upload your save file or enter two consecutive lottery numbers to instantly locate today's Feebas fishing spots in Mt. Coronet."
+        title="Pokémon Platinum Feebas Calculator | Diamond & Pearl | PokéLore"
+        description="Find your exact Feebas fishing tiles in Pokémon Platinum, Diamond & Pearl. Upload a save file or use two Jubilife lottery numbers to reveal your tiles on the map."
         canonical="https://pokelore.net/dppt-feebas-calculator"
       />
 
@@ -216,9 +216,22 @@ function DpptFeebasPublicCalculatorPage() {
         <FeebasGuideBreadcrumbs pageId="dppt-feebas-calculator" />
         <p>DPPt Feebas Calculator</p>
         <h1>
-          Pokemon Diamond, Pearl, and Platinum Feebas Calculator
+          Pokémon Platinum, Diamond &amp; Pearl Feebas Tile Calculator
         </h1>
       </header>
+
+      <div className="dppt-feebas-public-intro">
+        <p>
+          Find your active Feebas fishing tiles in Pokemon Diamond,
+          Pearl, or Platinum. Upload your save file, or enter two
+          consecutive Jubilife TV lottery numbers if you are playing
+          on original hardware.
+        </p>
+        <p>
+          The calculator highlights the fishing tiles where Feebas
+          can appear until the end of day in the Mt. Coronet B1F.
+        </p>
+      </div>
 
       <section className="dppt-feebas-public-tool">
         <div className="dppt-feebas-public-controls">
@@ -500,14 +513,16 @@ function DpptFeebasPublicCalculatorPage() {
 
       <article className="dppt-feebas-public-guide">
         <p>
-          Find your active Feebas fishing tiles in Pokemon Diamond,
-          Pearl, or Platinum. Upload your save file, or enter two
-          consecutive Jubilife TV lottery numbers if you are playing
-          on original hardware.
+          Use this free Feebas tile calculator to locate the fishing
+          spots where Feebas can appear in Pokémon Diamond, Pearl,
+          and Platinum. Find your tiles in Mt. Coronet B1F by
+          uploading a compatible save file or entering two consecutive
+          Jubilife TV lottery numbers.
         </p>
         <p>
-          The calculator highlights the fishing tiles where Feebas
-          can appear until the end of day in the Mt. Coronet B1F.
+          The calculator displays the results on an interactive map,
+          so you can fish the correct tiles instead of searching the
+          entire lake.
         </p>
 
         <h2>How to Find Feebas in Pokemon Platinum, Diamond, and Pearl</h2>

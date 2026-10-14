@@ -128,12 +128,35 @@ function EvolutionDescription({
 
   function renderLinkedSegment(
     segment,
-    index
+    index,
+    segments
   ) {
-    if (typeof segment === "string") {
+    const isLinkedSegment =
+      typeof segment === "object" &&
+      ["item", "move", "location", "topic"].includes(
+        segment?.type
+      );
+
+    if (!isLinkedSegment) {
+      const nextSegment =
+        segments[index + 1];
+      const nextSegmentIsLink =
+        typeof nextSegment === "object" &&
+        ["item", "move", "location", "topic"].includes(
+          nextSegment?.type
+        );
+      const text = nextSegmentIsLink
+        ? /\s$/.test(segment.text ?? segment)
+          ? String(segment.text ?? segment).replace(
+            /\s+$/,
+            "\u00a0"
+          )
+          : `${segment.text ?? segment}\u00a0`
+        : (segment.text ?? segment);
+
       return (
         <span key={index}>
-          {segment}
+          {text}
         </span>
       );
     }
@@ -182,11 +205,6 @@ function EvolutionDescription({
       );
     }
 
-    return (
-      <span key={index}>
-        {segment.text ?? ""}
-      </span>
-    );
   }
 
   const override =
@@ -200,11 +218,11 @@ function EvolutionDescription({
       node,
       displayedPokemon,
       evolutionMethodOverrides
-    ).map(renderLinkedSegment);
+    );
 
   return (
     <>
-      {parts}
+      {parts.map(renderLinkedSegment)}
       {override?.note && (
         <span
           style={{

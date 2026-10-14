@@ -1,0 +1,65 @@
+---
+import { publicHref } from '../lib/links.js';
+
+const { note, defaultTitle = "Oak's Notes" } = Astro.props;
+
+function textOf(paragraph) {
+  return typeof paragraph === 'string' ? paragraph : paragraph?.text ?? '';
+}
+
+function linkedParts(paragraph) {
+  let remaining = textOf(paragraph);
+  const links = Array.isArray(paragraph?.links) ? paragraph.links : [];
+  const parts = [];
+
+  while (remaining) {
+    const next = links
+      .map(link => ({ ...link, index: remaining.indexOf(link.label) }))
+      .filter(link => link.index >= 0)
+      .sort((a, b) => a.index - b.index || b.label.length - a.label.length)[0];
+
+    if (!next) {
+      parts.push({ text: remaining });
+      break;
+    }
+
+    if (next.index > 0) parts.push({ text: remaining.slice(0, next.index) });
+    parts.push({ text: next.label, href: next.to });
+    remaining = remaining.slice(next.index + next.label.length);
+  }
+
+  return parts;
+}
+---
+
+{note && (note.sections?.length > 0 || note.body?.length > 0) && (
+  <section
+    class="oaks-notes"
+    style="border:1px solid rgba(0, 202, 219, 0.45);border-radius:12px;margin-bottom:2rem;padding:1rem;text-align:left;background-color:rgba(0, 202, 219, 0.1)"
+  >
+    <h2>{note.title ?? defaultTitle}</h2>
+
+    {(note.body ?? []).map(paragraph => (
+      <p>{linkedParts(paragraph).map(part => part.href ? <a href={publicHref(part.href)}>{part.text}</a> : part.text)}</p>
+    ))}
+
+    {(note.sections ?? []).map((section, index) => (
+      <section
+        style={`margin-top:${index === 0 ? '0' : '1rem'};padding-bottom:${index === note.sections.length - 1 ? '0' : '1.5rem'}`}
+      >
+        {section.heading && <h3>{section.heading}</h3>}
+        {(section.body ?? []).map(paragraph => (
+          <p>{linkedParts(paragraph).map(part => part.href ? <a href={publicHref(part.href)}>{part.text}</a> : part.text)}</p>
+        ))}
+        {section.keyStats?.length > 0 && (
+          <div>
+            <h4 style="margin-bottom:.35rem">Key Stats</h4>
+            <ul style="margin:0;padding-left:1.25rem">
+              {section.keyStats.map(stat => <li><strong>{stat.name}</strong>{stat.description ? ` - ${stat.description}` : ''}</li>)}
+            </ul>
+          </div>
+        )}
+      </section>
+    ))}
+  </section>
+)}

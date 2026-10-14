@@ -207,6 +207,17 @@ const charmanderRoot = {
   ]
 };
 
+const miloticEvolutionNode = {
+  pokemon: {
+    id: 350,
+    name: "milotic",
+    sprite: "milotic.png",
+    types: ["water"]
+  },
+  trigger: "level-up",
+  evolvesTo: []
+};
+
 function renderFormEvolutionPaths(
   currentPokemonName
 ) {
@@ -353,6 +364,38 @@ describe("FormEvolutionPaths", () => {
 });
 
 describe("EvolutionNode", () => {
+  it("keeps a visible space before linked evolution methods", () => {
+    render(
+      <MemoryRouter>
+        <EvolutionNode
+          node={miloticEvolutionNode}
+          evolutionMethodOverrides={{
+            milotic: {
+              primaryMethod: {
+                segments: [
+                  "Trade while holding ",
+                  {
+                    type: "item",
+                    slug: "prism-scale",
+                    text: "Prism Scale"
+                  }
+                ]
+              }
+            }
+          }}
+        />
+      </MemoryRouter>
+    );
+
+    expect(
+      document.querySelector(
+        ".evolution-method"
+      )?.textContent
+    ).toBe(
+      "Trade while holding\u00a0Prism Scale"
+    );
+  });
+
   it("does not replace a species evolution node with the current mega form", () => {
     render(
       <MemoryRouter>

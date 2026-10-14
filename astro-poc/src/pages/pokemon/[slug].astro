@@ -6,6 +6,7 @@ import PokemonCard from '../../components/PokemonCard.astro';
 import EvolutionNode from '../../components/EvolutionNode.astro';
 import LinkedText from '../../components/LinkedText.astro';
 import LearnsetStatic from '../../components/LearnsetStatic.astro';
+import OaksNotes from '../../components/OaksNotes.astro';
 import BaseStatsChart from '../../../../src/components/BaseStatsChart.jsx';
 import LearnsetCard from '../../islands/LearnsetCard.jsx';
 import WhereToFind from '../../islands/WhereToFind.jsx';
@@ -229,6 +230,8 @@ const carouselPokemon = { id: p.id, name: p.name };
         ))}
       </Accordion>
     )}
+
+    <OaksNotes note={data.oaksNote} />
 
     <div id="additional-images">
       <AdditionalImages pokemonId={p.id} pokemonName={name} client:visible />
