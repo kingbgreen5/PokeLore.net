@@ -1174,18 +1174,7 @@ const evolutionSummaryText =
         key={abilitySlug}
         to={`/ability/${abilitySlug}`}
         style={{
-          padding:
-            ".4rem .8rem",
-
-          borderRadius:
-            "999px",
-
-          border: "none",
-
-          cursor: "pointer",
-
           textDecoration: "none"
-          
         }}
       >
         {abilityDisplayName}

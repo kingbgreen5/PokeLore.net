@@ -64,6 +64,8 @@ const LEGENDARY_FILTER_STORAGE_KEY =
   "pokelore:team-coverage-legendary-filter:v1";
 const TRADE_EVOLUTION_FILTER_STORAGE_KEY =
   "pokelore:team-coverage-trade-evolution-filter:v1";
+const PARTY_STORAGE_KEY =
+  "pokelore:team-coverage-party:v1";
 const DESKTOP_RECOMMENDATIONS_PER_PAGE = 20;
 const MOBILE_RECOMMENDATIONS_PER_PAGE = 12;
 const MOBILE_RECOMMENDATIONS_MEDIA_QUERY =
@@ -316,6 +318,31 @@ function normalizeParty(value) {
   return createEmptyParty().map(
     (_, index) => source[index] ?? null
   );
+}
+
+function readStoredParty() {
+  try {
+    const storedParty = localStorage.getItem(
+      PARTY_STORAGE_KEY
+    );
+
+    return storedParty === null
+      ? createEmptyParty()
+      : normalizeParty(JSON.parse(storedParty));
+  } catch {
+    return createEmptyParty();
+  }
+}
+
+function storeParty(value) {
+  try {
+    localStorage.setItem(
+      PARTY_STORAGE_KEY,
+      JSON.stringify(normalizeParty(value))
+    );
+  } catch {
+    // Local storage can fail in private browsing or strict browser settings.
+  }
 }
 
 function getValidVersionGroup(value) {
@@ -1599,10 +1626,10 @@ function TeamCoveragePage() {
       ),
     [searchParams]
   );
-  // Shared links can populate a new session once, but a roster is not saved
-  // to browser storage or kept in the URL after that initial load.
+  // A shared link replaces the saved roster. Otherwise, retain the user's
+  // browser-local team through ordinary and automatic page refreshes.
   const [party, setParty] = useState(
-    () => urlParty ?? createEmptyParty()
+    () => urlParty ?? readStoredParty()
   );
   const normalizedParty =
     useMemo(
@@ -2499,6 +2526,52 @@ function TeamCoveragePage() {
   const hasSelectedParty =
     normalizedParty.some(Boolean);
 
+  useEffect(() => {
+    if (urlParty) {
+      storeParty(urlParty);
+    }
+  }, [urlParty]);
+
+  useEffect(() => {
+    function handleStoredPartyChange(event) {
+      if (
+        event.storageArea !== localStorage ||
+        event.key !== PARTY_STORAGE_KEY
+      ) {
+        return;
+      }
+
+      try {
+        setParty(
+          event.newValue === null
+            ? createEmptyParty()
+            : normalizeParty(JSON.parse(event.newValue))
+        );
+      } catch {
+        setParty(createEmptyParty());
+      }
+    }
+
+    window.addEventListener(
+      "storage",
+      handleStoredPartyChange
+    );
+
+    return () => {
+      window.removeEventListener(
+        "storage",
+        handleStoredPartyChange
+      );
+    };
+  }, []);
+
+  function setPersistedParty(nextParty) {
+    const next = normalizeParty(nextParty);
+
+    setParty(next);
+    storeParty(next);
+  }
+
   function updatePartySearchParams(options) {
     const nextParams =
       new URLSearchParams(searchParams);
@@ -2521,7 +2594,7 @@ function TeamCoveragePage() {
     const next =
       normalizeParty(normalizedParty);
     next[slotIndex] = value;
-    setParty(next);
+    setPersistedParty(next);
 
     updatePartySearchParams({
       replace: true
@@ -2531,7 +2604,7 @@ function TeamCoveragePage() {
   function clearParty() {
     setRecommendationPage(1);
     const next = createEmptyParty();
-    setParty(next);
+    setPersistedParty(next);
     updatePartySearchParams({
       replace: true
     });
