@@ -11,6 +11,10 @@ const canonical = 'https://pokelore.net/team-coverage';
       <p>Just need to cover one type? <a href="/single-type-coverage">Try our Single Coverage Calculator.</a></p>
     </header>
 
+    <script is:inline>
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    </script>
+
     <section class="team-coverage-island" aria-label="Interactive Team Coverage Calculator">
       <TeamCoverageTool client:only="react" />
     </section>

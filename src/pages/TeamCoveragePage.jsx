@@ -2665,6 +2665,153 @@ function TeamCoveragePage() {
     setActiveSlot(null);
   }
 
+  useEffect(() => {
+    if (window.location.hash) {
+      let targetId = "";
+
+      try {
+        targetId = decodeURIComponent(
+          window.location.hash.slice(1)
+        );
+      } catch {
+        return undefined;
+      }
+
+      const frameId = window.requestAnimationFrame(
+        () => {
+          document
+            .getElementById(targetId)
+            ?.scrollIntoView({ block: "start" });
+        }
+      );
+
+      return () =>
+        window.cancelAnimationFrame(frameId);
+    }
+
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    const storageKey =
+      `pokelore:team-coverage-scroll-anchor:${
+        location.pathname
+      }${location.search}`;
+    let savedAnchor = null;
+
+    try {
+      const value = JSON.parse(
+        window.sessionStorage.getItem(storageKey)
+      );
+
+      if (
+        Number.isFinite(value?.scrollY) &&
+        (
+          value.id === null ||
+          (
+            typeof value.id === "string" &&
+            Number.isFinite(value.offset)
+          )
+        )
+      ) {
+        savedAnchor = value;
+      }
+    } catch {}
+
+    function saveScrollAnchor() {
+      const landmarks = [
+        ...document.querySelectorAll(
+          "#team-coverage-controls, #team-coverage-party, #team-coverage-results, #team-coverage-recommendations"
+        )
+      ];
+      const visibleLandmark =
+        landmarks.find(element => {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 0 && rect.bottom > 0;
+        }) ??
+        landmarks.find(
+          element =>
+            element.getBoundingClientRect().top >= 0
+        );
+
+      try {
+        window.sessionStorage.setItem(
+          storageKey,
+          JSON.stringify({
+            id: visibleLandmark?.id ?? null,
+            offset:
+              visibleLandmark?.getBoundingClientRect()
+                .top ?? 0,
+            scrollY: window.scrollY
+          })
+        );
+      } catch {}
+    }
+
+    function restoreScrollAnchor() {
+      if (!savedAnchor) {
+        return;
+      }
+
+      const landmark = savedAnchor.id
+        ? document.getElementById(savedAnchor.id)
+        : null;
+
+      const top = landmark
+        ? Math.max(
+            0,
+            window.scrollY +
+              landmark.getBoundingClientRect().top -
+              savedAnchor.offset
+          )
+        : savedAnchor.scrollY;
+
+      window.scrollTo({
+        top,
+        behavior: "auto"
+      });
+    }
+
+    let secondFrameId = null;
+    const delayedRestoreIds = [];
+    const firstFrameId = window.requestAnimationFrame(
+      () => {
+        secondFrameId = window.requestAnimationFrame(
+          () => {
+            restoreScrollAnchor();
+            [250, 1000].forEach(delay => {
+              delayedRestoreIds.push(
+                window.setTimeout(
+                  restoreScrollAnchor,
+                  delay
+                )
+              );
+            });
+          }
+        );
+      }
+    );
+
+    window.addEventListener("pagehide", saveScrollAnchor);
+
+    return () => {
+      window.cancelAnimationFrame(firstFrameId);
+
+      if (secondFrameId !== null) {
+        window.cancelAnimationFrame(secondFrameId);
+      }
+
+      delayedRestoreIds.forEach(id =>
+        window.clearTimeout(id)
+      );
+
+      window.removeEventListener(
+        "pagehide",
+        saveScrollAnchor
+      );
+    };
+  }, [location.pathname, location.search]);
+
   return (
     <main
       style={{
@@ -2675,6 +2822,7 @@ function TeamCoveragePage() {
       <Seo {...teamCoverageSeo()} />
 
       <div
+        id="team-coverage-controls"
         style={{
           alignItems: "center",
           display: "flex",
@@ -2958,6 +3106,7 @@ function TeamCoveragePage() {
       </div>
 
       <section
+        id="team-coverage-party"
         className="team-coverage-party-grid"
         aria-label="Party Pokemon"
       >
@@ -2985,6 +3134,7 @@ function TeamCoveragePage() {
       </section>
 
       <div
+        id="team-coverage-results"
         className="team-coverage-panels"
       >
         <CoveragePanel
@@ -3040,6 +3190,7 @@ function TeamCoveragePage() {
       </div>
 
       <section
+        id="team-coverage-recommendations"
         style={{
           margin: "1.25rem auto 0",
           maxWidth: "940px"
