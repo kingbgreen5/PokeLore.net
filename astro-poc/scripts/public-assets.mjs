@@ -11,7 +11,8 @@ import { getPokemonCardSources, getPokemonDetailSources, getPokemonSizeCompariso
 // One allowlist for development serving and production copying.
 export function publicAssets() {
   const paths = new Set([
-    '/images/etsy/Viridian Forest Two Gildans.jpg',
+    '/images/etsy/viridian-forest-tee.png',
+    '/images/etsy/mt-coronet-national-park-tee.png',
     '/images/maps/mt-coronet-feebas-lake.png',
     '/images/maps/route-119-feebas-map.png'
   ]);

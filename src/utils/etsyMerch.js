@@ -122,6 +122,7 @@ export function getEtsyPokemonTags(pokemon) {
 
   return uniqueNormalizedTags([
     "pokemon",
+    "pokemon-detail",
     pokemon.name,
     pokemon.species,
     getPokemonRegionTag(pokemon),
@@ -225,6 +226,17 @@ export function getEligibleEtsyAds(
 
     const meaningfulAdTags =
       getMeaningfulEtsyTags(ad.tags);
+    const excludedTags = getMeaningfulEtsyTags(
+      ad.excludeTags
+    );
+
+    if (
+      excludedTags.some(tag =>
+        meaningfulPageTags.has(tag)
+      )
+    ) {
+      return false;
+    }
 
     return meaningfulAdTags.some(tag =>
       meaningfulPageTags.has(tag)

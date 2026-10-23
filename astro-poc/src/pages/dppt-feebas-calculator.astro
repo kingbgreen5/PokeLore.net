@@ -1,11 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DpptFeebasCalculatorTool from '../islands/DpptFeebasCalculatorTool.jsx';
+import EtsyMerchPromo from '../islands/EtsyMerchPromo.jsx';
 import '../../../src/components/feebas/FeebasGuideBreadcrumbs.css';
+import { getEtsyPageTags, selectEtsyAd } from '../../../src/utils/etsyMerch.js';
 
 const canonical = 'https://pokelore.net/dppt-feebas-calculator';
 const description = 'Find your exact Feebas fishing tiles in Pokémon Platinum, Diamond & Pearl. Upload a save file or use two Jubilife lottery numbers to reveal your tiles on the map.';
 const structuredData = { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'DPPt Feebas Calculator', url: canonical, applicationCategory: 'GameApplication', operatingSystem: 'Any', browserRequirements: 'Requires JavaScript', description, isAccessibleForFree: true };
+const ad = selectEtsyAd(
+  getEtsyPageTags({ pathname: '/dppt-feebas-calculator' })
+);
 ---
 
 <BaseLayout seo={{ title: 'Pokémon Platinum Feebas Calculator | Diamond & Pearl | PokéLore', description, canonical, structuredData }}>
@@ -38,6 +43,13 @@ const structuredData = { '@context': 'https://schema.org', '@type': 'WebApplicat
     <article class="dppt-feebas-public-guide">
       <p>Use this free Feebas tile calculator to locate the fishing spots where Feebas can appear in Pokémon Diamond, Pearl, and Platinum. Find your tiles in Mt. Coronet B1F by uploading a compatible save file or entering two consecutive Jubilife TV lottery numbers.</p>
       <p>The calculator displays the results on an interactive map, so you can fish the correct tiles instead of searching the entire lake.</p>
+
+      <EtsyMerchPromo
+        client:load
+        ad={ad}
+        pagePath="/dppt-feebas-calculator"
+        placement="dppt-feebas-calculator-guide"
+      />
 
       <h2>How to Find Feebas in Pokemon Platinum, Diamond, and Pearl</h2>
       <p>To find your active tiles, choose one of the two methods.</p>

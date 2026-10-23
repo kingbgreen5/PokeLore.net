@@ -24,6 +24,7 @@ import enamorus from "../../public/data/pokemonData/905.json";
 import sprigatito from "../../public/data/pokemonData/906.json";
 import miraidon from "../../public/data/pokemonData/1008.json";
 import charizardMegaX from "../../public/data/pokemonData/10034.json";
+import { etsyAds } from "../data/etsyAds";
 import {
   getEligibleEtsyAds,
   getEtsyPageTags,
@@ -137,6 +138,7 @@ describe("Etsy merchandise tagging", () => {
     ).toEqual(
       expect.arrayContaining([
         "pokemon",
+        "pokemon-detail",
         "bulbasaur",
         "kanto",
         "grass",
@@ -229,6 +231,55 @@ describe("Etsy merchandise matching", () => {
         ]
       )
     ).toEqual([]);
+  });
+
+  it("matches a Pokemon-detail ad for Pokemon outside Kanto", () => {
+    expect(
+      getEligibleEtsyAds(
+        getEtsyPageTags({
+          pathname: "/pokemon/chikorita",
+          pokemon: chikorita
+        }),
+        [
+          {
+            ...displayableAdBase,
+            tags: [
+              "pokemon-detail",
+              "kanto"
+            ]
+          }
+        ]
+      )
+    ).toHaveLength(1);
+  });
+
+  it("uses the Mt. Coronet ad instead of Viridian Forest for Generation IV Pokemon", () => {
+    expect(
+      selectEtsyAd(
+        getEtsyPageTags({
+          pathname: "/pokemon/turtwig",
+          pokemon: turtwig
+        }),
+        {
+          ads: etsyAds,
+          random: vi.fn(() => 0)
+        }
+      )?.id
+    ).toBe("mt-coronet-national-park-tee-v1");
+  });
+
+  it("matches the Mt. Coronet ad on the DPPt Feebas calculator", () => {
+    expect(
+      selectEtsyAd(
+        getEtsyPageTags({
+          pathname: "/dppt-feebas-calculator"
+        }),
+        {
+          ads: etsyAds,
+          random: vi.fn(() => 0)
+        }
+      )?.id
+    ).toBe("mt-coronet-national-park-tee-v1");
   });
 
   it("does not let generic structural tags make every Pokemon ad eligible", () => {

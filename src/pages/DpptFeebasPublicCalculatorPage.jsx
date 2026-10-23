@@ -3,10 +3,15 @@ import {
   useRef,
   useState
 } from "react";
-import { Link } from "react-router-dom";
+import {
+  Link,
+  useLocation
+} from "react-router-dom";
+import EtsyMerchPromo from "../components/EtsyMerchPromo";
 import FeebasGuideBreadcrumbs from "../components/feebas/FeebasGuideBreadcrumbs";
 import DpptFeebasMap from "../components/feebas/DpptFeebasMap";
 import DpptGreatMarshResults from "../components/feebas/DpptGreatMarshResults";
+import { useSelectedEtsyAd } from "../hooks/useSelectedEtsyAd";
 import Seo from "../seo/Seo";
 import {
   calculateDpptFeebasResults,
@@ -18,6 +23,7 @@ import {
   dpptFeebasAudit,
   getFeebasOffsetSearchArea
 } from "../utils/dpptFeebasTiles";
+import { getEtsyPageTags } from "../utils/etsyMerch";
 import "./DpptFeebasPublicCalculatorPage.css";
 
 const DEFAULT_FORM = {
@@ -88,6 +94,18 @@ function BackgroundImageSwitch({
 }
 
 function DpptFeebasPublicCalculatorPage() {
+  const location = useLocation();
+  const etsyPageTags = useMemo(
+    () =>
+      getEtsyPageTags({
+        pathname: location.pathname
+      }),
+    [location.pathname]
+  );
+  const selectedEtsyAd =
+    useSelectedEtsyAd(etsyPageTags, {
+      pageViewKey: location.pathname
+    });
   const [form, setForm] = useState(DEFAULT_FORM);
   const [inputMethod, setInputMethod] = useState(
     INPUT_METHODS.LOTTERY
@@ -524,6 +542,12 @@ function DpptFeebasPublicCalculatorPage() {
           so you can fish the correct tiles instead of searching the
           entire lake.
         </p>
+
+        <EtsyMerchPromo
+          ad={selectedEtsyAd}
+          pagePath={location.pathname}
+          placement="dppt-feebas-calculator-guide"
+        />
 
         <h2>How to Find Feebas in Pokemon Platinum, Diamond, and Pearl</h2>
         <p>To find your active tiles, choose one of the two methods.</p>
