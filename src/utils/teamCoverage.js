@@ -131,6 +131,78 @@ export function getLevelUpAttackTypes({
   );
 }
 
+export function getLearnsetAttackMoves({
+  consideredTypes = ALL_POKEMON_TYPES,
+  includeMachineMoves = false,
+  learnset,
+  maxMoveLevel = 0,
+  minMovePower = 0,
+  movesByName,
+  versionGroup
+}) {
+  const consideredTypeSet =
+    new Set(consideredTypes);
+  const learnsetVersionGroup =
+    LEARNSET_VERSION_GROUP_ALIASES[
+      versionGroup
+    ] ?? versionGroup;
+  const levelCap = Number(maxMoveLevel) || 0;
+  const moves = new Map();
+
+  for (const learnsetMove of learnset?.moves ?? []) {
+    const isIncludedMethod =
+      learnsetMove.method === "level-up" ||
+      (includeMachineMoves &&
+        learnsetMove.method === "machine");
+
+    if (
+      !isIncludedMethod ||
+      learnsetMove.versionGroup !== learnsetVersionGroup
+    ) {
+      continue;
+    }
+
+    const learnedLevel =
+      Number(learnsetMove.level) || 0;
+    const move = movesByName?.[learnsetMove.move];
+    const movePower = Number(move?.power) || 0;
+    const moveType = String(move?.type ?? "")
+      .toLowerCase();
+
+    if (
+      !isDamagingMove(move) ||
+      movePower <= 0 ||
+      movePower < minMovePower ||
+      !consideredTypeSet.has(moveType) ||
+      (levelCap > 0 &&
+        learnedLevel > levelCap)
+    ) {
+      continue;
+    }
+
+    const existingMove = moves.get(move.name);
+
+    if (
+      !existingMove ||
+      learnedLevel < existingMove.level
+    ) {
+      moves.set(move.name, {
+        ...move,
+        level: learnedLevel,
+        method: learnsetMove.method
+      });
+    }
+  }
+
+  return [...moves.values()].sort(
+    (a, b) =>
+      Number(b.power) - Number(a.power) ||
+      String(a.displayName ?? a.name).localeCompare(
+        String(b.displayName ?? b.name)
+      )
+  );
+}
+
 export function getLevelUpAttackTypePowers({
   consideredTypes = ALL_POKEMON_TYPES,
   includeMachineMoves = false,

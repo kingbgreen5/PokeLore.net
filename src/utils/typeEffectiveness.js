@@ -35,28 +35,62 @@ export function formatDamageMultiplier(
   );
 }
 
+export function getDefensiveDamageMultiplier({
+  abilityEffects = [],
+  attackType,
+  types
+}) {
+  const normalizedAttackType = String(
+    attackType ?? ""
+  ).toLowerCase();
+  const defendingTypes = (types ?? []).filter(
+    type => POKEMON_TYPES.includes(type)
+  );
+  let multiplier = defendingTypes.reduce(
+    (total, defenseType) =>
+      total *
+      (typeChart[normalizedAttackType]?.[
+        defenseType
+      ] ?? 1),
+    1
+  );
+
+  for (const effect of abilityEffects) {
+    if (
+      effect.condition !== "always" ||
+      (effect.attackTypes &&
+        !effect.attackTypes.includes(
+          normalizedAttackType
+        ))
+    ) {
+      continue;
+    }
+
+    if (effect.effectType === "set-damage-multiplier") {
+      multiplier = Number(effect.multiplier);
+    }
+
+    if (effect.effectType === "multiply-damage") {
+      multiplier *= Number(effect.multiplier);
+    }
+  }
+
+  return multiplier;
+}
+
 export function getDefensiveMatchups(
   types,
   {
+    abilityEffects = [],
     includeNeutral = false
   } = {}
 ) {
-  const defendingTypes = (
-    types ?? []
-  ).filter(type =>
-    POKEMON_TYPES.includes(type)
-  );
-
   return POKEMON_TYPES.map(attackType => {
-    const multiplier =
-      defendingTypes.reduce(
-        (total, defenseType) =>
-          total *
-          (typeChart[attackType]?.[
-            defenseType
-          ] ?? 1),
-        1
-      );
+    const multiplier = getDefensiveDamageMultiplier({
+      abilityEffects,
+      attackType,
+      types
+    });
 
     return {
       type: attackType,
@@ -79,12 +113,14 @@ export function getDefensiveMatchups(
 }
 
 export function getDefensiveMatchupGroups(
-  types
+  types,
+  options
 ) {
   const matchups =
-    getDefensiveMatchups(types);
+    getDefensiveMatchups(types, options);
   const neutralMatchups =
     getDefensiveMatchups(types, {
+      ...options,
       includeNeutral: true
     }).filter(
       matchup => matchup.multiplier === 1
@@ -114,10 +150,9 @@ export function getDefensiveMatchupGroups(
   return {
     fourTimesWeaknesses,
     twoTimesWeaknesses,
-    weaknesses: [
-      ...fourTimesWeaknesses,
-      ...twoTimesWeaknesses
-    ],
+    weaknesses: matchups.filter(
+      matchup => matchup.multiplier > 1
+    ),
     neutralMatchups,
     halfResistances,
     quarterResistances,

@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { gzipSync } from 'node:zlib';
 
 const dist = join(process.cwd(), 'dist');
-const required = ['team-coverage.html', 'data/pokemonRoutes.json', 'data/movesIndex.json', 'data/teamCoverage/index.json', 'data/teamCoverage/scarlet-violet.json', 'data/pokemonData/25.json', 'data/pokemonLearnsets/25.json'];
+const required = ['team-coverage.html', 'data/abilitiesEffectsOnMoves.json', 'data/championTeams.json', 'data/pokemonRoutes.json', 'data/movesIndex.json', 'data/teamCoverage/index.json', 'data/teamCoverage/scarlet-violet.json', 'data/pokemonData/25.json', 'data/pokemonLearnsets/25.json'];
 for (const file of required) if (!existsSync(join(dist, file))) throw new Error(`Missing Team Coverage artifact: ${file}`);
 const html = readFileSync(join(dist, 'team-coverage.html'), 'utf8');
 for (const text of ['Pokémon Playthrough Team Builder', 'How the Pokémon Playthrough Team Builder Works']) if (!html.includes(text)) throw new Error(`Missing static shell text: ${text}`);

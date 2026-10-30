@@ -119,7 +119,7 @@ export function copyTeamCoveragePayloads(output) {
     copyFileSync(join(sourceDirectory, file), join(targetDirectory, file));
   }
   // The frozen React island fetches these exact production paths on demand.
-  for (const file of ['pokemonRoutes.json', 'movesIndex.json', 'moves.json']) {
+  for (const file of ['abilitiesEffectsOnMoves.json', 'championTeams.json', 'pokemonRoutes.json', 'movesIndex.json', 'moves.json']) {
     const source = join(repositoryRoot, 'public', 'data', file);
     if (existsSync(source)) copyFileSync(source, join(output, 'data', file));
   }

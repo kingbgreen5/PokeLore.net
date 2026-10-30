@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 1,
+  "description": "Machine-readable defensive effects of abilities for Team Builder matchup calculations. Apply effects after the normal type-chart multiplier unless an effect uses set-damage-multiplier or block-move.",
+  "effectTypes": {
+    "set-damage-multiplier": "Replaces the calculated type-chart multiplier for matching incoming moves.",
+    "multiply-damage": "Multiplies the calculated damage multiplier for matching incoming moves.",
+    "block-move": "Prevents a matching move from affecting the defender.",
+    "set-effectiveness": "Changes the type-effectiveness result in a context-dependent way.",
+    "dynamic-type-change": "Changes defensive typing and requires live battle context.",
+    "damage-prevention": "Prevents or reduces damage only while a stated battle condition is true.",
+    "prevent-ohko": "Prevents a one-hit knockout without changing ordinary damage."
+  },
+  "abilities": {
+    "levitate": {
+      "categories": ["type-immunity"],
+      "implementation": "static",
+      "effects": [{"effectType": "set-damage-multiplier", "attackTypes": ["ground"], "multiplier": 0, "condition": "always"}]
+    },
+    "flash-fire": {
+      "categories": ["type-immunity"],
+      "implementation": "static",
+      "effects": [{"effectType": "set-damage-multiplier", "attackTypes": ["fire"], "multiplier": 0, "condition": "always"}]
+    },
+    "well-baked-body": {
+      "categories": ["type-immunity"],
+      "implementation": "static",
+      "effects": [{"effectType": "set-damage-multiplier", "attackTypes": ["fire"], "multiplier": 0, "condition": "always"}]
+    },
+    "water-absorb": {
+      "categories": ["type-immunity"],
+      "implementation": "static",
+      "effects": [{"effectType": "set-damage-multiplier", "attackTypes": ["water"], "multiplier": 0, "condition": "always"}]
+    },
+    "storm-drain": {
+      "categories": ["type-immunity"],
+      "implementation": "static",
+      "effects": [{"effectType": "set-damage-multiplier", "attackTypes": ["water"], "multiplier": 0, "condition": "always"}]
+    },
+    "dry-skin": {
+      "categories": ["type-immunity", "type-weakness"],
+      "implementation": "static",
+      "effects": [
+        {"effectType": "set-damage-multiplier", "attackTypes": ["water"], "multiplier": 0, "condition": "always"},
+        {"effectType": "multiply-damage", "attackTypes": ["fire"], "multiplier": 1.25, "condition": "always"}
+      ]
+    },
+    "volt-absorb": {
+      "categories": ["type-immunity"],
+      "implementation": "static",
+      "effects": [{"effectType": "set-damage-multiplier", "attackTypes": ["electric"], "multiplier": 0, "condition": "always"}]
+    },
+    "lightning-rod": {
+      "categories": ["type-immunity"],
+      "implementation": "static-with-generation-rule",
+      "effects": [{"effectType": "set-damage-multiplier", "attackTypes": ["electric"], "multiplier": 0, "condition": "always", "excludedGenerations": ["generation-iii"]}]
+    },
+    "motor-drive": {
+      "categories": ["type-immunity"],
+      "implementation": "static",
+      "effects": [{"effectType": "set-damage-multiplier", "attackTypes": ["electric"], "multiplier": 0, "condition": "always"}]
+    },
+    "sap-sipper": {
+      "categories": ["type-immunity"],
+      "implementation": "static",
+      "effects": [{"effectType": "set-damage-multiplier", "attackTypes": ["grass"], "multiplier": 0, "condition": "always"}]
+    },
+    "earth-eater": {
+      "categories": ["type-immunity"],
+      "implementation": "static",
+      "effects": [{"effectType": "set-damage-multiplier", "attackTypes": ["ground"], "multiplier": 0, "condition": "always"}]
+    },
+    "thick-fat": {
+      "categories": ["type-resistance"],
+      "implementation": "static",
+      "effects": [{"effectType": "multiply-damage", "attackTypes": ["fire", "ice"], "multiplier": 0.5, "condition": "always"}]
+    },
+    "heatproof": {
+      "categories": ["type-resistance"],
+      "implementation": "static",
+      "effects": [{"effectType": "multiply-damage", "attackTypes": ["fire"], "multiplier": 0.5, "condition": "always"}]
+    },
+    "water-bubble": {
+      "categories": ["type-resistance"],
+      "implementation": "static",
+      "effects": [{"effectType": "multiply-damage", "attackTypes": ["fire"], "multiplier": 0.5, "condition": "always"}]
+    },
+    "purifying-salt": {
+      "categories": ["type-resistance"],
+      "implementation": "static",
+      "effects": [{"effectType": "multiply-damage", "attackTypes": ["ghost"], "multiplier": 0.5, "condition": "always"}]
+    },
+    "filter": {
+      "categories": ["super-effective-resistance"],
+      "implementation": "conditional",
+      "effects": [{"effectType": "multiply-damage", "multiplier": 0.75, "condition": "base-type-multiplier-greater-than-1"}]
+    },
+    "solid-rock": {
+      "categories": ["super-effective-resistance"],
+      "implementation": "conditional",
+      "effects": [{"effectType": "multiply-damage", "multiplier": 0.75, "condition": "base-type-multiplier-greater-than-1"}]
+    },
+    "prism-armor": {
+      "categories": ["super-effective-resistance"],
+      "implementation": "conditional",
+      "effects": [{"effectType": "multiply-damage", "multiplier": 0.75, "condition": "base-type-multiplier-greater-than-1"}]
+    },
+    "fluffy": {
+      "categories": ["move-property-resistance", "type-weakness"],
+      "implementation": "conditional",
+      "effects": [
+        {"effectType": "multiply-damage", "multiplier": 0.5, "condition": "move-makes-contact"},
+        {"effectType": "multiply-damage", "attackTypes": ["fire"], "multiplier": 2, "condition": "always"}
+      ]
+    },
+    "ice-scales": {
+      "categories": ["move-category-resistance"],
+      "implementation": "conditional",
+      "effects": [{"effectType": "multiply-damage", "moveCategories": ["special"], "multiplier": 0.5, "condition": "always"}]
+    },
+    "fur-coat": {
+      "categories": ["move-category-resistance"],
+      "implementation": "conditional",
+      "effects": [{"effectType": "multiply-damage", "moveCategories": ["physical"], "multiplier": 0.5, "condition": "always"}]
+    },
+    "punk-rock": {
+      "categories": ["move-property-resistance"],
+      "implementation": "conditional",
+      "effects": [{"effectType": "multiply-damage", "moveTags": ["sound"], "multiplier": 0.5, "condition": "always"}]
+    },
+    "wonder-guard": {
+      "categories": ["conditional-protection"],
+      "implementation": "conditional",
+      "effects": [{"effectType": "block-move", "condition": "damaging-move-and-base-type-multiplier-less-than-or-equal-to-1"}]
+    },
+    "tera-shell": {
+      "categories": ["conditional-protection"],
+      "implementation": "conditional",
+      "effects": [{"effectType": "set-effectiveness", "multiplier": 0.5, "condition": "full-hp-and-damaging-move-and-not-immune"}]
+    },
+    "delta-stream": {
+      "categories": ["field-effect"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "set-effectiveness", "multiplier": 1, "condition": "strong-winds-active-and-super-effective-only-because-of-flying-type"}]
+    },
+    "primordial-sea": {
+      "categories": ["field-effect"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "block-move", "attackTypes": ["fire"], "condition": "heavy-rain-active-and-damaging-move"}]
+    },
+    "desolate-land": {
+      "categories": ["field-effect"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "block-move", "attackTypes": ["water"], "condition": "harsh-sunlight-active-and-damaging-move"}]
+    },
+    "multiscale": {
+      "categories": ["conditional-protection"],
+      "implementation": "conditional",
+      "effects": [{"effectType": "multiply-damage", "multiplier": 0.5, "condition": "full-hp"}]
+    },
+    "shadow-shield": {
+      "categories": ["conditional-protection"],
+      "implementation": "conditional",
+      "effects": [{"effectType": "multiply-damage", "multiplier": 0.5, "condition": "full-hp"}]
+    },
+    "friend-guard": {
+      "categories": ["ally-protection"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "multiply-damage", "multiplier": 0.75, "condition": "defender-is-an-ally-in-multi-battle"}]
+    },
+    "disguise": {
+      "categories": ["conditional-protection"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "damage-prevention", "multiplier": 0, "condition": "disguised-form-and-first-eligible-damaging-hit"}]
+    },
+    "ice-face": {
+      "categories": ["conditional-protection"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "damage-prevention", "multiplier": 0, "moveCategories": ["physical"], "condition": "ice-face-intact-and-eligible-hit"}]
+    },
+    "sturdy": {
+      "categories": ["conditional-protection"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "prevent-ohko", "condition": "full-hp"}]
+    },
+    "telepathy": {
+      "categories": ["ally-protection"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "block-move", "condition": "damaging-move-from-ally"}]
+    },
+    "aura-break": {
+      "categories": ["field-effect"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "multiply-damage", "multiplier": 0.75, "condition": "fairy-aura-or-dark-aura-would-boost-damage"}]
+    },
+    "bulletproof": {
+      "categories": ["move-property-immunity"],
+      "implementation": "requires-move-tags",
+      "effects": [{"effectType": "block-move", "moveTags": ["ball", "bomb"], "condition": "always"}]
+    },
+    "soundproof": {
+      "categories": ["move-property-immunity"],
+      "implementation": "requires-move-tags",
+      "effects": [{"effectType": "block-move", "moveTags": ["sound"], "condition": "always"}]
+    },
+    "wind-rider": {
+      "categories": ["move-property-immunity"],
+      "implementation": "requires-move-tags",
+      "effects": [{"effectType": "block-move", "moveTags": ["wind"], "condition": "always"}]
+    },
+    "overcoat": {
+      "categories": ["move-property-immunity"],
+      "implementation": "requires-move-tags",
+      "effects": [{"effectType": "block-move", "moveTags": ["powder"], "condition": "always"}]
+    },
+    "magic-bounce": {
+      "categories": ["status-move-protection"],
+      "implementation": "requires-move-tags",
+      "effects": [{"effectType": "block-move", "moveCategories": ["status"], "condition": "reflectable-status-move"}]
+    },
+    "good-as-gold": {
+      "categories": ["status-move-protection"],
+      "implementation": "requires-move-tags",
+      "effects": [{"effectType": "block-move", "moveCategories": ["status"], "condition": "opponent-status-move-that-affects-defender"}]
+    },
+    "damp": {
+      "categories": ["move-property-immunity"],
+      "implementation": "requires-move-tags",
+      "effects": [{"effectType": "block-move", "moveTags": ["self-destruct", "explosive"], "condition": "always"}]
+    },
+    "armor-tail": {
+      "categories": ["move-property-immunity"],
+      "implementation": "requires-move-tags",
+      "effects": [{"effectType": "block-move", "moveTags": ["priority"], "condition": "opposing-priority-move-targeting-defender-or-ally"}]
+    },
+    "queenly-majesty": {
+      "categories": ["move-property-immunity"],
+      "implementation": "requires-move-tags",
+      "effects": [{"effectType": "block-move", "moveTags": ["priority"], "condition": "opposing-priority-move-targeting-defender-or-ally"}]
+    },
+    "dazzling": {
+      "categories": ["move-property-immunity"],
+      "implementation": "requires-move-tags",
+      "effects": [{"effectType": "block-move", "moveTags": ["priority"], "condition": "opposing-priority-move-targeting-defender-or-ally"}]
+    },
+    "wonder-skin": {
+      "categories": ["status-move-protection"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "multiply-damage", "multiplier": 1, "moveCategories": ["status"], "condition": "reduces-accuracy-of-eligible-status-moves"}]
+    },
+    "color-change": {
+      "categories": ["dynamic-type-change"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "dynamic-type-change", "condition": "after-taking-damage-change-to-incoming-move-type"}]
+    },
+    "protean": {
+      "categories": ["dynamic-type-change"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "dynamic-type-change", "condition": "after-user-uses-move-change-to-that-move-type"}]
+    },
+    "libero": {
+      "categories": ["dynamic-type-change"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "dynamic-type-change", "condition": "after-user-uses-move-change-to-that-move-type"}]
+    },
+    "multitype": {
+      "categories": ["dynamic-type-change"],
+      "implementation": "requires-held-item",
+      "effects": [{"effectType": "dynamic-type-change", "condition": "type-set-by-held-plate-or-approved-item"}]
+    },
+    "rks-system": {
+      "categories": ["dynamic-type-change"],
+      "implementation": "requires-held-item",
+      "effects": [{"effectType": "dynamic-type-change", "condition": "type-set-by-held-memory"}]
+    },
+    "mimicry": {
+      "categories": ["dynamic-type-change"],
+      "implementation": "requires-terrain",
+      "effects": [{"effectType": "dynamic-type-change", "condition": "type-set-by-active-terrain"}]
+    },
+    "forecast": {
+      "categories": ["dynamic-type-change"],
+      "implementation": "requires-weather",
+      "effects": [{"effectType": "dynamic-type-change", "condition": "type-set-by-active-weather"}]
+    },
+    "imposter": {
+      "categories": ["dynamic-type-change"],
+      "implementation": "battle-context",
+      "effects": [{"effectType": "dynamic-type-change", "condition": "transform-into-opponent-and-copy-defensive-typing"}]
+    }
+  }
+}

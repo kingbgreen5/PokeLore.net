@@ -118,6 +118,30 @@ describe("type effectiveness helpers", () => {
     ]);
   });
 
+  it("applies ability-based type immunities", () => {
+    const groups = getDefensiveMatchupGroups(
+      ["electric"],
+      {
+        abilityEffects: [
+          {
+            effectType: "set-damage-multiplier",
+            attackTypes: ["ground"],
+            multiplier: 0,
+            condition: "always"
+          }
+        ]
+      }
+    );
+
+    expect(groups.weaknesses).toEqual([]);
+    expect(groups.immunities).toMatchObject([
+      {
+        type: "ground",
+        multiplier: 0
+      }
+    ]);
+  });
+
   it("handles normal 1x matchups when requested", () => {
     const normalMatchup =
       getDefensiveMatchups(

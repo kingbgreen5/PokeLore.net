@@ -11,6 +11,9 @@ import {
 import EtsyMerchPromo from "../components/EtsyMerchPromo";
 import PokemonSummaryCard from "../components/PokemonSummaryCard";
 import TypeBadge from "../components/TypeBadge";
+import physicalBadge from "../assets/Physical Badge.png?url";
+import specialBadge from "../assets/Special Badge.png?url";
+import statusBadge from "../assets/Status Badge.png?url";
 import typeChart from "../constants/Types";
 import typeColors from "../constants/typeColors";
 import { VERSION_GROUP_ORDER } from "../constants/versionOrder";
@@ -22,10 +25,16 @@ import { getEtsyPageTags } from "../utils/etsyMerch";
 import { loadMovesMap } from "../utils/loadMovesData";
 import { formatPokemonDisplayName } from "../utils/pokemonNames";
 import {
+  formatDamageMultiplier,
+  getDefensiveDamageMultiplier,
+  getDefensiveMatchupGroups
+} from "../utils/typeEffectiveness";
+import {
   DEFAULT_TEAM_RECOMMENDATION_WEIGHTS,
   LEVEL_UP_MOVE_LEVEL_THRESHOLDS,
   TEAM_RECOMMENDATION_WEIGHTS_STORAGE_KEY,
   formatVersionGroupName,
+  getLearnsetAttackMoves,
   getCoveredDefenseTypes,
   getDefensiveCoverageBreakdown,
   getDefensiveCoverageTypes,
@@ -824,6 +833,150 @@ async function readJsonUrl(url) {
   return response.json();
 }
 
+function getChampionPokemonRouteId(
+  pokemonName,
+  pokemonRouteIdsByName
+) {
+  const directId = Number(
+    pokemonRouteIdsByName[pokemonName]
+  );
+
+  if (Number.isFinite(directId)) {
+    return directId;
+  }
+
+  const formName = Object.keys(
+    pokemonRouteIdsByName
+  ).find(name =>
+    name.startsWith(`${pokemonName}-`)
+  );
+  const formId = Number(
+    pokemonRouteIdsByName[formName]
+  );
+
+  return Number.isFinite(formId)
+    ? formId
+    : null;
+}
+
+function getAbilitySlug(abilityName) {
+  return String(abilityName ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-");
+}
+
+function formatAbilityName(abilityName) {
+  return String(abilityName ?? "")
+    .split("-")
+    .filter(Boolean)
+    .map(
+      word =>
+        word.charAt(0).toUpperCase() +
+        word.slice(1)
+    )
+    .join(" ");
+}
+
+function formatMoveName(moveName) {
+  return String(moveName ?? "")
+    .split("-")
+    .filter(Boolean)
+    .map(
+      word =>
+        word.charAt(0).toUpperCase() +
+        word.slice(1)
+    )
+    .join(" ");
+}
+
+function getCategoryBadge(category) {
+  switch (String(category ?? "").toLowerCase()) {
+    case "physical":
+      return physicalBadge;
+    case "special":
+      return specialBadge;
+    case "status":
+      return statusBadge;
+    default:
+      return null;
+  }
+}
+
+function formatResistanceMultiplier(multiplier) {
+  if (multiplier === 0) {
+    return "–";
+  }
+
+  return `1/${1 / multiplier}`;
+}
+
+function formatChampionMoveDamageMultiplier(
+  multiplier
+) {
+  return multiplier < 1
+    ? formatResistanceMultiplier(multiplier)
+    : formatDamageMultiplier(multiplier);
+}
+
+const VERSION_GROUP_GENERATIONS = {
+  "red-green-japan": "generation-i",
+  "blue-japan": "generation-i",
+  "red-blue": "generation-i",
+  "yellow": "generation-i",
+  "gold-silver": "generation-ii",
+  "crystal": "generation-ii",
+  "ruby-sapphire": "generation-iii",
+  "colosseum": "generation-iii",
+  "firered-leafgreen": "generation-iii",
+  "emerald": "generation-iii",
+  "xd": "generation-iii",
+  "diamond-pearl": "generation-iv",
+  "platinum": "generation-iv",
+  "heartgold-soulsilver": "generation-iv",
+  "black-white": "generation-v",
+  "black-2-white-2": "generation-v",
+  "x-y": "generation-vi",
+  "omega-ruby-alpha-sapphire": "generation-vi",
+  "sun-moon": "generation-vii",
+  "ultra-sun-ultra-moon": "generation-vii",
+  "lets-go-pikachu-lets-go-eevee": "generation-vii",
+  "sword-shield": "generation-viii",
+  "the-isle-of-armor": "generation-viii",
+  "the-crown-tundra": "generation-viii",
+  "brilliant-diamond-shining-pearl": "generation-viii",
+  "brilliant-diamond-and-shining-pearl": "generation-viii",
+  "legends-arceus": "generation-viii",
+  "scarlet-violet": "generation-ix",
+  "the-teal-mask": "generation-ix",
+  "the-indigo-disk": "generation-ix"
+};
+
+function getChampionStaticAbilityEffects({
+  abilityEffectsByName,
+  abilityName,
+  versionGroup
+}) {
+  const ability = abilityEffectsByName?.[abilityName];
+  const generation = VERSION_GROUP_GENERATIONS[
+    versionGroup
+  ];
+
+  if (
+    !ability ||
+    ![
+      "static",
+      "static-with-generation-rule"
+    ].includes(ability.implementation)
+  ) {
+    return [];
+  }
+
+  return ability.effects.filter(effect =>
+    !effect.excludedGenerations?.includes(generation)
+  );
+}
+
 function TypeBadgeList({
   emptyLabel,
   height = "1.35rem",
@@ -1277,6 +1430,620 @@ function PartyTile({
   );
 }
 
+function ChampionTeamMemberTile({
+  abilityEffectsByName,
+  consideredTypes,
+  includeMachineMoves,
+  member,
+  maxMoveLevel,
+  minMovePower,
+  movesByName,
+  matchupMode,
+  partyMembers,
+  pokemon,
+  versionGroup
+}) {
+  const abilityEffects =
+    getChampionStaticAbilityEffects({
+      abilityEffectsByName,
+      abilityName: member.ability,
+      versionGroup
+    });
+  const weaknessGroups =
+    getDefensiveMatchupGroups(member.types, {
+      abilityEffects
+    });
+  const weaknesses =
+    weaknessGroups.weaknesses;
+  const summaryPokemon = pokemon
+    ? {
+        ...pokemon,
+        name:
+          member.displayName?.toLowerCase() ??
+          pokemon.name,
+        types: member.types
+      }
+    : null;
+  const partyMoveMatchups = partyMembers
+    .filter(partyMember => partyMember?.pokemon)
+    .map(partyMember => ({
+      moves: getLearnsetAttackMoves({
+        consideredTypes,
+        includeMachineMoves,
+        learnset: partyMember.learnset,
+        maxMoveLevel,
+        minMovePower,
+        movesByName,
+        versionGroup
+      }).filter(move => {
+        const multiplier =
+          getDefensiveDamageMultiplier({
+            abilityEffects,
+            attackType: move.type,
+            types: member.types
+          });
+
+        return multiplier > 1;
+      }),
+      pokemon: partyMember.pokemon
+    }))
+    .filter(matchup => matchup.moves.length);
+  const championMoveMatchups = member.moves.map(
+    championMove => {
+      const isStatusMove =
+        String(
+          movesByName[championMove.move]?.category ?? ""
+        ).toLowerCase() === "status";
+
+      return {
+        ...championMove,
+        affectedPokemon: partyMembers
+          .filter(partyMember => partyMember?.pokemon)
+          .map(partyMember => {
+            const multiplier = getDefensiveDamageMultiplier({
+              attackType: championMove.type,
+              types: partyMember.pokemon.types
+            });
+
+            return {
+              multiplier,
+              pokemon: partyMember.pokemon
+            };
+          })
+          .filter(entry =>
+            isStatusMove
+              ? entry.multiplier === 0
+              : entry.multiplier !== 1
+          )
+      };
+    }
+  );
+  const partyMoveDefensiveMatchups = partyMembers
+    .filter(partyMember => partyMember?.pokemon)
+    .map(partyMember => {
+      const moves = championMoveMatchups
+        .map(championMove => {
+          const matchup = championMove.affectedPokemon.find(
+            entry => entry.pokemon.id === partyMember.pokemon.id
+          );
+
+          return matchup
+            ? {
+                ...championMove,
+                multiplier: matchup.multiplier
+              }
+            : null;
+        })
+        .filter(Boolean);
+
+      return {
+        resistedMoves: moves.filter(
+          move => move.multiplier < 1
+        ),
+        weakMoves: moves.filter(
+          move => move.multiplier > 1
+        ),
+        pokemon: partyMember.pokemon
+      };
+    })
+    .filter(
+      matchup =>
+        matchup.resistedMoves.length ||
+        matchup.weakMoves.length
+    );
+  const suggestedPartyMatchups = partyMoveMatchups.filter(
+    offensiveMatchup =>
+      !partyMoveDefensiveMatchups.some(
+        defensiveMatchup =>
+          defensiveMatchup.pokemon.id ===
+            offensiveMatchup.pokemon.id &&
+          defensiveMatchup.weakMoves.length > 0
+      )
+  );
+  const championSpeed = Number(
+    pokemon?.stats?.speed
+  ) || null;
+  const partySpeedMatchups = partyMembers
+    .filter(partyMember => partyMember?.pokemon)
+    .map(partyMember => ({
+      pokemon: partyMember.pokemon,
+      speed: Number(
+        partyMember.pokemon.stats?.speed
+      ) || 0
+    }))
+    .sort((a, b) => b.speed - a.speed);
+  const fasterPokemon = championSpeed
+    ? partySpeedMatchups.filter(
+        entry => entry.speed > championSpeed
+      )
+    : [];
+  const potentiallyFasterPokemon = championSpeed
+    ? partySpeedMatchups.filter(
+        entry =>
+          entry.speed <= championSpeed &&
+          entry.speed >= championSpeed - 20
+      )
+    : [];
+
+  return (
+    <article
+      className="team-coverage-champion-tile"
+      style={getPokemonTypeTileStyle(member.types)}
+    >
+      {summaryPokemon ? (
+        <PokemonSummaryCard
+          pokemon={summaryPokemon}
+          variant="teamCoverage"
+          reloadDocument
+        />
+      ) : (
+        <div className="team-coverage-champion-card-loading">
+          Loading {member.displayName ?? member.pokemon}...
+        </div>
+      )}
+
+      <section className="team-coverage-champion-ability">
+        <span>Lv. {member.level}</span>
+        {member.ability ? (
+          <Link
+            to={`/ability/${getAbilitySlug(member.ability)}`}
+            reloadDocument
+          >
+            {formatAbilityName(member.ability)}
+          </Link>
+        ) : (
+          <span>Unknown</span>
+        )}
+      </section>
+
+      {matchupMode === "offensive" ? (
+        <section className="team-coverage-party-section">
+          <h3>Weak To</h3>
+          <div className="team-coverage-champion-weaknesses">
+            {weaknesses.map(weakness => (
+              <span
+                key={weakness.type}
+                className="team-coverage-matchup-badge"
+              >
+                <span className="team-coverage-matchup-score">
+                  {formatDamageMultiplier(
+                    weakness.multiplier
+                  )}
+                </span>
+                <TypeBadge
+                  type={weakness.type}
+                  height="1.15rem"
+                />
+              </span>
+            ))}
+
+            {partyMoveMatchups.length > 0 && (
+              <div className="team-coverage-champion-matchups">
+                {partyMoveMatchups.map(matchup => (
+                  <section
+                    key={matchup.pokemon.id}
+                    className="team-coverage-champion-matchup"
+                  >
+                    <h4>
+                      {formatPokemonDisplayName(
+                        matchup.pokemon
+                      )}
+                    </h4>
+                    <ul>
+                      {matchup.moves.map(move => (
+                        <li key={move.name}>
+                          <Link
+                            to={`/move/${move.name}`}
+                            reloadDocument
+                          >
+                            {move.displayName ?? move.name}
+                          </Link>
+                          <span>{move.power}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      ) : matchupMode === "defensive" ? (
+        <section className="team-coverage-party-section">
+          <h3>Moves</h3>
+          <div className="team-coverage-champion-defense-moves">
+            {championMoveMatchups.map(
+              championMove => {
+                const moveDetails = movesByName[
+                  championMove.move
+                ];
+                const categoryBadge = getCategoryBadge(
+                  moveDetails?.category
+                );
+
+                return (
+                  <section
+                    key={championMove.move}
+                    className="team-coverage-champion-defense-move"
+                  >
+                    <h4>
+                      <Link
+                        to={`/move/${championMove.move}`}
+                        reloadDocument
+                      >
+                        {moveDetails?.displayName ??
+                          formatMoveName(
+                            championMove.move
+                          )}
+                      </Link>
+                      {categoryBadge && (
+                        <img
+                          src={categoryBadge}
+                          alt={`${moveDetails.category} move`}
+                        />
+                      )}
+                    </h4>
+                    {championMove.affectedPokemon.length ? (
+                      <ul>
+                        {championMove.affectedPokemon.map(
+                          entry => (
+                            <li key={entry.pokemon.id}>
+                              <span
+                                className={
+                                  entry.multiplier > 1
+                                    ? "team-coverage-champion-defense-matchup-weak"
+                                    : "team-coverage-champion-defense-matchup-resistant"
+                                }
+                              >
+                                {formatPokemonDisplayName(
+                                  entry.pokemon
+                                )}
+                              </span>
+                              <span>
+                                {formatChampionMoveDamageMultiplier(
+                                  entry.multiplier
+                                )}
+                              </span>
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    ) : (
+                      <p>–</p>
+                    )}
+                  </section>
+                );
+              }
+            )}
+          </div>
+        </section>
+      ) : matchupMode === "defensive-test" ? (
+        <section className="team-coverage-party-section">
+          {partyMoveDefensiveMatchups.length ? (
+            <div className="team-coverage-champion-defense-test">
+              {partyMoveDefensiveMatchups.map(matchup => (
+                <section
+                  key={matchup.pokemon.id}
+                  className="team-coverage-champion-defense-test-matchup"
+                >
+                  <h4>
+                    {formatPokemonDisplayName(
+                      matchup.pokemon
+                    )}
+                  </h4>
+                  <ul>
+                    {[
+                      ...matchup.resistedMoves,
+                      ...matchup.weakMoves
+                    ].map(move => {
+                      const moveDetails = movesByName[move.move];
+                      const isWeakness = move.multiplier > 1;
+
+                      return (
+                        <li key={move.move}>
+                          <Link
+                            className={
+                              isWeakness
+                                ? "team-coverage-champion-defense-matchup-weak"
+                                : "team-coverage-champion-defense-matchup-resistant"
+                            }
+                            to={`/move/${move.move}`}
+                            reloadDocument
+                          >
+                            {moveDetails?.displayName ??
+                              formatMoveName(move.move)}
+                          </Link>
+                          <span>
+                            {formatChampionMoveDamageMultiplier(
+                              move.multiplier
+                            )}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          ) : (
+            <p className="team-coverage-champion-empty-matchup">–</p>
+          )}
+        </section>
+      ) : matchupMode === "suggested" ? (
+        <section className="team-coverage-party-section">
+          <h3>Suggested Matchup</h3>
+          {suggestedPartyMatchups.length ? (
+            <div className="team-coverage-champion-suggested-matchups">
+              {suggestedPartyMatchups.map(matchup => (
+                <section
+                  key={matchup.pokemon.id}
+                  className="team-coverage-champion-suggested-matchup"
+                >
+                  <h4>
+                    {formatPokemonDisplayName(
+                      matchup.pokemon
+                    )}
+                  </h4>
+                  <ul>
+                    {matchup.moves.map(move => (
+                      <li key={move.name}>
+                        <Link
+                          to={`/move/${move.name}`}
+                          reloadDocument
+                        >
+                          {move.displayName ?? move.name}
+                        </Link>
+                        <span>{move.power}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          ) : (
+            <p className="team-coverage-champion-empty-matchup">–</p>
+          )}
+        </section>
+      ) : (
+        <section className="team-coverage-party-section">
+          <h3 className="team-coverage-champion-base-speed">
+            Base Speed
+            <span>{championSpeed ?? "–"}</span>
+          </h3>
+          <div className="team-coverage-champion-speed-groups">
+            <section className="team-coverage-champion-speed-group">
+              <h4>Slower Than</h4>
+              {fasterPokemon.length ? (
+                <ul>
+                  {fasterPokemon.map(entry => (
+                    <li key={entry.pokemon.id}>
+                      <span>
+                        {formatPokemonDisplayName(
+                          entry.pokemon
+                        )}
+                      </span>
+                      <span>{entry.speed}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>–</p>
+              )}
+            </section>
+
+            <section className="team-coverage-champion-speed-group">
+              <h4>
+                Potentially Slower Than
+                <button
+                  type="button"
+                  className="team-coverage-champion-speed-note"
+                  aria-label="These pokemon could be faster depending on IVs, EVs, Natures, etc."
+                >
+                  ?
+                </button>
+              </h4>
+              {potentiallyFasterPokemon.length ? (
+                <ul>
+                  {potentiallyFasterPokemon.map(entry => (
+                    <li key={entry.pokemon.id}>
+                      <span>
+                        {formatPokemonDisplayName(
+                          entry.pokemon
+                        )}
+                      </span>
+                      <span>{entry.speed}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>–</p>
+              )}
+            </section>
+          </div>
+        </section>
+      )}
+    </article>
+  );
+}
+
+function ChampionTeamSection({
+  abilityEffectsByName,
+  championPokemonRecordsByName,
+  championTeams,
+  partyMoveSettings,
+  partyMembers
+}) {
+  const [matchupMode, setMatchupMode] =
+    useState("suggested");
+  const [includeChampionTmLearnsets, setIncludeChampionTmLearnsets] =
+    useState(false);
+  const includeChampionTmMoves =
+    includeChampionTmLearnsets &&
+    ["suggested", "offensive"].includes(matchupMode);
+  const matchupModeDescriptions = {
+    offensive: {
+      body: "Shows each Champion Pokemon's weaknesses and the moves in your party's available learnsets that can hit it for super-effective damage.",
+      title: "Offensive"
+    },
+    defensive: {
+      body: "Shows each Champion move and the party Pokemon it affects non-neutrally, including resistances, immunities, and super-effective damage.",
+      title: "Movesets"
+    },
+    "defensive-test": {
+      body: "Groups Champion move matchups by your party Pokemon, with resisted moves in green and super-effective moves in red.",
+      title: "Defensive"
+    },
+    speed: {
+      body: "Compares each Champion Pokemon's base Speed with your party to show which Pokemon are faster or could be faster depending on battle stats.",
+      title: "Speed"
+    },
+    suggested: {
+      body: (
+        <>
+          <p>For each Champion Pokémon, it lists party Pokémon that:</p>
+          <ul>
+            <li>
+              Have at least one available move that hits it for super-effective damage.
+            </li>
+            <li>
+              Aren’t hit for super-effective damage by any of that Champion Pokémon’s damaging moves.
+            </li>
+          </ul>
+        </>
+      ),
+      title: "Suggested"
+    }
+  };
+  const activeMatchupModeDescription =
+    matchupModeDescriptions[matchupMode];
+
+  if (!championTeams.length) {
+    return null;
+  }
+
+  return (
+    <section
+      id="team-coverage-champion-teams"
+      className="team-coverage-champion-teams"
+      aria-labelledby="team-coverage-champion-teams-heading"
+    >
+      <h2 id="team-coverage-champion-teams-heading">
+        Champion Teams
+      </h2>
+      <p>
+        Each opponent Pokemon's defensive weaknesses are shown below its summary card.
+      </p>
+
+      {championTeams.map(team => (
+        <section
+          key={team.id}
+          className="team-coverage-champion-team"
+          aria-labelledby={`${team.id}-heading`}
+        >
+          <h3 id={`${team.id}-heading`}>
+            {team.trainer.name}'s Team
+          </h3>
+          <div className="team-coverage-party-grid">
+            {team.team.map((member, index) => (
+              <ChampionTeamMemberTile
+                {...partyMoveSettings}
+                abilityEffectsByName={
+                  abilityEffectsByName
+                }
+                includeMachineMoves={includeChampionTmMoves}
+                key={`${member.pokemon}-${index}`}
+                member={member}
+                matchupMode={matchupMode}
+                partyMembers={partyMembers}
+                pokemon={
+                  championPokemonRecordsByName[
+                    member.pokemon
+                  ]
+                }
+              />
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <div
+        className="team-coverage-champion-mode-switch"
+        role="group"
+        aria-label="Champion team matchup view"
+      >
+        {[
+          ["suggested", "Suggested"],
+          ["offensive", "Offensive"],
+          ["defensive", "Movesets"],
+          ["defensive-test", "Defensive"],
+          ["speed", "Speed"]
+        ].map(([mode, label]) => (
+          <button
+            key={mode}
+            type="button"
+            aria-pressed={matchupMode === mode}
+            className={
+              matchupMode === mode
+                ? "is-active"
+                : ""
+            }
+            onClick={() => setMatchupMode(mode)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <label className="team-coverage-champion-tm-toggle">
+        <input
+          type="checkbox"
+          checked={includeChampionTmLearnsets}
+          onChange={event =>
+            setIncludeChampionTmLearnsets(
+              event.target.checked
+            )
+          }
+        />
+        <span>Include TM learnset</span>
+      </label>
+
+      <section
+        className="team-coverage-champion-mode-description"
+        aria-live="polite"
+      >
+        <h3>
+          About {activeMatchupModeDescription.title}
+        </h3>
+        {typeof activeMatchupModeDescription.body === "string" ? (
+          <p>{activeMatchupModeDescription.body}</p>
+        ) : (
+          activeMatchupModeDescription.body
+        )}
+      </section>
+    </section>
+  );
+}
+
 function PokemonPicker({
   activeSlot,
   onClose,
@@ -1646,7 +2413,15 @@ function TeamCoveragePage() {
   );
   const [pokemonOptions, setPokemonOptions] =
     useState([]);
+  const [pokemonRouteIdsByName, setPokemonRouteIdsByName] =
+    useState({});
   const [movesByName, setMovesByName] =
+    useState({});
+  const [championTeamsData, setChampionTeamsData] =
+    useState(null);
+  const [abilityEffectsByName, setAbilityEffectsByName] =
+    useState({});
+  const [championPokemonRecordsByName, setChampionPokemonRecordsByName] =
     useState({});
   const [
     pokemonRecordsById,
@@ -1881,6 +2656,26 @@ function TeamCoveragePage() {
   }, []);
 
   useEffect(() => {
+    let isMounted = true;
+
+    async function loadAbilityEffects() {
+      const data = await readJsonUrl(
+        "/data/abilitiesEffectsOnMoves.json"
+      );
+
+      if (isMounted) {
+        setAbilityEffectsByName(data?.abilities ?? {});
+      }
+    }
+
+    loadAbilityEffects();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
     const urlHasSelectedVersion =
       searchParams.get("version") ===
       selectedVersion;
@@ -1956,10 +2751,33 @@ function TeamCoveragePage() {
         .sort((a, b) => a.id - b.id);
 
       setPokemonOptions(options);
+      setPokemonRouteIdsByName(
+        routes?.byName ?? {}
+      );
       setMovesByName(movesMap);
     }
 
     loadBaseData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadChampionTeams() {
+      const data = await readJsonUrl(
+        "/data/championTeams.json"
+      );
+
+      if (isMounted) {
+        setChampionTeamsData(data);
+      }
+    }
+
+    loadChampionTeams();
 
     return () => {
       isMounted = false;
@@ -2039,6 +2857,74 @@ function TeamCoveragePage() {
       isMounted = false;
     };
   }, [selectedVersion]);
+
+  const championTeamsForVersion = useMemo(
+    () =>
+      (championTeamsData?.championTeams ?? []).filter(
+        team => team.versionGroup === selectedVersion
+      ),
+    [
+      championTeamsData,
+      selectedVersion
+    ]
+  );
+  const championPokemonNames = useMemo(
+    () =>
+      [
+        ...new Set(
+          championTeamsForVersion.flatMap(team =>
+            team.team.map(member => member.pokemon)
+          )
+        )
+      ],
+    [championTeamsForVersion]
+  );
+
+  useEffect(() => {
+    let isMounted = true;
+    const namesWithRoutes =
+      championPokemonNames
+        .map(name => ({
+          id: getChampionPokemonRouteId(
+            name,
+            pokemonRouteIdsByName
+          ),
+          name
+        }))
+        .filter(entry => entry.id !== null);
+
+    if (!namesWithRoutes.length) {
+      return () => {
+        isMounted = false;
+      };
+    }
+
+    async function loadChampionPokemonRecords() {
+      const entries = await Promise.all(
+        namesWithRoutes.map(async ({ id, name }) => [
+          name,
+          await readJsonUrl(
+            `/data/pokemonData/${id}.json`
+          )
+        ])
+      );
+
+      if (isMounted) {
+        setChampionPokemonRecordsByName(
+          Object.fromEntries(entries)
+        );
+      }
+    }
+
+    loadChampionPokemonRecords();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [
+    championPokemonNames,
+    pokemonRouteIdsByName
+  ]);
 
   const partyMembers = useMemo(
     () =>
@@ -3764,6 +4650,26 @@ function TeamCoveragePage() {
         />
 
       </section>
+
+      <ChampionTeamSection
+        abilityEffectsByName={abilityEffectsByName}
+        championPokemonRecordsByName={
+          championPokemonRecordsByName
+        }
+        championTeams={championTeamsForVersion}
+        partyMoveSettings={{
+          consideredTypes,
+          includeMachineMoves:
+            includePartyTmLearnsets,
+          maxMoveLevel:
+            selectedMoveLevelThreshold,
+          minMovePower:
+            selectedMovePowerThreshold,
+          movesByName,
+          versionGroup: selectedVersion
+        }}
+        partyMembers={partyMembers}
+      />
 
       {activeSlot !== null && (
         <PokemonPicker

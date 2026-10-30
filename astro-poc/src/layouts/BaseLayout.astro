@@ -14,6 +14,10 @@ const analyticsMeasurementId = import.meta.env.POKELORE_DEPLOY_ENV === 'producti
   ? import.meta.env.PUBLIC_GA_MEASUREMENT_ID
   : '';
 const nav = [['/', 'Pokémon'], ['/moves','Moves'], ['/abilities','Abilities'], ['/items','Items'], ['/locations','Locations'], ['/topics','Topics'], ['/news','News'], ['/types','Types'], ['/tools','Tools'], ['/dex-entries','Entries']];
+const activeNavItem = nav.find(([href]) =>
+  href !== '/' &&
+  (Astro.url.pathname === href || Astro.url.pathname.startsWith(`${href}/`))
+) ?? nav[0];
 ---
 <!doctype html>
 <html lang="en">
@@ -25,7 +29,7 @@ const nav = [['/', 'Pokémon'], ['/moves','Moves'], ['/abilities','Abilities'], 
       <nav class="global-navigation" aria-label="Site navigation">
         <GlobalSiteSearch client:load />
         <noscript><p>Search requires JavaScript. Browse with the menu below.</p></noscript>
-        <details class="site-menu"><summary>Menu: Pokémon</summary><div>{nav.map(([href,label])=><a href={publicHref(href)} aria-current={href==='/' ? 'page':undefined}>{label}</a>)}</div></details>
+        <details class="site-menu"><summary>Menu: {activeNavItem[1]}</summary><div>{nav.map(([href,label])=><a href={publicHref(href)} aria-current={href===activeNavItem[0] ? 'page':undefined}>{label}</a>)}</div></details>
       </nav>
     </header>
     <main id="main"><slot /></main>

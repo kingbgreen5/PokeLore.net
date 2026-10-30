@@ -65,7 +65,7 @@ export default defineConfig({
             res.end(req.method === 'HEAD' ? undefined : search);
             return;
           }
-          if (['/data/pokemonRoutes.json', '/data/movesIndex.json', '/data/moves.json'].includes(pathname)) {
+          if (['/data/abilitiesEffectsOnMoves.json', '/data/championTeams.json', '/data/pokemonRoutes.json', '/data/movesIndex.json', '/data/moves.json'].includes(pathname)) {
             const source = join(fileURLToPath(new URL('../public', import.meta.url)), pathname);
             if (!existsSync(source)) return next();
             res.setHeader('Content-Type', 'application/json; charset=utf-8');
