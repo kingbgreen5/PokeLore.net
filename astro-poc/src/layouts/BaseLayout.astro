@@ -9,14 +9,15 @@ import bannerFallback from '../../../src/assets/Banner-900.png?url';
 import '../../../src/index.css';
 import '../styles/reference.css';
 import { publicHref } from '../lib/links.js';
-const { seo } = Astro.props;
+const { activeNavHref, seo } = Astro.props;
 const analyticsMeasurementId = import.meta.env.POKELORE_DEPLOY_ENV === 'production'
   ? import.meta.env.PUBLIC_GA_MEASUREMENT_ID
   : '';
 const nav = [['/', 'Pokémon'], ['/moves','Moves'], ['/abilities','Abilities'], ['/items','Items'], ['/locations','Locations'], ['/topics','Topics'], ['/news','News'], ['/types','Types'], ['/tools','Tools'], ['/dex-entries','Entries']];
+const currentNavHref = activeNavHref ?? Astro.url.pathname;
 const activeNavItem = nav.find(([href]) =>
   href !== '/' &&
-  (Astro.url.pathname === href || Astro.url.pathname.startsWith(`${href}/`))
+  (currentNavHref === href || currentNavHref.startsWith(`${href}/`))
 ) ?? nav[0];
 ---
 <!doctype html>
