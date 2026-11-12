@@ -855,75 +855,6 @@ function buildEvolutionSection(
         </section>`;
 }
 
-function buildLearnsetRowsHtml(rows) {
-  if (!rows.length) {
-    return `
-          <p>No level-up moves are listed for this version group.</p>`;
-  }
-
-  return `
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Level</th>
-                <th scope="col">Move</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${rows
-                .map(
-                  row => `
-                <tr>
-                  <td>${escapeHtml(row.levelLabel)}</td>
-                  <td><a href="/move/${escapeHtml(row.move)}">${escapeHtml(row.moveLabel)}</a></td>
-                </tr>`
-                )
-                .join("")}
-            </tbody>
-          </table>`;
-}
-
-function buildLearnsetSection(
-  pokemon,
-  learnset,
-  movesData = null
-) {
-  if (!hasLearnsetMoves(learnset)) {
-    return "";
-  }
-
-  const displayName =
-    formatSitePokemonDisplayName(pokemon);
-  const preview =
-    getLatestLevelUpLearnsetPreview(
-      learnset,
-      movesData,
-      {
-        pokemonId: pokemon.id,
-        pokemon: pokemon.name
-      }
-    );
-
-  return `
-        <section class="prerender-learnsets">
-          <button type="button" aria-expanded="false" aria-controls="prerender-learnsets-content">
-            <h2>Learnsets</h2>
-            <p>${escapeHtml(preview.summaryMoveCount)} moves</p>
-          </button>
-          <div id="prerender-learnsets-content" data-seo-visible="true" class="collapsible-content collapsed">
-            <div class="prerender-learnset-preview" data-prerender-learnset="true">
-              <h3>${escapeHtml(displayName)} Moves Learned by Level Up</h3>
-              ${
-                preview.versionLabel
-                  ? `<p>${escapeHtml(preview.versionLabel)}</p>`
-                  : ""
-              }
-              ${buildLearnsetRowsHtml(preview.rows)}
-            </div>
-          </div>
-        </section>`;
-}
-
 function buildPrerenderLearnsetDataScript(
   pokemon,
   learnset,
@@ -1966,11 +1897,6 @@ function buildPokemonShell(
           pokeloreAnalysis,
           pokeloreLinkTargets
         )}
-        ${buildLearnsetSection(
-          pokemon,
-          learnset,
-          movesData
-        )}
         ${buildWhereToFindSection(
           pokemon,
           encounterData
@@ -2245,7 +2171,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 export {
   buildPokemonShell,
   buildEvolutionSection,
-  buildLearnsetSection,
   buildWhereToFindSection,
   buildTypeEffectivenessSection,
   copyTypeBadgeAssets,
