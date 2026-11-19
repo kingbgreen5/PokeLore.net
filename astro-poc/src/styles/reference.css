@@ -66,3 +66,5 @@
 /* Match the production learnset table geometry: each learn method is a compact column. */
 .learnset-static{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1rem;align-items:start;max-width:none;margin:0}.learnset-static[hidden]{display:none!important}.learnset-static .learnsetCard{min-width:0;overflow:visible}.learnset-grid{grid-template-columns:20px minmax(0,1fr) 70px 30px 20px 50px}.learnset-grid-head{grid-template-columns:20px minmax(0,1fr) 70px 30px 20px 40px}.learnset-grid>*:nth-child(2){min-width:0}.learnset-grid>*:nth-child(3){justify-self:start}
 @media(max-width:600px){.learnset-static{grid-template-columns:minmax(0,1fr)}.learnset-static .learnsetCard{overflow-x:auto}}
+
+.pokemon-summary-card-with-stat{min-height:175px;max-height:none}.pokemon-card-stat{color:var(--text);font-size:.72rem;line-height:1;margin:-.25rem 0 .4rem;text-align:center}

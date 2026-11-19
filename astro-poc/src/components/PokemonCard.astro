@@ -3,14 +3,15 @@ import { formatPokemonDisplayName } from '../../../src/utils/pokemonNames.js';
 import { getLocalPokemonArtwork } from '../../../src/utils/pokemonSprites.js';
 import { publicHref } from '../lib/links.js';
 import TypeBadge from './TypeBadge.astro';
-const { pokemon } = Astro.props;
+const { pokemon, statLabel = null, ...attributes } = Astro.props;
 const artwork = (!pokemon.isDefault && (pokemon.spriteFallback ?? pokemon.sprite))
   || getLocalPokemonArtwork(pokemon, 'card')
   || pokemon.sprite;
 ---
-<a class="pokemon-summary-card" href={publicHref(`/pokemon/${pokemon.name}`)}>
+<a {...attributes} class={`pokemon-summary-card${statLabel ? ' pokemon-summary-card-with-stat' : ''}`} href={publicHref(`/pokemon/${pokemon.name}`)}>
   <span class="dex-number">#{String(pokemon.id).padStart(4,'0')}</span>
   <img class="card-artwork" src={artwork} alt={formatPokemonDisplayName(pokemon)} width="90" height="90" loading="lazy" />
   <strong>{formatPokemonDisplayName(pokemon)}</strong>
+  {statLabel && <span class="pokemon-card-stat" data-pokemon-sort-stat>{statLabel}</span>}
   <span class="card-types">{pokemon.types.map(type => <TypeBadge type={type} height="1.15rem" />)}</span>
 </a>

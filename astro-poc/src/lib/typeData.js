@@ -31,10 +31,14 @@ function canonicalPokemon(slug) {
   if (!variety) return null;
   const pokemon = { ...source, ...variety, name: slug, id, types: variety.types ?? source.types, stats: source.stats };
   const result = {
+    id: variety.id ?? source.id,
+    name: slug,
     slug,
     displayName: formatPokemonDisplayName(pokemon),
     dexNumber: source.varieties?.find(row => row.isDefault)?.id ?? source.id,
     sprite: variety.spriteFallback ?? variety.sprite ?? source.sprite,
+    spriteFallback: variety.spriteFallback,
+    isDefault: Boolean(variety.isDefault),
     height: pokemon.height,
     types: pokemon.types,
     stats: pokemon.stats,

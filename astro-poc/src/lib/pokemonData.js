@@ -26,10 +26,18 @@ function normalizeEvolutionText(value) {
     .replace(/\s+/g, ' ')
     .trim();
 }
+function normalizeEvolutionPartText(value) {
+  return String(value ?? '')
+    .replace(/(friendship|affection)(?=during|knowing)/g, '$1 ')
+    .replace(/(\d)(?=Attack|Defense)/g, '$1 ')
+    .replace(/\s+/g, ' ');
+}
 function normalizeEvolutionModel(model) {
   model.methodParts = model.methodParts.map(part => ({
     ...part,
-    text: normalizeEvolutionText(part.text)
+    // Individual parts deliberately contain boundary spaces around links.
+    // Trimming them joins text such as "Trade" and "holding Protector".
+    text: normalizeEvolutionPartText(part.text)
   }));
   model.methodText = normalizeEvolutionText(model.methodText);
   if (!model.methodText && model.node.trigger) {
