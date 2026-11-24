@@ -331,6 +331,10 @@ code {
 
 .evolution-tree-scroll {
   overflow-x: auto;
+  /* Reserve room for a summary card's upward hover transform. Horizontal
+     scrolling clips the vertical overflow, so without this buffer the top
+     edge of the lifted card is cut off. */
+  padding-top: .5rem;
   width: 100%;
 }
 
